@@ -4,6 +4,8 @@
     from
         `lapd_test`.`t_admin`
         
-gdfgfdgdsf
+g
 
 Simple_Select.sql
+
+asdfads
