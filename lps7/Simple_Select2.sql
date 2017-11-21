@@ -4,7 +4,7 @@
     from
         `lapd_test`.`t_admin`
         
-g
+gsdf
 
 Simple_Select.sql
 
