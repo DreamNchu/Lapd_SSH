@@ -9,16 +9,16 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "t_roomcatagory", catalog = "lapd_test")
-public class TRoomcatagory extends AbstractTRoomcatagory implements java.io.Serializable {
+public class RoomCatagory extends AbstractTRoomcatagory implements java.io.Serializable {
 
 	// Constructors
 
 	/** default constructor */
-	public TRoomcatagory() {
+	public RoomCatagory() {
 	}
 
 	/** full constructor */
-	public TRoomcatagory(String roomcatagory, Set<TRoom> TRooms) {
+	public RoomCatagory(String roomcatagory, Set<Room> TRooms) {
 		super(roomcatagory, TRooms);
 	}
 

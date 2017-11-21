@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
  * provides additional information for how to configure it for the desired type
  * of transaction control.
  * 
- * @see clockcatagory.TRoom
+ * @see clockcatagory.Room
  * @author MyEclipse Persistence Tools
  */
 public class TRoomDAO extends BaseHibernateDAO {
@@ -27,7 +27,7 @@ public class TRoomDAO extends BaseHibernateDAO {
 	public static final String SIZE = "size";
 	public static final String REMARK = "remark";
 
-	public void save(TRoom transientInstance) {
+	public void save(Room transientInstance) {
 		log.debug("saving TRoom instance");
 		try {
 			getSession().save(transientInstance);
@@ -38,7 +38,7 @@ public class TRoomDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void delete(TRoom persistentInstance) {
+	public void delete(Room persistentInstance) {
 		log.debug("deleting TRoom instance");
 		try {
 			getSession().delete(persistentInstance);
@@ -49,10 +49,10 @@ public class TRoomDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public TRoom findById(java.lang.Integer id) {
+	public Room findById(java.lang.Integer id) {
 		log.debug("getting TRoom instance with id: " + id);
 		try {
-			TRoom instance = (TRoom) getSession().get("clockcatagory.TRoom", id);
+			Room instance = (Room) getSession().get("clockcatagory.TRoom", id);
 			return instance;
 		} catch (RuntimeException re) {
 			log.error("get failed", re);
@@ -60,10 +60,10 @@ public class TRoomDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<TRoom> findByExample(TRoom instance) {
+	public List<Room> findByExample(Room instance) {
 		log.debug("finding TRoom instance by example");
 		try {
-			List<TRoom> results = (List<TRoom>) getSession().createCriteria("clockcatagory.TRoom").add(create(instance))
+			List<Room> results = (List<Room>) getSession().createCriteria("clockcatagory.TRoom").add(create(instance))
 					.list();
 			log.debug("find by example successful, result size: " + results.size());
 			return results;
@@ -86,19 +86,19 @@ public class TRoomDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public List<TRoom> findByName(Object name) {
+	public List<Room> findByName(Object name) {
 		return findByProperty(NAME, name);
 	}
 
-	public List<TRoom> findByFloor(Object floor) {
+	public List<Room> findByFloor(Object floor) {
 		return findByProperty(FLOOR, floor);
 	}
 
-	public List<TRoom> findBySize(Object size) {
+	public List<Room> findBySize(Object size) {
 		return findByProperty(SIZE, size);
 	}
 
-	public List<TRoom> findByRemark(Object remark) {
+	public List<Room> findByRemark(Object remark) {
 		return findByProperty(REMARK, remark);
 	}
 
@@ -114,10 +114,10 @@ public class TRoomDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public TRoom merge(TRoom detachedInstance) {
+	public Room merge(Room detachedInstance) {
 		log.debug("merging TRoom instance");
 		try {
-			TRoom result = (TRoom) getSession().merge(detachedInstance);
+			Room result = (Room) getSession().merge(detachedInstance);
 			log.debug("merge successful");
 			return result;
 		} catch (RuntimeException re) {
@@ -126,7 +126,7 @@ public class TRoomDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachDirty(TRoom instance) {
+	public void attachDirty(Room instance) {
 		log.debug("attaching dirty TRoom instance");
 		try {
 			getSession().saveOrUpdate(instance);
@@ -137,7 +137,7 @@ public class TRoomDAO extends BaseHibernateDAO {
 		}
 	}
 
-	public void attachClean(TRoom instance) {
+	public void attachClean(Room instance) {
 		log.debug("attaching clean TRoom instance");
 		try {
 			getSession().buildLockRequest(LockOptions.NONE).lock(instance);

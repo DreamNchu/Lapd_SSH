@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.fail;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.junit.AfterClass;
@@ -12,9 +11,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.lps.model.Admin;
 import com.lps.model.User;
+import com.lps.model.WorkStatus;
 import com.lps.service.impl.UserServiceImpl;
+import com.lps.service.impl.WorkStatusServiceImpl;
 
 public class UserServiceImplTest {
 	
@@ -119,9 +119,10 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testSave() {
-		for(int i = 0; i < 23; i ++){
+		as.save(new User("0003", "0002", "ÄãÊÇË­", "cyl", new Timestamp(System.currentTimeMillis()),new WorkStatus("ÐÝÏ¢")));
+		/*for(int i = 0; i < 23; i ++){
 			as.save(new User("0002" + i, "0002", "ÄãÊÇË­", "cyl", new Timestamp(System.currentTimeMillis())));
-		}
+		}*/
 //		User u = new User("0002", "0002", "ÄãÊÇË­", "cyl", new Timestamp(System.currentTimeMillis()));
 //		as.save(u);
 	}

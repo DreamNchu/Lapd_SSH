@@ -12,16 +12,8 @@ CREATE TABLE IF NOT EXISTS `lapd_test`.`t_admin` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
+--drop table `lapd_test`.`t_user`;
 
-CREATE TABLE IF NOT EXISTS `lapd_test`.`t_workstatus` (
-  `id` INT NOT NULL COMMENT '主键id',
-  `workStatus` VARCHAR(20) NOT NULL COMMENT '工作状态',
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `workStatus_UNIQUE` (`workStatus` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8;
-
-drop table if exists `lapd_test`.`t_user` ;
 CREATE TABLE IF NOT EXISTS `lapd_test`.`t_user` (
   `id` INT NOT NULL,
   `userName` VARCHAR(45) NOT NULL COMMENT '员工编号',
@@ -34,7 +26,7 @@ CREATE TABLE IF NOT EXISTS `lapd_test`.`t_user` (
   `avatar` VARCHAR(255) NULL COMMENT '头像图片路径',
   `question` VARCHAR(20) NOT NULL COMMENT '密保问题',
   `answer` VARCHAR(100) NOT NULL COMMENT '密保答案',
-  `workStatus` VARCHAR(20) NULL DEFAULT NULL,
+  `workStatus` INT NULL DEFAULT NULL,
   `registerTime` TIMESTAMP NOT NULL,
   UNIQUE INDEX `id_UNIQUE` (`workId` ASC),
   INDEX `workStatus_idx` (`workStatus` ASC),
@@ -42,11 +34,50 @@ CREATE TABLE IF NOT EXISTS `lapd_test`.`t_user` (
   PRIMARY KEY (`id`),
   CONSTRAINT `UserworkStatus`
     FOREIGN KEY (`workStatus`)
-    REFERENCES `lapd_test`.`t_workstatus` (`workStatus`)
+    REFERENCES `lapd_test`.`t_workstatus` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
+
+--desc `lapd_test`.`t_user`;
+
+CREATE TABLE IF NOT EXISTS `lapd_test`.`t_roomcategory` (
+  `id` INT NOT NULL  COMMENT '序号',
+  `roomcategory` VARCHAR(20) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `roomcategory_UNIQUE` (`roomcategory` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+
+
+CREATE TABLE IF NOT EXISTS `lapd_test`.`t_room` (
+  `id` INT NOT NULL COMMENT '主键',
+  `name` VARCHAR(10) NULL COMMENT '房间编号',
+  `category` VARCHAR(45) NULL COMMENT '房间名字',
+  `floor` INT NOT NULL,
+  `size` INT NOT NULL COMMENT '房间可容纳客人的人数',
+  `remark` VARCHAR(255) NULL DEFAULT NULL COMMENT '房间描述',
+  `addTime` TIMESTAMP NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `name_idx` (`category` ASC),
+  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
+  CONSTRAINT `name`
+    FOREIGN KEY (`category`)
+    REFERENCES `lapd_test`.`t_roomcategory` (`roomcategory`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+
+CREATE TABLE IF NOT EXISTS `lapd_test`.`t_clockcategory` (
+  `id` INT NOT NULL COMMENT '序号',
+  `clockcategory` VARCHAR(20) NOT NULL COMMENT '上钟类型',
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `name_UNIQUE` (`clockcategory` ASC))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+
 
 CREATE TABLE IF NOT EXISTS `lapd_test`.`t_paypath` (
   `id` INT NOT NULL COMMENT '主键',
@@ -65,29 +96,3 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 
 
-CREATE TABLE IF NOT EXISTS `lapd_test`.`t_roomcatagory` (
-  `id` INT NOT NULL COMMENT '序号',
-  `roomcatagory` VARCHAR(20) NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `roomcatagory_UNIQUE` (`roomcatagory` ASC))
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-
-CREATE TABLE IF NOT EXISTS `lapd_test`.`t_room` (
-  `id` INT NOT NULL COMMENT '主键',
-  `name` VARCHAR(10) NULL COMMENT '房间编号',
-  `catagory` VARCHAR(45) NULL COMMENT '房间名字',
-  `floor` INT NOT NULL,
-  `size` INT NOT NULL COMMENT '房间可容纳客人的人数',
-  `remark` VARCHAR(255) NULL DEFAULT NULL COMMENT '房间描述',
-  `addTime` TIMESTAMP NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `name_idx` (`catagory` ASC),
-  UNIQUE INDEX `name_UNIQUE` (`name` ASC),
-  CONSTRAINT `name`
-    FOREIGN KEY (`catagory`)
-    REFERENCES `lapd_test`.`t_roomcatagory` (`roomcatagory`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8

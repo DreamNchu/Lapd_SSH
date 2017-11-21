@@ -79,7 +79,6 @@ public class WorkStatus implements java.io.Serializable {
     }
     
     @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="workStatus")
-
     public Set<User> getUsers() {
         return this.users;
     }
@@ -88,9 +87,6 @@ public class WorkStatus implements java.io.Serializable {
         this.users = users;
     }
    
-
-
-
 
 
 

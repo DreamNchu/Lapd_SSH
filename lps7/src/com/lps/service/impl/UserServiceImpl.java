@@ -129,5 +129,11 @@ public class UserServiceImpl implements UserService {
         return pageBean;
     }
 
+	@Override
+	public void update(User t) {
+		// TODO Auto-generated method stub
+		userDao.update(t);	
+	}
+
 
 }

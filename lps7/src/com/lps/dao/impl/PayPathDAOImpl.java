@@ -81,4 +81,10 @@ public class PayPathDAOImpl  implements PayPathDAO{
         }
         return null;
 	}
+
+	@Override
+	public void update(PayPath t) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.update(t);
+	}
 }

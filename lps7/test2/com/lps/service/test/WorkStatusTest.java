@@ -3,12 +3,15 @@ package com.lps.service.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
 
+import java.sql.Timestamp;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lps.dao.impl.WorkStatusDAOImpl;
+import com.lps.model.User;
 import com.lps.model.WorkStatus;
 import com.lps.service.impl.WorkStatusServiceImpl;
 
@@ -64,7 +67,14 @@ public class WorkStatusTest {
 
 	@Test
 	public void testSave() {
-//		as.save(new WorkStatus("休息"));
+		as.save(new WorkStatus("休息"));
+//		as.save(new WorkStatus("服务中"));
+//		as.save(new WorkStatus("待接收"));
+//		as.save(new WorkStatus("其他"));
+//		WorkStatus ws = as.findById(2);
+//		ws.getUsers().add(new User("0003", "0002", "你是谁", "cyl", new Timestamp(System.currentTimeMillis()),ws));
+//		as.save(new WorkStatus("其他"));
+//		as.update(ws);
 		
 	}
 

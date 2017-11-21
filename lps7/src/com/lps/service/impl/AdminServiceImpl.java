@@ -1,12 +1,11 @@
 package com.lps.service.impl;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 import com.lps.dao.AdminDAO;
 import com.lps.model.Admin;
-import com.lps.model.PayPath;
-import com.lps.model.User;
 import com.lps.service.AdminService;
 import com.lps.util.PageBean;
 
@@ -73,6 +72,11 @@ public class AdminServiceImpl implements AdminService {
 	public List<Admin> findByProperty(String propertyName, Object value){
 		return adminDao.findByProperty(propertyName, value);
 	}
+/*	
+	@Override
+	public List<Admin> findByRegisterTime(Timestamp value){
+		return adminDao.getByRegisterTime(value);
+	}*/
 
 	@Override
 	public List<Admin> findAll() {
@@ -105,6 +109,12 @@ public class AdminServiceImpl implements AdminService {
         pageBean.setList(list);
         
         return pageBean;
+	}
+
+	@Override
+	public void update(Admin t) {
+		// TODO Auto-generated method stub
+		adminDao.update(t);
 	}
 
 

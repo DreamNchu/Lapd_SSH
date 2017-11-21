@@ -96,6 +96,12 @@ public class PayPathServiceImpl implements PayPathService {
         return pageBean;
 	}
 
+	@Override
+	public void update(PayPath t) {
+		// TODO Auto-generated method stub
+		payPathDao.update(t);
+	}
+
 
 
 }

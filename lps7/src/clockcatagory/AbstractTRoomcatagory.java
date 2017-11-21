@@ -22,7 +22,7 @@ public abstract class AbstractTRoomcatagory implements java.io.Serializable {
 
 	private Integer id;
 	private String roomcatagory;
-	private Set<TRoom> TRooms = new HashSet<TRoom>(0);
+	private Set<Room> TRooms = new HashSet<Room>(0);
 
 	// Constructors
 
@@ -31,7 +31,7 @@ public abstract class AbstractTRoomcatagory implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public AbstractTRoomcatagory(String roomcatagory, Set<TRoom> TRooms) {
+	public AbstractTRoomcatagory(String roomcatagory, Set<Room> TRooms) {
 		this.roomcatagory = roomcatagory;
 		this.TRooms = TRooms;
 	}
@@ -62,11 +62,11 @@ public abstract class AbstractTRoomcatagory implements java.io.Serializable {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "TRoomcatagory")
 
-	public Set<TRoom> getTRooms() {
+	public Set<Room> getTRooms() {
 		return this.TRooms;
 	}
 
-	public void setTRooms(Set<TRoom> TRooms) {
+	public void setTRooms(Set<Room> TRooms) {
 		this.TRooms = TRooms;
 	}
 

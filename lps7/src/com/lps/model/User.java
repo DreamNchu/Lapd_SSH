@@ -1,8 +1,9 @@
-package com.lps.model;
+ package com.lps.model;
 // default package
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -49,10 +50,11 @@ public class User  implements java.io.Serializable {
     }
 
 	/** minimal constructor */
-    public User(String userName, String password, String question, String answer, Date registerTime) {
+    public User(String userName, String password, String question, String answer, Date registerTime, WorkStatus workStatus) {
         this.userName = userName;
         this.password = password;
         this.question = question;
+        this.workStatus = workStatus;
         this.answer = answer;
         this.registerTime = registerTime;
     }
@@ -86,9 +88,8 @@ public class User  implements java.io.Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne(fetch=FetchType.EAGER, cascade=CascadeType.ALL)
     @JoinColumn(name="workStatus")
-
     public WorkStatus getWorkStatus() {
         return this.workStatus;
     }

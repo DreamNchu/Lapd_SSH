@@ -24,4 +24,5 @@ public interface BasicService<T> {
 	
 	public PageBean<T> findByPage(int page);
 
+	void update(T t);
 }

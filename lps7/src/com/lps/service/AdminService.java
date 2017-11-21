@@ -1,5 +1,6 @@
 package com.lps.service;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -17,5 +18,7 @@ public interface AdminService extends BasicService<Admin>{
 	public Date getRegisterTime(Admin admin);
 	
 	public String getAvatar(Admin admin);
+
+//	List<Admin> findByRegisterTime( Timestamp value);
 	
 }

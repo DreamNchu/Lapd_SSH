@@ -1,26 +1,37 @@
-package clockcatagory;
+package com.lps.model;
 
 import java.util.Date;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
 
 /**
  * AbstractTRoom entity provides the base persistence definition of the TRoom
  * entity. @author MyEclipse Persistence Tools
  */
-@MappedSuperclass
-
-public abstract class AbstractTRoom implements java.io.Serializable {
+@Entity
+@Table(name="t_room")
+@TableGenerator(
+		name = "pk_generate", 
+		table = "tb_generator",
+		pkColumnName = "gen_name", 
+		valueColumnName = "gen_value", 
+		pkColumnValue = "room_PK",
+		allocationSize = 1)
+public class Room implements java.io.Serializable {
 
 	// Fields
 
 	private Integer id;
-	private RoomCatagory TRoomcatagory;
+	private RoomCategory roomCategory;
 	private String name;
 	private Integer floor;
 	private Integer size;
@@ -30,20 +41,20 @@ public abstract class AbstractTRoom implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public AbstractTRoom() {
+	public Room() {
 	}
 
 	/** minimal constructor */
-	public AbstractTRoom(Integer floor, Integer size, Date addTime) {
+	public Room(Integer floor, Integer size, Date addTime) {
 		this.floor = floor;
 		this.size = size;
 		this.addTime = addTime;
 	}
 
 	/** full constructor */
-	public AbstractTRoom(RoomCatagory TRoomcatagory, String name, Integer floor, Integer size, String remark,
+	public Room(RoomCategory TRoomcategory, String name, Integer floor, Integer size, String remark,
 			Date addTime) {
-		this.TRoomcatagory = TRoomcatagory;
+		this.roomCategory = TRoomcategory;
 		this.name = name;
 		this.floor = floor;
 		this.size = size;
@@ -52,10 +63,9 @@ public abstract class AbstractTRoom implements java.io.Serializable {
 	}
 
 	// Property accessors
-	@Id
-	@GeneratedValue
-
-	@Column(name = "id", unique = true, nullable = false)
+	 @Id 
+	    @GeneratedValue(strategy = GenerationType.TABLE, generator = "pk_generate")
+	    @Column(name="id", unique=true, nullable=false)
 
 	public Integer getId() {
 		return this.id;
@@ -66,14 +76,14 @@ public abstract class AbstractTRoom implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "catagory")
+	@JoinColumn(name = "roomcategory")
 
-	public RoomCatagory getTRoomcatagory() {
-		return this.TRoomcatagory;
+	public RoomCategory getRoomCategory() {
+		return this.roomCategory;
 	}
 
-	public void setTRoomcatagory(RoomCatagory TRoomcatagory) {
-		this.TRoomcatagory = TRoomcatagory;
+	public void setRoomCategory(RoomCategory TRoomcategory) {
+		this.roomCategory = TRoomcategory;
 	}
 
 	@Column(name = "name", unique = true, length = 10)

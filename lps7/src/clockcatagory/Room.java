@@ -9,21 +9,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "t_room", catalog = "lapd_test")
-public class TRoom extends AbstractTRoom implements java.io.Serializable {
+public class Room extends AbstractTRoom implements java.io.Serializable {
 
 	// Constructors
 
 	/** default constructor */
-	public TRoom() {
+	public Room() {
 	}
 
 	/** minimal constructor */
-	public TRoom(Integer floor, Integer size, Date addTime) {
+	public Room(Integer floor, Integer size, Date addTime) {
 		super(floor, size, addTime);
 	}
 
 	/** full constructor */
-	public TRoom(TRoomcatagory TRoomcatagory, String name, Integer floor, Integer size, String remark, Date addTime) {
+	public Room(RoomCatagory TRoomcatagory, String name, Integer floor, Integer size, String remark, Date addTime) {
 		super(TRoomcatagory, name, floor, size, remark, addTime);
 	}
 
