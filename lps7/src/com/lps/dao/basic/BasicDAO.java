@@ -35,5 +35,11 @@ public interface BasicDAO<T> {
 	 * @return 返回该范围内的list
 	 */
 	List<T> findListByLimit(long begin, long limit);
+	
+	/**
+	 * 更新已经改完的字段
+	 * @param t
+	 */
+	void update(T t);
 
 }

@@ -85,4 +85,10 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
         return null;
 	}
 
+	@Override
+	public void update(WorkStatus t) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.update(t);
+	}
+
 }

@@ -1,6 +1,7 @@
 package com.lps.dao.impl;
 
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -16,6 +17,8 @@ public class AdminDAOImpl implements AdminDAO {
 	public static final String USER_NAME = "userName";
 	public static final String PASSWORD = "password";
 	public static final String AVATAR = "avatar";
+	public static final String REGISTER_TIME = "registerTime";
+	
 	
 	private HibernateTemplate hibernateTemplate;
 
@@ -50,13 +53,18 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public Admin getByUserName(String name) {
-		List<?> tempList = hibernateTemplate.find("from Admin a where a.userName = '" + name + "'");
+	public Admin getByUserName(String persistentInstance) {
+		List<?> tempList = hibernateTemplate.find("from Admin a where a.userName = '" + persistentInstance + "'");
 		if(tempList.size() > 0)
 			return (Admin)tempList.get(0);
 		return null;
 	}
 	
+/*	@Override
+	public List<Admin> getByRegisterTime(Timestamp persistentInstance) {
+		return findByProperty(REGISTER_TIME, persistentInstance);
+	}
+	*/
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Admin> findByProperty(String propertyName, Object value) {
@@ -64,7 +72,7 @@ public class AdminDAOImpl implements AdminDAO {
 	         						+ propertyName + "= ?";
 	         Query queryObject = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(queryString);
 			 queryObject.setParameter(0, value);
-System.out.println("findByProperty");
+System.out.println(Thread.currentThread());
 			 return (List<Admin>)queryObject.list();
 	 }
 	
@@ -90,6 +98,12 @@ System.out.println("findByProperty");
             return list;
         }
         return null;
+	}
+
+	@Override
+	public void update(Admin t) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.update(t);
 	}
 	
 	

@@ -1,5 +1,6 @@
 package com.lps.dao;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import com.lps.dao.basic.BasicDAO;

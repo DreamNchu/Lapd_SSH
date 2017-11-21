@@ -2,14 +2,12 @@ package com.lps.service.test;
 
 import static org.junit.Assert.assertEquals;
 
-import org.hibernate.Session;
 import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.lps.dao.AdminDAO;
 import com.lps.dao.impl.AdminDAOImpl;
 import com.lps.model.Admin;
 import com.lps.service.impl.AdminServiceImpl;
@@ -48,7 +46,9 @@ public class AdminServiceImplTest {
 	public void testSession(){
 		AdminDAOImpl adi = (AdminDAOImpl)as.getAdminDao();
 		assertEquals(AdminDAOImpl.class, as.getAdminDao().getClass());
-		Session session = adi.getHibernateTemplate().getSessionFactory().getCurrentSession();
+		System.out.println(adi.getHibernateTemplate().getSessionFactory());
+		System.out.println(adi.getHibernateTemplate().getSessionFactory().getCurrentSession());
+//		Session session = adi.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		//System.out.println(session);
 		//System.out.println(session.createQuery("from Admin").list().size());	
 //		as.save(new Admin("小键","0002", new java.sql.Timestamp(System.currentTimeMillis())));
@@ -91,7 +91,19 @@ public class AdminServiceImplTest {
 	
 	@Test
 	public void testFindByProperty(){
-		Assert.assertEquals("小芳", as.findByProperty(AdminDAOImpl.USER_NAME, "小芳0").get(0).getUserName());
+		AdminDAOImpl adi = (AdminDAOImpl)as.getAdminDao();
+		assertEquals(AdminDAOImpl.class, as.getAdminDao().getClass());
+		System.out.println(adi.getHibernateTemplate().getSessionFactory());
+		Assert.assertEquals("小芳0", as.findByProperty(AdminDAOImpl.USER_NAME, "小芳0").get(0).getUserName());
+		System.out.println(Thread.currentThread());
+		System.out.println(adi.getHibernateTemplate().getSessionFactory().getCurrentSession());
+	}
+	
+	
+	@Test
+	public void testTetByRegisterTime(){
+		System.out.println();
+//		Assert.assertEquals("小芳0", as.findByRegisterTime(new Timestamp(2017,11,21, 00,06,06, 0)).get(0).getUserName());
 	}
 	
 	@Test
@@ -102,5 +114,14 @@ public class AdminServiceImplTest {
 	@Test
 	public void testFindAllCount(){
 		Assert.assertEquals(as.findAll().size(), as.findAllCount());
+	}
+	
+	@Test
+	public void testUpdate(){
+//		Assert.assertEquals(as.findAll().size(), as.findAllCount());
+		Admin a = as.getByUserName("小芳0");
+//		Admin a = as.getByUserName("小芳0");
+		a.setPassword("8888");
+		as.update(a);
 	}
 }

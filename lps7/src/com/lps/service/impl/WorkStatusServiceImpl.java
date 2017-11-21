@@ -11,9 +11,9 @@ import com.lps.util.PageBean;
 //@Component("adminServiceImpl")
 //@Aspect
 public class WorkStatusServiceImpl implements WorkStatusService {
-	
+
 	private WorkStatusDAO dao;
-	
+
 	private PageBean<WorkStatus> pageBean;
 
 	public PageBean<WorkStatus> getPageBean() {
@@ -23,10 +23,10 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	public void setPageBean(PageBean<WorkStatus> pageBean) {
 		this.pageBean = pageBean;
 	}
-	
+
 	@Override
 	public void delete(WorkStatus workStatus) {
-		dao.delete( workStatus);
+		dao.delete(workStatus);
 	}
 
 	@Override
@@ -75,25 +75,30 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	@Override
 	public PageBean<WorkStatus> findByPage(int page) {
 		pageBean.setPage(page);
-        
-        long totalCount= findAllCount();
-        
-        pageBean.setAllCount(totalCount);
-        
-        long limit  = pageBean.getLimit();
-        
-        long totalpage=(long)Math.ceil(totalCount/limit);
-        
-        pageBean.setAllPage(totalpage);
-        //每页显示的数据集合
-        long begin=(page-1) * limit;
-        
-        List<WorkStatus> list = dao.findListByLimit(begin, limit);
-        
-        pageBean.setList(list);
-        
-        return pageBean;
+
+		long totalCount = findAllCount();
+
+		pageBean.setAllCount(totalCount);
+
+		long limit = pageBean.getLimit();
+
+		long totalpage = (long) Math.ceil(totalCount / limit);
+
+		pageBean.setAllPage(totalpage);
+		// 每页显示的数据集合
+		long begin = (page - 1) * limit;
+
+		List<WorkStatus> list = dao.findListByLimit(begin, limit);
+
+		pageBean.setList(list);
+
+		return pageBean;
 	}
 
+	@Override
+	public void update(WorkStatus t) {
+		// TODO Auto-generated method stub
+		dao.update(t);
+	}
 
 }

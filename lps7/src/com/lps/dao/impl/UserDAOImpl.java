@@ -23,6 +23,7 @@ public class UserDAOImpl implements UserDAO {
 	public static final String AVATAR = "avatar";
 	public static final String QUESTION = "question";
 	public static final String ANSWER = "answer";
+	public static final String REGISTER_TIME = "registerTime";
 
 	private HibernateTemplate hibernateTemplate;
 
@@ -112,10 +113,6 @@ public class UserDAOImpl implements UserDAO {
 		return (List<User>)hibernateTemplate.find("from User");
 	}
 	
-	public void update(){
-		hibernateTemplate.update();
-	}
-
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from User";
@@ -139,6 +136,12 @@ public class UserDAOImpl implements UserDAO {
             return list;
         }
         return null;
+	}
+
+	@Override
+	public void update(User t) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.update(t);
 	}
 
 }
