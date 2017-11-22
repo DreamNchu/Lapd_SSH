@@ -67,7 +67,6 @@ public class RoomCategory implements java.io.Serializable {
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "roomCategory")
-
 	public Set<Room> getRooms() {
 		return this.rooms;
 	}

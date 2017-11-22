@@ -50,11 +50,12 @@ CREATE TABLE IF NOT EXISTS `lapd_test`.`t_roomcategory` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 
+--drop table t_room;
 
 CREATE TABLE IF NOT EXISTS `lapd_test`.`t_room` (
   `id` INT NOT NULL COMMENT '主键',
-  `name` VARCHAR(10) NULL COMMENT '房间编号',
-  `category` VARCHAR(45) NULL COMMENT '房间名字',
+  `name` VARCHAR(10) NOT NULL COMMENT '房间编号',
+  `category` INT NOT NULL COMMENT '房间名字',
   `floor` INT NOT NULL,
   `size` INT NOT NULL COMMENT '房间可容纳客人的人数',
   `remark` VARCHAR(255) NULL DEFAULT NULL COMMENT '房间描述',
@@ -64,7 +65,7 @@ CREATE TABLE IF NOT EXISTS `lapd_test`.`t_room` (
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   CONSTRAINT `name`
     FOREIGN KEY (`category`)
-    REFERENCES `lapd_test`.`t_roomcategory` (`roomcategory`)
+    REFERENCES `lapd_test`.`t_roomcategory` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB

@@ -18,7 +18,7 @@ import javax.persistence.TableGenerator;
 		pkColumnValue = "orderstatus_PK",
 		allocationSize = 1)
 
-public class Orderstatus implements java.io.Serializable {
+public class OrderStatus implements java.io.Serializable {
 
 	// Fields
 
@@ -28,11 +28,11 @@ public class Orderstatus implements java.io.Serializable {
 	// Constructors
 
 	/** default constructor */
-	public Orderstatus() {
+	public OrderStatus() {
 	}
 
 	/** full constructor */
-	public Orderstatus(String orderstatus) {
+	public OrderStatus(String orderstatus) {
 		this.orderstatus = orderstatus;
 	}
 
