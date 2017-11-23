@@ -27,6 +27,8 @@
 		<mapping class="clockcatagory.TOrderstatus" />
 		<mapping class="clockcatagory.TRoomcatagory" />
 		<mapping class="clockcatagory.TRoom" />
+		<mapping class="clockcatagory.TWorkstatus" />
+		<mapping class="clockcatagory.TWorkrank" />
 
 	</session-factory>
 

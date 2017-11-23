@@ -96,4 +96,35 @@ CREATE TABLE IF NOT EXISTS `lapd_test`.`t_orderstatus` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 
+CREATE TABLE IF NOT EXISTS `lapd_test`.`workrank` (
+  `id` INT NOT NULL,
+  `stuffId` INT(11) NOT NULL COMMENT '员工的工作牌号\n',
+  `rankNum` INT(11) NULL DEFAULT '0' COMMENT '排钟数量',
+  `spotNum` INT(11) NULL DEFAULT '0' COMMENT '点钟数量',
+  INDEX `id_user_idx` (`stuffId` ASC),
+  PRIMARY KEY (`id`),
+  CONSTRAINT `id_user`
+    FOREIGN KEY (`stuffId`)
+    REFERENCES `lapd_test`.`t_user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
 
+
+CREATE TABLE IF NOT EXISTS `lapd_test`.`t_workrank` (
+  `id` INT NOT NULL,
+  `rank` INT NOT NULL COMMENT '排名序号',
+  `stuffId` INT(11) NOT NULL COMMENT '员工的工作牌号\n',
+  `rankNum` INT(11) NULL DEFAULT '0' COMMENT '排钟数量',
+  `spotNum` INT(11) NULL DEFAULT '0' COMMENT '点钟数量',
+  INDEX `id_user_idx` (`stuffId` ASC),
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `rank_UNIQUE` (`rank` ASC),
+  CONSTRAINT `id_user`
+    FOREIGN KEY (`stuffId`)
+    REFERENCES `lapd_test`.`t_user` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8

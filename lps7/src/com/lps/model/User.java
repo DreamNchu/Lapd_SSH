@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
@@ -26,9 +27,13 @@ import javax.persistence.TemporalType;
 		valueColumnName = "gen_value", 
 		pkColumnValue = "user_PK",
 		allocationSize = 1)
-public class User  implements java.io.Serializable {
+public class User implements java.io.Serializable {
 
-     private Integer id;
+     /**
+	 * 
+	 */
+	private static final long serialVersionUID = -8076582509975805828L;
+	private Integer id;
      private WorkStatus workStatus;
      private String userName;
      private String password;
@@ -41,11 +46,12 @@ public class User  implements java.io.Serializable {
      private String question;
      private String answer;
      private Date registerTime;
+     private WorkRank workRank;
 
 
     // Constructors
 
-    /** default constructor */
+	/** default constructor */
     public User() {
     }
 
@@ -208,5 +214,14 @@ public class User  implements java.io.Serializable {
         this.registerTime = registerTime;
     }
 
+    @OneToOne(mappedBy="user",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+    
+    public WorkRank getWorkRank() {
+		return workRank;
+	}
+
+	public void setWorkRank(WorkRank workRank) {
+		this.workRank = workRank;
+	}
 
 }
