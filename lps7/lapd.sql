@@ -55,16 +55,16 @@ DEFAULT CHARACTER SET = utf8
 CREATE TABLE IF NOT EXISTS `lapd_test`.`t_room` (
   `id` INT NOT NULL COMMENT '主键',
   `name` VARCHAR(10) NOT NULL COMMENT '房间编号',
-  `category` INT NOT NULL COMMENT '房间名字',
+  `roomCategory` INT NOT NULL COMMENT '房间名字',
   `floor` INT NOT NULL,
   `size` INT NOT NULL COMMENT '房间可容纳客人的人数',
   `remark` VARCHAR(255) NULL DEFAULT NULL COMMENT '房间描述',
   `addTime` TIMESTAMP NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `name_idx` (`category` ASC),
+  INDEX `name_idx` (`roomCategory` ASC),
   UNIQUE INDEX `name_UNIQUE` (`name` ASC),
   CONSTRAINT `name`
-    FOREIGN KEY (`category`)
+    FOREIGN KEY (`roomCategory`)
     REFERENCES `lapd_test`.`t_roomcategory` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)

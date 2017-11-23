@@ -88,8 +88,24 @@ public class WorkStatus implements java.io.Serializable {
     }
    
 
-
-
+    public static class Builder{
+    	private String workStatus;
+        private Set<User> users = new HashSet<User>(0);
+        
+        public Builder setWorkStatus(String workStatus){
+        	this.workStatus = workStatus;
+        	return this;
+        }
+        
+        public Builder setUsers(Set<User> users){
+        	this.users = users;
+        	return this;
+        }
+        
+        public WorkStatus build(){
+        	return new WorkStatus(workStatus, users);
+        }
+    }
 
 
 }

@@ -1,6 +1,8 @@
 package com.lps.model;
 
 import java.util.Date;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * AbstractTRoom entity provides the base persistence definition of the TRoom
@@ -30,6 +34,10 @@ public class Room implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8192142277776627069L;
 	private Integer id;
 	private RoomCategory roomCategory;
 	private String name;
@@ -45,10 +53,12 @@ public class Room implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Room(Integer floor, Integer size, Date addTime) {
+	public Room(String name,Integer floor, Integer size, Date addTime,RoomCategory roomCategory) {
+		this.name = name;
 		this.floor = floor;
 		this.size = size;
 		this.addTime = addTime;
+		this.roomCategory = roomCategory;
 	}
 
 	/** full constructor */
@@ -75,8 +85,8 @@ public class Room implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "roomcategory")
+	@ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.REFRESH})
+	@JoinColumn(name = "roomCategory", nullable=false)
 
 	public RoomCategory getRoomCategory() {
 		return this.roomCategory;
@@ -86,7 +96,7 @@ public class Room implements java.io.Serializable {
 		this.roomCategory = TRoomcategory;
 	}
 
-	@Column(name = "name", unique = true, length = 10)
+	@Column(name = "name", unique = true, length = 10,nullable=false)
 
 	public String getName() {
 		return this.name;
@@ -126,6 +136,7 @@ public class Room implements java.io.Serializable {
 		this.remark = remark;
 	}
 
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "addTime", nullable = false, length = 19)
 
 	public Date getAddTime() {

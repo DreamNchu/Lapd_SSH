@@ -25,8 +25,8 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 	}
 
 	@Override
-	public void delete(RoomCategory workStatus) {
-		dao.delete(workStatus);
+	public void delete(RoomCategory roomCategory) {
+		dao.delete(roomCategory);
 	}
 
 	@Override
@@ -50,8 +50,8 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 	}
 
 	@Override
-	public List<RoomCategory> findByRoomCategory(Object workStatus) {
-		return dao.findByRoomCategory(workStatus);
+	public List<RoomCategory> findByRoomCategory(Object roomCategory) {
+		return dao.findByRoomCategory(roomCategory);
 	}
 
 	public RoomCategoryDAO getRoomCategoryDao() {
@@ -59,12 +59,12 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 	}
 
 	@Override
-	public void save(RoomCategory workStatus) {
-		dao.save(workStatus);
+	public void save(RoomCategory roomCategory) {
+		dao.save(roomCategory);
 	}
 
-	public void setRoomCategoryDao(RoomCategoryDAO workStatusDao) {
-		this.dao = workStatusDao;
+	public void setRoomCategoryDao(RoomCategoryDAO roomCategoryDao) {
+		this.dao = roomCategoryDao;
 	}
 
 	@Override
@@ -85,7 +85,7 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 		long totalpage = (long) Math.ceil(totalCount / limit);
 
 		pageBean.setAllPage(totalpage);
-		// Ã¿Ò³ÏÔÊ¾µÄÊý¾Ý¼¯ºÏ
+		// Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½
 		long begin = (page - 1) * limit;
 
 		List<RoomCategory> list = dao.findListByLimit(begin, limit);

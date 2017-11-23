@@ -27,8 +27,12 @@ public class RoomCategory implements java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3529111347160958534L;
 	private Integer id;
-	private String roomcategory;
+	private String roomCategory;
 	private Set<Room> rooms = new HashSet<Room>(0);
 
 	// Constructors
@@ -38,9 +42,8 @@ public class RoomCategory implements java.io.Serializable {
 	}
 
 	/** full constructor */
-	public RoomCategory(String roomcategory, Set<Room> TRooms) {
-		this.roomcategory = roomcategory;
-		this.rooms = TRooms;
+	public RoomCategory(String roomcategory) {
+		this.roomCategory = roomcategory;
 	}
 
 	// Property accessors
@@ -56,14 +59,14 @@ public class RoomCategory implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "roomcategory", unique = true, length = 20,  nullable=false)
+	@Column(name = "roomCategory", unique = true, length = 20,  nullable=false)
 
-	public String getRoomcategory() {
-		return this.roomcategory;
+	public String getRoomCategory() {
+		return this.roomCategory;
 	}
 
-	public void setRoomcategory(String roomcategory) {
-		this.roomcategory = roomcategory;
+	public void setRoomCategory(String roomcategory) {
+		this.roomCategory = roomcategory;
 	}
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "roomCategory")
