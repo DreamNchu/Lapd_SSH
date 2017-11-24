@@ -29,6 +29,9 @@
 		<mapping class="clockcatagory.TRoom" />
 		<mapping class="clockcatagory.TWorkstatus" />
 		<mapping class="clockcatagory.TWorkrank" />
+		<mapping class="clockcatagory.TPledge" />
+		<mapping class="clockcatagory.TServerorder" />
+		<mapping class="clockcatagory.TClockcategory" />
 
 	</session-factory>
 

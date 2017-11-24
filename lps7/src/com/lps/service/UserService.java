@@ -25,4 +25,5 @@ public interface UserService extends BasicService<User>{
 
 	List<User> findByAnswer(Object answer);
 
+	PageBean<User> findByPage(int page);
 }

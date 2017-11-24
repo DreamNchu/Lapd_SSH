@@ -43,6 +43,10 @@ public class Room implements java.io.Serializable {
 	private String name;
 	private Integer floor;
 	private Integer size;
+	private boolean isFree;
+	private boolean isClean;
+	
+
 	private String remark;
 	private Date addTime;
 
@@ -53,12 +57,13 @@ public class Room implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public Room(String name,Integer floor, Integer size, Date addTime,RoomCategory roomCategory) {
+	public Room(String name,Integer floor, Integer size, Date addTime,RoomCategory roomCategory, boolean isFree) {
 		this.name = name;
 		this.floor = floor;
 		this.size = size;
 		this.addTime = addTime;
 		this.roomCategory = roomCategory;
+		this.isFree = isFree;
 	}
 
 	/** full constructor */
@@ -134,6 +139,24 @@ public class Room implements java.io.Serializable {
 
 	public void setRemark(String remark) {
 		this.remark = remark;
+	}
+	
+	@Column(name = "isFree", nullable = false)
+
+	public boolean getIsFree() {
+		return this.isFree;
+	}
+
+	public void setIsFree(boolean isFree) {
+		this.isFree = isFree;
+	}
+	@Column(name = "isClean")
+	public boolean getIsClean() {
+		return isClean;
+	}
+
+	public void setIsClean(boolean isClean) {
+		this.isClean = isClean;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)

@@ -107,6 +107,7 @@ public class UserServiceImpl implements UserService {
 		return userDao.findByAnswer(answer);
 	}
 	
+	@Override
 	public PageBean<User> findByPage(int page) {
         pageBean.setPage(page);
         
@@ -119,7 +120,7 @@ public class UserServiceImpl implements UserService {
         long totalpage=(long)Math.ceil(totalCount/limit);
         
         pageBean.setAllPage(totalpage);
-        //每页显示的数据集合
+        
         long begin=(page-1) * limit;
         
         List<User> list = userDao.findListByLimit(begin, limit);

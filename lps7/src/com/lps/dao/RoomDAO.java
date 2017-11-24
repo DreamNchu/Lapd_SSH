@@ -13,5 +13,6 @@ public interface RoomDAO extends BasicDAO<Room>{
 
 	public List<Room> findBySize(Object size) ;
 
+	public List<Room> findFreeRoom();
 
 }

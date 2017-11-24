@@ -10,7 +10,7 @@ import com.lps.util.PageBean;
 
 public class RoomServiceImpl implements RoomService {
 	
-	private RoomDAO userDao ;
+	private RoomDAO roomDao ;
 	
 	private PageBean<Room> pageBean;
 
@@ -23,48 +23,48 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	public RoomDAO getRoomDao() {
-		return userDao;
+		return roomDao;
 	}
 
 	public void setRoomDao(RoomDAO userDao) {
-		this.userDao = userDao;
+		this.roomDao = userDao;
 	}
 
 	@Override
 	public void save(Room user) {
-		userDao.save( user);
+		roomDao.save( user);
 	}
 
 	@Override
 	public void delete(Room user) {
-		userDao.delete(user);
+		roomDao.delete(user);
 	}
 
 
 	@Override
 	public Room findById(int id) {
-		return userDao.findById(id);
+		return roomDao.findById(id);
 	}
 	
 	@Override
 	public boolean isExists(Room user) {
-		return userDao.isExists(user);
+		return roomDao.isExists(user);
 	}
 
 
 	@Override
 	public List<Room> findAll() {
-		return userDao.findAll();
+		return roomDao.findAll();
 	}
 
 	@Override
 	public long findAllCount() {
-		return userDao.findAllCount();
+		return roomDao.findAllCount();
 	}
 
 	@Override
 	public List<Room> findByProperty(String propertyName, Object value) {
-		return userDao.findByProperty(propertyName, value);
+		return roomDao.findByProperty(propertyName, value);
 	}
 
 	
@@ -80,10 +80,10 @@ public class RoomServiceImpl implements RoomService {
         long totalpage=(long)Math.ceil(totalCount/limit);
         
         pageBean.setAllPage(totalpage);
-        //Ã¿Ò³ÏÔÊ¾µÄÊý¾Ý¼¯ºÏ
+        //Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½
         long begin=(page-1) * limit;
         
-        List<Room> list = userDao.findListByLimit(begin, limit);
+        List<Room> list = roomDao.findListByLimit(begin, limit);
         
         pageBean.setList(list);
         
@@ -92,23 +92,27 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public void update(Room t) {
-		userDao.update(t);	
+		roomDao.update(t);	
 	}
 
 	@Override
 	public List<Room> findByName(Object name) {
-		return userDao.findByName(name);
+		return roomDao.findByName(name);
 	}
 
 	@Override
 	public List<Room> findByFloor(Object floor) {
-		return userDao.findByFloor(floor);
+		return roomDao.findByFloor(floor);
 	}
 
 	@Override
 	public List<Room> findBySize(Object size) {
-		return userDao.findBySize(size);
+		return roomDao.findBySize(size);
 	}
 
+	@Override
+	public List<Room> findFreeRoom() {
+		return roomDao.findFreeRoom();
+	}
 
 }

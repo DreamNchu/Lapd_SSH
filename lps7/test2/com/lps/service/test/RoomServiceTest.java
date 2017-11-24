@@ -38,11 +38,9 @@ public class RoomServiceTest {
 	public void testSave() {
 		RoomCategory rc = new RoomCategory("按摩");
 		rc.setId(2);
-		Room r = new Room("206",2,4,new Date(), rc);
+		Room r = new Room("206",2,4,new Date(), rc, false);
 		as.save(r);
-		assertEquals(1, as.findByName("205").size());
-		assertEquals("205", as.findByName("205").get(0).getName());
-		assertEquals(1, as.findByPage(1).getList().size());
+		assertEquals(false, as.findByName("206").get(0).getIsFree());
 		as.delete(r);
 	}
 

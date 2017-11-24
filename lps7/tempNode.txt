@@ -1,1 +1,5 @@
-1.对RoomServiceImpl类进行了关键性测试
+1.增加了ClockCategory model和dao，service，
+2.增加了ServerOrder(非常重要)model,这个组件将联系到六大组件：
+	ClockCategory, OrderStatus,PayPath,Pledge,Room,User.
+	这个ServerOrder组件正在构建当中。
+3.数据库已完成1.0版本的设计，界面设计可以参照字段命名。

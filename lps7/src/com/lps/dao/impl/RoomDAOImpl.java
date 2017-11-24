@@ -17,6 +17,7 @@ public class RoomDAOImpl implements RoomDAO {
 	public static final String FLOOR = "floor";
 	public static final String SIZE = "size";
 	public static final String REMARK = "remark";
+	public static final String IS_FREE = "isFree";
 
 	private HibernateTemplate hibernateTemplate;
 
@@ -102,6 +103,11 @@ public class RoomDAOImpl implements RoomDAO {
 	@Override
 	public void update(Room t) {
 		hibernateTemplate.update(t);
+	}
+
+	@Override
+	public List<Room> findFreeRoom() {
+		return findByProperty(IS_FREE, true);
 	}
 
 }

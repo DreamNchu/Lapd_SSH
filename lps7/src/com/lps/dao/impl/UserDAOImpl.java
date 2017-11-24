@@ -130,9 +130,9 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public List<User> findListByLimit(long begin, long limit) {
 		String hql="from User";
-        List<User> list=(List<User>) this.getHibernateTemplate().execute((HibernateCallback<Admin>) new PageHibernateCallback(hql, new Object[]{}, begin, limit));
+		HibernateCallback<List<User>> callback = new PageHibernateCallback<>(hql, new Object[]{}, begin, limit);
+        List<User> list=(List<User>) this.getHibernateTemplate().execute(callback);
         if(list!=null&&list.size()>0){
-            
             return list;
         }
         return null;

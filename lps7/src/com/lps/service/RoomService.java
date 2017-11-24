@@ -14,5 +14,7 @@ public interface RoomService extends BasicService<Room>{
 	public List<Room> findByFloor(Object floor) ;
 
 	public List<Room> findBySize(Object size) ;
+	
+	public List<Room> findFreeRoom();
 
 }

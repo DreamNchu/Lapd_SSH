@@ -85,16 +85,18 @@ System.out.println(Thread.currentThread());
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from Admin";
-        List<Long> list=(List<Long>) this.getHibernateTemplate().find(hql);
+		
+        List<?> list=(List<?>) this.getHibernateTemplate().find(hql);
+        
         return (long)list.get(0);
 	}
 
 	@Override
 	public List<Admin> findListByLimit(long begin, long limit) {
 		String hql="from Admin";
-        List<Admin> list=(List<Admin>) this.getHibernateTemplate().execute((HibernateCallback<Admin>) new PageHibernateCallback(hql, new Object[]{}, begin, limit));
+		HibernateCallback<List<Admin>> callback =  new PageHibernateCallback<Admin>(hql, new Object[]{}, begin, limit);
+        List<Admin> list=(List<Admin>) this.getHibernateTemplate().execute(callback);
         if(list!=null&&list.size()>0){
-            
             return list;
         }
         return null;
@@ -102,7 +104,6 @@ System.out.println(Thread.currentThread());
 
 	@Override
 	public void update(Admin t) {
-		// TODO Auto-generated method stub
 		hibernateTemplate.update(t);
 	}
 	
