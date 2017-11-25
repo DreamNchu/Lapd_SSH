@@ -3,12 +3,14 @@ package com.lps.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -17,19 +19,25 @@ import javax.persistence.TemporalType;
  * AbstractTServerorder entity provides the base persistence definition of the
  * TServerorder entity. @author MyEclipse Persistence Tools
  */
-@MappedSuperclass
+@Entity
+@Table(name="t_serverorder")
 
 public class ServerOrder implements java.io.Serializable {
 
-	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6038267699363948636L;
 	private String idOrder;
+	
 	private PayPath payPath;
 	private Room room;
 	private User user;
 	private Pledge pledge;
 	private ClockCategory clockCategory;
 	private OrderStatus orderStatus;
+	
 	private Date initTime;
 	private Date receiveTime;
 	private Date finishTime;
@@ -45,12 +53,12 @@ public class ServerOrder implements java.io.Serializable {
 	}
 
 	/** minimal constructor */
-	public ServerOrder(Room room, User user, ClockCategory clockCategory, OrderStatus TOrderstatus,
+	public ServerOrder(Room room, User user, ClockCategory clockCategory, OrderStatus orderStatus,
 			Date initTime) {
 		this.room = room;
 		this.user = user;
 		this.clockCategory = clockCategory;
-		this.orderStatus = TOrderstatus;
+		this.orderStatus = orderStatus;
 		this.initTime = initTime;
 	}
 
@@ -75,9 +83,13 @@ public class ServerOrder implements java.io.Serializable {
 
 	// Property accessors
 	@Id
-	@GeneratedValue
+//	@GeneratedValue
 
-	@Column(name = "idOrder", unique = true, nullable = false, length = 45)
+	@Column(
+			name = "idOrder", 
+			unique = true, 
+			nullable = false, 
+			length = 45)
 
 	public String getIdOrder() {
 		return this.idOrder;
@@ -132,13 +144,13 @@ public class ServerOrder implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "clockcatagoryId", nullable = false)
+	@JoinColumn(name = "clockcategoryId", nullable = false)
 
 	public ClockCategory getClockCategory() {
 		return this.clockCategory;
 	}
 
-	public void setTClockcategory(ClockCategory clockCategory) {
+	public void setClockCategory(ClockCategory clockCategory) {
 		this.clockCategory = clockCategory;
 	}
 

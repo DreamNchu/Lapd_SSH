@@ -1,18 +1,14 @@
 package com.lps.service.impl;
 
-import java.time.Clock;
 import java.util.List;
 import java.util.Set;
 
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
-import com.lps.model.User;
 import com.lps.service.ClockCategoryService;
 import com.lps.util.PageBean;
 
-//@Component("adminServiceImpl")
-//@Aspect
 public class ClockCategoryServiceImpl implements ClockCategoryService {
 
 	private ClockCategoryDAO dao;

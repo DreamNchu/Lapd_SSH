@@ -28,9 +28,9 @@ public class PageHibernateCallback<T> implements HibernateCallback<List<T>>{
 
     public List<T> doInHibernate(Session session) throws HibernateException {
         Query query = session.createQuery(hql);
-        
+//        query.set
         if(params != null){
-            for(int i = 0 ; i < params.length ; i ++){
+            for(int i = 0 ; i < params.length; i ++){
                 query.setParameter(i, params[i]);
             }
         }

@@ -1,6 +1,7 @@
 package com.lps.dao.impl;
 // default package
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +17,7 @@ import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.util.PageHibernateCallback;
 
-public class ClockCategoryDAOImpl  implements ClockCategoryDAO{
+public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	public static final String ROOM_CATEGORY = "roomCategory";
 	private HibernateTemplate hibernateTemplate;
 
@@ -60,14 +61,14 @@ public class ClockCategoryDAOImpl  implements ClockCategoryDAO{
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ClockCategory> findAll() {
-		return (List<ClockCategory>)hibernateTemplate.find("from ClockCategory");
+		return (List<ClockCategory>) hibernateTemplate.find("from ClockCategory");
 	}
 
 	@Override
 	public long findAllCount() {
-		String hql="select count(*) from ClockCategory";
-        List<Long> list=(List<Long>) this.getHibernateTemplate().find(hql);
-        return (long)list.get(0);
+		String hql = "select count(*) from ClockCategory";
+		List<Long> list = (List<Long>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
 	}
 
 	@Override
@@ -77,13 +78,13 @@ public class ClockCategoryDAOImpl  implements ClockCategoryDAO{
 
 	@Override
 	public List<ClockCategory> findListByLimit(long begin, long limit) {
-		String hql="from ClockCategory";
-        List<ClockCategory> list=(List<ClockCategory>) this.getHibernateTemplate().execute((HibernateCallback<Admin>) new PageHibernateCallback(hql, new Object[]{}, begin, limit));
-        if(list!=null&&list.size()>0){
-            
-            return list;
-        }
-        return null;
+		String hql = "from ClockCategory";
+		List<ClockCategory> list = (List<ClockCategory>) this.getHibernateTemplate()
+				.execute((HibernateCallback<Admin>) new PageHibernateCallback(hql, new Object[] {}, begin, limit));
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
 	}
 
 	@Override
@@ -94,24 +95,35 @@ public class ClockCategoryDAOImpl  implements ClockCategoryDAO{
 	@Override
 	public Set<ServerOrder> findAllOrderByClockCategory(ClockCategory cc) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-//		session.beginTransaction();
-//		ClockCategory ccTemp = hibernateTemplate.get(ClockCategory.class, cc.getId());
-//		Set<ServerOrder> sos = ccTemp.getServerOrders();
-		
+		// session.beginTransaction();
+		// ClockCategory ccTemp = hibernateTemplate.get(ClockCategory.class,
+		// cc.getId());
+		// Set<ServerOrder> sos = ccTemp.getServerOrders();
+
 		ClockCategory ccTemp = (ClockCategory) session.get(ClockCategory.class, cc.getId());
-		Set<ServerOrder> sos =  (Set<ServerOrder>)ccTemp.getServerOrders(); 
-		
+		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
+
 		return sos;
 	}
 
 	@Override
 	public List<ServerOrder> findOrderByClockCategory(ClockCategory cc, long begin, long limit) {
-		String hql="from ClockCategory cc where cc.id=:id";
-		HibernateCallback<List<ServerOrder>> callback =  new PageHibernateCallback<ServerOrder>(hql, new Object[]{cc.getId()}, begin, limit);
-        List<ServerOrder> list=(List<ServerOrder>) this.getHibernateTemplate().execute(callback);
-        if(list!=null&&list.size()>0){
-            return list;
-        }
-        return null;
+		String hql = "from ClockCategory cc where cc.id=?";
+//		String hql = "from ClockCategory cc where cc.id=" + cc.getId();
+		HibernateCallback<List<ClockCategory>> callback = new PageHibernateCallback<ClockCategory>(hql,
+				new Object[] { cc.getId() }, begin, limit);
+//		new Object[] {  }, begin, limit);
+		List<ClockCategory> temp = this.getHibernateTemplate().execute(callback);
+
+		Set<ServerOrder> set = null;
+		if (temp != null && temp.size() > 0) {
+			set = temp.get(0).getServerOrders();
+		}
+		List<ServerOrder> list = new ArrayList<ServerOrder>(set);
+
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
 	}
 }

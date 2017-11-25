@@ -16,7 +16,13 @@ import javax.persistence.TableGenerator;
 
 @Entity
 @Table(name = "t_clockcategory")
-@TableGenerator(name = "pk_generate", table = "tb_generator", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "clockcategory_PK", allocationSize = 1)
+@TableGenerator(
+		name = "pk_generate",
+		table = "tb_generator",
+		pkColumnName = "gen_name",
+		valueColumnName = "gen_value",
+		pkColumnValue = "clockcategory_PK",
+		allocationSize = 1)
 public class ClockCategory implements java.io.Serializable {
 
 	// Fields
@@ -27,6 +33,7 @@ public class ClockCategory implements java.io.Serializable {
 	private static final long serialVersionUID = 7563728190772989668L;
 	private Integer id;
 	private String clockcategory;
+	
 	private Set<ServerOrder> serverOrders = new TreeSet<ServerOrder>();
 
 	// Constructors
@@ -69,7 +76,10 @@ public class ClockCategory implements java.io.Serializable {
 		this.clockcategory = clockcategory;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "TClockcategory")
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			mappedBy = "clockCategory")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;
 	}
