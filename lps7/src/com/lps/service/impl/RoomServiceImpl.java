@@ -1,25 +1,39 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.lps.dao.RoomDAO;
 import com.lps.model.Admin;
 import com.lps.model.Room;
+import com.lps.model.ServerOrder;
 import com.lps.service.RoomService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 public class RoomServiceImpl implements RoomService {
 	
 	private RoomDAO roomDao ;
 	
-	private PageBean<Room> pageBean;
-
-	public PageBean<Room> getPageBean() {
-		return pageBean;
+	private PageBean<Room> pageRoomBean;
+	
+	public PageBean<Room> getPageRoomBean() {
+		return pageRoomBean;
 	}
 
-	public void setPageBean(PageBean<Room> pageBean) {
-		this.pageBean = pageBean;
+	public void setPageRoomBean(PageBean<Room> pageRoomBean) {
+		this.pageRoomBean = pageRoomBean;
+	}
+
+	private PageBean<ServerOrder> pageServerOrderByRoomBean;
+
+
+	public PageBean<ServerOrder> getPageServerOrderByRoomBean() {
+		return pageServerOrderByRoomBean;
+	}
+
+	public void setPageServerOrderByRoomBean(PageBean<ServerOrder> pageServerOrderByRoomBean) {
+		this.pageServerOrderByRoomBean = pageServerOrderByRoomBean;
 	}
 
 	public RoomDAO getRoomDao() {
@@ -69,25 +83,25 @@ public class RoomServiceImpl implements RoomService {
 
 	
 	public PageBean<Room> findByPage(int page) {
-        pageBean.setPage(page);
+        pageRoomBean.setPage(page);
         
         long totalCount= findAllCount();
         
-        pageBean.setAllCount(totalCount);
+        pageRoomBean.setAllCount(totalCount);
         
-        long limit  = pageBean.getLimit();
+        long limit  = pageRoomBean.getLimit();
         
         long totalpage=(long)Math.ceil(totalCount/limit);
         
-        pageBean.setAllPage(totalpage);
+        pageRoomBean.setAllPage(totalpage);
         //ÿҳ��ʾ�����ݼ���
         long begin=(page-1) * limit;
         
         List<Room> list = roomDao.findListByLimit(begin, limit);
         
-        pageBean.setList(list);
+        pageRoomBean.setList(list);
         
-        return pageBean;
+        return pageRoomBean;
     }
 
 	@Override
@@ -113,6 +127,22 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public List<Room> findFreeRoom() {
 		return roomDao.findFreeRoom();
+	}
+
+	@Override
+	public Set<ServerOrder> findAllOrders(Room t) {
+		return roomDao.findAllOrders(t);
+	}
+
+	@Override
+	public PageBean<ServerOrder> findOrdersByPage(Room t, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByRoomBean.init(findAllCount(), page);
+
+		List<ServerOrder> list = roomDao.findOrdersWithLimit(t, begin, pageServerOrderByRoomBean.getLimit());
+
+		pageServerOrderByRoomBean.setList(list);
+
+		return pageServerOrderByRoomBean;
 	}
 
 }

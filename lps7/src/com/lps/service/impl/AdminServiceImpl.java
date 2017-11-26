@@ -15,16 +15,16 @@ public class AdminServiceImpl implements AdminService {
 	
 	private AdminDAO adminDao ;
 	
-	private PageBean<Admin> pageBean;
+	private PageBean<Admin> pageAdminBean;
 
-	public PageBean<Admin> getPageBean() {
-		return pageBean;
+	public PageBean<Admin> getPageAdminBean() {
+		return pageAdminBean;
 	}
 
-	public void setPageBean(PageBean<Admin> pageBean) {
-		this.pageBean = pageBean;
+	public void setPageAdminBean(PageBean<Admin> pageAdminBean) {
+		this.pageAdminBean = pageAdminBean;
 	}
-	
+
 	public AdminDAO getAdminDao() {
 		return adminDao;
 	}
@@ -90,25 +90,25 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public PageBean<Admin> findByPage(int page) {
-		pageBean.setPage(page);
+		pageAdminBean.setPage(page);
         
         long totalCount= findAllCount();
         
-        pageBean.setAllCount(totalCount);
+        pageAdminBean.setAllCount(totalCount);
         
-        long limit  = pageBean.getLimit();
+        long limit  = pageAdminBean.getLimit();
         
         long totalpage=(long)Math.ceil(totalCount/limit);
         
-        pageBean.setAllPage(totalpage);
-        //Ã¿Ò³ÏÔÊ¾µÄÊý¾Ý¼¯ºÏ
+        pageAdminBean.setAllPage(totalpage);
+        //Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½
         long begin=(page-1) * limit;
         
         List<Admin> list = adminDao.findListByLimit(begin, limit);
         
-        pageBean.setList(list);
+        pageAdminBean.setList(list);
         
-        return pageBean;
+        return pageAdminBean;
 	}
 
 	@Override

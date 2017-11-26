@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lps.model.ClockCategory;
 import com.lps.service.impl.ClockCategoryServiceImpl;
+import com.lps.util.PagePropertyNotInitException;
 
 public class ClockCategoryServiceImplTest {
 	
@@ -48,7 +49,9 @@ public class ClockCategoryServiceImplTest {
 
 	@Test
 	public void testFindById() {
-		fail("Not yet implemented");
+		ClockCategory cc = as.findById(1);
+		System.out.println(cc.getClockcategory());
+//		assertEquals(null, cc.getServerOrders());
 	}
 
 	@Test
@@ -82,7 +85,7 @@ public class ClockCategoryServiceImplTest {
 	}
 
 	@Test
-	public void testFindByPage() {
+	public void testFindByPage() throws PagePropertyNotInitException {
 		assertEquals(2, as.findByPage(1).getList().size());
 	}
 
@@ -97,9 +100,9 @@ public class ClockCategoryServiceImplTest {
 	}
 
 	@Test
-	public void testFindOrderByClockCategory() {
+	public void testFindOrderByClockCategory() throws PagePropertyNotInitException {
 		ClockCategory cc = as.findById(1);
-		assertEquals(7, as.findOrderByClockCategory(cc, 1).getList().size());
+		assertEquals(7, as.findOrdersByPage(cc, 1).getList().size());
 	}
 
 }

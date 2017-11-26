@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.lps.model.basic.BasicModel;
+
 
 /**
  * ClassName:WorkStatus 
@@ -32,7 +34,7 @@ import javax.persistence.TableGenerator;
 		valueColumnName = "gen_value", 
 		pkColumnValue = "workstatus_PK",
 		allocationSize = 1)
-public class WorkStatus implements java.io.Serializable {
+public class WorkStatus implements java.io.Serializable, BasicModel<Integer> {
 
 
     // Fields    

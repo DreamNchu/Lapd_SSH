@@ -17,7 +17,8 @@
 	
 	<bean id="roomServiceImpl" class="com.lps.service.impl.RoomServiceImpl">
 		<property name="roomDao" ref="roomDAOImpl"></property>
-		<property name="pageBean" ref="pageBean"></property>
+		<property name="pageRoomBean" ref="pageBean"></property>
+		<property name="pageServerOrderByRoomBean" ref="pageBean"></property>
 	</bean> 
 	
 </beans>

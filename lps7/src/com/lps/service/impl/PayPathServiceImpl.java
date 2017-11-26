@@ -1,107 +1,121 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.lps.dao.PayPathDAO;
+import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
+import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.service.PayPathService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 //@Component("adminServiceImpl")
 //@Aspect
 public class PayPathServiceImpl implements PayPathService {
-	
-	private PayPathDAO payPathDao ;
-	
-	private PageBean<PayPath> pageBean;
 
-	public PageBean<PayPath> getPageBean() {
-		return pageBean;
+	private PayPathDAO dao;
+
+	private PageBean<PayPath> pagePayPathBean;
+
+	public PageBean<PayPath> getPagePayPathBean() {
+		return pagePayPathBean;
 	}
 
-	public void setPageBean(PageBean<PayPath> pageBean) {
-		this.pageBean = pageBean;
+	public void setPagePayPathBean(PageBean<PayPath> pagePayPathBean) {
+		this.pagePayPathBean = pagePayPathBean;
 	}
-	
+
+	private PageBean<ServerOrder> pageServerOrderByPayPathBean;
+
+	public PageBean<ServerOrder> getPageServerOrderByPayPathBean() {
+		return pageServerOrderByPayPathBean;
+	}
+
+	public void setPageServerOrderByPayPathBean(PageBean<ServerOrder> pageServerOrderByPayPathBean) {
+		this.pageServerOrderByPayPathBean = pageServerOrderByPayPathBean;
+	}
+
 	public PayPathDAO getPayPathDao() {
-		return payPathDao;
+		return dao;
 	}
 
 	public void setPayPathDao(PayPathDAO payPathDao) {
-		this.payPathDao = payPathDao;
+		this.dao = payPathDao;
 	}
 
 	@Override
 	public void delete(PayPath payPath) {
-		payPathDao.delete( payPath);
+		dao.delete(payPath);
 	}
 
 	@Override
 	public List<PayPath> findAll() {
-		return payPathDao.findAll();
+		return dao.findAll();
 	}
 
 	@Override
 	public long findAllCount() {
-		return payPathDao.findAllCount();
+		return dao.findAllCount();
 	}
 
 	@Override
 	public PayPath findById(int id) {
-		return payPathDao.findById(id);
+		return dao.findById(id);
 	}
 
 	@Override
 	public List<PayPath> findByProperty(String propertyName, Object value) {
-		return payPathDao.findByProperty(propertyName, value);
+		return dao.findByProperty(propertyName, value);
 	}
 
 	@Override
 	public List<PayPath> findByPayPath(Object payPath) {
-		return payPathDao.findByPayPath(payPath);
+		return dao.findByPayPath(payPath);
 	}
 
 	@Override
 	public void save(PayPath payPath) {
-		payPathDao.save(payPath);
+		dao.save(payPath);
 	}
 
 	@Override
 	public boolean isExists(PayPath user) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public PageBean<PayPath> findByPage(int page) {
-		pageBean.setPage(page);
-        
-        long totalCount= findAllCount();
-        
-        pageBean.setAllCount(totalCount);
-        
-        long limit  = pageBean.getLimit();
-        
-        long totalpage=(long)Math.ceil(totalCount/limit);
-        
-        pageBean.setAllPage(totalpage);
-        //每页显示的数据集合
-        long begin=(page-1) * limit;
-        
-        List<PayPath> list = payPathDao.findListByLimit(begin, limit);
-        
-        pageBean.setList(list);
-        
-        return pageBean;
+	public PageBean<PayPath> findByPage(int page) throws PagePropertyNotInitException {
+		long begin = pagePayPathBean.init(findAllCount(), page);
+
+		List<PayPath> list = dao.findListByLimit(begin, pagePayPathBean.getLimit());
+
+		pagePayPathBean.setList(list);
+
+		return pagePayPathBean;
 	}
 
 	@Override
 	public void update(PayPath t) {
-		// TODO Auto-generated method stub
-		payPathDao.update(t);
+		dao.update(t);
 	}
 
+	@Override
+	public Set<ServerOrder> findAllOrders(PayPath t) {
+		return dao.findAllOrders(t);
+	}
 
+	@Override
+	public PageBean<ServerOrder> findOrdersByPage(PayPath t, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByPayPathBean.init(findAllCount(), page);
+
+		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByPayPathBean.getLimit());
+
+		pageServerOrderByPayPathBean.setList(list);
+
+		return pageServerOrderByPayPathBean;
+	}
 
 }

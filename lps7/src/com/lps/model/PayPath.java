@@ -1,14 +1,23 @@
 package com.lps.model;
 // default package
 
+import java.util.Set;
+import java.util.TreeSet;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+import com.lps.model.basic.BasicModel;
+import com.lps.model.basic.ModelLinkServerOrder;
 
 
 /**
@@ -32,7 +41,7 @@ import javax.persistence.TableGenerator;
 		pkColumnValue = "paypath_PK",
 		allocationSize = 1)
 
-public  class PayPath  implements java.io.Serializable {
+public  class PayPath  implements java.io.Serializable ,ModelLinkServerOrder<Integer>{
 
 
     // Fields    
@@ -44,6 +53,19 @@ public  class PayPath  implements java.io.Serializable {
 	private Integer id;
      private String payPath;
 
+ 	private Set<ServerOrder> serverOrders = new TreeSet<ServerOrder>();
+	
+ 	@OneToMany(
+ 			cascade = CascadeType.ALL,
+ 			fetch = FetchType.LAZY,
+ 			mappedBy = "payPath")
+ 	public Set<ServerOrder> getServerOrders() {
+ 		return this.serverOrders;
+ 	}
+
+ 	public void setServerOrders(Set<ServerOrder> serverOrders) {
+ 		this.serverOrders = serverOrders;
+ 	}
 
     // Constructors
 

@@ -1,17 +1,24 @@
 package com.lps.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.RoomDAO;
+import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
+import com.lps.model.ClockCategory;
+import com.lps.model.OrderStatus;
 import com.lps.model.Room;
+import com.lps.model.ServerOrder;
 import com.lps.util.PageHibernateCallback;
 
-public class RoomDAOImpl implements RoomDAO {
+public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integer>{
 
 	public static final String NAME = "name";
 	public static final String FLOOR = "floor";
@@ -108,6 +115,35 @@ public class RoomDAOImpl implements RoomDAO {
 	@Override
 	public List<Room> findFreeRoom() {
 		return findByProperty(IS_FREE, true);
+	}
+
+	@Override
+	public Set<ServerOrder> findAllOrders(Room t) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		OrderStatus ccTemp = (OrderStatus) session.get(OrderStatus.class, t.getId());
+		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
+
+		return sos;
+	}
+
+	@Override
+	public List<ServerOrder> findOrdersWithLimit(Room t, long begin, long limit) {
+		String hql = "from Room cc where cc.id=?";
+		HibernateCallback<List<ClockCategory>> callback = new PageHibernateCallback<ClockCategory>(hql,
+				new Object[] { t.getId() }, begin, limit);
+		List<ClockCategory> temp = this.getHibernateTemplate().execute(callback);
+
+		Set<ServerOrder> set = null;
+		if (temp != null && temp.size() > 0) {
+			set = temp.get(0).getServerOrders();
+		}
+		List<ServerOrder> list = new ArrayList<ServerOrder>(set);
+
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
 	}
 
 }

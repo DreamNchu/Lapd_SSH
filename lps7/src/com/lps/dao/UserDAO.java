@@ -3,9 +3,11 @@ package com.lps.dao;
 import java.util.List;
 
 import com.lps.dao.basic.BasicDAO;
+import com.lps.dao.basic.BasicForServerOrderDAO;
+import com.lps.model.Room;
 import com.lps.model.User;
 
-public interface UserDAO extends BasicDAO<User>{
+public interface UserDAO extends BasicDAO<User>,BasicForServerOrderDAO<User, Integer>{
 
 	List<User> findByPassword(Object password);
 

@@ -1,25 +1,39 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.lps.dao.UserDAO;
 import com.lps.model.Admin;
+import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.service.UserService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 public class UserServiceImpl implements UserService {
 	
 	private UserDAO userDao ;
 	
-	private PageBean<User> pageBean;
-
-	public PageBean<User> getPageBean() {
-		return pageBean;
+	private PageBean<User> pageUserBean;
+	
+	public PageBean<User> getPageUserBean() {
+		return pageUserBean;
 	}
 
-	public void setPageBean(PageBean<User> pageBean) {
-		this.pageBean = pageBean;
+	public void setPageUserBean(PageBean<User> pageUserBean) {
+		this.pageUserBean = pageUserBean;
+	}
+
+	private PageBean<ServerOrder> pageServerOrderByUserBean;
+
+
+	public PageBean<ServerOrder> getPageServerOrderByUserBean() {
+		return pageServerOrderByUserBean;
+	}
+
+	public void setPageServerOrderByUserBean(PageBean<ServerOrder> pageServerOrderByUserBean) {
+		this.pageServerOrderByUserBean = pageServerOrderByUserBean;
 	}
 
 	public UserDAO getUserDao() {
@@ -109,31 +123,45 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public PageBean<User> findByPage(int page) {
-        pageBean.setPage(page);
+        pageUserBean.setPage(page);
         
         long totalCount= findAllCount();
         
-        pageBean.setAllCount(totalCount);
+        pageUserBean.setAllCount(totalCount);
         
-        long limit  = pageBean.getLimit();
+        long limit  = pageUserBean.getLimit();
         
         long totalpage=(long)Math.ceil(totalCount/limit);
         
-        pageBean.setAllPage(totalpage);
+        pageUserBean.setAllPage(totalpage);
         
         long begin=(page-1) * limit;
         
         List<User> list = userDao.findListByLimit(begin, limit);
         
-        pageBean.setList(list);
+        pageUserBean.setList(list);
         
-        return pageBean;
+        return pageUserBean;
     }
 
 	@Override
 	public void update(User t) {
-		// TODO Auto-generated method stub
 		userDao.update(t);	
+	}
+
+	@Override
+	public Set<ServerOrder> findAllOrders(User t) {
+		return userDao.findAllOrders(t);
+	}
+	@Override
+	public PageBean<ServerOrder> findOrdersByPage(User t, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByUserBean.init(findAllCount(), page);
+
+		List<ServerOrder> list = userDao.findOrdersWithLimit(t, begin, pageServerOrderByUserBean.getLimit());
+
+		pageServerOrderByUserBean.setList(list);
+
+		return pageServerOrderByUserBean;
 	}
 
 

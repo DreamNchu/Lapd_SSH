@@ -17,7 +17,7 @@
 	
 	<bean id="adminServiceImpl" class="com.lps.service.impl.AdminServiceImpl">
 		<property name="adminDao" ref="adminDAOImpl"></property>
-		<property name="pageBean" ref="pageBean"></property>
+		<property name="pageAdminBean" ref="pageBean"></property>
 	</bean> 
 	
 	<bean id="adminLogInAction" class="com.lps.web.action.AdminLogInAction"

@@ -1,104 +1,112 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.lps.dao.PledgeDAO;
+import com.lps.model.PayPath;
 import com.lps.model.Pledge;
+import com.lps.model.ServerOrder;
 import com.lps.service.PledgeService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 //@Component("adminServiceImpl")
 //@Aspect
 public class PledgeServiceImpl implements PledgeService {
 	
-	private PledgeDAO pledgeDao ;
+	private PledgeDAO dao ;
 	
-	private PageBean<Pledge> pageBean;
-
-	public PageBean<Pledge> getPageBean() {
-		return pageBean;
+	private PageBean<Pledge> pagePledgeBean;
+	
+	public PageBean<Pledge> getPagePledgeBean() {
+		return pagePledgeBean;
 	}
 
-	public void setPageBean(PageBean<Pledge> pageBean) {
-		this.pageBean = pageBean;
+	public void setPagePledgeBean(PageBean<Pledge> pagePledgeBean) {
+		this.pagePledgeBean = pagePledgeBean;
 	}
-	
+
+	private PageBean<ServerOrder> pageServerOrderByPledgeBean;
+
 	public PledgeDAO getPledgeDao() {
-		return pledgeDao;
+		return dao;
 	}
 
 	public void setPledgeDao(PledgeDAO pledgeDao) {
-		this.pledgeDao = pledgeDao;
+		this.dao = pledgeDao;
 	}
 
 	@Override
 	public void delete(Pledge pledge) {
-		pledgeDao.delete( pledge);
+		dao.delete( pledge);
 	}
 
 	@Override
 	public List<Pledge> findAll() {
-		return pledgeDao.findAll();
+		return dao.findAll();
 	}
 
 	@Override
 	public long findAllCount() {
-		return pledgeDao.findAllCount();
+		return dao.findAllCount();
 	}
 
 	@Override
 	public Pledge findById(int id) {
-		return pledgeDao.findById(id);
+		return dao.findById(id);
 	}
 
 	@Override
 	public List<Pledge> findByProperty(String propertyName, Object value) {
-		return pledgeDao.findByProperty(propertyName, value);
+		return dao.findByProperty(propertyName, value);
 	}
 
 	@Override
 	public List<Pledge> findByName(Object pledge) {
-		return pledgeDao.findByName(pledge);
+		return dao.findByName(pledge);
 	}
 
 	@Override
 	public void save(Pledge pledge) {
-		pledgeDao.save(pledge);
+		dao.save(pledge);
 	}
 
 	@Override
 	public boolean isExists(Pledge user) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	public PageBean<Pledge> findByPage(int page) {
-		pageBean.setPage(page);
-        
-        long totalCount= findAllCount();
-        
-        pageBean.setAllCount(totalCount);
-        
-        long limit  = pageBean.getLimit();
-        
-        long totalpage=(long)Math.ceil(totalCount/limit);
-        
-        pageBean.setAllPage(totalpage);
-        //
-        long begin=(page-1) * limit;
-        
-        List<Pledge> list = pledgeDao.findListByLimit(begin, limit);
-        
-        pageBean.setList(list);
-        
-        return pageBean;
+	public PageBean<Pledge> findByPage(int page) throws PagePropertyNotInitException {
+		long begin = pagePledgeBean.init(findAllCount(), page);
+
+		List<Pledge> list = dao.findListByLimit(begin, pagePledgeBean.getLimit());
+
+		pagePledgeBean.setList(list);
+
+		return pagePledgeBean;
 	}
 
 	@Override
 	public void update(Pledge t) {
-		// TODO Auto-generated method stub
-		pledgeDao.update(t);
+		dao.update(t);
+	}
+
+	@Override
+	public Set<ServerOrder> findAllOrders(Pledge t) {
+		return dao.findAllOrders(t);
+	}
+
+	@Override
+	public PageBean<ServerOrder> findOrdersByPage(Pledge t, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByPledgeBean.init(findAllCount(), page);
+
+		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByPledgeBean.getLimit());
+
+		pageServerOrderByPledgeBean.setList(list);
+
+		return pageServerOrderByPledgeBean;
 	}
 
 

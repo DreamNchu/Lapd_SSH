@@ -1,6 +1,8 @@
 package com.lps.model;
 
 import java.util.Date;
+import java.util.Set;
+import java.util.TreeSet;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,10 +13,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.lps.model.basic.BasicModel;
+import com.lps.model.basic.ModelLinkServerOrder;
 
 /**
  * AbstractTRoom entity provides the base persistence definition of the TRoom
@@ -23,7 +29,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "t_room")
 @TableGenerator(name = "pk_generate", table = "tb_generator", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "room_PK", allocationSize = 1)
-public class Room implements java.io.Serializable {
+public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>{
 
 	// Fields
 
@@ -41,6 +47,20 @@ public class Room implements java.io.Serializable {
 
 	private String remark;
 	private Date addTime;
+	
+	private Set<ServerOrder> serverOrders = new TreeSet<ServerOrder>();
+	
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			mappedBy = "room")
+	public Set<ServerOrder> getServerOrders() {
+		return this.serverOrders;
+	}
+
+	public void setServerOrders(Set<ServerOrder> serverOrders) {
+		this.serverOrders = serverOrders;
+	}
 
 	// Constructors
 

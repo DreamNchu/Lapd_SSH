@@ -8,13 +8,14 @@ import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
 import com.lps.service.ClockCategoryService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 public class ClockCategoryServiceImpl implements ClockCategoryService {
 
 	private ClockCategoryDAO dao;
 
 	private PageBean<ClockCategory> pageClockCategoryBean;
-	
+
 	private PageBean<ServerOrder> pageServerOrderByClockCategoryBean;
 
 	public PageBean<ServerOrder> getPageServerOrderByClockCategoryBean() {
@@ -82,23 +83,11 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	}
 
 	@Override
-	public PageBean<ClockCategory> findByPage(int page) {
-		pageClockCategoryBean.setPage(page);
+	public PageBean<ClockCategory> findByPage(int page) throws PagePropertyNotInitException {
+		long begin = pageClockCategoryBean.init(findAllCount(), page);
 
-		long totalCount = findAllCount();
+		List<ClockCategory> list = dao.findListByLimit(begin, pageClockCategoryBean.getLimit());
 
-		pageClockCategoryBean.setAllCount(totalCount);
-
-		long limit = pageClockCategoryBean.getLimit();
-
-		long totalpage = (long) Math.ceil(totalCount / limit);
-
-		pageClockCategoryBean.setAllPage(totalpage);
-		// ÿҳ��ʾ�����ݼ���
-		long begin = (page - 1) * limit;
-
-		List<ClockCategory> list = dao.findListByLimit(begin, limit);
-		
 		pageClockCategoryBean.setList(list);
 
 		return pageClockCategoryBean;
@@ -110,32 +99,20 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	}
 
 	@Override
-	public Set<ServerOrder> findAllOrderByClockCategory(ClockCategory cc) {
-		return dao.findAllOrderByClockCategory(cc);
+	public Set<ServerOrder> findAllOrders(ClockCategory cc) {
+		return dao.findAllOrders(cc);
 	}
 
 	@Override
-	public PageBean<ServerOrder> findOrderByClockCategory(ClockCategory cc, int page) {
-		
-		pageServerOrderByClockCategoryBean.setPage(page);
-        
-        long totalCount= findAllCount();
-        
-        pageServerOrderByClockCategoryBean.setAllCount(totalCount);
-        
-        long limit  = pageServerOrderByClockCategoryBean.getLimit();
-        
-        long totalpage=(long)Math.ceil(totalCount/limit);
-        
-        pageServerOrderByClockCategoryBean.setAllPage(totalpage);
-        
-        long begin=(page-1) * limit;
-        
-        List<ServerOrder> list = dao.findOrderByClockCategory(cc, begin, limit);
-        
-        pageServerOrderByClockCategoryBean.setList(list);
-        
-        return pageServerOrderByClockCategoryBean;
+	public PageBean<ServerOrder> findOrdersByPage(ClockCategory cc, int page) throws PagePropertyNotInitException {
+
+		long begin = pageServerOrderByClockCategoryBean.init(findAllCount(), page);
+
+		List<ServerOrder> list = dao.findOrdersWithLimit(cc, begin, pageServerOrderByClockCategoryBean.getLimit());
+
+		pageServerOrderByClockCategoryBean.setList(list);
+
+		return pageServerOrderByClockCategoryBean;
 	}
 
 }

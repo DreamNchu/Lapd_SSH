@@ -14,6 +14,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.lps.model.basic.BasicModel;
+import com.lps.model.basic.ModelLinkServerOrder;
+
 /**
  * ClassName:RoomCategory
  * Description:RoomCategory类继承自java.io.Serializable接口，房间类型类，包含属性的get set方法
@@ -31,7 +34,7 @@ import javax.persistence.TableGenerator;
 		valueColumnName = "gen_value", 
 		pkColumnValue = "roomcategory_PK",
 		allocationSize = 1)
-public class RoomCategory implements java.io.Serializable {
+public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<Integer>{
 
 	// Fields
 

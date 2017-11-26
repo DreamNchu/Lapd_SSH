@@ -17,7 +17,8 @@
 	
 	<bean id="userServiceImpl" class="com.lps.service.impl.UserServiceImpl">
 		<property name="userDao" ref="userDAOImpl"></property>
-		<property name="pageBean" ref="pageBean"></property>
+		<property name="pageUserBean" ref="pageBean"></property>
+		<property name="pageServerOrderByUserBean" ref="pageBean"></property>
 	</bean>
 	
 	

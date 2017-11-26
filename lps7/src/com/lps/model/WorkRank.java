@@ -11,6 +11,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.lps.model.basic.BasicModel;
+
 /**
  * ClassName:WorkRank 
  * Description:WorkRank类继承自java.io.Serializable接口，工作排班类，包含员工名，排班数之类的属性，包含这些属性的get set方法
@@ -28,7 +30,7 @@ import javax.persistence.TableGenerator;
 		valueColumnName = "gen_value", 
 		pkColumnValue = "workrank_PK",
 		allocationSize = 1)
-public class WorkRank implements java.io.Serializable {
+public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 
 	// Fields
 

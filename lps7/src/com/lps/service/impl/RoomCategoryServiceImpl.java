@@ -1,12 +1,14 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.lps.dao.RoomCategoryDAO;
-import com.lps.model.User;
 import com.lps.model.RoomCategory;
+import com.lps.model.ServerOrder;
 import com.lps.service.RoomCategoryService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -14,14 +16,24 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 
 	private RoomCategoryDAO dao;
 
-	private PageBean<RoomCategory> pageBean;
-
-	public PageBean<RoomCategory> getPageBean() {
-		return pageBean;
+	private PageBean<RoomCategory> pageRoomCategoryBean;
+	
+	public PageBean<RoomCategory> getPageRoomCategoryBean() {
+		return pageRoomCategoryBean;
 	}
 
-	public void setPageBean(PageBean<RoomCategory> pageBean) {
-		this.pageBean = pageBean;
+	public void setPageRoomCategoryBean(PageBean<RoomCategory> pageRoomCategoryBean) {
+		this.pageRoomCategoryBean = pageRoomCategoryBean;
+	}
+
+	private PageBean<ServerOrder> pageServerOrderByRoomCategoryBean;
+
+	public PageBean<ServerOrder> getPageServerOrderByRoomCategoryBean() {
+		return pageServerOrderByRoomCategoryBean;
+	}
+
+	public void setPageServerOrderByRoomCategoryBean(PageBean<ServerOrder> pageServerOrderByRoomCategoryBean) {
+		this.pageServerOrderByRoomCategoryBean = pageServerOrderByRoomCategoryBean;
 	}
 
 	@Override
@@ -73,32 +85,35 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 	}
 
 	@Override
-	public PageBean<RoomCategory> findByPage(int page) {
-		pageBean.setPage(page);
+	public PageBean<RoomCategory> findByPage(int page) throws PagePropertyNotInitException {
+		long begin = pageRoomCategoryBean.init(findAllCount(), page);
 
-		long totalCount = findAllCount();
+		List<RoomCategory> list = dao.findListByLimit(begin, pageRoomCategoryBean.getLimit());
 
-		pageBean.setAllCount(totalCount);
+		pageRoomCategoryBean.setList(list);
 
-		long limit = pageBean.getLimit();
-
-		long totalpage = (long) Math.ceil(totalCount / limit);
-
-		pageBean.setAllPage(totalpage);
-		// ÿҳ��ʾ�����ݼ���
-		long begin = (page - 1) * limit;
-
-		List<RoomCategory> list = dao.findListByLimit(begin, limit);
-
-		pageBean.setList(list);
-
-		return pageBean;
+		return pageRoomCategoryBean;
 	}
 
 	@Override
 	public void update(RoomCategory t) {
-		// TODO Auto-generated method stub
 		dao.update(t);
+	}
+
+	@Override
+	public Set<ServerOrder> findAllOrders(RoomCategory t) {
+		return dao.findAllOrders(t);
+	}
+
+	@Override
+	public PageBean<ServerOrder> findOrdersByPage(RoomCategory t, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByRoomCategoryBean.init(findAllCount(), page);
+
+		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByRoomCategoryBean.getLimit());
+
+		pageServerOrderByRoomCategoryBean.setList(list);
+
+		return pageServerOrderByRoomCategoryBean;
 	}
 
 }

@@ -14,6 +14,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.lps.model.basic.BasicModel;
+
 
 /**
  * AbstractTServerorder entity provides the base persistence definition of the
@@ -22,14 +24,14 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name="t_serverorder")
 
-public class ServerOrder implements java.io.Serializable {
+public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6038267699363948636L;
-	private String idOrder;
+	private String id;
 	
 	private PayPath payPath;
 	private Room room;
@@ -91,12 +93,12 @@ public class ServerOrder implements java.io.Serializable {
 			nullable = false, 
 			length = 45)
 
-	public String getIdOrder() {
-		return this.idOrder;
+	public String getId() {
+		return this.id;
 	}
 
-	public void setIdOrder(String idOrder) {
-		this.idOrder = idOrder;
+	public void setId(String idOrder) {
+		this.id = idOrder;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)

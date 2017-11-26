@@ -1,11 +1,15 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Set;
 
 import com.lps.dao.OrderStatusDAO;
+import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
+import com.lps.model.ServerOrder;
 import com.lps.service.OrderStatusService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -13,14 +17,24 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 
 	private OrderStatusDAO dao;
 
-	private PageBean<OrderStatus> pageBean;
+	private PageBean<OrderStatus> pageOrderStatusBean;
+	
+	private PageBean<ServerOrder> pageServerOrderByOrderStatusBean;
+
+	public PageBean<ServerOrder> getPageServerOrderByOrderStatusBean() {
+		return pageServerOrderByOrderStatusBean;
+	}
+
+	public void setPageServerOrderByOrderStatusBean(PageBean<ServerOrder> pageServerOrderByOrderStatusBean) {
+		this.pageServerOrderByOrderStatusBean = pageServerOrderByOrderStatusBean;
+	}
 
 	public PageBean<OrderStatus> getPageBean() {
-		return pageBean;
+		return pageOrderStatusBean;
 	}
 
 	public void setPageBean(PageBean<OrderStatus> pageBean) {
-		this.pageBean = pageBean;
+		this.pageOrderStatusBean = pageBean;
 	}
 
 	@Override
@@ -72,31 +86,35 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public PageBean<OrderStatus> findByPage(int page) {
-		pageBean.setPage(page);
+	public PageBean<OrderStatus> findByPage(int page) throws PagePropertyNotInitException {
+		long begin = pageOrderStatusBean.init(findAllCount(), page);
 
-		long totalCount = findAllCount();
+		List<OrderStatus> list = dao.findListByLimit(begin, pageOrderStatusBean.getLimit());
 
-		pageBean.setAllCount(totalCount);
+		pageOrderStatusBean.setList(list);
 
-		long limit = pageBean.getLimit();
-
-		long totalpage = (long) Math.ceil(totalCount / limit);
-
-		pageBean.setAllPage(totalpage);
-		// 每页显示的数据集合
-		long begin = (page - 1) * limit;
-
-		List<OrderStatus> list = dao.findListByLimit(begin, limit);
-
-		pageBean.setList(list);
-
-		return pageBean;
+		return pageOrderStatusBean;
 	}
 
 	@Override
 	public void update(OrderStatus t) {
 		dao.update(t);
+	}
+
+	@Override
+	public Set<ServerOrder> findAllOrders(OrderStatus t) {
+		return dao.findAllOrders(t);
+	}
+
+	@Override
+	public PageBean<ServerOrder> findOrdersByPage(OrderStatus t, int page) throws PagePropertyNotInitException {
+		long begin= pageServerOrderByOrderStatusBean.init(findAllCount(), page);
+        
+        List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByOrderStatusBean.getLimit());
+        
+        pageServerOrderByOrderStatusBean.setList(list);
+        
+        return pageServerOrderByOrderStatusBean;
 	}
 
 }

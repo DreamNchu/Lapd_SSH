@@ -3,10 +3,10 @@ package com.lps.service;
 import java.util.List;
 
 import com.lps.model.User;
-import com.lps.service.basic.BasicService;
+import com.lps.service.basic.BasicForServerOrderService;
 import com.lps.util.PageBean;
 
-public interface UserService extends BasicService<User>{
+public interface UserService extends BasicForServerOrderService<User>{
 	
 
 	List<User> findByPassword(Object password);

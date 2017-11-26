@@ -11,13 +11,13 @@ import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.ClockCategoryDAO;
+import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
-import com.lps.model.User;
 import com.lps.util.PageHibernateCallback;
 
-public class ClockCategoryDAOImpl implements ClockCategoryDAO {
+public class ClockCategoryDAOImpl implements ClockCategoryDAO{
 	public static final String ROOM_CATEGORY = "roomCategory";
 	private HibernateTemplate hibernateTemplate;
 
@@ -93,7 +93,7 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	}
 
 	@Override
-	public Set<ServerOrder> findAllOrderByClockCategory(ClockCategory cc) {
+	public Set<ServerOrder> findAllOrders(ClockCategory cc) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 		// session.beginTransaction();
 		// ClockCategory ccTemp = hibernateTemplate.get(ClockCategory.class,
@@ -107,7 +107,7 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	}
 
 	@Override
-	public List<ServerOrder> findOrderByClockCategory(ClockCategory cc, long begin, long limit) {
+	public List<ServerOrder> findOrdersWithLimit(ClockCategory cc, long begin, long limit) {
 		String hql = "from ClockCategory cc where cc.id=?";
 //		String hql = "from ClockCategory cc where cc.id=" + cc.getId();
 		HibernateCallback<List<ClockCategory>> callback = new PageHibernateCallback<ClockCategory>(hql,

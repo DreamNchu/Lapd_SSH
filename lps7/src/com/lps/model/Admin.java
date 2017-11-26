@@ -12,6 +12,8 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.lps.model.basic.BasicModel;
+
 /**
  * ClassName:Admin Description:管理员类，用于处理管理员的账号，密码，注册时间，头像等
  * <p>
@@ -24,10 +26,14 @@ import javax.persistence.TemporalType;
 @Table(name = "t_admin")
 @TableGenerator(name = "pk_generate", table = "tb_generator", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "admin_PK", allocationSize = 1)
 
-public class Admin {
+public class Admin implements BasicModel<Integer>, java.io.Serializable {
 
 	// Fields
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -777592858788745544L;
 	private Integer id;
 	private String userName;
 	private String password;
@@ -267,7 +273,7 @@ public class Admin {
 		 * 
 		 * @param avatar
 		 *            管理员头像 String类型
-		 * @return 管理员头像 String类型
+		 * @return 管理员头像路径 String类型
 		 */
 		public Builder setAvatar(String avatar) {
 			this.avatar = avatar;

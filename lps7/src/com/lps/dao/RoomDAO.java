@@ -3,9 +3,11 @@ package com.lps.dao;
 import java.util.List;
 
 import com.lps.dao.basic.BasicDAO;
+import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Room;
+import com.lps.model.RoomCategory;
 
-public interface RoomDAO extends BasicDAO<Room>{
+public interface RoomDAO extends BasicDAO<Room>,BasicForServerOrderDAO<Room, Integer>{
 
 	public List<Room> findByName(Object name);
 

@@ -1,12 +1,21 @@
 package com.lps.model;
 
+import java.util.Set;
+import java.util.TreeSet;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
+
+import com.lps.model.basic.BasicModel;
+import com.lps.model.basic.ModelLinkServerOrder;
 
 /**
  * ClassName:OrderStatus
@@ -26,28 +35,63 @@ import javax.persistence.TableGenerator;
 		pkColumnValue = "orderstatus_PK",
 		allocationSize = 1)
 
-public class OrderStatus implements java.io.Serializable {
+public class OrderStatus implements java.io.Serializable,ModelLinkServerOrder<Integer> {
 
 	// Fields
 
+	/**
+	 * ClassName:Builder
+     * Description:内部类，可以访问外部类里的orderstatus属性等，也可以访问orderstatus属性的set方法
+     * <p>
+     * @see OrderStatus
+	 * @author cyl
+	 * @version 1.0
+	 *
+	 */
+	 public static class Builder{
+	    	private String orderstatus;
+	      
+	        /**
+	         * build方法，返回订单状态
+	         * <p>
+	         * @return OrderStatus实例
+	         */
+	        public OrderStatus build(){
+	        	return new OrderStatus(orderstatus);
+	        }
+	        
+	        /**
+	         * 这个方法用于设置订单状态
+	         * <p>
+	         * @param orderstatus 订单状态
+	         * @return 订单状态
+	         * @see OrderStatus#setOrderstatus(String)
+	         */
+	        public Builder setOrderstatus(String orderstatus) {
+			    this.orderstatus = orderstatus;
+	        	return this;
+	        }
+	       
+	    }
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 4509505398828451606L;
 	private Integer id;
-	private String orderstatus;
-
-	// Constructors
-
-	/** default constructor */
 	
+	private String orderstatus;
+	
+	private Set<ServerOrder> serverOrders = new TreeSet<ServerOrder>();
+
 	/**
 	 * 这是OrderStatus类的无参构造函数
 	 */
 	public OrderStatus() {
 	}
 
-	/** full constructor */
+	// Constructors
+
+	/** default constructor */
 	
 	/**
 	 * OrderStatus类的构造函数
@@ -57,6 +101,8 @@ public class OrderStatus implements java.io.Serializable {
 		this.orderstatus = orderstatus;
 	}
 
+	/** full constructor */
+	
 	/**
 	 * 获取id值
 	 * <p>
@@ -72,17 +118,6 @@ public class OrderStatus implements java.io.Serializable {
 	}
 
 	/**
-	 * 设置id值
-	 * <p>
-	 * @param id 设置id
-	 */
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	
-
-	/**
 	 * 获取订单状态
 	 * <p>
 	 * @return 返回订单状态,String类型
@@ -91,6 +126,25 @@ public class OrderStatus implements java.io.Serializable {
 
 	public String getOrderstatus() {
 		return this.orderstatus;
+	}
+
+	@OneToMany(
+			cascade = CascadeType.ALL,
+			fetch = FetchType.LAZY,
+			mappedBy = "orderStatus")
+	public Set<ServerOrder> getServerOrders() {
+		return this.serverOrders;
+	}
+
+	
+
+	/**
+	 * 设置id值
+	 * <p>
+	 * @param id 设置id
+	 */
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	/**
 	 * 设置订单状态
@@ -101,39 +155,8 @@ public class OrderStatus implements java.io.Serializable {
 		this.orderstatus = orderstatus;
 	}
 	
-	/**
-	 * ClassName:Builder
-     * Description:内部类，可以访问外部类里的orderstatus属性等，也可以访问orderstatus属性的set方法
-     * <p>
-     * @see OrderStatus
-	 * @author cyl
-	 * @version 1.0
-	 *
-	 */
-	 public static class Builder{
-	    	private String orderstatus;
-	      
-	        /**
-	         * 这个方法用于设置订单状态
-	         * <p>
-	         * @param orderstatus 订单状态
-	         * @return 订单状态
-	         * @see OrderStatus#setOrderstatus(String)
-	         */
-	        public Builder setOrderstatus(String orderstatus) {
-			    this.orderstatus = orderstatus;
-	        	return this;
-	        }
-	        
-	        /**
-	         * build方法，返回订单状态
-	         * <p>
-	         * @return OrderStatus实例
-	         */
-	        public OrderStatus build(){
-	        	return new OrderStatus(orderstatus);
-	        }
-	       
-	    }
+	public void setServerOrders(Set<ServerOrder> serverOrders) {
+		this.serverOrders = serverOrders;
+	}
 
 }

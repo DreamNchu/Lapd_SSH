@@ -3,3 +3,20 @@
 	ClockCategory, OrderStatus,PayPath,Pledge,Room,User.
 	这个ServerOrder组件正在构建当中。
 3.数据库已完成1.0版本的设计，界面设计可以参照字段命名。
+
+2017/11/25
+1.增加private PayPath payPath;
+	private Room room;
+	private User user;
+	private Pledge pledge;
+	private ClockCategory clockCategory;
+	private OrderStatus orderStatus;这些对象的双向关联
+	
+2.增加/lps7/src/com/lps/dao/basic/BasicForServerOrderDAO.java接口文件
+增加/lps7/src/com/lps/model/basic/BasicModel.java接口文件
+
+3.优化分页查找
+
+4.增加 PagePropertyNotInitException 异常处理
+
+5.修改spring中配置文件中的bean配置

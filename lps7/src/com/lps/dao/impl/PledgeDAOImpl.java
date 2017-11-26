@@ -1,18 +1,25 @@
 package com.lps.dao.impl;
 // default package
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.PledgeDAO;
+import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
+import com.lps.model.ClockCategory;
+import com.lps.model.OrderStatus;
 import com.lps.model.Pledge;
+import com.lps.model.ServerOrder;
 import com.lps.util.PageHibernateCallback;
 
-public class PledgeDAOImpl  implements PledgeDAO{
+public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge, Integer>{
 	public static final String NAME = "name";
 	private HibernateTemplate hibernateTemplate;
 
@@ -85,5 +92,34 @@ public class PledgeDAOImpl  implements PledgeDAO{
 	@Override
 	public void update(Pledge t) {
 		hibernateTemplate.update(t);
+	}
+
+	@Override
+	public Set<ServerOrder> findAllOrders(Pledge t) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		OrderStatus ccTemp = (OrderStatus) session.get(OrderStatus.class, t.getId());
+		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
+
+		return sos;
+	}
+
+	@Override
+	public List<ServerOrder> findOrdersWithLimit(Pledge t, long begin, long limit) {
+		String hql = "from Pledge cc where cc.id=?";
+		HibernateCallback<List<ClockCategory>> callback = new PageHibernateCallback<ClockCategory>(hql,
+				new Object[] { t.getId() }, begin, limit);
+		List<ClockCategory> temp = this.getHibernateTemplate().execute(callback);
+
+		Set<ServerOrder> set = null;
+		if (temp != null && temp.size() > 0) {
+			set = temp.get(0).getServerOrders();
+		}
+		List<ServerOrder> list = new ArrayList<ServerOrder>(set);
+
+		if (list != null && list.size() > 0) {
+			return list;
+		}
+		return null;
 	}
 }

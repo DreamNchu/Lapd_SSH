@@ -5,6 +5,7 @@ import java.util.List;
 import com.lps.model.PayPath;
 import com.lps.model.User;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 public interface BasicService<T> {
 	
@@ -22,7 +23,7 @@ public interface BasicService<T> {
 	
 	public long findAllCount();
 	
-	public PageBean<T> findByPage(int page);
+	public PageBean<T> findByPage(int page) throws PagePropertyNotInitException;
 
 	void update(T t);
 }

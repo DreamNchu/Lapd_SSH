@@ -3,10 +3,9 @@ package com.lps.service;
 import java.util.List;
 
 import com.lps.model.Room;
-import com.lps.service.basic.BasicService;
-import com.lps.util.PageBean;
+import com.lps.service.basic.BasicForServerOrderService;
 
-public interface RoomService extends BasicService<Room>{
+public interface RoomService extends BasicForServerOrderService<Room>{
 	
 
 	public List<Room> findByName(Object name);
