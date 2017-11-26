@@ -14,7 +14,7 @@ import com.lps.model.WorkStatus;
 import com.lps.util.PageHibernateCallback;
 
 public class WorkStatusDAOImpl implements WorkStatusDAO {
-	// property constants
+	
 	public static final String WORK_STATUS = "workStatus";
 
 	private HibernateTemplate hibernateTemplate;

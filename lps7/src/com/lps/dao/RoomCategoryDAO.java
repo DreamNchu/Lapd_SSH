@@ -7,8 +7,7 @@ import com.lps.model.Pledge;
 import com.lps.model.RoomCategory;
 import com.lps.model.WorkStatus;
 
-public interface RoomCategoryDAO extends BasicDAO<RoomCategory>,
-BasicForServerOrderDAO<RoomCategory, Integer>{
+public interface RoomCategoryDAO extends BasicDAO<RoomCategory>{
 
 	List<RoomCategory> findByRoomCategory(Object roomCategory);
 

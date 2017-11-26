@@ -26,4 +26,8 @@ public interface UserService extends BasicForServerOrderService<User>{
 	List<User> findByAnswer(Object answer);
 
 	PageBean<User> findByPage(int page);
+	
+	List<User> findByRealName(Object realName);
+	
+	List<User> findByIDCardNo(Object IDCardNo);
 }

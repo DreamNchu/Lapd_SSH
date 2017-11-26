@@ -164,5 +164,15 @@ public class UserServiceImpl implements UserService {
 		return pageServerOrderByUserBean;
 	}
 
+	@Override
+	public List<User> findByRealName(Object realName) {
+		return userDao.findByRealName(realName);
+	}
+
+	@Override
+	public List<User> findByIDCardNo(Object IDCardNo) {
+		return userDao.findByIDCardNo(IDCardNo);
+	}
+
 
 }

@@ -1,4 +1,4 @@
-	--delete from `lapd_test`.`t_clockcategory`;
+
 
 	insert into `lapd_test`.`t_clockcategory` (id, clockcategory) values(1, "点钟");
 	insert into `lapd_test`.`t_clockcategory` (id, clockcategory) values(2, "排钟");
@@ -10,7 +10,7 @@
       
     select * from  `lapd_test`.`t_roomcategory`;
     
-    --delete from `lapd_test`.`t_roomcategory`;
+
 
 	insert into `lapd_test`.`t_room` (id , name, roomcategory, floor, size, remark, addTime, isFree, isClean)
 		values(1, "101",1, 1, 2, null, now(), true, true);
@@ -31,18 +31,6 @@
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(2, "待接收");
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(3, "工作中");
     
-    --delete from t_workStatus where id >= 4;
-    
-    --insert into `lapd_test`.`t_workstatus`(id , workStatus) values(4, "迟到");
-    --insert into `lapd_test`.`t_workstatus`(id , workStatus) values(5, "早退");
-    --insert into `lapd_test`.`t_workstatus`(id , workStatus) values(6, "休假");
-    --insert into `lapd_test`.`t_workstatus`(id , workStatus) values(8, "请假");
-    --insert into `lapd_test`.`t_workStatus`(id , workStatus) values(9, "已辞职");
-    
-    
-    --delete from t_workStatus;
-    
-    --delete from t_user;
         
     insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
         values(1, "user001", "user001", 11, "你是谁","0001",  1, now());
@@ -61,8 +49,7 @@
     insert into  `lapd_test`.`t_paypath` (id, payPath) values(3, "现金");
     insert into  `lapd_test`.`t_paypath` (id, payPath) values(4, "银联");
     
-    --delete from t_admin;
-    
+
     INSERT INTO `lapd_test`.`t_admin` (`id`, `userName`, `password`, `registerTime`, `avatar`) 
     VALUES (1, 'admin', 'admin', now(), NULL);
     

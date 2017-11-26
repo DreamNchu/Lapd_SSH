@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
@@ -16,6 +18,7 @@ import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.Room;
 import com.lps.model.ServerOrder;
+import com.lps.model.User;
 import com.lps.util.PageHibernateCallback;
 
 public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integer>{
@@ -117,11 +120,15 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 		return findByProperty(IS_FREE, true);
 	}
 
+	public static final String SERVER_ORDER = "serverOrders";
 	@Override
 	public Set<ServerOrder> findAllOrders(Room t) {
+		
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
-		OrderStatus ccTemp = (OrderStatus) session.get(OrderStatus.class, t.getId());
+		Room ccTemp = (Room) session.createCriteria(Room.class)
+			.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
+			.add(Restrictions.idEq(t.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;

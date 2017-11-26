@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
@@ -95,15 +97,14 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 		hibernateTemplate.update(t);
 	}
 
+	public static final String SERVER_ORDER = "serverOrders";
 	@Override
 	public Set<ServerOrder> findAllOrders(OrderStatus t) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		// session.beginTransaction();
-		// ClockCategory ccTemp = hibernateTemplate.get(ClockCategory.class,
-		// cc.getId());
-		// Set<ServerOrder> sos = ccTemp.getServerOrders();
 
-		OrderStatus ccTemp = (OrderStatus) session.get(OrderStatus.class, t.getId());
+		OrderStatus ccTemp = (OrderStatus) session.createCriteria(OrderStatus.class)
+				.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
+				.add(Restrictions.idEq(t.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;

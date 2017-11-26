@@ -27,5 +27,8 @@ public interface UserDAO extends BasicDAO<User>,BasicForServerOrderDAO<User, Int
 
 	List<User> findListByLimit(long begin, long limit);
 
+	List<User> findByRealName(Object realName);
+	
+	List<User> findByIDCardNo(Object IDCardNo);
 
 }

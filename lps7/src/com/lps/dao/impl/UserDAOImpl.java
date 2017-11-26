@@ -4,17 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.UserDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
-import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
-import com.lps.model.OrderStatus;
-import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.util.PageHibernateCallback;
@@ -31,6 +30,9 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	public static final String QUESTION = "question";
 	public static final String ANSWER = "answer";
 	public static final String REGISTER_TIME = "registerTime";
+	public static final String REAL_NAME = "realName";
+	public static final String ID_CARD_NO = "IDCardNO";
+	public static final String SERVER_ORDER = "serverOrders";
 
 	private HibernateTemplate hibernateTemplate;
 
@@ -123,7 +125,8 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from User";
-        List<Long> list=(List<Long>) this.getHibernateTemplate().find(hql);
+        @SuppressWarnings("unchecked")
+		List<Long> list=(List<Long>) this.getHibernateTemplate().find(hql);
         return (long)list.get(0);
 	}
 
@@ -147,15 +150,17 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 
 	@Override
 	public void update(User t) {
-		// TODO Auto-generated method stub
 		hibernateTemplate.update(t);
 	}
 
 	@Override
 	public Set<ServerOrder> findAllOrders(User t) {
+		
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
-		OrderStatus ccTemp = (OrderStatus) session.get(OrderStatus.class, t.getId());
+		User ccTemp = (User) session.createCriteria(User.class)
+			.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
+			.add(Restrictions.idEq(t.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
@@ -164,8 +169,8 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	@Override
 	public List<ServerOrder> findOrdersWithLimit(User t, long begin, long limit) {
 		String hql = "from Room cc where cc.id=?";
-		HibernateCallback<List<ClockCategory>> callback = new PageHibernateCallback<ClockCategory>(hql,
-				new Object[] { t.getId() }, begin, limit);
+		HibernateCallback<List<ClockCategory>> callback = 
+				new PageHibernateCallback<ClockCategory>(hql,new Object[] { t.getId() }, begin, limit);
 		List<ClockCategory> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
@@ -178,6 +183,16 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 			return list;
 		}
 		return null;
+	}
+
+	@Override
+	public List<User> findByRealName(Object answer) {
+		return findByProperty(REAL_NAME, answer);
+	}
+
+	@Override
+	public List<User> findByIDCardNo(Object IDCardNo) {
+		return findByProperty(ID_CARD_NO, IDCardNo);
 	}
 
 }

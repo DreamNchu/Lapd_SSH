@@ -20,3 +20,8 @@
 4.增加 PagePropertyNotInitException 异常处理
 
 5.修改spring中配置文件中的bean配置
+
+1.修改数据库t_user表的的内容，增加realName, IDCardNo字段,同时增加实现
+2.完善了级联ServerOrder多表查询
+3.做了些典型测试。
+

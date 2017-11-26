@@ -7,6 +7,6 @@ import com.lps.model.ClockCategory;
 
 public interface ClockCategoryDAO extends BasicDAO<ClockCategory> , BasicForServerOrderDAO<ClockCategory, Integer>{
 
-	List<ClockCategory> findByClockCategory(Object roomCategory);
+	List<ClockCategory> findByClockCategory(Object clockCategory);
 	
 }

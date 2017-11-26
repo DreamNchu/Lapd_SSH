@@ -100,20 +100,4 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 		dao.update(t);
 	}
 
-	@Override
-	public Set<ServerOrder> findAllOrders(RoomCategory t) {
-		return dao.findAllOrders(t);
-	}
-
-	@Override
-	public PageBean<ServerOrder> findOrdersByPage(RoomCategory t, int page) throws PagePropertyNotInitException {
-		long begin = pageServerOrderByRoomCategoryBean.init(findAllCount(), page);
-
-		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByRoomCategoryBean.getLimit());
-
-		pageServerOrderByRoomCategoryBean.setList(list);
-
-		return pageServerOrderByRoomCategoryBean;
-	}
-
 }

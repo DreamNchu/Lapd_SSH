@@ -98,5 +98,13 @@ public class RoomServiceTest {
 	public void testFindBySize() {
 		assertEquals(4, as.findBySize(4).size());
 	}
+	
+	@Test
+	public void testFindAllOrders(){
+		Room r = new Room();
+		r.setId(1);
+		;
+		assertEquals(7, as.findAllOrders(r).size());
+	}
 
 }

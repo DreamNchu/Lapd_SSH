@@ -58,7 +58,7 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testFindByAnswer() {
-		assertEquals("ÄãÊÇË­", as.findByAnswer("cyl").get(0).getQuestion());
+		assertEquals("ä½ æ˜¯è°", as.findByAnswer("cyl").get(0).getQuestion());
 	}
 
 	@Test
@@ -119,11 +119,11 @@ public class UserServiceImplTest {
 
 	@Test
 	public void testSave() {
-		as.save(new User("0003", "0002", "ÄãÊÇË­", "cyl", new Timestamp(System.currentTimeMillis()),new WorkStatus("ĞİÏ¢")));
+		as.save(new User("0003", "0002", "ä½ æ˜¯è°", "cyl", new Timestamp(System.currentTimeMillis()),new WorkStatus("ä¼‘æ¯")));
 		/*for(int i = 0; i < 23; i ++){
-			as.save(new User("0002" + i, "0002", "ÄãÊÇË­", "cyl", new Timestamp(System.currentTimeMillis())));
+			as.save(new User("0002" + i, "0002", "ä½ æ˜¯è°", "cyl", new Timestamp(System.currentTimeMillis())));
 		}*/
-//		User u = new User("0002", "0002", "ÄãÊÇË­", "cyl", new Timestamp(System.currentTimeMillis()));
+//		User u = new User("0002", "0002", "ä½ æ˜¯è°", "cyl", new Timestamp(System.currentTimeMillis()));
 //		as.save(u);
 	}
 	
@@ -132,6 +132,13 @@ public class UserServiceImplTest {
 		assertEquals(24, as.findByPage(1).getAllCount());
 		assertEquals(10, as.findByPage(1).getList().size());
 		assertEquals("0002", as.findByPage(1).getList().get(0).getUserName());
+	}
+	@Test
+	public void testFindServerOrders(){
+		User u = new User();
+		u.setId(1);
+//		as.findAllOrders(u);
+		assertEquals(7, as.findAllOrders(u).size());
 	}
 
 }

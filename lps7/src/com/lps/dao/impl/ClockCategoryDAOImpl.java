@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
@@ -14,10 +16,11 @@ import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
+import com.lps.model.Room;
 import com.lps.model.ServerOrder;
 import com.lps.util.PageHibernateCallback;
 
-public class ClockCategoryDAOImpl implements ClockCategoryDAO{
+public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	public static final String ROOM_CATEGORY = "roomCategory";
 	private HibernateTemplate hibernateTemplate;
 
@@ -92,15 +95,16 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO{
 		hibernateTemplate.update(t);
 	}
 
+	public static final String SERVER_ORDER = "serverOrders";
+
 	@Override
 	public Set<ServerOrder> findAllOrders(ClockCategory cc) {
-		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
-		// session.beginTransaction();
-		// ClockCategory ccTemp = hibernateTemplate.get(ClockCategory.class,
-		// cc.getId());
-		// Set<ServerOrder> sos = ccTemp.getServerOrders();
 
-		ClockCategory ccTemp = (ClockCategory) session.get(ClockCategory.class, cc.getId());
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		ClockCategory ccTemp = (ClockCategory) session.createCriteria(ClockCategory.class)
+				.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
+				.add(Restrictions.idEq(cc.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
@@ -109,10 +113,9 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO{
 	@Override
 	public List<ServerOrder> findOrdersWithLimit(ClockCategory cc, long begin, long limit) {
 		String hql = "from ClockCategory cc where cc.id=?";
-//		String hql = "from ClockCategory cc where cc.id=" + cc.getId();
+
 		HibernateCallback<List<ClockCategory>> callback = new PageHibernateCallback<ClockCategory>(hql,
 				new Object[] { cc.getId() }, begin, limit);
-//		new Object[] {  }, begin, limit);
 		List<ClockCategory> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
