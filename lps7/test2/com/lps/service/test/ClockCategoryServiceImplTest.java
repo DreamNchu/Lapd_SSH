@@ -110,5 +110,12 @@ public class ClockCategoryServiceImplTest {
 		ClockCategory cc = as.findById(1);
 		assertEquals(7, as.findAllOrders(cc).size());
 	}
+	
+	@Test
+	public void testFindOrdersCountByThisType(){
+		ClockCategory cc = as.findById(1);
+		assertEquals(7, as.findOrdersCountByThisType(cc));
+		
+	}
 
 }

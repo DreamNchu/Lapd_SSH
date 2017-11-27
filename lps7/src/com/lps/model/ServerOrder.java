@@ -43,9 +43,9 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 	private Date initTime;
 	private Date receiveTime;
 	private Date finishTime;
+	private Date payTime;
 	private Integer pay;
 	private Integer realPay;
-	private Date payTime;
 	private String orderRemark;
 
 	// Constructors

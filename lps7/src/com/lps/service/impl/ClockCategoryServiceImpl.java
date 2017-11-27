@@ -106,13 +106,18 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	@Override
 	public PageBean<ServerOrder> findOrdersByPage(ClockCategory cc, int page) throws PagePropertyNotInitException {
 
-		long begin = pageServerOrderByClockCategoryBean.init(findAllCount(), page);
+		long begin = pageServerOrderByClockCategoryBean.init(findOrdersCountByThisType(cc), page);
 
 		List<ServerOrder> list = dao.findOrdersWithLimit(cc, begin, pageServerOrderByClockCategoryBean.getLimit());
 
 		pageServerOrderByClockCategoryBean.setList(list);
 
 		return pageServerOrderByClockCategoryBean;
+	}
+
+	@Override
+	public long findOrdersCountByThisType(ClockCategory t) {
+		return dao.findOrdersCountByThisType(t);
 	}
 
 }

@@ -4,12 +4,21 @@ import com.lps.dao.basic.BasicDAO;
 import com.lps.model.Admin;
 
 /**
- * 
- * @author 0001
+ * interfaceName:AdminDAO
+ * Description:继承自BasicDAO接口，包含查找管理员的方法
+ * <p>
+ * @see BasicDAO
+ * @author cyl
  *
  */
 public interface AdminDAO extends BasicDAO<Admin>{
 	
+	/**
+	 * 根据用户名查找管理员,返回Admin对象
+	 * <p>
+	 * @param name 管理员名字 String类型
+	 * @return 管理员对象
+	 */
 	public Admin getByUserName(String name);
 	
 }

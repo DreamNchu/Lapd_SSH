@@ -21,7 +21,7 @@ import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
 import com.lps.util.PageHibernateCallback;
 
-public class PayPathDAOImpl  implements PayPathDAO, BasicForServerOrderDAO<PayPath, Integer>{
+public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPath, Integer> {
 	public static final String PAY_PATH = "payPath";
 	private HibernateTemplate hibernateTemplate;
 
@@ -65,14 +65,14 @@ public class PayPathDAOImpl  implements PayPathDAO, BasicForServerOrderDAO<PayPa
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<PayPath> findAll() {
-		return (List<PayPath>)hibernateTemplate.find("from PayPath");
+		return (List<PayPath>) hibernateTemplate.find("from PayPath");
 	}
 
 	@Override
 	public long findAllCount() {
-		String hql="select count(*) from PayPath";
-        List<Long> list=(List<Long>) this.getHibernateTemplate().find(hql);
-        return (long)list.get(0);
+		String hql = "select count(*) from PayPath";
+		List<Long> list = (List<Long>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
 	}
 
 	@Override
@@ -82,13 +82,14 @@ public class PayPathDAOImpl  implements PayPathDAO, BasicForServerOrderDAO<PayPa
 
 	@Override
 	public List<PayPath> findListByLimit(long begin, long limit) {
-		String hql="from PayPath";
-        List<PayPath> list=(List<PayPath>) this.getHibernateTemplate().execute((HibernateCallback<Admin>) new PageHibernateCallback(hql, new Object[]{}, begin, limit));
-        if(list!=null&&list.size()>0){
-            
-            return list;
-        }
-        return null;
+		String hql = "from PayPath";
+		List<PayPath> list = (List<PayPath>) this.getHibernateTemplate()
+				.execute((HibernateCallback<Admin>) new PageHibernateCallback(hql, new Object[] {}, begin, limit));
+		if (list != null && list.size() > 0) {
+
+			return list;
+		}
+		return null;
 	}
 
 	@Override
@@ -97,12 +98,12 @@ public class PayPathDAOImpl  implements PayPathDAO, BasicForServerOrderDAO<PayPa
 	}
 
 	public static final String SERVER_ORDER = "serverOrders";
+
 	@Override
 	public Set<ServerOrder> findAllOrders(PayPath t) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
-		PayPath ccTemp = (PayPath) session.createCriteria(PayPath.class)
-				.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
+		PayPath ccTemp = (PayPath) session.createCriteria(PayPath.class).setFetchMode(SERVER_ORDER, FetchMode.JOIN)
 				.add(Restrictions.idEq(t.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
@@ -126,5 +127,14 @@ public class PayPathDAOImpl  implements PayPathDAO, BasicForServerOrderDAO<PayPa
 			return list;
 		}
 		return null;
+	}
+
+	@Override
+	public long findOrdersCountByThisType(PayPath property) {
+		String hql = "select count(*) from ServerOrder model where model." 
+				+ ServerOrderDAOImpl.PAY_PATH + "="
+				+ property.getId();
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
 	}
 }

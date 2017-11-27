@@ -2,6 +2,7 @@ package com.lps.dao.impl;
 // default package
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -128,5 +129,16 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 		}
 		return null;
 	}
+
+	@Override
+	public long findOrdersCountByThisType(OrderStatus property) {
+		
+		String hql = "select count(*) from ServerOrder model where model." 
+		+ ServerOrderDAOImpl.ORDER_STATUS + "=" + property.getId();
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
+		
+	}
+	
 
 }

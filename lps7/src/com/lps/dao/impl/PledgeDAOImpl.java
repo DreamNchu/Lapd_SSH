@@ -126,4 +126,13 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 		}
 		return null;
 	}
+
+	@Override
+	public long findOrdersCountByThisType(Pledge property) {
+		String hql = "select count(*) from ServerOrder model where model." 
+				+ ServerOrderDAOImpl.PLEDGE + "="
+				+ property.getId();
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
+	}
 }

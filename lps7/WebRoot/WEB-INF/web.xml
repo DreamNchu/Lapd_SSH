@@ -14,7 +14,7 @@
   </listener>
   <context-param>
     <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/beans.xml</param-value>
+    <param-value>classpath:config/applicationContext.xml</param-value>
   </context-param>
   <filter>
     <filter-name>struts2</filter-name>

@@ -10,6 +10,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.lps.model.ClockCategory;
 import com.lps.model.Room;
 import com.lps.model.RoomCategory;
 import com.lps.service.impl.RoomServiceImpl;
@@ -105,6 +106,13 @@ public class RoomServiceTest {
 		r.setId(1);
 		;
 		assertEquals(7, as.findAllOrders(r).size());
+	}
+	
+	@Test
+	public void testFindOrdersCountByThisType(){
+		Room cc = as.findById(1);
+		assertEquals(7, as.findOrdersCountByThisType(cc));
+		
 	}
 
 }

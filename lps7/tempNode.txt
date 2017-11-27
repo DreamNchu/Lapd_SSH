@@ -25,3 +25,7 @@
 2.完善了级联ServerOrder多表查询
 3.做了些典型测试。
 
+1.增加/lps7/src/com/lps/uenum/CompareLevel.java 枚举类，表示价格高低。
+2.增加/lps7/src/com/lps/util/WorkDate.java 工具类，辅助日期处理。
+3.增加在BasicForServerOrderService<T> 的方法 long findOrdersCountByThisType(T t);
+用来查找某个类型的订单的数量

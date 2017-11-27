@@ -2,8 +2,6 @@ package com.lps.web.action;
 
 
 
-import java.sql.Date;
-
 import com.lps.model.Admin;
 import com.lps.service.AdminService;
 import com.opensymphony.xwork2.ActionSupport;
@@ -31,9 +29,12 @@ public class AdminLogInAction extends ActionSupport{
 
 	@Override
 	public String execute() throws Exception {
-		adminServiceImpl.save(new Admin("0001","0001", new java.sql.Timestamp(System.currentTimeMillis())));
-//		System.out.println("success");
+//		adminServiceImpl.save(new Admin("0001","0001", new java.sql.Timestamp(System.currentTimeMillis())));
+		Admin a = new Admin();
+		a.setId(1);
+		System.out.println(adminServiceImpl.isExists(a));
 		return SUCCESS;
+//		System.out.println("success");
 	}
 	
 	

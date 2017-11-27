@@ -100,13 +100,18 @@ public class PledgeServiceImpl implements PledgeService {
 
 	@Override
 	public PageBean<ServerOrder> findOrdersByPage(Pledge t, int page) throws PagePropertyNotInitException {
-		long begin = pageServerOrderByPledgeBean.init(findAllCount(), page);
+		long begin = pageServerOrderByPledgeBean.init(findOrdersCountByThisType(t), page);
 
 		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByPledgeBean.getLimit());
 
 		pageServerOrderByPledgeBean.setList(list);
 
 		return pageServerOrderByPledgeBean;
+	}
+
+	@Override
+	public long findOrdersCountByThisType(Pledge t) {
+		return dao.findOrdersCountByThisType(t);
 	}
 
 

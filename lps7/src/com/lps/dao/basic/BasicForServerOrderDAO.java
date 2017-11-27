@@ -17,6 +17,9 @@ public interface BasicForServerOrderDAO<T extends ModelLinkServerOrder<K> , K>{
 	 * 
 	 */
 	Set<ServerOrder> findAllOrders(T t);
+	
+	
+	long findOrdersCountByThisType(T property);
 
 	/**
 	 * 根据该对象对象的ID来查找订单，订单的条数受限于begin，limit

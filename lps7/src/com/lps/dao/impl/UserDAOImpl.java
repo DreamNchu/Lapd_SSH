@@ -195,4 +195,13 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 		return findByProperty(ID_CARD_NO, IDCardNo);
 	}
 
+	@Override
+	public long findOrdersCountByThisType(User property) {
+		String hql = "select count(*) from ServerOrder model where model." 
+				+ ServerOrderDAOImpl.USER + "="
+				+ property.getId();
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
+	}
+
 }

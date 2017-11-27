@@ -109,13 +109,19 @@ public class PayPathServiceImpl implements PayPathService {
 
 	@Override
 	public PageBean<ServerOrder> findOrdersByPage(PayPath t, int page) throws PagePropertyNotInitException {
-		long begin = pageServerOrderByPayPathBean.init(findAllCount(), page);
+		long begin = pageServerOrderByPayPathBean.init(
+				findOrdersCountByThisType(t), page);
 
 		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByPayPathBean.getLimit());
 
 		pageServerOrderByPayPathBean.setList(list);
 
 		return pageServerOrderByPayPathBean;
+	}
+
+	@Override
+	public long findOrdersCountByThisType(PayPath t) {
+		return dao.findOrdersCountByThisType(t);
 	}
 
 }

@@ -2,13 +2,11 @@ package com.lps.dao.basic;
 
 import java.util.List;
 
-import com.lps.model.User;
-
 public interface BasicDAO<T> {
 	
 	public void save(T t);
 	/**
-	 * ¸ù¾İ¶ÔÏóµÄIdÉ¾³ı
+	 * æ ¹æ®å¯¹è±¡çš„Idåˆ é™¤
 	 * @param admin
 	 */
 	public void delete(T t);
@@ -16,7 +14,7 @@ public interface BasicDAO<T> {
 	public T findById(int id);
 
 	/**
-	 * ¸ù¾İ¶ÔÏóµÄidÅĞ¶ÏÊÇ·ñ´æÔÚ
+	 * æ ¹æ®å¯¹è±¡çš„idåˆ¤æ–­æ˜¯å¦å­˜åœ¨
 	 * @param admin
 	 * @return
 	 */
@@ -29,15 +27,15 @@ public interface BasicDAO<T> {
 	public long findAllCount();
 	
 	/**
-	 * ¸ù¾İ¿ªÊ¼µÄÏÂ±êbegin£¬ÒÔ¼°¸Ã´Ó¸ÃÏÂ±ê¿ªÊ¼µÄlimit¸öÊı
-	 * @param begin ¿ªÊ¼ÖµµÄÏÂ±ê
-	 * @param limit ´Ó¸ÃÏÂ±ê¿ªÊ¼µÄlimit¸öÊı
-	 * @return ·µ»Ø¸Ã·¶Î§ÄÚµÄlist
+	 * æ ¹æ®å¼€å§‹çš„ä¸‹æ ‡beginï¼Œä»¥åŠè¯¥ä»è¯¥ä¸‹æ ‡å¼€å§‹çš„limitä¸ªæ•°
+	 * @param begin å¼€å§‹å€¼çš„ä¸‹æ ‡
+	 * @param limit ä»è¯¥ä¸‹æ ‡å¼€å§‹çš„limitä¸ªæ•°
+	 * @return è¿”å›è¯¥èŒƒå›´å†…çš„list
 	 */
 	List<T> findListByLimit(long begin, long limit);
 	
 	/**
-	 * ¸üĞÂÒÑ¾­¸ÄÍêµÄ×Ö¶Î
+	 * æ›´æ–°å·²ç»æ”¹å®Œçš„å­—æ®µ
 	 * @param t
 	 */
 	void update(T t);

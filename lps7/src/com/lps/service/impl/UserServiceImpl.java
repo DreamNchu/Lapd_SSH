@@ -155,7 +155,7 @@ public class UserServiceImpl implements UserService {
 	}
 	@Override
 	public PageBean<ServerOrder> findOrdersByPage(User t, int page) throws PagePropertyNotInitException {
-		long begin = pageServerOrderByUserBean.init(findAllCount(), page);
+		long begin = pageServerOrderByUserBean.init(findOrdersCountByThisType(t), page);
 
 		List<ServerOrder> list = userDao.findOrdersWithLimit(t, begin, pageServerOrderByUserBean.getLimit());
 
@@ -172,6 +172,11 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> findByIDCardNo(Object IDCardNo) {
 		return userDao.findByIDCardNo(IDCardNo);
+	}
+
+	@Override
+	public long findOrdersCountByThisType(User t) {
+		return userDao.findOrdersCountByThisType(t);
 	}
 
 

@@ -8,15 +8,14 @@ import java.util.Set;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.ClockCategoryDAO;
-import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
-import com.lps.model.Room;
 import com.lps.model.ServerOrder;
 import com.lps.util.PageHibernateCallback;
 
@@ -70,7 +69,7 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	@Override
 	public long findAllCount() {
 		String hql = "select count(*) from ClockCategory";
-		List<Long> list = (List<Long>) this.getHibernateTemplate().find(hql);
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
 		return (long) list.get(0);
 	}
 
@@ -128,5 +127,15 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 			return list;
 		}
 		return null;
+	}
+
+	@Override
+	public long findOrdersCountByThisType(ClockCategory cc) {
+		
+		String hql = "select count(*) from ServerOrder model where model." 
+		+ ServerOrderDAOImpl.CLOCK_CATEGORY + "=" + cc.getId();
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
+		
 	}
 }

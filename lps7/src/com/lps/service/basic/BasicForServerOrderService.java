@@ -24,4 +24,5 @@ public interface BasicForServerOrderService<T> extends BasicService<T> {
 	 */
 	PageBean<ServerOrder> findOrdersByPage(T t, int page) throws PagePropertyNotInitException;
 
+	long findOrdersCountByThisType(T t);
 }

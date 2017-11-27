@@ -108,13 +108,18 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 
 	@Override
 	public PageBean<ServerOrder> findOrdersByPage(OrderStatus t, int page) throws PagePropertyNotInitException {
-		long begin= pageServerOrderByOrderStatusBean.init(findAllCount(), page);
+		long begin= pageServerOrderByOrderStatusBean.init(findOrdersCountByThisType(t), page);
         
         List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByOrderStatusBean.getLimit());
         
         pageServerOrderByOrderStatusBean.setList(list);
         
         return pageServerOrderByOrderStatusBean;
+	}
+
+	@Override
+	public long findOrdersCountByThisType(OrderStatus t) {
+		return dao.findOrdersCountByThisType(t);
 	}
 
 }

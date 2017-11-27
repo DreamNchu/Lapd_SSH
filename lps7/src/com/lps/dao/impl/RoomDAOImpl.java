@@ -153,4 +153,13 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 		return null;
 	}
 
+	@Override
+	public long findOrdersCountByThisType(Room property) {
+		String hql = "select count(*) from ServerOrder model where model." 
+				+ ServerOrderDAOImpl.ROOM + "="
+				+ property.getId();
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
+		return (long) list.get(0);
+	}
+
 }

@@ -21,6 +21,10 @@ public interface BasicService<T> {
 
 	List<T> findAll();
 	
+	/**
+	 * 找到所有的{@code <T>}在数据库中的个数
+	 * @return 返回找到所有的{@code <T>}在数据库中的个数
+	 */
 	public long findAllCount();
 	
 	public PageBean<T> findByPage(int page) throws PagePropertyNotInitException;
