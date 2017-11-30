@@ -38,7 +38,7 @@ public class AdminServiceImplTest {
 	@Test
 	public void testAdd() {
 		for(int i = 0; i < 23; i ++){
-			as.save(new Admin("Ð¡·¼" + i ,"0002", new java.sql.Timestamp(System.currentTimeMillis())));
+			as.save(new Admin("Ð¡ï¿½ï¿½" + i ,"0002", new java.sql.Timestamp(System.currentTimeMillis())));
 		}
 	}
 	
@@ -51,14 +51,14 @@ public class AdminServiceImplTest {
 //		Session session = adi.getHibernateTemplate().getSessionFactory().getCurrentSession();
 		//System.out.println(session);
 		//System.out.println(session.createQuery("from Admin").list().size());	
-//		as.save(new Admin("Ð¡¼ü","0002", new java.sql.Timestamp(System.currentTimeMillis())));
+//		as.save(new Admin("Ð¡ï¿½ï¿½","0002", new java.sql.Timestamp(System.currentTimeMillis())));
 	}
 	
 	@Test
 	public void testFindPageByLimit() {
 		assertEquals(24, as.findByPage(1).getAllCount());
 		assertEquals(10, as.findByPage(1).getList().size());
-		assertEquals("Ð¡º£2", as.findByPage(1).getList().get(0).getUserName());
+		assertEquals("Ð¡ï¿½ï¿½2", as.findByPage(1).getList().get(0).getUserName());
 	}
 	
 	@Test
@@ -66,12 +66,12 @@ public class AdminServiceImplTest {
 		Admin admin = as.findById(1);
 		System.out.println(admin.getRegisterTime());
 		System.out.println(new java.sql.Timestamp(System.currentTimeMillis()));
-//		Assert.assertEquals("Ð¡·¼", admin.getUserName());
+//		Assert.assertEquals("Ð¡ï¿½ï¿½", admin.getUserName());
 	}
 	
 	@Test
 	public void testGetByName(){
-		Admin admin = as.getByUserName("Ð¡Ã÷");
+		Admin admin = as.findByUserName("Ð¡ï¿½ï¿½");
 		Assert.assertEquals(new Integer(4), admin.getId());
 	}
 	
@@ -94,7 +94,7 @@ public class AdminServiceImplTest {
 		AdminDAOImpl adi = (AdminDAOImpl)as.getAdminDao();
 		assertEquals(AdminDAOImpl.class, as.getAdminDao().getClass());
 		System.out.println(adi.getHibernateTemplate().getSessionFactory());
-		Assert.assertEquals("Ð¡·¼0", as.findByProperty(AdminDAOImpl.USER_NAME, "Ð¡·¼0").get(0).getUserName());
+		Assert.assertEquals("Ð¡ï¿½ï¿½0", as.findByProperty(AdminDAOImpl.USER_NAME, "Ð¡ï¿½ï¿½0").get(0).getUserName());
 		System.out.println(Thread.currentThread());
 		System.out.println(adi.getHibernateTemplate().getSessionFactory().getCurrentSession());
 	}
@@ -103,7 +103,7 @@ public class AdminServiceImplTest {
 	@Test
 	public void testTetByRegisterTime(){
 		System.out.println();
-//		Assert.assertEquals("Ð¡·¼0", as.findByRegisterTime(new Timestamp(2017,11,21, 00,06,06, 0)).get(0).getUserName());
+//		Assert.assertEquals("Ð¡ï¿½ï¿½0", as.findByRegisterTime(new Timestamp(2017,11,21, 00,06,06, 0)).get(0).getUserName());
 	}
 	
 	@Test
@@ -119,9 +119,29 @@ public class AdminServiceImplTest {
 	@Test
 	public void testUpdate(){
 //		Assert.assertEquals(as.findAll().size(), as.findAllCount());
-		Admin a = as.getByUserName("Ð¡·¼0");
-//		Admin a = as.getByUserName("Ð¡·¼0");
+		Admin a = as.findByUserName("Ð¡ï¿½ï¿½0");
+//		Admin a = as.getByUserName("Ð¡ï¿½ï¿½0");
 		a.setPassword("8888");
 		as.update(a);
 	}
+	
+	@Test
+	public void testFindPassword(){
+		Admin a = new Admin();
+		a.setId(1);
+		System.out.println(as.findPassword(a));
+	}
+	
+	@Test
+	public void testFindPasswordByUserName(){
+		System.out.println(as.findPasswordByUserName("admin"));
+	}
+	
+	@Test
+	public void testFindIdByUserName(){
+		
+		assertEquals(2, as.findIdByUserName("admin2"));
+		
+	}
+	
 }

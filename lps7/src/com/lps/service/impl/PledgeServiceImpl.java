@@ -1,9 +1,13 @@
 package com.lps.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.PledgeDAO;
+import com.lps.dao.impl.PayPathDAOImpl;
+import com.lps.dao.impl.PledgeDAOImpl;
 import com.lps.model.PayPath;
 import com.lps.model.Pledge;
 import com.lps.model.ServerOrder;
@@ -112,6 +116,23 @@ public class PledgeServiceImpl implements PledgeService {
 	@Override
 	public long findOrdersCountByThisType(Pledge t) {
 		return dao.findOrdersCountByThisType(t);
+	}
+
+	@Override
+	public String findPledge(Pledge pledge) {
+		Map<String, Class<?>> map = new HashMap<>();
+		map.put(PledgeDAOImpl.PLEDGE, String.class);
+		return dao.findFields(pledge, map).getName();
+	}
+
+	@Override
+	public int findIdByPledge(String pledgeProperty) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(PledgeDAOImpl.PLEDGE, pledgeProperty);
+		List<Integer> list = dao.findIdByProperty(map);
+		if(list != null && list.size() > 0)
+			return list.get(0);
+		return NOT_EXISTS;
 	}
 
 

@@ -1,11 +1,14 @@
 package com.lps.service.impl;
 
-import java.sql.Timestamp;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.lps.dao.AdminDAO;
+import com.lps.dao.impl.AdminDAOImpl;
 import com.lps.model.Admin;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.AdminService;
 import com.lps.util.PageBean;
 
@@ -45,7 +48,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Admin getByUserName(String name) {
+	public Admin findByUserName(String name) {
 		return adminDao.getByUserName(name);
 	}
 
@@ -60,7 +63,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Date getRegisterTime(Admin admin) {
+	public Date findRegisterTime(Admin admin) {
 		return findById(admin.getId()).getRegisterTime();
 	}
 
@@ -113,9 +116,28 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public void update(Admin t) {
-		// TODO Auto-generated method stub
 		adminDao.update(t);
 	}
 
+	@Override
+	public String findPasswordByUserName(String userName) {
+		Admin admin =new  Admin.Builder()
+				.setId(findIdByUserName(userName)).build();
+		return findPassword(admin);
+	}
+
+	@Override
+	public <T> String findPassword(BasicModel<T> admin) {
+		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
+		map.put(AdminDAOImpl.PASSWORD, String.class);
+		return adminDao.findFields(admin, map).getPassword();
+	}
+
+	@Override
+	public int findIdByUserName(String name) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(AdminDAOImpl.USER_NAME, name);
+		return (int) adminDao.findIdByProperty(map).get(0);
+	}
 
 }

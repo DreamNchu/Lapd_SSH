@@ -40,4 +40,7 @@ public interface ServerOrderDAO extends BasicDAO<ServerOrder> {
 	List<ServerOrder> findOrderByPriceAndDateLimit(int price,
 			Date begin, Date end, CompareLevel cl);
 	
+	
+	List<ServerOrder> findOrderByPriceLimit(int price, CompareLevel cl);
+	
 }

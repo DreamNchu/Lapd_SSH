@@ -1,15 +1,22 @@
 package com.lps.dao.impl;
 
 
-import java.sql.Timestamp;
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.AdminDAO;
 import com.lps.model.Admin;
+import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
 public class AdminDAOImpl implements AdminDAO {
@@ -40,6 +47,7 @@ public class AdminDAOImpl implements AdminDAO {
 		hibernateTemplate.delete(admin);
 	}
 
+	
 	@Override
 	public Admin findById(int id) {
 		return hibernateTemplate.get(Admin.class, id);
@@ -72,7 +80,7 @@ public class AdminDAOImpl implements AdminDAO {
 	         						+ propertyName + "= ?";
 	         Query queryObject = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery(queryString);
 			 queryObject.setParameter(0, value);
-System.out.println(Thread.currentThread());
+//System.out.println(Thread.currentThread());
 			 return (List<Admin>)queryObject.list();
 	 }
 	
@@ -106,6 +114,60 @@ System.out.println(Thread.currentThread());
 	public void update(Admin t) {
 		hibernateTemplate.update(t);
 	}
-	
+
+	@Override
+	public <K> Admin findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		
+		
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		Criteria cri = session.createCriteria(Admin.class)
+			.add(Restrictions.idEq(t.getId()));
+		ProjectionList proList = Projections.projectionList();
+		
+		for(String field: fields.keySet()){
+			proList.add(Projections.groupProperty(field));
+		}
+		//设置投影条件
+		cri.setProjection(proList);
+		List<?> list = cri.list();
+		
+		Admin admin = new Admin();
+		Class<? extends Admin> c = admin.getClass();
+		int i = 0;
+		
+		for(String field: fields.keySet()){
+			String str ="set" + field.substring(0,1).toUpperCase()+field.substring(1);
+			try {
+				c.getDeclaredMethod(str, fields.get(field)).invoke(admin, list.get(i));
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
+			}
+			i ++;
+		}
+		
+		return admin;
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		Criteria cri = session.createCriteria(Admin.class);
+		
+		for(String field: map.keySet()){
+			cri.add(Restrictions.eq(field, map.get(field)));
+		}
+		
+		cri.setProjection(Projections.id());
+		
+		@SuppressWarnings("unchecked")
+		List<K> listIds = cri.list();
+		
+		return listIds;
+		
+	}
+
 	
 }

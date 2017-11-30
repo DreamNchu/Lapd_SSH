@@ -1,6 +1,9 @@
 package com.lps.dao.basic;
 
 import java.util.List;
+import java.util.Map;
+
+import com.lps.model.basic.BasicModel;
 
 public interface BasicDAO<T> {
 	
@@ -15,7 +18,7 @@ public interface BasicDAO<T> {
 
 	/**
 	 * 根据对象的id判断是否存在
-	 * @param admin
+	 * @param t
 	 * @return
 	 */
 	public boolean isExists(T t);
@@ -39,5 +42,21 @@ public interface BasicDAO<T> {
 	 * @param t
 	 */
 	void update(T t);
+	/**
+	 * 返回所需要字段对应的对象
+	 * @param <K> 主键类型
+	 * @param t 必须包含id属性
+	 * @param fields 字段名称集合
+	 * @return 返回所需要字段对应的对象
+	 */
+	<K> T findFields(BasicModel<K> t, Map<String, Class<?>> fields);
+	
+	/**
+	 * 根据属性名获取id
+	 * @param map 属性的名字和值
+	 * @return
+	 */
+	<K> List<K> findIdByProperty(Map<String , Object> map);
+		
 
 }

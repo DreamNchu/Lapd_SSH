@@ -49,9 +49,19 @@
     insert into  `lapd_test`.`t_paypath` (id, payPath) values(3, "现金");
     insert into  `lapd_test`.`t_paypath` (id, payPath) values(4, "银联");
     
+    
 
     INSERT INTO `lapd_test`.`t_admin` (`id`, `userName`, `password`, `registerTime`, `avatar`) 
     VALUES (1, 'admin', 'admin', now(), NULL);
+    
+    INSERT INTO `lapd_test`.`t_admin` (`id`, `userName`, `password`, `registerTime`, `avatar`) 
+    VALUES (2, 'admin2', 'admin', now(), NULL);
+    
+    INSERT INTO `lapd_test`.`t_admin` (`id`, `userName`, `password`, `registerTime`, `avatar`) 
+    VALUES (3, 'admin3', 'admin', now(), NULL);
+    
+    INSERT INTO `lapd_test`.`t_admin` (`id`, `userName`, `password`, `registerTime`, `avatar`) 
+    VALUES (4, 'admin4', 'admin', now(), NULL);
     
     INSERT INTO `lapd_test`.`t_serverorder` (`idOrder`, `stuffId`, `roomId`, `statusId`, `clockcategoryId`, `payPathId`, 
     `pledgeNameId`, `initTime`, `receiveTime`, `finishTime`, `pay`, `realPay`, `payTime`, `orderRemark`)

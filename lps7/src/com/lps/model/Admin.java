@@ -66,6 +66,15 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 		this.password = password;
 		this.registerTime = registerTime;
 	}
+	
+	public Admin(Integer id, String userName, String password, Date registerTime, String avatar) {
+		super();
+		this.id = id;
+		this.userName = userName;
+		this.password = password;
+		this.registerTime = registerTime;
+		this.avatar = avatar;
+	}
 
 	/** full constructor */
 	/**
@@ -221,11 +230,25 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 	 *
 	 */
 	public static class Builder {
-
+		
+		private int id;
 		private String userName;
 		private String password;
 		private Date registerTime;
 		private String avatar;
+		
+
+		/**
+		 * 设置id值
+		 * <p>
+		 * 
+		 * @param id
+		 *            管理员id
+		 */
+		public Builder setId(Integer id) {
+			this.id = id;
+			return this;
+		}
 
 		/**
 		 * 设置管理员的账户名
@@ -286,7 +309,7 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 		 * @return 返回Admin实例
 		 */
 		public Admin build() {
-			return new Admin(userName, password, registerTime, avatar);
+			return new Admin(id, userName, password, registerTime, avatar);
 		}
 	}
 }

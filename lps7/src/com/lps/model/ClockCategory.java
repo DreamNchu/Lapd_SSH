@@ -35,7 +35,7 @@ public class ClockCategory implements java.io.Serializable ,ModelLinkServerOrder
 	 */
 	private static final long serialVersionUID = 7563728190772989668L;
 	private Integer id;
-	private String clockcategory;
+	private String clockCategory;
 	
 	private Set<ServerOrder> serverOrders = new TreeSet<ServerOrder>();
 
@@ -47,12 +47,12 @@ public class ClockCategory implements java.io.Serializable ,ModelLinkServerOrder
 
 	/** minimal constructor */
 	public ClockCategory(String clockcategory) {
-		this.clockcategory = clockcategory;
+		this.clockCategory = clockcategory;
 	}
 
 	/** full constructor */
 	public ClockCategory(String clockcategory, Set<ServerOrder> serverOrders) {
-		this.clockcategory = clockcategory;
+		this.clockCategory = clockcategory;
 		this.serverOrders = serverOrders;
 	}
 
@@ -71,12 +71,12 @@ public class ClockCategory implements java.io.Serializable ,ModelLinkServerOrder
 
 	@Column(name = "clockcategory", unique = true, nullable = false, length = 20)
 
-	public String getClockcategory() {
-		return this.clockcategory;
+	public String getClockCategory() {
+		return this.clockCategory;
 	}
 
-	public void setClockcategory(String clockcategory) {
-		this.clockcategory = clockcategory;
+	public void setClockCategory(String clockcategory) {
+		this.clockCategory = clockcategory;
 	}
 
 	@OneToMany(

@@ -1,12 +1,16 @@
 package com.lps.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.UserDAO;
-import com.lps.model.Admin;
+import com.lps.dao.impl.AdminDAOImpl;
+import com.lps.dao.impl.UserDAOImpl;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.UserService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -177,6 +181,30 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public long findOrdersCountByThisType(User t) {
 		return userDao.findOrdersCountByThisType(t);
+	}
+
+	@Override
+	public String findPasswordByUserName(String userName) {
+		User user =new  User.Builder()
+				.setId(findIdByUserName(userName)).build();
+		return findPassword(user);
+	}
+
+	@Override
+	public <T> String findPassword(BasicModel<T> user) {
+		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
+		map.put(UserDAOImpl.PASSWORD, String.class);
+		return userDao.findFields(user, map).getPassword();
+	}
+
+	@Override
+	public int findIdByUserName(String name) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(UserDAOImpl.USER_NAME, name);
+		List<Integer> list = userDao.findIdByProperty(map);
+		if(list != null && list.size() > 0)
+			return list.get(0);
+		return NOT_EXISTS;
 	}
 
 

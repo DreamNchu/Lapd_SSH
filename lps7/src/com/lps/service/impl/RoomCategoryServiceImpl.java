@@ -1,9 +1,13 @@
 package com.lps.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.RoomCategoryDAO;
+import com.lps.dao.impl.PledgeDAOImpl;
+import com.lps.dao.impl.RoomCategoryDAOImpl;
 import com.lps.model.RoomCategory;
 import com.lps.model.ServerOrder;
 import com.lps.service.RoomCategoryService;
@@ -98,6 +102,23 @@ public class RoomCategoryServiceImpl implements RoomCategoryService {
 	@Override
 	public void update(RoomCategory t) {
 		dao.update(t);
+	}
+
+	@Override
+	public String findRoomCategory(RoomCategory roomCategory) {
+		Map<String, Class<?>> map = new HashMap<>();
+		map.put(RoomCategoryDAOImpl.ROOM_CATEGORY, String.class);
+		return dao.findFields(roomCategory, map).getRoomCategory();
+	}
+
+	@Override
+	public int findIdByRoomCategory(String roomCategoryProperty) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(PledgeDAOImpl.PLEDGE, roomCategoryProperty);
+		List<Integer> list = dao.findIdByProperty(map);
+		if(list != null && list.size() > 0)
+			return list.get(0);
+		return NOT_EXISTS;
 	}
 
 }

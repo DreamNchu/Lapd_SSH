@@ -1,9 +1,12 @@
 package com.lps.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.ClockCategoryDAO;
+import com.lps.dao.impl.ClockCategoryDAOImpl;
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
 import com.lps.service.ClockCategoryService;
@@ -118,6 +121,23 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	@Override
 	public long findOrdersCountByThisType(ClockCategory t) {
 		return dao.findOrdersCountByThisType(t);
+	}
+
+	@Override
+	public String findClockCategory(ClockCategory clockCategory) {
+		Map<String, Class<?>> map = new HashMap<>();
+		map.put(ClockCategoryDAOImpl.CLOCK_CATEGORY, String.class);
+		return dao.findFields(clockCategory, map).getClockCategory();
+	}
+
+	@Override
+	public int findIdByClockCategory(String clockCategory) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(ClockCategoryDAOImpl.CLOCK_CATEGORY, clockCategory);
+		List<Integer> list = dao.findIdByProperty(map);
+		if(list != null && list.size() > 0)
+			return list.get(0);
+		return NOT_EXISTS;
 	}
 
 }

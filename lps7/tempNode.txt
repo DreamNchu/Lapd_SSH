@@ -29,3 +29,7 @@
 2.增加/lps7/src/com/lps/util/WorkDate.java 工具类，辅助日期处理。
 3.增加在BasicForServerOrderService<T> 的方法 long findOrdersCountByThisType(T t);
 用来查找某个类型的订单的数量
+
+
+1.增加 /lps7/src/com/lps/model/ServerOrder.java model类（这个是整个业务的核心）
+2.对ServerOrderServiceImpl类做了简单测试

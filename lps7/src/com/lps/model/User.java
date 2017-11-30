@@ -47,6 +47,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	 *
 	 */
 	public static class Builder {
+		private int id;
 		private WorkStatus workStatus;
 		private String userName;
 		private String password;
@@ -68,7 +69,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 		 * @return User实例
 		 */
 		public User build() {
-			return new User(workStatus, userName, password, workId, birthday, telephonePhone, email, address, avatar,
+			return new User(id ,workStatus, userName, password, workId, birthday, telephonePhone, email, address, avatar,
 					question, answer, registerTime, workRank);
 		}
 
@@ -82,6 +83,11 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 		 */
 		public Builder setAddress(String address) {
 			this.address = address;
+			return this;
+		}
+		
+		public Builder setId(int id){
+			this.id = id;
 			return this;
 		}
 
@@ -346,6 +352,13 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 		this.answer = answer;
 		this.registerTime = registerTime;
 		this.workRank = workRank;
+	}
+
+	public User(int id2, WorkStatus workStatus2, String userName2, String password2, Integer workId2, Date birthday2,
+			String telephonePhone2, String email2, String address2, String avatar2, String question2, String answer2,
+			Date registerTime2, WorkRank workRank2) {
+		this(workStatus2, userName2, password2, workId2, birthday2, telephonePhone2, email2, address2, avatar2, question2, answer2, registerTime2, workRank2);
+		this.id = id2;
 	}
 
 	/**

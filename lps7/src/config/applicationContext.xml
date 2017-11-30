@@ -10,8 +10,8 @@
 		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-	<!--  <context:annotation-config /> 
-	 <context:component-scan base-package="com.lps" />  -->
-	<import resource="classpath:config/spring-*.xml"/>
+	 <context:annotation-config /> 
+	 <context:component-scan base-package="com.lps.aop.check" />  
+	 <import resource="classpath:config/spring-*.xml"/>
 
 </beans>

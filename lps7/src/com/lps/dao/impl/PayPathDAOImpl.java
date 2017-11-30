@@ -1,13 +1,18 @@
 package com.lps.dao.impl;
 // default package
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -15,10 +20,11 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import com.lps.dao.PayPathDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
-import com.lps.model.ClockCategory;
+import com.lps.model.PayPath;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
+import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
 public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPath, Integer> {
@@ -113,9 +119,9 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	@Override
 	public List<ServerOrder> findOrdersWithLimit(PayPath t, long begin, long limit) {
 		String hql = "from PayPath cc where cc.id=?";
-		HibernateCallback<List<ClockCategory>> callback = new PageHibernateCallback<ClockCategory>(hql,
+		HibernateCallback<List<PayPath>> callback = new PageHibernateCallback<PayPath>(hql,
 				new Object[] { t.getId() }, begin, limit);
-		List<ClockCategory> temp = this.getHibernateTemplate().execute(callback);
+		List<PayPath> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
 		if (temp != null && temp.size() > 0) {
@@ -137,4 +143,56 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
 		return (long) list.get(0);
 	}
+	
+	@Override
+	public <K> PayPath findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		Criteria cri = session.createCriteria(PayPath.class)
+			.add(Restrictions.idEq(t.getId()));
+		ProjectionList proList = Projections.projectionList();
+		
+		for(String field: fields.keySet()){
+			proList.add(Projections.groupProperty(field));
+		}
+		//设置投影条件
+		cri.setProjection(proList);
+		List<?> list = cri.list();
+		
+		PayPath clockCategory = new PayPath();
+		Class<? extends PayPath> c = clockCategory.getClass();
+		int i = 0;
+		
+		for(String field: fields.keySet()){
+			String str ="set" + field.substring(0,1).toUpperCase()+field.substring(1);
+			try {
+				c.getDeclaredMethod(str, fields.get(field)).invoke(clockCategory, list.get(i));
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
+			}
+			i ++;
+		}
+		
+		return clockCategory;
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		Criteria cri = session.createCriteria(PayPath.class);
+		
+		for(String field: map.keySet()){
+			cri.add(Restrictions.eq(field, map.get(field)));
+		}
+		
+		cri.setProjection(Projections.id());
+		
+		@SuppressWarnings("unchecked")
+		List<K> listIds = cri.list();
+		
+		return listIds;
+	}
+	
 }

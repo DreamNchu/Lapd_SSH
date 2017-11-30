@@ -140,5 +140,15 @@ public class UserServiceImplTest {
 //		as.findAllOrders(u);
 		assertEquals(7, as.findAllOrders(u).size());
 	}
+	
+	@Test
+	public void testFindIdByUserName(){
+		assertEquals(1, as.findIdByUserName("user001"));
+	}
+	
+	@Test
+	public void testFindPasswordByUserName(){
+		assertEquals("user001", as.findPasswordByUserName("user001"));
+	}
 
 }

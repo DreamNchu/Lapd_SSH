@@ -1,9 +1,13 @@
 package com.lps.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.OrderStatusDAO;
+import com.lps.dao.impl.ClockCategoryDAOImpl;
+import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
@@ -21,22 +25,6 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	
 	private PageBean<ServerOrder> pageServerOrderByOrderStatusBean;
 
-	public PageBean<ServerOrder> getPageServerOrderByOrderStatusBean() {
-		return pageServerOrderByOrderStatusBean;
-	}
-
-	public void setPageServerOrderByOrderStatusBean(PageBean<ServerOrder> pageServerOrderByOrderStatusBean) {
-		this.pageServerOrderByOrderStatusBean = pageServerOrderByOrderStatusBean;
-	}
-
-	public PageBean<OrderStatus> getPageBean() {
-		return pageOrderStatusBean;
-	}
-
-	public void setPageBean(PageBean<OrderStatus> pageBean) {
-		this.pageOrderStatusBean = pageBean;
-	}
-
 	@Override
 	public void delete(OrderStatus workStatus) {
 		dao.delete(workStatus);
@@ -53,36 +41,18 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
+	public Set<ServerOrder> findAllOrders(OrderStatus t) {
+		return dao.findAllOrders(t);
+	}
+
+	@Override
 	public OrderStatus findById(int id) {
 		return dao.findById(id);
 	}
 
 	@Override
-	public List<OrderStatus> findByProperty(String propertyName, Object value) {
-		return dao.findByProperty(propertyName, value);
-	}
-
-	@Override
 	public List<OrderStatus> findByOrderStatus(Object workStatus) {
 		return dao.findByOrderStatus(workStatus);
-	}
-
-	public OrderStatusDAO getOrderStatusDao() {
-		return dao;
-	}
-
-	@Override
-	public void save(OrderStatus workStatus) {
-		dao.save(workStatus);
-	}
-
-	public void setOrderStatusDao(OrderStatusDAO workStatusDao) {
-		this.dao = workStatusDao;
-	}
-
-	@Override
-	public boolean isExists(OrderStatus user) {
-		return dao.isExists(user);
 	}
 
 	@Override
@@ -97,13 +67,8 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public void update(OrderStatus t) {
-		dao.update(t);
-	}
-
-	@Override
-	public Set<ServerOrder> findAllOrders(OrderStatus t) {
-		return dao.findAllOrders(t);
+	public List<OrderStatus> findByProperty(String propertyName, Object value) {
+		return dao.findByProperty(propertyName, value);
 	}
 
 	@Override
@@ -120,6 +85,62 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	@Override
 	public long findOrdersCountByThisType(OrderStatus t) {
 		return dao.findOrdersCountByThisType(t);
+	}
+
+	public OrderStatusDAO getOrderStatusDao() {
+		return dao;
+	}
+
+	public PageBean<OrderStatus> getPageOrderStatusBean() {
+		return pageOrderStatusBean;
+	}
+
+	public PageBean<ServerOrder> getPageServerOrderByOrderStatusBean() {
+		return pageServerOrderByOrderStatusBean;
+	}
+
+	@Override
+	public boolean isExists(OrderStatus user) {
+		return dao.isExists(user);
+	}
+
+	@Override
+	public void save(OrderStatus workStatus) {
+		dao.save(workStatus);
+	}
+
+	public void setOrderStatusDao(OrderStatusDAO workStatusDao) {
+		this.dao = workStatusDao;
+	}
+
+	public void setPageOrderStatusBean(PageBean<OrderStatus> pageOrderStatusBean) {
+		this.pageOrderStatusBean = pageOrderStatusBean;
+	}
+
+	public void setPageServerOrderByOrderStatusBean(PageBean<ServerOrder> pageServerOrderByOrderStatusBean) {
+		this.pageServerOrderByOrderStatusBean = pageServerOrderByOrderStatusBean;
+	}
+
+	@Override
+	public void update(OrderStatus t) {
+		dao.update(t);
+	}
+
+	@Override
+	public String findOrderStatus(OrderStatus orderStatus) {
+		Map<String, Class<?>> map = new HashMap<>();
+		map.put(OrderStatusDAOImpl.WORK_STATUS, String.class);
+		return dao.findFields(orderStatus, map).getOrderstatus();
+	}
+
+	@Override
+	public int findIdByOrderStatus(String orderStatusProperty) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(OrderStatusDAOImpl.WORK_STATUS, orderStatusProperty);
+		List<Integer> list = dao.findIdByProperty(map);
+		if(list != null && list.size() > 0)
+			return list.get(0);
+		return NOT_EXISTS;
 	}
 
 }

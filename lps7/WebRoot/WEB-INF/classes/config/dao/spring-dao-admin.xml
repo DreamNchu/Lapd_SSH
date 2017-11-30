@@ -19,10 +19,6 @@
 		<property name="adminDao" ref="adminDAOImpl"></property>
 		<property name="pageAdminBean" ref="pageBean"></property>
 	</bean> 
-	
-	<bean id="adminLogInAction" class="com.lps.web.action.AdminLogInAction"
-		scope="prototype">
-		<property name="adminServiceImpl" ref="adminServiceImpl"></property>
-	</bean>
+
 	
 </beans>

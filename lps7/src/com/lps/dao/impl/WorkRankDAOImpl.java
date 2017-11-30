@@ -1,15 +1,24 @@
 package com.lps.dao.impl;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
+import org.hibernate.Criteria;
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.criterion.ProjectionList;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.WorkRankDAO;
 import com.lps.model.Admin;
+import com.lps.model.WorkRank;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
+import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
 public class WorkRankDAOImpl implements WorkRankDAO {
@@ -110,6 +119,57 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	@Override
 	public List<WorkRank> findBySpotNum(int num) {
 		return findByProperty(SPOT_NUM, num);
+	}
+	
+	@Override
+	public <K> WorkRank findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		Criteria cri = session.createCriteria(WorkRank.class)
+			.add(Restrictions.idEq(t.getId()));
+		ProjectionList proList = Projections.projectionList();
+		
+		for(String field: fields.keySet()){
+			proList.add(Projections.groupProperty(field));
+		}
+		//设置投影条件
+		cri.setProjection(proList);
+		List<?> list = cri.list();
+		
+		WorkRank clockCategory = new WorkRank();
+		Class<? extends WorkRank> c = clockCategory.getClass();
+		int i = 0;
+		
+		for(String field: fields.keySet()){
+			String str ="set" + field.substring(0,1).toUpperCase()+field.substring(1);
+			try {
+				c.getDeclaredMethod(str, fields.get(field)).invoke(clockCategory, list.get(i));
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+					| NoSuchMethodException | SecurityException e) {
+				e.printStackTrace();
+			}
+			i ++;
+		}
+		
+		return clockCategory;
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		Criteria cri = session.createCriteria(WorkRank.class);
+		
+		for(String field: map.keySet()){
+			cri.add(Restrictions.eq(field, map.get(field)));
+		}
+		
+		cri.setProjection(Projections.id());
+		
+		@SuppressWarnings("unchecked")
+		List<K> listIds = cri.list();
+		
+		return listIds;
 	}
 
 }

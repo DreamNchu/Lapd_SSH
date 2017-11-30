@@ -2,7 +2,6 @@ package com.lps.util;
 
 import java.util.Date;
 
-import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 
 
@@ -11,8 +10,6 @@ public class WorkDate {
 	public static final int TODAY_OFF_SET = 0;
 	public static final int TOMORROW_OFF_SET = 1;
 	public static final int BEFORE_7_DAYS__OFF_SET = -7;
-	
-//	private DateTime todayDate ;
 	
 	public static Date getTodayDate(){
 		return getDateFlexible(TODAY_OFF_SET);
@@ -36,33 +33,46 @@ public class WorkDate {
 		return localDate.plusDays(offSet).toDate();
 	}
 
-	public class Lately7Day{
-		
-		private Date begin;
-		
-		private Date end;
-		
-		public void reflush(){
-//			WorkDate.this.todayDate = new Date();
-		}
-
-		public Date getBegin() {
-			return begin;
-		}
-
-		public void setBegin(Date begin) {
-			this.begin = begin;
-		}
-
-		public Date getEnd() {
-			return end;
-		}
-
-		public void setEnd(Date end) {
-			this.end = end;
-		}
-		
-		
+	public static Date getNextDate(Date date){
+		if(date == null)
+			return getTodayDate();
+		LocalDate localDate = new LocalDate(date);
+		return localDate.plusDays(TOMORROW_OFF_SET).toDate();
+	}
+	
+	/**
+	 * 得到该年初的日期
+	 * @param date 参考日期
+	 * @return 返回该年初的日期
+	 */
+	public static Date getBeginOfYeatDate(Date date){
+		LocalDate localDate = new LocalDate(date);
+		int year = localDate.getYear();
+		return getBeginOfMonthDate(year, 0);
+	}
+	
+	/**
+	 * 返回该月月初的日期
+	 * @param date 参考日期
+	 * @return 返回该月月初的日期
+	 * 
+	 */
+	public static Date getBeginOfMonthDate(Date date){
+		LocalDate localDate = new LocalDate(date);
+		int year = localDate.getYear();
+		int month = localDate.getMonthOfYear();
+		return getBeginOfMonthDate(year, month);
+	}
+	
+	/**
+	 * 返回该月月初的日期
+	 * @param year 年份
+	 * @param month 月份
+	 * @return 返回该月月初的日期
+	 */
+	public static Date getBeginOfMonthDate(int year ,int month){
+		LocalDate localDate = new LocalDate(year, month, 1);
+		return localDate.toDate();
 	}
 
 }

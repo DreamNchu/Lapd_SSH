@@ -1,0 +1,9 @@
+1.	
+	public interface BasicDAO<T> {
+
+	...
+
+		public boolean isExists(T t); //该方法的实现需要优化
+		
+	...
+	}

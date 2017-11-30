@@ -50,7 +50,7 @@ public class ClockCategoryServiceImplTest {
 	@Test
 	public void testFindById() {
 		ClockCategory cc = as.findById(1);
-		System.out.println(cc.getClockcategory());
+		System.out.println(cc.getClockCategory());
 //		assertEquals(null, cc.getServerOrders());
 	}
 
@@ -115,7 +115,20 @@ public class ClockCategoryServiceImplTest {
 	public void testFindOrdersCountByThisType(){
 		ClockCategory cc = as.findById(1);
 		assertEquals(7, as.findOrdersCountByThisType(cc));
-		
 	}
 
+	@Test
+	public void testFindClockCategory(){
+		ClockCategory cc = new ClockCategory();
+		cc.setId(1);
+		assertEquals("点钟", as.findClockCategory(cc));
+	}
+	
+	@Test
+	public void testFindIdByClockCategory(){
+//		assertEquals(1, as.findIdByClockCategory("点钟"));
+		assertEquals(-1, as.findIdByClockCategory("拉钟"));
+	}
+	
+	
 }

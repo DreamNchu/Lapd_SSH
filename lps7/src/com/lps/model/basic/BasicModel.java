@@ -14,4 +14,6 @@ public interface BasicModel<T> {
 	 */
 	T getId();
 	
+	void setId(T t);
+	
 }

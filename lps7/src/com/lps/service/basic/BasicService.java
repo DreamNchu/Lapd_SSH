@@ -8,8 +8,12 @@ import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 
 public interface BasicService<T> {
+	/**
+	 * 不存在常量
+	 */
+	int NOT_EXISTS = -1;
 	
-	public boolean isExists(T user);
+	boolean isExists(T user);
 	
 	void save(T transientInstance);
 
@@ -30,4 +34,6 @@ public interface BasicService<T> {
 	public PageBean<T> findByPage(int page) throws PagePropertyNotInitException;
 
 	void update(T t);
+	
+	
 }

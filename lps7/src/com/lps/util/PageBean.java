@@ -46,39 +46,67 @@ public class PageBean<T> {
 		
 		return begin;
 	}
-
+	/**
+	 * 获取页数
+	 * @return 返回当前的页面数
+	 */
 	public long getPage() {
 		return page;
 	}
 
+	/**
+	 * 设置页面数
+	 * @param page 设置页面
+	 */
 	public void setPage(long page) {
 		this.page = page;
 	}
-
+/**
+ * 返回所有记录
+ * @return
+ */
 	public long getAllCount() {
 		return allCount;
 	}
-
+/**
+ * 设置当前的记录总数
+ * @param allCount 记录总数
+ */
 	public void setAllCount(long allCount) {
 		this.allCount = allCount;
 	}
-
+/**
+ * 返回页面总数
+ * @return 放回页面总数
+ */
 	public long getAllPage() {
 		return allPage;
 	}
-
+/**
+ * 设置页面总数
+ * @param allPage 页面总数
+ */
 	public void setAllPage(long allPage) {
 		this.allPage = allPage;
 	}
-
+/**
+ * 每个页面的限制条数
+ * @return 返回每个页面的限制条数
+ */
 	public long getLimit() {
 		return limit;
 	}
-
+/**
+ * 设置页面的记录显示条数
+ * @param limit 页面的记录显示条数
+ */
 	public void setLimit(long limit) {
 		this.limit = limit;
 	}
-
+/**
+ * 返回当前页面的list
+ * @return
+ */
 	public List<T> getList() {
 		return list;
 	}

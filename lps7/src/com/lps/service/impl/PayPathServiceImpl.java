@@ -1,9 +1,13 @@
 package com.lps.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.PayPathDAO;
+import com.lps.dao.impl.OrderStatusDAOImpl;
+import com.lps.dao.impl.PayPathDAOImpl;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
@@ -122,6 +126,23 @@ public class PayPathServiceImpl implements PayPathService {
 	@Override
 	public long findOrdersCountByThisType(PayPath t) {
 		return dao.findOrdersCountByThisType(t);
+	}
+
+	@Override
+	public String findPayPath(PayPath payPath) {
+		Map<String, Class<?>> map = new HashMap<>();
+		map.put(PayPathDAOImpl.PAY_PATH, String.class);
+		return dao.findFields(payPath, map).getPayPath();
+	}
+
+	@Override
+	public int findIdByPayPath(String payPathProperty) {
+		Map<String, Object> map = new HashMap<>();
+		map.put(PayPathDAOImpl.PAY_PATH, payPathProperty);
+		List<Integer> list = dao.findIdByProperty(map);
+		if(list != null && list.size() > 0)
+			return list.get(0);
+		return NOT_EXISTS;
 	}
 
 }
