@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.ProjectionList;
@@ -15,7 +16,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.WorkRankDAO;
 import com.lps.model.Admin;
-import com.lps.model.WorkRank;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
 import com.lps.model.basic.BasicModel;
@@ -108,7 +108,13 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<WorkRank> findAll() {
-		return (List<WorkRank>) hibernateTemplate.find("from WorkRank");
+//		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+//		session.createCriteria(WorkRank.class)
+//		.setFetchMode(USER, FetchMode.JOIN)
+//		.list();
+	
+		
+		return (List<WorkRank>)hibernateTemplate.find("from WorkRank");
 	}
 
 	/**
@@ -117,7 +123,7 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	@Override
 	public long findAllCount() {
 		String hql = "select count(*) from WorkRank";
-		List<Long> list = (List<Long>) this.getHibernateTemplate().find(hql);
+		List<?> list = (List<?>) this.getHibernateTemplate().find(hql);
 		return (long) list.get(0);
 	}
 
@@ -241,6 +247,16 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 		List<K> listIds = cri.list();
 		
 		return listIds;
+	}
+
+	@Override
+	public WorkRank findFirstMinRankNum() {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		Criteria cri = session.createCriteria(WorkRank.class);
+		cri.setProjection(Projections.min(RANK_NUM))
+		.setMaxResults(1).setFetchMode(USER, FetchMode.JOIN);
+		
+		return (WorkRank) cri.uniqueResult();
 	}
 
 }

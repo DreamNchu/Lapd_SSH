@@ -14,6 +14,19 @@ import com.lps.model.WorkStatus;
  *
  */
 public interface WorkStatusDAO extends BasicDAO<WorkStatus>{
+	
+	/**
+	 * 空闲
+	 */
+	int FREE = 1;
+	/**
+	 * 被等待
+	 */
+	int WAITED = 2;
+	/**
+	 * 工作钟
+	 */
+	int WORKING = 3;
 
 	/**
 	 * 根据工作状态查找

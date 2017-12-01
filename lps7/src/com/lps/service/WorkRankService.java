@@ -35,6 +35,8 @@ public interface WorkRankService extends BasicService<WorkRank>{
 	 * @return 返回上钟序列
 	 */
 	public List<WorkRank> findBySpotNum(int spotNum);
+	
 
+	public WorkRank findFirstMinRankNum();
 
 }

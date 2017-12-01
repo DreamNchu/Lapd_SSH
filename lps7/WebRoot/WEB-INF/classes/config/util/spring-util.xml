@@ -15,5 +15,14 @@
  		<property name="limit" value="10"></property>
 	</bean> 
 	
+	<bean id="orderCreater" class="com.lps.control.manage.OrderCreater">
+		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>
+		<property name="roomServiceImpl" ref="roomServiceImpl"></property>
+		<property name="userServiceImpl" ref="userServiceImpl"></property>
+		<property name="orderStatusServiceImpl" ref="orderStatusServiceImpl"></property>
+		<property name="userWorkIdLength" value="4" ></property>
+		<property name="roomNameLength" value="4"></property>
+		<property name="indexLength" value="4"></property>
+	</bean>
 	
 </beans>

@@ -9,6 +9,6 @@
 	<package name="default" namespace="/" extends="struts-default">
 		
 	</package>
-	<include file="config/action/admin/admin.xml" />
-
+	<include file="config/struts2/admin/admin.xml" />
+	<include file="config/struts2/user/user.xml" />
 </struts>    

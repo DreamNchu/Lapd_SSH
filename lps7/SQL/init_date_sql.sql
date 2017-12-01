@@ -26,6 +26,10 @@
 	insert into `lapd_test`.`t_orderstatus` (id, orderstatus) values(2, "工作中");
 	insert into `lapd_test`.`t_orderstatus` (id, orderstatus) values(3, "待付款");
 	insert into `lapd_test`.`t_orderstatus` (id, orderstatus) values(4, "支付完成");
+	insert into `lapd_test`.`t_orderstatus` (id, orderstatus) values(5, "挂起");
+	insert into `lapd_test`.`t_orderstatus` (id, orderstatus) values(6, "无效");
+	
+	--update `lapd_test`.`t_orderstatus` set id = 6 where id = 5;
     
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(1, "空闲");
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(2, "待接收");

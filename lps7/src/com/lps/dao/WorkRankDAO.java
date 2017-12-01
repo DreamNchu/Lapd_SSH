@@ -48,5 +48,10 @@ public interface WorkRankDAO extends BasicDAO<WorkRank>{
 	 */
 	public List<WorkRank> findBySpotNum(int num);
 
-
+	/**
+	 * 找到第一个排钟最小的元组
+	 * @return
+	 */
+	public WorkRank findFirstMinRankNum();
+	
 }

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.lps.control.manage.OrderCreater;
 import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
@@ -42,7 +43,17 @@ implements SessionAware, RequestAware{
 	 */
 	private List<ServerOrder> list;
 	
+	private OrderCreater orderCreater;
 	
+	
+	public OrderCreater getOrderCreater() {
+		return orderCreater;
+	}
+
+	public void setOrderCreater(OrderCreater orderCreater) {
+		this.orderCreater = orderCreater;
+	}
+
 	public OrderStatusService getOrderStatusService() {
 		return orderStatusService;
 	}
@@ -92,38 +103,53 @@ implements SessionAware, RequestAware{
 	 * @return
 	 */
 	public String createOrder(){
-		
-		
+		int stuffId = (int) request.get("stuffId");
+		int roomId = (int)request.get("roomId");
+		int clockCategory = (int)request.get("clockCategoryId");
+		//创建订单
+		ServerOrder so = orderCreater.createOrder(stuffId, roomId, clockCategory);
+		serverOrderServiceImpl.save(so); //保存订单
+		return SUCCESS;
+	}
+	
+	/**
+	 * 系统自动创建订单
+	 * @return 成功创建返回success,否则返回error
+	 */
+	public String createOrderAuto(){
+		int roomId = (int)request.get("roomId");
+		//创建订单
+		ServerOrder so = orderCreater.createOrder(roomId);
+		if(so == null)
+			return ERROR;
+		serverOrderServiceImpl.save(so); //保存订单
 		return SUCCESS;
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 	/**
-	 * 更新字段
+	 * 查看待接收的订单
+	 * @return 根据请求返回不同的界面
+	 */
+	public String viewStatusOrder(){
+		String orderStatus = (String)request.get("orderStatus");
+		OrderStatus os = orderStatusService.findByOrderStatus(orderStatus).get(0);
+		//找到今日该状态下的所有订单
+		this.list = orderStatusService.findTodayOrders(os);
+		
+		return orderStatus;
+	}
+	
+	
+	/**
+	 * 当天的所有订单
 	 * @return 成功返回success
 	 */
-	public String updateOrder(){
-		ServerOrder so = serverOrderServiceImpl.findById(userOrderDataDto.getId());
-		userOrderDataDto.update(so);
-		serverOrderServiceImpl.update(so);
+	public String viewTodayOrders(){
+		this.list = serverOrderServiceImpl.findTodayOrder();
 		return SUCCESS;
 	}
-	
+
 	/**
 	 * 通过id获取相应订单
 	 * @return 成功返回success
@@ -135,36 +161,18 @@ implements SessionAware, RequestAware{
 		return SUCCESS;
 	}
 	
+	
 	/**
-	 * 当天的所有订单
+	 * 更新字段
 	 * @return 成功返回success
 	 */
-	public String viewTodayOrders(){
-		User u = new User();
-		u.setId((int)session.get("id"));
-		this.list = userServiceImpl.findTodayOrders(u);
+	public String updateOrder(){
+		ServerOrder so = serverOrderServiceImpl.findById(userOrderDataDto.getId());
+		//更新已经更改的字段
+		userOrderDataDto.update(so);
+		serverOrderServiceImpl.update(so);
 		return SUCCESS;
 	}
 	
-	/**
-	 * 查看待接收的订单
-	 * @return 根据请求返回不同的界面
-	 */
-	public String viewStatusOrder(){
-		User u = new User.Builder().setId((int)session.get("id")).build();
-		String orderStatus = (String)request.get("orderStatus");
-		OrderStatus os = orderStatusService.findByOrderStatus(orderStatus).get(0);
-		//找到今日该状态下的所有订单
-		List<ServerOrder> listTemp = orderStatusService.findTodayOrders(os);
-		//找对对应人物的订单
-		for (Iterator<ServerOrder> iterator = listTemp.iterator(); iterator.hasNext();) {
-			ServerOrder serverOrder = (ServerOrder) iterator.next();
-			if(serverOrder.getUser().getId() == u.getId())
-				this.list.add(serverOrder);
-		}
-		return orderStatus;
-	}
-
-
 
 }

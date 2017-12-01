@@ -131,14 +131,14 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	@Override
 	public String findOrderStatus(OrderStatus orderStatus) {
 		Map<String, Class<?>> map = new HashMap<>();
-		map.put(OrderStatusDAOImpl.WORK_STATUS, String.class);
+		map.put(OrderStatusDAOImpl.ORDER_STATUS, String.class);
 		return dao.findFields(orderStatus, map).getOrderstatus();
 	}
 
 	@Override
 	public int findIdByOrderStatus(String orderStatusProperty) {
 		Map<String, Object> map = new HashMap<>();
-		map.put(OrderStatusDAOImpl.WORK_STATUS, orderStatusProperty);
+		map.put(OrderStatusDAOImpl.ORDER_STATUS, orderStatusProperty);
 		List<Integer> list = dao.findIdByProperty(map);
 		if(list != null && list.size() > 0)
 			return list.get(0);

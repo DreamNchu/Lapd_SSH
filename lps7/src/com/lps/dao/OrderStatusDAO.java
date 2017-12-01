@@ -16,6 +16,33 @@ import com.lps.model.OrderStatus;
  */
 public interface OrderStatusDAO extends BasicDAO<OrderStatus>, BasicForServerOrderDAO<OrderStatus, Integer>{
 	/**
+	 * 待接收
+	 */
+	int WAITING_RECEIVE = 1;
+	/**
+	 * 服务中
+	 */
+	int SERVICING = 2;
+	/**
+	 * 等待支付
+	 */
+	int WAITING_PAY = 3;
+	/**
+	 * 订单完成，支付完成
+	 */
+	int FINISH = 4;
+	
+	/**
+	 * 订单没有人接收，那么挂起
+	 */
+	int SUSPEND = 5;
+	
+	/**
+	 * 订单失效
+	 */
+	int INVALID = 6;
+	
+	/**
 	 * 根据订单状态查找,返回订单状态
 	 * <p>
 	 * @param OrderStatus 订单状态对象

@@ -107,7 +107,7 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	 * <p>
 	 * @return 返回员工名,String类型
 	 */
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "stuffId", nullable = false)
 
 	public User getUser() {

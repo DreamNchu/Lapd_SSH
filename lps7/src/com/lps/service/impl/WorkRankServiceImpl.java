@@ -80,7 +80,7 @@ public class WorkRankServiceImpl implements WorkRankService {
         long totalpage=(long)Math.ceil(totalCount/limit);
         
         pageBean.setAllPage(totalpage);
-        //Ã¿Ò³ÏÔÊ¾µÄÊý¾Ý¼¯ºÏ
+        //Ã¿Ò³ï¿½ï¿½Ê¾ï¿½ï¿½ï¿½ï¿½ï¿½Ý¼ï¿½ï¿½ï¿½
         long begin=(page-1) * limit;
         
         List<WorkRank> list = dao.findListByLimit(begin, limit);
@@ -114,6 +114,9 @@ public class WorkRankServiceImpl implements WorkRankService {
 	public List<WorkRank> findBySpotNum(int num) {
 		return dao.findBySpotNum(num);
 	}
-
+	@Override
+	public WorkRank findFirstMinRankNum(){
+		return dao.findFirstMinRankNum();
+	}
 
 }
