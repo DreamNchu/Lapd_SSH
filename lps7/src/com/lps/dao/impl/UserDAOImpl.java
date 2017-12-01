@@ -28,45 +28,110 @@ import com.lps.util.PageHibernateCallback;
 
 public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Integer>{
 
+	/**
+	 * 声明员工账户名全局常量
+	 */
 	public static final String USER_NAME = "userName";
+	/**
+	 * 声明员工密码全局常量
+	 */
 	public static final String PASSWORD = "password";
+	/**
+	 * 声明员工工号全局常量
+	 */
 	public static final String WORK_ID = "workId";
+	/**
+	 * 声明员工电话全局常量
+	 */
 	public static final String TELEPHONE_PHONE = "telephonePhone";
+	/**
+	 * 声明员工邮箱全局常量
+	 */
 	public static final String EMAIL = "email";
+	/**
+	 * 声明员工地址全局常量
+	 */
 	public static final String ADDRESS = "address";
+	/**
+	 * 声明员工头像全局常量
+	 */
 	public static final String AVATAR = "avatar";
+	/**
+	 * 声明员工密码找回问题全局常量
+	 */
 	public static final String QUESTION = "question";
+	/**
+	 * 声明员工名密码找回问题答案全局常量
+	 */
 	public static final String ANSWER = "answer";
+	/**
+	 * 声明员工注册时间全局常量
+	 */
 	public static final String REGISTER_TIME = "registerTime";
+	/**
+	 * 声明员工真实姓名全局常量
+	 */
 	public static final String REAL_NAME = "realName";
+	/**
+	 * 声明员工id卡号全局常量
+	 */
 	public static final String ID_CARD_NO = "IDCardNO";
+	/**
+	 * 声明员工服务订单全局常量
+	 */
 	public static final String SERVER_ORDER = "serverOrders";
 
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存员工持久化实例
+	 * @param transientInstance 员工对象
+	 */
 	@Override
 	public void save(User transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
 
+	/**
+	 * 删除员工持久化实例
+	 * @param transientInstance 员工对象
+	 */
 	@Override
 	public void delete(User persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	/**加载员工实例，根据id查找
+	   *@param id 员工ID
+	   *@return 返回加载的员工实例
+	   */
 	@Override
 	public User findById(int id) {
 		return hibernateTemplate.get(User.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找员工列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findByProperty(String propertyName, Object value) {
@@ -77,59 +142,99 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 		return (List<User>) queryObject.list();
 	}
 
+	/**
+	 * 根据员工名查找员工
+	 * @return 返回员工实例
+	 */
 	public List<User> findByUserName(Object userName) {
 		return findByProperty(USER_NAME, userName);
 	}
 
+	/**
+	 * 根据员工密码查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByPassword(Object password) {
 		return findByProperty(PASSWORD, password);
 	}
 
+	/**
+	 * 根据员工工号查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByWorkId(Object workId) {
 		return findByProperty(WORK_ID, workId);
 	}
 
+	/**
+	 * 根据员工电话号查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByTelephonePhone(Object telephonePhone) {
 		return findByProperty(TELEPHONE_PHONE, telephonePhone);
 	}
 	
+	/**
+	 * 根据员工邮箱查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByEmail(Object email) {
 		return findByProperty(EMAIL, email);
 	}
 
+	/**
+	 * 根据员工地址查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByAddress(Object address) {
 		return findByProperty(ADDRESS, address);
 	}
 
+	/**
+	 * 根据员工头像查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByAvatar(Object avatar) {
 		return findByProperty(AVATAR, avatar);
 	}
 
+	/**
+	 * 根据员工密码找回问题查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByQuestion(Object question) {
 		return findByProperty(QUESTION, question);
 	}
 
+	/**
+	 * 根据员工密码找回问题答案查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByAnswer(Object answer) {
 		return findByProperty(ANSWER, answer);
 	}
 
-	
-
-	
+	/**
+	 * 查找所有员工实例
+	 * @return 返回员工实例集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
 		return (List<User>)hibernateTemplate.find("from User");
 	}
 	
+	/**
+	 *统计用户实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from User";
@@ -138,6 +243,10 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
         return (long)list.get(0);
 	}
 
+	/**
+	 * 根据id查找员工实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(User user) {
 		if(findById(user.getId()) != null)
@@ -145,6 +254,9 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 		return false;
 	}
 
+	/**
+	 * 查找员工实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<User> findListByLimit(long begin, long limit) {
 		String hql="from User";
@@ -156,11 +268,17 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
         return null;
 	}
 
+	/**
+	 * 更新员工
+	 */
 	@Override
 	public void update(User t) {
 		hibernateTemplate.update(t);
 	}
 
+	/**
+	 * 根据员工查找所有订单
+	 */
 	@Override
 	public Set<ServerOrder> findAllOrders(User t) {
 		
@@ -174,6 +292,9 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 		return sos;
 	}
 
+	/**
+	 * 根据员工查找订单，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<ServerOrder> findOrdersWithLimit(User t, long begin, long limit) {
 		String hql = "from Room cc where cc.id=?";
@@ -192,17 +313,28 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 		}
 		return null;
 	}
-
+	
+	/**
+	 * 根据员工真实姓名查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
-	public List<User> findByRealName(Object answer) {
-		return findByProperty(REAL_NAME, answer);
+	public List<User> findByRealName(Object realname) {
+		return findByProperty(REAL_NAME, realname);
 	}
 
+	/**
+	 * 根据员工ID卡号查找员工
+	 * @return 返回员工实例
+	 */
 	@Override
 	public List<User> findByIDCardNo(Object IDCardNo) {
 		return findByProperty(ID_CARD_NO, IDCardNo);
 	}
 
+	/**
+	 * 根据指定员工查找订单数量，返回订单列表
+	 */
 	@Override
 	public long findOrdersCountByThisType(User property) {
 		String hql = "select count(*) from ServerOrder model where model." 

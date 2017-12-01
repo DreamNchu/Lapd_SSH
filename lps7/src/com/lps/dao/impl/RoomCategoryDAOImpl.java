@@ -27,32 +27,62 @@ import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
 public class RoomCategoryDAOImpl  implements RoomCategoryDAO {
+	/**
+	 * 声明房间类型全局常量
+	 */
 	public static final String ROOM_CATEGORY = "roomCategory";
+	
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存房间类型持久化实例
+	 * @param transientInstance 房间类型对象
+	 */
 	@Override
 	public void save(RoomCategory transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
 
+	/**
+	 * 删除房间类型持久化实例
+	 * @param transientInstance 房间类型对象
+	 */
 	@Override
 	public void delete(RoomCategory persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	/**加载房间类型实例，根据id查找
+	   *@param id 房间类型ID
+	   *@return 返回加载的房间类型实例
+	   */
 	@Override
 	public RoomCategory findById(int id) {
 		return hibernateTemplate.get(RoomCategory.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找房间类型列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RoomCategory> findByProperty(String propertyName, Object value) {
@@ -62,17 +92,28 @@ public class RoomCategoryDAOImpl  implements RoomCategoryDAO {
 		return (List<RoomCategory>) queryObject.list();
 	}
 
+	/**
+	 * 根据房间类型查找实例
+	 * @return 返回房间类型实例
+	 */
 	@Override
 	public List<RoomCategory> findByRoomCategory(Object object) {
 		return findByProperty(ROOM_CATEGORY, object);
 	}
 
+	/**
+	 * 查找所有房间类型实例
+	 * @return 返回房间实例集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<RoomCategory> findAll() {
 		return (List<RoomCategory>)hibernateTemplate.find("from RoomCategory");
 	}
 
+	/**
+	 *统计房间类型实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from RoomCategory";
@@ -80,11 +121,18 @@ public class RoomCategoryDAOImpl  implements RoomCategoryDAO {
         return (long)list.get(0);
 	}
 
+	/**
+	 * 根据id查找房间类型实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(RoomCategory t) {
 		return findById(t.getId()) == null ? false : true;
 	}
 
+	/**
+	 * 查找房间类型实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<RoomCategory> findListByLimit(long begin, long limit) {
 		String hql="from RoomCategory";
@@ -96,6 +144,9 @@ public class RoomCategoryDAOImpl  implements RoomCategoryDAO {
         return null;
 	}
 
+	/**
+	 * 更新房间类型
+	 */
 	@Override
 	public void update(RoomCategory t) {
 		hibernateTemplate.update(t);

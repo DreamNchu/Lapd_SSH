@@ -23,36 +23,74 @@ import com.lps.util.PageHibernateCallback;
 
 public class WorkRankDAOImpl implements WorkRankDAO {
 
+	/**
+	 * 声明排序号全局常量
+	 */
 	public static final String RANK = "rank";
+	/**
+	 * 声明员工名全局常量
+	 */
 	public static final String USER = "user";
+	/**
+	 * 声明员工排钟号全局常量
+	 */
 	public static final String RANK_NUM = "rankNum";
+	/**
+	 * 声明员工点钟号全局常量
+	 */
 	public static final String SPOT_NUM = "spotNum";
 
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存上钟排序实例
+	 * @param transientInstance 上钟排序对象
+	 */
 	@Override
 	public void save(WorkRank transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
 
+	/**
+	 * 删除上钟排序持久化实例
+	 * @param transientInstance 上钟排序对象
+	 */
 	@Override
 	public void delete(WorkRank persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	/**加载上钟排序实例，根据id查找
+	   *@param id 上钟排序ID
+	   *@return 返回加载的上钟排序实例
+	   */
 	@Override
 	public WorkRank findById(int id) {
 		return hibernateTemplate.get(WorkRank.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找上钟排序列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<WorkRank> findByProperty(String propertyName, Object value) {
@@ -63,12 +101,19 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 		return (List<WorkRank>) queryObject.list();
 	}
 
+	/**
+	 * 查找所有上钟排序实例
+	 * @return 返回上钟排序集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<WorkRank> findAll() {
 		return (List<WorkRank>) hibernateTemplate.find("from WorkRank");
 	}
 
+	/**
+	 *统计上钟排序实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql = "select count(*) from WorkRank";
@@ -76,6 +121,10 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 		return (long) list.get(0);
 	}
 
+	/**
+	 * 根据id查找上钟序列实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(WorkRank user) {
 		if (findById(user.getId()) != null)
@@ -84,6 +133,9 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 		return false;
 	}
 
+	/**
+	 * 查找上钟排序实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<WorkRank> findListByLimit(long begin, long limit) {
 		String hql = "from WorkRank";
@@ -96,26 +148,45 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 		return null;
 	}
 
+	/**
+	 * 更新上钟序列状态
+	 */
 	@Override
 	public void update(WorkRank t) {
 		hibernateTemplate.update(t);
 	}
 
+	/**
+	 * 根据员工名查找上钟序列
+	 * @return 返回上钟序列
+	 */
 	@Override
 	public List<WorkRank> findByUser(User user) {
 		return findByProperty(USER, user);
 	}
 
+	/**
+	 * 根据排序号查找上钟序列
+	 * @return 返回上钟序列
+	 */
 	@Override
 	public List<WorkRank> findByRank(int num) {
 		return findByProperty(RANK, num);
 	}
 
+	/**
+	 * 根据排钟序号查找上钟序列
+	 * @return 返回上钟序列
+	 */
 	@Override
 	public List<WorkRank> findByRankNum(int num) {
 		return findByProperty(RANK_NUM, num);
 	}
 
+	/**
+	 * 根据点钟序号查找上钟序列
+	 * @return 返回上钟序列
+	 */
 	@Override
 	public List<WorkRank> findBySpotNum(int num) {
 		return findByProperty(SPOT_NUM, num);

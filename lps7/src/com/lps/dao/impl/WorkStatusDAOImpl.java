@@ -24,33 +24,62 @@ import com.lps.util.PageHibernateCallback;
 
 public class WorkStatusDAOImpl implements WorkStatusDAO {
 	
+	/**
+	 * 声明员工工作状态全局常量
+	 */
 	public static final String WORK_STATUS = "workStatus";
 
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存员工工作状态实例
+	 * @param transientInstance 工作状态对象
+	 */
 	@Override
 	public void save(WorkStatus transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
 
+	/**
+	 * 删除员工工作状态持久化实例
+	 * @param transientInstance 工作状态对象
+	 */
 	@Override
 	public void delete(WorkStatus persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	/**加载工作状态实例，根据id查找
+	   *@param id 工作状态ID
+	   *@return 返回加载的工作状态实例
+	   */
 	@Override
 	public WorkStatus findById(int id) {
 		return hibernateTemplate.get(WorkStatus.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找工作状态列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<WorkStatus> findByProperty(String propertyName, Object value) {
@@ -60,17 +89,28 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 		return (List<WorkStatus>) queryObject.list();
 	}
 
+	/**
+	 * 根据工作状态查找
+	 * @return 返回工作状态
+	 */
 	@Override
 	public List<WorkStatus> findByWorkStatus(Object workStatus) {
 		return findByProperty(WORK_STATUS, workStatus);
 	}
 
+	/**
+	 * 查找所有工作状态实例
+	 * @return 返回工作状态集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<WorkStatus> findAll() {
 		return (List<WorkStatus>)hibernateTemplate.find("from WorkStatus");
 	}
 
+	/**
+	 *统计工作状态实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from WorkStatus";
@@ -78,11 +118,18 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
         return (long)list.get(0);
 	}
 
+	/**
+	 * 根据id查找工作状态实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(WorkStatus t) {
 		return findById(t.getId()) == null ? false : true;
 	}
 
+	/**
+	 * 查找工作状态实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<WorkStatus> findListByLimit(long begin, long limit) {
 		String hql="from WorkStatus";
@@ -94,6 +141,9 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
         return null;
 	}
 
+	/**
+	 * 更新工作状态
+	 */
 	@Override
 	public void update(WorkStatus t) {
 		hibernateTemplate.update(t);

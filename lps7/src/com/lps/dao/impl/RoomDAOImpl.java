@@ -30,37 +30,78 @@ import com.lps.util.PageHibernateCallback;
 
 public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integer>{
 
+	/**
+	 * 声明房间名字全局常量
+	 */
 	public static final String NAME = "name";
+	/**
+	 * 声明房间楼层全局常量
+	 */
 	public static final String FLOOR = "floor";
+	/**
+	 * 声明房间大小全局常量
+	 */
 	public static final String SIZE = "size";
+	/**
+	 * 声明房间备注全局常量
+	 */
 	public static final String REMARK = "remark";
+	/**
+	 * 声明空闲房间全局常量
+	 */
 	public static final String IS_FREE = "isFree";
 
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存房间持久化实例
+	 * @param transientInstance 房间对象
+	 */
 	@Override
 	public void save(Room transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
 
+	/**
+	 * 删除房间持久化实例
+	 * @param transientInstance 房间对象
+	 */
 	@Override
 	public void delete(Room persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	/**加载房间实例，根据id查找
+	   *@param id 房间ID
+	   *@return 返回加载的房间实例
+	   */
 	@Override
 	public Room findById(int id) {
 		return hibernateTemplate.get(Room.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找房间
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Room> findByProperty(String propertyName, Object value) {
@@ -70,28 +111,43 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 		
 		return (List<Room>) queryObject.list();
 	}
+	/**
+	 * 根据房间名字查找实例
+	 * @return 返回房间实例
+	 */
 	public List<Room> findByName(Object name) {
 		return findByProperty(NAME, name);
 	}
 
+	/**
+	 * 根据房间楼层查找实例
+	 * @return 返回房间实例
+	 */
 	public List<Room> findByFloor(Object floor) {
 		return findByProperty(FLOOR, floor);
 	}
 
+	/**
+	 * 根据房间大小查找实例
+	 * @return 返回房间实例
+	 */
 	public List<Room> findBySize(Object size) {
 		return findByProperty(SIZE, size);
 	}
 
-
-	
-
-	
+	/**
+	 * 查找所有房间实例
+	 * @return 返回房间实例集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Room> findAll() {
 		return (List<Room>)hibernateTemplate.find("from Room");
 	}
 	
+	/**
+	 *统计房间实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from Room";
@@ -99,6 +155,10 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
         return (long)list.get(0);
 	}
 
+	/**
+	 * 根据id查找房间实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(Room user) {
 		if(findById(user.getId()) != null)
@@ -106,6 +166,9 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 		return false;
 	}
 
+	/**
+	 * 查找房间实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<Room> findListByLimit(long begin, long limit) {
 		String hql="from Room";
@@ -117,6 +180,9 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
         return null;
 	}
 
+	/**
+	 * 更新房间
+	 */
 	@Override
 	public void update(Room t) {
 		hibernateTemplate.update(t);
@@ -127,7 +193,14 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 		return findByProperty(IS_FREE, true);
 	}
 
+	/**
+	 * 声明员工服务订单全局常量
+	 */
 	public static final String SERVER_ORDER = "serverOrders";
+	
+	/**
+	 * 查找所有订单
+	 */
 	@Override
 	public Set<ServerOrder> findAllOrders(Room t) {
 		

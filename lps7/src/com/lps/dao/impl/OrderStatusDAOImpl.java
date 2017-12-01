@@ -31,33 +31,61 @@ import com.lps.util.PageHibernateCallback;
 
 public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDAO<OrderStatus, Integer>{
 	// property constants
-	public static final String WORK_STATUS = "workStatus";
+	/**
+	 * 声明订单状态全局常量
+	 */
+	public static final String ORDER_STATUS = "orderStatus";
 
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存订单状态持久化实例
+	 * @param transientInstance 订单状态对象
+	 */
 	@Override
 	public void save(OrderStatus transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
-
+	/**
+	 * 删除订单状态持久化实例
+	 * @param transientInstance 订单状态对象
+	 */
 	@Override
 	public void delete(OrderStatus persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	/**加载订单状态实例，根据id查找
+	   *@param id 订单状态ID
+	   *@return 返回加载的订单状态实例
+	   */
 	@Override
 	public OrderStatus findById(int id) {
 		return hibernateTemplate.get(OrderStatus.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找订单状态列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderStatus> findByProperty(String propertyName, Object value) {
@@ -67,17 +95,28 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 		return (List<OrderStatus>) queryObject.list();
 	}
 
+	/**
+	 * 根据订单状态查找实例
+	 * @return 返回订单状态实例
+	 */
 	@Override
-	public List<OrderStatus> findByOrderStatus(Object workStatus) {
-		return findByProperty(WORK_STATUS, workStatus);
+	public List<OrderStatus> findByOrderStatus(Object orderStatus) {
+		return findByProperty(ORDER_STATUS, orderStatus);
 	}
 
+	/**
+	 * 查找所有订单状态实例
+	 * @return 返回订单状态集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<OrderStatus> findAll() {
 		return (List<OrderStatus>)hibernateTemplate.find("from OrderStatus");
 	}
 
+	/**
+	 *统计订单状态实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from OrderStatus";
@@ -85,11 +124,18 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
         return (long)list.get(0);
 	}
 
+	/**
+	 * 根据id查找订单状态实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(OrderStatus t) {
 		return findById(t.getId()) == null ? false : true;
 	}
 
+	/**
+	 * 查找订单状态实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<OrderStatus> findListByLimit(long begin, long limit) {
 		String hql="from OrderStatus";
@@ -100,13 +146,22 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
         }
         return null;
 	}
-
+/**
+ * 更新订单状态
+ */
 	@Override
 	public void update(OrderStatus t) {
 		hibernateTemplate.update(t);
 	}
 
+	/**
+	 * 声明员工服务订单全局常量
+	 */
 	public static final String SERVER_ORDER = "serverOrders";
+	
+	/**
+	 * 根据订单状态查找所有订单
+	 */
 	@Override
 	public Set<ServerOrder> findAllOrders(OrderStatus t) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
@@ -119,6 +174,9 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 		return sos;
 	}
 
+	/**
+	 * 根据订单状态查找订单，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<ServerOrder> findOrdersWithLimit(OrderStatus t, long begin, long limit) {
 		String hql = "from OrderStatus cc where cc.id=?";
@@ -138,6 +196,9 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 		return null;
 	}
 
+	/**
+	 * 根据指定订单状态查找订单数量，返回订单列表
+	 */
 	@Override
 	public long findOrdersCountByThisType(OrderStatus property) {
 		

@@ -29,32 +29,62 @@ import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
 public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge, Integer>{
+	/**
+	 * 声明抵押物品名全局常量
+	 */
 	public static final String PLEDGE = "name";
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存抵押物持久化实例
+	 * @param transientInstance 抵押物对象
+	 */
 	@Override
 	public void save(Pledge transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
 
+	/**
+	 * 删除抵押物持久化实例
+	 * @param transientInstance 抵押物对象
+	 */
 	@Override
 	public void delete(Pledge persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	/**加载抵押物实例，根据id查找
+	   *@param id 抵押物ID
+	   *@return 返回加载的抵押物实例
+	   */
 	@Override
 	public Pledge findById(int id) {
 		return hibernateTemplate.get(Pledge.class, id);
 	}
 
+	
+	/**
+	 * 根据指定属性查找抵押物列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Pledge> findByProperty(String propertyName, Object value) {
@@ -64,17 +94,28 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 		return (List<Pledge>) queryObject.list();
 	}
 
+	/**
+	 * 根据抵押物名字查找实例
+	 * @return 返回抵押物实例
+	 */
 	@Override
 	public List<Pledge> findByName(Object name) {
 		return findByProperty(PLEDGE, name);
 	}
 
+	/**
+	 * 查找所有抵押物品实例
+	 * @return 返回抵押物品集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Pledge> findAll() {
 		return (List<Pledge>)hibernateTemplate.find("from Pledge");
 	}
 
+	/**
+	 *统计抵押物品实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from Pledge";
@@ -82,11 +123,18 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
         return (long)list.get(0);
 	}
 
+	/**
+	 * 根据id查找抵押物实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(Pledge t) {
 		return findById(t.getId()) == null ? false : true;
 	}
 
+	/**
+	 * 查找抵押物品实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<Pledge> findListByLimit(long begin, long limit) {
 		String hql="from Pledge";
@@ -98,12 +146,22 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
         return null;
 	}
 
+	/**
+	 * 更新抵押物
+	 */
 	@Override
 	public void update(Pledge t) {
 		hibernateTemplate.update(t);
 	}
 
+	/**
+	 * 声明员工服务订单全局常量
+	 */
 	public static final String SERVER_ORDER = "serverOrders";
+	
+	/**
+	 * 根据抵押物查找所有订单
+	 */
 	@Override
 	public Set<ServerOrder> findAllOrders(Pledge t) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
@@ -116,6 +174,9 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 		return sos;
 	}
 
+	/**
+	 * 根据抵押物查找订单，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<ServerOrder> findOrdersWithLimit(Pledge t, long begin, long limit) {
 		String hql = "from Pledge cc where cc.id=?";
@@ -135,6 +196,9 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 		return null;
 	}
 
+	/**
+	 * 根据指定抵押物查找订单数量，返回订单列表
+	 */
 	@Override
 	public long findOrdersCountByThisType(Pledge property) {
 		String hql = "select count(*) from ServerOrder model where model." 

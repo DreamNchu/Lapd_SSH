@@ -21,38 +21,73 @@ import com.lps.util.PageHibernateCallback;
 
 public class AdminDAOImpl implements AdminDAO {
 	
+	/**
+	 * 声明管理员账户名全局常量
+	 */
 	public static final String USER_NAME = "userName";
+	/**
+	 * 声明管理员密码全局常量
+	 */
 	public static final String PASSWORD = "password";
+	/**
+	 * 声明管理员头像全局常量
+	 */
 	public static final String AVATAR = "avatar";
+	/**
+	 * 声明管理员注册时间全局常量
+	 */
 	public static final String REGISTER_TIME = "registerTime";
 	
-	
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
-
+/**
+ * 获取HibernateTemplate实例
+ * @return HibernateTemplate实例
+ */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存Admin持久化实例
+	 * @param admin 管理员对象
+	 */
 	@Override
 	public void save(Admin admin) {
 		hibernateTemplate.save(admin);
 	}
 
+	/**
+	 * 删除Admin持久化实例
+	 * @param admin 管理员对象
+	 */
 	@Override
 	public void delete(Admin admin) {
 		hibernateTemplate.delete(admin);
 	}
-
-	
+  /**加载admin实例，根据id查找
+   *@param id 管理员ID，需要加载admin实例的主键值
+   *@return 返回加载的admin实例
+   */
 	@Override
 	public Admin findById(int id) {
 		return hibernateTemplate.get(Admin.class, id);
 	}
 
+	/**
+	 * 根据id查找admin实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(Admin admin) {
 		if(findById(admin.getId()) != null)
@@ -60,6 +95,10 @@ public class AdminDAOImpl implements AdminDAO {
 		return false;
 	}
 
+	/**
+	 * 根据管理员账户名查找管理员实例是否存在
+	 * @return 存在则返回管理员对象，否则返回null
+	 */
 	@Override
 	public Admin getByUserName(String persistentInstance) {
 		List<?> tempList = hibernateTemplate.find("from Admin a where a.userName = '" + persistentInstance + "'");
@@ -73,6 +112,9 @@ public class AdminDAOImpl implements AdminDAO {
 		return findByProperty(REGISTER_TIME, persistentInstance);
 	}
 	*/
+	/**
+	 * 根据指定属性查找管理员列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Admin> findByProperty(String propertyName, Object value) {
@@ -84,12 +126,17 @@ public class AdminDAOImpl implements AdminDAO {
 			 return (List<Admin>)queryObject.list();
 	 }
 	
-	
+	/**
+	 * 查找所有admin实例
+	 */
 	@Override
 	public  List<Admin> findAll(){
 		return (List<Admin>)hibernateTemplate.find("from Admin");
 	}
 
+	/**
+	 * 统计管理员实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from Admin";
@@ -99,6 +146,9 @@ public class AdminDAOImpl implements AdminDAO {
         return (long)list.get(0);
 	}
 
+	/**
+	 * 查找管理员实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<Admin> findListByLimit(long begin, long limit) {
 		String hql="from Admin";
@@ -110,6 +160,10 @@ public class AdminDAOImpl implements AdminDAO {
         return null;
 	}
 
+	/**
+	 * 更新admin实例
+	 * @param t 需要更新的 admin实例
+	 */
 	@Override
 	public void update(Admin t) {
 		hibernateTemplate.update(t);

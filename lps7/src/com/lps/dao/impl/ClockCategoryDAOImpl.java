@@ -28,32 +28,61 @@ import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
 public class ClockCategoryDAOImpl implements ClockCategoryDAO {
+	/**
+	 * 声明钟点类型全局常量
+	 */
 	public static final String CLOCK_CATEGORY = "clockCategory";
+	
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存钟点类型持久化实例
+	 * @param transientInstance 钟点类型对象
+	 */
 	@Override
 	public void save(ClockCategory transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
-
+	/**
+	 * 删除钟点类型持久化实例
+	 * @param transientInstance 钟点类型对象
+	 */
 	@Override
 	public void delete(ClockCategory persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
 	}
 
+	 /**加载钟点类型实例，根据id查找
+	   *@param id 钟点类型ID
+	   *@return 返回加载的钟点类型实例
+	   */
 	@Override
 	public ClockCategory findById(int id) {
 		return hibernateTemplate.get(ClockCategory.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找钟点类型列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ClockCategory> findByProperty(String propertyName, Object value) {
@@ -63,17 +92,27 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 		return (List<ClockCategory>) queryObject.list();
 	}
 
+	/**
+	 * 根据钟点类型查找实例
+	 * @return 返回钟点实例
+	 */
 	@Override
 	public List<ClockCategory> findByClockCategory(Object object) {
 		return findByProperty(CLOCK_CATEGORY, object);
 	}
 
+	/**
+	 * 查找所有钟点类型实例
+	 * @return 返回钟点实例集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ClockCategory> findAll() {
 		return (List<ClockCategory>) hibernateTemplate.find("from ClockCategory");
 	}
-
+/**
+ *统计钟点类型实例个数
+ */
 	@Override
 	public long findAllCount() {
 		String hql = "select count(*) from ClockCategory";
@@ -81,11 +120,18 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 		return (long) list.get(0);
 	}
 
+	/**
+	 * 根据id查找钟点类型实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(ClockCategory t) {
 		return findById(t.getId()) == null ? false : true;
 	}
 
+	/**
+	 * 查找钟点类型实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<ClockCategory> findListByLimit(long begin, long limit) {
 		String hql = "from ClockCategory";
@@ -96,14 +142,22 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 		}
 		return null;
 	}
-
+/**
+ * 更新钟点类型实例
+ */
 	@Override
 	public void update(ClockCategory t) {
 		hibernateTemplate.update(t);
 	}
 
+	/**
+	 * 声明员工服务订单全局常量
+	 */
 	public static final String SERVER_ORDER = "serverOrders";
 
+	/**
+	 * 根据钟点类型查找所有订单
+	 */
 	@Override
 	public Set<ServerOrder> findAllOrders(ClockCategory cc) {
 
@@ -116,7 +170,9 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 
 		return sos;
 	}
-
+/**
+ * 根据钟点类型查找订单，查找个数受限于begin，limit
+ */
 	@Override
 	public List<ServerOrder> findOrdersWithLimit(ClockCategory cc, long begin, long limit) {
 		String hql = "from ClockCategory cc where cc.id=?";
@@ -136,7 +192,9 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 		}
 		return null;
 	}
-
+/**
+ * 根据指定钟点类型查找订单数量，返回订单列表
+ */
 	@Override
 	public long findOrdersCountByThisType(ClockCategory cc) {
 		

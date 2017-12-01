@@ -24,35 +24,89 @@ import com.lps.uenum.CompareLevel;
 import com.lps.util.PageHibernateCallback;
 
 public class ServerOrderDAOImpl  implements ServerOrderDAO{
+	/**
+	 * 声明付费方式全局常量
+	 */
 	public static final String PAY_PATH = "payPath";
+	/**
+	 * 声明房间全局常量
+	 */
 	public static final String ROOM = "room";
+	/**
+	 * 声明用户名全局常量
+	 */
 	public static final String USER = "user";
+	/**
+	 * 声明抵押物全局常量
+	 */
 	public static final String PLEDGE = "pledge";
+	/**
+	 * 声明钟点类型全局常量
+	 */
 	public static final String CLOCK_CATEGORY = "clockCategory";
+	/**
+	 * 声明订单状态全局常量
+	 */
 	public static final String ORDER_STATUS = "orderStatus";
+	/**
+	 * 声明实际支付全局常量
+	 */
 	public static final String REAL_PAY = "realPay";
+	/**
+	 * 声明消费全局常量
+	 */
 	public static final String PAY = "pay";
+	/**
+	 * 声明订单发起时间全局常量
+	 */
 	public static final String INIT_TIME = "initTime";
+	/**
+	 * 声明订单接受时间全局常量
+	 */
 	public static final String RECEIVE_TIME = "receiveTime";
+	/**
+	 * 声明订单完成时间全局常量
+	 */
 	public static final String FINISH_TIME = "finishTime";
+	/**
+	 * 声明订单付费时间全局常量
+	 */
 	public static final String PAY_TIME = "payTime";
 	
-	
+	/**
+	 * 以私有变量的方式保存HibernateTemplate
+	 */
 	private HibernateTemplate hibernateTemplate;
 
+	/**
+	 * 获取HibernateTemplate实例
+	 * @return HibernateTemplate实例
+	 */
 	public HibernateTemplate getHibernateTemplate() {
 		return hibernateTemplate;
 	}
 
+	/**
+	 * 设置HibernateTemplate实例
+	 * @param hibernateTemplate 实例
+	 */
 	public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
 		this.hibernateTemplate = hibernateTemplate;
 	}
 
+	/**
+	 * 保存服务订单持久化实例
+	 * @param transientInstance 服务订单对象
+	 */
 	@Override
 	public void save(ServerOrder transientInstance) {
 		hibernateTemplate.save(transientInstance);
 	}
 
+	/**
+	 * 删除服务订单持久化实例
+	 * @param transientInstance 服务订单对象
+	 */
 	@Override
 	public void delete(ServerOrder persistentInstance) {
 		hibernateTemplate.delete(persistentInstance);
@@ -61,17 +115,28 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	/**
 	 * replace by @see {@link #findById(String)}
 	 */
+	
+	/**
+	 * 过期，不推荐
+	 */
 	@Override
 	@Deprecated
 	public ServerOrder findById(int id) {
 		return null;
 	}
 	
+	/**加载服务订单实例，根据id查找
+	   *@param id 服务订单ID
+	   *@return 返回加载的服务订单实例
+	   */
 	@Override
 	public ServerOrder findById(String id) {
 		return hibernateTemplate.get(ServerOrder.class, id);
 	}
 
+	/**
+	 * 根据指定属性查找服务订单列表
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ServerOrder> findByProperty(String propertyName, Object property) {
@@ -81,12 +146,19 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 		return (List<ServerOrder>) queryObject.list();
 	}
 
+	/**
+	 * 查找所有服务订单实例
+	 * @return 返回服务订单集合
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ServerOrder> findAll() {
 		return (List<ServerOrder>)hibernateTemplate.find("from ServerOrder");
 	}
 
+	/**
+	 *统计服务订单实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		String hql="select count(*) from ServerOrder";
@@ -94,11 +166,18 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
         return (long)list.get(0);
 	}
 
+	/**
+	 * 根据id查找服务订单实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(ServerOrder t) {
 		return findById(t.getId()) == null ? false : true;
 	}
 
+	/**
+	 * 查找服务订单实例，查找个数受限于begin，limit
+	 */
 	@Override
 	public List<ServerOrder> findListByLimit(long begin, long limit) {
 		String hql="from ServerOrder";
@@ -113,6 +192,9 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
         return null;
 	}
 
+	/**
+	 * 更新服务订单状态
+	 */
 	@Override
 	public void update(ServerOrder t) {
 		hibernateTemplate.update(t);
@@ -150,27 +232,45 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 		return null;
 	}*/
 
+	/**
+	 * 根据付费方式查找服务订单
+	 * @return 返回服务订单实例
+	 */
 	@Override
 	public List<ServerOrder> findByPayPath(Object property) {
 		return findByProperty(PAY_PATH, property);
 	}
 
+	/**
+	 * 根据员工名查找服务订单
+	 * @return 返回服务订单实例
+	 */
 	@Override
 	public List<ServerOrder> findByUser(Object property) {
 		return findByProperty(USER, property);
 	}
 
+	/**
+	 * 根据抵押物查找服务订单
+	 * @return 返回服务订单实例
+	 */
 	@Override
 	public List<ServerOrder> findByPledge(Object property) {
 		return findByProperty(PLEDGE, property);
 	}
 
+	/**
+	 * 根据钟点类型查找服务订单
+	 * @return 返回服务订单实例
+	 */
 	@Override
 	public List<ServerOrder> findByClockCategory(Object property) {
 		return findByProperty(CLOCK_CATEGORY, property);
 	}
 
-
+/**
+ * 根据日期查找订单，查找受限于开始日期，结束日期
+ */
 	@Override
 	public List<ServerOrder> findOrdersByDateLimit(Date begin, Date end) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
@@ -182,9 +282,10 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 		
 		return ccTemp;
 	}
-	
-	
 
+	/**
+	 * 根据价格，日期查找订单，查找受限于价格，开始日期，结束日期
+	 */
 	@Override
 	public List<ServerOrder> findOrderByPriceAndDateLimit(int price, Date begin, Date end, CompareLevel cl) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
