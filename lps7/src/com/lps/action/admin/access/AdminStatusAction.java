@@ -4,9 +4,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.lps.model.Admin;
 import com.lps.service.AdminService;
-import com.lps.web.dto.LogInDto;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AdminStatusAction extends ActionSupport implements SessionAware{
@@ -52,9 +50,11 @@ public class AdminStatusAction extends ActionSupport implements SessionAware{
 	 */
 	public String login() {
 		
-		Admin temp = adminServiceImpl.findByUserName(userName);
-		if(temp.getPassword().equals(password)){
-			session.put("userName", userName);
+		String password = adminServiceImpl.findPasswordByUserName(userName);
+		int id = adminServiceImpl.findIdByUserName(userName);
+		
+		if(password.equals(this.password)){
+			session.put("id", id);
 			return SUCCESS;
 		}
 		return ERROR;

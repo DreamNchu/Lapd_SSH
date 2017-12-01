@@ -8,6 +8,7 @@ import java.util.Set;
 import com.lps.dao.PayPathDAO;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.dao.impl.PayPathDAOImpl;
+import com.lps.model.PayPath;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
@@ -15,6 +16,7 @@ import com.lps.model.User;
 import com.lps.service.PayPathService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.WorkDate;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -112,7 +114,7 @@ public class PayPathServiceImpl implements PayPathService {
 	}
 
 	@Override
-	public PageBean<ServerOrder> findOrdersByPage(PayPath t, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findAllOrdersByPage(PayPath t, int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderByPayPathBean.init(
 				findOrdersCountByThisType(t), page);
 
@@ -143,6 +145,26 @@ public class PayPathServiceImpl implements PayPathService {
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
+	}
+	
+	@Override
+	public List<ServerOrder> findTodayOrders(PayPath t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	}
+
+	@Override
+	public List<ServerOrder> findBefore7DayOrders(PayPath t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisMonthOrders(PayPath t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisYearOrders(PayPath t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 }

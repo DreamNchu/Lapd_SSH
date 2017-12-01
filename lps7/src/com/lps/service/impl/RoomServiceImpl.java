@@ -6,14 +6,16 @@ import java.util.Set;
 import com.lps.dao.RoomDAO;
 import com.lps.model.Admin;
 import com.lps.model.Room;
+import com.lps.model.Room;
 import com.lps.model.ServerOrder;
 import com.lps.service.RoomService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.WorkDate;
 
 public class RoomServiceImpl implements RoomService {
 	
-	private RoomDAO roomDao ;
+	private RoomDAO dao ;
 	
 	private PageBean<Room> pageRoomBean;
 	
@@ -37,48 +39,48 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	public RoomDAO getRoomDao() {
-		return roomDao;
+		return dao;
 	}
 
 	public void setRoomDao(RoomDAO userDao) {
-		this.roomDao = userDao;
+		this.dao = userDao;
 	}
 
 	@Override
 	public void save(Room user) {
-		roomDao.save( user);
+		dao.save( user);
 	}
 
 	@Override
 	public void delete(Room user) {
-		roomDao.delete(user);
+		dao.delete(user);
 	}
 
 
 	@Override
 	public Room findById(int id) {
-		return roomDao.findById(id);
+		return dao.findById(id);
 	}
 	
 	@Override
 	public boolean isExists(Room user) {
-		return roomDao.isExists(user);
+		return dao.isExists(user);
 	}
 
 
 	@Override
 	public List<Room> findAll() {
-		return roomDao.findAll();
+		return dao.findAll();
 	}
 
 	@Override
 	public long findAllCount() {
-		return roomDao.findAllCount();
+		return dao.findAllCount();
 	}
 
 	@Override
 	public List<Room> findByProperty(String propertyName, Object value) {
-		return roomDao.findByProperty(propertyName, value);
+		return dao.findByProperty(propertyName, value);
 	}
 
 	
@@ -87,7 +89,7 @@ public class RoomServiceImpl implements RoomService {
 		
 		long begin = pageRoomBean.init(findAllCount(), page);
 
-		List<Room> list = roomDao.findListByLimit( begin, pageServerOrderByRoomBean.getLimit());
+		List<Room> list = dao.findListByLimit( begin, pageServerOrderByRoomBean.getLimit());
 
 		pageRoomBean.setList(list);
 
@@ -118,39 +120,39 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public void update(Room t) {
-		roomDao.update(t);	
+		dao.update(t);	
 	}
 
 	@Override
 	public List<Room> findByName(Object name) {
-		return roomDao.findByName(name);
+		return dao.findByName(name);
 	}
 
 	@Override
 	public List<Room> findByFloor(Object floor) {
-		return roomDao.findByFloor(floor);
+		return dao.findByFloor(floor);
 	}
 
 	@Override
 	public List<Room> findBySize(Object size) {
-		return roomDao.findBySize(size);
+		return dao.findBySize(size);
 	}
 
 	@Override
 	public List<Room> findFreeRoom() {
-		return roomDao.findFreeRoom();
+		return dao.findFreeRoom();
 	}
 
 	@Override
 	public Set<ServerOrder> findAllOrders(Room t) {
-		return roomDao.findAllOrders(t);
+		return dao.findAllOrders(t);
 	}
 
 	@Override
-	public PageBean<ServerOrder> findOrdersByPage(Room t, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findAllOrdersByPage(Room t, int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderByRoomBean.init(findOrdersCountByThisType(t), page);
 
-		List<ServerOrder> list = roomDao.findOrdersWithLimit(t, begin, pageServerOrderByRoomBean.getLimit());
+		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByRoomBean.getLimit());
 
 		pageServerOrderByRoomBean.setList(list);
 
@@ -159,7 +161,28 @@ public class RoomServiceImpl implements RoomService {
 
 	@Override
 	public long findOrdersCountByThisType(Room t) {
-		return roomDao.findOrdersCountByThisType(t);
+		return dao.findOrdersCountByThisType(t);
 	}
 
+	
+	@Override
+	public List<ServerOrder> findTodayOrders(Room t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	}
+
+	@Override
+	public List<ServerOrder> findBefore7DayOrders(Room t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisMonthOrders(Room t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisYearOrders(Room t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
+	
 }

@@ -93,8 +93,8 @@ public class OrderStatusServiceImplTest {
 	public void testFindOrdersByPage() throws PagePropertyNotInitException {
 		OrderStatus os = new OrderStatus();
 		os.setId(1);
-		assertEquals(7, as.findOrdersByPage(os, 1).getList().size());
-		assertEquals(null, as.findOrdersByPage(os, 2));
+		assertEquals(7, as.findAllOrdersByPage(os, 1).getList().size());
+		assertEquals(null, as.findAllOrdersByPage(os, 2));
 	}
 
 	@Test

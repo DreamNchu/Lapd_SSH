@@ -1,5 +1,6 @@
 package com.lps.service.basic;
 
+import java.util.List;
 import java.util.Set;
 
 import com.lps.model.ServerOrder;
@@ -22,7 +23,7 @@ public interface BasicForServerOrderService<T> extends BasicService<T> {
 	 * @return
 	 * @throws PagePropertyNotInitException 
 	 */
-	PageBean<ServerOrder> findOrdersByPage(T t, int page) throws PagePropertyNotInitException;
+	PageBean<ServerOrder> findAllOrdersByPage(T t, int page) throws PagePropertyNotInitException;
 
 	/**
 	 * 
@@ -30,4 +31,28 @@ public interface BasicForServerOrderService<T> extends BasicService<T> {
 	 * @return
 	 */
 	long findOrdersCountByThisType(T t);
+	
+	
+	List<ServerOrder> findTodayOrders(T t);
+	/**
+	 * 该用户最近七天的工作订单
+	 * @param t
+	 * @return
+	 */
+	List<ServerOrder> findBefore7DayOrders(T t);
+	
+	/**
+	 * 该用户本月的工作订单
+	 * @param t
+	 * @return
+	 */
+	List<ServerOrder> findThisMonthOrders(T t);
+	
+	/**
+	 * 本年的工作订单
+	 * @param t
+	 * @return
+	 */
+	List<ServerOrder> findThisYearOrders(T t);
+	
 }

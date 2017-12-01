@@ -1,14 +1,11 @@
 package com.lps.action.test;
 
-import static org.junit.Assert.assertEquals;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lps.action.admin.access.AdminStatusAction;
-import com.lps.web.dto.LogInDto;
 
 public class AdminLogInActionTest {
 	

@@ -3,6 +3,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -21,6 +22,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
+import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
@@ -196,4 +198,19 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 		
 		return listIds;
 	}
+	
+	@Override
+	public List<ServerOrder> findOrdersByDateLimit(ClockCategory cc, Date begin, Date end) {
+		
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		
+		@SuppressWarnings("unchecked")
+		List<ServerOrder> ccTemp = (List<ServerOrder>)session.createCriteria(ServerOrder.class)
+				.add(Restrictions.between(ServerOrderDAOImpl.INIT_TIME, begin, end))
+				.add(Restrictions.eq(ServerOrderDAOImpl.CLOCK_CATEGORY, cc))
+				.list();
+		
+		return ccTemp;
+	}
+	
 }

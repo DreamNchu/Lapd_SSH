@@ -8,12 +8,14 @@ import java.util.Set;
 import com.lps.dao.PledgeDAO;
 import com.lps.dao.impl.PayPathDAOImpl;
 import com.lps.dao.impl.PledgeDAOImpl;
+import com.lps.model.Pledge;
 import com.lps.model.PayPath;
 import com.lps.model.Pledge;
 import com.lps.model.ServerOrder;
 import com.lps.service.PledgeService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.WorkDate;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -103,7 +105,7 @@ public class PledgeServiceImpl implements PledgeService {
 	}
 
 	@Override
-	public PageBean<ServerOrder> findOrdersByPage(Pledge t, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findAllOrdersByPage(Pledge t, int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderByPledgeBean.init(findOrdersCountByThisType(t), page);
 
 		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByPledgeBean.getLimit());
@@ -135,6 +137,25 @@ public class PledgeServiceImpl implements PledgeService {
 		return NOT_EXISTS;
 	}
 
+	@Override
+	public List<ServerOrder> findTodayOrders(Pledge t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	}
+
+	@Override
+	public List<ServerOrder> findBefore7DayOrders(Pledge t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisMonthOrders(Pledge t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisYearOrders(Pledge t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
 
 
 }

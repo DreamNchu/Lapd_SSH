@@ -148,5 +148,20 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 		return pageServerOrderBean;
 	}
 
+	@Override
+	public List<ServerOrder> findBefore7DayOrders() {
+		return dao.findOrdersByDateLimit(WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisMonthOrders() {
+		return dao.findOrdersByDateLimit(WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisYearOrders() {
+		return dao.findOrdersByDateLimit(WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
+
 
 }

@@ -85,4 +85,6 @@ public interface UserService extends BasicForServerOrderService<User>, WebAccess
 	 * @return 员工的集合
 	 */
 	List<User> findByIDCardNo(Object IDCardNo);
+	
+	
 }

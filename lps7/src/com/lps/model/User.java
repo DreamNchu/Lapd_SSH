@@ -424,7 +424,6 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 		return this.email;
 	}
 
-	// Property accessors
 	/**
 	 * 获取id值
 	 * <p>
@@ -434,7 +433,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "pk_generate")
 	@Column(name = "id", unique = true, nullable = false)
-
+	@Override
 	public Integer getId() {
 		return this.id;
 	}

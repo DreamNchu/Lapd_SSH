@@ -3,6 +3,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -24,6 +25,7 @@ import com.lps.model.PayPath;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
+import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
@@ -193,6 +195,20 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 		List<K> listIds = cri.list();
 		
 		return listIds;
+	}
+	
+	@Override
+	public List<ServerOrder> findOrdersByDateLimit(PayPath pp, Date begin, Date end) {
+		
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		
+		@SuppressWarnings("unchecked")
+		List<ServerOrder> ccTemp = (List<ServerOrder>)session.createCriteria(ServerOrder.class)
+				.add(Restrictions.between(ServerOrderDAOImpl.INIT_TIME, begin, end))
+				.add(Restrictions.eq(ServerOrderDAOImpl.PAY_PATH, pp))
+				.list();
+		
+		return ccTemp;
 	}
 	
 }

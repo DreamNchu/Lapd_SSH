@@ -14,6 +14,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.service.UserService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.WorkDate;
 
 public class UserServiceImpl implements UserService {
 	
@@ -158,7 +159,7 @@ public class UserServiceImpl implements UserService {
 		return userDao.findAllOrders(t);
 	}
 	@Override
-	public PageBean<ServerOrder> findOrdersByPage(User t, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findAllOrdersByPage(User t, int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderByUserBean.init(findOrdersCountByThisType(t), page);
 
 		List<ServerOrder> list = userDao.findOrdersWithLimit(t, begin, pageServerOrderByUserBean.getLimit());
@@ -205,6 +206,26 @@ public class UserServiceImpl implements UserService {
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
+	}
+
+	@Override
+	public List<ServerOrder> findTodayOrders(User t) {
+		return userDao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	}
+
+	@Override
+	public List<ServerOrder> findBefore7DayOrders(User t) {
+		return userDao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisMonthOrders(User t) {
+		return userDao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisYearOrders(User t) {
+		return userDao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 

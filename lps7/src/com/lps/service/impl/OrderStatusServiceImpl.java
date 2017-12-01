@@ -10,10 +10,12 @@ import com.lps.dao.impl.ClockCategoryDAOImpl;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
+import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.service.OrderStatusService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.WorkDate;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -72,7 +74,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public PageBean<ServerOrder> findOrdersByPage(OrderStatus t, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findAllOrdersByPage(OrderStatus t, int page) throws PagePropertyNotInitException {
 		long begin= pageServerOrderByOrderStatusBean.init(findOrdersCountByThisType(t), page);
         
         List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByOrderStatusBean.getLimit());
@@ -141,6 +143,26 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
+	}
+
+	@Override
+	public List<ServerOrder> findTodayOrders(OrderStatus t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	}
+
+	@Override
+	public List<ServerOrder> findBefore7DayOrders(OrderStatus t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisMonthOrders(OrderStatus t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisYearOrders(OrderStatus t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 }

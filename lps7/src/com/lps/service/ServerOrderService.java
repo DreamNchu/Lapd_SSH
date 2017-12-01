@@ -98,5 +98,26 @@ public interface ServerOrderService extends BasicService<ServerOrder> {
 	 */
 	List<ServerOrder> findOrderMoreThanPriceDate(int price, Date begin, Date end);
 	
+	/**
+	 * 最近七天的所有员工工作订单
+	 * @return
+	 */
+	List<ServerOrder> findBefore7DayOrders();
+	
+	
+	/**
+	 * 该本月的工作订单
+	 * @param t
+	 * @return
+	 */
+	List<ServerOrder> findThisMonthOrders();
+	
+	/**
+	 * 本年的工作订单
+	 * @param t
+	 * @return
+	 */
+	List<ServerOrder> findThisYearOrders();
+	
 	
 }

@@ -102,7 +102,7 @@ public class ClockCategoryServiceImplTest {
 	@Test
 	public void testFindOrderByClockCategory() throws PagePropertyNotInitException {
 		ClockCategory cc = as.findById(1);
-		assertEquals(7, as.findOrdersByPage(cc, 1).getList().size());
+		assertEquals(7, as.findAllOrdersByPage(cc, 1).getList().size());
 	}
 	
 	@Test

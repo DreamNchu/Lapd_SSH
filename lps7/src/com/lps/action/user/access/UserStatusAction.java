@@ -55,6 +55,7 @@ public class UserStatusAction extends ActionSupport implements SessionAware{
 	}
 
 	/**
+	 * 以用户的id作为session登录判断
 	 * 登录成功返回success
 	 * <p>
 	 * 失败返回error
@@ -62,8 +63,9 @@ public class UserStatusAction extends ActionSupport implements SessionAware{
 	public String logIn() {
 		
 		String tempPassword = userServiceImpl.findPasswordByUserName(userName);
+		int id = userServiceImpl.findIdByUserName(userName);
 		if(tempPassword.equals(password)){
-			session.put("userName", userName);
+			session.put("id", id);
 			return SUCCESS;
 		}
 		return ERROR;

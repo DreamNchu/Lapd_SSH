@@ -42,7 +42,7 @@ public class UserOnlineCheckIntercepter {
 	@Around("myMethod()")
 	public Object doBasicProfiling(ProceedingJoinPoint pjp) throws Throwable {
 //		System.out.println("doBasicProfiling_request");
-		if(request.getSession().getAttribute("userName") == null){
+		if(request.getSession().getAttribute("id") == null){
 			return Action.NONE;
 		}
 		

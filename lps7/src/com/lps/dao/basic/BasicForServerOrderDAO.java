@@ -1,7 +1,11 @@
 package com.lps.dao.basic;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
+
+import org.hibernate.Session;
+import org.hibernate.criterion.Restrictions;
 
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
@@ -29,5 +33,8 @@ public interface BasicForServerOrderDAO<T extends ModelLinkServerOrder<K> , K>{
 	 * @return
 	 */
 	List<ServerOrder> findOrdersWithLimit(T t, long begin, long limit);
+	
+	
+	List<ServerOrder> findOrdersByDateLimit(T t, Date begin, Date end);
 
 }

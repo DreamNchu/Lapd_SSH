@@ -3,6 +3,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -23,6 +24,7 @@ import com.lps.model.Admin;
 import com.lps.model.Pledge;
 import com.lps.model.Pledge;
 import com.lps.model.ServerOrder;
+import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
@@ -192,4 +194,19 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 		
 		return listIds;
 	}
+	
+	@Override
+	public List<ServerOrder> findOrdersByDateLimit(Pledge p, Date begin, Date end) {
+		
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		
+		@SuppressWarnings("unchecked")
+		List<ServerOrder> ccTemp = (List<ServerOrder>)session.createCriteria(ServerOrder.class)
+				.add(Restrictions.between(ServerOrderDAOImpl.INIT_TIME, begin, end))
+				.add(Restrictions.eq(ServerOrderDAOImpl.PLEDGE, p))
+				.list();
+		
+		return ccTemp;
+	}
+	
 }

@@ -11,10 +11,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.model.WorkStatus;
 import com.lps.service.impl.UserServiceImpl;
-import com.lps.service.impl.WorkStatusServiceImpl;
 
 public class UserServiceImplTest {
 	
@@ -33,6 +33,13 @@ public class UserServiceImplTest {
 				"classpath:config/applicationContext.xml",
 		});
 		as = ctx.getBean("userServiceImpl", UserServiceImpl.class);
+	}
+	
+	@Test
+	public void testUpdate(){
+		User u = as.findById(4);
+		u.setQuestion("哈哈哈");
+		as.update(u);
 	}
 
 
@@ -150,5 +157,17 @@ public class UserServiceImplTest {
 	public void testFindPasswordByUserName(){
 		assertEquals("user001", as.findPasswordByUserName("user001"));
 	}
+	
+	@Test
+	public void testFindTodayOrders(){
+		User u = new User();
+		u.setId(1);
+		for(ServerOrder so: as.findTodayOrders(u)){
+			System.out.println(so.getId());
+		}
+//		assertEquals(4, as.findTodayOrders(u).size());
+	}
+	
+	
 
 }

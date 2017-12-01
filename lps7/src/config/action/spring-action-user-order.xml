@@ -11,9 +11,13 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	
-	<bean id="adminLogInAction" class="com.lps.web.action.AdminLogInAction"
+	<bean id="userOrdersAction" class="com.lps.action.user.operation.UserOrdersAction"
 		scope="prototype">
-		<property name="adminServiceImpl" ref="adminServiceImpl"></property>
+		<property name="userServiceImpl" ref="userServiceImpl"></property>
+		<property name="orderStatusService" ref="orderStatusService"></property>
+		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 	</bean>
+	
+	
 	
 </beans>

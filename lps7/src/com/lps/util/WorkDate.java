@@ -65,6 +65,21 @@ public class WorkDate {
 	}
 	
 	/**
+	 * 本月的月初的日期
+	 * @return
+	 */
+	public static Date getBeginOfThisMonthDate(){
+		return getBeginOfMonthDate(new Date());
+	}
+	/**
+	 * 本年年初的日期
+	 * @return
+	 */
+	public static Date getBeginOfThisYearDate(){
+		return getBeginOfYeatDate(new Date());
+	}
+	
+	/**
 	 * 返回该月月初的日期
 	 * @param year 年份
 	 * @param month 月份

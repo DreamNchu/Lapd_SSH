@@ -22,6 +22,7 @@ import com.lps.dao.OrderStatusDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
+import com.lps.model.PayPath;
 import com.lps.model.OrderStatus;
 import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
@@ -197,6 +198,19 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 		
 		return listIds;
 	}
-	
+
+	@Override
+	public List<ServerOrder> findOrdersByDateLimit(OrderStatus os, Date begin, Date end) {
+		
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		
+		@SuppressWarnings("unchecked")
+		List<ServerOrder> ccTemp = (List<ServerOrder>)session.createCriteria(ServerOrder.class)
+				.add(Restrictions.between(ServerOrderDAOImpl.INIT_TIME, begin, end))
+				.add(Restrictions.eq(ServerOrderDAOImpl.ORDER_STATUS, os))
+				.list();
+		
+		return ccTemp;
+	}
 
 }

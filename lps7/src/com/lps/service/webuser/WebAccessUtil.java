@@ -3,6 +3,11 @@ package com.lps.service.webuser;
 import com.lps.model.Admin;
 import com.lps.model.basic.BasicModel;
 
+/**
+ * Web登录，注册的工具接口
+ * @author 0001
+ *
+ */
 public interface WebAccessUtil {
 
 	/**

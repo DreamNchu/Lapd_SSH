@@ -9,9 +9,11 @@ import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.impl.ClockCategoryDAOImpl;
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
+import com.lps.model.ClockCategory;
 import com.lps.service.ClockCategoryService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.WorkDate;
 
 public class ClockCategoryServiceImpl implements ClockCategoryService {
 
@@ -107,7 +109,7 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	}
 
 	@Override
-	public PageBean<ServerOrder> findOrdersByPage(ClockCategory cc, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findAllOrdersByPage(ClockCategory cc, int page) throws PagePropertyNotInitException {
 
 		long begin = pageServerOrderByClockCategoryBean.init(findOrdersCountByThisType(cc), page);
 
@@ -138,6 +140,26 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
+	}
+	
+	@Override
+	public List<ServerOrder> findTodayOrders(ClockCategory t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	}
+
+	@Override
+	public List<ServerOrder> findBefore7DayOrders(ClockCategory t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisMonthOrders(ClockCategory t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public List<ServerOrder> findThisYearOrders(ClockCategory t) {
+		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 }

@@ -2,6 +2,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -12,6 +13,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Property;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate4.HibernateCallback;
 import org.springframework.orm.hibernate4.HibernateTemplate;
@@ -166,7 +168,7 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 
 		User ccTemp = (User) session.createCriteria(User.class)
 			.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
-			.add(Restrictions.idEq(t.getId())).list().get(0);
+			.add(Restrictions.idEq(t.getId())).uniqueResult();
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
@@ -259,6 +261,20 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 		List<K> listIds = cri.list();
 		
 		return listIds;
+	}
+	
+	@Override
+	public List<ServerOrder> findOrdersByDateLimit(User u, Date begin, Date end) {
+		
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+		
+		@SuppressWarnings("unchecked")
+		List<ServerOrder> ccTemp = (List<ServerOrder>)session.createCriteria(ServerOrder.class)
+				.add(Restrictions.between(ServerOrderDAOImpl.INIT_TIME, begin, end))
+				.add(Restrictions.eq(ServerOrderDAOImpl.USER, u))
+				.list();
+		
+		return ccTemp;
 	}
 
 }

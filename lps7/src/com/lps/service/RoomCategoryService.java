@@ -28,4 +28,5 @@ public interface RoomCategoryService extends BasicService<RoomCategory>{
 	 */
 	int findIdByRoomCategory(String roomCategoryProperty);
 	
+	
 }
