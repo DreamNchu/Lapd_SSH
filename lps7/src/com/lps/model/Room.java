@@ -149,7 +149,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 * @return 返回房间类型
 	 * @see RoomCategory
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, cascade = { CascadeType.REFRESH })
+	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "roomCategory", nullable = false)
 
 	public RoomCategory getRoomCategory() {

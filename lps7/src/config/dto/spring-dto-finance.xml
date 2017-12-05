@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx
+		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+
+	<!-- datasets: [ { label : ' 时间', fillColor : '#3c8dbc', strokeColor : '#f56954', 
+		pointColor : '#3c8dbc', pointStrokeColor : '#f56954', pointHighlightFill 
+		: '#3c8dbc', pointHighlightStroke: 'rgba(220,220,220,1)', data : [60, 50, 
+		80, 80, 60, 90,20 ,100, 70, 30, 80, 102, 50,40,50,70] } ] -->
+
+
+	<bean id="financeDayLineChartDataDto" class="com.lps.web.dto.FinanceDayLineChartDataDto">
+		<property name="data" value="data">
+		</property>
+		<property name="labels">
+			<list>
+				<value>12</value>
+				<value>13</value>
+				<value>14</value>
+				<value>15</value>
+				<value>16</value>
+				<value>17</value>
+				<value>18</value>
+				<value>19</value>
+				<value>20</value>
+				<value>21</value>
+				<value>22</value>
+				<value>23</value>
+				<value>24</value>
+			</list>
+		</property>
+		<property name="dataSet">
+			<map>
+				<entry key="label" value="时间"></entry>
+				<entry key="fillColor" value="#3c8dbc"></entry>
+				<entry key="strokeColor" value="#f56954"></entry>
+				<entry key="pointColor" value="#3c8dbc"></entry>
+				<entry key="pointStrokeColor" value="#f56954"></entry>
+				<entry key="pointHighlightFill" value="#3c8dbc"></entry>
+				<entry key="pointHighlightStroke" value="rgba(220,220,220,1)"></entry>
+				<entry key="data" value-type="java.util.List" value=""></entry>
+			</map>
+		</property>
+	</bean>
+
+	<bean id="financeBefore7DaysLineChartDataDto" class="com.lps.web.dto.FinanceBefore7DaysLineChartDataDto">
+		<property name="data" value="data">
+		</property>
+		<property name="labels">
+			<list>
+			</list>
+		</property>
+		<property name="dataSet">
+			<map>
+				<entry key="label" value="时间"></entry>
+				<entry key="fillColor" value="#3c8dbc"></entry>
+				<entry key="strokeColor" value="#f56954"></entry>
+				<entry key="pointColor" value="#3c8dbc"></entry>
+				<entry key="pointStrokeColor" value="#f56954"></entry>
+				<entry key="pointHighlightFill" value="#3c8dbc"></entry>
+				<entry key="pointHighlightStroke" value="rgba(220,220,220,1)"></entry>
+				<entry key="data" value-type="java.util.List" value=""></entry>
+			</map>
+		</property>
+	</bean>
+
+
+	<bean id="financeThisMonthLineChartDataDto" class="com.lps.web.dto.FinanceThisMonthLineChartDataDto">
+		<property name="data" value="data">
+		</property>
+		<property name="labels">
+			<list>
+				<value>12</value>
+				<value>13</value>
+				<value>14</value>
+				<value>15</value>
+				<value>16</value>
+				<value>17</value>
+				<value>18</value>
+				<value>19</value>
+				<value>20</value>
+				<value>21</value>
+				<value>22</value>
+				<value>23</value>
+				<value>24</value>
+			</list>
+		</property>
+		<property name="dataSet">
+			<map>
+				<entry key="label" value="时间"></entry>
+				<entry key="fillColor" value="#3c8dbc"></entry>
+				<entry key="strokeColor" value="#f56954"></entry>
+				<entry key="pointColor" value="#3c8dbc"></entry>
+				<entry key="pointStrokeColor" value="#f56954"></entry>
+				<entry key="pointHighlightFill" value="#3c8dbc"></entry>
+				<entry key="pointHighlightStroke" value="rgba(220,220,220,1)"></entry>
+				<entry key="data" value-type="java.util.List" value=""></entry>
+			</map>
+		</property>
+	</bean>
+
+</beans>

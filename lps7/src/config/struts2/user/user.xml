@@ -6,7 +6,7 @@
 
 		<action name="user_*" class="userStatusAction" method="{1}">
 			<result name="success">
-				/user/User_{1}_Success.jsp
+				/user/User_{1}_success.jsp
 			</result>
 			<result name="error">
 				/user/User_{1}_fail.jsp

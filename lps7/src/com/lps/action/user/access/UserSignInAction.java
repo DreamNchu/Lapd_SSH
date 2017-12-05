@@ -5,7 +5,7 @@ import java.util.Random;
 
 import com.lps.model.User;
 import com.lps.service.UserService;
-import com.lps.web.user.dto.UserSignInDto;
+import com.lps.web.dto.UserSignInDto;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserSignInAction extends ActionSupport{

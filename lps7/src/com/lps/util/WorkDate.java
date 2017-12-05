@@ -1,8 +1,11 @@
 package com.lps.util;
 
+import java.util.Calendar;
 import java.util.Date;
 
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 
 
 public class WorkDate {
@@ -89,5 +92,57 @@ public class WorkDate {
 		LocalDate localDate = new LocalDate(year, month, 1);
 		return localDate.toDate();
 	}
-
+	
+	/**
+	 * 默认模式 yyyyMMddHHmmss
+	 * @return
+	 */
+	public static String getNowDateTime(){
+		return getNowDateTime("yyyyMMddHHmmss");
+	}
+	
+	/**
+	 * 固定模式产生当前时间的字符串
+	 * @param pattern
+	 * @return
+	 */
+	public static String getNowDateTime(String pattern){
+		DateTime dateTime = new DateTime();
+		String date = dateTime.toString(pattern);
+		return date;
+	}
+	
+	/**
+	 * 返回下一个小时 ,时间样式格式为 HH
+	 * @param date
+	 * @return
+	 */
+	public static String getCeilHourTime(Date date){
+		LocalTime lt = new LocalTime(date);
+		int hour = lt.getHourOfDay();
+		DateTime ltn = new DateTime(2000, 2, 2, hour + 1, 0,0);
+		
+		return getDateTime(ltn.toDate(), "HH");
+	}
+	
+	/**
+	 * 根据格式得到时间字符串
+	 * @param date
+	 * @param pattern
+	 * @return
+	 */
+	public static String getDateTime(Date date, String pattern){
+		DateTime lt = new DateTime(date);
+		return lt.toString(pattern);
+	}
+	
+	/**
+	 * 得到当前日期所对应当月的天数
+	 * @param date
+	 * @return
+	 */
+	public static String getDayOfMonth(Date date){
+		return getDateTime(date, "dd");
+	}
+	
 }

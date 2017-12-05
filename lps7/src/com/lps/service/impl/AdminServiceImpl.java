@@ -15,9 +15,9 @@ import com.lps.util.PageBean;
 //@Component("adminServiceImpl")
 //@Aspect
 public class AdminServiceImpl implements AdminService {
-	
-	private AdminDAO adminDao ;
-	
+
+	private AdminDAO adminDao;
+
 	private PageBean<Admin> pageAdminBean;
 
 	public PageBean<Admin> getPageAdminBean() {
@@ -32,7 +32,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminDao;
 	}
 
-//	@Resource(name="adminDAOImpl")
+	// @Resource(name="adminDAOImpl")
 	public void setAdminDao(AdminDAO adminDao) {
 		this.adminDao = adminDao;
 	}
@@ -56,7 +56,7 @@ public class AdminServiceImpl implements AdminService {
 	public Admin findById(int id) {
 		return adminDao.findById(id);
 	}
-	
+
 	@Override
 	public boolean isExists(Admin admin) {
 		return adminDao.isExists(admin);
@@ -71,15 +71,15 @@ public class AdminServiceImpl implements AdminService {
 	public String getAvatar(Admin admin) {
 		return findById(admin.getId()).getAvatar();
 	}
+
 	@Override
-	public List<Admin> findByProperty(String propertyName, Object value){
+	public List<Admin> findByProperty(String propertyName, Object value) {
 		return adminDao.findByProperty(propertyName, value);
 	}
-/*	
-	@Override
-	public List<Admin> findByRegisterTime(Timestamp value){
-		return adminDao.getByRegisterTime(value);
-	}*/
+	/*
+	 * @Override public List<Admin> findByRegisterTime(Timestamp value){ return
+	 * adminDao.getByRegisterTime(value); }
+	 */
 
 	@Override
 	public List<Admin> findAll() {
@@ -94,24 +94,24 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public PageBean<Admin> findByPage(int page) {
 		pageAdminBean.setPage(page);
-        
-        long totalCount= findAllCount();
-        
-        pageAdminBean.setAllCount(totalCount);
-        
-        long limit  = pageAdminBean.getLimit();
-        
-        long totalpage=(long)Math.ceil(totalCount/limit);
-        
-        pageAdminBean.setAllPage(totalpage);
-        //ÿҳ��ʾ�����ݼ���
-        long begin=(page-1) * limit;
-        
-        List<Admin> list = adminDao.findListByLimit(begin, limit);
-        
-        pageAdminBean.setList(list);
-        
-        return pageAdminBean;
+
+		long totalCount = findAllCount();
+
+		pageAdminBean.setAllCount(totalCount);
+
+		long limit = pageAdminBean.getLimit();
+
+		long totalpage = (long) Math.ceil(totalCount / limit);
+
+		pageAdminBean.setAllPage(totalpage);
+		// ÿҳ��ʾ�����ݼ���
+		long begin = (page - 1) * limit;
+
+		List<Admin> list = adminDao.findListByLimit(begin, limit);
+
+		pageAdminBean.setList(list);
+
+		return pageAdminBean;
 	}
 
 	@Override
@@ -121,8 +121,12 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public String findPasswordByUserName(String userName) {
-		Admin admin =new  Admin.Builder()
-				.setId(findIdByUserName(userName)).build();
+		int id;
+		id = findIdByUserName(userName);
+		if(id == NOT_EXISTS){
+			throw new UserNotExistsException("用户名不存在");
+		}
+		Admin admin = new Admin.Builder().setId(id).build();
 		return findPassword(admin);
 	}
 
@@ -130,14 +134,26 @@ public class AdminServiceImpl implements AdminService {
 	public <T> String findPassword(BasicModel<T> admin) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
 		map.put(AdminDAOImpl.PASSWORD, String.class);
-		return adminDao.findFields(admin, map).getPassword();
+		Admin ad = adminDao.findFields(admin, map);
+		if (ad != null) {
+			return ad.getPassword();
+		}
+		return null;
 	}
 
+	/**
+	 * 不存在返回-1
+	 * 
+	 */
 	@Override
 	public int findIdByUserName(String name) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(AdminDAOImpl.USER_NAME, name);
-		return (int) adminDao.findIdByProperty(map).get(0);
+		List<Object> list = adminDao.findIdByProperty(map);
+		 if(list != null && list.size() > 0){
+			return (int) adminDao.findIdByProperty(map).get(0);
+		 }
+		 return NOT_EXISTS;
 	}
 
 }

@@ -15,7 +15,7 @@ public class PageBean<T> {
 
 	private long allPage = -1;// 总页数(总记录数/每页记录数)
 
-	private long limit = -1;// 每页记录数
+	private long limit = 10;// 每页记录数
 
 	private List<T> list;// 包含的集合
 
@@ -31,7 +31,7 @@ public class PageBean<T> {
 	public long init(long allCount, long page) throws PagePropertyNotInitException {
 		
 		if(limit < 0){
-			throw new PagePropertyNotInitException("PageBeanLimitNotInitException ");
+			throw new PagePropertyNotInitException("PageBeanLimitNotInitException");
 		}
 		
 		this.page = page;

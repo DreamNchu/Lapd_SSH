@@ -7,26 +7,49 @@ import com.lps.model.basic.BasicModel;
 
 public interface BasicDAO<T> {
 	
+	/**
+	 * 根据对象的id保存
+	 * @param t 指定对象
+	 */
 	public void save(T t);
 	/**
 	 * 根据对象的Id删除
-	 * @param admin
+	 * @param t 指定对象
 	 */
 	public void delete(T t);
 	
+	/**
+	 * 根据id查找指定对象	 
+	 * @param id ID
+	 * @return 指定对象
+	 */
 	public T findById(int id);
 
 	/**
 	 * 根据对象的id判断是否存在
-	 * @param t
-	 * @return
+	 * @param t 指定对象
+	 * @return 返回true则代表存在，否则不存在
 	 */
 	public boolean isExists(T t);
 	
+	/**
+	 * 根据指定属性查找指定对象列表
+	 * @param propertyName 指定属性名
+	 * @param value 属性值
+	 * @return 指定对象列表
+	 */
 	public List<T> findByProperty(String propertyName, Object value) ;
 	
+	/**
+	 * 查找所有指定对象
+	 * @return 指定对象列表
+	 */
 	public  List<T> findAll();
 	
+	/**
+	 * 查找指定对象的数量
+	 * @return 数量
+	 */
 	public long findAllCount();
 	
 	/**

@@ -42,7 +42,21 @@
         values(2, "user002", "user002", 12, "你是谁","0001",  1, now() );
     insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
         values(3, "user003", "user003", 13, "你是谁", "0001",  1, now());
+          insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
+        values(4, "user004", "user002", 14, "你是谁","0001",  1, now() );
+    insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
+        values(5, "user005", "user003", 15, "你是谁", "0001",  1, now());
    
+   INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
+   VALUES (1, 1, 1, null, NULL);
+   INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
+   VALUES (2, 2, 2, null, NULL);
+   INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
+   VALUES (3, 3, 3, null, NULL);
+   INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
+   VALUES (4, 4, 4, null, NULL);
+   INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
+   VALUES (5, 5, 5, null, NULL);
         
    insert into `lapd_test`.`t_pledge` (id, name, price ) values (1, "苹果充电器", 50);
    insert into `lapd_test`.`t_pledge` (id, name, price ) values (2, "安卓充电器", 50);
@@ -66,6 +80,8 @@
     
     INSERT INTO `lapd_test`.`t_admin` (`id`, `userName`, `password`, `registerTime`, `avatar`) 
     VALUES (4, 'admin4', 'admin', now(), NULL);
+    
+   -- delete from `lapd_test`.`t_serverorder`;
     
     INSERT INTO `lapd_test`.`t_serverorder` (`idOrder`, `stuffId`, `roomId`, `statusId`, `clockcategoryId`, `payPathId`, 
     `pledgeNameId`, `initTime`, `receiveTime`, `finishTime`, `pay`, `realPay`, `payTime`, `orderRemark`)

@@ -185,23 +185,24 @@ public class AdminDAOImpl implements AdminDAO {
 		//设置投影条件
 		cri.setProjection(proList);
 		List<?> list = cri.list();
-		
-		Admin admin = new Admin();
-		Class<? extends Admin> c = admin.getClass();
-		int i = 0;
-		
-		for(String field: fields.keySet()){
-			String str ="set" + field.substring(0,1).toUpperCase()+field.substring(1);
-			try {
-				c.getDeclaredMethod(str, fields.get(field)).invoke(admin, list.get(i));
-			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
-					| NoSuchMethodException | SecurityException e) {
-				e.printStackTrace();
+		if(list != null && list.size() > 0){
+			Admin admin = new Admin();
+			Class<? extends Admin> c = admin.getClass();
+			int i = 0;
+			
+			for(String field: fields.keySet()){
+				String str ="set" + field.substring(0,1).toUpperCase()+field.substring(1);
+				try {
+					c.getDeclaredMethod(str, fields.get(field)).invoke(admin, list.get(i));
+				} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException
+						| NoSuchMethodException | SecurityException e) {
+					e.printStackTrace();
+				}
+				i ++;
 			}
-			i ++;
+			return admin;
 		}
-		
-		return admin;
+		return null;
 	}
 
 	@Override

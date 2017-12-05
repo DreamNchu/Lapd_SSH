@@ -3,17 +3,23 @@ package com.lps.service.impl;
 import java.util.List;
 
 import com.lps.dao.WorkRankDAO;
+import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
 import com.lps.service.WorkRankService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 public class WorkRankServiceImpl implements WorkRankService {
 	
 	private WorkRankDAO dao ;
 	
 	private PageBean<WorkRank> pageBean;
-
+	
+	public WorkRankServiceImpl(){
+		
+	}
+	
 	public PageBean<WorkRank> getPageBean() {
 		return pageBean;
 	}
@@ -67,27 +73,20 @@ public class WorkRankServiceImpl implements WorkRankService {
 		return dao.findByProperty(propertyName, value);
 	}
 
+//	public WorkRankServiceImpl() throws PagePropertyNotInitException {
+//		pageBean.init(findAllCount(), 1);
+//	}
 	
-	public PageBean<WorkRank> findByPage(int page) {
-        pageBean.setPage(page);
-        
-        long totalCount= findAllCount();
-        
-        pageBean.setAllCount(totalCount);
-        
-        long limit  = pageBean.getLimit();
-        
-        long totalpage=(long)Math.ceil(totalCount/limit);
-        
-        pageBean.setAllPage(totalpage);
-        //ÿҳ��ʾ�����ݼ���
-        long begin=(page-1) * limit;
-        
-        List<WorkRank> list = dao.findListByLimit(begin, limit);
-        
-        pageBean.setList(list);
-        
-        return pageBean;
+	
+	public PageBean<WorkRank> findByPage(int page) throws PagePropertyNotInitException {
+		
+		long begin = pageBean.init(findAllCount(), page);
+
+		List<WorkRank> list = dao.findListByLimit( begin, pageBean.getLimit());
+
+		pageBean.setList(list);
+
+		return pageBean;
     }
 
 	@Override

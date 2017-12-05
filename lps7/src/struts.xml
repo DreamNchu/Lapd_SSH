@@ -3,12 +3,14 @@
 <struts>
 	<constant name="struts.devMode" value="true" />
 	<!-- <constant name="struts.configuration.xml.reload" value="true" /> -->
-	<!-- <constant name="struts.i18n.encoding" value="UTF-8" /> -->
+	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.objectFactory" value="spring"></constant>
 	
-	<package name="default" namespace="/" extends="struts-default">
-		
-	</package>
-	<include file="config/struts2/admin/admin.xml" />
+	<include file="config/struts2/admin/access.xml" />
+	<include file="config/struts2/admin/order.xml" />
+	<include file="config/struts2/admin/main.xml" />
+	<include file="config/struts2/admin/user.xml" />
 	<include file="config/struts2/user/user.xml" />
+	
+	
 </struts>    

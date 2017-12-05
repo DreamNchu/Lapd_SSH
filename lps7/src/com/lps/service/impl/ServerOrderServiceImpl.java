@@ -150,17 +150,17 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	@Override
 	public List<ServerOrder> findBefore7DayOrders() {
-		return dao.findOrdersByDateLimit(WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+		return dao.findOrdersByDateLimit(WorkDate.getBefore7DayDate(), WorkDate.getTomorrowDate());
 	}
 
 	@Override
 	public List<ServerOrder> findThisMonthOrders() {
-		return dao.findOrdersByDateLimit(WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+		return dao.findOrdersByDateLimit(WorkDate.getBeginOfThisMonthDate(), WorkDate.getTomorrowDate());
 	}
 
 	@Override
 	public List<ServerOrder> findThisYearOrders() {
-		return dao.findOrdersByDateLimit(WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+		return dao.findOrdersByDateLimit(WorkDate.getBeginOfThisYearDate(), WorkDate.getTomorrowDate());
 	}
 
 

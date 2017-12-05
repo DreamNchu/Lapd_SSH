@@ -4,9 +4,11 @@ import java.util.List;
 
 import com.lps.dao.WorkStatusDAO;
 import com.lps.model.User;
+import com.lps.model.WorkRank;
 import com.lps.model.WorkStatus;
 import com.lps.service.WorkStatusService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -71,28 +73,23 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	public boolean isExists(WorkStatus user) {
 		return dao.isExists(user);
 	}
+	
+	{
+//		pageBean.setAllCount(findAllCount(), 1);
+	}
 
 	@Override
-	public PageBean<WorkStatus> findByPage(int page) {
-		pageBean.setPage(page);
+	public PageBean<WorkStatus> findByPage(int page) throws PagePropertyNotInitException {
+		
+		long begin = pageBean.init(findAllCount(), page);
 
-		long totalCount = findAllCount();
-
-		pageBean.setAllCount(totalCount);
-
-		long limit = pageBean.getLimit();
-
-		long totalpage = (long) Math.ceil(totalCount / limit);
-
-		pageBean.setAllPage(totalpage);
-		// 每页显示的数据集合
-		long begin = (page - 1) * limit;
-
-		List<WorkStatus> list = dao.findListByLimit(begin, limit);
+		List<WorkStatus> list = dao.findListByLimit( begin, pageBean.getLimit());
 
 		pageBean.setList(list);
 
 		return pageBean;
+		
+		
 	}
 
 	@Override

@@ -9,39 +9,9 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class AdminStatusAction extends ActionSupport implements SessionAware{
 
-	private AdminService adminServiceImpl;
+	private static final long serialVersionUID = 5979229100942095638L;
 
-	private String userName;
-	
-	private String password;
-//	private LogInDto adminLogInDto;
-	
 	private Map<String, Object> session;
-
-	
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public AdminService getAdminServiceImpl() {
-		return adminServiceImpl;
-	}
-
-	public void setAdminServiceImpl(AdminService adminServiceImpl) {
-		this.adminServiceImpl = adminServiceImpl;
-	}
 
 	/**
 	 * 登录成功返回success
@@ -49,23 +19,15 @@ public class AdminStatusAction extends ActionSupport implements SessionAware{
 	 * 失败返回error
 	 */
 	public String login() {
-		
-		String password = adminServiceImpl.findPasswordByUserName(userName);
-		int id = adminServiceImpl.findIdByUserName(userName);
-		
-		if(password.equals(this.password)){
-			session.put("id", id);
-			return SUCCESS;
-		}
-		return ERROR;
-		
+		return SUCCESS;
 	}
+	
 	/**
 	 * 注销
 	 * @return
 	 */
 	public String logout(){
-		session.remove("userName");
+		session.remove("id");
 		session.clear();
 		return SUCCESS;
 	}

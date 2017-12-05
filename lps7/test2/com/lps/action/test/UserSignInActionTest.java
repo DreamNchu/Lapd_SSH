@@ -10,7 +10,7 @@ import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lps.action.user.access.UserSignInAction;
-import com.lps.web.user.dto.UserSignInDto;
+import com.lps.web.dto.UserSignInDto;
 
 public class UserSignInActionTest {
 	

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	
+	<package name="order" namespace="/admin" extends="json-default">
+		
+		<action name="*Order*" class="{1}Order{2}" >
+			<result>{1}Order{2}.jsp</result>
+		</action>
+		
+		<action name="createOrder" class="ordersAction" method="createOrder">
+			<result type="json">
+				<param name="root">createOrderResult</param>
+			</result>
+		</action>
+		
+		<action name="createOrderAuto" class="ordersAction" method="createOrderAuto">
+			<result type="json">
+				<param name="root">createOrderResult</param>
+			</result>
+		</action>
+		
+	</package>
+
+
+</struts>

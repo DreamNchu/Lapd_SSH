@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="adminAccess" namespace="/admin" extends="struts-default">
+		<action name="log*" class="adminStatusAction" method="log{1}">
+			<result name="success">
+				/admin/log{1}.jsp
+			</result>
+		</action>
+		<action name="main" class="adminAccessAction" method="main">
+			<result name="success" type="redirect">
+				/admin/index
+			</result>
+			<result name="error" type="redirect">
+				/admin/login
+			</result>
+		</action>
+
+		<action name="index" class="adminMainAction" method="index">
+			<result type="redirect">/admin/spotOrderHandle</result>
+		</action>
+
+	</package>
+	
+
+</struts>

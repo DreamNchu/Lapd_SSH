@@ -381,6 +381,16 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 	}
 
 	
+	@Override
+	public String toString() {
+		return "ServerOrder [id=" + id + ", payPath=" + payPath + ", room=" + room + ", user=" + user + ", pledge="
+				+ pledge + ", clockCategory=" + clockCategory + ", orderStatus=" + orderStatus + ", initTime="
+				+ initTime + ", receiveTime=" + receiveTime + ", finishTime=" + finishTime + ", payTime=" + payTime
+				+ ", pay=" + pay + ", realPay=" + realPay + ", orderRemark=" + orderRemark + "]";
+	}
+
+
+
 	/**
 	 * ClassName:Builder
 	 * Description:内部类，可以访问外部类里订单的属性等，也可以访问每个属性的set方法

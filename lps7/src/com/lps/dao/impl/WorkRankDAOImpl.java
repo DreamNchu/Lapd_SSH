@@ -145,10 +145,12 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	@Override
 	public List<WorkRank> findListByLimit(long begin, long limit) {
 		String hql = "from WorkRank";
+		
+		HibernateCallback<List<WorkRank>> callBack =  
+				new PageHibernateCallback<WorkRank>(hql, new Object[] {}, begin, limit);
 		List<WorkRank> list = (List<WorkRank>) this.getHibernateTemplate()
-				.execute((HibernateCallback<Admin>) new PageHibernateCallback(hql, new Object[] {}, begin, limit));
+				.execute(callBack);
 		if (list != null && list.size() > 0) {
-
 			return list;
 		}
 		return null;
