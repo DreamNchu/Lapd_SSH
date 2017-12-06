@@ -1,6 +1,5 @@
 package com.lps.util;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import org.joda.time.DateTime;
@@ -36,6 +35,11 @@ public class WorkDate {
 		return localDate.plusDays(offSet).toDate();
 	}
 
+	/**
+	 * 得到date之后的下一天日期
+	 * @param date
+	 * @return
+	 */
 	public static Date getNextDate(Date date){
 		if(date == null)
 			return getTodayDate();
@@ -137,12 +141,32 @@ public class WorkDate {
 	}
 	
 	/**
+	 * HH:mm
+	 * @param date
+	 * @return
+	 */
+	public static String getTime(Date date){
+		return getDateTime(date, "HH:mm");
+	}
+	
+	/**
 	 * 得到当前日期所对应当月的天数
 	 * @param date
 	 * @return
 	 */
 	public static String getDayOfMonth(Date date){
 		return getDateTime(date, "dd");
+	}
+	
+	
+	
+	public static Date addTime(Date date, int hours, int minutes, int seconds){
+		DateTime dt = new DateTime(date);
+		int h = dt.getHourOfDay() + hours;
+		int m = dt.getMinuteOfHour() + minutes;
+		int s = dt.getSecondOfMinute() + seconds;
+		LocalTime lt = new LocalTime(h, m, s);
+		return lt.toDateTimeToday().toDate();
 	}
 	
 }

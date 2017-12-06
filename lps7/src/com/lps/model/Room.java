@@ -38,7 +38,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 */
 	private static final long serialVersionUID = 8192142277776627069L;
 	private Integer id;
-	private RoomCategory roomCategory;// 房间类型
+	private ServerItem serverItem;// 房间类型
 	private String name;
 	private Integer floor;// 楼层
 	private Integer size;// 房间大小
@@ -80,12 +80,12 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 * @param addTime
 	 *            加时 Date类型
 	 */
-	public Room(String name, Integer floor, Integer size, Date addTime, RoomCategory roomCategory, boolean isFree) {
+	public Room(String name, Integer floor, Integer size, Date addTime, ServerItem serverItem, boolean isFree) {
 		this.name = name;
 		this.floor = floor;
 		this.size = size;
 		this.addTime = addTime;
-		this.roomCategory = roomCategory;
+		this.serverItem = serverItem;
 		this.isFree = isFree;
 	}
 
@@ -94,7 +94,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 * 这是Room类的构造函数
 	 * <p>
 	 * 
-	 * @param roomCategory
+	 * @param serverItem
 	 *            房间类型
 	 * @param name
 	 *            房间名字 String类型
@@ -107,8 +107,8 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 * @param addTime
 	 *            加时 Date类型
 	 */
-	public Room(RoomCategory roomCategory, String name, Integer floor, Integer size, String remark, Date addTime) {
-		this.roomCategory = roomCategory;
+	public Room(ServerItem serverItem, String name, Integer floor, Integer size, String remark, Date addTime) {
+		this.serverItem = serverItem;
 		this.name = name;
 		this.floor = floor;
 		this.size = size;
@@ -147,25 +147,25 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 * <p>
 	 * 
 	 * @return 返回房间类型
-	 * @see RoomCategory
+	 * @see ServerItem
 	 */
 	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
 	@JoinColumn(name = "roomCategory", nullable = false)
 
-	public RoomCategory getRoomCategory() {
-		return this.roomCategory;
+	public ServerItem getRoomCategory() {
+		return this.serverItem;
 	}
 
 	/**
 	 * 设置房间状态
 	 * <p>
 	 * 
-	 * @param roomCategory
+	 * @param serverItem
 	 *            设置roomCategory
-	 * @see RoomCategory
+	 * @see ServerItem
 	 */
-	public void setRoomCategory(RoomCategory TRoomcategory) {
-		this.roomCategory = TRoomcategory;
+	public void setRoomCategory(ServerItem TRoomcategory) {
+		this.serverItem = TRoomcategory;
 	}
 
 	/**
@@ -305,7 +305,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 *
 	 */
 	public static class Builder {
-		private RoomCategory roomCategory;
+		private ServerItem serverItem;
 		private String name;
 		private Integer floor;
 		private Integer size;
@@ -318,11 +318,11 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 		 * 
 		 * @param roomcategory
 		 *            房间类型
-		 * @see RoomCategory
+		 * @see ServerItem
 		 * @return 房间类型
 		 */
-		public Builder setRoomCategory(RoomCategory roomcategory) {
-			this.roomCategory = roomcategory;
+		public Builder setRoomCategory(ServerItem roomcategory) {
+			this.serverItem = roomcategory;
 			return this;
 		}
 
@@ -398,7 +398,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 		 * @return Room实例
 		 */
 		public Room build() {
-			return new Room(roomCategory, name, floor, size, remark, addTime);
+			return new Room(serverItem, name, floor, size, remark, addTime);
 		}
 	}
 

@@ -294,109 +294,31 @@ StringBuffer basePath = request.getRequestURL();
                                     <th>开始时间</th>
                                     <th>预计结束时间</th>
                                 </tr>
-                                <s:iterator value="pageUser" id="user">
+                                <s:iterator value="listWorkStatus" id="work">
                                 	<tr>
-                                    <td><s:property value="user.workId"/></td>
-                                    <td><s:property value="user.realName"/></td>
+                                    <td><s:property value="#work.user.workId"/></td>
+                                    <td><s:property value="#work.user.realName"/></td>
                                     <td><span class="label label-success">
-										<s:property value="user.workStatus.workStatus"/></span></td>
-                                    <td><s:property value="user.room"/></td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
+										<s:property value="#work.user.workStatus.workStatus"/></span>
+									</td>
+                                    <td><s:property value="#work.room.name"/></td>
+                                    <td><s:property value="#work.room.roomCategory.roomCategory"/></td>
+                                    <td><s:property value="#work.startTime"/></td>
+                                    <td><s:property value="#work.endTime"/></td>
                                 </tr>
                                 </s:iterator>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-success">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-warning">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-success">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-primary">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-danger">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-danger">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-danger">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-danger">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
-                                <tr>
-                                    <td>183</td>
-                                    <td>张小明</td>
-                                    <td><span class="label label-danger">工作中</span></td>
-                                    <td>0011</td>
-                                    <td>按摩</td>
-                                    <td>10：30</td>
-                                    <td>12:00</td>
-                                </tr>
                             </table>
                         </div>
                         <div class="box-footer clearfix">
-                            <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共130条数据-共13页-当前第3页</lable>
+                            <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共<s:property value="pageUsers.allCount"/>条数据-共<s:property value="pageUsers.allPage"/>页-当前第<s:property value="pageUsers.page"/>页</lable>
                             <ul class="pagination pagination-sm no-margin pull-right">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&raquo;</a></li>
+                                <li><a href="userWorkData?page=<s:property value='page - 1'/>">&laquo;</a></li>
+                                <s:iterator value="pageUsers.viewPageNum" id="pageNum">
+                                	<li><a href="userWorkData?page=<s:property value='#pageNum'/>">
+                                	<s:property value="#pageNum"/>
+                                	</a></li>	
+                                </s:iterator>
+                                <li><a href="userWorkData?page=<s:property value='page + 1'/>">&raquo;</a></li>
                             </ul>
                         </div>
                     </div>

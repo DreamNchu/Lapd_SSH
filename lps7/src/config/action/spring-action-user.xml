@@ -29,7 +29,7 @@
 	</bean>
 	
 	<bean id="userWorkDataAction" scope="prototype" class="com.lps.action.operation.UserWorkDataAction">
-	
+		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
 	</bean>
 	

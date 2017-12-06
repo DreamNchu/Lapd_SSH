@@ -8,6 +8,7 @@ import java.util.Set;
 import com.lps.dao.UserDAO;
 import com.lps.dao.impl.AdminDAOImpl;
 import com.lps.dao.impl.UserDAOImpl;
+import com.lps.model.Admin;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
@@ -127,26 +128,16 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public PageBean<User> findByPage(int page) {
-        pageUserBean.setPage(page);
-        
-        long totalCount= findAllCount();
-        
-        pageUserBean.setAllCount(totalCount);
-        
-        long limit  = pageUserBean.getLimit();
-        
-        long totalpage=(long)Math.ceil(totalCount/limit);
-        
-        pageUserBean.setAllPage(totalpage);
-        
-        long begin=(page-1) * limit;
-        
-        List<User> list = userDao.findListByLimit(begin, limit);
-        
-        pageUserBean.setList(list);
-        
-        return pageUserBean;
+	public PageBean<User> findByPage(int page) throws PagePropertyNotInitException {
+		
+		long begin = pageUserBean.init(findAllCount(), page);
+
+		List<User> list = userDao.findListByLimit(begin, pageUserBean.getLimit());
+
+		pageUserBean.setList(list);
+
+		return pageUserBean;
+		
     }
 
 	@Override
@@ -226,6 +217,16 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<ServerOrder> findThisYearOrders(User t) {
 		return userDao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public <K> User findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return userDao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return userDao.findIdByProperty(map);
 	}
 
 

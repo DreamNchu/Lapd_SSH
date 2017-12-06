@@ -12,6 +12,7 @@ import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.OrderStatusService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -165,4 +166,13 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
+	@Override
+	public <K> OrderStatus findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
+	}
 }

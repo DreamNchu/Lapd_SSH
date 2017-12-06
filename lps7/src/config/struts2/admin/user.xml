@@ -6,7 +6,7 @@
 
 		<action name="userWorkData" class="userWorkDataAction" method="viewUsersByPage">
 			<result name="success">
-				/admin/userData.jsp
+				/admin/userWorkData.jsp
 			</result>
 		</action>
 

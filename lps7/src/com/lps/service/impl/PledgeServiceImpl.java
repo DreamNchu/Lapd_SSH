@@ -12,6 +12,7 @@ import com.lps.model.Pledge;
 import com.lps.model.PayPath;
 import com.lps.model.Pledge;
 import com.lps.model.ServerOrder;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.PledgeService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -155,6 +156,16 @@ public class PledgeServiceImpl implements PledgeService {
 	@Override
 	public List<ServerOrder> findThisYearOrders(Pledge t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public <K> Pledge findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 
 

@@ -1,4 +1,6 @@
     
+   -- delete from t_user where id = 4;
+  --  update t_user set workstatus = 1 where id = 4;
     
 select  * from `lapd_test`.`t_orderstatus`;
     

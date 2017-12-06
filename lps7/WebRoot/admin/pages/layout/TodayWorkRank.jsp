@@ -1,6 +1,13 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%
+StringBuffer basePath = request.getRequestURL();
+%>
+<%-- <s:debug></s:debug> --%>
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="<%=basePath%>">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>今日报表</title>

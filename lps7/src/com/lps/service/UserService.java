@@ -6,6 +6,7 @@ import com.lps.model.User;
 import com.lps.service.basic.BasicForServerOrderService;
 import com.lps.service.webuser.WebAccessUtil;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 public interface UserService extends BasicForServerOrderService<User>, WebAccessUtil{
 	
@@ -69,8 +70,9 @@ public interface UserService extends BasicForServerOrderService<User>, WebAccess
 	 * 根据页数查找员工
 	 * @param page 页数
 	 * @return 员工的PageBean对象
+	 * @throws PagePropertyNotInitException 
 	 */
-	PageBean<User> findByPage(int page);
+	PageBean<User> findByPage(int page) throws PagePropertyNotInitException;
 	
 	/**
 	 * 根据员工真是姓名查找员工

@@ -13,6 +13,12 @@
 
 	<bean id="pageBean" class="com.lps.util.PageBean" scope="prototype">
  		<property name="limit" value="10"></property>
+ 		<property name="maxPageNumSize" value="5"></property>
+ 		<property name="viewPageNum">
+			<set value-type="java.lang.Integer">
+			
+			</set> 
+ 		</property>
 	</bean> 
 	
 </beans>

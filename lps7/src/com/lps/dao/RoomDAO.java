@@ -5,7 +5,7 @@ import java.util.List;
 import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Room;
-import com.lps.model.RoomCategory;
+import com.lps.model.ServerItem;
 /**
  * interfaceName:RoomDAO
  * Description:继承自BasicDAO接口，包含查找房间的方法

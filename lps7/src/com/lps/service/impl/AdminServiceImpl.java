@@ -8,15 +8,18 @@ import java.util.Map;
 import com.lps.dao.AdminDAO;
 import com.lps.dao.impl.AdminDAOImpl;
 import com.lps.model.Admin;
+import com.lps.model.ClockCategory;
+import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
 import com.lps.service.AdminService;
 import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
 //@Component("adminServiceImpl")
 //@Aspect
 public class AdminServiceImpl implements AdminService {
 
-	private AdminDAO adminDao;
+	private AdminDAO dao;
 
 	private PageBean<Admin> pageAdminBean;
 
@@ -29,37 +32,37 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	public AdminDAO getAdminDao() {
-		return adminDao;
+		return dao;
 	}
 
 	// @Resource(name="adminDAOImpl")
 	public void setAdminDao(AdminDAO adminDao) {
-		this.adminDao = adminDao;
+		this.dao = adminDao;
 	}
 
 	@Override
 	public void save(Admin admin) {
-		adminDao.save(admin);
+		dao.save(admin);
 	}
 
 	@Override
 	public void delete(Admin admin) {
-		adminDao.delete(admin);
+		dao.delete(admin);
 	}
 
 	@Override
 	public Admin findByUserName(String name) {
-		return adminDao.getByUserName(name);
+		return dao.getByUserName(name);
 	}
 
 	@Override
 	public Admin findById(int id) {
-		return adminDao.findById(id);
+		return dao.findById(id);
 	}
 
 	@Override
 	public boolean isExists(Admin admin) {
-		return adminDao.isExists(admin);
+		return dao.isExists(admin);
 	}
 
 	@Override
@@ -74,7 +77,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<Admin> findByProperty(String propertyName, Object value) {
-		return adminDao.findByProperty(propertyName, value);
+		return dao.findByProperty(propertyName, value);
 	}
 	/*
 	 * @Override public List<Admin> findByRegisterTime(Timestamp value){ return
@@ -83,40 +86,31 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<Admin> findAll() {
-		return adminDao.findAll();
+		return dao.findAll();
 	}
 
 	@Override
 	public long findAllCount() {
-		return adminDao.findAllCount();
+		return dao.findAllCount();
 	}
 
 	@Override
-	public PageBean<Admin> findByPage(int page) {
-		pageAdminBean.setPage(page);
+	public PageBean<Admin> findByPage(int page) throws PagePropertyNotInitException {
+		
+		
+		long begin = pageAdminBean.init(findAllCount(), page);
 
-		long totalCount = findAllCount();
-
-		pageAdminBean.setAllCount(totalCount);
-
-		long limit = pageAdminBean.getLimit();
-
-		long totalpage = (long) Math.ceil(totalCount / limit);
-
-		pageAdminBean.setAllPage(totalpage);
-		// ÿҳ��ʾ�����ݼ���
-		long begin = (page - 1) * limit;
-
-		List<Admin> list = adminDao.findListByLimit(begin, limit);
+		List<Admin> list = dao.findListByLimit(begin, pageAdminBean.getLimit());
 
 		pageAdminBean.setList(list);
 
 		return pageAdminBean;
+		
 	}
 
 	@Override
 	public void update(Admin t) {
-		adminDao.update(t);
+		dao.update(t);
 	}
 
 	@Override
@@ -134,7 +128,7 @@ public class AdminServiceImpl implements AdminService {
 	public <T> String findPassword(BasicModel<T> admin) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
 		map.put(AdminDAOImpl.PASSWORD, String.class);
-		Admin ad = adminDao.findFields(admin, map);
+		Admin ad = dao.findFields(admin, map);
 		if (ad != null) {
 			return ad.getPassword();
 		}
@@ -149,11 +143,21 @@ public class AdminServiceImpl implements AdminService {
 	public int findIdByUserName(String name) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(AdminDAOImpl.USER_NAME, name);
-		List<Object> list = adminDao.findIdByProperty(map);
+		List<Object> list = dao.findIdByProperty(map);
 		 if(list != null && list.size() > 0){
-			return (int) adminDao.findIdByProperty(map).get(0);
+			return (int) dao.findIdByProperty(map).get(0);
 		 }
 		 return NOT_EXISTS;
+	}
+	
+	@Override
+	public <K> Admin findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 
 }

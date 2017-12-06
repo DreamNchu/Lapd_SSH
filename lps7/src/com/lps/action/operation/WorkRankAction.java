@@ -11,6 +11,7 @@ import com.lps.model.WorkRank;
 import com.lps.service.WorkRankService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.web.dto.WorkRankDto;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class WorkRankAction extends ActionSupport 
@@ -25,6 +26,16 @@ implements SessionAware, RequestAware{
 	private Map<String, Object> session ;
 	
 	private Map<String, Object> request ;
+	
+	private WorkRankDto workRankDto;
+
+	public WorkRankDto getWorkRankDto() {
+		return workRankDto;
+	}
+
+	public void setWorkRankDto(WorkRankDto workRankDto) {
+		this.workRankDto = workRankDto;
+	}
 	
 	
 	public List<WorkRank> getList() {

@@ -7,14 +7,14 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.lps.dao.impl.RoomCategoryDAOImpl;
-import com.lps.model.RoomCategory;
-import com.lps.service.impl.RoomCategoryServiceImpl;
+import com.lps.dao.impl.ServerItemDAOImpl;
+import com.lps.model.ServerItem;
+import com.lps.service.impl.ServerItemServiceImpl;
 
 public class RoomCategoryServiceTest {
 	
 	static ClassPathXmlApplicationContext ctx ;
-	static RoomCategoryServiceImpl as ;
+	static ServerItemServiceImpl as ;
 	
 	
 	@AfterClass
@@ -27,14 +27,14 @@ public class RoomCategoryServiceTest {
 		ctx = new ClassPathXmlApplicationContext(new String[]{
 				"classpath:config/applicationContext.xml",
 		});
-		as = ctx.getBean("roomCategoryServiceImpl", RoomCategoryServiceImpl.class);
+		as = ctx.getBean("roomCategoryServiceImpl", ServerItemServiceImpl.class);
 	}
 
 
 
 	@Test
 	public void testDelete() {
-		RoomCategory rc = as.findById(1);
+		ServerItem rc = as.findById(1);
 		as.delete(rc);
 	}
 
@@ -55,7 +55,7 @@ public class RoomCategoryServiceTest {
 
 	@Test
 	public void testFindByProperty() {
-		assertEquals(as.findByProperty(RoomCategoryDAOImpl.ROOM_CATEGORY, "洗脚").size(), 1);
+		assertEquals(as.findByProperty(ServerItemDAOImpl.ROOM_CATEGORY, "洗脚").size(), 1);
 		
 	}
 
@@ -71,7 +71,7 @@ public class RoomCategoryServiceTest {
 
 	@Test
 	public void testSave() {
-		RoomCategory rc = new RoomCategory("洗脚");
+		ServerItem rc = new ServerItem("洗脚");
 		as.save(rc);
 	}
 
@@ -82,7 +82,7 @@ public class RoomCategoryServiceTest {
 
 	@Test
 	public void testIsExists() {
-		RoomCategory rc = new RoomCategory();
+		ServerItem rc = new ServerItem();
 		rc.setId(1);
 		as.isExists(rc);
 	}
@@ -94,7 +94,7 @@ public class RoomCategoryServiceTest {
 
 	@Test
 	public void testUpdate() {
-		RoomCategory rc = as.findById(1);
+		ServerItem rc = as.findById(1);
 		rc.setRoomCategory("足浴");
 		as.update(rc);
 //		rc.setId(id);

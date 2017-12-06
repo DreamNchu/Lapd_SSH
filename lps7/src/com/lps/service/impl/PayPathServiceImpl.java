@@ -13,6 +13,7 @@ import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.PayPathService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -165,6 +166,17 @@ public class PayPathServiceImpl implements PayPathService {
 	@Override
 	public List<ServerOrder> findThisYearOrders(PayPath t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
+
+
+	@Override
+	public <K> PayPath findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 
 }

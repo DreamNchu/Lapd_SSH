@@ -1,11 +1,13 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lps.dao.WorkRankDAO;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.WorkRankService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -116,6 +118,16 @@ public class WorkRankServiceImpl implements WorkRankService {
 	@Override
 	public WorkRank findFirstMinRankNum(){
 		return dao.findFirstMinRankNum();
+	}
+
+	@Override
+	public <K> WorkRank findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 
 }

@@ -1,6 +1,13 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%
+StringBuffer basePath = request.getRequestURL();
+%>
+<%-- <s:debug></s:debug> --%>
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="<%=basePath%>">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>总体本月报表</title>
@@ -410,7 +417,7 @@
             //间距的数据集在X的价值观
             barDatasetSpacing       : 1,
             //图例模板
-            legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
+            //legendTemplate          : '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].fillColor%>"></span><%if(datasets[i].label){%><%=datasets[i].label%><%}%></li><%}%></ul>',
             //是否使图表响应
             responsive              : true,
             maintainAspectRatio     : true

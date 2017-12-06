@@ -12,7 +12,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lps.model.ClockCategory;
 import com.lps.model.Room;
-import com.lps.model.RoomCategory;
+import com.lps.model.ServerItem;
 import com.lps.service.impl.RoomServiceImpl;
 
 public class RoomServiceTest {
@@ -37,7 +37,7 @@ public class RoomServiceTest {
 
 	@Test
 	public void testSave() {
-		RoomCategory rc = new RoomCategory("按摩");
+		ServerItem rc = new ServerItem("按摩");
 		rc.setId(2);
 		Room r = new Room("206",2,4,new Date(), rc, false);
 		as.save(r);

@@ -347,7 +347,7 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 	 * 
 	 * @return 成功返回success
 	 */
-	public String updateOrder() {
+	public String updateOrder(){
 		ServerOrder so = serverOrderServiceImpl.findById(orderDataDto.getId());
 		// 更新已经更改的字段
 		orderDataDto.update(so);
@@ -386,7 +386,7 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 	 * 
 	 * @return 根据请求返回不同的界面
 	 */
-	public String viewStatusUserOrder() {
+	public String viewStatusUserOrders() {
 		User u = new User.Builder().setId((int) session.get("id")).build();
 		String orderStatus = (String) request.get("orderStatus");
 		OrderStatus os = orderStatusServiceImpl.findByOrderStatus(orderStatus).get(0);

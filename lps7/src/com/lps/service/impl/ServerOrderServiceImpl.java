@@ -2,9 +2,11 @@ package com.lps.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import com.lps.dao.ServerOrderDAO;
 import com.lps.model.ServerOrder;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.ServerOrderService;
 import com.lps.uenum.CompareLevel;
 import com.lps.util.PageBean;
@@ -161,6 +163,16 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	@Override
 	public List<ServerOrder> findThisYearOrders() {
 		return dao.findOrdersByDateLimit(WorkDate.getBeginOfThisYearDate(), WorkDate.getTomorrowDate());
+	}
+
+	@Override
+	public <K> ServerOrder findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 
 

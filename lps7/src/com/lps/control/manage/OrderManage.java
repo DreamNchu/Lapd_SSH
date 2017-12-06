@@ -100,6 +100,13 @@ public class OrderManage {
 
 	public static int i = 1;
 
+	/**
+	 * 订单id的生成
+	 * @param wordId
+	 * @param roomName1
+	 * @param clockCategoryId
+	 * @return
+	 */
 	private String orderIdCreater(int wordId, String roomName1, int clockCategoryId) {
 		String userWorkId = format(wordId, userWorkIdLength);
 		String roomName = format(roomName1, roomNameLength);
@@ -145,24 +152,32 @@ public class OrderManage {
 	 * @return
 	 */
 	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory) {
-//		System.out.println("workRankManage :" + workRankManage);
 		
-		ServerOrder so = new ServerOrder();
 		User u = userServiceImpl.findById(stuffId);
 		Room r = roomServiceImpl.findById(roomId);
 		ClockCategory cc = clockCategoryServiceImpl.findById(clockCategory);
-		OrderStatus os = orderStatusServiceImpl.findById(OrderStatusDAO.WAITING_RECEIVE);
 		
-		so.setId(orderIdCreater(u.getWorkId(), r.getName(), clockCategory));
-		so.setUser(u);  //初始化员工
-		so.setRoom(r); //初始化房间
-		so.setClockCategory(cc); //初始化钟点类型
-		so.setOrderStatus(os); //初始化订单状态
-		so.setInitTime(new Date());
-		
-		return so;
+		return createNormalOrder(u, r, cc);
 	}
 	
+	/**
+	 * 正常情况创建订单
+	 * @param user
+	 * @param room
+	 * @param clockCategory
+	 * @return
+	 */
+	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory){
+		ServerOrder so = new ServerOrder();
+		so.setId(orderIdCreater(user.getWorkId(), room.getName(), clockCategory.getId()));
+		so.setUser(user);  //初始化员工
+		so.setRoom(room); //初始化房间
+		so.setClockCategory(clockCategory); //初始化钟点类型
+		OrderStatus os = orderStatusServiceImpl.findById(OrderStatusDAO.WAITING_RECEIVE);
+		so.setOrderStatus(os); //初始化订单状态
+		so.setInitTime(new Date());
+		return so;
+	}
 	
 	/**
 	 * 自动创建订单
@@ -178,14 +193,12 @@ public class OrderManage {
 			//判断是否有空闲员工，如果有那么执行下面语句
 			Room r = roomServiceImpl.findById(roomId);
 			ClockCategory cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
-			OrderStatus os = orderStatusServiceImpl.findById(OrderStatusDAO.WAITING_RECEIVE);
-			so = new ServerOrder();
-			so.setId(orderIdCreater(u.getWorkId(), r.getName(), cc.getId()));
-			so.setUser(u);  //初始化员工
-			so.setRoom(r); //初始化房间
-			so.setClockCategory(cc); //初始化钟点类型
-			so.setOrderStatus(os); //初始化订单状态
-			so.setInitTime(new Date());
+			
+			return createNormalOrder(u, r, cc);
+		}else{ //所有员工都没有空
+//			Room r = roomServiceImpl.findById(roomId);
+//			ClockCategory cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
+			
 		}
 		
 		return so;

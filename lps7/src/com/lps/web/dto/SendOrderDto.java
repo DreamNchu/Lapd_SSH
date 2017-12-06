@@ -7,7 +7,7 @@ import java.util.TreeSet;
 
 import com.lps.model.ClockCategory;
 import com.lps.model.Room;
-import com.lps.model.RoomCategory;
+import com.lps.model.ServerItem;
 import com.lps.model.User;
 
 /**
@@ -21,7 +21,7 @@ public class SendOrderDto {
 	
 	private List<Room> roomList = new ArrayList<>();
 	
-	private Set<RoomCategory> roomCategorySet = new TreeSet<>();
+	private Set<ServerItem> roomCategorySet = new TreeSet<>();
 	
 	private ClockCategory clockCategory = null;
 	
@@ -34,11 +34,11 @@ public class SendOrderDto {
 		this.clockCategory = clockCategory;
 	}
 
-	public Set<RoomCategory> getRoomCategorySet() {
+	public Set<ServerItem> getRoomCategorySet() {
 		return roomCategorySet;
 	}
 
-	public void setRoomCategorySet(Set<RoomCategory> roomCategorySet) {
+	public void setRoomCategorySet(Set<ServerItem> roomCategorySet) {
 		this.roomCategorySet = roomCategorySet;
 	}
 

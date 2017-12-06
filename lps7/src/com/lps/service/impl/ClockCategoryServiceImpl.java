@@ -9,6 +9,7 @@ import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.impl.ClockCategoryDAOImpl;
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
+import com.lps.model.basic.BasicModel;
 import com.lps.model.ClockCategory;
 import com.lps.service.ClockCategoryService;
 import com.lps.util.PageBean;
@@ -160,6 +161,16 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	@Override
 	public List<ServerOrder> findThisYearOrders(ClockCategory t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
+	
+	@Override
+	public <K> ClockCategory findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 
 }

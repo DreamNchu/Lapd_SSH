@@ -4,6 +4,8 @@ import com.lps.model.User;
 
 public class WorkRankDto {
 	
+	private int index;
+	
 	private User user;
 	
 	private int rank;
@@ -12,7 +14,33 @@ public class WorkRankDto {
 	
 	private Integer spotNum;
 	
+	private Integer allNum;
 	
+	private double profits;
+	
+	public double getProfits() {
+		return profits;
+	}
+
+	public void setProfits(double profits) {
+		this.profits = profits;
+	}
+
+	public Integer getAllNum() {
+		return allNum;
+	}
+
+	public void setAllNum(Integer allNum) {
+		this.allNum = allNum;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
 
 	public User getUser() {
 		return user;

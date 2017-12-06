@@ -1,11 +1,13 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.lps.dao.WorkStatusDAO;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
 import com.lps.model.WorkStatus;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.WorkStatusService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -96,6 +98,16 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	public void update(WorkStatus t) {
 		// TODO Auto-generated method stub
 		dao.update(t);
+	}
+
+	@Override
+	public <K> WorkStatus findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 
 }

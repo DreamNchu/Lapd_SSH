@@ -4,11 +4,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 
 import org.junit.Test;
-
-import com.google.gson.Gson;
 
 public class TestGson {
 	
@@ -51,8 +48,8 @@ public class TestGson {
 //		System.out.println(user.age);
 		
 		
-		Data d = new Data();
-		d.labels = new ArrayList<>();
+//		Data d = new Data();
+/*		d.labels = new ArrayList<>();
 		d.labels.add(1);
 		d.labels.add(2);
 		d.labels.add(3);
@@ -63,7 +60,7 @@ public class TestGson {
 		d.datasets.put("data", d.labels);
 		
 		Gson gson = new Gson();
-		System.out.println(gson.toJson(d));
+		System.out.println(gson.toJson(d));*/
 /*		Gson gson = new Gson();
 		User u = new User();
 		u.age = 1;
@@ -90,6 +87,15 @@ public class TestGson {
 		// Serialization
 		String json = gson.toJson(u);  // ==> json is [1,2,3,4,5]
 		System.out.println(json);*/
+		
+		List<Object> list = new ArrayList<>();
+		list.add(null);
+		list.add(1);
+		list.add(null);
+		list.add("hhh");
+		for (Object object : list) {
+			System.out.println(object);
+		}
 
 	}
 

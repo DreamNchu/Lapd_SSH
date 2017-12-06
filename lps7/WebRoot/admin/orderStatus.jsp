@@ -1,31 +1,39 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%
+StringBuffer basePath = request.getRequestURL();
+%>
+<%-- <s:debug></s:debug> --%>
 <!DOCTYPE html>
 <html>
 <head>
+    <base href="<%=basePath%>">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>重发订单</title>
+    <title>订单详情</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
     <header class="main-header" style="background-color: #333333">
         <a href="" class="logo" style="background-color: #333333">
-            <span class="logo-mini"><b>☆</b></span>
             <span class="logo-lg"><b> 小店助手</b></span>
         </a>
         <nav class="navbar navbar-static-top" role="navigation" style="background-color: #555555">
-            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"></a>
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">显示/隐藏</span>
+            </a>
             <div class="navbar-custom-menu">
                 <ul class="nav navbar-nav">
                     <li class="dropdown messages-menu">
@@ -108,12 +116,14 @@
                             <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                             <span class="hidden-xs">你好，世界</span>
                         </a>
-                        <ul class="dropdown-menu" style="background-color: #2e6da4">
+                        <ul class="dropdown-menu">
                             <li class="user-header">
                                 <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                                </br>
-                                <lable style="font-family: 楷体">前端工程师</lable>
-                                </br>注册时间2017-12-11
+
+                                <p>
+                                    你好世界-前端工程师
+                                    <small>注册时间 2012</small>
+                                </p>
                             </li>
                             <li class="user-body">
                                 <div class="row">
@@ -170,15 +180,15 @@
                   <i class="fa fa-angle-left pull-right"></i>
                 </span>
                             </a>
-                            <ul class="treeview-menu">
-                                <li ><a href="dzsf.html"><i class="fa fa-circle-o text-yellow"></i>点钟手发</a></li>
-                                <li ><a href="pzsf.html"><i class="fa fa-circle-o text-blue"></i>排钟手发</a></li>
-                                <li ><a href="pzzf.html"><i class="fa fa-circle-o text-green"></i>排钟自发</a></li>
+              			<ul class="treeview-menu">
+                                <li ><a href="spotOrderHandle"><i class="fa fa-circle-o text-yellow"></i>点钟手发</a></li>
+                                <li ><a href="rankOrderHandle"><i class="fa fa-circle-o text-blue"></i>排钟手发</a></li>
+                                <li ><a href="rankOrderAuto"><i class="fa fa-circle-o text-green"></i>排钟自发</a></li>                       
                             </ul>
                         </li>
                         <li><a href="pzzf.html"><i class="fa fa-circle-o text-green"></i>员工状态</a></li>
-                        <li class="active"><a href="cfdd.html"><i class="fa fa-circle-o text-yellow"></i>重发订单</a></li>
-                        <li><a href="ddqk.html"><i class="fa fa-circle-o text-blue"></i>订单情况</a></li>
+                        <li ><a href="cfdd.html"><i class="fa fa-circle-o text-yellow"></i>重发订单</a></li>
+                        <li class="active"><a href="ddqk.html"><i class="fa fa-circle-o text-blue"></i>订单情况</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -190,8 +200,8 @@
                     <ul class="treeview-menu">
                         <li class="treeview"><a href="#"><i class="fa fa-circle-o text-orange"></i>个人报表
                             <span class="pull-right-container">
-                                <i class="fa fa-angle-left pull-right"></i>
-                            </span>
+                                 <i class="fa fa-angle-left pull-right"></i>
+                          </span>
                         </a>
                             <ul class="treeview-menu">
                                 <li ><a href="pages/charts/gjrbb.html"><i class="fa fa-circle-o text-yellow"></i>今日报表</a></li>
@@ -243,8 +253,6 @@
                 <li><a href="gywz.html"><i class="glyphicon glyphicon-book"></i> <span>关于网站</span></a></li>
             </ul>
 
-
-
         </section>
     </aside>
 
@@ -252,7 +260,7 @@
         <section class="content-header">
             <h1>
                 工作模块
-                <small>重发订单</small>
+                <small>订单情况</small>
             </h1>
             <ol class="breadcrumb">
                 <li><a href="#"><i class="fa fa-dashboard"></i>2017-11-27-18-19</a></li>
@@ -263,8 +271,7 @@
                 <div class="col-xs-12">
                     <div class="box">
                         <div class="box-header">
-                            <h3 class="box-title">订单简表</h3>
-
+                            <h3 class="box-title">待接收订单详表</h3>
                             <div class="box-tools">
                                 <div class="input-group input-group-sm" style="width: 150px;">
                                     <input type="text" name="table_search" class="form-control pull-right" placeholder="查找">
@@ -275,7 +282,6 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- /.box-header -->
                         <div class="box-body table-responsive no-padding">
                             <table class="table table-hover">
                                 <tr>
@@ -284,6 +290,95 @@
                                     <th>员工号</th>
                                     <th>员工姓名</th>
                                     <th>发布时间</th>
+                                    <th>订单类型</th>
+                                    <th>所做项目</th>
+                                </tr>
+                                <s:iterator>
+                                	
+                                </s:iterator>
+                                
+                                <tr>
+                                	
+                                	
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                </tr>
+                            </table>
+                            <div class="box-footer clearfix">
+                                <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共130条数据-共13页-当前第3页</lable>
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">工作中订单详表</h3>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="查找">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>订单号</th>
+                                    <th>房间号</th>
+                                    <th>员工号</th>
+                                    <th>员工姓名</th>
+                                    <th>发布时间</th>
+                                    <th>订单类型</th>
                                     <th>所做项目</th>
                                 </tr>
                                 <tr>
@@ -292,6 +387,7 @@
                                     <td><span class="label label-danger">773</span></td>
                                     <td>张晓明</td>
                                     <td>10：30</td>
+                                    <th>点钟</th>
                                     <td>按摩</td>
                                 </tr>
                                 <tr>
@@ -300,6 +396,7 @@
                                     <td><span class="label label-danger">773</span></td>
                                     <td>张晓明</td>
                                     <td>10：30</td>
+                                    <th>点钟</th>
                                     <td>按摩</td>
                                 </tr>
                                 <tr>
@@ -308,6 +405,7 @@
                                     <td><span class="label label-danger">773</span></td>
                                     <td>张晓明</td>
                                     <td>10：30</td>
+                                    <th>点钟</th>
                                     <td>按摩</td>
                                 </tr>
                                 <tr>
@@ -316,6 +414,7 @@
                                     <td><span class="label label-danger">773</span></td>
                                     <td>张晓明</td>
                                     <td>10：30</td>
+                                    <th>点钟</th>
                                     <td>按摩</td>
                                 </tr>
                                 <tr>
@@ -324,74 +423,219 @@
                                     <td><span class="label label-danger">773</span></td>
                                     <td>张晓明</td>
                                     <td>10：30</td>
+                                    <th>点钟</th>
                                     <td>按摩</td>
                                 </tr>
                             </table>
-                        </div>
-                        <div class="box-footer clearfix">
-                            <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共130条数据-共13页-当前第3页</lable>
-                            <ul class="pagination pagination-sm no-margin pull-right">
-                                <li><a href="#">&laquo;</a></li>
-                                <li><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
-                        <div class="box box-warning">
-                            <div class="box-header with-border">
-                                <h3 class="box-title">重发订单</h3>
+                            <div class="box-footer clearfix">
+                                <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共130条数据-共13页-当前第3页</lable>
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
                             </div>
-                            <div class="box-body">
-                                <form role="form">
-                                    <div class="form-group">
-                                        <label>选择员工</label>
-                                        <select class="form-control">
-                                            <option>001</option>
-                                            <option>003</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">待支付订单详表</h3>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="查找">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                     </div>
-                                    <div class="form-group">
-                                        <label>选择房间</label>
-                                        <select class="form-control">
-                                            <option>001</option>
-                                            <option>003</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>订单号</th>
+                                    <th>房间号</th>
+                                    <th>员工号</th>
+                                    <th>员工姓名</th>
+                                    <th>完成时间</th>
+                                    <th>订单类型</th>
+                                    <th>所做项目</th>
+                                    <th>所要药品</th>
+                                    <th>所需支付</th>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                </tr>
+                            </table>
+                            <div class="box-footer clearfix">
+                                <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共130条数据-共13页-当前第3页</lable>
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">已支付订单详表</h3>
+                            <div class="box-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="table_search" class="form-control pull-right" placeholder="查找">
+
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                     </div>
-                                    <div class="form-group">
-                                        <label>选择项目</label>
-                                        <select class="form-control">
-                                            <option>按摩</option>
-                                            <option>option 2</option>
-                                            <option>option 3</option>
-                                            <option>option 4</option>
-                                            <option>option 5</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>选择客户优先级别</label>
-                                        <select class="form-control">
-                                            <option>普通会员</option>
-                                            <option>普通VIP</option>
-                                            <option>高级VIP</option>
-                                            <option>尊贵VIP</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>备注</label>
-                                        <textarea class="form-control" rows="3" placeholder="备注信息......"></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-info pull-right">发 布</button>
-                                        <button type="submit" class="btn btn-info pull-right">删 除</button>
-                                    </div>
-                                </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box-body table-responsive no-padding">
+                            <table class="table table-hover">
+                                <tr>
+                                    <th>订单号</th>
+                                    <th>房间号</th>
+                                    <th>员工号</th>
+                                    <th>员工姓名</th>
+                                    <th>完成时间</th>
+                                    <th>订单类型</th>
+                                    <th>所做项目</th>
+                                    <th>所要药品</th>
+                                    <th>所需支付</th>
+                                    <th>实际支付</th>
+                                    <th>支付方式</th>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                    <td>350</td>
+                                    <td>微信</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                    <td>350</td>
+                                    <td>微信</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                    <td>350</td>
+                                    <td>微信</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                    <td>350</td>
+                                    <td>微信</td>
+                                </tr>
+                                <tr>
+                                    <td><span class="label label-success">183</span></td>
+                                    <td><span class="label label-primary">111</span></td>
+                                    <td><span class="label label-danger">773</span></td>
+                                    <td>张晓明</td>
+                                    <td>10：30</td>
+                                    <th>点钟</th>
+                                    <td>按摩</td>
+                                    <td>药品</td>
+                                    <td>350</td>
+                                    <td>350</td>
+                                    <td>微信</td>
+                                </tr>
+                            </table>
+                            <div class="box-footer clearfix">
+                                <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共130条数据-共13页-当前第3页</lable>
+                                <ul class="pagination pagination-sm no-margin pull-right">
+                                    <li><a href="#">&laquo;</a></li>
+                                    <li><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">&raquo;</a></li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -439,9 +683,7 @@
                         </a>
                     </li>
                 </ul>
-
             </div>
-
             <div class="tab-pane" id="control-sidebar-stats-tab">表格内容</div>
             <div class="tab-pane" id="control-sidebar-settings-tab">
                 <form method="post">
@@ -462,9 +704,9 @@
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>
-
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
+
 </body>
 </html>

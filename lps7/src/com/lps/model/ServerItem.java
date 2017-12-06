@@ -17,8 +17,8 @@ import javax.persistence.TableGenerator;
 import com.lps.model.basic.ModelLinkServerOrder;
 
 /**
- * ClassName:RoomCategory
- * Description:RoomCategory类继承自java.io.Serializable接口，房间类型类，包含属性的get set方法
+ * ClassName:ServerItem
+ * Description:ServerItem类继承自java.io.Serializable接口，房间类型类，包含属性的get set方法
  * <p>
  * @author cyl
  * @version 1.0
@@ -33,7 +33,7 @@ import com.lps.model.basic.ModelLinkServerOrder;
 		valueColumnName = "gen_value", 
 		pkColumnValue = "roomcategory_PK",
 		allocationSize = 1)
-public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<Integer>,  Comparable<RoomCategory> {
+public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<Integer>,  Comparable<ServerItem> {
 
 	// Fields
 
@@ -49,28 +49,28 @@ public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<
 
 	/** default constructor */
 	/**
-	 * 这是RoomCategory类的无参构造函数
+	 * 这是ServerItem类的无参构造函数
 	 */
-	public RoomCategory() {
+	public ServerItem() {
 	}
 	
 	/**
-	 * 这是RoomCategory类的构造函数
+	 * 这是ServerItem类的构造函数
 	 * <p>
 	 * @param roomcategory 房间类型 String类型
 	 */
-	public RoomCategory(String roomcategory) {
+	public ServerItem(String roomcategory) {
 		this.roomCategory = roomcategory;
 	}
 
 	/** full constructor */
 	/**
-	 * 这是RoomCategory类的构造函数
+	 * 这是ServerItem类的构造函数
 	 * <p>
 	 * @param roomcategory 房间类型 String类型
 	 * @param TRooms
 	 */
-	public RoomCategory(String roomcategory, Set<Room> rooms) {
+	public ServerItem(String roomcategory, Set<Room> rooms) {
 		this.roomCategory = roomcategory;
 		this.rooms = rooms;
 	}
@@ -105,7 +105,7 @@ public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<
 	 */
 	@Column(name = "roomCategory", unique = true, length = 20,  nullable=false)
 
-	public String getRoomCategory() {
+	public String getServerItem() {
 		return this.roomCategory;
 	}
 
@@ -114,7 +114,7 @@ public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<
 	 * <p>
 	 * @param roomcategory 设置房间类型
 	 */
-	public void setRoomCategory(String roomcategory) {
+	public void setServerItem(String roomcategory) {
 		this.roomCategory = roomcategory;
 	}
 
@@ -141,7 +141,7 @@ public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<
 	 * ClassName:Builder
      * Description:内部类，可以访问外部类里的属性，也可以访问属性的set方法
      * <p>
-     * @see RoomCategory
+     * @see ServerItem
 	 * @author cyl
 	 * @version 1.0
 	 *
@@ -176,8 +176,8 @@ public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<
 	         * <p>
 	         * @return RoomCatagory实例
 	         */
-	        public RoomCategory build(){
-	        	return new RoomCategory(roomcategory, rooms);
+	        public ServerItem build(){
+	        	return new ServerItem(roomcategory, rooms);
 	        }
 	       
 	    }
@@ -185,8 +185,8 @@ public class RoomCategory implements java.io.Serializable ,ModelLinkServerOrder<
 	  
 	  
 	@Override
-	public int compareTo(RoomCategory o) {
-		return this.getRoomCategory().compareTo((o.getRoomCategory()));
+	public int compareTo(ServerItem o) {
+		return this.getServerItem().compareTo((o.getServerItem()));
 	}
 
 

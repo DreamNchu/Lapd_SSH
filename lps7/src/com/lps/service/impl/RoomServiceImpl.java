@@ -1,6 +1,7 @@
 package com.lps.service.impl;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.RoomDAO;
@@ -8,6 +9,7 @@ import com.lps.model.Admin;
 import com.lps.model.Room;
 import com.lps.model.Room;
 import com.lps.model.ServerOrder;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.RoomService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -183,6 +185,16 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public List<ServerOrder> findThisYearOrders(Room t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	}
+
+	@Override
+	public <K> Room findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+		return dao.findFields(t, fields);
+	}
+
+	@Override
+	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+		return dao.findIdByProperty(map);
 	}
 	
 }

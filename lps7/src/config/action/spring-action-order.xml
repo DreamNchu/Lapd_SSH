@@ -11,21 +11,36 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
-	<bean id="spotOrderHandle" scope="prototype" class="com.lps.action.operation.SpotOrderHandle">
-		<property name="workRankServiceImpl" ref="workRankServiceImpl"></property>	
-		<property name="roomServiceImpl" ref="roomServiceImpl"></property>	
-		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>	
+	<bean id="spotOrderHandle" scope="prototype"
+		class="com.lps.action.operation.SpotOrderHandle">
+		<property name="workRankServiceImpl" ref="workRankServiceImpl"></property>
+		<property name="roomServiceImpl" ref="roomServiceImpl"></property>
+		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>
 	</bean>
 
-<bean id="rankOrderHandle" scope="prototype" class="com.lps.action.operation.RankOrderHandle">
-		<property name="workRankServiceImpl" ref="workRankServiceImpl"></property>	
-		<property name="roomServiceImpl" ref="roomServiceImpl"></property>	
-		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>	
+	<bean id="rankOrderHandle" scope="prototype"
+		class="com.lps.action.operation.RankOrderHandle">
+		<property name="workRankServiceImpl" ref="workRankServiceImpl"></property>
+		<property name="roomServiceImpl" ref="roomServiceImpl"></property>
+		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>
+	</bean>
+
+	<bean id="rankOrderAuto" scope="prototype"
+		class="com.lps.action.operation.RankOrderAuto">
+		<property name="roomServiceImpl" ref="roomServiceImpl"></property>
+		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>
+	</bean>
+
+
+
+	<bean id="initCreateOrderBasicDataAction" scope="prototype"
+		class="com.lps.action.operation.order.InitCreateOrderBasicDataAction">
+		<property name="initCreateOrderDto" ref="initCreateOrderDto"></property>
 	</bean>
 	
-	<bean id="rankOrderAuto" scope="prototype" class="com.lps.action.operation.RankOrderAuto">
-		<property name="roomServiceImpl" ref="roomServiceImpl"></property>	
-		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>	
+	<bean id="createOrderAction" scope="prototype" class="com.lps.action.operation.order.CreateOrderAction">
+		<property name="orderManage" ref="orderManage"></property>
+		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 	</bean>
 
 </beans>

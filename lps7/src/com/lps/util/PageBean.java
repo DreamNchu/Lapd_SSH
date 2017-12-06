@@ -1,6 +1,7 @@
 package com.lps.util;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author 0001
@@ -19,35 +20,94 @@ public class PageBean<T> {
 
 	private List<T> list;// 包含的集合
 
+	private int maxPageNumSize;
+
+	public int getMaxPageNumSize() {
+		return maxPageNumSize;
+	}
+
+	public void setMaxPageNumSize(int maxPageNumSize) {
+		this.maxPageNumSize = maxPageNumSize;
+	}
+
+	private Set<Integer> viewPageNum;
+
+
+	public Set<Integer> getViewPageNum() {
+		return viewPageNum;
+	}
+
+	public void setViewPageNum(Set<Integer> viewPageNum) {
+		this.viewPageNum = viewPageNum;
+	}
+
 	/**
 	 * 该方法完成了对{@link PageBean#getAllCount()}初始化
 	 * <p>
 	 * 返回该页面下的起始下标
-	 * @param allCount 所有的记录
-	 * @param page 当前页面数
+	 * 
+	 * @param allCount
+	 *            所有的记录
+	 * @param page
+	 *            当前页面数
 	 * @return 返回该页面下的起始下标
-	 * @throws PagePropertyNotInitException 
+	 * @throws PagePropertyNotInitException
 	 */
 	public long init(long allCount, long page) throws PagePropertyNotInitException {
-		
-		if(limit < 0){
+
+		if (limit < 0) {
 			throw new PagePropertyNotInitException("PageBeanLimitNotInitException");
 		}
-		
-		this.page = page;
-		
+
+
 		this.allCount = allCount;
 
-		long totalpage = (long) Math.ceil(allCount / limit);
+		long totalpage = (long) Math.ceil((double)allCount / limit);
 
 		this.allPage = totalpage;
-
-		long begin = (page - 1) * limit;
 		
+		if(page > allPage){  //如果比总页数还大
+			page = allPage;
+		}else if(page < 1){  //如果小于第一页
+			page = 1;
+		}
+		this.page = page;  //保存当前页
+		long begin = (page - 1) * limit;
+
+		// 计算要显示的页面序号数
+
+		// viewPageNum.add
+		initViewPageNum();
+
 		return begin;
 	}
+
+	/**
+	 * 计算出要显示的下标
+	 */
+	private void initViewPageNum() {
+		long max = 0;
+		long min = 0;
+		long tempPage = page;
+		long maxViewPage = tempPage + maxPageNumSize / 2;
+		if (maxViewPage > allPage) {
+			max = allPage;
+		} else {
+			max = maxViewPage;
+		}
+		long minViewPage = tempPage - maxPageNumSize / 2;
+		if (minViewPage < 1) {
+			min = 1;
+		} else {
+			min = minViewPage;
+		}
+		for (long i = min; i <= max; i++)
+			viewPageNum.add((int) i);
+	}
+
 	/**
 	 * 获取页数
+	 * 
 	 * @return 返回当前的页面数
 	 */
 	public long getPage() {
@@ -56,57 +116,66 @@ public class PageBean<T> {
 
 	/**
 	 * 设置页面数
-	 * @param page 设置页面
+	 * 
+	 * @param page
+	 *            设置页面
 	 */
 	public void setPage(long page) {
 		this.page = page;
 	}
-/**
- * 返回所有记录
- * @return
- */
+
+	/**
+	 * 返回所有记录
+	 * 
+	 * @return
+	 */
 	public long getAllCount() {
 		return allCount;
 	}
-/**
- * 设置当前的记录总数
- * @param allCount 记录总数
- */
+
+	/**
+	 * 设置当前的记录总数
+	 * 
+	 * @param allCount
+	 *            记录总数
+	 */
 	public void setAllCount(long allCount) {
 		this.allCount = allCount;
 	}
-/**
- * 返回页面总数
- * @return 放回页面总数
- */
+
+	/**
+	 * 返回页面总数
+	 * 
+	 * @return 放回页面总数
+	 */
 	public long getAllPage() {
 		return allPage;
 	}
-/**
- * 设置页面总数
- * @param allPage 页面总数
- */
-	public void setAllPage(long allPage) {
-		this.allPage = allPage;
-	}
-/**
- * 每个页面的限制条数
- * @return 返回每个页面的限制条数
- */
+
+	/**
+	 * 每个页面的限制条数
+	 * 
+	 * @return 返回每个页面的限制条数
+	 */
 	public long getLimit() {
 		return limit;
 	}
-/**
- * 设置页面的记录显示条数
- * @param limit 页面的记录显示条数
- */
+
+	/**
+	 * 设置页面的记录显示条数
+	 * 
+	 * @param limit
+	 *            页面的记录显示条数
+	 */
 	public void setLimit(long limit) {
 		this.limit = limit;
 	}
-/**
- * 返回当前页面的list
- * @return
- */
+
+	/**
+	 * 返回当前页面的list
+	 * 
+	 * @return
+	 */
 	public List<T> getList() {
 		return list;
 	}
