@@ -23,7 +23,7 @@
 		<property name="room">
 			<list></list>
 		</property>
-		<property name="roomCategory">
+		<property name="serverItem">
 			<list></list>
 		</property>
 		<property name="user">

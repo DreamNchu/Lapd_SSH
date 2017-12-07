@@ -151,13 +151,13 @@ public class OrderManage {
 	 * @param clockCategory
 	 * @return
 	 */
-	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory) {
+	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory, String orderRemark) {
 		
 		User u = userServiceImpl.findById(stuffId);
 		Room r = roomServiceImpl.findById(roomId);
 		ClockCategory cc = clockCategoryServiceImpl.findById(clockCategory);
 		
-		return createNormalOrder(u, r, cc);
+		return createNormalOrder(u, r, cc,orderRemark);
 	}
 	
 	/**
@@ -167,7 +167,7 @@ public class OrderManage {
 	 * @param clockCategory
 	 * @return
 	 */
-	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory){
+	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory, String orderRemark){
 		ServerOrder so = new ServerOrder();
 		so.setId(orderIdCreater(user.getWorkId(), room.getName(), clockCategory.getId()));
 		so.setUser(user);  //初始化员工
@@ -176,6 +176,7 @@ public class OrderManage {
 		OrderStatus os = orderStatusServiceImpl.findById(OrderStatusDAO.WAITING_RECEIVE);
 		so.setOrderStatus(os); //初始化订单状态
 		so.setInitTime(new Date());
+		so.setOrderRemark(orderRemark);
 		return so;
 	}
 	
@@ -184,7 +185,7 @@ public class OrderManage {
 	 * @param roomId
 	 * @return
 	 */
-	public ServerOrder createOrder(int roomId){
+	public ServerOrder createOrder(int roomId, String orderRemark){
 		
 		ServerOrder so = null;
 		User u = workRankManage.nextOne();
@@ -194,7 +195,7 @@ public class OrderManage {
 			Room r = roomServiceImpl.findById(roomId);
 			ClockCategory cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
 			
-			return createNormalOrder(u, r, cc);
+			return createNormalOrder(u, r, cc,orderRemark);
 		}else{ //所有员工都没有空
 //			Room r = roomServiceImpl.findById(roomId);
 //			ClockCategory cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);

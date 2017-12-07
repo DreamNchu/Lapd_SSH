@@ -4,7 +4,7 @@ public class UserCreateOrderDto {
 	
 	public String stuffId;
 	
-	public String workId;
+	public String stuffWorkId;
 	
 	public UserCreateOrderDto() {
 		// TODO Auto-generated constructor stub
@@ -13,7 +13,7 @@ public class UserCreateOrderDto {
 	public UserCreateOrderDto(String stuffId, String workId) {
 		super();
 		this.stuffId = stuffId;
-		this.workId = workId;
+		this.stuffWorkId = workId;
 	}
 	
 	

@@ -60,7 +60,7 @@ public class UserStatusAction extends ActionSupport implements SessionAware{
 	 * <p>
 	 * 失败返回error
 	 */
-	public String logIn() {
+	public String login() {
 		
 		String tempPassword = userServiceImpl.findPasswordByUserName(userName);
 		int id = userServiceImpl.findIdByUserName(userName);

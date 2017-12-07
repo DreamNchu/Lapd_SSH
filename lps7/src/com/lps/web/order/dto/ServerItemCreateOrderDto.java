@@ -1,16 +1,16 @@
 package com.lps.web.order.dto;
 
-public class RoomCategoyCreateOrderDto {
+public class ServerItemCreateOrderDto {
 	
 	public String catetgoryId;
 	
 	public String catetgoryName;
 	
-	public RoomCategoyCreateOrderDto() {
+	public ServerItemCreateOrderDto() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RoomCategoyCreateOrderDto(String catetgoryId, String catetgoryName) {
+	public ServerItemCreateOrderDto(String catetgoryId, String catetgoryName) {
 		super();
 		this.catetgoryId = catetgoryId;
 		this.catetgoryName = catetgoryName;

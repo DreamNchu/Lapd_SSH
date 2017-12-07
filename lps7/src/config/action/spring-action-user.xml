@@ -33,4 +33,7 @@
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
 	</bean>
 	
+	<bean id="userMainAction" scope="prototype" class="com.lps.action.user.operation.UserMainAction">
+			
+	</bean>
 </beans>

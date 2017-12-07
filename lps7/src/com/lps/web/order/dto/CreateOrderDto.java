@@ -10,6 +10,15 @@ public class CreateOrderDto {
  	
  	private int roomCategoryId;
  	
+ 	private String orderRemark;
+
+	public String getOrderRemark() {
+		return orderRemark;
+	}
+
+	public void setOrderRemark(String orderRemark) {
+		this.orderRemark = orderRemark;
+	}
 
 	public int getCreateWay() {
 		return createWay;

@@ -5,7 +5,7 @@
 	<package name="adminMain" namespace="/admin" extends="struts-default">
 
 		<action name="index" class="adminMainAction" method="index">
-			<result type="redirect">/admin/spotOrderHandle</result>
+			<result type="redirect">/admin/initOrder</result>
 		</action>
 
 	</package>

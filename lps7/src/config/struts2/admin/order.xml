@@ -4,23 +4,24 @@
 	
 	<package name="order" namespace="/admin" extends="json-default">
 		
-		<action name="*Order*" class="{1}Order{2}" >
-			<result>{1}Order{2}.jsp</result>
-		</action>
-		
-		<action name="createOrder" class="ordersAction" method="createOrder">
+		<action name="createOrder" class="createOrderAction">
 			<result type="json">
-				<param name="root">createOrderResult</param>
+				<param name="root">result</param>
 			</result>
 		</action>
 		
-		<action name="createOrderAuto" class="ordersAction" method="createOrderAuto">
+		<action name="initOrderData" class="initCreateOrderBasicDataAction" method="initOrderData">
 			<result type="json">
-				<param name="root">createOrderResult</param>
+				<param name="root">result</param>
 			</result>
 		</action>
 		
-		<!-- <action name="" class="ordersAction" method=></action> -->
+		<action name="initOrder" class="initCreateOrderBasicDataAction" >
+			<result>
+				/admin/initOrder.jsp
+			</result>
+		</action>
+		
 		
 	</package>
 

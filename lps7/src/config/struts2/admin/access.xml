@@ -10,10 +10,10 @@
 		</action>
 		<action name="main" class="adminAccessAction" method="main">
 			<result name="success" type="redirect">
-				/admin/index
+				/admin/index<!-- 登录成功转向主界面 -->
 			</result>
 			<result name="error" type="redirect">
-				/admin/login
+				/admin/login <!-- 失败重新登录 -->
 			</result>
 		</action>
 

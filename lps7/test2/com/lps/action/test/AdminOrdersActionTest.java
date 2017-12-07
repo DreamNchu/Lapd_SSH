@@ -57,7 +57,6 @@ public class AdminOrdersActionTest {
 		as.setClockCategoryId(1);
 		WorkRankManage w = (WorkRankManage) ctx.getBean("workRankManage");
 		System.out.println(w.getWorkRankServiceImpl());
-		as.createOrder();
 	}
 	
 	@Test

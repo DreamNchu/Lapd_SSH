@@ -6,7 +6,6 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.lps.control.manage.OrderManage;
 import com.lps.dao.ClockCategoryDAO;
-import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
 import com.lps.service.ServerOrderService;
 import com.lps.web.order.dto.CreateOrderDto;
@@ -29,19 +28,20 @@ public class CreateOrderAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
+//System.out.println("111"+createOrderDto.getOrderRemark());
 		try {
 			ServerOrder so = null;
 			switch (createOrderDto.getCreateWay()) {
 			case CreateOrderWay.rank_order_auto:
-				so = orderManage.createOrder(createOrderDto.getRoomId());
+				so = orderManage.createOrder(createOrderDto.getRoomId(), createOrderDto.getOrderRemark());
 				break;
 			case CreateOrderWay.rank_order_handle:
 				so = orderManage.createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
-						ClockCategoryDAO.RANK_CLOCK);
+						ClockCategoryDAO.RANK_CLOCK, createOrderDto.getOrderRemark());
 				break;
 			case CreateOrderWay.spot_order_handle:
 				so = orderManage.createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
-						ClockCategoryDAO.SPOT_CLOCK);
+						ClockCategoryDAO.SPOT_CLOCK, createOrderDto.getOrderRemark());
 				break;
 			}
 			serverOrderServiceImpl.save(so); // 保存订单

@@ -4,10 +4,14 @@ import java.util.List;
 
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.model.Room;
-import com.lps.model.WorkRank;
+import com.lps.model.ServerItem;
+import com.lps.model.User;
 import com.lps.service.ClockCategoryService;
 import com.lps.service.RoomService;
+import com.lps.service.ServerItemService;
+import com.lps.service.UserService;
 import com.lps.service.WorkRankService;
+import com.lps.util.WorkJson;
 import com.lps.web.order.dto.InitCreateOrderDto;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,45 +21,71 @@ public class InitCreateOrderBasicDataAction extends ActionSupport{
 
 	private InitCreateOrderDto initCreateOrderDto;
 
-	private WorkRankService workRankServiceImpl;
-
 	private RoomService roomServiceImpl;
 
-	private ClockCategoryService clockCategoryServiceImpl;
+	private ServerItemService serverItemServiceImpl; 
 	
-//	private RoomCategoryService 
+	private UserService userServiceImpl;
 	
+	private String result;
 	
-	/*@Override
-	public String execute(){
+	public String initOrderData(){
+		List<Room> listRooms = roomServiceImpl.findAll();
+		List<ServerItem> listServerItems = serverItemServiceImpl.findAll();
+		List<User> lisUsers = userServiceImpl.findAll();
+				
+		initCreateOrderDto.init(lisUsers, listRooms, listServerItems);
 		
-		
-		
-		List<WorkRank> listUser = workRankServiceImpl.findAll();
-		for (WorkRank workRank : listUser) {
-			sendOrderDto.getUserList().add(workRank.getUser());
-		}
-		
-		List<Room> listRoom = roomServiceImpl.findAll();
-		initCreateOrderDto.init(lu, listRoom, lrc);
-		for (Room room : listRoom) {
-			sendOrderDto.getRoomList().add(room);
-			sendOrderDto.getRoomCategorySet().add(room.getRoomCategory());
-		}
-		
-		sendOrderDto.setClockCategory(clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK));
-		
+		//保存结果
+		result =  WorkJson.toJsonString(initCreateOrderDto);
 		return SUCCESS;
 	}
-	*/
+	
+	@Override
+	public String execute(){
+		return SUCCESS;
+	}
+	
 
-	public WorkRankService getWorkRankServiceImpl() {
-		return workRankServiceImpl;
+	public UserService getUserServiceImpl() {
+		return userServiceImpl;
 	}
 
-	public void setWorkRankServiceImpl(WorkRankService workRankServiceImpl) {
-		this.workRankServiceImpl = workRankServiceImpl;
+
+
+	public void setUserServiceImpl(UserService userServiceImpl) {
+		this.userServiceImpl = userServiceImpl;
 	}
+
+
+
+	public String getResult() {
+		return result;
+	}
+
+
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+
+
+	public ServerItemService getServerItemServiceImpl() {
+		return serverItemServiceImpl;
+	}
+
+
+	public void setServerItemServiceImpl(ServerItemService serverItemServiceImpl) {
+		this.serverItemServiceImpl = serverItemServiceImpl;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+
+
 
 	public RoomService getRoomServiceImpl() {
 		return roomServiceImpl;
@@ -65,13 +95,6 @@ public class InitCreateOrderBasicDataAction extends ActionSupport{
 		this.roomServiceImpl = roomServiceImpl;
 	}
 
-	public ClockCategoryService getClockCategoryServiceImpl() {
-		return clockCategoryServiceImpl;
-	}
-
-	public void setClockCategoryServiceImpl(ClockCategoryService clockCategoryServiceImpl) {
-		this.clockCategoryServiceImpl = clockCategoryServiceImpl;
-	}
 
 	public InitCreateOrderDto getInitCreateOrderDto() {
 		return initCreateOrderDto;

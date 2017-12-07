@@ -42,12 +42,12 @@ public class InitCreateOrderDtoTest {
 		list.add(2);
 		list.add(3);
 		
-		List<RoomCategoyCreateOrderDto> lr = new ArrayList<>();
+		List<ServerItemCreateOrderDto> lr = new ArrayList<>();
 		List<RoomCreateOrderDto> lc = new ArrayList<>();
 		List<UserCreateOrderDto> lu = new ArrayList<>();
 		
-		lr.add(new RoomCategoyCreateOrderDto("r1", "r11"));
-		lr.add(new RoomCategoyCreateOrderDto("r2", "r22"));
+		lr.add(new ServerItemCreateOrderDto("r1", "r11"));
+		lr.add(new ServerItemCreateOrderDto("r2", "r22"));
 		
 		lc.add(new RoomCreateOrderDto("room1", "room11"));
 		lc.add(new RoomCreateOrderDto("room2", "room22"));

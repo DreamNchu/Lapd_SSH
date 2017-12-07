@@ -109,58 +109,11 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 	}
 	
 	
-
-	/**
-	 * 创建一个订单
-	 * 
-	 * @return
-	 * @throws IOException 
-	 */
-	public String createOrder() throws IOException {
-		// 创建订单
-		Map<String,Object> map = new HashMap<String,Object>();
-
-		try {
-			ServerOrder so = orderManage.createOrder(stuffId, roomId, clockCategoryId);
-			serverOrderServiceImpl.save(so); // 保存订单
-		} catch (Exception e) {
-			e.printStackTrace();
-			map.put("msg", "创建订单失败");
-			createOrderResult = new Gson().toJson(map);
-			return SUCCESS;
-		}
-		map.put("msg", "创建订单成功");
-		createOrderResult = new Gson().toJson(map);
-		return SUCCESS;
-	}
 	
 	public String main(){
 		return SUCCESS;
 	}
 	
-	/**
-	 * 系统自动创建订单
-	 * 
-	 * @return 成功创建返回success,否则返回error
-	 */
-	public String createOrderAuto(){
-		Map<String,Object> map = new HashMap<String,Object>();
-		try {
-		// 创建订单
-			ServerOrder so = orderManage.createOrder(roomId);
-			if (so == null)
-				return ERROR;
-			serverOrderServiceImpl.save(so); // 保存订单
-		} catch (Exception e) {
-			e.printStackTrace();
-			map.put("msg", "系统自动创建排钟订单失败");
-			createOrderResult = new Gson().toJson(map);
-			return ERROR;
-		}
-		map.put("msg", "系统自动创建排钟订单成功");
-		createOrderResult = new Gson().toJson(map);
-		return SUCCESS;
-	}
 
 	public int getClockCategoryId() {
 		return clockCategoryId;
@@ -422,5 +375,7 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 		this.list = userServiceImpl.findTodayOrders(u);
 		return SUCCESS;
 	}
+	
+	
 
 }
