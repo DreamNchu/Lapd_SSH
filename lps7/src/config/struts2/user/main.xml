@@ -4,6 +4,7 @@
 
 	<package name="userMain" namespace="/user" extends="struts-default">
 
+
 		<action name="main" class="userMainAction" >
 			<result name="success">
 				/user/main.jsp
