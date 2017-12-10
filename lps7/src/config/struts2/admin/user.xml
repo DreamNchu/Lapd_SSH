@@ -3,8 +3,22 @@
 <struts>
 
 	<package name="userWork" namespace="/admin" extends="json-default">
+	
+	<action name="userManage" class="manageUserAction">
+		<result>
+			/admin/userManage.jsp
+		</result>	
+	</action>
+	
+	<action name="*User*" class="manageUsersAction" method="{1}User{2}">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		
 
-		<action name="queryBasicUser" class="manageUsersAction" method="queryBasicUser">
+		<!-- <action name="queryBasicUser" class="manageUsersAction" method="queryBasicUser">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
@@ -32,7 +46,7 @@
 			<result type="json">
 				<param name="root">result</param>
 			</result>
-		</action>
+		</action> -->
 
 	</package>
 

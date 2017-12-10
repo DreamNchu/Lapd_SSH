@@ -29,6 +29,8 @@ public class InitCreateOrderBasicDataAction extends ActionSupport{
 	
 	private String result;
 	
+	
+	
 	public String initOrderData(){
 		List<Room> listRooms = roomServiceImpl.findAll();
 		List<ServerItem> listServerItems = serverItemServiceImpl.findAll();

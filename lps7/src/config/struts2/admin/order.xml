@@ -4,12 +4,6 @@
 	
 	<package name="order" namespace="/admin" extends="json-default">
 	
-		<global-results>
-            <result name="login" type="redirect">
-            	/admin/login
-            </result>
-        </global-results>
-		
 		<action name="createOrder" class="createOrderAction">
 			<result type="json">
 				<param name="root">result</param>
@@ -22,11 +16,13 @@
 			</result>
 		</action>
 		
-		<action name="initOrder" class="initCreateOrderBasicDataAction" >
-			<result>
+		<action name="initOrder" class="initCreateOrderBasicDataAction" method="execute">
+			<result name="success">
 				/admin/initOrder.jsp
 			</result>
 		</action>
+		
+		
 	<!-- 	
 		<action name="queryBasicOrders" class="manageOrdersAction" method="queryBasicOrders">
 			<result type="json">
@@ -52,6 +48,18 @@
 				<param name="root">result</param>
 			</result>
 		</action> -->
+		
+		<action name="orderManage" class="manageOrdersAction">
+			<result>
+				/admin/orderManage.jsp
+			</result>
+		</action>
+		
+		<action name="orderChart" class="manageOrdersAction">
+			<result>
+				/admin/orderChart.jsp
+			</result>
+		</action>
 		
 		<action name="*Order*" class="manageOrdersAction" method="{1}Order{2}">
 			<result type="json">

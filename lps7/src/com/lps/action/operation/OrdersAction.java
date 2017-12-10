@@ -297,13 +297,13 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 	 * 
 	 * @return 成功返回success
 	 */
-	public String updateOrder(){
+/*	public String updateOrder(){
 		ServerOrder so = serverOrderServiceImpl.findById(orderUpdateDataDto.getId());
 		// 更新已经更改的字段
 		orderUpdateDataDto.update(so);
 		serverOrderServiceImpl.update(so);
 		return SUCCESS;
-	}
+	}*/
 
 	/**
 	 * 产看订单
@@ -311,12 +311,12 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 	 * 
 	 * @return 成功返回success
 	 */
-	public String viewOrder() {
+/*	public String viewOrder() {
 		ServerOrder so = serverOrderServiceImpl.findById(orderId);
 		// 数据映射
 		orderUpdateDataDto.initByServerOrder(so);
 		return SUCCESS;
-	}
+	}*/
 	
 	/**
 	 * 查看今日各种订单类型

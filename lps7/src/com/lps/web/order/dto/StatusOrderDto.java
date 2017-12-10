@@ -1,7 +1,5 @@
 package com.lps.web.order.dto;
 
-import javax.validation.constraIntegers.NotNull;
-
 import com.lps.model.OrderStatus;
 
 public class StatusOrderDto implements DtoBasicInit<StatusOrderDto>{

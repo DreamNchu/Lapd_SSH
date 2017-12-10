@@ -5,7 +5,7 @@
 	<package name="actionError" extends="struts-default">
 		<default-action-ref name="actionError"></default-action-ref>
 		<action name="actionError">
-			<result>/utilPage/NotFound.jsp</result>
+			<result>/utilPage/404.jsp</result>
 		</action>
 	</package>
 </struts>

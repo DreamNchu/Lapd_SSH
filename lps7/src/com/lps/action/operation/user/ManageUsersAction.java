@@ -41,6 +41,13 @@ public class ManageUsersAction extends ActionSupport implements JsonResult,Sessi
 	private Map<String , Object> mapMsg = new HashMap<>();
 	private boolean isError = false;
 	
+	
+	@Override
+	public String execute() throws Exception {
+		// TODO Auto-generated method stub
+		return super.execute();
+	}
+	
 	public String addUser(){
 		User u = userDataDto.generateUser();
 		try {

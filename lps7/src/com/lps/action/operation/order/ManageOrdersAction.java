@@ -63,17 +63,12 @@ public class ManageOrdersAction extends ActionSupport implements JsonResult, Ses
 	 */
 	private List<String> orderId;
 
-/*	public String deleteOrder() {
-		ServerOrder so = new ServerOrder();
-		so.setId(orderId.getIdOrder());
-		serverOrderServiceImpl.delete(so);
-		return SUCCESS;
-	}*/
+	@Override
+	public String execute() throws Exception {
+		return super.execute();
+	}
 
 	public String deleteOrders() {
-//		for (String orderId : orderId) {
-//			System.out.println(orderId);
-//		}
 		Map<String, Object> map = new HashMap<>();
 		boolean isError = false;
 		try {
