@@ -45,7 +45,7 @@ public class AdminOrdersActionTest {
 	@Test
 	public void testViewOrder() {
 		as.setOrderId("000000000000001");
-		as.setOrderDataDto(new OrderDataDto());
+		as.setOrderDataDto(new OrderUpdateDataDto());
 		as.viewOrder();
 		assertEquals(new Integer(1), as.getOrderDataDto().getUser().getId());
 	}

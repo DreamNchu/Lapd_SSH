@@ -1,7 +1,5 @@
 package com.lps.action.operation;
 
-import java.io.IOException;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +10,6 @@ import org.apache.struts2.interceptor.RequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.google.gson.Gson;
 import com.lps.control.manage.OrderManage;
 import com.lps.control.manage.OrderRefuseUsersManage;
 import com.lps.control.manage.WorkRankManage;
@@ -26,7 +23,7 @@ import com.lps.service.OrderStatusService;
 import com.lps.service.ServerOrderService;
 import com.lps.service.UserService;
 import com.lps.service.WorkStatusService;
-import com.lps.web.dto.OrderDataDto;
+import com.lps.web.order.dto.OrderUpdateDataDto;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class OrdersAction extends ActionSupport implements SessionAware, RequestAware,ServletResponseAware {
@@ -60,7 +57,7 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 
 	private OrderManage orderManage;
 
-	private OrderDataDto orderDataDto;
+	private OrderUpdateDataDto orderUpdateDataDto;
 
 	/**
 	 * 存储表信息
@@ -123,8 +120,8 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 		return list;
 	}
 
-	public OrderDataDto getOrderDataDto() {
-		return orderDataDto;
+	public OrderUpdateDataDto getOrderDataDto() {
+		return orderUpdateDataDto;
 	}
 
 	public String getOrderId() {
@@ -187,8 +184,8 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 		this.list = list;
 	}
 
-	public void setOrderDataDto(OrderDataDto orderDataDto) {
-		this.orderDataDto = orderDataDto;
+	public void setOrderDataDto(OrderUpdateDataDto orderUpdateDataDto) {
+		this.orderUpdateDataDto = orderUpdateDataDto;
 	}
 
 	public void setOrderId(String orderId) {
@@ -301,9 +298,9 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 	 * @return 成功返回success
 	 */
 	public String updateOrder(){
-		ServerOrder so = serverOrderServiceImpl.findById(orderDataDto.getId());
+		ServerOrder so = serverOrderServiceImpl.findById(orderUpdateDataDto.getId());
 		// 更新已经更改的字段
-		orderDataDto.update(so);
+		orderUpdateDataDto.update(so);
 		serverOrderServiceImpl.update(so);
 		return SUCCESS;
 	}
@@ -317,7 +314,7 @@ public class OrdersAction extends ActionSupport implements SessionAware, Request
 	public String viewOrder() {
 		ServerOrder so = serverOrderServiceImpl.findById(orderId);
 		// 数据映射
-		orderDataDto.initByServerOrder(so);
+		orderUpdateDataDto.initByServerOrder(so);
 		return SUCCESS;
 	}
 	

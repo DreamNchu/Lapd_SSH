@@ -40,8 +40,8 @@ public class OnlineCheckIntercepter {
 	public void myMethod(){}
 	
 	@Around("myMethod()")
-	public Object doBasicProfiling(ProceedingJoinPoint pjp) throws Throwable {
-//		System.out.println("doBasicProfiling_request");
+	public Object checkAccess(ProceedingJoinPoint pjp) throws Throwable {
+		
 		if(request.getSession().getAttribute("id") == null){
 			return Action.LOGIN;
 		}
@@ -49,7 +49,6 @@ public class OnlineCheckIntercepter {
 		Object retVal = pjp.proceed();
 		return retVal;
 	}
-
 
 	
 }

@@ -11,6 +11,7 @@ public class CreateOrderDto {
  	private int roomCategoryId;
  	
  	private String orderRemark;
+ 	
 
 	public String getOrderRemark() {
 		return orderRemark;
@@ -51,6 +52,6 @@ public class CreateOrderDto {
 	public void setRoomCategoryId(int roomCategoryId) {
 		this.roomCategoryId = roomCategoryId;
 	}
- 	
+
 
 }

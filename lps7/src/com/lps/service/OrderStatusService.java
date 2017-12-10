@@ -3,7 +3,9 @@ import java.util.List;
 
 import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
+import com.lps.model.ServerOrder;
 import com.lps.service.basic.BasicForServerOrderService;
+import com.lps.util.PropertyRange;
 
 public interface OrderStatusService extends BasicForServerOrderService<OrderStatus>{
 
@@ -29,5 +31,7 @@ public interface OrderStatusService extends BasicForServerOrderService<OrderStat
 	 */
 	int findIdByOrderStatus(String orderStatusProperty);
 	
+	
+	PropertyRange createPropertyRange(int id1, int id2);
 	
 }

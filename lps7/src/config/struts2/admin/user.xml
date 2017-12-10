@@ -2,15 +2,39 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
-	<package name="userWork" namespace="/admin" extends="struts-default">
+	<package name="userWork" namespace="/admin" extends="json-default">
 
-		<action name="userWorkData" class="userWorkDataAction" method="viewUsersByPage">
-			<result name="success">
-				/admin/userWorkData.jsp
+		<action name="queryBasicUser" class="manageUsersAction" method="queryBasicUser">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="deleteUsers" class="manageUsersAction" method="deleteUsers">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="addUser" class="manageUsersAction" method="addUser">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="updateUser" class="manageUsersAction" method="updateUser">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
+		<action name="queryUser" class="manageUsersAction" method="queryUser">
+			<result type="json">
+				<param name="root">result</param>
 			</result>
 		</action>
 
 	</package>
-	
+
 
 </struts>

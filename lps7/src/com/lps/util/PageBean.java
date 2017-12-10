@@ -19,8 +19,11 @@ public class PageBean<T> {
 	private long limit = 10;// 每页记录数
 
 	private List<T> list;// 包含的集合
-
+	
+	//分页中最大页面个数的范围如：4
 	private int maxPageNumSize;
+	//页面个数如：    3，4，5，6，7
+	private Set<Integer> viewPageNum;
 
 	public int getMaxPageNumSize() {
 		return maxPageNumSize;
@@ -30,7 +33,6 @@ public class PageBean<T> {
 		this.maxPageNumSize = maxPageNumSize;
 	}
 
-	private Set<Integer> viewPageNum;
 
 
 	public Set<Integer> getViewPageNum() {
@@ -68,15 +70,19 @@ public class PageBean<T> {
 		
 		if(page > allPage){  //如果比总页数还大
 			page = allPage;
-		}else if(page < 1){  //如果小于第一页
+		}
+		if(page < 1){  //如果小于第一页
 			page = 1;
 		}
 		this.page = page;  //保存当前页
 		long begin = (page - 1) * limit;
-
+//for (int t : viewPageNum) {
+//	System.out.println(t);
+//}
 		// 计算要显示的页面序号数
 
 		// viewPageNum.add
+		
 		initViewPageNum();
 
 		return begin;

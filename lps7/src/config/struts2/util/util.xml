@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="actionError" extends="struts-default">
+		<default-action-ref name="actionError"></default-action-ref>
+		<action name="actionError">
+			<result>/utilPage/NotFound.jsp</result>
+		</action>
+	</package>
+</struts>

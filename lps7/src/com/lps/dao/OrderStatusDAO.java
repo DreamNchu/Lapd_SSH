@@ -1,10 +1,11 @@
 package com.lps.dao;
-import java.util.Date;
 import java.util.List;
 
 import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.OrderStatus;
+import com.lps.model.ServerOrder;
+import com.lps.util.PropertyRange;
 
 /**
  * interfaceName:OrderStatusDAO
@@ -50,5 +51,7 @@ public interface OrderStatusDAO extends BasicDAO<OrderStatus>, BasicForServerOrd
 	 */
 
 	List<OrderStatus> findByOrderStatus(Object orderStatus);
+	
+	
 	
 }

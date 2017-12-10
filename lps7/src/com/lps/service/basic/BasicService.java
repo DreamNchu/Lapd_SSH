@@ -20,6 +20,8 @@ public interface BasicService<T> {
 	void save(T transientInstance);
 
 	void delete(T persistentInstance);
+	
+//	void delete(@SuppressWarnings("unchecked") T... fields);
 
 	T findById(int id);
 

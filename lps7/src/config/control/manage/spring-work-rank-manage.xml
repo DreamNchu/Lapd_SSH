@@ -11,7 +11,7 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
-	<bean id="workRankManage" class="com.lps.control.manage.WorkRankManage">
+	<bean id="workRankManage" class="com.lps.control.manage.WorkRankManage" scope="prototype">
 		<property name="workRankServiceImpl" ref="workRankServiceImpl"></property>
 	</bean>
 	

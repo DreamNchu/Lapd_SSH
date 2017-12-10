@@ -8,6 +8,7 @@ import java.util.Set;
 import com.lps.dao.OrderStatusDAO;
 import com.lps.dao.impl.ClockCategoryDAOImpl;
 import com.lps.dao.impl.OrderStatusDAOImpl;
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.OrderStatus;
@@ -16,6 +17,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.service.OrderStatusService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 
 //@Component("adminServiceImpl")
@@ -25,7 +27,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	private OrderStatusDAO dao;
 
 	private PageBean<OrderStatus> pageOrderStatusBean;
-	
+
 	private PageBean<ServerOrder> pageServerOrderByOrderStatusBean;
 
 	@Override
@@ -76,13 +78,13 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 
 	@Override
 	public PageBean<ServerOrder> findAllOrdersByPage(OrderStatus t, int page) throws PagePropertyNotInitException {
-		long begin= pageServerOrderByOrderStatusBean.init(findOrdersCountByThisType(t), page);
-        
-        List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByOrderStatusBean.getLimit());
-        
-        pageServerOrderByOrderStatusBean.setList(list);
-        
-        return pageServerOrderByOrderStatusBean;
+		long begin = pageServerOrderByOrderStatusBean.init(findOrdersCountByThisType(t), page);
+
+		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByOrderStatusBean.getLimit());
+
+		pageServerOrderByOrderStatusBean.setList(list);
+
+		return pageServerOrderByOrderStatusBean;
 	}
 
 	@Override
@@ -141,7 +143,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 		Map<String, Object> map = new HashMap<>();
 		map.put(OrderStatusDAOImpl.ORDER_STATUS, orderStatusProperty);
 		List<Integer> list = dao.findIdByProperty(map);
-		if(list != null && list.size() > 0)
+		if (list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
 	}
@@ -175,4 +177,16 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
+
+	@Override
+	public PropertyRange createPropertyRange(int id1, int id2) {
+		PropertyRange pr = new PropertyRange();
+		
+		pr.setName(ServerOrderDAOImpl.ORDER_STATUS);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
+	}
+
 }

@@ -259,7 +259,7 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	 */
 	@Override
 	public List<User> findListByLimit(long begin, long limit) {
-		String hql="from User";
+		String hql="from User u order by u.workId";
 		HibernateCallback<List<User>> callback = new PageHibernateCallback<>(hql, new Object[]{}, begin, limit);
         List<User> list=(List<User>) this.getHibernateTemplate().execute(callback);
         if(list!=null&&list.size()>0){

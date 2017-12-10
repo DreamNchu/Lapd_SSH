@@ -60,7 +60,7 @@ StringBuffer basePath = request.getRequestURL();
     <div class="container">
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <form action="login" class="fh5co-form animate-box" data-animate-effect="fadeIn">
+                <form action="access" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
                     <a href="javascript:void(0)">
                         <i class=" am-icon-home part-title-i"></i>
                         <span class="part-title-span">天上人间--登录</span>

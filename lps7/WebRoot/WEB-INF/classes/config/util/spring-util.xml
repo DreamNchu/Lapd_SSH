@@ -16,9 +16,8 @@
  		<property name="maxPageNumSize" value="5"></property>
  		<property name="viewPageNum">
 			<set value-type="java.lang.Integer">
-			
 			</set> 
  		</property>
-	</bean> 
+	</bean>
 	
 </beans>

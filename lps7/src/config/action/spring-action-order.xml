@@ -23,5 +23,14 @@
 		<property name="orderManage" ref="orderManage"></property>
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 	</bean>
+	
+	<bean id="manageOrdersAction" class="com.lps.action.operation.order.ManageOrdersAction" scope="prototype">
+		<property name="orderManage" ref="orderManage"></property>
+		<property name="orderTableDataDto" ref="orderTableDataDto"></property>
+		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
+		<property name="queryOrderDto" ref="queryOrderDto"></property>
+		<property name="initBasicUpdateDataDto" ref="initBasicUpdateDataDto"></property>
+		
+	</bean>
 
 </beans>

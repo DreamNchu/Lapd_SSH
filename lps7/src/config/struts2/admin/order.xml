@@ -3,6 +3,12 @@
 <struts>
 	
 	<package name="order" namespace="/admin" extends="json-default">
+	
+		<global-results>
+            <result name="login" type="redirect">
+            	/admin/login
+            </result>
+        </global-results>
 		
 		<action name="createOrder" class="createOrderAction">
 			<result type="json">
@@ -19,6 +25,37 @@
 		<action name="initOrder" class="initCreateOrderBasicDataAction" >
 			<result>
 				/admin/initOrder.jsp
+			</result>
+		</action>
+	<!-- 	
+		<action name="queryBasicOrders" class="manageOrdersAction" method="queryBasicOrders">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="deleteOrders" class="manageOrdersAction" method="deleteOrders">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		<action name="queryOrder" class="manageOrdersAction" method="queryOrder">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		
+		<action name="updateOrder" class="manageOrdersAction" method="updateOrder">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action> -->
+		
+		<action name="*Order*" class="manageOrdersAction" method="{1}Order{2}">
+			<result type="json">
+				<param name="root">result</param>
 			</result>
 		</action>
 		

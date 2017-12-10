@@ -7,6 +7,7 @@ import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.uenum.CompareLevel;
+import com.lps.util.PropertyRange;
 
 public interface ServerOrderDAO extends BasicDAO<ServerOrder> {
 	
@@ -42,5 +43,22 @@ public interface ServerOrderDAO extends BasicDAO<ServerOrder> {
 	
 	
 	List<ServerOrder> findOrderByPriceLimit(int price, CompareLevel cl);
+	
+	
+	/**
+	 * 查找listPro条件中的订单
+	 * @param os
+	 * @param listPro
+	 * @param begin
+	 * @param limit
+	 * @return
+	 */
+	List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange> listPro, int begin, int limit);
+	
+	/**
+	 * 查找条件中的总个数
+	 */
+	public long findOrdersByProperyLimitCount( List<PropertyRange> listPro);
+	
 	
 }

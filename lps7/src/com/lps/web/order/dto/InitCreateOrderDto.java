@@ -19,11 +19,11 @@ public class InitCreateOrderDto {
 	
 	private List<Integer> createWay;
 	
-	private List<UserCreateOrderDto> user;
+	private List<UserOrderDto> user;
 	
-	private List<RoomCreateOrderDto> room;
+	private List<RoomOrderDto> room;
 	
-	private List<ServerItemCreateOrderDto> roomCategory;
+	private List<ServerItemOrderDto> roomCategory;
 	
 	
 	public InitCreateOrderDto() {
@@ -33,21 +33,20 @@ public class InitCreateOrderDto {
 	public void init(List<User> lu, List<Room> lr, List<ServerItem> lrc){
 		for (ServerItem rc : lrc) {
 			this.roomCategory.add(
-					new ServerItemCreateOrderDto(
-							rc.getId() + "", rc.getServerItem()));
+					new ServerItemOrderDto().init(rc));
 		}
 		
 		for (User u : lu) {
-			this.user.add(new UserCreateOrderDto(u.getId() + "", u.getWorkId()+""));
+			this.user.add( new UserOrderDto().init(u));
 		}
 		
 		for (Room room : lr) {
-			this.room.add(new RoomCreateOrderDto(room.getId()+"", room.getName()));
+			this.room.add(new RoomOrderDto().init(room));
 		}
 	}
 	
-	public InitCreateOrderDto(List<Integer> createWay, List<UserCreateOrderDto> user, List<RoomCreateOrderDto> room,
-			List<ServerItemCreateOrderDto> roomCategory) {
+	public InitCreateOrderDto(List<Integer> createWay, List<UserOrderDto> user, List<RoomOrderDto> room,
+			List<ServerItemOrderDto> roomCategory) {
 		super();
 		this.createWay = createWay;
 		this.user = user;
@@ -57,27 +56,27 @@ public class InitCreateOrderDto {
 
 
 
-	public List<RoomCreateOrderDto> getRoom() {
+	public List<RoomOrderDto> getRoom() {
 		return room;
 	}
 
-	public void setRoom(List<RoomCreateOrderDto> room) {
+	public void setRoom(List<RoomOrderDto> room) {
 		this.room = room;
 	}
 
-	public List<ServerItemCreateOrderDto> getServerItem() {
+	public List<ServerItemOrderDto> getServerItem() {
 		return roomCategory;
 	}
 
-	public void setServerItem(List<ServerItemCreateOrderDto> roomCategory) {
+	public void setServerItem(List<ServerItemOrderDto> roomCategory) {
 		this.roomCategory = roomCategory;
 	}
 
-	public List<UserCreateOrderDto> getUser() {
+	public List<UserOrderDto> getUser() {
 		return user;
 	}
 
-	public void setUser(List<UserCreateOrderDto> user) {
+	public void setUser(List<UserOrderDto> user) {
 		this.user = user;
 	}
 

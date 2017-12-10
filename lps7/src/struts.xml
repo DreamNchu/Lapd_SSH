@@ -17,4 +17,6 @@
 	<include file="config/struts2/user/main.xml" />
 	
 	
+	<include file="config/struts2/util/util.xml" />
+	
 </struts>    

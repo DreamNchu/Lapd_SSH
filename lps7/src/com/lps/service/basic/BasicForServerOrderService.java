@@ -6,6 +6,7 @@ import java.util.Set;
 import com.lps.model.ServerOrder;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 public interface BasicForServerOrderService<T> extends BasicService<T> {
 	
@@ -54,5 +55,6 @@ public interface BasicForServerOrderService<T> extends BasicService<T> {
 	 * @return
 	 */
 	List<ServerOrder> findThisYearOrders(T t);
+	
 	
 }

@@ -38,26 +38,10 @@
 
 	window.onload = function() {
 	
-		ajaxRequest("initOrderData");
+		ajaxRequest("initOrderData", create);
 		
 	}
-	
-	function ajaxRequest(url){
-		$.ajax({
-			dataType : "json",
-			url : url,
-			success : function(data) {
-				var strresult = JSON.parse(data);
-				create(strresult);
-			},
-			error : function(data) {
-				var strresult = JSON.parse(data);
-				alert("error:" + strresult.msg);
-			}
-		})
-	}
-
-	function create(createOrder) {
+		function create(createOrder) {
 	
 		var stuffId = document.getElementById("stuffId");
 		var roomId = document.getElementById("roomId");
@@ -155,7 +139,7 @@
 										</div>
 										<div class="form-group">
 											<input type="button"
-												onclick="submitOrder('createOrder','orderForm')"
+												onclick="formSubmit('createOrder','orderForm')"
 												class="btn btn-info pull-left" value="发布">
 										</div>
 									</div>

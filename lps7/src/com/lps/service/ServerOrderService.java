@@ -2,11 +2,11 @@ package com.lps.service;
 import java.util.Date;
 import java.util.List;
 
-import com.lps.dao.basic.BasicDAO;
-import com.lps.dao.basic.BasicForServerOrderDAO;
-import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.service.basic.BasicService;
+import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 public interface ServerOrderService extends BasicService<ServerOrder> {
 	
@@ -119,5 +119,10 @@ public interface ServerOrderService extends BasicService<ServerOrder> {
 	 */
 	List<ServerOrder> findThisYearOrders();
 	
+	public List<ServerOrder> findOrdersByProperyLimit( List<PropertyRange> listPro, int begin,
+			int limit);
 	
+	PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange> listPro, int page) throws PagePropertyNotInitException;	
+	
+	PropertyRange createPropertyRangeByName(String propertyName, Object o1, Object o2);
 }

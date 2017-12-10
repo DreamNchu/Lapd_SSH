@@ -11,6 +11,7 @@ import com.lps.service.ServerOrderService;
 import com.lps.uenum.CompareLevel;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 
 //@Component("adminServiceImpl")
@@ -173,6 +174,31 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	@Override
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
+	}
+	
+	@Override
+	public PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange> listPro, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderBean.init(dao.findOrdersByProperyLimitCount(listPro), page);
+
+		List<ServerOrder> list = dao.findOrdersByProperyLimit(listPro, (int) begin,
+				(int) pageServerOrderBean.getLimit());
+
+		pageServerOrderBean.setList(list);
+
+		return pageServerOrderBean;
+
+	}
+	
+
+	@Override
+	public PropertyRange createPropertyRangeByName(String propertyName, Object o1, Object o2) {
+		PropertyRange pr = new PropertyRange(propertyName, o1, o2);
+		return pr;
+	}
+
+	@Override
+	public List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange> listPro, int begin, int limit) {
+		return dao.findOrdersByProperyLimit(listPro, begin, limit);
 	}
 
 

@@ -2,7 +2,7 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
-	<package name="userAccess" namespace="/user" extends="struts-default">
+	<package name="userMain" namespace="/user" extends="struts-default">
 
 		<action name="main" class="userMainAction" >
 			<result name="success">

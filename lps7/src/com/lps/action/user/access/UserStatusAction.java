@@ -61,15 +61,11 @@ public class UserStatusAction extends ActionSupport implements SessionAware{
 	 * 失败返回error
 	 */
 	public String login() {
-		
-		String tempPassword = userServiceImpl.findPasswordByUserName(userName);
-		int id = userServiceImpl.findIdByUserName(userName);
-		if(tempPassword.equals(password)){
-			session.put("id", id);
-			return SUCCESS;
+		if(session.get("id") != null){
+			return INPUT;
 		}
-		return ERROR;
-		
+		return SUCCESS;
+				
 	}
 	
 	public String logout() {

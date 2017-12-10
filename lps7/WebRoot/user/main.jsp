@@ -56,8 +56,8 @@ StringBuffer basePath = request.getRequestURL();
 <header class="am-topbar header">
     <div class="am-container-1">
         <div class="left hw-logo">
-            <lable  style="margin-left: 15px;font-size: 250%">★</lable>
-            <lable  style="margin-left: 5px;font-size: 250%;font-family: 仿宋">小店helper</lable>
+            <lable style="margin-left: 15px;font-size: 250%">★</lable>
+            <lable style="margin-left: 5px;font-size: 250%;font-family: 仿宋">小店helper</lable>
         </div>
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
                 data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span

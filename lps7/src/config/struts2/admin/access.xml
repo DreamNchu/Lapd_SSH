@@ -8,17 +8,13 @@
 				/admin/log{1}.jsp
 			</result>
 		</action>
-		<action name="main" class="adminAccessAction" method="main">
+		<action name="access" class="adminAccessAction" method="main">
 			<result name="success" type="redirect">
-				/admin/index<!-- 登录成功转向主界面 -->
+				/admin/main<!-- 登录成功转向主界面 -->
 			</result>
 			<result name="error" type="redirect">
 				/admin/login <!-- 失败重新登录 -->
 			</result>
-		</action>
-
-		<action name="index" class="adminMainAction" method="index">
-			<result type="redirect">/admin/spotOrderHandle</result>
 		</action>
 
 	</package>

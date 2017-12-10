@@ -34,6 +34,17 @@
 	</bean>
 	
 	<bean id="userMainAction" scope="prototype" class="com.lps.action.user.operation.UserMainAction">
-			
 	</bean>
+	
+	<bean id="userAccessAction" scope="prototype" class="com.lps.action.user.access.UserAccessAction"> 
+		<property name="userServiceImpl" ref="userServiceImpl"></property>
+	 </bean>
+	 
+	 <!--用户管理-->
+ 	 <bean id="manageUsersAction" scope="prototype" class="com.lps.action.operation.user.ManageUsersAction">
+	 	<property name="userTableDataDto" ref="userTableDataDto"></property>
+	 	<property name="userManage" ref="userManage"></property>
+	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
+
+	 </bean>
 </beans>

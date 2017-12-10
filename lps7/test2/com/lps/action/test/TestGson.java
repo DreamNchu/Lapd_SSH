@@ -2,10 +2,14 @@ package com.lps.action.test;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.joda.time.DateTime;
 import org.junit.Test;
+
+import com.google.gson.Gson;
 
 public class TestGson {
 	
@@ -33,8 +37,8 @@ public class TestGson {
 	
 	public class User {
 	    //省略其它
-	    public String name;
-	    public int age;
+	    public String name = null;
+	     private int age;
 //	    @SerializedName("email_address")
 	    public String emailAddress;
 	    public Collection<Integer> ints;
@@ -42,7 +46,15 @@ public class TestGson {
 
 	@Test
 	public void test() {
+		
+		
+		for (int i = 100; i < 1000; i++) {
+			System.out.println(" INSERT INTO `lapd_test`.`t_serverorder` (`idOrder`, `stuffId`, `roomId`, `statusId`, `clockcategoryId`, `payPathId`,`pledgeNameId`, `initTime`, `receiveTime`, `finishTime`, `pay`, `realPay`, `payTime`, `orderRemark`)VALUES "
+					+ "('000000000000"+ i + "', 2, 2, "+(i%6 + 1) +", 2, 2, NULL, now(), NULL, NULL, NULL, NULL, NULL, NULL); ");
+			
+		}
 //		Gson gson = new Gson();
+//		System.out.println(gson.toJson(new DateTime("2017-8-15").toString()));
 //		String jsonString = "{\"name\":\"怪盗kidou\",\"age\":24}";
 //		User user = gson.fromJson(jsonString, User.class);
 //		System.out.println(user.age);
@@ -73,29 +85,29 @@ public class TestGson {
 //		boolean b = gson.fromJson("true", boolean.class);     // true
 //		String str = gson.fromJson("String", String.class);   // String
 		
-		/*User u = new User();
-		u.age = 1;
+		User u = new User();
+//		u.age = 1;
 		
 		Gson gson = new Gson();
-		Collection<Integer> ints = new ArrayList<>();
-		u.ints = ints;
-		ints.add(2);
-		ints.add(3);
-		ints.add(4);
-		ints.add(5);
+//		Collection<Integer> ints = new ArrayList<>();
+//		u.ints = ints;
+//		ints.add(2);
+//		ints.add(3);
+//		ints.add(4);
+//		ints.add(5);
 
 		// Serialization
 		String json = gson.toJson(u);  // ==> json is [1,2,3,4,5]
-		System.out.println(json);*/
+//		System.out.println(json);
 		
-		List<Object> list = new ArrayList<>();
+	/*	List<Object> list = new ArrayList<>();
 		list.add(null);
 		list.add(1);
 		list.add(null);
 		list.add("hhh");
 		for (Object object : list) {
 			System.out.println(object);
-		}
+		}*/
 
 	}
 

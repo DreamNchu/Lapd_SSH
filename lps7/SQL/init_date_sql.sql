@@ -38,14 +38,19 @@
         
     insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
         values(1, "user001", "user001", 11, "你是谁","0001",  1, now());
+       
     insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
         values(2, "user002", "user002", 12, "你是谁","0001",  1, now() );
+         
     insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
         values(3, "user003", "user003", 13, "你是谁", "0001",  1, now());
+         
           insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
         values(4, "user004", "user002", 14, "你是谁","0001",  1, now() );
+        
     insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
         values(5, "user005", "user003", 15, "你是谁", "0001",  1, now());
+        
    
    INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
    VALUES (1, 1, 1, null, NULL);
@@ -129,6 +134,12 @@
      INSERT INTO `lapd_test`.`t_serverorder` (`idOrder`, `stuffId`, `roomId`, `statusId`, `clockcategoryId`, `payPathId`, 
     `pledgeNameId`, `initTime`, `receiveTime`, `finishTime`, `pay`, `realPay`, `payTime`, `orderRemark`)
      VALUES ('000000000000015', 2, 2, 2, 2, 2, NULL, now(), NULL, NULL, NULL, NULL, NULL, NULL);
+     
+     
+INSERT INTO `lapd_test`.`t_serverorder` (`idOrder`, `stuffId`, `roomId`, `statusId`, `clockcategoryId`, `payPathId`,
+  `pledgeNameId`, `initTime`, `receiveTime`, `finishTime`, `pay`, `realPay`, `payTime`, `orderRemark`)
+     VALUES ('000000000000050' + count1, 2, 2, count1 % 6 + 1, 2, 2, NULL, now(), NULL, NULL, NULL, NULL, NULL, NULL); 
+
      
 select  * from `lapd_test`.`t_serverorder`;
     

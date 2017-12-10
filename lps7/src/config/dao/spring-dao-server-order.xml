@@ -11,11 +11,11 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
- 	<bean id="serverOrderDAOImpl" class="com.lps.dao.impl.ServerOrderDAOImpl">
+ 	<bean id="serverOrderDAOImpl" class="com.lps.dao.impl.ServerOrderDAOImpl" >
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>  
 	
-	<bean id="serverOrderServiceImpl" class="com.lps.service.impl.ServerOrderServiceImpl">
+	<bean id="serverOrderServiceImpl" class="com.lps.service.impl.ServerOrderServiceImpl" scope="prototype">
 		<property name="serverOrderDao" ref="serverOrderDAOImpl"></property>
 		<property name="pageServerOrderBean" ref="pageBean"></property>
 	</bean> 

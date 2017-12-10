@@ -11,7 +11,7 @@ public class WorkDate {
 	
 	public static final int TODAY_OFF_SET = 0;
 	public static final int TOMORROW_OFF_SET = 1;
-	public static final int BEFORE_7_DAYS__OFF_SET = -7;
+	public static final int BEFORE_7_DAYS__OFF_SET = -6;
 	
 	public static Date getTodayDate(){
 		return getDateFlexible(TODAY_OFF_SET);
@@ -20,7 +20,10 @@ public class WorkDate {
 	public static Date getTomorrowDate(){
 		return getDateFlexible(TOMORROW_OFF_SET);
 	}
-	
+	/**
+	 * 从当天开始
+	 * @return
+	 */
 	public static Date getBefore7DayDate(){
 		return getDateFlexible(BEFORE_7_DAYS__OFF_SET);
 	}
@@ -55,7 +58,7 @@ public class WorkDate {
 	public static Date getBeginOfYeatDate(Date date){
 		LocalDate localDate = new LocalDate(date);
 		int year = localDate.getYear();
-		return getBeginOfMonthDate(year, 0);
+		return new LocalDate(year, 1, 1).toDate();
 	}
 	
 	/**
@@ -103,6 +106,23 @@ public class WorkDate {
 	 */
 	public static String getNowDateTime(){
 		return getNowDateTime("yyyyMMddHHmmss");
+	}
+	
+	/**
+	 * yyyy-MM-dd HH:mm
+	 * @param date
+	 * @return
+	 */
+	public static String dateTimeToString(Date date){
+		return getDateTime(date, "yyyy-MM-dd HH:mm");
+	}
+	/**
+	 * yyyy-MM-dd
+	 * @param date
+	 * @return
+	 */
+	public static String dateToString(Date date){
+		return getDateTime(date, "yyyy-MM-dd");
 	}
 	
 	/**
@@ -159,7 +179,14 @@ public class WorkDate {
 	}
 	
 	
-	
+	/**
+	 * 在date时间的基础上添加时间
+	 * @param date
+	 * @param hours
+	 * @param minutes
+	 * @param seconds
+	 * @return
+	 */
 	public static Date addTime(Date date, int hours, int minutes, int seconds){
 		DateTime dt = new DateTime(date);
 		int h = dt.getHourOfDay() + hours;
@@ -169,4 +196,9 @@ public class WorkDate {
 		return lt.toDateTimeToday().toDate();
 	}
 	
+
+	public static Date toDate(String dateStr){
+		DateTime dt = new DateTime(dateStr);
+		return dt.toDate();
+	}
 }

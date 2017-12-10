@@ -3,14 +3,20 @@ package com.lps.service.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.OrderStatus;
+import com.lps.service.ServerOrderService;
 import com.lps.service.impl.OrderStatusServiceImpl;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 public class OrderStatusServiceImplTest {
 	
@@ -103,5 +109,6 @@ public class OrderStatusServiceImplTest {
 		os.setId(1);
 		assertEquals(7, as.findOrdersCountByThisType(os));
 	}
+	
 
 }

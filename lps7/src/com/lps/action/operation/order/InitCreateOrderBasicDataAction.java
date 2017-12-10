@@ -37,7 +37,7 @@ public class InitCreateOrderBasicDataAction extends ActionSupport{
 		initCreateOrderDto.init(lisUsers, listRooms, listServerItems);
 		
 		//保存结果
-		result =  WorkJson.toJsonString(initCreateOrderDto);
+		result =  WorkJson.toJsonDisableHtmlEscaping(initCreateOrderDto);
 		return SUCCESS;
 	}
 	

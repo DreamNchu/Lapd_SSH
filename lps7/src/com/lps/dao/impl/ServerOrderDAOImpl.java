@@ -9,6 +9,7 @@ import java.util.Map;
 import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -17,11 +18,13 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.ServerOrderDAO;
 import com.lps.model.Admin;
+import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
 import com.lps.uenum.CompareLevel;
 import com.lps.util.PageHibernateCallback;
+import com.lps.util.PropertyRange;
 
 public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	/**
@@ -353,6 +356,10 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 		
 		return clockCategory;
 	}
+	
+//	public List<ServerOrder> findByLimit(){
+		
+//	}
 
 	@Override
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
@@ -372,5 +379,42 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 		return listIds;
 	}
 
+	@Override
+	public long findOrdersByProperyLimitCount( List<PropertyRange> listPro) {
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		List<ServerOrder> ccTemp = null;
+		Criteria cri = session.createCriteria(ServerOrder.class);
+
+		for (PropertyRange p : listPro) {
+			cri.add(Restrictions.between(p.getName(), p.getMinValue(), p.getMaxValue()));
+		}
+		
+		cri.setProjection(Projections.rowCount());
+		return (long)cri.uniqueResult();
+	}
+
+	@Override
+	public List<ServerOrder> findOrdersByProperyLimit( List<PropertyRange> listPro, int begin,
+			int limit) {
+
+		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
+
+		List<ServerOrder> ccTemp = null;
+		Criteria cri = session.createCriteria(ServerOrder.class);
+
+		for (PropertyRange p : listPro) {
+			System.out.println(p.getMinValue());
+			System.out.println(p.getMaxValue());
+			cri.add(Restrictions.between(p.getName(), p.getMinValue(), p.getMaxValue()));
+		}
+		cri.addOrder(Order.asc(ServerOrderDAOImpl.INIT_TIME));
+		cri.setFirstResult(begin);
+		cri.setMaxResults(limit);
+		ccTemp = cri.list();
+
+		return ccTemp;
+
+	}
 	
 }

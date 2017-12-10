@@ -31,5 +31,22 @@
 		</property>
 	</bean>
 
+<bean id="orderTableDataDto" class="com.lps.web.order.dto.OrderTableDataDto" scope="prototype">
+	<property name="order">
+	<list></list>
+	</property>
+	
+</bean>
+
+<bean id="queryOrderDto" class="com.lps.web.order.dto.QueryOrderDto" scope="prototype"> </bean>
+
+<bean id="initBasicUpdateDataDto" class="com.lps.web.order.dto.InitBasicUpdateDataDto" scope="prototype">
+<property name="user"><list></list></property>
+<property name="room"><list></list></property>
+<property name="status"><list></list></property>
+<property name="clockCategory"><list></list></property>
+<property name="payType"><list></list></property>
+</bean>
 
 </beans>
+

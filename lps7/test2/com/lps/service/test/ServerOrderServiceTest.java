@@ -3,21 +3,39 @@ package com.lps.service.test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.lps.dao.impl.ServerOrderDAOImpl;
+import com.lps.model.ClockCategory;
+import com.lps.model.OrderStatus;
+import com.lps.model.PayPath;
+import com.lps.model.Pledge;
+import com.lps.model.Room;
 import com.lps.model.ServerOrder;
+import com.lps.model.User;
+import com.lps.service.OrderStatusService;
+import com.lps.service.impl.OrderStatusServiceImpl;
 import com.lps.service.impl.ServerOrderServiceImpl;
+import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
+import com.lps.util.WorkDate;
 
 public class ServerOrderServiceTest {
 	
 	static ClassPathXmlApplicationContext ctx ;
 	static ServerOrderServiceImpl as ;
-	
+	static OrderStatusService os;
 	
 	@AfterClass
 	public static void after(){
@@ -30,6 +48,7 @@ public class ServerOrderServiceTest {
 				"classpath:config/applicationContext.xml",
 		});
 		as = ctx.getBean("serverOrderServiceImpl", ServerOrderServiceImpl.class);
+		os = ctx.getBean("orderStatusServiceImpl", OrderStatusServiceImpl.class);
 	}
 
 
@@ -46,7 +65,24 @@ public class ServerOrderServiceTest {
 
 	@Test
 	public void testSave() {
-		fail("Not yet implemented");
+		Random ra = new Random();
+		
+		for(int i = 1000; i < 2000; i ++) {
+			PayPath payPath = new PayPath(); payPath.setId(i % 4 + 1);
+			Room room = new Room(); room.setId(i % 4 + 1);
+			User user = new User(); user.setId( ra.nextInt(5) + 1);
+			Pledge pledge = new Pledge(); pledge.setId(i % 3 + 1);
+			ClockCategory clockCategory = new ClockCategory(); 
+			clockCategory.setId(i % 2 + 1);
+			OrderStatus orderStatus = new OrderStatus(); orderStatus.setId(i % 6 + 1);
+			DateTime dt = new DateTime(2017, 12, ra.nextInt(27) + 1, ra.nextInt(12), 0);
+			ServerOrder so = new ServerOrder("11000000000" + i ,payPath , room, user, pledge, clockCategory,
+					orderStatus, dt.toDate(), dt.plusMinutes(5).toDate(),dt.plusHours(1).toDate() , 100, 100, new Date(), "001");
+			if(i % 100 == 0)
+				System.out.println("i = " + i);
+			as.save(so);
+		}
+		
 	}
 
 	@Test
@@ -132,5 +168,19 @@ public class ServerOrderServiceTest {
 	public void testFindByPage() throws PagePropertyNotInitException {
 		assertEquals(15, as.findByPage(1).getAllCount());
 	}
+	
+	@Test
+	public void testFindOrdersByProperyLimit() throws PagePropertyNotInitException{
+		List<PropertyRange> listPro = new ArrayList<>();
+		PropertyRange pro = new PropertyRange();
+		pro.setName(ServerOrderDAOImpl.ORDER_STATUS);
+		pro.setMinValue(os.findById(1));
+		pro.setMaxValue(os.findById(1));
+		listPro.add(pro);
+		PageBean<ServerOrder> pb = as.findOrdersByPropertyLimit(listPro, 1);
+		System.out.println(pb.getList().size());
+	}
+	
+	
 
 }

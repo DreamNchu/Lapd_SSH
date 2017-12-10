@@ -8,9 +8,11 @@ import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 
 import com.lps.model.ClockCategory;
+import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
 import com.lps.model.basic.ModelLinkServerOrder;
+import com.lps.util.PropertyRange;
 
 public interface BasicForServerOrderDAO<T extends ModelLinkServerOrder<K> , K>{
 	
@@ -46,5 +48,6 @@ public interface BasicForServerOrderDAO<T extends ModelLinkServerOrder<K> , K>{
 	 * @return 返回订单列表
 	 */
 	List<ServerOrder> findOrdersByDateLimit(T t, Date begin, Date end);
+
 
 }

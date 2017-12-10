@@ -4,11 +4,10 @@
 
 	<package name="adminMain" namespace="/admin" extends="struts-default">
 
-		<action name="index" class="adminMainAction" method="index">
+		<action name="main" class="adminMainAction" method="main">
 			<result type="redirect">/admin/initOrder</result>
 		</action>
 
 	</package>
-	
 
 </struts>
