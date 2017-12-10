@@ -21,67 +21,115 @@ public class AdminServiceImpl implements AdminService {
 
 	private AdminDAO dao;
 
+	/**
+	 * 将admin实体类封装到pagebean中
+	 */
 	private PageBean<Admin> pageAdminBean;
 
+	/**
+	 * 获取实体类集合
+	 * @return 返回实体类
+	 */
 	public PageBean<Admin> getPageAdminBean() {
 		return pageAdminBean;
 	}
 
+	/**
+	 * 设置实体类集合
+	 * @param pageAdminBean admin实体类
+	 */
 	public void setPageAdminBean(PageBean<Admin> pageAdminBean) {
 		this.pageAdminBean = pageAdminBean;
 	}
 
+	/**
+	 * 获取adminDao实例
+	 * @return 返回adminDao实例
+	 */
 	public AdminDAO getAdminDao() {
 		return dao;
 	}
-
+	  /**
+	   * 设置adminDao实例
+	   * @param adminDao
+	   */
 	// @Resource(name="adminDAOImpl")
 	public void setAdminDao(AdminDAO adminDao) {
 		this.dao = adminDao;
 	}
 
+	/**
+	 * 保存admin实例
+	 */
 	@Override
 	public void save(Admin admin) {
 		dao.save(admin);
 	}
 
+	/**
+	 * 删除admin实例
+	 */
 	@Override
 	public void delete(Admin admin) {
 		dao.delete(admin);
 	}
 
+	/**
+	 * 根据账户名查找管理员，返回管理员实例
+	 */
 	@Override
 	public Admin findByUserName(String name) {
 		return dao.getByUserName(name);
 	}
 
+	/**
+	 * 根据id查找管理员，返回管理员实例
+	 */
 	@Override
 	public Admin findById(int id) {
 		return dao.findById(id);
 	}
 
+	/**
+	 * 根据id查找admin实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(Admin admin) {
 		return dao.isExists(admin);
 	}
 
+	/**
+	 * 根据id找到指定admin实例，获取该管理员注册时间
+	 */
 	@Override
 	public Date findRegisterTime(Admin admin) {
 		return findById(admin.getId()).getRegisterTime();
 	}
 
+	/**
+	 * 根据id找到指定admin实例，获取该管理员头像
+	 */
 	@Override
 	public String getAvatar(Admin admin) {
 		return findById(admin.getId()).getAvatar();
 	}
 
+	/**
+	 * 根据指定属性及其属性值查找admin实例，返回指定admin实例
+	 */
 	@Override
 	public List<Admin> findByProperty(String propertyName, Object value) {
 		return dao.findByProperty(propertyName, value);
 	}
 	/*
-	 * @Override public List<Admin> findByRegisterTime(Timestamp value){ return
-	 * adminDao.getByRegisterTime(value); }
+	@Override
+	public List<Admin> findByRegisterTime(Timestamp value){
+		return adminDao.getByRegisterTime(value);
+	}*/
+
+	/**
+	 * 查找所有admin实例
 	 */
 
 	@Override
@@ -89,6 +137,9 @@ public class AdminServiceImpl implements AdminService {
 		return dao.findAll();
 	}
 
+	/**
+	 * 查找所有实例个数
+	 */
 	@Override
 	public long findAllCount() {
 		return dao.findAllCount();
@@ -113,6 +164,9 @@ public class AdminServiceImpl implements AdminService {
 		dao.update(t);
 	}
 
+	/**
+	 * 根据账户名查找admin，并返回admin的密码
+	 */
 	@Override
 	public String findPasswordByUserName(String userName) {
 		int id;
@@ -124,6 +178,9 @@ public class AdminServiceImpl implements AdminService {
 		return findPassword(admin);
 	}
 
+	/**
+	 * 获取admin实例密码
+	 */
 	@Override
 	public <T> String findPassword(BasicModel<T> admin) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
@@ -136,8 +193,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	/**
-	 * 不存在返回-1
-	 * 
+	 * 根据账户名查找哈希表内admin实例的id
 	 */
 	@Override
 	public int findIdByUserName(String name) {

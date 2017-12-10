@@ -18,6 +18,7 @@ StringBuffer basePath = request.getRequestURL();
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+    <link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <link rel="stylesheet"
@@ -27,6 +28,7 @@ StringBuffer basePath = request.getRequestURL();
     <script src="dist/js/adminlte.min.js"></script>
     <script src="js/highcharts.js"></script>
     <script src="js/ajax_js.js"></script>
+    <script src="js/initClass.js"></script>
     <script>
     	
         var serrie= [ 55954,52503, 57177, 69658, 97031, 119931, 137133];
@@ -175,6 +177,8 @@ StringBuffer basePath = request.getRequestURL();
             }
         };
         $(document).ready(function () {
+            initActive();
+            initTime();
         	ajaxRequest("initChartOrders", receviveUser);
         	/*  ajaxRequest("chartDataOrders?orderChartRequestDto.timeType="
             +$('#date option:selected').val()+ "&orderChartRequestDto.population="+$("#type option:selected").val()
@@ -215,15 +219,21 @@ StringBuffer basePath = request.getRequestURL();
              chart);
             })
         })
+        function initTime() {
+            var currentTime=document.getElementById("currentTime");
+            var myDate=new Date();
+            currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
+            setTimeout("initTime()",1000);
+        }
     </script>
 </head>
 <body class="hold-transition skin-red  sidebar-mini">
 <div class="wrapper">
-    <header class="main-header" style="background-color: #333333; ">
-
+    <header class="main-header" style="background-color: #333333">
+        <jsp:include page="header.jsp"/>
     </header>
     <aside class="main-sidebar" style="background-color: #555555">
-
+        <jsp:include page="left.jsp"/>
     </aside>
 
     <div class="content-wrapper">
@@ -233,7 +243,7 @@ StringBuffer basePath = request.getRequestURL();
                 <small>员工业绩</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>2017-11-27-18-19</a></li>
+                <li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
             </ol>
         </section>
 
@@ -293,7 +303,7 @@ StringBuffer basePath = request.getRequestURL();
 
 
     <aside class="control-sidebar control-sidebar-dark">
-
+        <jsp:include page="right.jsp"/>
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>

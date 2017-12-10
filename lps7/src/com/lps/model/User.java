@@ -514,7 +514,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	}
 
 	@OneToMany(
-			cascade = CascadeType.ALL,
+			cascade = CascadeType.MERGE,
 			fetch = FetchType.LAZY, 
 			mappedBy = "user")
 	public Set<ServerOrder> getServerOrders() {
@@ -577,7 +577,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	 * @see WorkStatus
 	 * @return 返回工作状态
 	 */
-	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "workStatus")
 	public WorkStatus getWorkStatus() {
 		return this.workStatus;

@@ -19,20 +19,25 @@
 	href="bower_components/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="bower_components/Ionicons/css/ionicons.min.css">
+<link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
 <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 <link rel="stylesheet" href="css/ordercss.css">
+<link rel="stylesheet" href="css/styleradio.css">
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <script src="js/ajax_js.js"></script>
 <script src="js/alert.js"></script>
 <script src="js/order.js"></script>
+<script src="js/initClass.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 <script type="text/javascript">
 
 	window.onload = function() {
+		initActive();
+		initTime();
 		ajaxRequest("queryBasicOrders?queryOrderDto.timeType=1&queryOrderDto.statusId=1&queryOrderDto.page=1", waitingReceive);
 	}
 
@@ -462,17 +467,23 @@ alert("formSubmitWithEventForData");
 			}
 		});
 	}
+	function initTime() {
+		var currentTime=document.getElementById("currentTime");
+		var myDate=new Date();
+		currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
+		setTimeout("initTime()",1000);
+	}
 </script>
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 	<div class="wrapper">
 
-		<header class="main-header" style="background-color: #333333">
-
-		</header>
-		<aside class="main-sidebar" style="background-color: #555555">
-
-		</aside>
+	<header class="main-header" style="background-color: #333333">
+		<jsp:include page="header.jsp"/>
+	</header>
+	<aside class="main-sidebar" style="background-color: #555555">
+		<jsp:include page="left.jsp"/>
+	</aside>
 
 		<div class="content-wrapper">
 			<section class="content-header">
@@ -480,7 +491,7 @@ alert("formSubmitWithEventForData");
 					管理模块 <small>订单情况</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i>2017-11-27-18-19</a></li>
+					<li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -490,55 +501,95 @@ alert("formSubmitWithEventForData");
 							<div class="box-header">
 								<form id="searshForm">
 									<div>
-										<input type="radio" id="searsh1" name="searsh"
-											onclick="commonSearsh()" checked>
-										<h3 class="box-title">普通搜索</h3>
-										<input type="radio" name="searsh" onclick="superSearsh()">
-										<h3 class="box-title">高级搜索</h3>
+										<label for="searsh1" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" id="searsh1" name="searsh" onclick="commonSearsh()" checked>
+										普通搜索
+										<span class="radio-on"></span>
+										</label>
+										<label for="searsh2" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" name="searsh" id="searsh2" onclick="superSearsh()">
+										高级搜索
+										<span class="radio-on"></span>
+										</label>
 										</br>
+										</div>
+										<div>
+										<label for="date1" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="dateType" id="date1" value="1" name="date" checked>
+										今日
+										<span class="radio-on"></span>
+										</label>
+										<label for="date2" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="dateType" id="date2" value="2" name="date">
+										本周
+										<span class="radio-on"></span>
+										</label>
+										<label for="date3" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="dateType" id="date3" value="3" name="date">
+										本月
+										<span class="radio-on"></span>
+										</label>
+										<label for="date4" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="dateType" id="date4" value="4" name="date">
+										今年
+										<span class="radio-on"></span>
+										</label>
 										</br>
-									</div>
-									<div>
-										<input type="radio" class="dateType" value="1" name="date"
-											checked>
-										<h3 class="box-title">今日</h3>
-										<input type="radio" class="dateType" value="2" name="date">
-										<h3 class="box-title">本周</h3>
-										<input type="radio" class="dateType" value="3" name="date">
-										<h3 class="box-title">本月</h3>
-										<input type="radio" class="dateType" value="4" name="date">
-										<h3 class="box-title">今年</h3>
+										</div>
+										<div>
+										<label for="status1" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="statusId" value="1" id="status1" key="waitingReceive" onclick="djsdd()" name="statusId" checked>
+										待接收订单
+										<span class="radio-on"></span>
+										</label>
+										<label for="status2" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="statusId" value="2" id="status2" key="servicing" onclick="gzzdd()" name="statusId">
+										工作中订单
+										<span class="radio-on"></span>
+										</label>
+										<label for="status3" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="statusId" value="5" id="status3" key="suspend" onclick="gqzdd()" name="statusId">
+										挂起中订单
+										<span class="radio-on"></span>
+										</label>
+										<label for="status4" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="statusId" value="3" id="status4" key="waitingPay" onclick="dzfdd()" name="statusId">
+										待支付订单
+										<span class="radio-on"></span>
+										</label>
+										<label for="status5" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="statusId" value="4" id="status5" key="finish" onclick="yzfdd()" name="statusId">
+										已支付订单
+										<span class="radio-on"></span>
+										</label>
+										<label for="status6" class="radio">
+										<span class="radio-bg"></span>
+										<input type="radio" class="statusId" value="6" id="status6" key="invalid" onclick="ysxdd()" name="statusId">
+										失效订单
+										<span class="radio-on"></span>
+										</label>
 										</br>
-										</br>
-									</div>
-									<div>
-										<input type="radio" class="statusId" value="1"
-											key="waitingReceive" onclick="djsdd()" name="statusId"
-											checked>
-										<h3 class="box-title">待接收订单</h3>
-										<input type="radio" class="statusId" value="2" key="servicing"
-											onclick="gzzdd()" name="statusId">
-										<h3 class="box-title">工作中订单</h3>
-										<input type="radio" class="statusId" value="5" key="suspend"
-											onclick="gqzdd()" name="statusId">
-										<h3 class="box-title">挂起中订单</h3>
-										<input type="radio" class="statusId" value="3"
-											key="waitingPay" onclick="dzfdd()" name="statusId">
-										<h3 class="box-title">待支付订单</h3>
-										<input type="radio" class="statusId" value="4" key="finish"
-											onclick="yzfdd()" name="statusId">
-										<h3 class="box-title">已支付订单</h3>
-										<input type="radio" class="statusId" value="6" key="invalid"
-											onclick="ysxdd()" name="statusId">
-										<h3 class="box-title">失效订单</h3>
-										</br>
-										</br>
-									</div>
-									<div id="timeTr" style="display:none;">
-										<h3 class="box-title">起始日期：</h3>
+										</div>
+										<div id="timeTr" style="display:none;">
+										<label>
+										起始日期：
 										<input type="date" name="startTime">
-										<h3 class="box-title">结束日期：</h3>
-										<input type="date" name="endTime"> </br>
+										</label>
+										<label>
+										结束日期：
+										<input type="date" name="endTime">
+										</label>
 										</br>
 									</div>
 								</form>
@@ -639,7 +690,9 @@ alert("formSubmitWithEventForData");
 		</div>
 
 
-		<aside class="control-sidebar control-sidebar-dark"></aside>
+	<aside class="control-sidebar control-sidebar-dark">
+		<jsp:include page="right.jsp"/>
+	</aside>
 		<div class="control-sidebar-bg"></div>
 	</div>
 

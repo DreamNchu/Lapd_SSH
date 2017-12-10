@@ -54,12 +54,12 @@ public class AdminServiceImplTest {
 //		as.save(new Admin("С��","0002", new java.sql.Timestamp(System.currentTimeMillis())));
 	}
 	
-	@Test
+/*	@Test
 	public void testFindPageByLimit() {
 		assertEquals(24, as.findByPage(1).getAllCount());
 		assertEquals(10, as.findByPage(1).getList().size());
 		assertEquals("С��2", as.findByPage(1).getList().get(0).getUserName());
-	}
+	}*/
 	
 	@Test
 	public void testGetById(){

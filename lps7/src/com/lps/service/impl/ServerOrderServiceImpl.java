@@ -18,128 +18,221 @@ import com.lps.util.WorkDate;
 //@Aspect
 public class ServerOrderServiceImpl implements ServerOrderService {
 
+	/**
+	 * 以私有变量的方式保存ServerOrderDAO
+	 */
 	private ServerOrderDAO dao;
 
+	/**
+	 * 将ServerOrder实体类封装到pagebean中
+	 */
 	private PageBean<ServerOrder> pageServerOrderBean;
 	
-
+	/**
+	 * 获取pagebean中ServerOrder实体类集合
+	 * @return 返回实体类
+	 */
 	public PageBean<ServerOrder> getPageServerOrderBean() {
 		return pageServerOrderBean;
 	}
 
+	/**
+	 * 设置ServerOrder实体类集合
+	 * @param pageServerOrderBean 封装的ServerOrder实体类集合
+	 */
 	public void setPageServerOrderBean(PageBean<ServerOrder> pageServerOrderBean) {
 		this.pageServerOrderBean = pageServerOrderBean;
 	}
 
+	/**
+	 * 删除ServerOrder实例
+	 */
 	@Override
 	public void delete(ServerOrder workStatus) {
 		dao.delete(workStatus);
 	}
 
+	/**
+	 * 返回所有ServerOrder实例
+	 */
 	@Override
 	public List<ServerOrder> findAll() {
 		return dao.findAll();
 	}
 
+	/**
+	 * 返回所有ServerOrder实例的数量
+	 */
 	@Override
 	public long findAllCount() {
 		return dao.findAllCount();
 	}
 
+	/**
+	 * 根据id查找房间，返回ServerOrder实例
+	 */
 	@Override
 	public ServerOrder findById(int id) {
 		return dao.findById(id);
 	}
 
+	/**
+	 * 根据指定属性及其属性值查找ServerOrder实例，返回指定ServerOrder实例
+	 */
 	@Override
 	public List<ServerOrder> findByProperty(String propertyName, Object value) {
 		return dao.findByProperty(propertyName, value);
 	}
 
+	/**
+	 * 获取ServerOrderDao实例
+	 * @return 返回adminDao实例
+	 */
 	public ServerOrderDAO getServerOrderDao() {
 		return dao;
 	}
 
+	/**
+	 * 保存ServerOrder实例
+	 */
 	@Override
-	public void save(ServerOrder workStatus) {
-		dao.save(workStatus);
+	public void save(ServerOrder ServerOrder) {
+		dao.save(ServerOrder);
 	}
 
-	public void setServerOrderDao(ServerOrderDAO workStatusDao) {
-		this.dao = workStatusDao;
+	/**
+	 * 设置ServerOrderDao实例
+	 * @param ServerOrderDao
+	 */
+	public void setServerOrderDao(ServerOrderDAO ServerOrderDao) {
+		this.dao = ServerOrderDao;
 	}
 
+	/**
+	 * 根据id查找ServerOrder实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(ServerOrder user) {
 		return dao.isExists(user);
 	}
 
+	/**
+	 * 更新ServerOrder实例
+	 */
 	@Override
 	public void update(ServerOrder t) {
 		dao.update(t);
 	}
 
+	/**
+	 * 根据id查找房间，返回ServerOrder实例
+	 */
 	@Override
 	public ServerOrder findById(String id) {
 		return dao.findById(id);
 	}
 
+	/**
+	 * 根据付费方式查找，返回ServerOrder实例
+	 */
 	@Override
 	public List<ServerOrder> findByPayPath(Object property) {
 		return dao.findByPayPath(property);
 	}
 
+	/**
+	 * 根据员工对象查找，返回ServerOrder实例
+	 */
 	@Override
 	public List<ServerOrder> findByUser(Object property) {
 		return dao.findByUser(property);
 	}
 
+	/**
+	 * 根据抵押物对象查找，返回ServerOrder实例
+	 */
 	@Override
 	public List<ServerOrder> findByPledge(Object property) {
 		return dao.findByPledge(property);
 	}
 
+	/**
+	 * 根据钟点类型对象查找，返回ServerOrder实例
+	 */
 	@Override
 	public List<ServerOrder> findByClockCategory(Object property) {
 		return dao.findByClockCategory(property);
 	}
-
+/**
+ * 查找今日订单
+ */
 	@Override
 	public List<ServerOrder> findTodayOrder() {
 		return dao.findOrdersByDateLimit(WorkDate.getTodayDate()
 				, WorkDate.getTomorrowDate());
 	}
-
+/**
+ * 查找指定日期的订单
+ */
 	@Override
 	public List<ServerOrder> findOrderByDate(Date date) {
 		return dao.findOrdersByDateLimit(date, WorkDate.getNextDate(date));
 	}
-
+	
+/**
+ * 查找指定时间区域内的订单
+ * @param begin 开始日期
+ * @param end 结束日期
+ */
 	@Override
 	public List<ServerOrder> findOrderByDateLimit(Date begin, Date end) {
 		return dao.findOrdersByDateLimit(begin, WorkDate.getNextDate(end));
 	}
 
+	/**
+	 * 查找低于指定价格的所有订单
+	 * @param price 比较价格
+	 */
 	@Override
 	public List<ServerOrder> findAllOrderLessThanPrice(int price) {
 		return dao.findOrderByPriceLimit(price, CompareLevel.LESS_THAN);
 	}
 
+	/**
+	 * 查找指定日期内低于指定价格的订单
+	 * @param begin 开始日期
+     * @param end 结束日期
+	 * @param price 比较价格
+	 */
 	@Override
 	public List<ServerOrder> findOrderLessThanPriceDate(int price, Date begin, Date end) {
 		return dao.findOrderByPriceAndDateLimit(price, begin, end, CompareLevel.LESS_THAN);
 	}
 
+	/**
+	 * 查找高于指定价格的所有订单
+	 * @param price 比较价格
+	 */
 	@Override
 	public List<ServerOrder> findOrderMoreThanPrice(int price) {
 		return dao.findOrderByPriceLimit(price, CompareLevel.MORE_THAN);
 	}
 
+	/**
+	 * 查找指定日期内高于指定价格的订单
+	 * @param begin 开始日期
+     * @param end 结束日期
+	 * @param price 比较价格
+	 */
 	@Override
 	public List<ServerOrder> findOrderMoreThanPriceDate(int price, Date begin, Date end) {
 		return dao.findOrderByPriceAndDateLimit(price, begin, end, CompareLevel.MORE_THAN);
 	}
 
+	/**
+	 * 根据页面查找页面内所有服务订单
+	 */
 	@Override
 	public PageBean<ServerOrder> findByPage(int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderBean.init(findAllCount(), page);

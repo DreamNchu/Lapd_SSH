@@ -10,7 +10,7 @@
 <base href="<%=basePath%>">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>点钟手发</title>
+<title>发布订单</title>
 <meta
 	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
 	name="viewport">
@@ -21,8 +21,10 @@
 <link rel="stylesheet"
 	href="bower_components/Ionicons/css/ionicons.min.css">
 <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-<link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+<link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 <link rel="stylesheet" href="css/all.css">
+<link rel="stylesheet" href="css/styleradio.css">
+<link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <link rel="stylesheet"
@@ -32,17 +34,20 @@
 <script src="dist/js/adminlte.min.js"></script>
 <script src="js/icheck.min.js"></script>
 <script src="js/ajax_js.js"></script>
+<script src="js/initClass.js"></script>
 
 <script type="text/javascript">
 
-
 	window.onload = function() {
-	
+        initActive();
+		initTime();
+        var currentTime=document.getElementById("currentTime");
+        var myDate=new Date();
+        currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
 		ajaxRequest("initOrderData", create);
 		
 	}
 		function create(createOrder) {
-	
 		var stuffId = document.getElementById("stuffId");
 		var roomId = document.getElementById("roomId");
 		var roomCategory = document.getElementById("roomCategory");
@@ -77,15 +82,21 @@
 	function showOf() {
 		document.getElementById("stuffId").disabled = "";
 	}
+	function initTime() {
+		var currentTime=document.getElementById("currentTime");
+		var myDate=new Date();
+		currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
+		setTimeout("initTime()",1000);
+	}
 </script>
 </head>
-<body class="hold-transition skin-red  sidebar-mini">
+<body class="hold-transition skin-blue  sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header" style="background-color: #333333">
-
+			<jsp:include page="header.jsp"/>
 		</header>
 		<aside class="main-sidebar" style="background-color: #555555">
-
+			<jsp:include page="left.jsp"/>
 		</aside>
 
 		<div class="content-wrapper">
@@ -94,7 +105,7 @@
 					工作模块 <small>订单发布</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="#"><i class="fa fa-dashboard"></i>2017-11-27-18-19</a></li>
+					<li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
 				</ol>
 			</section>
 
@@ -105,15 +116,24 @@
 							<form role="form" method="get" action="" id="orderForm">
 								<div class="box box-warning">
 									<div class="box-header with-border">
-										<input type="radio" name="createOrderDto.createWay" id="rad1" checked
-											onclick="showOf()">
-										<h3 class="box-title">点钟手发</h3>
-										<input type="radio" name="createOrderDto.createWay" id="rad2"
-											onclick="showOf()">
-										<h3 class="box-title">排钟手发</h3>
-										<input type="radio" name="createOrderDto.createWay" id="rad3"
-											onclick="hideOf()">
-										<h3 class="box-title">排钟自发</h3>
+										<label for="rad1" class="radio">
+											<span class="radio-bg"></span>
+											<input  type="radio" name="createWay" id="rad1" checked onclick="showOf()">
+											点钟手发
+											<span class="radio-on"></span>
+										</label>
+										<label for="rad2" class="radio">
+											<span class="radio-bg"></span>
+											<input  type="radio" name="createWay" id="rad2" onclick="showOf()">
+											排钟手发
+											<span class="radio-on"></span>
+										</label>
+										<label for="rad3" class="radio">
+											<span class="radio-bg"></span>
+											<input type="radio" name="createWay"  id="rad3" onclick="hideOf()">
+											排钟自发
+											<span class="radio-on"></span>
+										</label>
 									</div>
 									<div class="box-body">
 										<div class="form-group">
@@ -152,7 +172,9 @@
 		</div>
 
 
-		<aside class="control-sidebar control-sidebar-dark"></aside>
+		<aside class="control-sidebar control-sidebar-dark">
+			<jsp:include page="right.jsp"/>
+		</aside>
 		<div class="control-sidebar-bg"></div>
 	</div>
 

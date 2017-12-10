@@ -92,12 +92,12 @@ public class RoomCategoryServiceTest {
 		fail("Not yet implemented");
 	}
 
-	@Test
+/*	@Test
 	public void testUpdate() {
 		ServerItem rc = as.findById(1);
 		rc.setRoomCategory("足浴");
 		as.update(rc);
 //		rc.setId(id);
 	}
-
+*/
 }

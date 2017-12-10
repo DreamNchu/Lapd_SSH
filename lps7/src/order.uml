@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_qfLWcN2REeeF-N-zu-6rZQ">
+  <name xsi:nil="true"/>
+  <elementImport xmi:id="_qkpFQN2REeeF-N-zu-6rZQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+  </elementImport>
+  <elementImport xmi:id="_qlNtAN2REeeF-N-zu-6rZQ">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qfRdEN2REeeF-N-zu-6rZQ" name="com">
+    <packagedElement xmi:type="uml:Package" xmi:id="_qfSEIN2REeeF-N-zu-6rZQ" name="lps">
+      <packagedElement xmi:type="uml:Package" xmi:id="_qfSEId2REeeF-N-zu-6rZQ" name="action">
+        <packagedElement xmi:type="uml:Package" xmi:id="_qfSEIt2REeeF-N-zu-6rZQ" name="operation">
+          <packagedElement xmi:type="uml:Package" xmi:id="_qfTSQN2REeeF-N-zu-6rZQ" name="order">
+            <packagedElement xmi:type="uml:Class" xmi:id="_qfUgYN2REeeF-N-zu-6rZQ" name="ManageOrdersAction">
+              <generalization xmi:id="_qhS2UN2REeeF-N-zu-6rZQ" general="_qgtAc92REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qkrhgN2REeeF-N-zu-6rZQ" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qkvL4N2REeeF-N-zu-6rZQ" name="orderTableDataDto" visibility="private" type="_qgrLSN2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qk0rcN2REeeF-N-zu-6rZQ" name="queryOrderDto" visibility="private" type="_qgrLSt2REeeF-N-zu-6rZQ">
+                <ownedComment xmi:id="_qk3uwN2REeeF-N-zu-6rZQ">
+                  <body>/** 
+ * 查询所要的订单基本信息
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qk5j8N2REeeF-N-zu-6rZQ" name="orderManage" visibility="private" type="_qgqkO92REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qlMe4N2REeeF-N-zu-6rZQ" name="session" visibility="private" type="_qlKpsN2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qlPiMN2REeeF-N-zu-6rZQ" name="result" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qlR-cN2REeeF-N-zu-6rZQ" name="serverOrderServiceImpl" visibility="private" type="_qgrLQN2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qlVBwN2REeeF-N-zu-6rZQ" name="orderUpdateDataDto" visibility="private" type="_qgrLSd2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qltcQN2REeeF-N-zu-6rZQ" name="orderId" visibility="private" type="_qlW28N2REeeF-N-zu-6rZQ">
+                <ownedComment xmi:id="_qluqYN2REeeF-N-zu-6rZQ">
+                  <body>/** 
+ * 订单编号的id集合
+ */
+</body>
+                </ownedComment>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qlwfkN2REeeF-N-zu-6rZQ" name="orderChartDto" visibility="private" type="_qgryUN2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_ql3NQN2REeeF-N-zu-6rZQ" name="orderChartRequestDto" visibility="private" type="_qgtAcN2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_ql5pgN2REeeF-N-zu-6rZQ" name="initBasicUpdateDataDto" visibility="private" type="_qgrLR92REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_ql9T4N2REeeF-N-zu-6rZQ" name="orderChartInitDto" visibility="private" type="_qgsZYN2REeeF-N-zu-6rZQ"/>
+              <ownedOperation xmi:id="_qmPnwN2REeeF-N-zu-6rZQ" name="getSerialversionuid" visibility="public" isStatic="true">
+                <ownedParameter xmi:id="_qmPnwd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmRc8N2REeeF-N-zu-6rZQ" name="getOrderUpdateDataDto" visibility="public">
+                <ownedParameter xmi:id="_qmRc8d2REeeF-N-zu-6rZQ" name="return" type="_qgrLSd2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmT5MN2REeeF-N-zu-6rZQ" name="setOrderUpdateDataDto" visibility="public">
+                <ownedParameter xmi:id="_qmT5Md2REeeF-N-zu-6rZQ" name="orderUpdateDataDto" type="_qgrLSd2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmVHUN2REeeF-N-zu-6rZQ" name="execute" visibility="public">
+                <ownedParameter xmi:id="_qmVHUd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmW8gN2REeeF-N-zu-6rZQ" name="deleteOrders" visibility="public">
+                <ownedParameter xmi:id="_qmW8gd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmZYwN2REeeF-N-zu-6rZQ" name="getOrderDataDto" visibility="public">
+                <ownedParameter xmi:id="_qmZYwd2REeeF-N-zu-6rZQ" name="return" type="_qgrLSd2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmbN8N2REeeF-N-zu-6rZQ" name="getOrderManage" visibility="public">
+                <ownedParameter xmi:id="_qmbN8d2REeeF-N-zu-6rZQ" name="return" type="_qgqkO92REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmdDIN2REeeF-N-zu-6rZQ" name="getOrderTableDataDto" visibility="public">
+                <ownedParameter xmi:id="_qmdDId2REeeF-N-zu-6rZQ" name="return" type="_qgrLSN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmeRQN2REeeF-N-zu-6rZQ" name="getQueryOrderDto" visibility="public">
+                <ownedParameter xmi:id="_qmeRQd2REeeF-N-zu-6rZQ" name="return" type="_qgrLSt2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmgGcN2REeeF-N-zu-6rZQ" name="getResult" visibility="public">
+                <ownedParameter xmi:id="_qmgGcd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmh7oN2REeeF-N-zu-6rZQ" name="getServerOrderServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qmh7od2REeeF-N-zu-6rZQ" name="return" type="_qgrLQN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmjw0N2REeeF-N-zu-6rZQ" name="queryBasicOrders" visibility="public">
+                <ownedComment xmi:id="_qmk-8N2REeeF-N-zu-6rZQ">
+                  <body>/** 
+ * 根据时间查看各种订单类型
+ * @return 根据请求返回不同的界面
+ * @throws PagePropertyNotInitException
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_qmjw0d2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmlmAN2REeeF-N-zu-6rZQ" name="chartDataOrders" visibility="public">
+                <ownedComment xmi:id="_qmp3cN2REeeF-N-zu-6rZQ">
+                  <body>/** 
+ * 图图表分析数据
+ * @return
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_qmlmAd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmqegN2REeeF-N-zu-6rZQ" name="getOrderChartDto" visibility="public">
+                <ownedParameter xmi:id="_qmqegd2REeeF-N-zu-6rZQ" name="return" type="_qgryUN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmsTsN2REeeF-N-zu-6rZQ" name="setOrderChartDto" visibility="public">
+                <ownedParameter xmi:id="_qmsTsd2REeeF-N-zu-6rZQ" name="orderChartDto" type="_qgryUN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmuI4N2REeeF-N-zu-6rZQ" name="getOrderChartRequestDto" visibility="public">
+                <ownedParameter xmi:id="_qmuI4d2REeeF-N-zu-6rZQ" name="return" type="_qgtAcN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmwlIN2REeeF-N-zu-6rZQ" name="setOrderChartRequestDto" visibility="public">
+                <ownedParameter xmi:id="_qmwlId2REeeF-N-zu-6rZQ" name="orderChartRequestDto" type="_qgtAcN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qmyaUN2REeeF-N-zu-6rZQ" name="setOrderDataDto" visibility="public">
+                <ownedParameter xmi:id="_qmyaUd2REeeF-N-zu-6rZQ" name="orderUpdateDataDto" type="_qgrLSd2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qm5IAN2REeeF-N-zu-6rZQ" name="getOrderId" visibility="public">
+                <ownedParameter xmi:id="_qm5IAd2REeeF-N-zu-6rZQ" name="return" type="_qgqkMN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qm69MN2REeeF-N-zu-6rZQ" name="setOrderId" visibility="public">
+                <ownedParameter xmi:id="_qm69Md2REeeF-N-zu-6rZQ" name="orderId" type="_qgqkMN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qm9ZcN2REeeF-N-zu-6rZQ" name="getSession" visibility="public">
+                <ownedParameter xmi:id="_qm9Zcd2REeeF-N-zu-6rZQ" name="return" type="_qgqkMd2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnAcwN2REeeF-N-zu-6rZQ" name="setOrderManage" visibility="public">
+                <ownedParameter xmi:id="_qnAcwd2REeeF-N-zu-6rZQ" name="orderManage" type="_qgqkO92REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnEHIN2REeeF-N-zu-6rZQ" name="setOrderTableDataDto" visibility="public">
+                <ownedParameter xmi:id="_qnEHId2REeeF-N-zu-6rZQ" name="orderTableDataDto" type="_qgrLSN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnF8UN2REeeF-N-zu-6rZQ" name="setQueryOrderDto" visibility="public">
+                <ownedParameter xmi:id="_qnF8Ud2REeeF-N-zu-6rZQ" name="queryOrderDto" type="_qgrLSt2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnI_oN2REeeF-N-zu-6rZQ" name="setResult" visibility="public">
+                <ownedParameter xmi:id="_qnI_od2REeeF-N-zu-6rZQ" name="result">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnLb4N2REeeF-N-zu-6rZQ" name="setServerOrderServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qnLb4d2REeeF-N-zu-6rZQ" name="serverOrderServiceImpl" type="_qgrLQN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnNREN2REeeF-N-zu-6rZQ" name="updateOrder" visibility="public">
+                <ownedComment xmi:id="_qnOfMN2REeeF-N-zu-6rZQ">
+                  <body>/** 
+ * 更新订单内容
+ * @return 成功返回success
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_qnNREd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnPGQN2REeeF-N-zu-6rZQ" name="queryOrder" visibility="public">
+                <ownedComment xmi:id="_qnQUYN2REeeF-N-zu-6rZQ">
+                  <body>/** 
+ * 查询单个订单
+ * @return
+ */
+</body>
+                </ownedComment>
+                <ownedParameter xmi:id="_qnPGQd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnQ7cN2REeeF-N-zu-6rZQ" name="initChartOrders" visibility="public">
+                <ownedParameter xmi:id="_qnQ7cd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnSwoN2REeeF-N-zu-6rZQ" name="getOrderChartInitDto" visibility="public">
+                <ownedParameter xmi:id="_qnSwod2REeeF-N-zu-6rZQ" name="return" type="_qgsZYN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnT-wN2REeeF-N-zu-6rZQ" name="setOrderChartInitDto" visibility="public">
+                <ownedParameter xmi:id="_qnT-wd2REeeF-N-zu-6rZQ" name="orderChartInitDto" type="_qgsZYN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnWbAN2REeeF-N-zu-6rZQ" name="setSession" visibility="public">
+                <ownedParameter xmi:id="_qnWbAd2REeeF-N-zu-6rZQ" name="arg0" type="_qgqkMd2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnYQMN2REeeF-N-zu-6rZQ" name="getInitBasicUpdateDataDto" visibility="public">
+                <ownedParameter xmi:id="_qnYQMd2REeeF-N-zu-6rZQ" name="return" type="_qgrLR92REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnaFYN2REeeF-N-zu-6rZQ" name="setInitBasicUpdateDataDto" visibility="public">
+                <ownedParameter xmi:id="_qnaFYd2REeeF-N-zu-6rZQ" name="initBasicUpdateDataDto" type="_qgrLR92REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_qfW8oN2REeeF-N-zu-6rZQ" name="ManageOrdersActionTest">
+              <ownedAttribute xmi:id="_qnb6kN2REeeF-N-zu-6rZQ" name="ctx" visibility="package" isStatic="true" type="_qgtng92REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qndvwN2REeeF-N-zu-6rZQ" name="as" visibility="package" isStatic="true" type="_qfUgYN2REeeF-N-zu-6rZQ" association="_qqYg4N2REeeF-N-zu-6rZQ"/>
+              <ownedOperation xmi:id="_qne94N2REeeF-N-zu-6rZQ" name="before" visibility="public" isStatic="true"/>
+              <ownedOperation xmi:id="_qnfk8N2REeeF-N-zu-6rZQ" name="after" visibility="public" isStatic="true"/>
+              <ownedOperation xmi:id="_qngzEN2REeeF-N-zu-6rZQ" name="testQueryBasic" visibility="public"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_qfZY4N2REeeF-N-zu-6rZQ" name="CreateOrderAction">
+              <generalization xmi:id="_qnhaIN2REeeF-N-zu-6rZQ" general="_qgtAc92REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qnioQN2REeeF-N-zu-6rZQ" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qnkdcN2REeeF-N-zu-6rZQ" name="createOrderDto" visibility="private" type="_qgu1od2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qnmSoN2REeeF-N-zu-6rZQ" name="orderManage" visibility="private" type="_qgqkO92REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qnoH0N2REeeF-N-zu-6rZQ" name="serverOrderServiceImpl" visibility="private" type="_qgrLQN2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qnp9AN2REeeF-N-zu-6rZQ" name="result" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_qnrLIN2REeeF-N-zu-6rZQ" name="execute" visibility="public">
+                <ownedParameter xmi:id="_qnrLId2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnsZQN2REeeF-N-zu-6rZQ" name="getOrderManage" visibility="public">
+                <ownedParameter xmi:id="_qnsZQd2REeeF-N-zu-6rZQ" name="return" type="_qgqkO92REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qntnYN2REeeF-N-zu-6rZQ" name="setOrderManage" visibility="public">
+                <ownedParameter xmi:id="_qntnYd2REeeF-N-zu-6rZQ" name="orderManage" type="_qgqkO92REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnu1gN2REeeF-N-zu-6rZQ" name="getServerOrderServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qnu1gd2REeeF-N-zu-6rZQ" name="return" type="_qgrLQN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnwqsN2REeeF-N-zu-6rZQ" name="setServerOrderServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qnwqsd2REeeF-N-zu-6rZQ" name="serverOrderServiceImpl" type="_qgrLQN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnx40N2REeeF-N-zu-6rZQ" name="getResult" visibility="public">
+                <ownedParameter xmi:id="_qnx40d2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qnzG8N2REeeF-N-zu-6rZQ" name="setResult" visibility="public">
+                <ownedParameter xmi:id="_qnzG8d2REeeF-N-zu-6rZQ" name="result">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qn08IN2REeeF-N-zu-6rZQ" name="getCreateOrderDto" visibility="public">
+                <ownedParameter xmi:id="_qn08Id2REeeF-N-zu-6rZQ" name="return" type="_qgu1od2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qn2KQN2REeeF-N-zu-6rZQ" name="setCreateOrderDto" visibility="public">
+                <ownedParameter xmi:id="_qn2KQd2REeeF-N-zu-6rZQ" name="createOrderDto" type="_qgu1od2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qn3YYN2REeeF-N-zu-6rZQ" name="getSerialversionuid" visibility="public" isStatic="true">
+                <ownedParameter xmi:id="_qn3YYd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                </ownedParameter>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_qfanAN2REeeF-N-zu-6rZQ" name="InitCreateOrderBasicDataAction">
+              <generalization xmi:id="_qn5NkN2REeeF-N-zu-6rZQ" general="_qgtAc92REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qn50oN2REeeF-N-zu-6rZQ" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_qn7p0N2REeeF-N-zu-6rZQ" name="initCreateOrderDto" visibility="private" type="_qgwq0t2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qn838N2REeeF-N-zu-6rZQ" name="roomServiceImpl" visibility="private" type="_qgwDxN2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qn-tIN2REeeF-N-zu-6rZQ" name="serverItemServiceImpl" visibility="private" type="_qgwDxd2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qn_7QN2REeeF-N-zu-6rZQ" name="userServiceImpl" visibility="private" type="_qgwq0N2REeeF-N-zu-6rZQ"/>
+              <ownedAttribute xmi:id="_qoBJYN2REeeF-N-zu-6rZQ" name="result" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_qoBwcN2REeeF-N-zu-6rZQ" name="initOrderData" visibility="public">
+                <ownedParameter xmi:id="_qoCXgN2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoC-kN2REeeF-N-zu-6rZQ" name="execute" visibility="public">
+                <ownedParameter xmi:id="_qoC-kd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoDloN2REeeF-N-zu-6rZQ" name="getUserServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qoDlod2REeeF-N-zu-6rZQ" name="return" type="_qgwq0N2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoEzwN2REeeF-N-zu-6rZQ" name="setUserServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qoEzwd2REeeF-N-zu-6rZQ" name="userServiceImpl" type="_qgwq0N2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoFa0N2REeeF-N-zu-6rZQ" name="getResult" visibility="public">
+                <ownedParameter xmi:id="_qoFa0d2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoGo8N2REeeF-N-zu-6rZQ" name="setResult" visibility="public">
+                <ownedParameter xmi:id="_qoGo8d2REeeF-N-zu-6rZQ" name="result">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoHQAN2REeeF-N-zu-6rZQ" name="getServerItemServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qoHQAd2REeeF-N-zu-6rZQ" name="return" type="_qgwDxd2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoIeIN2REeeF-N-zu-6rZQ" name="setServerItemServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qoIeId2REeeF-N-zu-6rZQ" name="serverItemServiceImpl" type="_qgwDxd2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoJFMN2REeeF-N-zu-6rZQ" name="getSerialversionuid" visibility="public" isStatic="true">
+                <ownedParameter xmi:id="_qoJFMd2REeeF-N-zu-6rZQ" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoKTUN2REeeF-N-zu-6rZQ" name="getRoomServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qoKTUd2REeeF-N-zu-6rZQ" name="return" type="_qgwDxN2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoLhcN2REeeF-N-zu-6rZQ" name="setRoomServiceImpl" visibility="public">
+                <ownedParameter xmi:id="_qoLhcd2REeeF-N-zu-6rZQ" name="roomServiceImpl" type="_qgwDxN2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoMIgN2REeeF-N-zu-6rZQ" name="getInitCreateOrderDto" visibility="public">
+                <ownedParameter xmi:id="_qoMIgd2REeeF-N-zu-6rZQ" name="return" type="_qgwq0t2REeeF-N-zu-6rZQ" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_qoNWoN2REeeF-N-zu-6rZQ" name="setInitCreateOrderDto" visibility="public">
+                <ownedParameter xmi:id="_qoNWod2REeeF-N-zu-6rZQ" name="initCreateOrderDto" type="_qgwq0t2REeeF-N-zu-6rZQ"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Association" xmi:id="_qqYg4N2REeeF-N-zu-6rZQ" memberEnd="_qndvwN2REeeF-N-zu-6rZQ _qqYg4d2REeeF-N-zu-6rZQ">
+              <ownedEnd xmi:id="_qqYg4d2REeeF-N-zu-6rZQ" name="ManageOrdersActionTest" type="_qfW8oN2REeeF-N-zu-6rZQ" association="_qqYg4N2REeeF-N-zu-6rZQ"/>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_qgqkN92REeeF-N-zu-6rZQ" name="jsonresult">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_qgqkON2REeeF-N-zu-6rZQ" name="JsonResult"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgqkOd2REeeF-N-zu-6rZQ" name="control">
+        <packagedElement xmi:type="uml:Package" xmi:id="_qgqkOt2REeeF-N-zu-6rZQ" name="manage">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_qgqkO92REeeF-N-zu-6rZQ" name="OrderManage"/>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgqkPN2REeeF-N-zu-6rZQ" name="model">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgqkPd2REeeF-N-zu-6rZQ" name="ServerOrder"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwDwN2REeeF-N-zu-6rZQ" name="Room"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwDwd2REeeF-N-zu-6rZQ" name="ServerItem"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwDwt2REeeF-N-zu-6rZQ" name="User"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgqkPt2REeeF-N-zu-6rZQ" name="service">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgrLQN2REeeF-N-zu-6rZQ" name="ServerOrderService"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwDw92REeeF-N-zu-6rZQ" name="ClockCategoryService"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwDxN2REeeF-N-zu-6rZQ" name="RoomService"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwDxd2REeeF-N-zu-6rZQ" name="ServerItemService"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwq0N2REeeF-N-zu-6rZQ" name="UserService"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgwq0d2REeeF-N-zu-6rZQ" name="WorkRankService"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgrLQd2REeeF-N-zu-6rZQ" name="util">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgrLQt2REeeF-N-zu-6rZQ" name="PagePropertyNotInitException"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgrLQ92REeeF-N-zu-6rZQ" name="WorkJson"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgrLRN2REeeF-N-zu-6rZQ" name="web">
+        <packagedElement xmi:type="uml:Package" xmi:id="_qgrLRd2REeeF-N-zu-6rZQ" name="order">
+          <packagedElement xmi:type="uml:Package" xmi:id="_qgrLRt2REeeF-N-zu-6rZQ" name="dto">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgrLR92REeeF-N-zu-6rZQ" name="InitBasicUpdateDataDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgrLSN2REeeF-N-zu-6rZQ" name="OrderTableDataDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgrLSd2REeeF-N-zu-6rZQ" name="OrderUpdateDataDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgrLSt2REeeF-N-zu-6rZQ" name="QueryOrderDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qguOkd2REeeF-N-zu-6rZQ" name="OrderSingleDataDto"/>
+            <packagedElement xmi:type="uml:Package" xmi:id="_qguOkt2REeeF-N-zu-6rZQ" name="constant">
+              <packagedElement xmi:type="uml:DataType" xmi:id="_qguOk92REeeF-N-zu-6rZQ" name="TimeType"/>
+              <packagedElement xmi:type="uml:DataType" xmi:id="_qgvcsN2REeeF-N-zu-6rZQ" name="CreateOrderWay"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgu1od2REeeF-N-zu-6rZQ" name="CreateOrderDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgwq0t2REeeF-N-zu-6rZQ" name="InitCreateOrderDto"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_qgrLS92REeeF-N-zu-6rZQ" name="orderchart">
+          <packagedElement xmi:type="uml:Package" xmi:id="_qgrLTN2REeeF-N-zu-6rZQ" name="dto">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgryUN2REeeF-N-zu-6rZQ" name="OrderChartDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgsZYN2REeeF-N-zu-6rZQ" name="OrderChartInitDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_qgtAcN2REeeF-N-zu-6rZQ" name="OrderChartRequestDto"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgtnh92REeeF-N-zu-6rZQ" name="dao">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qguOkN2REeeF-N-zu-6rZQ" name="OrderStatusDAO"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgu1oN2REeeF-N-zu-6rZQ" name="ClockCategoryDAO"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_qgtAcd2REeeF-N-zu-6rZQ" name="opensymphony">
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgtAct2REeeF-N-zu-6rZQ" name="xwork2">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgtAc92REeeF-N-zu-6rZQ" name="ActionSupport"/>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_qgtnhN2REeeF-N-zu-6rZQ" name="google">
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgtnhd2REeeF-N-zu-6rZQ" name="gson">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_qgtnht2REeeF-N-zu-6rZQ" name="Gson"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qgb6sN2REeeF-N-zu-6rZQ" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_qgb6sd2REeeF-N-zu-6rZQ" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_qgp9IN2REeeF-N-zu-6rZQ" name="HashMap"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_qgqkMN2REeeF-N-zu-6rZQ" name="List"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_qgqkMd2REeeF-N-zu-6rZQ" name="Map"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_wJq-oN2SEeeF-N-zu-6rZQ" name="java">
+      <packagedElement xmi:type="uml:Package" xmi:id="_wJq-od2SEeeF-N-zu-6rZQ" name="util">
+        <packagedElement xmi:type="uml:DataType" xmi:id="_wJq-ot2SEeeF-N-zu-6rZQ" name="HashMap"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_wJq-o92SEeeF-N-zu-6rZQ" name="List"/>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_wJq-pN2SEeeF-N-zu-6rZQ" name="Map"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_qgqkMt2REeeF-N-zu-6rZQ" name="org">
+    <packagedElement xmi:type="uml:Package" xmi:id="_qgqkM92REeeF-N-zu-6rZQ" name="apache">
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgqkNN2REeeF-N-zu-6rZQ" name="struts2">
+        <packagedElement xmi:type="uml:Package" xmi:id="_qgqkNd2REeeF-N-zu-6rZQ" name="interceptor">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_qgqkNt2REeeF-N-zu-6rZQ" name="SessionAware"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_qgtAdN2REeeF-N-zu-6rZQ" name="junit">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_qgtAdd2REeeF-N-zu-6rZQ" name="AfterClass"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_qgtAdt2REeeF-N-zu-6rZQ" name="BeforeClass"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_qgtAd92REeeF-N-zu-6rZQ" name="Test"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_qgtngN2REeeF-N-zu-6rZQ" name="springframework">
+      <packagedElement xmi:type="uml:Package" xmi:id="_qgtngd2REeeF-N-zu-6rZQ" name="context">
+        <packagedElement xmi:type="uml:Package" xmi:id="_qgtngt2REeeF-N-zu-6rZQ" name="support">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_qgtng92REeeF-N-zu-6rZQ" name="ClassPathXmlApplicationContext"/>
+        </packagedElement>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_qlKpsN2REeeF-N-zu-6rZQ" name="Map&lt;String,Object>"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_qlW28N2REeeF-N-zu-6rZQ" name="List&lt;String>"/>
+</uml:Model>

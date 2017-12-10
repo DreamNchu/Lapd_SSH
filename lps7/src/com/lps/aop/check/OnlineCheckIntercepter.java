@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.Action;
 
-@Aspect
-@Component
+//@Aspect
+//@Component
 @Order(5)
 //@Scope("request")
 public class OnlineCheckIntercepter {
@@ -36,7 +36,6 @@ public class OnlineCheckIntercepter {
 	
 	@Around("myMethod()")
 	public Object checkAccess(ProceedingJoinPoint pjp) throws Throwable {
-//System.out.println("Proceding");
 		if(request.getSession().getAttribute("id") == null){
 			return Action.LOGIN;
 		}

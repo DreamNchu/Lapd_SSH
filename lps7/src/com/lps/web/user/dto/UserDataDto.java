@@ -86,6 +86,7 @@ public class UserDataDto {
 		if(userName != null) user.setUserName(userName);
 		if(password != null) user.setPassword(password);
 		if(address != null) user.setAddress(address);
+		if(workId != null) user.setWorkId(workId);
 		if(birthday != null && !birthday.equals("")) user.setBirthday(WorkDate.toDate(birthday));
 		if(telephonePhone != null) user.setTelephonePhone(telephonePhone);
 		if(email != null) user.setEmail(email);

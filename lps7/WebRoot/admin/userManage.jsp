@@ -9,21 +9,26 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>员工状态 </title>
+    <title>员工管理</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+    <link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <script src="js/userJs.js"></script>
     <script src="js/ajax_js.js"></script>
+    <script src="js/initClass.js"></script>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <script type="text/javascript">
      	window.onload=function () {
+            initActive();
+            initTime();
+      
            ajaxRequest("queryBasicUser?queryUserDto.page=1" ,showdata);
         }
     
@@ -71,7 +76,7 @@
         }
         
         function deleteUser() {
-            var userArray=document.getElementsByName("userCheckBox");
+            var userArray=document.getElementsByName("userId");
             var i;
             for(i=0;i<userArray.length;i++){
                 if(userArray[i].checked==true){
@@ -102,6 +107,7 @@
         function editUser() {
             var userArray=document.getElementsByName("userCheckBox");
             var i,count=0,op;
+            alert(userArray.length);
             for(i=0;i<userArray.length;i++){
                 if(userArray[i].checked==true){
                     count++;
@@ -155,16 +161,22 @@
         function  reviseLable(){
             document.getElementById("myModalLabel").innerHTML="增加员工";
         }
+        function initTime() {
+            var currentTime=document.getElementById("currentTime");
+            var myDate=new Date();
+            currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
+            setTimeout("initTime()",1000);
+        }
     </script>
 </head>
 
 <body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
     <header class="main-header" style="background-color: #333333">
-
+        <jsp:include page="header.jsp"/>
     </header>
     <aside class="main-sidebar" style="background-color: #555555">
-
+     <jsp:include page="left.jsp"/>
     </aside>
 
     <div class="content-wrapper">
@@ -173,7 +185,7 @@
                 员工管理
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>2017-11-27-18-19</a></li>
+                <li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
             </ol>
         </section>
         <section class="content container-fluid">
@@ -233,7 +245,7 @@
                     <form id="userForm">
                         <div class="modal-body">
                             <div class="form-group" >
-                            	<input type="hidden" name="userDataDto.id"  id="userId" style="display: none>"
+                            	<input type="hidden" name="userDataDto.id"  id="userId" style="display: none">
                                 <label>工号</label>
                                 <input type="text" name="userDataDto.workId" id="workId" class="form-control" >
                                 <label>姓名</label>
@@ -273,7 +285,7 @@
 
 
     <aside class="control-sidebar control-sidebar-dark">
-
+        <jsp:include page="right.jsp"/>
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>

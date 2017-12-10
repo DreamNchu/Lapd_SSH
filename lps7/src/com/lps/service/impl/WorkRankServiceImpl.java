@@ -14,62 +14,100 @@ import com.lps.util.PagePropertyNotInitException;
 
 public class WorkRankServiceImpl implements WorkRankService {
 	
+	/**
+	 * 以私有变量的方式保存WorkRankDao
+	 */
 	private WorkRankDAO dao ;
 	
+	/**
+	 * 将WorkRank实体类封装到pagebean中
+	 */
 	private PageBean<WorkRank> pageBean;
-	
-	public WorkRankServiceImpl(){
-		
-	}
-	
+
+	/**
+	 * 获取pagebean中WorkRank实体类集合
+	 * @return 返回实体类
+	 */
 	public PageBean<WorkRank> getPageBean() {
 		return pageBean;
 	}
 
+	/**
+	 * 设置实体类集合
+	 * @param pageBean 封装的WorkRank实体类
+	 */
 	public void setPageBean(PageBean<WorkRank> pageBean) {
 		this.pageBean = pageBean;
 	}
 
+	/**
+	 * 获取WorkRankDao实例
+	 * @return 返回WorkRankDao实例
+	 */
 	public WorkRankDAO getWorkRankDao() {
 		return dao;
 	}
 
-	public void setWorkRankDao(WorkRankDAO userDao) {
-		this.dao = userDao;
+	/**
+	 * 设置WorkRankDao实例
+	 * @param WorkRankDao
+	 */
+	public void setWorkRankDao(WorkRankDAO WorkRankDao) {
+		this.dao = WorkRankDao;
 	}
 
+	/**
+	 * 保存WorkRank实例
+	 */
 	@Override
-	public void save(WorkRank user) {
-		dao.save( user);
+	public void save(WorkRank WorkRank) {
+		dao.save(WorkRank);
 	}
 
+	/**
+	 * 删除WorkRank实例
+	 */
 	@Override
-	public void delete(WorkRank user) {
-		dao.delete(user);
+	public void delete(WorkRank WorkRank) {
+		dao.delete(WorkRank);
 	}
 
-
+	/**
+	 * 根据id查找房间，返回WorkRank实例
+	 */
 	@Override
 	public WorkRank findById(int id) {
 		return dao.findById(id);
 	}
 	
+	/**
+	 * 根据id查找WorkRank实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(WorkRank user) {
 		return dao.isExists(user);
 	}
 
-
+	/**
+	 * 返回所有WorkRank实例
+	 */
 	@Override
 	public List<WorkRank> findAll() {
 		return dao.findAll();
 	}
 
+	/**
+	 * 返回所有WorkRank实例的数量
+	 */
 	@Override
 	public long findAllCount() {
 		return dao.findAllCount();
 	}
 
+	/**
+	 * 根据指定属性及其属性值查找WorkRank实例，返回指定WorkRank实例
+	 */
 	@Override
 	public List<WorkRank> findByProperty(String propertyName, Object value) {
 		return dao.findByProperty(propertyName, value);
@@ -91,26 +129,41 @@ public class WorkRankServiceImpl implements WorkRankService {
 		return pageBean;
     }
 
+	/**
+	 * 更新WorkRank实例
+	 */
 	@Override
 	public void update(WorkRank t) {
 		dao.update(t);	
 	}
 
+	/**
+	 * 根据员工名属性查找，返回WorkRank实例
+	 */
 	@Override
 	public List<WorkRank> findByUser(User user) {
 		return dao.findByUser(user);
 	}
 
+	/**
+	 * 根据排列序号属性查找，返回WorkRank实例
+	 */
 	@Override
 	public List<WorkRank> findByRank(int num) {
 		return dao.findByRank(num);
 	}
 
+	/**
+	 * 根据排钟数属性查找，返回WorkRank实例
+	 */
 	@Override
 	public List<WorkRank> findByRankNum(int num) {
 		return dao.findByRankNum(num);
 	}
 
+	/**
+	 * 根据点钟数属性查找，返回WorkRank实例
+	 */
 	@Override
 	public List<WorkRank> findBySpotNum(int num) {
 		return dao.findBySpotNum(num);

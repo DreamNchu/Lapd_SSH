@@ -5,6 +5,7 @@ import com.lps.model.ClockCategory;
 import com.lps.service.basic.BasicForServerOrderService;
 
 public interface ClockCategoryService extends BasicForServerOrderService<ClockCategory>{
+	
 /**
  * 根据钟点类型（排钟，点钟）查找
  * @param clockCategory 钟点类型

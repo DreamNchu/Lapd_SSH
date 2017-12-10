@@ -134,12 +134,12 @@ public class UserServiceImplTest {
 //		as.save(u);
 	}
 	
-	@Test
+/*	@Test
 	public void testFindPageByLimit() {
 		assertEquals(24, as.findByPage(1).getAllCount());
 		assertEquals(10, as.findByPage(1).getList().size());
 		assertEquals("0002", as.findByPage(1).getList().get(0).getUserName());
-	}
+	}*/
 	@Test
 	public void testFindServerOrders(){
 		User u = new User();

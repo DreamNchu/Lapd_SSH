@@ -35,23 +35,21 @@
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(2, "待接收");
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(3, "工作中");
     
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (1, 'user001', 'pass', 11, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '13624612546845416581152');
         
-    insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
-        values(1, "user001", "user001", 11, "你是谁","0001",  1, now());
-       
-    insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
-        values(2, "user002", "user002", 12, "你是谁","0001",  1, now() );
-         
-    insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
-        values(3, "user003", "user003", 13, "你是谁", "0001",  1, now());
-         
-          insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
-        values(4, "user004", "user002", 14, "你是谁","0001",  1, now() );
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (2, 'user002', 'pass', 12, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '1362461254681455581152');
         
-    insert into `lapd_test`.`t_user` (id, userName, password, workId, question, answer, workStatus, registerTime)
-        values(5, "user005", "user003", 15, "你是谁", "0001",  1, now());
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (3, 'user003', 'pass', 13, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '13624612546845456581152');
         
-   
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (4, 'user004', 'pass', 14, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '13624612546848556581152');
+        
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (5, 'user005', 'pass', 15, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '1362461254681456581152');
+
    INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
    VALUES (1, 1, 1, null, NULL);
    INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 

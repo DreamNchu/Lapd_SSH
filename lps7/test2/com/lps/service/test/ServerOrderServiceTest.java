@@ -67,7 +67,7 @@ public class ServerOrderServiceTest {
 	public void testSave() {
 		Random ra = new Random();
 		
-		for(int i = 1000; i < 2000; i ++) {
+		for(int i = 0; i < 5000; i ++) {
 			PayPath payPath = new PayPath(); payPath.setId(i % 4 + 1);
 			Room room = new Room(); room.setId(i % 4 + 1);
 			User user = new User(); user.setId( ra.nextInt(5) + 1);
@@ -75,7 +75,7 @@ public class ServerOrderServiceTest {
 			ClockCategory clockCategory = new ClockCategory(); 
 			clockCategory.setId(i % 2 + 1);
 			OrderStatus orderStatus = new OrderStatus(); orderStatus.setId(i % 6 + 1);
-			DateTime dt = new DateTime(2017, 12, ra.nextInt(27) + 1, ra.nextInt(12), 0);
+			DateTime dt = new DateTime(2017, ra.nextInt(12) + 1, ra.nextInt(27) + 1, ra.nextInt(12), 0);
 			ServerOrder so = new ServerOrder("11000000000" + i ,payPath , room, user, pledge, clockCategory,
 					orderStatus, dt.toDate(), dt.plusMinutes(5).toDate(),dt.plusHours(1).toDate() , 100, 100, new Date(), "001");
 			if(i % 100 == 0)

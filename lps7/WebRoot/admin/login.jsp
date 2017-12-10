@@ -41,7 +41,7 @@ StringBuffer basePath = request.getRequestURL();
     <br>
     <br>
 
-    <form method="post" class="am-form" action="admin/access" >
+    <form method="post" class="am-form" action="access" >
 <!--       <label id="lableemail" for="email">邮箱:</label>
       <input type="email" name="email" id="email" value="" >
       <label id="labletelephonePhone" for="telephonePhone" style="display: none">手机号:</label>

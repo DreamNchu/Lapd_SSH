@@ -17,14 +17,31 @@ import com.lps.util.WorkDate;
 
 public class RoomServiceImpl implements RoomService {
 	
+	/**
+	 * 以私有变量的方式保存RoomDAO
+	 */
 	private RoomDAO dao ;
 	
+	/**
+	 * 将RoomDAO实体类封装到pagebean中
+	 */
 	private PageBean<Room> pageRoomBean;
 	
+	/**
+	 * 根据房间得到的ServerOrder实体类封装到pagebean中
+	 */
+	/**
+	 * 获取pagebean中Room实体类集合
+	 * @return 返回实体类
+	 */
 	public PageBean<Room> getPageRoomBean() {
 		return pageRoomBean;
 	}
 
+	/**
+	 * 设置Room实体类集合
+	 * @param pageRoomBean 封装的Room实体类集合
+	 */
 	public void setPageRoomBean(PageBean<Room> pageRoomBean) {
 		this.pageRoomBean = pageRoomBean;
 	}
@@ -36,16 +53,28 @@ public class RoomServiceImpl implements RoomService {
 		return pageServerOrderByRoomBean;
 	}
 
+	/**
+	 * 设置ServerOrder实体类集合
+	 * @param pageServerOrderByRoomBean 封装的ServerOrder实体类集合
+	 */
 	public void setPageServerOrderByRoomBean(PageBean<ServerOrder> pageServerOrderByRoomBean) {
 		this.pageServerOrderByRoomBean = pageServerOrderByRoomBean;
 	}
 
+	/**
+	 * 获取RoomDao实例
+	 * @return 返回RoomDao实例
+	 */
 	public RoomDAO getRoomDao() {
 		return dao;
 	}
 
-	public void setRoomDao(RoomDAO userDao) {
-		this.dao = userDao;
+	/**
+	 * 设置roomDao实例
+	 * @param roomDao
+	 */
+	public void setRoomDao(RoomDAO roomDao) {
+		this.dao = roomDao;
 	}
 
 	@Override
@@ -58,34 +87,51 @@ public class RoomServiceImpl implements RoomService {
 		dao.delete(user);
 	}
 
-
+	/**
+	 * 根据id查找房间，返回Room实例
+	 */
 	@Override
 	public Room findById(int id) {
 		return dao.findById(id);
 	}
 	
+	/**
+	 * 根据id查找Room实例是否存在
+	 * @return 存在则返回true，否则返回false
+	 */
 	@Override
 	public boolean isExists(Room user) {
 		return dao.isExists(user);
 	}
 
 
+	/**
+	 * 返回所有Room实例
+	 */
 	@Override
 	public List<Room> findAll() {
 		return dao.findAll();
 	}
 
+	/**
+	 * 返回所有Room实例的数量
+	 */
 	@Override
 	public long findAllCount() {
 		return dao.findAllCount();
 	}
 
+	/**
+	 * 根据指定属性及其属性值查找Room实例，返回指定Room实例
+	 */
 	@Override
 	public List<Room> findByProperty(String propertyName, Object value) {
 		return dao.findByProperty(propertyName, value);
 	}
 
-	
+	/**
+	 * 根据页面查找页面内所有房间
+	 */
 	public PageBean<Room> findByPage(int page) throws PagePropertyNotInitException {
 		
 		
@@ -120,36 +166,56 @@ public class RoomServiceImpl implements RoomService {
         return pageRoomBean;*/
     }
 
+	/**
+	 * 更新Room实例
+	 */
 	@Override
 	public void update(Room t) {
 		dao.update(t);	
 	}
 
+	/**
+	 * 根据房间name属性查找，返回Room实例
+	 */
 	@Override
 	public List<Room> findByName(Object name) {
 		return dao.findByName(name);
 	}
 
+	/**
+	 * 根据房间floor属性查找，返回Room实例
+	 */
 	@Override
 	public List<Room> findByFloor(Object floor) {
 		return dao.findByFloor(floor);
 	}
 
+	/**
+	 * 根据房间size属性查找，返回Room实例
+	 */
 	@Override
 	public List<Room> findBySize(Object size) {
 		return dao.findBySize(size);
 	}
-
+	/**
+	 * 查找空闲房间，并返回空闲房间
+	 */
 	@Override
 	public List<Room> findFreeRoom() {
 		return dao.findFreeRoom();
 	}
 
+	/**
+	 * 返回指定房间的所有服务订单
+	 */
 	@Override
 	public Set<ServerOrder> findAllOrders(Room t) {
 		return dao.findAllOrders(t);
 	}
 
+	/**
+	 * 查找指定页面内根据房间得到的所有订单
+	 */
 	@Override
 	public PageBean<ServerOrder> findAllOrdersByPage(Room t, int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderByRoomBean.init(findOrdersCountByThisType(t), page);
@@ -161,27 +227,41 @@ public class RoomServiceImpl implements RoomService {
 		return pageServerOrderByRoomBean;
 	}
 
+	/**
+	 * 根据指定房间类型查找订单数量
+	 */
 	@Override
 	public long findOrdersCountByThisType(Room t) {
 		return dao.findOrdersCountByThisType(t);
 	}
 
-	
+	/**
+	 * 查找今天的订单
+	 */
 	@Override
 	public List<ServerOrder> findTodayOrders(Room t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
 
+	/**
+	 * 查找前七天的订单
+	 */
 	@Override
 	public List<ServerOrder> findBefore7DayOrders(Room t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
 	}
 
+	/**
+	 * 查找这个月的订单
+	 */
 	@Override
 	public List<ServerOrder> findThisMonthOrders(Room t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
 	}
 
+	/**
+	 * 查找今年的订单
+	 */
 	@Override
 	public List<ServerOrder> findThisYearOrders(Room t) {
 		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
