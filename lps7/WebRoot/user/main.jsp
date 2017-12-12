@@ -25,30 +25,18 @@ StringBuffer basePath = request.getRequestURL();
     <script src="js/jquery.placeholder.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/ajax_js.js"></script>
     <script type="text/javascript">
         function SignUp() {
-            var gzmk=document.getElementById("gzmk");
-            var gzpm=document.getElementById("gzpm");
-            var gzbb=document.getElementById("gzbb");
-            var wdxx=document.getElementById("wdxx");
-            var xgxx=document.getElementById("xgxx");
-            gzmk.style.pointerEvents="auto";
-            gzbb.style.pointerEvents="auto";
-            gzbb.style.pointerEvents="auto";
-            wdxx.style.pointerEvents="auto";
-            xgxx.style.pointerEvents="auto";
+        	ajaxRequest("checkIn", resolveCheckMsg);
         }
+        
+        function resolveCheckMsg(msg){
+        	alert(msg.msg);
+        }
+        
         function  SignOut() {
-            var gzmk=document.getElementById("gzmk");
-            var gzpm=document.getElementById("gzpm");
-            var gzbb=document.getElementById("gzbb");
-            var wdxx=document.getElementById("wdxx");
-            var xgxx=document.getElementById("xgxx");
-            gzmk.style.pointerEvents="none";
-            gzbb.style.pointerEvents="none";
-            gzbb.style.pointerEvents="none";
-            wdxx.style.pointerEvents="none";
-            xgxx.style.pointerEvents="none";
+        		ajaxRequest("checkOut", resolveCheckMsg);
         }
     </script>
 </head>
@@ -91,27 +79,27 @@ StringBuffer basePath = request.getRequestURL();
             <lable id="signout" style="color: blue" onclick="SignOut()"><span class="part-title-span">下班签退</span></lable>
     </div>
     <div class="office-space">
-        <a href="gzmk.html" id="gzmk" style="pointer-events:none">
+        <a href="manageOrdersPage" id="gzmk" >
             <div class="cam-u-lg-6 am-u-md-6 am-u-sm-12">
                 <img src="img/gzmk.jpg"/>
             </div>
         </a>
-        <a href="gzpm.html" id="gzpm" style="pointer-events:none">
+        <a href="gzpm.html" id="gzpm" >
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/gzpm.jpg"/>
             </div>
         </a>
-        <a href="gzbb.html" id="gzbb" style="pointer-events:none">
+        <a href="gzbb.html" id="gzbb" >
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/gzbb.jpg"/>
             </div>
         </a>
-        <a href="wdxx.html" id="wdxx" style="pointer-events:none">
+        <a href="wdxx.html" id="wdxx" >
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/wdxx.jpg"/>
             </div>
         </a>
-        <a href="xgxx.html" id="xgxx" style="pointer-events:none">
+        <a href="xgxx.html" id="xgxx">
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/xgxx.jpg"/>
             </div>

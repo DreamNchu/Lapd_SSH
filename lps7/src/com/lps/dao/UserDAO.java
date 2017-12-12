@@ -75,7 +75,7 @@ public interface UserDAO extends BasicDAO<User>,BasicForServerOrderDAO<User, Int
 	/**
 	 * 根据密码找回答案查找员工
 	 * <p>
-	 * @param answer员工密码找回答案
+	 * @param answer 员工密码找回答案
 	 * @return 返回员工对象的数组
 	 */
 	List<User> findByAnswer(Object answer);

@@ -68,7 +68,7 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	 * 这是ServerItem类的构造函数
 	 * <p>
 	 * @param roomcategory 房间类型 String类型
-	 * @param TRooms
+	 * @param rooms
 	 */
 	public ServerItem(String roomcategory, Set<Room> rooms) {
 		this.roomCategory = roomcategory;

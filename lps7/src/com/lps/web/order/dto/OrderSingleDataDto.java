@@ -3,9 +3,7 @@ package com.lps.web.order.dto;
 import com.lps.model.ServerOrder;
 import com.lps.util.WorkDate;
 
-public class OrderSingleDataDto {
-	
-	
+public class OrderSingleDataDto{
 	
 	// 订单编号
 	private String idOrder;
@@ -13,7 +11,7 @@ public class OrderSingleDataDto {
 	private String room;
 	// 工号
 	private String stuff;
-	
+	//真实姓名
 	private String realName;
 	// 员工姓名
 	private String userName;
@@ -42,16 +40,6 @@ public class OrderSingleDataDto {
 	// 备注
 	private String orderRemark;
 	
-	private String roomCatedgory;
-	
-
-	public String getRoomCatedgory() {
-		return roomCatedgory;
-	}
-
-	public void setRoomCatedgory(String roomCatedgory) {
-		this.roomCatedgory = roomCatedgory;
-	}
 
 	public String getRealName() {
 		return realName;
@@ -93,7 +81,7 @@ public class OrderSingleDataDto {
 			setPayPath(so.getPayPath().getPayPath());
 		if (so.getRoom() != null){
 			setRoom(so.getRoom().getName());
-			setRoomCatedgory(so.getRoom().getRoomCategory().getServerItem());
+			setRoomCategory(so.getRoom().getRoomCategory().getServerItem());
 		}
 		if(so.getUser() != null){
 			setStuff(so.getUser().getWorkId() == null ? "" : so.getUser().getWorkId()+"");

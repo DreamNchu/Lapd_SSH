@@ -3,17 +3,26 @@
 <struts>
 
 	<package name="adminAccess" namespace="/admin" extends="struts-default">
-		<action name="log*" class="adminStatusAction" method="log{1}">
+		<action name="login" class="adminStatusAction" method="login">
 			<result name="success">
-				/admin/log{1}.jsp
+				/admin/login.jsp
 			</result>
 		</action>
+		
+		<action name="logout" class="adminStatusAction" method="logout">
+			<result name="success" type="redirect">
+				/admin/login
+			</result>
+		</action>
+		
 		<action name="access" class="adminAccessAction" method="main">
 			<result name="success" type="redirect">
 				/admin/main<!-- 登录成功转向主界面 -->
 			</result>
 			<result name="error" type="redirect">
-				/admin/login <!-- 失败重新登录 -->
+				 <!-- 失败重新登录 -->
+			<param name="location">/admin/login?result=${result}</param>  
+               <param name="encode">true</param>  
 			</result>
 		</action>
 

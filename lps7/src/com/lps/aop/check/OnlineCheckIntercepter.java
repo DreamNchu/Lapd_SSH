@@ -14,7 +14,7 @@ import com.opensymphony.xwork2.Action;
 
 //@Aspect
 //@Component
-@Order(5)
+//@Order(5)
 //@Scope("request")
 public class OnlineCheckIntercepter {
 	

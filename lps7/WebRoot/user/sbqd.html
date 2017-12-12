@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head >
+    <meta charset="UTF-8">
+    <title>小店助手</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1,maximum-scale=1.0, user-scalable=0,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <link rel="alternate icon" type="img/hengwang-1.png" href="img/hengwang-1.png">
+    <link rel="stylesheet" href="css/amazeui.css"/>
+    <link rel="stylesheet" href="css/style.css"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.placeholder.min.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type="text/javascript">
+        function SignUp() {
+            var gzmk=document.getElementById("gzmk");
+            var gzpm=document.getElementById("gzpm");
+            var gzbb=document.getElementById("gzbb");
+            var wdxx=document.getElementById("wdxx");
+            var xgxx=document.getElementById("xgxx");
+            gzmk.style.pointerEvents="auto";
+            gzbb.style.pointerEvents="auto";
+            gzbb.style.pointerEvents="auto";
+            wdxx.style.pointerEvents="auto";
+            xgxx.style.pointerEvents="auto";
+        }
+        function  SignOut() {
+            var gzmk=document.getElementById("gzmk");
+            var gzpm=document.getElementById("gzpm");
+            var gzbb=document.getElementById("gzbb");
+            var wdxx=document.getElementById("wdxx");
+            var xgxx=document.getElementById("xgxx");
+            gzmk.style.pointerEvents="none";
+            gzbb.style.pointerEvents="none";
+            gzbb.style.pointerEvents="none";
+            wdxx.style.pointerEvents="none";
+            xgxx.style.pointerEvents="none";
+        }
+    </script>
+</head>
+<body>
+<header class="am-topbar header">
+    <div class="am-container-1">
+        <div class="left hw-logo">
+            <lable  style="margin-left: 15px;font-size: 250%">★</lable>
+            <lable  style="margin-left: 5px;font-size: 250%;font-family: 仿宋">小店helper</lable>
+        </div>
+        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
+                data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
+                class="am-icon-bars"></span></button>
+        <div class="am-collapse am-topbar-collapse right" id="doc-topbar-collapse">
+            <div class=" am-topbar-left am-form-inline am-topbar-right" role="search">
+                <ul class="am-nav am-nav-pills am-topbar-nav hw-menu">
+                    <li><a href="login.html">退出</a></li>
+                    <li ><a href="sign_up.html">注册</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="toppic" style="background-image: url('img/sbqd.jpg')">
+    <div class="am-container-1">
+        <div class="toppic-title left">
+            <span class="toppic-title-span" ></span>
+        </div>
+    </div>
+</div>
+
+<div class=" am-container-1">
+
+</div>
+
+<div class=" am-container-1">
+    <div class="part-title part-title-mar">
+            <i class=" am-icon-home part-title-i"></i>
+            <lable id="signup" style="color: blue" onclick="SignUp()"><span class="part-title-span">上班签到</span></lable>--
+            <lable id="signout" style="color: blue" onclick="SignOut()"><span class="part-title-span">下班签退</span></lable>
+    </div>
+    <div class="office-space">
+        <a href="gzmk.html" id="gzmk" style="pointer-events:none">
+            <div class="cam-u-lg-6 am-u-md-6 am-u-sm-12">
+                <img src="img/gzmk.jpg"/>
+            </div>
+        </a>
+        <a href="gzpm.html" id="gzpm" style="pointer-events:none">
+            <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
+                <img src="img/gzpm.jpg"/>
+            </div>
+        </a>
+        <a href="gzbb.html" id="gzbb" style="pointer-events:none">
+            <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
+                <img src="img/gzbb.jpg"/>
+            </div>
+        </a>
+        <a href="wdxx.html" id="wdxx" style="pointer-events:none">
+            <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
+                <img src="img/wdxx.jpg"/>
+            </div>
+        </a>
+        <a href="xgxx.html" id="xgxx" style="pointer-events:none">
+            <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
+                <img src="img/xgxx.jpg"/>
+            </div>
+        </a>
+        <div class="clear"></div>
+    </div>
+
+</div>
+
+
+</body>
+<!--[if lt IE 9]>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
+<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
+<![endif]-->
+<script src="js/jquery.min.js"></script>
+<script src="js/amazeui.min.js"></script>
+<!--[if (gte IE 9)|!(IE)]><!-->
+
+</html>

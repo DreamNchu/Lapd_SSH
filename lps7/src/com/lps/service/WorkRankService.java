@@ -16,9 +16,9 @@ public interface WorkRankService extends BasicService<WorkRank>{
 	public List<WorkRank> findByUser(User user);
 	
 	/**
-	 * 根据序号查找上钟序列
-	 * @param 序号 员工序号
-	 * @return 返回上钟序列
+	 * 
+	 * @param num 排名序号
+	 * @return
 	 */
 	public List<WorkRank> findByRank(int num);
 	

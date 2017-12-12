@@ -12,7 +12,7 @@ public interface ServerOrderService extends BasicService<ServerOrder> {
 	
 	/**
 	 * 根据id返回订单列表
-	 * @param id 
+	 * @param id 订单主键id
 	 * @return 订单列表
 	 */
 	ServerOrder findById(String id);
@@ -100,29 +100,27 @@ public interface ServerOrderService extends BasicService<ServerOrder> {
 	
 	/**
 	 * 最近七天的所有员工工作订单
-	 * @return
+	 * @return ServerOrder 数组
 	 */
 	List<ServerOrder> findBefore7DayOrders();
 	
 	
 	/**
-	 * 该本月的工作订单
-	 * @param t
+	 * 当月的订单
 	 * @return
 	 */
 	List<ServerOrder> findThisMonthOrders();
 	
 	/**
 	 * 本年的工作订单
-	 * @param t
 	 * @return
 	 */
 	List<ServerOrder> findThisYearOrders();
 	
-	public List<ServerOrder> findOrdersByProperyLimit( List<PropertyRange> listPro, int begin,
+	public List<ServerOrder> findOrdersByProperyLimit( List<PropertyRange<?>> listPro, int begin,
 			int limit);
 	
-	PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange> listPro, int page) throws PagePropertyNotInitException;	
+	PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange<?>> listPro, int page) throws PagePropertyNotInitException;	
 	
-	PropertyRange createPropertyRangeByName(String propertyName, Object o1, Object o2);
+	PropertyRange<?> createPropertyRangeByName(String propertyName, Object o1, Object o2);
 }

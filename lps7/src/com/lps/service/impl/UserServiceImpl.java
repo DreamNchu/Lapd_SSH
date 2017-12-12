@@ -40,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 设置user实体类集合
-	 * @param pageAdminBean admin实体类
+	 * @param pageUserBean admin实体类
 	 */
 	public void setPageUserBean(PageBean<User> pageUserBean) {
 		this.pageUserBean = pageUserBean;

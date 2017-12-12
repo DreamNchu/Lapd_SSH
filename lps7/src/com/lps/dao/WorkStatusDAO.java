@@ -31,7 +31,7 @@ public interface WorkStatusDAO extends BasicDAO<WorkStatus>{
 	/**
 	 * 根据工作状态查找
 	 * <p>
-	 * @param WorkStatus 工作状态
+	 * @param workStatus 工作状态
 	 * @return 返回工作状态对象的数组
 	 */
 	List<WorkStatus> findByWorkStatus(Object workStatus);

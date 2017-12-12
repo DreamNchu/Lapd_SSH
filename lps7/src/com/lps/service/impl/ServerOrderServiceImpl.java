@@ -270,7 +270,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	}
 	
 	@Override
-	public PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange> listPro, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange<?>> listPro, int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderBean.init(dao.findOrdersByProperyLimitCount(listPro), page);
 
 		List<ServerOrder> list = dao.findOrdersByProperyLimit(listPro, (int) begin,
@@ -284,13 +284,13 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	
 
 	@Override
-	public PropertyRange createPropertyRangeByName(String propertyName, Object o1, Object o2) {
-		PropertyRange pr = new PropertyRange(propertyName, o1, o2);
+	public PropertyRange<?> createPropertyRangeByName(String propertyName, Object o1, Object o2) {
+		PropertyRange<?> pr = new PropertyRange<>(propertyName, o1, o2);
 		return pr;
 	}
 
 	@Override
-	public List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange> listPro, int begin, int limit) {
+	public List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange<?>> listPro, int begin, int limit) {
 		return dao.findOrdersByProperyLimit(listPro, begin, limit);
 	}
 

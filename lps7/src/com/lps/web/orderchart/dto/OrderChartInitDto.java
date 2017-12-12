@@ -8,7 +8,7 @@ import com.lps.web.user.dto.UserDataDto;
 
 public class OrderChartInitDto {
 
-	private List<UserDataDto> user = new ArrayList<>();
+	private List<UserDataDto> user ;
 
 	
 	public void init(List<User> us){

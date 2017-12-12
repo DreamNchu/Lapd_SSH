@@ -11,7 +11,7 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 	 <context:annotation-config /> 
-	 <context:component-scan base-package="com.lps.aop.check" />  
+	 <context:component-scan base-package="com.lps.aop" />  
 	 
 	 
 	 <import resource="classpath:config/spring-*.xml"/>

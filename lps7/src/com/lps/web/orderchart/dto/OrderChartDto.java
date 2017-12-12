@@ -3,6 +3,11 @@ package com.lps.web.orderchart.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 订单图表dto
+ * @author 0001
+ *
+ */
 public class OrderChartDto {
 	
 	private List<Long> income = new ArrayList<>();

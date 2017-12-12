@@ -1,4 +1,5 @@
 <%@ page language="java"  pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 StringBuffer basePath = request.getRequestURL();
 
@@ -17,7 +18,12 @@ StringBuffer basePath = request.getRequestURL();
   <link rel="alternate icon" type="image/png" href="image/title.jpg">
   <link rel="stylesheet" href="css/amazeui.min.css"/>
   <link rel="stylesheet" href="css/style.css"/>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="js/login.js"></script>
+  <script src="js/ajax_js.js"></script>
+  <script type="text/javascript">
+  
+  </script>
 </head>
 <body>
 <div class="header">
@@ -41,7 +47,7 @@ StringBuffer basePath = request.getRequestURL();
     <br>
     <br>
 
-    <form method="post" class="am-form" action="access" >
+    <form method="post" class="am-form" action="access" id="loginMsg">
 <!--       <label id="lableemail" for="email">邮箱:</label>
       <input type="email" name="email" id="email" value="" >
       <label id="labletelephonePhone" for="telephonePhone" style="display: none">手机号:</label>
@@ -49,6 +55,7 @@ StringBuffer basePath = request.getRequestURL();
       
       <label id="lableuserName" for="userName" style="display: none">账号:</label>
       <input type="text" name="userName" id="userName" value="" style="display: block;">
+      <s:property value="result"/>
       <br>
       <label for="password">密码:</label>
       <input type="password" name="password" id="password" value="">

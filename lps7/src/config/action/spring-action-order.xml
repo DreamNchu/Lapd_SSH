@@ -30,7 +30,7 @@
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 		<property name="queryOrderDto" ref="queryOrderDto"></property>
 		<property name="initBasicUpdateDataDto" ref="initBasicUpdateDataDto"></property>
-		
+		<property name="orderChartInitDto" ref="orderChartInitDto"></property>
 	</bean>
 
 </beans>

@@ -72,7 +72,7 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 
 	/**
 	 * 删除上钟排序持久化实例
-	 * @param transientInstance 上钟排序对象
+	 * @param persistentInstance 上钟排序对象
 	 */
 	@Override
 	public void delete(WorkRank persistentInstance) {

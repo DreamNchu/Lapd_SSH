@@ -250,8 +250,8 @@ public class OrderManage implements TimeType ,Population{
 
 			return createNormalOrder(u, r, cc, orderRemark);
 		} else { // 所有员工都没有空
-			// Room r = roomServiceImpl.findById(roomId);
-			// ClockCategory cc =
+//			 Room r = roomServiceImpl.findById(roomId);
+//			 ClockCategory cc =
 			// clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
 
 		}
@@ -268,9 +268,9 @@ public class OrderManage implements TimeType ,Population{
 		PageBean<ServerOrder> listSo = null;
 		
 		//订单类型范围
-		PropertyRange pr = orderStatusServiceImpl.createPropertyRange(
+		PropertyRange<OrderStatus> pr = orderStatusServiceImpl.createPropertyRange(
 				qod.getStatusId(), qod.getStatusId());
-		List<PropertyRange> listPro = new ArrayList<>();
+		List<PropertyRange<?>> listPro = new ArrayList<>();
 		listPro.add(pr);
 		
 		//时间范围解析
@@ -313,7 +313,10 @@ public class OrderManage implements TimeType ,Population{
 		initBasicUpdateDataDto.init(users, rooms, oss, cc, pp, so);
 		
 	}
-	
+	/**
+	 * 更新订单
+	 * @param orderUpdateDataDto
+	 */
 	public void update(OrderUpdateDataDto orderUpdateDataDto){
 		ServerOrder so = serverOrderServiceImpl.findById(orderUpdateDataDto.getOrderId());
 		so.setUser(userServiceImpl.findById(orderUpdateDataDto.getStuffId()));
@@ -337,15 +340,15 @@ public class OrderManage implements TimeType ,Population{
 		//时间类型
 		orderChartDto.setTimeType(orderChartRequestDto.getTimeType());
 		
-		List<PropertyRange> listProDate = TimeTypeResolve.resolveTimeToProRange(
+		List<PropertyRange<Date>> listProDate = TimeTypeResolve.resolveTimeToProRange(
 				ServerOrderDAOImpl.INIT_TIME, 
 				orderChartRequestDto.getTimeType());
 		
-		PropertyRange userPro = null;
+		PropertyRange<User> userPro = null;
 		switch(orderChartRequestDto.getPopulation()){
 		case ONE:
 			User u = userServiceImpl.findById(orderChartRequestDto.getUserId());
-			userPro = new PropertyRange(ServerOrderDAOImpl.USER,
+			userPro = new PropertyRange<User>(ServerOrderDAOImpl.USER,
 					u, u);
 			break;
 		case ALL:
@@ -356,20 +359,20 @@ public class OrderManage implements TimeType ,Population{
 		
 	}
 	
-	private void getData(PropertyRange user, 
-			List<PropertyRange> date, OrderChartDto orderChartDto){
+	private void getData(PropertyRange<User> user, 
+			List<PropertyRange<Date>> date, OrderChartDto orderChartDto){
 		List<ServerOrder> sos = null;
 		if(user == null){
-			for (PropertyRange propertyRange : date) {
+			for (PropertyRange<Date> propertyRange : date) {
 				//拿到所有该时间段的订单
-				List<PropertyRange> lt = new ArrayList<PropertyRange>();
+				List<PropertyRange<?>> lt = new ArrayList<PropertyRange<?>>();
 				lt.add(propertyRange);
 				sos = serverOrderServiceImpl.findOrdersByProperyLimit(lt, 0 ,(int)serverOrderServiceImpl.findAllCount());
 				basicCalcu(sos, orderChartDto);
 			}
 		}else{
-			for (PropertyRange propertyRange : date) {
-				List<PropertyRange> lt = new ArrayList<PropertyRange>();
+			for (PropertyRange<Date> propertyRange : date) {
+				List<PropertyRange<?>> lt = new ArrayList<PropertyRange<?>>();
 				lt.add(user);
 				lt.add(propertyRange);
 				sos = serverOrderServiceImpl.findOrdersByProperyLimit(lt, 0 ,(int)serverOrderServiceImpl.findAllCount());
@@ -382,8 +385,6 @@ public class OrderManage implements TimeType ,Population{
 		long income = 0;
 		long count = 0;
 		for (ServerOrder serverOrder : sos) {
-			System.out.println("getRealName()" + serverOrder.getUser().getRealName());
-			System.out.println("getInitTime()" + WorkDate.dateTimeToString(serverOrder.getInitTime()));
 			if(serverOrder.getRealPay() != null){
 				income += serverOrder.getRealPay();
 				count ++;
@@ -395,6 +396,43 @@ public class OrderManage implements TimeType ,Population{
 		orderChartDto.getOrderCount().add(count);
 	}
 	
+	/**
+	 * 通过id 查找订单
+	 * @param idOrder
+	 * @return
+	 */
+	public ServerOrder queryOrder(String idOrder){
+		return serverOrderServiceImpl.findById(idOrder);
+	}
+	
+	/**
+	 * 根据条件拿到订单
+	 * @param userId
+	 * @param orderStatus
+	 * @param timeType
+	 * @return
+	 */
+	public List<ServerOrder> queryOrder(int userId, int orderStatus, int timeType){
+		List<PropertyRange<?>> listPro = new ArrayList<>();
+		
+		User user = userServiceImpl.findById(userId);
+		listPro.add(serverOrderServiceImpl.
+				createPropertyRangeByName(
+						ServerOrderDAOImpl.USER, user, user));
+		
+		OrderStatus os = orderStatusServiceImpl.findById(orderStatus);
+		
+		listPro.add(serverOrderServiceImpl.
+				createPropertyRangeByName(
+						ServerOrderDAOImpl.ORDER_STATUS, os, os));
+		//时间范围解析
+		List<Date> ld = TimeTypeResolve.resolveTimeType(timeType);
+		listPro.add(serverOrderServiceImpl.
+			createPropertyRangeByName(
+					ServerOrderDAOImpl.INIT_TIME, ld.get(0), ld.get(1)));
+		
+		return serverOrderServiceImpl.findOrdersByProperyLimit(listPro, 0, (int)serverOrderServiceImpl.findAllCount());
+	}
 	
 	public List<User> findAllUser(){
 		return userServiceImpl.findAll();

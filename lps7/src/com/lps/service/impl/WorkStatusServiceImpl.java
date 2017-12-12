@@ -108,7 +108,7 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 
 	/**
 	 * 设置WorkStatusDao实例
-	 * @param WorkStatusDao
+	 * @param workStatusDao
 	 */
 	public void setWorkStatusDao(WorkStatusDAO workStatusDao) {
 		this.dao = workStatusDao;

@@ -1,15 +1,15 @@
 package com.lps.action.test;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
-import org.joda.time.DateTime;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import com.google.gson.Gson;
+import com.lps.aop.log.LogAspect;
 
 public class TestGson {
 	
@@ -47,12 +47,14 @@ public class TestGson {
 	@Test
 	public void test() {
 		
+	    Logger logger = LogManager.getLogger(LogAspect.class.getName());
 		
-		for (int i = 100; i < 1000; i++) {
+		
+	/*	for (int i = 100; i < 1000; i++) {
 			System.out.println(" INSERT INTO `lapd_test`.`t_serverorder` (`idOrder`, `stuffId`, `roomId`, `statusId`, `clockcategoryId`, `payPathId`,`pledgeNameId`, `initTime`, `receiveTime`, `finishTime`, `pay`, `realPay`, `payTime`, `orderRemark`)VALUES "
 					+ "('000000000000"+ i + "', 2, 2, "+(i%6 + 1) +", 2, 2, NULL, now(), NULL, NULL, NULL, NULL, NULL, NULL); ");
 			
-		}
+		}*/
 //		Gson gson = new Gson();
 //		System.out.println(gson.toJson(new DateTime("2017-8-15").toString()));
 //		String jsonString = "{\"name\":\"怪盗kidou\",\"age\":24}";

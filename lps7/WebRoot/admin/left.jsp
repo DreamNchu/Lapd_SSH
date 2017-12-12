@@ -27,7 +27,7 @@
           <a href="companyProfile"> <span class="glyphicon glyphicon-home"></span><span>公司简介</span></a>
         </li>
         <li value="6" >
-          <a href="login"><span class="glyphicon glyphicon-remove"></span><span>注销用户</span></a>
+          <a href="logout"><span class="glyphicon glyphicon-remove"></span><span>注销用户</span></a>
         </li>
       </ul>
     </section>

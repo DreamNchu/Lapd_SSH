@@ -66,7 +66,7 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 
 	/**
 	 * 删除付费方式持久化实例
-	 * @param transientInstance 付费方式对象
+	 * @param persistentInstance 付费方式对象
 	 */
 	@Override
 	public void delete(PayPath persistentInstance) {

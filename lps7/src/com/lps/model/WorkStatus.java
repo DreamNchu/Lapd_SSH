@@ -114,11 +114,11 @@ public class WorkStatus implements java.io.Serializable, BasicModel<Integer> {
         return this.workStatus;
     }
     
+   
     /**
-	 * 设置工作状态
-	 * <p>
-	 * @param id 设置id
-	 */
+     * 
+     * @param workStatus 工作状态
+     */
     public void setWorkStatus(String workStatus) {
         this.workStatus = workStatus;
     }

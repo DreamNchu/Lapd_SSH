@@ -245,7 +245,7 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 
 	/**
 	 * 设置订单状态
-	 * @param OrderStatus 订单状态
+	 * @param orderStatus 订单状态
 	 */
 	public void setOrderStatus(OrderStatus orderStatus) {
 		this.orderStatus = orderStatus;
@@ -484,7 +484,7 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 
 		/**
 		 * 设置订单状态
-		 * @param OrderStatus 订单状态对象
+		 * @param orderStatus 订单状态对象
 		 * @return 订单状态对象
 		 */
 		public Builder setOrderStatus(OrderStatus orderStatus) {
@@ -507,7 +507,7 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 		/**
 		 * 设置订单接收时间
 		 * @param receiveTime 接收时间
-		 * @return接收时间
+		 * @return 
 		 */
 		public Builder setReceiveTime(Date receiveTime) {
 			this.receiveTime = receiveTime;

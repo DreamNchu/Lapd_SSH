@@ -1,12 +1,11 @@
-﻿<%@ page language="java"  pageEncoding="UTF-8"%>
+﻿<%@ page language="java" pageEncoding="UTF-8"%>
 <%
-StringBuffer basePath = request.getRequestURL();
-
+	StringBuffer basePath = request.getRequestURL();
 %>
 <!DOCTYPE html>
 <html>
 <head lang="en">
-  	<base href="<%=basePath%>">
+<base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>404</title>
 <link href="css/404.css" rel="stylesheet" type="text/css" />
@@ -24,9 +23,9 @@ StringBuffer basePath = request.getRequestURL();
 		center(a);
 		//自适应窗口
 		$(window).bind('scroll resize',
-				function() {
-					center(a);
-				});
+			function() {
+				center(a);
+			});
 	}
 
 	//1.居中方法，传入需要剧中的标签
@@ -40,27 +39,27 @@ StringBuffer basePath = request.getRequestURL();
 		var top = scrollTop + (wHeight - boxHeight) / 2;
 		var left = scrollLeft + (wWidth - boxWidth) / 2;
 		$(a).css({
-			"top": top,
-			"left": left
+			"top" : top,
+			"left" : left
 		});
 	}
 </script>
 </head>
 <body>
-<div class="mianBox">
-	<img src="image/yun0.png" alt="" class="yun yun0" />
-	<img src="image/yun1.png" alt="" class="yun yun1" />
-	<img src="image/yun2.png" alt="" class="yun yun2" />
-	<img src="image/bird.png" alt="" class="bird" />
-	<img src="image/san.png" alt="" class="san" />
-	<div class="tipInfo">
-		<div class="in">
-			<div class="textThis">
-				<h2>出错啦404！</h2>
+	<div class="mianBox">
+		<img src="image/yun0.png" alt="" class="yun yun0" /> <img
+			src="image/yun1.png" alt="" class="yun yun1" /> <img
+			src="image/yun2.png" alt="" class="yun yun2" /> <img
+			src="image/bird.png" alt="" class="bird" /> <img src="image/san.png"
+			alt="" class="san" />
+		<div class="tipInfo">
+			<div class="in">
+				<div class="textThis">
+					<h2>出错啦404！</h2>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
 </body>
 </html>

@@ -1,17 +1,17 @@
 package com.lps.util;
 
-public class PropertyRange {
+public class PropertyRange<T> {
 	
 	private String name;
-	private Object maxValue;
-	private Object minValue;
+	private T maxValue;
+	private T minValue;
 	
 	public PropertyRange() {
 		// TODO Auto-generated constructor stub
 	}
 	
 	
-	public PropertyRange(String name,  Object minValue ,Object maxValue) {
+	public PropertyRange(String name,  T minValue ,T maxValue) {
 		super();
 		this.name = name;
 		this.maxValue = maxValue;
@@ -25,16 +25,16 @@ public class PropertyRange {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Object getMaxValue() {
+	public T getMaxValue() {
 		return maxValue;
 	}
-	public void setMaxValue(Object maxValue) {
+	public void setMaxValue(T maxValue) {
 		this.maxValue = maxValue;
 	}
-	public Object getMinValue() {
+	public T getMinValue() {
 		return minValue;
 	}
-	public void setMinValue(Object minValue) {
+	public void setMinValue(T minValue) {
 		this.minValue = minValue;
 	}
 	

@@ -164,8 +164,8 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 *            设置roomCategory
 	 * @see ServerItem
 	 */
-	public void setRoomCategory(ServerItem TRoomcategory) {
-		this.serverItem = TRoomcategory;
+	public void setRoomCategory(ServerItem serverItem) {
+		this.serverItem = serverItem;
 	}
 
 	/**

@@ -56,15 +56,15 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 
 	/**
 	 * 保存钟点类型持久化实例
-	 * @param transientInstance 钟点类型对象
+	 * @param persistentInstance 钟点类型对象
 	 */
 	@Override
-	public void save(ClockCategory transientInstance) {
-		hibernateTemplate.save(transientInstance);
+	public void save(ClockCategory persistentInstance) {
+		hibernateTemplate.save(persistentInstance);
 	}
 	/**
 	 * 删除钟点类型持久化实例
-	 * @param transientInstance 钟点类型对象
+	 * @param persistentInstance 钟点类型对象
 	 */
 	@Override
 	public void delete(ClockCategory persistentInstance) {

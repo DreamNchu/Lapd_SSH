@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+
+	<package name="userOrder" namespace="/user" extends="json-default,userLogin">
+	
+	
+	<action name="detailOrderInfo" class="userOrderAction" method="detailOrderInfo">
+		<result >
+				/user/detailOrderInfo.jsp
+			</result>
+	</action>
+	
+	<action name="queryOrders" class="userOrderAction" method="queryOrders">
+		<result type="json">
+				<param name="root">result</param>
+			</result>
+	</action>
+	
+	<action name="manageOrdersPage" class="userOrderAction" method="manageOrdersPage">
+		<result>
+			/user/manageOrdersPage.jsp
+		</result>
+	</action>
+	
+		<action name="*Order*" class="userOrderAction" method="{1}Order{2}">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

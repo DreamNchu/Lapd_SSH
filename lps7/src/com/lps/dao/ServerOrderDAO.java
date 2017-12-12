@@ -41,24 +41,29 @@ public interface ServerOrderDAO extends BasicDAO<ServerOrder> {
 	List<ServerOrder> findOrderByPriceAndDateLimit(int price,
 			Date begin, Date end, CompareLevel cl);
 	
-	
+	/**
+	 * 
+	 * @param price 价格
+	 * @param cl 比较方式
+	 * @return
+	 */
 	List<ServerOrder> findOrderByPriceLimit(int price, CompareLevel cl);
 	
-	
 	/**
-	 * 查找listPro条件中的订单
-	 * @param os
-	 * @param listPro
-	 * @param begin
+	 * 
+	 * @param listPro 限定属性条件
+	 * @param begin 记录数限制条件
 	 * @param limit
 	 * @return
 	 */
-	List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange> listPro, int begin, int limit);
+	List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange<?>> listPro, int begin, int limit);
 	
 	/**
 	 * 查找条件中的总个数
+	 * @param listPro
+	 * @return
 	 */
-	public long findOrdersByProperyLimitCount( List<PropertyRange> listPro);
+	public long findOrdersByProperyLimitCount( List<PropertyRange<?>> listPro);
 	
 	
 }

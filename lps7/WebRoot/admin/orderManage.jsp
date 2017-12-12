@@ -24,6 +24,30 @@
 <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 <link rel="stylesheet" href="css/ordercss.css">
 <link rel="stylesheet" href="css/styleradio.css">
+    <link rel="stylesheet" href="iconFont/demo.css">
+    <link rel="stylesheet" href="iconFont/iconfont.css">
+  
+      <style type="text/css">
+
+        @font-face {font-family: "iconfont";
+          src: url('iconfont.eot'); /* IE9*/
+          src: url('iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
+          url('iconfont.woff') format('woff'), /* chrome, firefox */
+          url('iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+          url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
+        }
+
+        .iconfont {
+          font-family:"iconfont" !important;
+          font-size:16px;
+          font-style:normal;
+          -webkit-font-smoothing: antialiased;
+          -webkit-text-stroke-width: 0.2px;
+          -moz-osx-font-smoothing: grayscale;
+        }
+
+    </style>
+  
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -41,265 +65,6 @@
 		ajaxRequest("queryBasicOrders?queryOrderDto.timeType=1&queryOrderDto.statusId=1&queryOrderDto.page=1", waitingReceive);
 	}
 
-	//待接收订单
-	function djsdd() {
-		deleteTr();
-		var reciveOrder = {
-			//                    "order":[{"idOrder":"idOrder1","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","roomCategory":"roomCategory1,"}
-			//                        ,{"idOrder":"idOrder2","room":"room2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","roomCategory":"roomCategory2,"}]
-			//                  , "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
-			//                   "transform":[{"back":"TestHref","front":"TestHref"}],
-			//                   "number":[{"value":"1","link":"TestHref"},{"value":"2","link":"TestHref"},{"value":"3","link":"TestHref"},{"value":"4","link":"TestHrefestHref"}]
-
-		}
-		var reciveOrder1 ;
-		waitingReceive(reciveOrder1)
-	}
-	//工作中订单
-	function gzzdd() {
-		deleteTr();
-		var reciveOrder = {
-			"order" : [ {
-				"idOrder" : "idOrder2",
-				"room" : "room1",
-				"stuff" : "stuff1",
-				"userName" : "userName1",
-				"initTime" : "initTtime1",
-				"clockCategory" : "clockCategory1",
-				"roomCategory" : "roomCategory1,"
-			}
-				, {
-					"idOrder" : "idOrder2",
-					"room" : "room2",
-					"stuff" : "stuff2",
-					"userName" : "userName2",
-					"initTime" : "initTtime2",
-					"clockCategory" : "clockCategory2",
-					"roomCategory" : "roomCategory2,"
-				} ],
-			"page" : [ {
-				"currentPage" : "1",
-				"allCount" : "10",
-				"allPage" : "10"
-			} ],
-			"transform" : [ {
-				"back" : "TestHref",
-				"front" : "TestHref"
-			} ],
-			"number" : [ {
-				"value" : "1",
-				"link" : "TestHref"
-			}, {
-				"value" : "2",
-				"link" : "TestHref"
-			}, {
-				"value" : "3",
-				"link" : "TestHref"
-			} ]
-		}
-		servicing(reciveOrder)
-	}
-	//挂起中订单
-	function gqzdd() {
-		deleteTr();
-		var reciveOrder = {
-			"order" : [ {
-				"idOrder" : "idOrder3",
-				"room" : "room1",
-				"stuff" : "stuff1",
-				"userName" : "userName1",
-				"initTime" : "initTtime1",
-				"clockCategory" : "clockCategory1",
-				"roomCategory" : "roomCategory1,"
-			}
-				, {
-					"idOrder" : "idOrder2",
-					"room" : "room2",
-					"stuff" : "stuff2",
-					"userName" : "userName2",
-					"initTime" : "initTtime2",
-					"clockCategory" : "clockCategory2",
-					"roomCategory" : "roomCategory2,"
-				} ],
-			"page" : [ {
-				"currentPage" : "1",
-				"allCount" : "10",
-				"allPage" : "10"
-			} ],
-			"transform" : [ {
-				"back" : "TestHref",
-				"front" : "TestHref"
-			} ],
-			"number" : [ {
-				"value" : "1",
-				"link" : "TestHref"
-			}, {
-				"value" : "2",
-				"link" : "TestHref"
-			}, {
-				"value" : "3",
-				"link" : "TestHref"
-			}, {
-				"value" : "4",
-				"link" : "TestHref"
-			} ]
-		}
-		suspend(reciveOrder);
-	}
-	//待支付订单
-	function dzfdd() {
-		deleteTr();
-		var reciveOrder = {
-			"order" : [ {
-				"idOrder" : "idOrder1",
-				"room" : "room1",
-				"stuff" : "stuff1",
-				"userName" : "userName1",
-				"initTime" : "initTtime1",
-				"clockCategory" : "clockCategory1",
-				"roomCategory" : "roomCategory1,",
-				"pledgeName" : "pledgeName1",
-				"pay" : "pay1"
-			}
-				, {
-					"idOrder" : "idOrder2",
-					"room" : "room2",
-					"stuff" : "stuff2",
-					"userName" : "userName2",
-					"initTime" : "initTtime2",
-					"clockCategory" : "clockCategory2",
-					"roomCategory" : "roomCategory2,",
-					"pledgeName" : "pledgeName2",
-					"pay" : "pay2"
-				} ],
-			"page" : [ {
-				"currentPage" : "1",
-				"allCount" : "10",
-				"allPage" : "10"
-			} ],
-			"transform" : [ {
-				"back" : "TestHref",
-				"front" : "TestHref"
-			} ],
-			"number" : [ {
-				"value" : "1",
-				"link" : "TestHref"
-			}, {
-				"value" : "2",
-				"link" : "TestHref"
-			}, {
-				"value" : "3",
-				"link" : "TestHref"
-			}, {
-				"value" : "4",
-				"link" : "TestHref"
-			} ]
-		}
-		waitingPay(reciveOrder);
-	}
-	//已支付订单
-	function yzfdd() {
-		deleteTr();
-		var reciveOrder = {
-			"order" : [ {
-				"idOrder" : "idOrder1",
-				"room" : "room1",
-				"stuff" : "stuff1",
-				"userName" : "userName1",
-				"initTime" : "initTtime1",
-				"clockCategory" : "clockCategory1",
-				"roomCategory" : "roomCategory1,",
-				"pledgeName" : "pledgeName1",
-				"pay" : "pay1",
-				"realPay" : "realPay1",
-				"payPath" : "payPath1"
-			}
-				, {
-					"idOrder" : "idOrder2",
-					"room" : "room2",
-					"stuff" : "stuff2",
-					"userName" : "userName2",
-					"initTime" : "initTtime2",
-					"clockCategory" : "clockCategory2",
-					"roomCategory" : "roomCategory2,",
-					"pledgeName" : "pledgeName2",
-					"pay" : "pay2",
-					"realPay" : "realPay1",
-					"payPath" : "payPath1"
-				} ],
-			"page" : [ {
-				"currentPage" : "1",
-				"allCount" : "10",
-				"allPage" : "10"
-			} ],
-			"transform" : [ {
-				"back" : "TestHref",
-				"front" : "TestHref"
-			} ],
-			"number" : [ {
-				"value" : "1",
-				"link" : "TestHref"
-			}, {
-				"value" : "2",
-				"link" : "TestHref"
-			}, {
-				"value" : "3",
-				"link" : "TestHref"
-			}, {
-				"value" : "4",
-				"link" : "TestHref"
-			} ]
-		}
-		finish(reciveOrder)
-	}
-	//已失效订单
-	function ysxdd() {
-		deleteTr();
-		var reciveOrder = {
-			"order" : [ {
-				"idOrder" : "idOrder6",
-				"room" : "room1",
-				"stuff" : "stuff1",
-				"userName" : "userName1",
-				"initTime" : "initTtime1",
-				"clockCategory" : "clockCategory1",
-				"roomCategory" : "roomCategory1,"
-			}
-				, {
-					"idOrder" : "idOrder2",
-					"room" : "room2",
-					"stuff" : "stuff2",
-					"userName" : "userName2",
-					"initTime" : "initTtime2",
-					"clockCategory" : "clockCategory2",
-					"roomCategory" : "roomCategory2,"
-				} ],
-			"page" : [ {
-				"currentPage" : "1",
-				"allCount" : "10",
-				"allPage" : "10"
-			} ],
-			"transform" : [ {
-				"back" : "TestHref",
-				"front" : "TestHref"
-			} ],
-			"number" : [ {
-				"value" : "1",
-				"link" : "TestHref"
-			}, {
-				"value" : "2",
-				"link" : "TestHref"
-			}, {
-				"value" : "3",
-				"link" : "TestHref"
-			}, {
-				"value" : "4",
-				"link" : "TestHref"
-			} ]
-		}
-		invalid(reciveOrder)
-	}
-	
 	//重新请求查询
 	function reQueryBasic(){
 		deleteLi();

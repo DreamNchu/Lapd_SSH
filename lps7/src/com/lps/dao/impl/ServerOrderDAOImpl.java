@@ -108,7 +108,7 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 
 	/**
 	 * 删除服务订单持久化实例
-	 * @param transientInstance 服务订单对象
+	 * @param persistentInstance 服务订单对象
 	 */
 	@Override
 	public void delete(ServerOrder persistentInstance) {
@@ -380,13 +380,12 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	}
 
 	@Override
-	public long findOrdersByProperyLimitCount( List<PropertyRange> listPro) {
+	public long findOrdersByProperyLimitCount( List<PropertyRange<?>> listPro) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
-		List<ServerOrder> ccTemp = null;
 		Criteria cri = session.createCriteria(ServerOrder.class);
 
-		for (PropertyRange p : listPro) {
+		for (PropertyRange<?> p : listPro) {
 			cri.add(Restrictions.between(p.getName(), p.getMinValue(), p.getMaxValue()));
 		}
 		
@@ -395,7 +394,7 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	}
 
 	@Override
-	public List<ServerOrder> findOrdersByProperyLimit( List<PropertyRange> listPro, int begin,
+	public List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange<?>> listPro, int begin,
 			int limit) {
 
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
@@ -403,9 +402,9 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 		List<ServerOrder> ccTemp = null;
 		Criteria cri = session.createCriteria(ServerOrder.class);
 
-		for (PropertyRange p : listPro) {
-			System.out.println(p.getMinValue());
-			System.out.println(p.getMaxValue());
+		for (PropertyRange<?> p : listPro) {
+//System.out.println(p.getMinValue());
+//System.out.println(p.getMaxValue());
 			cri.add(Restrictions.between(p.getName(), p.getMinValue(), p.getMaxValue()));
 		}
 		cri.addOrder(Order.asc(ServerOrderDAOImpl.INIT_TIME));

@@ -84,7 +84,6 @@ public class WorkRankManage {
 	 * 添加员工上钟的工作信息
 	 * 
 	 * @param u
-	 * @return
 	 */
 	public void addUserData(User u) {
 		WorkRank wr = new WorkRank.Builder().setUser(u).build();

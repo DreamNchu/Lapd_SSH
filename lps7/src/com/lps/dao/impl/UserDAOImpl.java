@@ -113,7 +113,7 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 
 	/**
 	 * 删除员工持久化实例
-	 * @param transientInstance 员工对象
+	 * @param persistentInstance 员工对象
 	 */
 	@Override
 	public void delete(User persistentInstance) {

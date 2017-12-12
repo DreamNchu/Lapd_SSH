@@ -73,7 +73,7 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 	/**
 	 * 删除订单状态持久化实例
 	 * 
-	 * @param transientInstance
+	 * @param persistentInstance
 	 *            订单状态对象
 	 */
 	@Override

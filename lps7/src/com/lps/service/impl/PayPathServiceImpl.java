@@ -77,7 +77,7 @@ public class PayPathServiceImpl implements PayPathService {
 
 	/**
 	 * 设置PayPathDao实例
-	 * @param PayPathDao
+	 * @param payPathDao
 	 */
 	public void setPayPathDao(PayPathDAO payPathDao) {
 		this.dao = payPathDao;

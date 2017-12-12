@@ -32,6 +32,6 @@ public interface OrderStatusService extends BasicForServerOrderService<OrderStat
 	int findIdByOrderStatus(String orderStatusProperty);
 	
 	
-	PropertyRange createPropertyRange(int id1, int id2);
+	PropertyRange<OrderStatus> createPropertyRange(int id1, int id2);
 	
 }

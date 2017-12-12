@@ -42,6 +42,7 @@ public class OrderTableDataDto extends PageDto{
 			osd.init(serverOrder);
 			this.order.add(osd);
 		}
+		
 	}
 	
 	

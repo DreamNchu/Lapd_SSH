@@ -34,7 +34,7 @@ function recivePage(reciveOrder) {
      })
 }
 function waitingReceive(reciveOrder) {
-alert("waitingReceive："  + JSON.stringify(reciveOrder));
+//alert("waitingReceive："  + JSON.stringify(reciveOrder));
     var firsttr=document.getElementById("firsttr");
     var orderTable=document.getElementById("orderTable");
     var i;

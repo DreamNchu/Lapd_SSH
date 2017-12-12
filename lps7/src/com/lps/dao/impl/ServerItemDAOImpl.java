@@ -64,7 +64,7 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 
 	/**
 	 * 删除房间类型持久化实例
-	 * @param transientInstance 房间类型对象
+	 * @param persistentInstance 房间类型对象
 	 */
 	@Override
 	public void delete(ServerItem persistentInstance) {

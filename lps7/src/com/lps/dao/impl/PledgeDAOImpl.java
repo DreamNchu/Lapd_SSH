@@ -65,7 +65,7 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 
 	/**
 	 * 删除抵押物持久化实例
-	 * @param transientInstance 抵押物对象
+	 * @param persistentInstance 抵押物对象
 	 */
 	@Override
 	public void delete(Pledge persistentInstance) {

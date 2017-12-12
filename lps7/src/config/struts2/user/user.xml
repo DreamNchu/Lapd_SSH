@@ -3,10 +3,4 @@
 <struts>
 
 
-	<package name="userOperation" namespace="/operation">
-		<action name="user_*" class="userSignInAction" method="{1}">
-			
-		</action>
-	</package>
-
 </struts>

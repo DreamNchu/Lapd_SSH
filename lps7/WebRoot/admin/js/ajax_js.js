@@ -51,7 +51,7 @@ function formSubmitWithEvent(ajaxUrl, id, func) {
         data: $('#' + id).serialize(),
         success: function (data) {
             var strresult = JSON.parse(data);
-            alert(strresult.msg);
+            //alert(strresult.msg);
             func();
         },
         error: function (data) {
@@ -67,7 +67,7 @@ function ajaxRequest(url,func){
         url : url,
         success : function(data) {
             var strresult = JSON.parse(data);
-alert("ajaxRequest" + data);
+//alert("ajaxRequest" + data);
             func(strresult);
         },
         error : function(data) {

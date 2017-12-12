@@ -118,19 +118,19 @@
 									<div class="box-header with-border">
 										<label for="rad1" class="radio">
 											<span class="radio-bg"></span>
-											<input  type="radio" name="createWay" id="rad1" checked onclick="showOf()">
+											<input  type="radio" name="createOrderDto.createWay" id="rad1" checked onclick="showOf()">
 											点钟手发
 											<span class="radio-on"></span>
 										</label>
 										<label for="rad2" class="radio">
 											<span class="radio-bg"></span>
-											<input  type="radio" name="createWay" id="rad2" onclick="showOf()">
+											<input  type="radio" name="createOrderDto.createWay" id="rad2" onclick="showOf()">
 											排钟手发
 											<span class="radio-on"></span>
 										</label>
 										<label for="rad3" class="radio">
 											<span class="radio-bg"></span>
-											<input type="radio" name="createWay"  id="rad3" onclick="hideOf()">
+											<input type="radio" name="createOrderDto.createWay"  id="rad3" onclick="hideOf()">
 											排钟自发
 											<span class="radio-on"></span>
 										</label>

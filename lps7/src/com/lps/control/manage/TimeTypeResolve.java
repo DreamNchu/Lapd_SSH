@@ -20,10 +20,10 @@ public class TimeTypeResolve implements TimeType{
 	 * @param timeType
 	 * @return
 	 */
-	public static List<PropertyRange> resolveTimeToProRange(String propertyName,  int timeType){
+	public static List<PropertyRange<Date>> resolveTimeToProRange(String propertyName,  int timeType){
 		List<Date> date2s = resolveTimeType(timeType);
 		
-		List<PropertyRange> list = new ArrayList<>();
+		List<PropertyRange<Date>> list = new ArrayList<>();
 		
 		DateTime ld = new DateTime(date2s.get(0));
 		
@@ -56,8 +56,8 @@ public class TimeTypeResolve implements TimeType{
 				dt = ld;
 				dt2 = dt.plusHours(1);
 				ld = dt2;
-				PropertyRange pr = 
-						new PropertyRange(propertyName,dt.toDate(),dt2.toDate());
+				PropertyRange<Date> pr = 
+						new PropertyRange<>(propertyName,dt.toDate(),dt2.toDate());
 				list.add(pr);
 				
 			} while (dt2.isBefore(ld2));
@@ -67,8 +67,8 @@ public class TimeTypeResolve implements TimeType{
 				dt = ld;
 				dt2 = dt.plusDays(1);
 				ld = dt2;
-				PropertyRange pr = 
-						new PropertyRange(propertyName,dt.toDate(),dt2.toDate());
+				PropertyRange<Date> pr = 
+						new PropertyRange<Date>(propertyName,dt.toDate(),dt2.toDate());
 				list.add(pr);
 				
 			} while (dt2.isBefore(ld2));
@@ -78,8 +78,8 @@ public class TimeTypeResolve implements TimeType{
 				dt = ld;
 				dt2 = dt.plusMonths(1);
 				ld = dt2;
-				PropertyRange pr = 
-						new PropertyRange(propertyName,dt.toDate(),dt2.toDate());
+				PropertyRange<Date> pr = 
+						new PropertyRange<Date>(propertyName,dt.toDate(),dt2.toDate());
 				list.add(pr);
 			} while (dt2.isBefore(ld2));
 			break;
@@ -88,8 +88,8 @@ public class TimeTypeResolve implements TimeType{
 				dt = ld;
 				dt2 = dt.plusYears(1);
 				ld = dt2;
-				PropertyRange pr = 
-						new PropertyRange(propertyName,dt.toDate(),dt2.toDate());
+				PropertyRange<Date> pr = 
+						new PropertyRange<Date>(propertyName,dt.toDate(),dt2.toDate());
 				list.add(pr);
 			} while (dt2.isBefore(ld2));
 			break;

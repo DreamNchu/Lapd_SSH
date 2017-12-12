@@ -83,7 +83,7 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 
 	/**
 	 * 删除房间持久化实例
-	 * @param transientInstance 房间对象
+	 * @param persistentInstance 房间对象
 	 */
 	@Override
 	public void delete(Room persistentInstance) {

@@ -141,7 +141,7 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 	 * 设置username值
 	 * <p>
 	 * 
-	 * @param username
+	 * @param userName
 	 *            管理员账户名
 	 */
 	public void setUserName(String userName) {
@@ -240,10 +240,8 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 
 		/**
 		 * 设置id值
-		 * <p>
-		 * 
-		 * @param id
-		 *            管理员id
+		 * @param id 管理员id
+		 * @return
 		 */
 		public Builder setId(Integer id) {
 			this.id = id;
@@ -281,9 +279,9 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 		 * 设置管理员的注册时间
 		 * <p>
 		 * 
-		 * @param userName
-		 *            管理员账户 String类型
-		 * @return 管理员账户 String类型
+		 * @param registerTime
+		 *            设置管理员的注册时间
+		 * @return 
 		 */
 		public Builder setRegisterTime(Date registerTime) {
 			this.registerTime = registerTime;

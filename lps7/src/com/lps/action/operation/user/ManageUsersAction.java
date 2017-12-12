@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.lps.action.jsonresult.JsonResult;
+import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.UserManage;
 import com.lps.model.User;
 import com.lps.service.UserService;
@@ -18,7 +18,7 @@ import com.lps.web.user.dto.UserIdDto;
 import com.lps.web.user.dto.UserTableDataDto;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ManageUsersAction extends ActionSupport implements JsonResult,SessionAware{
+public class ManageUsersAction extends ActionSupport implements DataResult,SessionAware{
 
 	private static final long serialVersionUID = -8314546487497383936L;
 	

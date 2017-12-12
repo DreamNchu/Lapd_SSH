@@ -43,12 +43,16 @@ public abstract class PageDto {
 	}
 
 	public <T> void init(PageBean<T> lOrders, PageAble queryOrderDto, String domainName, String actionName) {
+		if(lOrders == null)
+			return ;
 		Map<String, Object> mapPage = new HashMap<>();
 		mapPage.put("currentPage", lOrders.getPage());
 		mapPage.put("allCount", lOrders.getAllCount());
 		mapPage.put("allPage", lOrders.getAllPage());
 		page.add(mapPage);
 
+		if(queryOrderDto == null)
+			return ;
 		// 前一页
 		Map<String, Object> mapdir = new HashMap<>();
 		queryOrderDto.setPage((int) (lOrders.getPage() - 1 <= 0 ? 1 : lOrders.getPage() - 1));

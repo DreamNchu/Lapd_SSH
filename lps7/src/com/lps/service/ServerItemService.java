@@ -23,8 +23,8 @@ public interface ServerItemService extends BasicService<ServerItem>{
 	
 	/**
 	 * 存在返回id，不存在返回-1
-	 * @param roomCategoryProperty
-	 * @return
+	 * @param roomCategoryProperty 房间类型
+	 * @return 得到该类型的id
 	 */
 	int findIdByServerItem(String roomCategoryProperty);
 	

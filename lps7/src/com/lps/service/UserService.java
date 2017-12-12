@@ -39,9 +39,9 @@ public interface UserService extends BasicForServerOrderService<User>, WebAccess
 	List<User> findByEmail(Object email);
 
 	/**
-	 * 根据email查找员工
-	 * @param email 员工邮箱
-	 * @return 员工的集合
+	 * 
+	 * @param address 地址
+	 * @return
 	 */
 	List<User> findByAddress(Object address);
 

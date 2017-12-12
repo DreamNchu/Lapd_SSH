@@ -59,7 +59,7 @@ public class PledgeServiceImpl implements PledgeService {
 
 	/**
 	 * 设置PledgeDAO实例
-	 * @param pledgeDAO
+	 * @param pledgeDao
 	 */
 	public void setPledgeDao(PledgeDAO pledgeDao) {
 		this.dao = pledgeDao;

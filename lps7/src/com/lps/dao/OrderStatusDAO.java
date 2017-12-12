@@ -46,7 +46,7 @@ public interface OrderStatusDAO extends BasicDAO<OrderStatus>, BasicForServerOrd
 	/**
 	 * 根据订单状态查找,返回订单状态
 	 * <p>
-	 * @param OrderStatus 订单状态对象
+	 * @param orderStatus 订单状态对象
 	 * @return 返回订单状态对象的数组
 	 */
 

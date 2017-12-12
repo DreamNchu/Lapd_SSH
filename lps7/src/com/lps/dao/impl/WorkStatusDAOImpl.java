@@ -52,16 +52,16 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 
 	/**
 	 * 保存员工工作状态实例
-	 * @param transientInstance 工作状态对象
+	 * @param persistentInstance 工作状态对象
 	 */
 	@Override
-	public void save(WorkStatus transientInstance) {
-		hibernateTemplate.save(transientInstance);
+	public void save(WorkStatus persistentInstance) {
+		hibernateTemplate.save(persistentInstance);
 	}
 
 	/**
 	 * 删除员工工作状态持久化实例
-	 * @param transientInstance 工作状态对象
+	 * @param persistentInstance 工作状态对象
 	 */
 	@Override
 	public void delete(WorkStatus persistentInstance) {

@@ -6,7 +6,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.lps.action.jsonresult.JsonResult;
+import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.OrderManage;
 import com.lps.model.ServerOrder;
 import com.lps.service.ServerOrderService;
@@ -21,7 +21,7 @@ import com.lps.web.orderchart.dto.OrderChartInitDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ManageOrdersAction extends ActionSupport implements JsonResult, SessionAware {
+public class ManageOrdersAction extends ActionSupport implements DataResult, SessionAware {
 
 	private static final long serialVersionUID = -8763735445922466287L;
 
@@ -54,10 +54,6 @@ public class ManageOrdersAction extends ActionSupport implements JsonResult, Ses
 		this.orderUpdateDataDto = orderUpdateDataDto;
 	}
 
-	/**
-	 * 订单的编号
-	 */
-//	private String orderId;
 	/**
 	 * 订单编号的id集合
 	 */
@@ -154,7 +150,7 @@ System.out.println(result);
 	public String chartDataOrders(){
 		orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
 		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
-System.out.println(result);
+//System.out.println(result);
 		return SUCCESS;
 	}
 	
@@ -214,6 +210,8 @@ System.out.println(result);
 	//
 	private InitBasicUpdateDataDto initBasicUpdateDataDto ;
 	
+	Map<String, Object> map = new HashMap<>();
+	boolean isError = false;
 	/**
 	 * 更新订单内容
 	 * 
@@ -221,8 +219,7 @@ System.out.println(result);
 	 */
 	public String updateOrder() {
 		// 更新已经更改的字段
-		Map<String, Object> map = new HashMap<>();
-		boolean isError = false;
+		
 		try {
 			orderManage.update(orderUpdateDataDto);
 		} catch (Exception e) {
@@ -234,7 +231,9 @@ System.out.println(result);
 			map.put(MSG, "更新订单成功");
 		result = WorkJson.toJsonDisableHtmlEscaping(map);
 		return SUCCESS;
+		
 	}
+	
 	
 	/**
 	 * 查询单个订单
@@ -249,11 +248,9 @@ System.out.println(result);
 		return SUCCESS;
 	}
 	
-	private OrderChartInitDto orderChartInitDto = new OrderChartInitDto();
+	private OrderChartInitDto orderChartInitDto ;
 	
 	public String initChartOrders(){
-
-		
 		orderChartInitDto.init(orderManage.findAllUser());
 		result = WorkJson.toJsonDisableHtmlEscaping(orderChartInitDto);
 System.out.println(result);

@@ -1,14 +1,16 @@
 package com.lps.action.admin.access;
 
+import java.io.IOException;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.lps.action.jsonresult.DataResult;
 import com.lps.service.AdminService;
-import com.lps.util.OnLineStatus;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class AdminAccessAction extends ActionSupport implements SessionAware{
+public class AdminAccessAction extends ActionSupport
+	implements SessionAware, DataResult{
 
 	private static final long serialVersionUID = 5979229100942095638L;
 
@@ -43,12 +45,14 @@ public class AdminAccessAction extends ActionSupport implements SessionAware{
 	public void setAdminServiceImpl(AdminService adminServiceImpl) {
 		this.adminServiceImpl = adminServiceImpl;
 	}
-	public String main(){
+	
+	
+	
+	public String main() throws IOException{
 		//检查session 判断是否为刷新
 		if(session.get("id") != null){
 			return SUCCESS;
 		}
-		
 		try {
 			String password = adminServiceImpl.findPasswordByUserName(userName);
 			int id = adminServiceImpl.findIdByUserName(userName);
@@ -58,6 +62,7 @@ public class AdminAccessAction extends ActionSupport implements SessionAware{
 				return SUCCESS;
 			}
 		} catch (Exception e) {
+			result = "账号或密码错误";
 			return ERROR;
 		}
 		return ERROR;
@@ -66,6 +71,18 @@ public class AdminAccessAction extends ActionSupport implements SessionAware{
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
+	}
+
+	@Override
+	public String getResult() {
+		return this.result;
+	}
+	
+	private String result ;
+
+	@Override
+	public void setResult(String result) {
+		this.result = result;
 	}
 	
 	

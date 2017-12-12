@@ -174,7 +174,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 
 	/**
 	 * 设置OrderStatusDAO实例
-	 * @param OrderStatusDAO
+	 * @param orderStatusDao
 	 */
 	public void setOrderStatusDao(OrderStatusDAO orderStatusDao) {
 		this.dao = orderStatusDao;
@@ -270,8 +270,8 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public PropertyRange createPropertyRange(int id1, int id2) {
-		PropertyRange pr = new PropertyRange();
+	public PropertyRange<OrderStatus> createPropertyRange(int id1, int id2) {
+		PropertyRange<OrderStatus> pr = new PropertyRange<OrderStatus>();
 		
 		pr.setName(ServerOrderDAOImpl.ORDER_STATUS);
 		pr.setMinValue(findById(id1));
