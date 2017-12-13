@@ -3,7 +3,7 @@
 <%
 StringBuffer basePath = request.getRequestURL();
 %>
-<%-- <s:debug></s:debug> --%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,17 +31,18 @@ StringBuffer basePath = request.getRequestURL();
         	//先请求待接收订单
         	 ajaxRequest("queryOrders?userOrderRequestDto.statusId=1", singleOrder);
         
-            var accept=document.getElementById("accept");
+        	var accept=document.getElementById("accept");
             var working=document.getElementById("working");
             var notpay=document.getElementById("notpay");
             var paying=document.getElementById("paying");
             var income=document.getElementById("income");
             var lis=document.getElementById("lis").getElementsByTagName("li");
-            working.style.display="none";
+            
+			working.style.display="none";
             notpay.style.display="none";
             paying.style.display="none";
             income.style.display="none";
-            lis[0].onclick=function () {
+            lis[0].onclick = function () {
                 lis[0].className="active";
                 lis[1].className="";
                 lis[2].className="";
@@ -67,7 +68,7 @@ StringBuffer basePath = request.getRequestURL();
                 notpay.style.display="none";
                 paying.style.display="none";
                 income.style.display="none";
-                 ajaxRequest("queryOrders?userOrderRequestDto.statusId=2", singleOrder);
+                ajaxRequest("queryOrders?userOrderRequestDto.statusId=2", singleOrder);
             }
             lis[2].onclick=function () {
                 lis[0].className="";
@@ -96,7 +97,7 @@ StringBuffer basePath = request.getRequestURL();
                 income.style.display="none";
                 ajaxRequest("queryOrders?userOrderRequestDto.statusId=4", finish);
             }
-            lis[4].onclick=function () {
+             lis[4].onclick=function () {
                 lis[0].className="";
                 lis[1].className="";
                 lis[2].className="";
@@ -107,8 +108,11 @@ StringBuffer basePath = request.getRequestURL();
                 notpay.style.display="none";
                 paying.style.display="none";
                 income.style.display="block";
-                ajaxRequest("queryOrders?userOrderRequestDto.statusId=4", finish);
-            }
+                ajaxRequest("todayOrderIncome", function(msg){
+                	//spotNum
+                	$("#spotNum").html(msg);
+                });
+            } 
         }
     </script>
 </head>
@@ -129,11 +133,11 @@ StringBuffer basePath = request.getRequestURL();
         <div class="row">
             <div class="col-xs-12  col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
                 <ul id="lis" class="nav nav-tabs" style="font-size: 5px;width: 104%">
-                    <li class="active"><a href="#">待接收</a></li>
-                    <li ><a href="#">工作中</a></li>
-                    <li ><a href="#">待付款</a></li>
-                    <li ><a href="#">已支付</a></li>
-                    <li ><a href="#">日收益</a></li>
+                    <li class="active"><a href="javascript:void(0)">待接收</a></li>
+                    <li ><a href="javascript:void(0)">工作中</a></li>
+                    <li ><a href="javascript:void(0)">待付款</a></li>
+                    <li ><a href="javascript:void(0)">已支付</a></li>
+                    <li ><a href="javascript:void(0)"><!-- 日收益 --></a></li>
                 </ul>
             </div>
             <div id="accept" class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
@@ -180,7 +184,7 @@ StringBuffer basePath = request.getRequestURL();
                          <td colspan="4" ><b>内容</b></td>
                     <tr>
                         <td>订单编号：</td>
-                        <td class="idOrder" colspan="4" ></td>
+                        <td class="idOrder" colspan="4" id="servicingOrderId"></td>
                     </tr>
                     <tr>
                         <td>房间号：</td>
@@ -198,16 +202,9 @@ StringBuffer basePath = request.getRequestURL();
                         <td>工作类型</td>
                         <td class="clockCategory" colspan="4" ></td>
                     </tr>
-                  <!--   <tr>
-                        <td>增加项目</td>
-                        <td><input type="checkbox" id="pro1" value="1"> 按摩</td>
-                        <td><input type="checkbox" id="pro2" value="2"> 洗脚</td>
-                        <td><input type="checkbox" id="pro3" value="3"> 桑拿</td>
-                        <td><input type="checkbox" id="pro4" value="4"> 水疗</td>
-                    </tr> -->
                     <tr>
                     	<td>服务金额</td>
-                    	<td class="pay" colspan="4"  ><input type="text" name="pay" ></td>
+                    	<td class="pay" colspan="4"  ><input type="text" name="pay" id="pay"></td>
                     </tr>
                     <tr>
                         <td><input class="btn btn-primary" type="button" value="完成工作" onclick="completeWork()"></td>
@@ -228,13 +225,6 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     </thead>
                     <tbody id="waitingPay">
-                    <!-- <tr>
-                        <td class="roomName">1120</td>
-                        <td><a href="ddxq.html?id=0"  style="color: blue">666</a></td>
-                        <td class="finishTime">4:30</td>
-                        <td class="clockCategory" >点钟</td>
-                        <td class="pay" >300元</td>
-                    </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -259,20 +249,16 @@ StringBuffer basePath = request.getRequestURL();
                     <tr>
                         <th>点钟数</th>
                         <th>排钟数</th>
-                        <th>预计收益 </th>
+                        <th>服务收益 </th>
                         <th>实际收益 </th>
                     </tr>
                     </thead>
-                    <tbody >
+                    <tbody>
                     <tr>
-                        <td>5</td>
-                        <td>12</td>
-                        <td>500元</td>
-                        <td>480元</td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">差值原因</td>
-                        <td colspan="2">摔破杯子一个</td>
+                        <td id="spotNum">5</td>
+                        <td id="rankNum">12</td>
+                        <td id="companyIncome">500元</td>
+                        <td id="mineIncome">480元</td>
                     </tr>
                     </tbody>
                 </table>

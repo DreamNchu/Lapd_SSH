@@ -8,13 +8,32 @@ $(document).ready(function () {
 function acceptOrder(){
 	
 	var idOrder = $("#waitingOrderId").html();
+	alert(idOrder);
+	ajaxRequest("receiveOrder?idOrder="+idOrder, function(reciveOrder){
+		alert(reciveOrder.msg);
+	});
 	
-	ajaxRequest("refuseOrder?idOrder="+idOrder, function(reciveOrder){});
+}
+
+function completeWork(){
+	var idOrder = $("#servicingOrderId").html();
+	var pay = $("#pay").val();
 	
+	ajaxRequest("finishOrder?idOrder="+idOrder+"&pay="+pay, function(reciveOrder){
+		alert(reciveOrder.msg);
+	});
 }
 
 
 function singleOrder(reciveOrder) {
+	
+	 $(".idOrder").html("");
+	  $(".room").html("");
+	  $(".initTime").html("");
+	  $(".clockCategory").html("");
+	  $(".roomCategory").html("");
+	  $(".pledgeName").html("");
+	  $(".payPath").html("");
 		
 		  for(i in reciveOrder.order){
 			  

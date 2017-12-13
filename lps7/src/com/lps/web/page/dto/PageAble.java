@@ -4,4 +4,6 @@ public interface PageAble {
 
 	void setPage(int page);
 	
+	String getDomainName();
+	
 }

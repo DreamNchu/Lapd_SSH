@@ -4,16 +4,10 @@ import java.util.List;
 
 import com.lps.model.ServerOrder;
 import com.lps.util.PageBean;
+import com.lps.web.page.dto.PageAble;
 import com.lps.web.page.dto.PageDto;
 
 public class OrderTableDataDto extends PageDto{
-
-	/*
-	 * "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
-	 * "transform":[{"back":"TestHref","front":"TestHref"}],
-	 * "number":[{"value":"1","link":"TestHref"},{"value":"2","link":"TestHref"}
-	 * ,{"value":"3","link":"TestHref"},{"value":"4","link":"TestHref"}] }
-	 */
 
 	private List<OrderSingleDataDto> order;
 
@@ -28,14 +22,14 @@ public class OrderTableDataDto extends PageDto{
 	/**
 	 * 初始化值
 	 * @param lOrders
-	 * @param queryOrderDto
+	 * @param pageLinkTransformOrderDto
 	 * @param domainName
 	 * @param actionName
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> void init(PageBean<T> lOrders, QueryOrderDto queryOrderDto, String domainName, String actionName) {
+	public <T> void init(PageBean<T> lOrders, PageAble pageLinkTransformOrderDto, String domainName, String actionName) {
 		
-		super.init(lOrders, queryOrderDto, domainName, actionName);
+		super.init(lOrders, pageLinkTransformOrderDto, domainName, actionName);
 		
 		for (ServerOrder serverOrder : (List<ServerOrder>)lOrders.getList()) {
 			OrderSingleDataDto osd = new OrderSingleDataDto();
@@ -44,8 +38,6 @@ public class OrderTableDataDto extends PageDto{
 		}
 		
 	}
-	
-	
 
 	public List<OrderSingleDataDto> getOrder() {
 		return order;

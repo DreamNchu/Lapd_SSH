@@ -8,7 +8,7 @@ import java.util.Map;
 import com.lps.model.ServerOrder;
 import com.lps.util.LinkParamCreater;
 import com.lps.util.PageBean;
-import com.lps.web.order.dto.QueryOrderDto;
+import com.lps.web.order.dto.PageLinkTransformOrderDto;
 
 public abstract class PageDto {
 
@@ -42,7 +42,7 @@ public abstract class PageDto {
 		this.number = number;
 	}
 
-	public <T> void init(PageBean<T> lOrders, PageAble queryOrderDto, String domainName, String actionName) {
+	public <T> void init(PageBean<T> lOrders, PageAble pageLinkDto, String domainName, String actionName) {
 		if(lOrders == null)
 			return ;
 		Map<String, Object> mapPage = new HashMap<>();
@@ -51,28 +51,28 @@ public abstract class PageDto {
 		mapPage.put("allPage", lOrders.getAllPage());
 		page.add(mapPage);
 
-		if(queryOrderDto == null)
+		if(pageLinkDto == null) //如果不需要分页
 			return ;
 		// 前一页
 		Map<String, Object> mapdir = new HashMap<>();
-		queryOrderDto.setPage((int) (lOrders.getPage() - 1 <= 0 ? 1 : lOrders.getPage() - 1));
-		String qlBack = LinkParamCreater.createLinkParam(queryOrderDto, domainName);
+		pageLinkDto.setPage((int) (lOrders.getPage() - 1 <= 0 ? 1 : lOrders.getPage() - 1));
+		String qlBack = LinkParamCreater.createLinkParam(pageLinkDto, domainName);
 		mapdir.put("back", removeLast(actionName + "?" + qlBack));
 
 		// 后一页
-		queryOrderDto.setPage(
+		pageLinkDto.setPage(
 				(int) (lOrders.getPage() + 1 > lOrders.getAllPage() ? lOrders.getAllPage() : lOrders.getPage() + 1));
-		String qlFront = LinkParamCreater.createLinkParam(queryOrderDto, domainName);
+		String qlFront = LinkParamCreater.createLinkParam(pageLinkDto, domainName);
 		mapdir.put("front", removeLast(actionName + "?" + qlFront));
 		transform.add(mapdir);
 
 		// 页码
 		for (int i : lOrders.getViewPageNum()) {
-			queryOrderDto.setPage(i);
+			pageLinkDto.setPage(i);
 			Map<String, Object> map = new HashMap<>();
 
 			map.put("value", i);
-			String temp = LinkParamCreater.createLinkParam(queryOrderDto, domainName);
+			String temp = LinkParamCreater.createLinkParam(pageLinkDto, domainName);
 			map.put("link", removeLast(actionName + "?" + temp));
 			number.add(map);
 		}

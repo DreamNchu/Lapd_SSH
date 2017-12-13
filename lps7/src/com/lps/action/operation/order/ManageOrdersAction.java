@@ -15,7 +15,7 @@ import com.lps.util.WorkJson;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.OrderTableDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
-import com.lps.web.order.dto.QueryOrderDto;
+import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartInitDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
@@ -34,7 +34,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	/**
 	 * 查询所要的订单基本信息
 	 */
-	private QueryOrderDto queryOrderDto;
+	private PageLinkTransformOrderDto pageLinkTransformOrderDto;
 
 	private OrderManage orderManage;
 
@@ -95,8 +95,8 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		return orderTableDataDto;
 	}
 
-	public QueryOrderDto getQueryOrderDto() {
-		return queryOrderDto;
+	public PageLinkTransformOrderDto getPageLinkTransformOrderDto() {
+		return pageLinkTransformOrderDto;
 	}
 
 	@Override
@@ -117,22 +117,25 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	public String queryBasicOrders() throws PagePropertyNotInitException {
 		// 找到今日该状态下的所有订单
 
-		if (queryOrderDto != null) {
-			if (queryOrderDto.getStatusId() != 0)
-				session.put("statusId", queryOrderDto.getStatusId());
-			if (queryOrderDto.getTimeType() != 0) {
-				session.put("timeType", queryOrderDto.getTimeType());
+		if (pageLinkTransformOrderDto != null) {
+			if (pageLinkTransformOrderDto.getStatusId() != 0)
+				session.put("statusId", pageLinkTransformOrderDto.getStatusId());
+			if (pageLinkTransformOrderDto.getTimeType() != 0) {
+				session.put("timeType", pageLinkTransformOrderDto.getTimeType());
 			}
-			if (queryOrderDto.getPage() != 0)
-				session.put("orderPage", queryOrderDto.getPage());
+			if (pageLinkTransformOrderDto.getPage() != 0)
+				session.put("orderPage", pageLinkTransformOrderDto.getPage());
 		}
 		
-		queryOrderDto.setPage(Integer.parseInt( session.get("orderPage") + ""));
-		queryOrderDto.setStatusId(Integer.parseInt( session.get("statusId") + ""));
-		queryOrderDto.setTimeType(Integer.parseInt( session.get("timeType")+""));
+		pageLinkTransformOrderDto.setPage(Integer.parseInt( session.get("orderPage") + ""));
+		pageLinkTransformOrderDto.setStatusId(Integer.parseInt( session.get("statusId") + ""));
+		pageLinkTransformOrderDto.setTimeType(Integer.parseInt( session.get("timeType")+""));
 
-		orderTableDataDto.init(orderManage.basicQuery(queryOrderDto, queryOrderDto.getPage()), queryOrderDto, "queryOrderDto",
-				"queryBasicOrders");
+		orderTableDataDto.init(
+				orderManage.basicQuery(pageLinkTransformOrderDto, pageLinkTransformOrderDto.getPage()), 
+				pageLinkTransformOrderDto, 
+				pageLinkTransformOrderDto.getDomainName(),
+				Thread.currentThread().getStackTrace()[1].getMethodName());
 		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
 System.out.println(result);
 		return SUCCESS;
@@ -195,8 +198,8 @@ System.out.println(result);
 		this.orderTableDataDto = orderTableDataDto;
 	}
 
-	public void setQueryOrderDto(QueryOrderDto queryOrderDto) {
-		this.queryOrderDto = queryOrderDto;
+	public void setPageLinkTransformOrderDto(PageLinkTransformOrderDto pageLinkTransformOrderDto) {
+		this.pageLinkTransformOrderDto = pageLinkTransformOrderDto;
 	}
 
 	public void setResult(String result) {
@@ -277,6 +280,10 @@ System.out.println(result);
 
 	public void setInitBasicUpdateDataDto(InitBasicUpdateDataDto initBasicUpdateDataDto) {
 		this.initBasicUpdateDataDto = initBasicUpdateDataDto;
+	}
+	
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 
 }

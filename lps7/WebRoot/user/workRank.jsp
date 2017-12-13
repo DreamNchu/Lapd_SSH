@@ -1,6 +1,13 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%
+StringBuffer basePath = request.getRequestURL();
+%>
+<%-- <s:debug></s:debug> --%>
 <!DOCTYPE html>
 <html>
-<head >
+<head>
+    <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>小店助手</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

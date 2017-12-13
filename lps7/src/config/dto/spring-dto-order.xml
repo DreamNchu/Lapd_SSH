@@ -39,7 +39,7 @@
 
 	</bean>
 
-	<bean id="queryOrderDto" class="com.lps.web.order.dto.QueryOrderDto"
+	<bean id="pageLinkTransformOrderDto" class="com.lps.web.order.dto.PageLinkTransformOrderDto"
 		scope="prototype">
 	</bean>
 
@@ -70,6 +70,11 @@
 	
 	<bean id="orderSingleDataDto" scope="prototype" class="com.lps.web.order.dto.OrderSingleDataDto"></bean>
 
-	<bean id="orderChartDto" scope="prototype" class="com.lps.web.orderchart.dto.OrderChartDto"></bean>
+	<bean id="orderChartDto" scope="prototype" class="com.lps.web.orderchart.dto.OrderChartDto">
+		<property name="income"><list></list></property>
+		<property name="orderCount"><list></list></property>
+		<property name="orderRankCount"><list></list></property>
+		<property name="orderSpotCount"><list></list></property>
+	</bean>
 </beans>
 

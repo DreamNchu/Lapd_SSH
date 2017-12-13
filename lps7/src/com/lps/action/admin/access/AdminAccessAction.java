@@ -7,6 +7,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
 import com.lps.service.AdminService;
+import com.lps.util.WorkJson;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AdminAccessAction extends ActionSupport
@@ -85,6 +86,8 @@ public class AdminAccessAction extends ActionSupport
 		this.result = result;
 	}
 	
-	
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
+	}
 
 }

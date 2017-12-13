@@ -212,14 +212,14 @@ $(document).ready(function () {
     	deleteLi();
         deleteTr();
 //        alert("queryBasicOrders?queryOrderDto.statusId="+$('.statusId:checked').val()+"&queryOrderDto.timeType="+$(this).attr('value'));
-        ajaxRequest("queryBasicOrders?queryOrderDto.statusId="+$('.statusId:checked').val()+"&queryOrderDto.timeType="+$(this).attr('value'),funcs[parseInt($('.statusId:checked').val()) - 1]);
+        ajaxRequest("queryBasicOrders?pageLinkTransformOrderDto.statusId="+$('.statusId:checked').val()+"&pageLinkTransformOrderDto.timeType="+$(this).attr('value'),funcs[parseInt($('.statusId:checked').val()) - 1]);
     })
     $('.statusId').click(function () {
     	deleteLi();
         deleteTr();
 //        alert(parseInt($(this).attr('value')) - 1);
 //        alert("queryBasicOrders?queryOrderDto.statusId="+$(this).attr('value')+"&queryOrderDto.timeType="+$('.dateType:checked').val());
-        ajaxRequest("queryBasicOrders?queryOrderDto.statusId="+$(this).attr('value')+"&queryOrderDto.timeType="+$('.dateType:checked').val(),funcs[parseInt($(this).attr('value')) - 1]);
+        ajaxRequest("queryBasicOrders?pageLinkTransformOrderDto.statusId="+$(this).attr('value')+"&pageLinkTransformOrderDto.timeType="+$('.dateType:checked').val(),funcs[parseInt($(this).attr('value')) - 1]);
     })
    
 })

@@ -2,7 +2,7 @@ package com.lps.web.order.dto;
 
 import com.lps.web.page.dto.PageAble;
 
-public class QueryOrderDto implements PageAble{
+public class PageLinkTransformOrderDto implements PageAble{
 	
 	private int statusId = 1;
 	
@@ -17,13 +17,20 @@ public class QueryOrderDto implements PageAble{
 		this.page = page;
 	}
 
-	public QueryOrderDto() {
+	public PageLinkTransformOrderDto() {
 	}
 	
-	public QueryOrderDto(int statusId, int timeType) {
+	public PageLinkTransformOrderDto(int statusId, int timeType) {
 		super();
 		this.statusId = statusId;
 		this.timeType = timeType;
+	}
+	
+	@Override
+	public String getDomainName() {
+		String str = this.getClass().getSimpleName();
+		str = str.substring(0, 1).toLowerCase() + str.substring(1);
+		return str;
 	}
 	
 	/*public static void main(String[] args) {

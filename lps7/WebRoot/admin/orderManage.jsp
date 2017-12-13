@@ -24,29 +24,6 @@
 <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 <link rel="stylesheet" href="css/ordercss.css">
 <link rel="stylesheet" href="css/styleradio.css">
-    <link rel="stylesheet" href="iconFont/demo.css">
-    <link rel="stylesheet" href="iconFont/iconfont.css">
-  
-      <style type="text/css">
-
-        @font-face {font-family: "iconfont";
-          src: url('iconfont.eot'); /* IE9*/
-          src: url('iconfont.eot#iefix') format('embedded-opentype'), /* IE6-IE8 */
-          url('iconfont.woff') format('woff'), /* chrome, firefox */
-          url('iconfont.ttf') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-          url('iconfont.svg#iconfont') format('svg'); /* iOS 4.1- */
-        }
-
-        .iconfont {
-          font-family:"iconfont" !important;
-          font-size:16px;
-          font-style:normal;
-          -webkit-font-smoothing: antialiased;
-          -webkit-text-stroke-width: 0.2px;
-          -moz-osx-font-smoothing: grayscale;
-        }
-
-    </style>
   
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -62,14 +39,14 @@
 	window.onload = function() {
 		initActive();
 		initTime();
-		ajaxRequest("queryBasicOrders?queryOrderDto.timeType=1&queryOrderDto.statusId=1&queryOrderDto.page=1", waitingReceive);
+		ajaxRequest("queryBasicOrders?pageLinkTransformOrderDto.timeType=1&pageLinkTransformOrderDto.statusId=1&pageLinkTransformOrderDto.page=1", waitingReceive);
 	}
 
 	//重新请求查询
 	function reQueryBasic(){
 		deleteLi();
         deleteTr();
-		ajaxRequest("queryBasicOrders?queryOrderDto.statusId=" + $('.statusId:checked').val() + "&queryOrderDto.timeType=" + $('.dateType:checked').val(),
+		ajaxRequest("queryBasicOrders?pageLinkTransformOrderDto.statusId=" + $('.statusId:checked').val() + "&pageLinkTransformOrderDto.timeType=" + $('.dateType:checked').val(),
 					 funcs[parseInt($('.statusId:checked').val()) - 1]);
 	}
 

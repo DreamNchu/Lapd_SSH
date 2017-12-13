@@ -9,7 +9,6 @@
     insert into `lapd_test`.`t_roomcategory`(id, roomcategory ) values (3, "澡堂");
       
     select * from  `lapd_test`.`t_roomcategory`;
-    
 
 
 	insert into `lapd_test`.`t_room` (id , name, roomcategory, floor, size, remark, addTime, isFree, isClean)
@@ -29,8 +28,6 @@
 	insert into `lapd_test`.`t_orderstatus` (id, orderstatus) values(5, "挂起");
 	insert into `lapd_test`.`t_orderstatus` (id, orderstatus) values(6, "无效");
 	
-	--update `lapd_test`.`t_orderstatus` set id = 6 where id = 5;
-    
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(1, "空闲");
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(2, "待接收");
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(3, "工作中");

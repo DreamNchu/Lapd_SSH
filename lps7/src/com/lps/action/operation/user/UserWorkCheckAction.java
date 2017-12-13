@@ -114,6 +114,10 @@ public class UserWorkCheckAction extends ActionSupport
 		return SUCCESS;
 		
 	}
+	
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
+	}
 
 	@Override
 	public void setSession(Map<String, Object> arg0) {

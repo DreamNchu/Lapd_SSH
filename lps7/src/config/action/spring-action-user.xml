@@ -53,6 +53,7 @@
 	 	<property name="orderTableDataDto" ref="orderTableDataDto"></property>
 	 	<property name="orderSingleDataDto" ref="orderSingleDataDto"></property>
 	 	<property name="orderChartDto" ref="orderChartDto"></property>
+	 	<property name="orderStatusServiceImpl" ref="orderStatusServiceImpl"></property>
 	 </bean>
 	 
 	 <bean id="userWorkCheckAction" scope="prototype" class="com.lps.action.operation.user.UserWorkCheckAction">

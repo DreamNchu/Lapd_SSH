@@ -6,6 +6,7 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
 import com.lps.service.AdminService;
+import com.lps.util.WorkJson;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AdminStatusAction extends ActionSupport implements SessionAware, DataResult{
@@ -46,7 +47,9 @@ public class AdminStatusAction extends ActionSupport implements SessionAware, Da
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
+	}
 	
 
 }

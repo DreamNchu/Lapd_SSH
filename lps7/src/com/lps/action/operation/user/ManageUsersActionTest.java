@@ -1,15 +1,12 @@
 package com.lps.action.operation.user;
 
-import static org.junit.Assert.fail;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.lps.action.operation.order.ManageOrdersAction;
 import com.lps.util.PagePropertyNotInitException;
-import com.lps.web.user.dto.QueryUserDto;
+import com.lps.web.user.dto.PageLinkTransformUserDto;
 
 public class ManageUsersActionTest {
 	static ClassPathXmlApplicationContext ctx;
@@ -30,9 +27,9 @@ public class ManageUsersActionTest {
 
 	@Test
 	public void testQueryBasicUser() throws PagePropertyNotInitException {
-		QueryUserDto q = new QueryUserDto();
+		PageLinkTransformUserDto q = new PageLinkTransformUserDto();
 		q.setPage(1);
-		as.setQueryUserDto(q);
+		as.setPageLinkTransformUserDto(q);
 		
 		as.queryBasicUser();
 		

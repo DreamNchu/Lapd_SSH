@@ -28,7 +28,7 @@
 		<property name="orderManage" ref="orderManage"></property>
 		<property name="orderTableDataDto" ref="orderTableDataDto"></property>
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
-		<property name="queryOrderDto" ref="queryOrderDto"></property>
+		<property name="pageLinkTransformOrderDto" ref="pageLinkTransformOrderDto"></property>
 		<property name="initBasicUpdateDataDto" ref="initBasicUpdateDataDto"></property>
 		<property name="orderChartInitDto" ref="orderChartInitDto"></property>
 	</bean>

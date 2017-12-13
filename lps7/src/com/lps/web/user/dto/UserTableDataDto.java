@@ -5,7 +5,7 @@ import java.util.List;
 
 import com.lps.model.User;
 import com.lps.util.PageBean;
-import com.lps.web.order.dto.QueryOrderDto;
+import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.page.dto.PageAble;
 import com.lps.web.page.dto.PageDto;
 

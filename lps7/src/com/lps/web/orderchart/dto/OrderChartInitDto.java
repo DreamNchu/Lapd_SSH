@@ -1,6 +1,5 @@
 package com.lps.web.orderchart.dto;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.lps.model.User;

@@ -10,8 +10,10 @@ import com.lps.dao.WorkStatusDAO;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
 import com.lps.service.WorkRankService;
+import com.lps.util.PageBean;
+import com.lps.util.PagePropertyNotInitException;
 
-public class WorkRankManage {
+public class WorkRankManage implements Comparator<WorkRank>{
 
 	private WorkRankService workRankServiceImpl;
 
@@ -34,19 +36,7 @@ public class WorkRankManage {
 		}
 		
 		List<WorkRank> list = workRankServiceImpl.findAll();
-		Collections.sort(list, new Comparator<WorkRank>() {
-			@Override
-			public int compare(WorkRank o1, WorkRank o2) {
-				
-				Integer i1 = o1.getRankNum();
-				Integer i2 = o2.getRankNum();
-				
-				if(i1 == null) i1 = 0;
-				if(i2 == null) i2 = 0;
-				
-				return i1 - i2;
-			}
-		});
+		Collections.sort(list, this);
 
 		User select = null;
 		/**
@@ -78,6 +68,16 @@ public class WorkRankManage {
 	 */
 	public User nextOne() {
 		return nextOneNotIn(null);
+	}
+	
+	
+	public PageBean<WorkRank> getWorkRankTable(int page, Comparator<WorkRank> cmp) throws PagePropertyNotInitException{
+		PageBean<WorkRank> pageBean = workRankServiceImpl.findByPage(page); 
+		if(cmp == null)
+			Collections.sort(pageBean.getList(), this);
+		else 
+			Collections.sort(pageBean.getList(), cmp);
+		return pageBean;
 	}
 
 	/**
@@ -167,6 +167,16 @@ public class WorkRankManage {
 		}
 	}
 	
-	
+	@Override
+	public int compare(WorkRank o1, WorkRank o2) {
+		
+		Integer i1 = o1.getRankNum();
+		Integer i2 = o2.getRankNum();
+		
+		if(i1 == null) i1 = 0;
+		if(i2 == null) i2 = 0;
+		
+		return i1 - i2;
+	}
 
 }

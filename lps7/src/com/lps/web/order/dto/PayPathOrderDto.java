@@ -15,7 +15,6 @@ public class PayPathOrderDto implements DtoBasicInit<PayPathOrderDto> {
 	}
 
 	public PayPathOrderDto() {
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override

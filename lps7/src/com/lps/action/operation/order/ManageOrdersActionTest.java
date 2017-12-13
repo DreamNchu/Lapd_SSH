@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.lps.dao.OrderStatusDAO;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.web.order.dto.OrderSingleDataDto;
-import com.lps.web.order.dto.QueryOrderDto;
+import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.constant.TimeType;
 
 public class ManageOrdersActionTest {
@@ -37,9 +37,9 @@ public class ManageOrdersActionTest {
 
 	@Test
 	public void testQueryBasic() throws PagePropertyNotInitException {
-		QueryOrderDto queryOrderDto = new QueryOrderDto(
+		PageLinkTransformOrderDto pageLinkTransformOrderDto = new PageLinkTransformOrderDto(
 				OrderStatusDAO.WAITING_RECEIVE,TimeType.BEFORE7DAYS);
-		as.setQueryOrderDto(queryOrderDto);
+		as.setPageLinkTransformOrderDto(pageLinkTransformOrderDto);
 		as.queryBasicOrders();
 //		Gson g = new Gson();
 //		System.out.println(g.toJson(new OrderSingleDataDto()));

@@ -44,12 +44,18 @@ public class TestGson {
 	    public Collection<Integer> ints;
 	}
 
+	public void kkkkk(){
+		 System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName());
+	}
+	
 	@Test
 	public void test() {
 		
 	    Logger logger = LogManager.getLogger(LogAspect.class.getName());
 		
-		
+	    ;
+	    System.out.println(Thread.currentThread().getStackTrace()[1].getMethodName());
+	    kkkkk();
 	/*	for (int i = 100; i < 1000; i++) {
 			System.out.println(" INSERT INTO `lapd_test`.`t_serverorder` (`idOrder`, `stuffId`, `roomId`, `statusId`, `clockcategoryId`, `payPathId`,`pledgeNameId`, `initTime`, `receiveTime`, `finishTime`, `pay`, `realPay`, `payTime`, `orderRemark`)VALUES "
 					+ "('000000000000"+ i + "', 2, 2, "+(i%6 + 1) +", 2, 2, NULL, now(), NULL, NULL, NULL, NULL, NULL, NULL); ");

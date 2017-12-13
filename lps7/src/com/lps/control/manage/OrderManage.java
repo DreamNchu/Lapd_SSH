@@ -2,7 +2,11 @@ package com.lps.control.manage;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.OrderStatusDAO;
@@ -25,13 +29,13 @@ import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
-import com.lps.web.order.dto.QueryOrderDto;
+import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.constant.TimeType;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
 import com.lps.web.orderchart.dto.Population;
 
-public class OrderManage implements TimeType ,Population{
+public class OrderManage implements TimeType, Population {
 
 	private UserService userServiceImpl;
 
@@ -40,13 +44,12 @@ public class OrderManage implements TimeType ,Population{
 	private ClockCategoryService clockCategoryServiceImpl;
 
 	private OrderStatusService orderStatusServiceImpl;
-	
+
 	private ServerOrderService serverOrderServiceImpl;
 
 	private WorkRankManage workRankManage;
-	
+
 	private PayPathService payPathServiceImpl;
-	
 
 	public PayPathService getPayPathServiceImpl() {
 		return payPathServiceImpl;
@@ -61,8 +64,6 @@ public class OrderManage implements TimeType ,Population{
 	private int roomNameLength;
 
 	private int indexLength;
-	
-	
 
 	public ServerOrderService getServerOrderServiceImpl() {
 		return serverOrderServiceImpl;
@@ -250,8 +251,8 @@ public class OrderManage implements TimeType ,Population{
 
 			return createNormalOrder(u, r, cc, orderRemark);
 		} else { // 所有员工都没有空
-//			 Room r = roomServiceImpl.findById(roomId);
-//			 ClockCategory cc =
+			// Room r = roomServiceImpl.findById(roomId);
+			// ClockCategory cc =
 			// clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
 
 		}
@@ -260,182 +261,247 @@ public class OrderManage implements TimeType ,Population{
 
 	/**
 	 * 基本查询
+	 * 
 	 * @param qod
 	 * @return
-	 * @throws PagePropertyNotInitException 
+	 * @throws PagePropertyNotInitException
 	 */
-	public PageBean<ServerOrder> basicQuery(QueryOrderDto qod, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> basicQuery(PageLinkTransformOrderDto qod, int page) throws PagePropertyNotInitException {
 		PageBean<ServerOrder> listSo = null;
-		
-		//订单类型范围
-		PropertyRange<OrderStatus> pr = orderStatusServiceImpl.createPropertyRange(
-				qod.getStatusId(), qod.getStatusId());
+
+		// 订单类型范围
+		PropertyRange<OrderStatus> pr = orderStatusServiceImpl.createPropertyRange(qod.getStatusId(),
+				qod.getStatusId());
 		List<PropertyRange<?>> listPro = new ArrayList<>();
 		listPro.add(pr);
-		
-		//时间范围解析
+
+		// 时间范围解析
 		List<Date> ld = TimeTypeResolve.resolveTimeType(qod.getTimeType());
-		listPro.add(serverOrderServiceImpl.
-			createPropertyRangeByName(
-					ServerOrderDAOImpl.INIT_TIME, ld.get(0), ld.get(1)));
-		
+		listPro.add(
+				serverOrderServiceImpl.createPropertyRangeByName(ServerOrderDAOImpl.INIT_TIME, ld.get(0), ld.get(1)));
+
 		listSo = serverOrderServiceImpl.findOrdersByPropertyLimit(listPro, page);
-			
+
 		return listSo;
 	}
-	
+
 	/**
 	 * 辅助更新数据添加
+	 * 
 	 * @param t
 	 * @param lts
 	 * @return
 	 */
-	private  <T> List<T> addUtil( T t, List<T> lts){
+	private <T> List<T> addUtil(T t, List<T> lts) {
 		List<T> listTs = new ArrayList<>();
 		listTs.add(t);
 		listTs.addAll(lts);
 		return listTs;
 	}
-	
+
 	/**
 	 * 往 initBasicUpdateDataDto 填信息
+	 * 
 	 * @param initBasicUpdateDataDto
 	 */
-	public void basicQuery(InitBasicUpdateDataDto initBasicUpdateDataDto, String orderId){
+	public void basicQuery(InitBasicUpdateDataDto initBasicUpdateDataDto, String orderId) {
 		ServerOrder so = serverOrderServiceImpl.findById(orderId);
-		
+
 		List<User> users = addUtil(so.getUser(), userServiceImpl.findAll());
 		List<Room> rooms = addUtil(so.getRoom(), roomServiceImpl.findAll());
-		List<OrderStatus> oss =addUtil(so.getOrderStatus(), orderStatusServiceImpl.findAll());
-		List<ClockCategory> cc =addUtil(so.getClockCategory(), clockCategoryServiceImpl.findAll());
-		List<PayPath> pp =addUtil(so.getPayPath(), payPathServiceImpl.findAll());
-		
+		List<OrderStatus> oss = addUtil(so.getOrderStatus(), orderStatusServiceImpl.findAll());
+		List<ClockCategory> cc = addUtil(so.getClockCategory(), clockCategoryServiceImpl.findAll());
+		List<PayPath> pp = addUtil(so.getPayPath(), payPathServiceImpl.findAll());
+
 		initBasicUpdateDataDto.init(users, rooms, oss, cc, pp, so);
-		
+
 	}
+
 	/**
-	 * 更新订单
+	 * 完全更新,更新订单
+	 * 
 	 * @param orderUpdateDataDto
 	 */
-	public void update(OrderUpdateDataDto orderUpdateDataDto){
+	public void update(OrderUpdateDataDto orderUpdateDataDto) {
 		ServerOrder so = serverOrderServiceImpl.findById(orderUpdateDataDto.getOrderId());
-		so.setUser(userServiceImpl.findById(orderUpdateDataDto.getStuffId()));
-		so.setRoom(roomServiceImpl.findById(orderUpdateDataDto.getRoomId()));
-		so.setOrderStatus(orderStatusServiceImpl.findById(orderUpdateDataDto.getStatusId()));
-		so.setClockCategory(clockCategoryServiceImpl.findById(orderUpdateDataDto.getClockCategoryId()));
+		if (orderUpdateDataDto.getStuffId() != 0)
+			so.setUser(userServiceImpl.findById(orderUpdateDataDto.getStuffId()));
+		if (orderUpdateDataDto.getRoomId() != 0)
+			so.setRoom(roomServiceImpl.findById(orderUpdateDataDto.getRoomId()));
+		if (orderUpdateDataDto.getStatusId() != 0)
+			so.setOrderStatus(orderStatusServiceImpl.findById(orderUpdateDataDto.getStatusId()));
+		if (orderUpdateDataDto.getClockCategoryId() != 0)
+			so.setClockCategory(clockCategoryServiceImpl.findById(orderUpdateDataDto.getClockCategoryId()));
+		
 		so.setPay(orderUpdateDataDto.getPay());
 		so.setRealPay(orderUpdateDataDto.getRealPay());
 		so.setOrderRemark(orderUpdateDataDto.getOrderRemark());
+
+		serverOrderServiceImpl.update(so);
+	}
+
+	/**
+	 * 完全更新
+	 * 1.订单在服务中，那么判定员工接受该订单
+	 * 需要在工作排名中加一
+	 * @param so
+	 */
+	public void updateFromUser(ServerOrder so) {
 		
+		switch(so.getClockCategory().getId()){
+		case ClockCategoryDAO.RANK_CLOCK:  
+			if(so.getOrderStatus().getId() == 
+						OrderStatusDAO.SERVICING)
+				workRankManage.addUserRankNum(so.getUser());
+			break;
+		case ClockCategoryDAO.SPOT_CLOCK:
+			if(so.getOrderStatus().getId() == 
+						OrderStatusDAO.SERVICING)
+				workRankManage.addUserSpotNum(so.getUser());
+			break;
+		}
 		serverOrderServiceImpl.update(so);
 	}
 	
+	
+	
 	/**
 	 * 图表数据分析
+	 * 
 	 * @param orderChartDto
 	 * @param orderChartRequestDto
 	 */
-	public void chartAnalyze(OrderChartDto orderChartDto,
-			OrderChartRequestDto orderChartRequestDto){
-		//时间类型
+	public void chartAnalyze(OrderChartDto orderChartDto, OrderChartRequestDto orderChartRequestDto) {
+		// 时间类型
 		orderChartDto.setTimeType(orderChartRequestDto.getTimeType());
-		
-		List<PropertyRange<Date>> listProDate = TimeTypeResolve.resolveTimeToProRange(
-				ServerOrderDAOImpl.INIT_TIME, 
+
+		List<PropertyRange<Date>> listProDate = TimeTypeResolve.resolveTimeToProRange(ServerOrderDAOImpl.INIT_TIME,
 				orderChartRequestDto.getTimeType());
-		
+
 		PropertyRange<User> userPro = null;
-		switch(orderChartRequestDto.getPopulation()){
+		switch (orderChartRequestDto.getPopulation()) {
 		case ONE:
 			User u = userServiceImpl.findById(orderChartRequestDto.getUserId());
-			userPro = new PropertyRange<User>(ServerOrderDAOImpl.USER,
-					u, u);
+			userPro = new PropertyRange<User>(ServerOrderDAOImpl.USER, u, u);
 			break;
 		case ALL:
 			break;
 		}
-		//根据属性限制获取分析数据
-		getData(userPro,listProDate, orderChartDto);
-		
+		// 根据属性限制获取分析数据
+		getData(userPro, listProDate, orderChartDto);
+
 	}
-	
-	private void getData(PropertyRange<User> user, 
-			List<PropertyRange<Date>> date, OrderChartDto orderChartDto){
+
+	private void getData(PropertyRange<User> user, List<PropertyRange<Date>> date, OrderChartDto orderChartDto) {
 		List<ServerOrder> sos = null;
-		if(user == null){
+		if (user == null) {
 			for (PropertyRange<Date> propertyRange : date) {
-				//拿到所有该时间段的订单
+				// 拿到所有该时间段的订单
 				List<PropertyRange<?>> lt = new ArrayList<PropertyRange<?>>();
 				lt.add(propertyRange);
-				sos = serverOrderServiceImpl.findOrdersByProperyLimit(lt, 0 ,(int)serverOrderServiceImpl.findAllCount());
+				sos = serverOrderServiceImpl.findOrdersByProperyLimit(lt, 0,
+						(int) serverOrderServiceImpl.findAllCount());
 				basicCalcu(sos, orderChartDto);
 			}
-		}else{
+		} else {
 			for (PropertyRange<Date> propertyRange : date) {
 				List<PropertyRange<?>> lt = new ArrayList<PropertyRange<?>>();
 				lt.add(user);
 				lt.add(propertyRange);
-				sos = serverOrderServiceImpl.findOrdersByProperyLimit(lt, 0 ,(int)serverOrderServiceImpl.findAllCount());
+				sos = serverOrderServiceImpl.findOrdersByProperyLimit(lt, 0,
+						(int) serverOrderServiceImpl.findAllCount());
 				basicCalcu(sos, orderChartDto);
 			}
 		}
 	}
-	
-	private void basicCalcu(List<ServerOrder> sos, OrderChartDto orderChartDto){
+
+	private void basicCalcu(List<ServerOrder> sos, OrderChartDto orderChartDto) {
 		long income = 0;
 		long count = 0;
+		long spotNum = 0;
+		long rankNum = 0;
 		for (ServerOrder serverOrder : sos) {
-			if(serverOrder.getRealPay() != null){
+			if (serverOrder.getRealPay() != null) {
 				income += serverOrder.getRealPay();
-				count ++;
+				
+				if(serverOrder.getClockCategory().getId() == ClockCategoryDAO.RANK_CLOCK){
+					rankNum ++;
+				}else if(serverOrder.getClockCategory().getId() == ClockCategoryDAO.SPOT_CLOCK){
+					spotNum ++;
+				}
+				
+				count++;
 			}
 		}
-		//总收入
+		// 总收入
 		orderChartDto.getIncome().add(income);
-		//总订单个数
+		// 总订单个数
 		orderChartDto.getOrderCount().add(count);
+		
+		orderChartDto.getOrderRankCount().add(rankNum);
+		
+		orderChartDto.getOrderSpotCount().add(spotNum);
 	}
-	
+
 	/**
 	 * 通过id 查找订单
+	 * 
 	 * @param idOrder
 	 * @return
 	 */
-	public ServerOrder queryOrder(String idOrder){
+	public ServerOrder queryOrder(String idOrder) {
 		return serverOrderServiceImpl.findById(idOrder);
 	}
-	
+
 	/**
 	 * 根据条件拿到订单
+	 * 
 	 * @param userId
 	 * @param orderStatus
 	 * @param timeType
 	 * @return
 	 */
-	public List<ServerOrder> queryOrder(int userId, int orderStatus, int timeType){
+	public List<ServerOrder> queryOrder(int userId, int orderStatus, int timeType) {
 		List<PropertyRange<?>> listPro = new ArrayList<>();
-		
+
 		User user = userServiceImpl.findById(userId);
-		listPro.add(serverOrderServiceImpl.
-				createPropertyRangeByName(
-						ServerOrderDAOImpl.USER, user, user));
-		
+		listPro.add(serverOrderServiceImpl.createPropertyRangeByName(ServerOrderDAOImpl.USER, user, user));
+
 		OrderStatus os = orderStatusServiceImpl.findById(orderStatus);
-		
-		listPro.add(serverOrderServiceImpl.
-				createPropertyRangeByName(
-						ServerOrderDAOImpl.ORDER_STATUS, os, os));
-		//时间范围解析
+
+		listPro.add(serverOrderServiceImpl.createPropertyRangeByName(ServerOrderDAOImpl.ORDER_STATUS, os, os));
+		// 时间范围解析
 		List<Date> ld = TimeTypeResolve.resolveTimeType(timeType);
-		listPro.add(serverOrderServiceImpl.
-			createPropertyRangeByName(
-					ServerOrderDAOImpl.INIT_TIME, ld.get(0), ld.get(1)));
-		
-		return serverOrderServiceImpl.findOrdersByProperyLimit(listPro, 0, (int)serverOrderServiceImpl.findAllCount());
+		listPro.add(
+				serverOrderServiceImpl.createPropertyRangeByName(ServerOrderDAOImpl.INIT_TIME, ld.get(0), ld.get(1)));
+
+		return serverOrderServiceImpl.findOrdersByProperyLimit(listPro, 0, (int) serverOrderServiceImpl.findAllCount());
+	}
+
+	public List<User> findAllUser() {
+		return userServiceImpl.findAll();
 	}
 	
-	public List<User> findAllUser(){
-		return userServiceImpl.findAll();
+	public Map<String, Set<User>> orderRefuseUserMap = new HashMap<>();
+
+	/**
+	 * 来自员工的拒绝订单
+	 * @param so
+	 */
+	public void refuseOrderFromUser(ServerOrder so) {
+		if(orderRefuseUserMap.get(so.getId()) == null){
+			orderRefuseUserMap.put(so.getId(), new HashSet<User>());
+		}
+		orderRefuseUserMap.get(so.getId()).add(so.getUser());
+		User user = 
+				workRankManage.nextOneNotIn( //找到下一个符合条件的员工
+						orderRefuseUserMap.get(so.getId()));
+		if(user != null)
+			so.setUser(user);
+		else{
+			//订单将为挂起状态
+		}
+		serverOrderServiceImpl.update(so);
 	}
 
 }

@@ -12,7 +12,7 @@ import com.lps.model.User;
 import com.lps.service.UserService;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.WorkJson;
-import com.lps.web.user.dto.QueryUserDto;
+import com.lps.web.user.dto.PageLinkTransformUserDto;
 import com.lps.web.user.dto.UserDataDto;
 import com.lps.web.user.dto.UserIdDto;
 import com.lps.web.user.dto.UserTableDataDto;
@@ -34,7 +34,7 @@ public class ManageUsersAction extends ActionSupport implements DataResult,Sessi
 	
 	private UserManage userManage;
 	
-	private QueryUserDto queryUserDto;
+	private PageLinkTransformUserDto pageLinkTransformUserDto;
 	
 	private UserDataDto userDataDto;
 	
@@ -88,20 +88,22 @@ public class ManageUsersAction extends ActionSupport implements DataResult,Sessi
 	 */
 	public String queryBasicUser() throws PagePropertyNotInitException {
 		// 找到今日该状态下的所有订单
-		if(queryUserDto != null){
-			if(queryUserDto.getPage() != 0){
-				session.put("userPage", queryUserDto.getPage());
+		if(pageLinkTransformUserDto != null){
+			if(pageLinkTransformUserDto.getPage() != 0){
+				session.put("userPage", pageLinkTransformUserDto.getPage());
 			}
 		}else{
-			queryUserDto = new QueryUserDto();
+			pageLinkTransformUserDto = new PageLinkTransformUserDto();
 		}
 //		System.out.println(session.get("userPage"));
-		queryUserDto.setPage(Integer.parseInt(session.get("userPage")+""));
+		pageLinkTransformUserDto.setPage(Integer.parseInt(session.get("userPage")+""));
 		
 		
 		userTableDataDto.init(
-				userManage.basicQuery(queryUserDto.getPage()),
-				queryUserDto, "queryUserDto", "queryBasicUser");
+				userManage.basicQuery(pageLinkTransformUserDto.getPage()),
+				pageLinkTransformUserDto, 
+				pageLinkTransformUserDto.getDomainName(), 
+				Thread.currentThread().getStackTrace()[1].getMethodName());
 		result = WorkJson.toJsonDisableHtmlEscaping(userTableDataDto); 
 System.out.println(result);
 		return SUCCESS;
@@ -186,12 +188,12 @@ System.out.println(result);
 		this.userManage = userManage;
 	}
 
-	public QueryUserDto getQueryUserDto() {
-		return queryUserDto;
+	public PageLinkTransformUserDto getPageLinkTransformUserDto() {
+		return pageLinkTransformUserDto;
 	}
 
-	public void setQueryUserDto(QueryUserDto queryUserDto) {
-		this.queryUserDto = queryUserDto;
+	public void setPageLinkTransformUserDto(PageLinkTransformUserDto pageLinkTransformUserDto) {
+		this.pageLinkTransformUserDto = pageLinkTransformUserDto;
 	}
 
 	@Override
@@ -205,6 +207,10 @@ System.out.println(result);
 
 	public void setUserId(List<Integer> userId) {
 		this.userId = userId;
+	}
+	
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 	
 	
