@@ -81,7 +81,7 @@ StringBuffer basePath = request.getRequestURL();
                 notpay.style.display="block";
                 paying.style.display="none";
                 income.style.display="none";
-                ajaxRequest("queryOrders?userOrderRequestDto.statusId=3", waitingPay);
+                ajaxRequest("queryOrders?userOrderRequestDto.statusId=3",waitingPayUser);
                 
             }
             lis[3].onclick=function () {
@@ -108,12 +108,15 @@ StringBuffer basePath = request.getRequestURL();
                 notpay.style.display="none";
                 paying.style.display="none";
                 income.style.display="block";
-                ajaxRequest("todayOrderIncome", function(msg){
+             /*    ajaxRequest("todayOrderIncome", function(msg){
                 	//spotNum
                 	$("#spotNum").html(msg);
-                });
+                }); */
             } 
         }
+        
+        
+        
     </script>
 </head>
 <body>

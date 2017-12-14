@@ -46,6 +46,9 @@ public class WorkRankAction extends ActionSupport implements DataResult{
 	
 	private int page;
 	
+	/**
+	 * 分页系统辅助类
+	 */
 	private PageLinkTransformWorkRankDto pageLinkTransformWorkRankDto;
 	
 	public PageLinkTransformWorkRankDto getPageLinkTransformWorkRankDto() {
@@ -82,7 +85,11 @@ public class WorkRankAction extends ActionSupport implements DataResult{
 				Thread.currentThread().getStackTrace()[1].getMethodName());
 		
 		writeInResult(workRankTableDto);
-		
+System.out.println(result);
+		return SUCCESS;
+	}
+	
+	public String workRankPage(){
 		return SUCCESS;
 	}
 

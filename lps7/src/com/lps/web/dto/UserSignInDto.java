@@ -23,20 +23,10 @@ public class UserSignInDto {
 	
 	private String telephonePhone;
 
-	private Date birthday;
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
 	private int workId;
 	
 	public User buildModel(){
-		return new User(null, userName, password, workId, birthday, telephonePhone, null, null, null, question, answer, registerTime, null);
+		return new User(null, userName, password, workId, null, telephonePhone, null, null, null, question, answer, registerTime, null);
 	}
 	
 	private String question;
@@ -49,13 +39,12 @@ public class UserSignInDto {
 		
 	}
 	
-	public UserSignInDto(String userName, String password, String telephonePhone, Date birthday, int workId,
+	public UserSignInDto(String userName, String password, String telephonePhone, int workId,
 			String question, String answer, Date registerTime) {
 		super();
 		this.userName = userName;
 		this.password = password;
 		this.telephonePhone = telephonePhone;
-		this.birthday = birthday;
 		this.workId = workId;
 		this.question = question;
 		this.answer = answer;
@@ -74,8 +63,6 @@ public class UserSignInDto {
 		return answer;
 	}
 	
-
-
 	public String getPassword() {
 		return password;
 	}

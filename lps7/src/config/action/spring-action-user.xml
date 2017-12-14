@@ -16,17 +16,14 @@
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
 	</bean>
 	
-	<bean id="userSignInAction" scope="prototype" class="com.lps.action.user.access.UserSignInAction">
+<!-- 	<bean id="userSignInAction" scope="prototype" class="com.lps.action.user.access.UserSignInAction">
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
-	</bean>
+	</bean> -->
 	
 	<bean id="userModifyPasswordAction" scope="prototype" class="com.lps.action.operation.UserModifyPasswordAction">
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
 	</bean>
 	
-	<bean id="userDataAction" scope="prototype" class="com.lps.action.operation.UserDataAction">
-		<property name="userServiceImpl" ref="userServiceImpl"></property>
-	</bean>
 	
 	<bean id="userWorkDataAction" scope="prototype" class="com.lps.action.operation.UserWorkDataAction">
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
@@ -58,6 +55,15 @@
 	 
 	 <bean id="userWorkCheckAction" scope="prototype" class="com.lps.action.operation.user.UserWorkCheckAction">
 	 	<property name="workRankManage" ref="workRankManage"></property>
+	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
+	 </bean>
+	 
+	 <bean scope="prototype" id="userDataAction" class="com.lps.action.operation.user.UserDataAction">
+	 	<property name="userDataDto" ref="userDataDto"></property>
+	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
+	 </bean>
+	 
+	 <bean scope="prototype" id="userSignInAction" class="com.lps.action.user.access.UserSignInAction">
 	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
 	 </bean>
 </beans>

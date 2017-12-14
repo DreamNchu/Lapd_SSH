@@ -81,6 +81,11 @@ public class UserDataDto {
 		return u;
 	}
 	
+	/**
+	 * 更新数据时用的
+	 * @param user
+	 * @return
+	 */
 	public User update(User user){
 		
 		if(userName != null) user.setUserName(userName);

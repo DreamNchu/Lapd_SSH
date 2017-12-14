@@ -84,7 +84,7 @@ StringBuffer basePath = request.getRequestURL();
                 <img src="img/gzmk.jpg"/>
             </div>
         </a>
-        <a href="gzpm.html" id="gzpm" >
+        <a href="workRankPage" id="gzpm" >
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/gzpm.jpg"/>
             </div>
@@ -94,12 +94,12 @@ StringBuffer basePath = request.getRequestURL();
                 <img src="img/gzbb.jpg"/>
             </div>
         </a>
-        <a href="wdxx.html" id="wdxx" >
+        <a href="userData" id="wdxx" >
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/wdxx.jpg"/>
             </div>
         </a>
-        <a href="xgxx.html" id="xgxx">
+        <a href="modifyUserDataPage" id="xgxx">
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/xgxx.jpg"/>
             </div>

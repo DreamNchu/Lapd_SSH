@@ -21,8 +21,6 @@ public class UserManage {
 		return userServiceImpl.findByPage(page);
 	}
 	
-//	public void 
-	
 
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;

@@ -24,6 +24,9 @@
 	<include file="config/struts2/company/companyprofile.xml" />
 	
 	
+	<include file="config/struts2/workrank/workrank.xml" />
+	
+	
 	<include file="config/struts2/util/util.xml" />
 	
 </struts>    

@@ -147,7 +147,7 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	 * <p>
 	 * @return 返回排钟号,Interger类型
 	 */
-	@Column(name = "rankNum")
+	@Column(name = "rankNum",nullable=false, columnDefinition="int default 0")
 
 	public Integer getRankNum() {
 		return this.rankNum;
@@ -167,7 +167,7 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	 * <p>
 	 * @return 返回点钟数,Interger类型
 	 */
-	@Column(name = "spotNum")
+	@Column(name = "spotNum", nullable=false, columnDefinition="int default 0")
 	public Integer getSpotNum() {
 		return this.spotNum;
 	}

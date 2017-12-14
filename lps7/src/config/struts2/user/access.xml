@@ -2,11 +2,11 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
-	<package name="userAccess" namespace="/user" extends="struts-default">
+	<package name="userAccess" namespace="/user" extends="struts-default,json-default">
 
-		<action name="login" class="userStatusAction" method="login">
+		<action name="loginPage" class="userStatusAction" method="login">
 			<result name="success">
-				/user/login.jsp
+				/user/loginPage.jsp
 			</result>
 			<result name="input" type="redirect">
 				/user/main
@@ -28,13 +28,18 @@
 			</result>
 		</action>
 
-
-	</package>
-
-	<package name="userOperation" namespace="/operation">
-		<action name="user_*" class="userSignInAction" method="{1}">
-
+		<action name="signInPage" class="userSignInAction">
+			<result>
+				/user/signInPage.jsp
+			</result>
 		</action>
+
+		<action name="signIn" class="userSignInAction" method="signIn">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+
 	</package>
 
 </struts>

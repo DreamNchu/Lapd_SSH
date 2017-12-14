@@ -1,6 +1,12 @@
-<!DOCTYPE html>
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@taglib prefix="s" uri="/struts-tags" %>
+<%
+StringBuffer basePath = request.getRequestURL();
+%>
+<%-- <s:debug></s:debug> --%>
 <html>
-<head >
+<head>
+    <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <title>小店助手</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -59,43 +65,43 @@
             </div>
             <div class="col-xs-12  col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
                 <table class="table">
-                    <tbody align="center">
+                    <tbody >
                     <tr>
                         <td rowspan="3"><img src="img/zhaoping2.png" style="width:100px;height: 100px;"></td>
                         <td>姓名：</td>
-                        <td>xxxxx</td>
+                        <td><s:property value="userDataDto.realName"/></td>
                     </tr>
                     <tr>
                         <td>工号：</td>
-                        <td>001</td>
+                        <td><s:property value="userDataDto.workId"/></td>
                     </tr>
                     <tr>
-                        <td>今日排名：</td>
-                        <td>6</td>
+                        <td>用户名</td>
+                        <td><s:property value="userDataDto.userName"/></td>
                     </tr>
                     <tr>
-                        <td >今日点钟数：</td>
-                        <td colspan="2">7</td>
+                        <td >身份证号码</td>
+                        <td colspan="2"><s:property value="userDataDto.IDCardNo"/></td>
                     </tr>
                     <tr>
-                        <td >今日排钟数：</td>
-                        <td colspan="2">7</td>
+                        <td >注册时间</td>
+                        <td colspan="2"><s:property value="userDataDto.registerTime"/></td>
                     </tr>
                     <tr>
                         <td >出生年月：</td>
-                        <td colspan="2">1995-12-12</td>
+                        <td colspan="2"><s:property value="userDataDto.birthday"/></td>
                     </tr>
                     <tr>
                         <td >家庭地址：</td>
-                        <td colspan="2">北京市欢喜公寓305</td>
+                        <td colspan="2"><s:property value="userDataDto.address"/></td>
                     </tr>
                     <tr>
                         <td >电话号码：</td>
-                        <td colspan="2">13335653652</td>
+                        <td colspan="2"><s:property value="userDataDto.telephoneNumber"/></td>
                     </tr>
                     <tr>
                         <td >电子邮箱：</td>
-                        <td colspan="2">1235694@163.com</td>
+                        <td colspan="2"><s:property value="userDataDto.email"/></td>
                     </tr>
                     </tbody>
                 </table>

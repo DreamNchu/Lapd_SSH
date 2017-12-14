@@ -3,12 +3,16 @@ package com.lps.action.user.access;
 import java.util.Date;
 import java.util.Random;
 
+import javax.activation.DataSource;
+
+import com.lps.action.jsonresult.DataResult;
 import com.lps.model.User;
 import com.lps.service.UserService;
+import com.lps.util.WorkJson;
 import com.lps.web.dto.UserSignInDto;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UserSignInAction extends ActionSupport{
+public class UserSignInAction extends ActionSupport implements DataResult{
 
 	/**
 	 * 
@@ -19,6 +23,16 @@ public class UserSignInAction extends ActionSupport{
 	
 	private UserSignInDto userSignInDto;
 	
+	
+	private String result;
+
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;
@@ -36,18 +50,31 @@ public class UserSignInAction extends ActionSupport{
 		this.userSignInDto = userSignInDto;
 	}
 
+	@Override
+	public String execute() throws Exception {
+		return super.execute();
+	}
+	
 	/**
 	 * 注册成功返回success
 	 * <p>
 	 */
 	public String signIn() {
-		
-		Random random = new Random();
-		userSignInDto.setWorkId(random.nextInt(1000) + 10000);
-		userSignInDto.setRegisterTime(new Date());
-		User user = userSignInDto.buildModel();
-		userServiceImpl.save(user);
-		
+		try {
+			Random random = new Random();
+			userSignInDto.setWorkId(random.nextInt(1000) + 10000);
+			userSignInDto.setRegisterTime(new Date());
+			User user = userSignInDto.buildModel();
+			userServiceImpl.save(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(MSG, false);
+			writeInResult(map);
+			return SUCCESS;
+		}
+		map.put(MSG, true);
+		writeInResult(map);
+System.out.println(result);
 		return SUCCESS;
 	}
 	
@@ -63,6 +90,12 @@ public class UserSignInAction extends ActionSupport{
 		if(userServiceImpl.isExists(u))
 			return SUCCESS;
 		return ERROR;
+	}
+	
+	
+	@Override
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 	
 

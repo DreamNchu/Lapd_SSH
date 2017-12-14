@@ -6,23 +6,18 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
-import com.lps.aop.log.LogAspect;
 import com.lps.control.manage.OrderManage;
-import com.lps.dao.OrderStatusDAO;
-import com.lps.dao.ServerOrderDAO;
 import com.lps.dao.impl.OrderStatusDAOImpl;
-import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.ServerOrder;
+import com.lps.permission.Permission;
 import com.lps.service.OrderStatusService;
-import com.lps.service.ServerOrderService;
 import com.lps.util.PageBean;
 import com.lps.util.WorkJson;
 import com.lps.web.order.dto.OrderSingleDataDto;
 import com.lps.web.order.dto.OrderTableDataDto;
+import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.TimeType;
 import com.lps.web.orderchart.dto.OrderChartDto;
-import com.lps.web.orderchart.dto.OrderChartRequestDto;
-import com.lps.web.orderchart.dto.Population;
 import com.lps.web.user.dto.UserOrderRequestDto;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -72,6 +67,11 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 		this.orderTableDataDto = orderTableDataDto;
 	}
 
+	/**
+	 * 查询用户订单
+	 * 
+	 * @return
+	 */
 	public String queryOrders() {
 		int userId = Integer.parseInt(session.get("id") + "");
 
@@ -83,11 +83,13 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 		List<ServerOrder> listOrders = orderManage.queryOrder(userId, userOrderRequestDto.getStatusId(), timeType);
 
 		PageBean<ServerOrder> pageBean = new PageBean<ServerOrder>();
+
 		pageBean.setList(listOrders);
 
 		orderTableDataDto.init(pageBean, null, null, null);
+
 		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
-		// System.out.println(result);
+System.out.println(result);
 		return SUCCESS;
 	}
 
@@ -102,16 +104,18 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 	}
 
 	public String todayOrderIncome() {
-//		OrderChartRequestDto orderChartRequestDto = new OrderChartRequestDto();
-//		orderChartRequestDto.setUserId(Integer.parseInt(session.get("id") + ""));
-//		
-//			orderChartRequestDto.setTimeType(TimeType.DAY);
-//		
-//		orderChartRequestDto.setPopulation(Population.ONE);
-//		orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
-//		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
-//		
-//LogAspect.logger.info(result);
+		// OrderChartRequestDto orderChartRequestDto = new
+		// OrderChartRequestDto();
+		// orderChartRequestDto.setUserId(Integer.parseInt(session.get("id") +
+		// ""));
+		//
+		// orderChartRequestDto.setTimeType(TimeType.DAY);
+		//
+		// orderChartRequestDto.setPopulation(Population.ONE);
+		// orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
+		// result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
+		//
+		// LogAspect.logger.info(result);
 		return SUCCESS;
 	}
 
@@ -161,14 +165,13 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 	 */
 	public String refuseOrder() {
 		ServerOrder so = orderManage.queryOrder(idOrder);
-		//拒绝订单
+		// 拒绝订单
 		orderManage.refuseOrderFromUser(so);
 		return SUCCESS;
 	}
-	
-	
+
 	private OrderStatusService orderStatusServiceImpl;
-	
+
 	public OrderStatusService getOrderStatusServiceImpl() {
 		return orderStatusServiceImpl;
 	}
@@ -179,17 +182,19 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 
 	/**
 	 * 接受订单
+	 * 
 	 * @return
 	 */
-	public String receiveOrder(){
-		ServerOrder so = orderManage.queryOrder(idOrder);
+	public String receiveOrder() {
+
 		try {
-			if(so.getUser().getId() == Integer.parseInt(session.get("id") + "")){
-				so.setOrderStatus(orderStatusServiceImpl.findById(OrderStatusDAOImpl.SERVICING));
-				orderManage.updateFromUser(so);
-			}else{
-				throw new Exception();
-			}
+
+			int userId = Integer.parseInt(session.get("id") + "");
+
+			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(idOrder, new Permission(Permission.USER), 0, 0,
+					OrderStatusDAOImpl.SERVICING, userId);
+			orderManage.updateOrderNormal(uo);
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(MSG, "接收订单失败！");
@@ -200,9 +205,36 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 		writeInResult(map);
 		return SUCCESS;
 	}
-	
+
+	/**
+	 * 完成订单
+	 * 
+	 * @return
+	 */
+	public String finishOrder() {
+		try {
+			if (pay <= 0) {
+				throw new Exception();
+			}
+			int userId = Integer.parseInt(session.get("id") + "");
+
+			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(idOrder, new Permission(Permission.USER), pay, 0,
+					OrderStatusDAOImpl.WAITING_PAY, userId);
+			
+			orderManage.updateOrderNormal(uo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(MSG, "提交订单失败！,检查输入金额或其他系统错误");
+			writeInResult(map);
+			return SUCCESS;
+		}
+		map.put(MSG, "恭喜您，订单完成！");
+		writeInResult(map);
+		return SUCCESS;
+	}
+
 	private int pay;
-	
+
 	public int getPay() {
 		return pay;
 	}
@@ -211,35 +243,9 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 		this.pay = pay;
 	}
 
-	public String finishOrder(){
-		ServerOrder so = orderManage.queryOrder(idOrder);
-		try {
-			if(pay <= 0){
-				throw new Exception();
-			}
-			if(so.getUser().getId() == Integer.parseInt(session.get("id") + "")){
-				so.setOrderStatus(orderStatusServiceImpl.findById(OrderStatusDAOImpl.FINISH));
-				so.setPay(pay);
-				orderManage.updateFromUser(so);
-			}else{
-				throw new Exception();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			map.put(MSG, "提交订单失败！,检查输入金额或其他");
-			writeInResult(map);
-			return SUCCESS;
-		}
-		map.put(MSG, "恭喜您，订单完成！");
-		writeInResult(map);
-		return SUCCESS;
-	}
-	
-	
-	public void writeInResult(Object obj){
+	public void writeInResult(Object obj) {
 		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
-	
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

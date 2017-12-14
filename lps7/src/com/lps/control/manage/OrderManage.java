@@ -30,6 +30,7 @@ import com.lps.util.WorkDate;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
+import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.TimeType;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
@@ -346,7 +347,7 @@ public class OrderManage implements TimeType, Population {
 	 * 需要在工作排名中加一
 	 * @param so
 	 */
-	public void updateFromUser(ServerOrder so) {
+	public void updateToReciveFromUser(ServerOrder so) {
 		
 		switch(so.getClockCategory().getId()){
 		case ClockCategoryDAO.RANK_CLOCK:  
@@ -360,7 +361,6 @@ public class OrderManage implements TimeType, Population {
 				workRankManage.addUserSpotNum(so.getUser());
 			break;
 		}
-		serverOrderServiceImpl.update(so);
 	}
 	
 	
@@ -501,6 +501,48 @@ public class OrderManage implements TimeType, Population {
 		else{
 			//订单将为挂起状态
 		}
+		serverOrderServiceImpl.update(so);
+	}
+	
+	/**
+	 * 
+	 * @param idOrder
+	 * @param orderStatus 将要改成的状态
+	 * @param userId
+	 */
+	public void updateOrderNormal(UpdateOrderNormalOperationDto uo){
+		ServerOrder so = serverOrderServiceImpl.findById(uo.getOrderId());
+		
+		//权限检查
+		if(uo.getPermission().getPerssion() != com.lps.permission.Permission.ADMIN){
+			if(uo.getUserId() != so.getUser().getId()) //检查不同步问题
+				return ;
+		}
+	
+		
+		//更改状态
+		so.setOrderStatus(
+				orderStatusServiceImpl.findById(uo.getOrderStatusId()));
+		
+		switch(uo.getOrderStatusId()){
+		case OrderStatusDAO.SERVICING:
+			
+			so.setReceiveTime(new Date());  //接受时间
+			updateToReciveFromUser(so);  //更新workrank表中的数据
+			break;
+		case OrderStatusDAO.WAITING_PAY:
+			
+			so.setPay(uo.getPay());
+			so.setFinishTime(new Date());
+			break;
+		case OrderStatusDAO.FINISH:
+			
+			so.setRealPay(uo.getRealPay());
+			so.setFinishTime(new Date());
+			so.setPayPath(payPathServiceImpl.findById(uo.getRealPay()));
+			break;
+		}
+		
 		serverOrderServiceImpl.update(so);
 	}
 

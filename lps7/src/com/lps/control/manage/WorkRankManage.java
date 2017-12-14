@@ -87,6 +87,8 @@ public class WorkRankManage implements Comparator<WorkRank>{
 	 */
 	public void addUserData(User u) {
 		WorkRank wr = new WorkRank.Builder().setUser(u).build();
+		wr.setRankNum(0);
+		wr.setSpotNum(0);
 		workRankServiceImpl.save(wr);
 	}
 
@@ -113,6 +115,7 @@ public class WorkRankManage implements Comparator<WorkRank>{
 		if (list != null && list.size() > 0) {
 			WorkRank wr = list.get(0);
 			wr.setSpotNum(wr.getSpotNum() + 1);
+			workRankServiceImpl.update(wr);
 		} else {
 			throw new NotExistsUserInWorkRankException("该用户没有在上钟排名表中");
 		}
@@ -129,6 +132,7 @@ public class WorkRankManage implements Comparator<WorkRank>{
 		if (list != null && list.size() > 0) {
 			WorkRank wr = list.get(0);
 			wr.setSpotNum(wr.getSpotNum() - 1);
+			workRankServiceImpl.update(wr);
 		} else {
 			throw new NotExistsUserInWorkRankException("该用户没有在上钟排名表中");
 		}
@@ -146,6 +150,7 @@ public class WorkRankManage implements Comparator<WorkRank>{
 		if (list != null && list.size() > 0) {
 			WorkRank wr = list.get(0);
 			wr.setRankNum(wr.getRankNum() + 1);
+			workRankServiceImpl.update(wr);
 		} else {
 			throw new NotExistsUserInWorkRankException("该用户没有在上钟排名表中");
 		}
@@ -162,6 +167,7 @@ public class WorkRankManage implements Comparator<WorkRank>{
 		if (list != null && list.size() > 0) {
 			WorkRank wr = list.get(0);
 			wr.setRankNum(wr.getRankNum() - 1);
+			workRankServiceImpl.update(wr);
 		} else {
 			throw new NotExistsUserInWorkRankException("该用户没有在上钟排名表中");
 		}

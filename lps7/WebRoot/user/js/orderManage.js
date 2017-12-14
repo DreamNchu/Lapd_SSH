@@ -48,14 +48,15 @@ function singleOrder(reciveOrder) {
     }
 
 
-function waitingPay(reciveOrder){
-	//alert(reciveOrder);
+function waitingPayUser(reciveOrder){
+//alert(JSON.stringify(reciveOrder));
 	var tr;
 	var tbody = $("#waitingPay");
-	//tbody.empty();
-	 for(i in reciveOrder.order){
+	
+	tbody.html($(""));
+	for(i in reciveOrder.order){
 		 tr = $("<tr id='orderId"+ i +"' value='"+ reciveOrder.order[i].idOrder +"'></tr>");
-		 tbody.html(tr);
+		 tbody.append(tr);
 		 tr.append($("<td>"+reciveOrder.order[i].room +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].roomCategory +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].finishTime +"</td>"));
@@ -64,6 +65,7 @@ function waitingPay(reciveOrder){
 		 $("#orderId"+i).click(function(){
 			 $(location).attr('href', 'detailOrderInfo?idOrder='+$(this).attr('value'));
 		 })
+		 
 	  }
 }
 
@@ -78,7 +80,7 @@ function finish(reciveOrder){
 		 tr.append($("<td>"+reciveOrder.order[i].roomCategory +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].clockCategory +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].pay +"</td>"));
-		 tr.append($("<td>"+reciveOrder.order[i].reayPay +"</td>"));
+		 tr.append($("<td>"+reciveOrder.order[i].realPay +"</td>"));
 		 $("#orderIdF"+i).click(function(){
 			 $(location).attr('href', 'detailOrderInfo?idOrder='+$(this).attr('value'));
 		 })

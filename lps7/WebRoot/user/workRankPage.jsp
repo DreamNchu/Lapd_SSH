@@ -22,6 +22,21 @@ StringBuffer basePath = request.getRequestURL();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    
+        <script src="js/ajax_js.js"></script>
+    <script type="text/javascript">
+    
+        window.onload=function () {
+        	//先请求待接收订单
+        	 ajaxRequest("viewWorkRankTable", resolveData);
+       }
+       
+       function resolveData(data){
+       
+       
+       	
+       }
+   	</script>
 </head>
 <body>
 <header class="am-topbar header">
@@ -74,7 +89,7 @@ StringBuffer basePath = request.getRequestURL();
                         <th>排钟</th>
                     </tr>
                     </thead>
-                    <tbody align="center">
+                    <tbody id="workRank">
                     <tr>
                         <td><a href="wdxx.html?id=0">1</a></td>
                         <td>001</td>
