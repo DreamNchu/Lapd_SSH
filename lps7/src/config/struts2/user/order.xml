@@ -4,31 +4,36 @@
 
 
 	<package name="userOrder" namespace="/user" extends="json-default,userLogin">
-	
-	
-	<action name="detailOrderInfo" class="userOrderAction" method="detailOrderInfo">
-		<result >
+
+		<action name="detailOrderInfo" class="userOrderAction" method="detailOrderInfo">
+			<result>
 				/user/detailOrderInfo.jsp
 			</result>
-	</action>
-	
-	<action name="queryOrders" class="userOrderAction" method="queryOrders">
-		<result type="json">
+		</action>
+
+		<action name="queryOrders" class="userOrderAction" method="queryOrders">
+			<result type="json">
 				<param name="root">result</param>
 			</result>
-	</action>
-	
-	<action name="manageOrdersPage" class="userOrderAction" method="manageOrdersPage">
-		<result>
-			/user/manageOrdersPage.jsp
-		</result>
-	</action>
-	
+		</action>
+
+		<action name="manageOrdersPage" class="userOrderAction" method="manageOrdersPage">
+			<result>
+				/user/manageOrdersPage.jsp
+			</result>
+		</action>
+
 		<action name="*Order*" class="userOrderAction" method="{1}Order{2}">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
+
+	</package>
+	
+	<package name="ordersCount" namespace="/user">
+		
+		
 	</package>
 
 </struts>

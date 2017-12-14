@@ -31,6 +31,7 @@
 		<property name="pageLinkTransformOrderDto" ref="pageLinkTransformOrderDto"></property>
 		<property name="initBasicUpdateDataDto" ref="initBasicUpdateDataDto"></property>
 		<property name="orderChartInitDto" ref="orderChartInitDto"></property>
+		<property name="orderChartDto" ref="orderChartDto"></property>
 	</bean>
 
 </beans>

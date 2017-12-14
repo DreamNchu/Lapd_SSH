@@ -142,7 +142,7 @@ System.out.println(result);
 
 	}
 	
-	private OrderChartDto orderChartDto = new OrderChartDto();
+	private OrderChartDto orderChartDto ;
 	
 	private OrderChartRequestDto orderChartRequestDto;
 	
@@ -153,7 +153,7 @@ System.out.println(result);
 	public String chartDataOrders(){
 		orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
 		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
-//System.out.println(result);
+System.out.println(result);
 		return SUCCESS;
 	}
 	

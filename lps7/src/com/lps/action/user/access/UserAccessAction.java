@@ -45,22 +45,7 @@ public class UserAccessAction extends ActionSupport implements SessionAware{
 	}
 	public String main(){
 		//检查session 判断是否为刷新
-		if(session.get("id") != null){
-			return SUCCESS;
-		}
-		
-		try {
-			String password = userServiceImpl.findPasswordByUserName(userName);
-			int id = userServiceImpl.findIdByUserName(userName);
-			if(password.equals(this.password)){
-				session.put("id", id);
-				session.put("userName", userName);
-				return SUCCESS;
-			}
-		} catch (Exception e) {
-			return ERROR;
-		}
-		return ERROR;
+		return SUCCESS;
 	}
 	
 	@Override

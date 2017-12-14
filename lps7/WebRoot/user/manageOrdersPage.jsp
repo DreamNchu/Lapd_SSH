@@ -25,7 +25,14 @@ StringBuffer basePath = request.getRequestURL();
     <script src="js/bootstrap.min.js"></script>
     <script src="js/orderManage.js"></script>
     <script src="js/ajax_js.js"></script>
+    <script src="js/headCSS.js"></script>
     <script type="text/javascript">
+    
+    	$(document).ready(function(){
+    		
+    		setHeadCSS("workManageModel");
+    		
+    	})
     
         window.onload=function () {
         	//先请求待接收订单

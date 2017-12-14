@@ -4,7 +4,7 @@
 
 	<package name="userAccess" namespace="/user" extends="struts-default,json-default">
 
-		<action name="loginPage" class="userStatusAction" method="login">
+		<action name="loginPage" class="userStatusAction" method="loginPage">
 			<result name="success">
 				/user/loginPage.jsp
 			</result>
@@ -12,21 +12,30 @@
 				/user/main
 			</result>
 		</action>
-
-		<action name="logOut" class="userStatusAction" method="logOut">
-			<result name="success">
-				/user/login.jsp
-			</result>
-		</action>
-
-		<action name="access" class="userAccessAction" method="main">
+		
+		<action name="login" class="userStatusAction" method="login">
 			<result name="success" type="redirect">
-				/user/main<!-- 登录成功转向主界面 -->
+				/user/main
 			</result>
 			<result name="error" type="redirect">
-				/user/login <!-- 失败重新登录 -->
+				/user/loginPage
 			</result>
 		</action>
+
+		<action name="logout" class="userStatusAction" method="logout">
+			<result name="success" type="redirect">
+				/user/login
+			</result>
+		</action>
+
+	<!-- 	<action name="access" class="userAccessAction" method="main">
+			<result name="success" type="redirect">
+				/user/main登录成功转向主界面
+			</result>
+			<result name="error" type="redirect">
+				/user/login 失败重新登录
+			</result>
+		</action> -->
 
 		<action name="signInPage" class="userSignInAction">
 			<result>

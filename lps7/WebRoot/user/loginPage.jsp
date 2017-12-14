@@ -3,7 +3,6 @@
 <%
 StringBuffer basePath = request.getRequestURL();
 %>
-<%-- <s:debug></s:debug> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,18 +33,6 @@ StringBuffer basePath = request.getRequestURL();
             <lable  style="margin-left: 15px;font-size: 250%">★</lable>
             <lable  style="margin-left: 5px;font-size: 250%;font-family: 仿宋">小店helper</lable>
         </div>
-        <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only"
-                data-am-collapse="{target: '#doc-topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span
-                class="am-icon-bars"></span></button>
-        <div class="am-collapse am-topbar-collapse right" id="doc-topbar-collapse">
-            <div class=" am-topbar-left am-form-inline am-topbar-right" role="search">
-                <ul class="am-nav am-nav-pills am-topbar-nav hw-menu">
-                    <li class="hw-menu-active"><a href="login.html">登录</a></li>
-                    <li><a href="sign_up.html">注册</a></li>
-                    <li><a href="forgetpassword.html">忘记密码</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
 </header>
 <div class="toppic" style="background-image: url('img/login3.jpg')">
@@ -60,7 +47,7 @@ StringBuffer basePath = request.getRequestURL();
     <div class="container">
         <div class="row">
             <div class="col-xs-10 col-xs-offset-1 col-sm-10 col-sm-offset-1 col-md-8 col-md-offset-2">
-                <form action="access" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
+                <form action="login" class="fh5co-form animate-box" data-animate-effect="fadeIn" method="post">
                     <a href="javascript:void(0)">
                         <i class=" am-icon-home part-title-i"></i>
                         <span class="part-title-span">唯吾之足--登录</span>
@@ -70,6 +57,7 @@ StringBuffer basePath = request.getRequestURL();
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control"  name="userName" id="name" placeholder="用户名"  onblur="blue()" onfocus="focus1()">
+                        <s:property value="result"/>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control"  name="password" id="password" placeholder="密码"  onblur="blue()" onfocus="focus1()">
