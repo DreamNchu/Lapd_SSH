@@ -80,7 +80,7 @@ StringBuffer basePath = request.getRequestURL();
                 <img src="img/gzpm.jpg"/>
             </div>
         </a>
-        <a href="gzbb.html" id="gzbb" >
+        <a href="chartAnalyzePage" id="gzbb" >
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/gzbb.jpg"/>
             </div>
@@ -99,7 +99,6 @@ StringBuffer basePath = request.getRequestURL();
     </div>
 
 </div>
-
 
 </body>
 <!--[if lt IE 9]>

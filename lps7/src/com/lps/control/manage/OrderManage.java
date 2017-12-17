@@ -455,6 +455,7 @@ public class OrderManage implements TimeType, Population {
 
 	/**
 	 * 根据条件拿到订单
+	 * 1.主要是针对员工的订单数据数据
 	 * 
 	 * @param userId
 	 * @param orderStatus

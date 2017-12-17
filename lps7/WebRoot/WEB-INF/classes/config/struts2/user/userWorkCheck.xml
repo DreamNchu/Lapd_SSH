@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="userWorkCheck" namespace="/user" extends="json-default,userLogin">
+	
+<!-- 	<action name="check*" class="userWorkCheckAction" method="check{1}">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action> -->
+		<action name="check*" class="userWorkCheckAction" method="check{1}">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+
+
+
+</struts>

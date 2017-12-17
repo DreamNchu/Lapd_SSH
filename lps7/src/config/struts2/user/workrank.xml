@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+
+	<package name="workRank" namespace="/user" extends="json-default,userLogin">
+
+		<action name="workRankPage" class="workRankAction" method="workRankPage">
+			<result>
+				/user/workRankPage.jsp
+			</result>
+		</action>
+
+		<action name="*WorkRank*" class="workRankAction" method="{1}WorkRank{2}">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+	</package>
+
+</struts>

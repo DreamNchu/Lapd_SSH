@@ -15,18 +15,24 @@
           <a href="initOrder"><i class="glyphicon glyphicon-th-large"></i><span>发布订单</span></a>
         </li>
         <li value="2" name="activeLi">
-          <a href="orderManage"><span class="glyphicon glyphicon-list-alt"></span><span>订单管理</span></a>
+          <a href="payOrderPage"> <span class="glyphicon glyphicon-usd"></span><span>支付收银</span></a>
         </li>
         <li value="3" name="activeLi">
-          <a href="userManage"><span class="glyphicon glyphicon-user"></span><span>员工管理</span></a>
+          <a href="workRankPage"><span class="glyphicon glyphicon-align-left"></span><span>员工排名</span></a>
         </li>
         <li value="4" name="activeLi">
+          <a href="orderManage"><span class="glyphicon glyphicon-list-alt"></span><span>订单管理</span></a>
+        </li>
+        <li value="5" name="activeLi">
+          <a href="userManage"><span class="glyphicon glyphicon-user"></span><span>员工管理</span></a>
+        </li>
+        <li value="6" name="activeLi">
           <a href="orderChart"> <span class="glyphicon glyphicon-signal"></span><span>图表分析</span></a>
         </li>
-        <li value="5" class="active" name="activeLi">
+        <li value="7" name="activeLi" >
           <a href="companyProfile"> <span class="glyphicon glyphicon-home"></span><span>公司简介</span></a>
         </li>
-        <li value="6" >
+        <li value="8" >
           <a href="logout"><span class="glyphicon glyphicon-remove"></span><span>注销用户</span></a>
         </li>
       </ul>

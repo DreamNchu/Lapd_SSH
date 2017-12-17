@@ -3,6 +3,9 @@ window.onload=function () {
     signbutton.disabled=true;
 }
 function  blue() {
+	
+	
+	
     var signbutton=document.getElementById("signbutton");
     var name=document.getElementById("name");
     var password=document.getElementById("password");
@@ -29,6 +32,7 @@ function  blue() {
     }
 }
 function focus1() {
+
     var signbutton=document.getElementById("signbutton");
     var title=document.getElementById("title");
     title.innerHTML="字段变为绿色则输入合法";

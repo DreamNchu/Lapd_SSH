@@ -17,13 +17,17 @@
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <script src="js/initClass.js"></script>
     <link rel="stylesheet"
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
     <script type="text/javascript">
-        var str=new Array('/YQB_qianduan1.1.2/fbdd.html','/YQB_qianduan1.1.2/ddqk.html','/YQB_qianduan1.1.2/yggl.html'
-            ,'/YQB_qianduan1.1.2/tbfx.html','/YQB_qianduan1.1.2/gsjj.html');
+    
+ 		 window.onload=function () {
+            initActive();
+        }
         $(document).ready(function () {
+        	initActive();
             $('#hrefLink li a').ready(function () {
                 $('#hrefLink li').removeClass('active');
             })

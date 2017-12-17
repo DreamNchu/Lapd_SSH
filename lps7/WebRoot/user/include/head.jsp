@@ -14,8 +14,8 @@
                 		<a href="main">个人中心</a></li>
                     <li id="workManageModel" >
                     	<a href="manageOrdersPage">工作模板</a></li>
-                    <li id="workTableModel">
-                    	<a href="workTableAnalyze">工作报表</a></li>
+                    <li id="chartAnalyzeModel">
+                    	<a href="chartAnalyzePage">工作报表</a></li>
                     <li id="workRankModel">
                     	<a href="workRankPage">上钟排名 </a></li>
                     <li id="userDataModel">

@@ -25,6 +25,20 @@ StringBuffer basePath = request.getRequestURL();
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/login.js"></script>
+    
+    <script type="text/javascript">
+    
+    	$(document).ready(function(){
+    		var i = 0;
+    		$(".form-control").focus(function(){
+    			i ++;
+    			if(i == 3)
+    				$("#reminder").hide();
+    		})
+    	})
+    
+    </script>
+    
 </head>
 <body>
 <header class="am-topbar header">
@@ -57,11 +71,12 @@ StringBuffer basePath = request.getRequestURL();
                     </div>
                     <div class="form-group">
                         <input type="text" class="form-control"  name="userName" id="name" placeholder="用户名"  onblur="blue()" onfocus="focus1()">
-                        <s:property value="result"/>
+                        <span id="reminder" style="color:red"><s:property value="result"/></span>
                     </div>
                     <div class="form-group">
                         <input type="password" class="form-control"  name="password" id="password" placeholder="密码"  onblur="blue()" onfocus="focus1()">
                     </div>
+                   
                     <div class="form-group" >
                         <input type="submit"   value="登录" id="signbutton" class="btn btn-primary" >
                         <a  href="forgetpassword.html">忘记密码</a>
@@ -72,10 +87,6 @@ StringBuffer basePath = request.getRequestURL();
         </div>
     </div>
 </div>
-
-
-
-
 </body>
 <!--[if lt IE 9]>
 <script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>

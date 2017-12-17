@@ -6,12 +6,14 @@
 	<constant name="struts.i18n.encoding" value="UTF-8" />
 	<constant name="struts.objectFactory" value="spring"></constant>
 
+<constant name="struts.action.excludePattern" value="/ws/websocket"></constant>
 	
 	<include file="config/struts2/admin/access.xml" />
 	<include file="config/struts2/admin/order.xml" />
 	<include file="config/struts2/admin/main.xml" />
 	<include file="config/struts2/admin/user.xml" />
 	<include file="config/struts2/admin/adminLogin.xml" />
+	<include file="config/struts2/admin/workrank.xml" />
 	
 	<include file="config/struts2/user/user.xml" />
 	<include file="config/struts2/user/access.xml" />
@@ -19,12 +21,10 @@
 	<include file="config/struts2/user/order.xml" />
 	<include file="config/struts2/user/userLogin.xml" />
 	<include file="config/struts2/user/userWorkCheck.xml" />
+	<include file="config/struts2/user/workrank.xml" />
 	
 	
 	<include file="config/struts2/company/companyprofile.xml" />
-	
-	
-	<include file="config/struts2/workrank/workrank.xml" />
 	
 	
 	<include file="config/struts2/util/util.xml" />

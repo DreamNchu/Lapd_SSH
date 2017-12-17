@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+
+	<package name="adminAccess" namespace="/admin" extends="struts-default">
+		<action name="login" class="adminStatusAction" method="login">
+			<result name="success">
+				/admin/login.jsp
+			</result>
+		</action>
+		
+		<action name="logout" class="adminStatusAction" method="logout">
+			<result name="success" type="redirect">
+				/admin/login
+			</result>
+		</action>
+		
+		<action name="access" class="adminAccessAction" method="main">
+			<result name="success" type="redirect">
+				/admin/main<!-- 登录成功转向主界面 -->
+			</result>
+			<result name="error" type="redirect">
+				 <!-- 失败重新登录 -->
+			<param name="location">/admin/login?result=${result}</param>  
+               <param name="encode">true</param>  
+			</result>
+		</action>
+
+	</package>
+	
+
+</struts>

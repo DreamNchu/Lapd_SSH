@@ -3,15 +3,14 @@
 <struts>
 
 
-	<package name="workRank" namespace="/user" extends="json-default,userLogin">
-	
-	<action name="workRankPage" class="workRankAction" method="workRankPage">
-		<result>
-			/user/workRankPage.jsp
-		</result>
-	</action>
-		
-	
+	<package name="workRank" namespace="/admin" extends="json-default,adminLogin">
+
+		<action name="workRankPage" class="workRankAction" method="workRankPage">
+			<result>
+				/admin/workRankPage.jsp
+			</result>
+		</action>
+
 		<action name="*WorkRank*" class="workRankAction" method="{1}WorkRank{2}">
 			<result type="json">
 				<param name="root">result</param>

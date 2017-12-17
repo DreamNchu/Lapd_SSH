@@ -48,6 +48,14 @@ public class UserOrdersCountAction extends ActionSupport
 	
 	private OrderChartRequestDto orderChartRequestDto;
 	
+	public OrderChartRequestDto getOrderChartRequestDto() {
+		return orderChartRequestDto;
+	}
+
+	public void setOrderChartRequestDto(OrderChartRequestDto orderChartRequestDto) {
+		this.orderChartRequestDto = orderChartRequestDto;
+	}
+
 	/**
 	 * 员工图表数据
 	 * @return
@@ -59,7 +67,7 @@ public class UserOrdersCountAction extends ActionSupport
 		
 		orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
 		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
-	//System.out.println(result);
+System.out.println(result);
 		return SUCCESS;	
 		
 	}
