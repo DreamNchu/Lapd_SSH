@@ -1,7 +1,7 @@
 
 function formSubmit(ajaxUrl, id) {
     var AjaxURL = ajaxUrl;
-    alert($('#' + id).serialize());
+   // alert($('#' + id).serialize());
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -21,7 +21,7 @@ function formSubmit(ajaxUrl, id) {
 
 function formSubmitWithEventData(ajaxUrl, id, func) {
     var AjaxURL = ajaxUrl;
-    alert($('#' + id).serialize());
+   // alert($('#' + id).serialize());
     $.ajax({
         type: "POST",
         dataType: "json",
@@ -43,16 +43,17 @@ function formSubmitWithEventData(ajaxUrl, id, func) {
 
 function formSubmitWithEvent(ajaxUrl, id, func) {
     var AjaxURL = ajaxUrl;
-    alert($('#' + id).serialize());
+   // alert($('#' + id).serialize());
     $.ajax({
         type: "POST",
         dataType: "json",
         url: AjaxURL,
         data: $('#' + id).serialize(),
         success: function (data) {
+//        	alert(data);
             var strresult = JSON.parse(data);
-            //alert(strresult.msg);
             func();
+            alert(strresult.msg);
         },
         error: function (data) {
             var strresult = JSON.parse(data);

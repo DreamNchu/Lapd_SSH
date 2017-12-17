@@ -36,7 +36,6 @@ public class WebSocketTest {
         System.out.println("session.getId() : " + this.toString());
         while(sentMessage < 3){  
             Thread.sleep(5000);  
-//            this.w
             
             session.getBasicRemote().sendText(" this is one mess " + sentMessage);  
 //            session.getBasicRemote().

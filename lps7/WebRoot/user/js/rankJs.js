@@ -1,12 +1,12 @@
-function receiveRank(rankData) {
-    var rankTable=document.getElementById("rankTable");
+function resolveData(rankData){
+    var rankTable=document.getElementById("workRank");
     deleteTr();
-  /*  var rankData={
-        "data":[{"rank":"rank1","stuffId":"stuffId1","realName":"realName1","rankNum":"rankNum1","spotNum":"spotNum1"},
-            {"rank":"rank2","stuffId":"stuffId2","realName":"realName2","rankNum":"rankNum2","spotNum":"spotNum2"}],
-        "page":[{"allCount":"6","allPage":"5","currentPage":"3"}],
-        "transform":[{"back":"javascript:void(0)","front":"javascript:void(0)"}],
-        "number":[{"key":"javascript:void(0)","value":"1"},{"key":"javascript:void(0)","value":"2"}]
+    /*var rankData={
+    "data":[{"rank":"rank1","stuffId":"stuffId1","realName":"realName1","rankNum":"rankNum1","spotNum":"spotNum1"},
+    {"rank":"rank2","stuffId":"stuffId2","realName":"realName2","rankNum":"rankNum2","spotNum":"spotNum2"}],
+    "page":[{"allCount":"6","allPage":"5","currentPage":"3"}],
+    "transform":[{"back":"javascript:void(0)","front":"javascript:void(0)"}],
+    "number":[{"key":"javascript:void(0)","value":"1"},{"key":"javascript:void(0)","value":"2"}]
     }*/
     recivePage(rankData);
     for(i in rankData.workRankData){
@@ -49,14 +49,8 @@ function recivePage(rankData) {
 
     })
 }
-function initTime() {
-    var currentTime=document.getElementById("currentTime");
-    var myDate=new Date();
-    currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
-    setTimeout("initTime()",1000);
-}
 function deleteTr() {
-    var rankTable=document.getElementById("rankTable");
+    var rankTable=document.getElementById("workRank");
     var i=0;
     for(i=1;i<rankTable.rows.length;i++){
         rankTable.deleteRow(i);

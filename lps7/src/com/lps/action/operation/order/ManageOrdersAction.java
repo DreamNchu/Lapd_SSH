@@ -11,14 +11,18 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.OrderManage;
+import com.lps.dao.OrderStatusDAO;
 import com.lps.model.ServerOrder;
+import com.lps.permission.Permission;
 import com.lps.service.ServerOrderService;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.WorkJson;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
+import com.lps.web.order.dto.OrderSingleDataDto;
 import com.lps.web.order.dto.OrderTableDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
+import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartInitDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
@@ -270,7 +274,16 @@ System.out.println(result);
 		
 	}
 	
+	private OrderSingleDataDto orderSingleDataDto;
 	
+	public OrderSingleDataDto getOrderSingleDataDto() {
+		return orderSingleDataDto;
+	}
+
+	public void setOrderSingleDataDto(OrderSingleDataDto orderSingleDataDto) {
+		this.orderSingleDataDto = orderSingleDataDto;
+	}
+
 	/**
 	 * 查询单个订单
 	 * @return
@@ -278,8 +291,9 @@ System.out.println(result);
 	public String queryOrder(){
 		String id = orderId.get(0);
 		serverOrderServiceImpl.findById(id);
-		orderManage.basicQuery(initBasicUpdateDataDto,id);
-		result = WorkJson.toJsonDisableHtmlEscaping(initBasicUpdateDataDto);
+		ServerOrder so = orderManage.queryOrder(id);
+		orderSingleDataDto.init(so);
+		result = WorkJson.toJsonDisableHtmlEscaping(orderSingleDataDto);
 System.out.println(result);
 		return SUCCESS;
 	}
@@ -290,6 +304,35 @@ System.out.println(result);
 		orderChartInitDto.init(orderManage.findAllUser());
 		result = WorkJson.toJsonDisableHtmlEscaping(orderChartInitDto);
 System.out.println(result);
+		return SUCCESS;
+	}
+	
+	private UpdateOrderNormalOperationDto updateOrderNormalOperationDto;
+	
+	public UpdateOrderNormalOperationDto getUpdateOrderNormalOperationDto() {
+		return updateOrderNormalOperationDto;
+	}
+
+	public void setUpdateOrderNormalOperationDto(UpdateOrderNormalOperationDto updateOrderNormalOperationDto) {
+		this.updateOrderNormalOperationDto = updateOrderNormalOperationDto;
+	}
+
+	public String toPayOrders(){
+		try {
+			updateOrderNormalOperationDto.setPermission(new Permission(Permission.ADMIN));
+			
+			updateOrderNormalOperationDto.setOrderStatusId(OrderStatusDAO.FINISH);
+			
+			orderManage.updateOrderNormal(updateOrderNormalOperationDto);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			map.put(MSG, "支付失败");
+			writeInResult(map);
+			return SUCCESS;
+		}
+		map.put(MSG, "支付成功");
+		writeInResult(map);
 		return SUCCESS;
 	}
 	

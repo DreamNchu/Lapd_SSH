@@ -76,7 +76,7 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 		int userId = Integer.parseInt(session.get("id") + "");
 
 		int timeType = 0;
-		if (userOrderRequestDto.getTimeType() == 0) {
+		if (userOrderRequestDto.getTimeType() == 0){
 			timeType = TimeType.DAY;
 		}
 

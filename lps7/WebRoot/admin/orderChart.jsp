@@ -17,7 +17,7 @@ StringBuffer basePath = request.getRequestURL();
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
     <link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -36,7 +36,7 @@ StringBuffer basePath = request.getRequestURL();
         var categories2=['周一', '周二', '周三', '周四', '周五', '周六', '周日'];
         var categories3=['1', '2', '3', '4', '5', '6', '7','8', '9', '10', '11', '12', '13', '14','15', '16', '17', '18', '19', '20', '21',
                              '22', '23', '24', '25', '26', '27', '28','29', '30', '31'];
-        var categories4=['二月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
+        var categories4=['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'];
         var array=new Array(categories1,categories2,categories3,categories4);
         //条形图
         function chart(serrie) {
@@ -227,7 +227,7 @@ StringBuffer basePath = request.getRequestURL();
         }
     </script>
 </head>
-<body class="hold-transition skin-red  sidebar-mini">
+<body class="hold-transition skin-blue  sidebar-mini">
 <div class="wrapper">
     <header class="main-header" style="background-color: #333333">
         <jsp:include page="header.jsp"/>

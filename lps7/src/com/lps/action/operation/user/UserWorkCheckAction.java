@@ -81,7 +81,7 @@ public class UserWorkCheckAction extends ActionSupport
 			User u = userServiceImpl.findById(id);
 			workRankManage.addUserData(u);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 			map.put(MSG, "您已签到");
 			result = WorkJson.toJsonDisableHtmlEscaping(map);
 			return SUCCESS;

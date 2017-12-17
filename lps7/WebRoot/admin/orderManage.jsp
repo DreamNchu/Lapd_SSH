@@ -336,27 +336,31 @@ alert("formSubmitWithEventForData");
 									</div>
 								</form>
 								<hr>
-								<button class="btn btn-info" onclick="add()">
+								<button class="btn btn-success" onclick="add()">
 									<span class="glyphicon glyphicon-plus"></span>增加订单
 								</button>
-								<button class="btn btn-info" id="divisonbutton"
+								<button class="btn btn-danger" id="divisonbutton"
 									onclick="division()">
 									<span class="glyphicon glyphicon-remove"></span>删除订单
 								</button>
-								<button class="btn btn-info" id="editbutton" onclick="revise()">
+								<button class="btn btn-warning" id="editbutton" onclick="revise()">
 									<span class="glyphicon glyphicon-wrench"></span>修改订单
 								</button>
-								<button class="btn btn-info" id="allChecked"
+								<button class="btn btn-primary" id="allChecked"
 									onclick="allChecked()">
 									<span class="glyphicon glyphicon-ok"></span>全选
 								</button>
-								<button class="btn btn-info" id="allUnChecked"
+								<button class="btn btn-primary" id="allUnChecked"
 									onclick="allUnChecked()">
 									<span class="glyphicon glyphicon-remove"></span></span>全不选
 								</button>
-								<button class="btn btn-info" id="opposeChecked"
+								<button class="btn btn-primary" id="opposeChecked"
 									onclick="opposeChecked()">
 									<span class="glyphicon glyphicon-refresh"></span>反选
+								</button>
+								<button class="btn btn-info" id="exportChecked"
+								onclick="exportChecked()">
+								<span class="glyphicon glyphicon-download-alt"></span>导出Excel
 								</button>
 							</div>
 							<div class="box-body table-responsive no-padding">

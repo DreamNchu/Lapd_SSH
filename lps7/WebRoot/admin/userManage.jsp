@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
     <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-    <link rel="stylesheet" href="dist/css/skins/skin-red.min.css">
+    <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
     <link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -170,7 +170,7 @@
     </script>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini">
+<body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header" style="background-color: #333333">
         <jsp:include page="header.jsp"/>
@@ -194,12 +194,13 @@
                     <div class="box">
                         <div class="box-header">
                             <hr>
-                            <button class="btn btn-info" onclick="reviseLable()"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>增加员工</button>
-                            <button class="btn btn-info" id="divisonbutton" onclick="deleteUser()"><span class="glyphicon glyphicon-remove"></span>删除员工</button>
-                            <button class="btn btn-info" id="editbutton" onclick="editUser()"><span class="glyphicon glyphicon-wrench"></span>修改员工</button>
-                            <button class="btn btn-info" id="allChecked" onclick="allChecked()"><span class="glyphicon glyphicon-ok"></span>全选</button>
-                            <button class="btn btn-info" id="allUnChecked" onclick="allUnChecked()"><span class="glyphicon glyphicon-remove"></span></span>全不选</button>
-                            <button class="btn btn-info" id="opposeChecked" onclick="opposeChecked()"> <span class="glyphicon glyphicon-refresh"></span>反选</button>
+                            <button class="btn btn-success" onclick="reviseLable()"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>增加员工</button>
+                            <button class="btn btn-danger" id="divisonbutton" onclick="deleteUser()"><span class="glyphicon glyphicon-remove"></span>删除员工</button>
+                            <button class="btn btn-warning" id="editbutton" onclick="editUser()"><span class="glyphicon glyphicon-wrench"></span>修改员工</button>
+                            <button class="btn btn-primary" id="allChecked" onclick="allChecked()"><span class="glyphicon glyphicon-ok"></span>全选</button>
+                            <button class="btn btn-primary" id="allUnChecked" onclick="allUnChecked()"><span class="glyphicon glyphicon-remove"></span></span>全不选</button>
+                            <button class="btn btn-primary" id="opposeChecked" onclick="opposeChecked()"> <span class="glyphicon glyphicon-refresh"></span>反选</button>
+                            <button class="btn btn-info" id="exportChecked"onclick="exportChecked()"><span class="glyphicon glyphicon-download-alt"></span>导出Excel</button>
                             <hr>
                         </div>
                         <div class="box-body table-responsive no-padding">

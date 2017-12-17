@@ -22,26 +22,20 @@ StringBuffer basePath = request.getRequestURL();
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
-    
-        <script src="js/ajax_js.js"></script>
-        <script src="js/headCSS.js"></script>
+    <script src="js/ajax_js.js"></script>
+    <script src="js/headCSS.js"></script>
+    <script src="js/rankJs.js"></script>
     <script type="text/javascript">
     
     $(document).ready(function(){
     	setHeadCSS("workRankModel");
     })
     
-        window.onload=function () {
-        	//先请求待接收订单
-        	 ajaxRequest("viewWorkRankTable", resolveData);
-       }
-       
-       function resolveData(data){
-       
-       
-       	
-       }
-   	</script>
+    window.onload=function () {
+        //先请求待接收订单
+         ajaxRequest("viewWorkRankTable", resolveData);
+   }
+   </script>
 </head>
 <body>
 <header class="am-topbar header">
@@ -62,72 +56,25 @@ StringBuffer basePath = request.getRequestURL();
                 <h2 style="font-family: 仿宋;color: #1b6d85">今日员工工作排名表</h2>
             </div>
             <div class="col-xs-12  col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
-                <table class="table" >
-                    <thead >
-                    <tr align="center">
-                        <th>序号</th>
-                        <th>工号</th>
-                        <th>姓名 </th>
-                        <th>点钟</th>
-                        <th>排钟</th>
-                    </tr>
-                    </thead>
+                <table class="table" id="workRank">
                     <tbody id="workRank">
-                    <tr>
-                        <td><a href="wdxx.html?id=0">1</a></td>
-                        <td>001</td>
-                        <td>XXX</td>
-                        <td>10</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td><a href="wdxx.html?id=0">1</a></td>
-                        <td>001</td>
-                        <td>XXX</td>
-                        <td>10</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td><a href="wdxx.html?id=0">1</a></td>
-                        <td>001</td>
-                        <td>XXX</td>
-                        <td>10</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td><a href="wdxx.html?id=0">1</a></td>
-                        <td>001</td>
-                        <td>XXX</td>
-                        <td>10</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td><a href="wdxx.html?id=0">1</a></td>
-                        <td>001</td>
-                        <td>XXX</td>
-                        <td>10</td>
-                        <td>10</td>
-                    </tr>
-                    <tr>
-                        <td><a href="wdxx.html?id=0">1</a></td>
-                        <td>001</td>
-                        <td>XXX</td>
-                        <td>10</td>
-                        <td>10</td>
-                    </tr>
+                        <tr align="center">
+                            <th>序号</th>
+                            <th>工号</th>
+                            <th>姓名 </th>
+                            <th>排钟</th>
+                            <th>点钟</th>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="col-xs-12 col-xs-offset-1  col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
-                <ul class="pagination pagination-lg" >
-                    <li><a href="#">&laquo;</a></li>
-                    <li><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&raquo;</a></li>
-                </ul>
+            <div class="box-footer clearfix col-xs-12  col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
+                <lable style="font-family: 仿宋;color: #4cae4c;font-size: 20px">共<span id="allCount"></span>条数据-共<span id="allPage"></span>页-当前第<span
+                id="currentPage"></span>页</lable>
+                </br>
+            <ul id="hrefId" class="pagination pagination-sm no-margin pull-right">
+
+            </ul>
             </div>
         </div>
     </div>

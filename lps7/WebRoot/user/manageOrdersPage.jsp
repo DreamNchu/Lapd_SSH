@@ -143,11 +143,11 @@ StringBuffer basePath = request.getRequestURL();
         <div class="row">
             <div class="col-xs-12  col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">
                 <ul id="lis" class="nav nav-tabs" style="font-size: 5px;width: 104%">
-                    <li class="active"><a href="javascript:void(0)">待接收</a></li>
-                    <li ><a href="javascript:void(0)">工作中</a></li>
-                    <li ><a href="javascript:void(0)">待付款</a></li>
-                    <li ><a href="javascript:void(0)">已支付</a></li>
-                    <li ><a href="javascript:void(0)"><!-- 日收益 --></a></li>
+                    <li class="active"><a href="javascript:void(0)" style="font-size: 15px">待接收</a></li>
+                    <li ><a href="javascript:void(0)" style="font-size: 15px">工作中</a></li>
+                    <li ><a href="javascript:void(0)" style="font-size: 15px">待付款</a></li>
+                    <li ><a href="javascript:void(0)" style="font-size: 15px">已支付</a></li>
+                    <li ><a href="javascript:void(0)" style="font-size: 15px"><!-- 日收益 --></a></li>
                 </ul>
             </div>
             <div id="accept" class="col-xs-12 col-xs-offset-0 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2">

@@ -39,13 +39,11 @@ StringBuffer basePath = request.getRequestURL();
             initTime();
            // receivePayOrder();
            // receiveServingOrder();
-            
-             ajaxRequest("queryBasicOrders?pageLinkTransformOrderDto.statusId=3"+"&pageLinkTransformOrderDto.timeType=1",
-             receivePayOrder);
+            initData();
              
-               ajaxRequest("queryBasicOrders?pageLinkTransformOrderDto.statusId=2"+"&pageLinkTransformOrderDto.timeType=1",
-             receiveServingOrder);
         }
+        
+       
     </script>
 </head>
 <body class="hold-transition skin-blue  sidebar-mini">
@@ -86,7 +84,7 @@ StringBuffer basePath = request.getRequestURL();
                             </div>
                         </div>
                         <div class="box-body table-responsive no-padding">
-                            <table class="table table-hover" id="payTable">
+                            <table class="table table-hover" style="overflow: hidden">
                                 <tr >
                                     <th >订单号</th>
                                     <th>房间号</th>
@@ -97,6 +95,8 @@ StringBuffer basePath = request.getRequestURL();
                                     <th>所做项目</th>
                                     <th></th>
                                 </tr>
+                                <tbody id="payTable" >
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -130,6 +130,7 @@ StringBuffer basePath = request.getRequestURL();
                         <h4 class="modal-title" id="myModalLabel">修改订单</h4>
                     </div>
                     <form id="serverForm">
+                    <input name="updateOrderNormalOperationDto.orderId" id="idOrderTure" type="hidden"/>
                         <div class="modal-body">
                             <table align="center" border="1" cellspacing="0" cellpadding="5px">
                                 <tbody align="center">
@@ -167,7 +168,7 @@ StringBuffer basePath = request.getRequestURL();
                                     </tr>
                                     <tr>
                                         <td colspan="2" align="right">实际支付：</td>
-                                        <td colspan="2"><input name="realPay" id="realpay" type="text" placeholder="请输入支付金额"></td>
+                                        <td colspan="2"><input name="updateOrderNormalOperationDto.realPay" id="realpay" type="text" placeholder="请输入支付金额"></td>
                                     </tr>
                                 </tbody>
                             </table>

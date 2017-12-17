@@ -40,7 +40,6 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	private static final long serialVersionUID = -2023033530916611426L;
 	private Integer id;
 	private User user;
-	private int rank;
 	private Integer rankNum;
 	private Integer spotNum;
 
@@ -72,9 +71,8 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	 * @param rankNum 排钟数
 	 * @param spotNum 点钟数
 	 */
-	public WorkRank(User user, int rank,Integer rankNum, Integer spotNum) {
+	public WorkRank(User user, Integer rankNum, Integer spotNum) {
 		this.user = user;
-		this.rank=rank;
 		this.rankNum = rankNum;
 		this.spotNum = spotNum;
 	}
@@ -88,7 +86,7 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
     @Id 
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "pk_generate")
     @Column(name="id", unique=true, nullable=false)
-
+    @Override
 	public Integer getId() {
 		return this.id;
 	}
@@ -106,11 +104,11 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	 * 获取员工名
 	 * <p>
 	 * @return 返回员工名,String类型
-	 */
+	 *///++++++++++++++++++++++++++++++++++++
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "stuffId", nullable = false)
+	@JoinColumn(name = "stuffId", nullable = false, unique=true)
 
-	public User getUser() {
+	public User getUser(){
 		return this.user;
 	}
 
@@ -121,24 +119,6 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	 */
 	public void setUser(User User) {
 		this.user = User;
-	}
-	/**
-	 * 获取排名序号
-	 * <p>
-	 * @return 返回排名序号,Int类型
-	 */
-	@Column(name = "rank", unique=true, nullable=false)
-	public int getRank() {
-		return rank;
-	}
-
-	/**
-	 * 设置排名序号
-	 * <p>
-	 * @param rank 设置排名序号
-	 */
-	public void setRank(int rank) {
-		this.rank = rank;
 	}
 
 
@@ -246,7 +226,7 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
          * @return WorkRank实例
          */
         public WorkRank build(){
-        	return new WorkRank(user,rank,rankNum,spotNum);
+        	return new WorkRank(user,rankNum,spotNum);
         }
     }
 

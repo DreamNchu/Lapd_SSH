@@ -71,8 +71,8 @@ StringBuffer basePath = request.getRequestURL();
                                     <td>序号</td>
                                     <td>员工号</td>
                                     <td>员工姓名</td>
-                                    <td>点钟数</td>
                                     <td>排钟数</td>
+                                    <td>点钟数</td>
                                 </tr>
                             </tbody>
                         </table>

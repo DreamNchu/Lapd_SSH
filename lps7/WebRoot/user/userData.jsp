@@ -84,7 +84,7 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     <tr>
                         <td >电话号码：</td>
-                        <td colspan="2"><s:property value="userDataDto.telephoneNumber"/></td>
+                        <td colspan="2"><s:property value="userDataDto.telephonePhone"/></td>
                     </tr>
                     <tr>
                         <td >电子邮箱：</td>

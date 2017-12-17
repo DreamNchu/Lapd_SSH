@@ -1,5 +1,4 @@
 
-
 	insert into `lapd_test`.`t_clockcategory` (id, clockcategory) values(1, "点钟");
 	insert into `lapd_test`.`t_clockcategory` (id, clockcategory) values(2, "排钟");
 
@@ -8,8 +7,6 @@
     insert into `lapd_test`.`t_roomcategory`(id, roomcategory ) values (2, "按摩");
     insert into `lapd_test`.`t_roomcategory`(id, roomcategory ) values (3, "澡堂");
       
-    select * from  `lapd_test`.`t_roomcategory`;
-
 
 	insert into `lapd_test`.`t_room` (id , name, roomcategory, floor, size, remark, addTime, isFree, isClean)
 		values(1, "101",1, 1, 2, null, now(), true, true);
@@ -33,19 +30,42 @@
     insert into `lapd_test`.`t_workstatus`(id , workStatus) values(3, "工作中");
     
     INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
-    VALUES (1, 'user001', 'pass', 11, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '13624612546845416581152');
+    VALUES (1, 'user001', 'password', 11, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '王昭君', '13624612546845416581152');
         
     INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
-    VALUES (2, 'user002', 'pass', 12, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '1362461254681455581152');
+    VALUES (2, 'user002', 'password', 12, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '1362461254681455581152');
         
     INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
-    VALUES (3, 'user003', 'pass', 13, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '13624612546845456581152');
+    VALUES (3, 'user003', 'password', 13, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '金珂', '13624612546845456581152');
         
     INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
-    VALUES (4, 'user004', 'pass', 14, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '13624612546848556581152');
+    VALUES (4, 'user004', 'password', 14, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '安其拉', '13624612546848556581152');
         
     INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
-    VALUES (5, 'user005', 'pass', 15, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '张三', '1362461254681456581152');
+    VALUES (5, 'user005', 'password', 15, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '典韦', '1362461254681456581152');
+    
+        INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (6, 'user006', 'password', 13, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '金珂', '13624612546845456581152');
+        
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (7, 'user007', 'password', 14, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '安其拉', '13624612546848556581152');
+        
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (8, 'user008', 'password', 15, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '典韦', '1362461254681456581152');
+    
+        INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (9, 'user009', 'password', 15, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '典韦', '1362461254681456581152');
+    
+        INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (10, 'user010', 'password', 13, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '金珂', '13624612546845456581152');
+        
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (11, 'user011', 'password', 14, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '安其拉', '13624612546848556581152');
+        
+    INSERT INTO `lapd_test`.`t_user` (`id`, `userName`, `password`, `workId`, `birthday`, `telephonePhone`, `email`, `address`, `avatar`, `question`, `answer`, `workStatus`, `registerTime`, `realName`, `IDCardNo`) 
+    VALUES (12, 'user012', 'password', 15, '1996-10-1', '13672245662', '1561684155@qq.com', '南昌航空大学', NULL, '你是谁', '0001', 1, now(), '典韦', '1362461254681456581152');
+    
+    
 
    INSERT INTO `lapd_test`.`t_workrank` (`id`, `rank`, `stuffId`, `rankNum`, `spotNum`) 
    VALUES (1, 1, 1, null, NULL);
@@ -67,8 +87,6 @@
     insert into  `lapd_test`.`t_paypath` (id, payPath) values(3, "现金");
     insert into  `lapd_test`.`t_paypath` (id, payPath) values(4, "银联");
     
-    
-
     INSERT INTO `lapd_test`.`t_admin` (`id`, `userName`, `password`, `registerTime`, `avatar`) 
     VALUES (1, 'admin', 'admin', now(), NULL);
     

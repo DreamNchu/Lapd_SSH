@@ -74,6 +74,7 @@ public class WorkRankAction extends ActionSupport implements DataResult{
 	 * @throws PagePropertyNotInitException
 	 */
 	public String viewWorkRankTable() throws PagePropertyNotInitException{
+		
 		if(page <= 0){
 			page = 1;
 		}
@@ -92,7 +93,6 @@ System.out.println(result);
 	public String workRankPage(){
 		return SUCCESS;
 	}
-
 	
 	@Override
 	public void writeInResult(Object obj){

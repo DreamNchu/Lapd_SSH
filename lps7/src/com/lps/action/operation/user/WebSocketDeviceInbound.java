@@ -1,4 +1,4 @@
-package com.lps.action.operation.user;
+/*package com.lps.action.operation.user;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
@@ -66,4 +66,4 @@ public class WebSocketDeviceInbound extends MessageInbound {
 			e.printStackTrace();
 		}
 	}
-}
+}*/

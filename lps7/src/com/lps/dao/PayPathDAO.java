@@ -24,5 +24,6 @@ public interface PayPathDAO extends BasicDAO<PayPath>, BasicForServerOrderDAO<Pa
 	 * @return 返回付费方式对象的数组
 	 */
 	List<PayPath> findByPayPath(Object payPath);
-
+	
+	
 }

@@ -8,9 +8,10 @@ $(document).ready(function () {
 function acceptOrder(){
 	
 	var idOrder = $("#waitingOrderId").html();
-	alert(idOrder);
+	//alert(idOrder);
 	ajaxRequest("receiveOrder?idOrder="+idOrder, function(reciveOrder){
 		alert(reciveOrder.msg);
+		document.getElementById("lis").getElementsByTagName("li")[1].onclick();
 	});
 	
 }
@@ -21,6 +22,7 @@ function completeWork(){
 	
 	ajaxRequest("finishOrder?idOrder="+idOrder+"&pay="+pay, function(reciveOrder){
 		alert(reciveOrder.msg);
+		document.getElementById("lis").getElementsByTagName("li")[2].onclick();
 	});
 }
 

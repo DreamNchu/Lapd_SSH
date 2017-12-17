@@ -1,4 +1,4 @@
-package com.lps.action.operation.user;
+/*package com.lps.action.operation.user;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,4 +15,4 @@ public class WebSocketDeviceServlet extends org.apache.catalina.websocket.WebSoc
 
 	}
 
-}
+}*/

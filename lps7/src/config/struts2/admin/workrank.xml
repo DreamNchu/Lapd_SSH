@@ -3,7 +3,7 @@
 <struts>
 
 
-	<package name="workRank" namespace="/admin" extends="json-default,adminLogin">
+	<package name="adminWorkRank" namespace="/admin" extends="json-default,adminLogin">
 
 		<action name="workRankPage" class="workRankAction" method="workRankPage">
 			<result>

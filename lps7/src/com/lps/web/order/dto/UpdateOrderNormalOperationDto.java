@@ -23,6 +23,9 @@ public class UpdateOrderNormalOperationDto {
 	
 	private int userId;
 	
+	public UpdateOrderNormalOperationDto() {
+	}
+	
 	public int getUserId() {
 		return userId;
 	}
