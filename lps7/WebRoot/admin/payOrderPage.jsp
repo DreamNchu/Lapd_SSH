@@ -34,13 +34,11 @@ StringBuffer basePath = request.getRequestURL();
     <script src="js/receiveMoneyJs.js"></script>
     <script type="text/javascript">
         window.onload=function () {
-            var linkHref="";
-            initActive();
+        
+            initBasicClass("payOrderPage");
             initTime();
-           // receivePayOrder();
-           // receiveServingOrder();
+            
             initData();
-             
         }
         
        
@@ -49,10 +47,10 @@ StringBuffer basePath = request.getRequestURL();
 <body class="hold-transition skin-blue  sidebar-mini">
 <div class="wrapper">
     <header class="main-header" style="background-color: #333333">
-		<jsp:include page="header.jsp"></jsp:include>
+		<jsp:include page="include/header.jsp"></jsp:include>
     </header>
     <aside class="main-sidebar" style="background-color: #555555">
-<jsp:include page="left.jsp"></jsp:include>
+<jsp:include page="include/left.jsp"></jsp:include>
     </aside>
 
     <div class="content-wrapper">
@@ -62,7 +60,6 @@ StringBuffer basePath = request.getRequestURL();
                 <small>支付收银</small>
             </h1>
             <ol class="breadcrumb">
-                <li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
             </ol>
         </section>
 
@@ -188,7 +185,7 @@ StringBuffer basePath = request.getRequestURL();
 
 
     <aside class="control-sidebar control-sidebar-dark">
-<jsp:include page="right.jsp"></jsp:include>
+<jsp:include page="include/right.jsp"></jsp:include>
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>

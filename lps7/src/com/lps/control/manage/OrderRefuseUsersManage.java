@@ -11,10 +11,7 @@ public class OrderRefuseUsersManage {
 
 	private Map<String, Set<User>> userRefuseMap = new HashMap<String, Set<User>>(); 
 	
-
-
 	public OrderRefuseUsersManage() {
-		
 	}
 	
 	public void add(String orderId, User u){

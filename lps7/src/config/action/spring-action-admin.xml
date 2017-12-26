@@ -15,25 +15,20 @@
 
 	<bean id="adminStatusAction" class="com.lps.action.admin.access.AdminStatusAction"
 		scope="prototype">
-
 	</bean>
 
 	<bean id="adminAccessAction" class="com.lps.action.admin.access.AdminAccessAction"
 	scope="prototype">
 		<property name="adminServiceImpl" ref="adminServiceImpl"></property>
 	</bean>
-
-	<bean id="adminModifyPasswordAction" scope="prototype" class="com.lps.action.operation.AdminModifyPasswordAction">
-		<property name="adminServiceImpl" ref="adminServiceImpl"></property>
+	
+	<!-- 登录成功将跳转的界面 -->
+	<bean id="adminMainAction" scope="prototype" class="com.lps.action.operation.admin.AdminMainAction">
 	</bean>
 	
-	<bean id="adminMainAction" scope="prototype" class="com.lps.action.operation.AdminMainAction">
-		<property name="workRankServiceImpl" ref="workRankServiceImpl"></property>	
-		<property name="roomServiceImpl" ref="roomServiceImpl"></property>	
-		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>	
-	</bean>
-	
-	
+	<!-- 公司文件存储  -->
+	<bean id="companyProfile" class="com.lps.action.operation.profile.CompanyProfile" scope="prototype">
+    </bean>
 	 
 	<bean id="webSocketTest" class="com.lps.action.operation.user.WebSocketTest">
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>

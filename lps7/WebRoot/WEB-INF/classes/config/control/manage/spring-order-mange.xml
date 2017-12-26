@@ -11,7 +11,7 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
-	<bean id="orderManage" class="com.lps.control.manage.OrderManage" scope="prototype">
+	<bean id="orderManage" class="com.lps.control.manage.OrderManage">
 		<property name="workRankManage" ref="workRankManage"></property>
 		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>
 		<property name="roomServiceImpl" ref="roomServiceImpl"></property>
@@ -19,6 +19,7 @@
 		<property name="orderStatusServiceImpl" ref="orderStatusServiceImpl"></property>
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 		<property name="payPathServiceImpl" ref="payPathServiceImpl"></property>
+		<!-- 订单号设计 -->		
 		<property name="userWorkIdLength" value="4" ></property>
 		<property name="roomNameLength" value="4"></property>
 		<property name="indexLength" value="4"></property>

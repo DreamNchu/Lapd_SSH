@@ -98,6 +98,11 @@ public class TimeTypeResolve implements TimeType{
 		return list;
 	}
 	
+	/**
+	 * 根据时间类型解析时间段
+	 * @param timeType
+	 * @return
+	 */
 	public static List<Date> resolveTimeType(int timeType){
 		List<Date> list = new ArrayList<>(2);
 		switch(timeType){

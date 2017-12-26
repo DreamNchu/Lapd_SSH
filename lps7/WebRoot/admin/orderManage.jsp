@@ -37,7 +37,9 @@
 <script type="text/javascript">
 
 	window.onload = function() {
-		initActive();
+		//initActive();
+		initBasicClass("orderManage");
+		
 		initTime();
 		ajaxRequest("queryBasicOrders?pageLinkTransformOrderDto.timeType=1&pageLinkTransformOrderDto.statusId=1&pageLinkTransformOrderDto.page=1", waitingReceive);
 	}
@@ -67,10 +69,6 @@
 			callback : function(result) {
 				if (result == true) {
 					formSubmitWithEvent("deleteOrders", "formId", reQueryBasic);
-					
-					//ajaxRequest("queryBasicOrders", 
-					//funcs[parseInt($('.statusId:checked').val()) - 1]);
-//alert(12);
 				}
 			}
 		});
@@ -95,55 +93,12 @@
 		}
 		
 		//请求订单详细数据
-alert("formSubmitWithEventForData");
 		formSubmitWithEventData("queryOrder", "formId", initModifyBasicData);
 		
 	}
 	//初始化修改信息
 	function initModifyBasicData(orderData){
 	
-	
-	 /*orderData =  {
-			user : [ {
-				"stuffId" : "stuffId1",
-				"stuffworkId" : "stuffworkId1"
-			}, {
-				"stuffId" : "stuffId1",
-				"stuffworkId" : "stuffworkId1"
-			} ],
-			room : [ {
-				"roomId" : "roomId1",
-				"roomName" : "roomName1"
-			}, {
-				"roomId" : "roomId2",
-				"roomName" : "roomName2"
-			} ],
-			status : [ {
-				"statusId" : "statusId1",
-				"statusName" : "statusName1"
-			}, {
-				"statusId" : "statusId2",
-				"statusName" : "statusName2"
-			} ],
-			clockCategory : [ {
-				"clockId" : "clockId1",
-				"clockName" : "clockName1"
-			}, {
-				"clockId" : "clockId2",
-				"clockName" : "clockName2"
-			} ],
-			payType : [ {
-				"payId" : "payId1",
-				"payPath" : "payPath1"
-			}, {
-				"payId" : "payId2",
-				"payPath" : "payPath2"
-			} ],
-			pay :  "100" ,
-			relPay : "100" ,
-			orderRemark :  "哈哈哈" ,
-			orderId:"66565465466"
-		} */
 		var stuffId = document.getElementById("stuffId");
 		stuffId.options.length = 0;
 		var roomId = document.getElementById("roomId");
@@ -203,8 +158,6 @@ alert("formSubmitWithEventForData");
 			callback : function(result) {
 				if (result == true) {
 					formSubmitWithEvent("updateOrder", "serverForm", reQueryBasic);
-					//ajaxRequest("queryBasicOrders?queryOrderDto.statusId=" + $('.statusId:checked').val() + "&queryOrderDto.timeType=" + $('.dateType:checked').val(),
-					 //funcs[parseInt($('.statusId:checked').val()) - 1]);
 				}
 			}
 		});
@@ -221,10 +174,10 @@ alert("formSubmitWithEventForData");
 	<div class="wrapper">
 
 	<header class="main-header" style="background-color: #333333">
-		<jsp:include page="header.jsp"/>
+		<jsp:include page="include/header.jsp"/>
 	</header>
 	<aside class="main-sidebar" style="background-color: #555555">
-		<jsp:include page="left.jsp"/>
+		<jsp:include page="include/left.jsp"/>
 	</aside>
 
 		<div class="content-wrapper">
@@ -233,7 +186,6 @@ alert("formSubmitWithEventForData");
 					管理模块 <small>订单情况</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
 				</ol>
 			</section>
 			<section class="content container-fluid">
@@ -437,7 +389,7 @@ alert("formSubmitWithEventForData");
 
 
 	<aside class="control-sidebar control-sidebar-dark">
-		<jsp:include page="right.jsp"/>
+		<jsp:include page="include/right.jsp"/>
 	</aside>
 		<div class="control-sidebar-bg"></div>
 	</div>

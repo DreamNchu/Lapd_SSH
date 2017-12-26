@@ -46,7 +46,6 @@ function recivePage(rankData) {
         deleteLi();
         deleteTr();
         ajaxRequest($(this).attr('key'),receiveRank);
-
     })
 }
 function initTime() {

@@ -15,7 +15,7 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>  
 	
-	<bean id="workRankServiceImpl" class="com.lps.service.impl.WorkRankServiceImpl" scope="prototype">
+	<bean id="workRankServiceImpl" class="com.lps.service.impl.WorkRankServiceImpl">
 		<property name="workRankDao" ref="workRankDAOImpl"></property>
 		<property name="pageBean" ref="pageBean"></property>
 	</bean> 

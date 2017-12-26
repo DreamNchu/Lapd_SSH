@@ -11,7 +11,7 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
      
-     <bean id="userManage" class="com.lps.control.manage.UserManage" scope="prototype">
+     <bean id="userManage" class="com.lps.control.manage.UserManage">
      	<property name="userServiceImpl" ref="userServiceImpl"></property>
      </bean>
 	

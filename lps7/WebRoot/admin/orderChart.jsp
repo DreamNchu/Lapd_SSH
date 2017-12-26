@@ -177,15 +177,10 @@ StringBuffer basePath = request.getRequestURL();
             }
         };
         $(document).ready(function () {
-            initActive();
+            initBasicClass("orderChart");
             initTime();
         	ajaxRequest("initChartOrders", receviveUser);
-        	/*  ajaxRequest("chartDataOrders?orderChartRequestDto.timeType="
-            +$('#date option:selected').val()+ "&orderChartRequestDto.population="+$("#type option:selected").val()
-            +"&orderChartRequestDto.userId="+$('#user option:selected').val(),
-             chart); */
         	
-            //receviveUser();
             $('#contain2').hide();
             //图表类型
             $('#chart').change(function () {
@@ -230,10 +225,10 @@ StringBuffer basePath = request.getRequestURL();
 <body class="hold-transition skin-blue  sidebar-mini">
 <div class="wrapper">
     <header class="main-header" style="background-color: #333333">
-        <jsp:include page="header.jsp"/>
+        <jsp:include page="include/header.jsp"/>
     </header>
     <aside class="main-sidebar" style="background-color: #555555">
-        <jsp:include page="left.jsp"/>
+        <jsp:include page="include/left.jsp"/>
     </aside>
 
     <div class="content-wrapper">
@@ -243,7 +238,6 @@ StringBuffer basePath = request.getRequestURL();
                 <small>员工业绩</small>
             </h1>
             <ol class="breadcrumb">
-                <li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
             </ol>
         </section>
 
@@ -303,7 +297,7 @@ StringBuffer basePath = request.getRequestURL();
 
 
     <aside class="control-sidebar control-sidebar-dark">
-        <jsp:include page="right.jsp"/>
+        <jsp:include page="include/right.jsp"/>
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>

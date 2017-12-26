@@ -20,15 +20,15 @@
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
 	</bean> -->
 	
-	<bean id="userModifyPasswordAction" scope="prototype" class="com.lps.action.operation.UserModifyPasswordAction">
+<!-- 	<bean id="userModifyPasswordAction" scope="prototype" class="com.lps.action.operation.UserModifyPasswordAction">
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
-	</bean>
+	</bean> -->
 	
 	
-	<bean id="userWorkDataAction" scope="prototype" class="com.lps.action.operation.UserWorkDataAction">
+	<!-- <bean id="userWorkDataAction" scope="prototype" class="com.lps.action.operation.UserWorkDataAction">
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
-	</bean>
+	</bean> -->
 	
 	<bean id="userMainAction" scope="prototype" class="com.lps.action.operation.user.UserMainAction">
 	</bean>
@@ -44,7 +44,7 @@
 	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
 
 	 </bean>
-	 
+	 <!-- 用户订单管理 -->
 	 <bean id="userOrderAction" scope="prototype" class="com.lps.action.operation.user.UserOrderAction">
 	 	<property name="orderManage" ref="orderManage"></property>
 	 	<property name="orderTableDataDto" ref="orderTableDataDto"></property>
@@ -53,20 +53,24 @@
 	 	<property name="orderStatusServiceImpl" ref="orderStatusServiceImpl"></property>
 	 </bean>
 	 
+	 <!-- 员工分配工作时检查是否签到 -->
 	 <bean id="userWorkCheckAction" scope="prototype" class="com.lps.action.operation.user.UserWorkCheckAction">
 	 	<property name="workRankManage" ref="workRankManage"></property>
 	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
 	 </bean>
 	 
+	 <!-- 员工的工作信息 -->
 	 <bean scope="prototype" id="userDataAction" class="com.lps.action.operation.user.UserDataAction">
 	 	<property name="userDataDto" ref="userDataDto"></property>
 	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
 	 </bean>
 	 
+	 <!-- 员工注册 -->
 	 <bean scope="prototype" id="userSignInAction" class="com.lps.action.user.access.UserSignInAction">
 	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
 	 </bean>
 	 
+	 <!-- 员工订单统计 -->
 	 <bean scope="prototype" id="userOrdersCountAction" class="com.lps.action.operation.user.UserOrdersCountAction">
 	 	<property name="orderManage" ref="orderManage"></property>
 	 	<property name="orderChartDto" ref="orderChartDto"></property>

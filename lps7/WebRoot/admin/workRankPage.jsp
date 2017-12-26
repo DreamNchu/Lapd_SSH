@@ -1,9 +1,8 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-<%@taglib prefix="s" uri="/struts-tags" %>
+<%@taglib prefix="s" uri="/struts-tags"%>
 <%
-StringBuffer basePath = request.getRequestURL();
+	StringBuffer basePath = request.getRequestURL();
 %>
-<%-- <s:debug></s:debug> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,21 +32,22 @@ StringBuffer basePath = request.getRequestURL();
     <script src="js/initClass.js"></script>
     <script src="js/rankJs.js"></script>
     <script type="text/javascript">
-        window.onload=function () {
-            initActive();
-            initTime();
-            ajaxRequest("viewWorkRankTable", receiveRank);
-            //receiveRank();
-        }
+    	window.onload = function() {
+    		//initActive();
+    		initBasicClass("workRankPage");
+    		initTime();
+    		ajaxRequest("viewWorkRankTable", receiveRank);
+    	//receiveRank();
+    	}
     </script>
 </head>
 <body class="hold-transition skin-blue  sidebar-mini">
 <div class="wrapper">
     <header class="main-header" style="background-color: #333333">
-		<jsp:include page="header.jsp"></jsp:include>
+		<jsp:include page="include/header.jsp"></jsp:include>
     </header>
     <aside class="main-sidebar" style="background-color: #555555">
-		<jsp:include page="left.jsp"></jsp:include>
+		<jsp:include page="include/left.jsp"></jsp:include>
     </aside>
 
     <div class="content-wrapper">
@@ -57,7 +57,6 @@ StringBuffer basePath = request.getRequestURL();
                 <small>员工今日排名</small>
             </h1>
             <ol class="breadcrumb">
-                <li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
             </ol>
         </section>
 
@@ -91,11 +90,11 @@ StringBuffer basePath = request.getRequestURL();
 
 
     <aside class="control-sidebar control-sidebar-dark">
-		<jsp:include page="right.jsp"></jsp:include>
+		<jsp:include page="include/right.jsp"></jsp:include>
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>
-
+</div>
 
 </body>
 </html>

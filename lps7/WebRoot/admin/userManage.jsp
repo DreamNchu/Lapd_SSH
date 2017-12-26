@@ -26,23 +26,17 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     <script type="text/javascript">
      	window.onload=function () {
-            initActive();
+            //initActive();
+                initBasicClass("userManage");
             initTime();
       
            ajaxRequest("queryBasicUser?pageLinkTransformUserDto.page=1" ,showdata);
         }
     
         function receiveData() {
-//            var userData={
-//                "user":[{"workId":"workId1","realName":"realName1","userName":"userName1","birthday":"birthday1","telephonePhone":"telephonePhone1","email":"email1","address":"address1","question":"question1","answer":"answer1","registerTime":"registerTime1","IDCardNo":"IDCardNo1"}
-//                ,{"workId":"workId2","realName":"realName1","userName":"userName1","birthday":"birthday1","telephonePhone":"telephonePhone1","email":"email1","address":"address1","question":"question1","answer":"answer1","`registerTime":"`registerTime1","IDCardNo":"IDCardNo1"}]
-//                , "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
-//                "transform":[{"back":"TestHref","front":"TestHref"}],
-//                "number":[{"value":"1","link":"TestHref"},{"value":"2","link":"TestHref"},{"value":"3","link":"TestHref"},{"value":"4","link":"TestHref"}]
-//            }
-           // var userData={"user":[{"id":1,"workStatus":"空闲","userName":"user001","password":"user001","workId":11,"birthday":"","telephonePhone":"","email":"","address":"","avatar":"","question":"你是谁","answer":"0001","registerTime":"2017-11-26 15:45","realName":"","IDCardNo":""},{"id":2,"workStatus":"空闲","userName":"user002","password":"user002","workId":12,"birthday":"","telephonePhone":"","email":"","address":"","avatar":"","question":"你是谁","answer":"0001","registerTime":"2017-11-26 15:45","realName":"","IDCardNo":""},{"id":3,"workStatus":"空闲","userName":"user003","password":"user003","workId":13,"birthday":"","telephonePhone":"","email":"","address":"","avatar":"","question":"你是谁","answer":"0001","registerTime":"2017-11-26 15:45","realName":"","IDCardNo":""},{"id":4,"workStatus":"空闲","userName":"cyl001","password":"cyl001","workId":10953,"birthday":"2017-11-30","telephonePhone":"13672246707","email":"","address":"","avatar":"","question":"哈哈哈","answer":"King","registerTime":"2017-12-05 11:54","realName":"","IDCardNo":""},{"id":5,"workStatus":"空闲","userName":"user005","password":"user003","workId":15,"birthday":"","telephonePhone":"","email":"","address":"","avatar":"","question":"你是谁","answer":"0001","registerTime":"2017-12-04 14:53","realName":"","IDCardNo":""}],"page":[{"currentPage":1,"allCount":5,"allPage":1}],"transform":[{"back":"queryBasicUser?queryUserDto.page=1","front":"queryBasicUser?queryUserDto.page=1"}],"number":[{"link":"queryBasicUser?queryUserDto.page=1","value":1}]}
             showdata(userData);
         }
+        
         function sureRevise(){
         	alert(document.getElementById("myModalLabel").innerHTML=="修改信息");
         	if(document.getElementById("myModalLabel").innerHTML=="修改信息"){
@@ -122,7 +116,7 @@
                 }
             }
             
-             document.getElementById("myModalLabel").innerHTML="修改信息";
+            document.getElementById("myModalLabel").innerHTML="修改信息";
             formSubmitWithEventData("queryUser", "userShow" ,queryUser);
             
         }
@@ -173,10 +167,10 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
     <header class="main-header" style="background-color: #333333">
-        <jsp:include page="header.jsp"/>
+        <jsp:include page="include/header.jsp"/>
     </header>
     <aside class="main-sidebar" style="background-color: #555555">
-     <jsp:include page="left.jsp"/>
+     <jsp:include page="include/left.jsp"/>
     </aside>
 
     <div class="content-wrapper">
@@ -184,9 +178,6 @@
             <h1>
                 员工管理
             </h1>
-            <ol class="breadcrumb">
-                <li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
-            </ol>
         </section>
         <section class="content container-fluid">
             <div class="row">
@@ -286,7 +277,7 @@
 
 
     <aside class="control-sidebar control-sidebar-dark">
-        <jsp:include page="right.jsp"/>
+        <jsp:include page="include/right.jsp"/>
     </aside>
     <div class="control-sidebar-bg"></div>
 </div>

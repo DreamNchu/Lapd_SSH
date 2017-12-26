@@ -25,16 +25,22 @@ function showdata(userData) {
     allPage.innerHTML=userData.page[0].allPage;
     currentPage.innerHTML=userData.page[0].currentPage;
     var l=document.createElement("li");
-    l.innerHTML="<a href="+userData.transform[0].back+"><<</a>";
+    l.innerHTML="<a class='c_page' href='javascript:void(0)' key="+userData.transform[0].back+"><<</a>";
     hrefId.appendChild(l);
     for(i in userData.number){
         var l=document.createElement("li");
-        l.innerHTML="<a href="+userData.number[i].link+">"+userData.number[i].value+"</a>";
+        l.innerHTML="<a class='c_page' href='javascript:void(0)' key="+userData.number[i].link+">"+userData.number[i].value+"</a>";
         hrefId.appendChild(l);
     }
     var l=document.createElement("li");
-    l.innerHTML="<a href="+userData.transform[0].front+">>></a>";
+    l.innerHTML="<a class='c_page' href='javascript:void(0)' key="+userData.transform[0].front+">>></a>";
     hrefId.appendChild(l);
+    
+    $(".c_page").click(function(){
+    	deleteTr()
+    	deleteLi()
+    	ajaxRequest($(this).attr('key'),showdata);
+    });
 }
 function deleteTr() {
     var orderTable=document.getElementById("dataTable");

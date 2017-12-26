@@ -15,7 +15,7 @@
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
 	</bean>  
 	
-	<bean id="serverOrderServiceImpl" class="com.lps.service.impl.ServerOrderServiceImpl" scope="prototype">
+	<bean id="serverOrderServiceImpl" class="com.lps.service.impl.ServerOrderServiceImpl">
 		<property name="serverOrderDao" ref="serverOrderDAOImpl"></property>
 		<property name="pageServerOrderBean" ref="pageBean"></property>
 	</bean> 

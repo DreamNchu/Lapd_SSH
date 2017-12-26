@@ -107,6 +107,8 @@ public class PageBean<T> {
 		} else {
 			min = minViewPage;
 		}
+		//清除原理数据文件
+		viewPageNum.clear();
 		for (long i = min; i <= max; i++)
 			viewPageNum.add((int) i);
 	}

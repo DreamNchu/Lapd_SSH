@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
 <link rel="stylesheet" href="css/all.css">
 <link rel="stylesheet" href="css/styleradio.css">
-<link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="image/center.ico" type="image/x-icon" />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <link rel="stylesheet"
@@ -39,20 +39,26 @@
 <script type="text/javascript">
 
 	window.onload = function() {
-        initActive();
+
+		initBasicClass("initOrder");
 		initTime();
-        var currentTime=document.getElementById("currentTime");
-        var myDate=new Date();
-        currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
-		ajaxRequest("initOrderData", create);
 		
+		
+		var currentTime = document.getElementById("currentTime");
+		var myDate = new Date();
+		currentTime.innerHTML = myDate.toLocaleDateString() + "--" + myDate.toLocaleTimeString();
+		ajaxRequest("initOrderData", create);
+
 	}
-		function create(createOrder) {
+	function create(createOrder) {
 		var stuffId = document.getElementById("stuffId");
 		var roomId = document.getElementById("roomId");
 		var roomCategory = document.getElementById("roomCategory");
-		var i,userDatab,op,createOrder;
-	
+		var i,
+			userDatab,
+			op,
+			createOrder;
+
 		document.getElementById("rad1").value = createOrder.createWay[0];
 		document.getElementById("rad2").value = createOrder.createWay[1];
 		document.getElementById("rad3").value = createOrder.createWay[2];
@@ -83,20 +89,20 @@
 		document.getElementById("stuffId").disabled = "";
 	}
 	function initTime() {
-		var currentTime=document.getElementById("currentTime");
-		var myDate=new Date();
-		currentTime.innerHTML=myDate.toLocaleDateString()+"--"+myDate.toLocaleTimeString();
-		setTimeout("initTime()",1000);
+		var currentTime = document.getElementById("currentTime");
+		var myDate = new Date();
+		currentTime.innerHTML = myDate.toLocaleDateString() + "--" + myDate.toLocaleTimeString();
+		setTimeout("initTime()", 1000);
 	}
 </script>
 </head>
 <body class="hold-transition skin-blue  sidebar-mini">
 	<div class="wrapper">
 		<header class="main-header" style="background-color: #333333">
-			<jsp:include page="header.jsp"/>
+			<jsp:include page="include/header.jsp" />
 		</header>
 		<aside class="main-sidebar" style="background-color: #555555">
-			<jsp:include page="left.jsp"/>
+			<jsp:include page="include/left.jsp" />
 		</aside>
 
 		<div class="content-wrapper">
@@ -105,7 +111,6 @@
 					工作模块 <small>订单发布</small>
 				</h1>
 				<ol class="breadcrumb">
-					<li><i class="fa fa-dashboard"></i><label id="currentTime">2017-11-27-18-19</label></li>
 				</ol>
 			</section>
 
@@ -116,23 +121,18 @@
 							<form role="form" method="get" action="" id="orderForm">
 								<div class="box box-warning">
 									<div class="box-header with-border">
-										<label for="rad1" class="radio">
-											<span class="radio-bg"></span>
-											<input  type="radio" name="createOrderDto.createWay" id="rad1" checked onclick="showOf()">
-											点钟手发
-											<span class="radio-on"></span>
-										</label>
-										<label for="rad2" class="radio">
-											<span class="radio-bg"></span>
-											<input  type="radio" name="createOrderDto.createWay" id="rad2" onclick="showOf()">
-											排钟手发
-											<span class="radio-on"></span>
-										</label>
-										<label for="rad3" class="radio">
-											<span class="radio-bg"></span>
-											<input type="radio" name="createOrderDto.createWay"  id="rad3" onclick="hideOf()">
-											排钟自发
-											<span class="radio-on"></span>
+										<label for="rad1" class="radio"> <span
+											class="radio-bg"></span> <input type="radio"
+											name="createOrderDto.createWay" id="rad1" checked
+											onclick="showOf()"> 点钟手发 <span class="radio-on"></span>
+										</label> <label for="rad2" class="radio"> <span
+											class="radio-bg"></span> <input type="radio"
+											name="createOrderDto.createWay" id="rad2" onclick="showOf()">
+											排钟手发 <span class="radio-on"></span>
+										</label> <label for="rad3" class="radio"> <span
+											class="radio-bg"></span> <input type="radio"
+											name="createOrderDto.createWay" id="rad3" onclick="hideOf()">
+											排钟自发 <span class="radio-on"></span>
 										</label>
 									</div>
 									<div class="box-body">
@@ -173,7 +173,7 @@
 
 
 		<aside class="control-sidebar control-sidebar-dark">
-			<jsp:include page="right.jsp"/>
+			<jsp:include page="include/right.jsp" />
 		</aside>
 		<div class="control-sidebar-bg"></div>
 	</div>

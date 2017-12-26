@@ -19,6 +19,5 @@
 		<property name="adminDao" ref="adminDAOImpl"></property>
 		<property name="pageAdminBean" ref="pageBean"></property>
 	</bean> 
-
 	
 </beans>

@@ -262,7 +262,6 @@ StringBuffer basePath = request.getRequestURL();
                 <small>点钟手发</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i>2017-11-27-18-19</a></li>
             </ol>
         </section>
 
