@@ -75,7 +75,7 @@ public class ServerOrderServiceTest {
 			ClockCategory clockCategory = new ClockCategory(); 
 			clockCategory.setId(i % 2 + 1);
 			OrderStatus orderStatus = new OrderStatus(); orderStatus.setId(i % 6 + 1);
-			DateTime dt = new DateTime(2017, ra.nextInt(12) + 1, ra.nextInt(27) + 1, ra.nextInt(12), 0);
+			DateTime dt = new DateTime(2017, ra.nextInt(12) + 1, ra.nextInt(27) + 1, ra.nextInt(12) + 12, 0);
 			ServerOrder so = new ServerOrder("11000000000" + i ,payPath , room, user, pledge, clockCategory,
 					orderStatus, dt.toDate(), dt.plusMinutes(5).toDate(),dt.plusHours(1).toDate() , 100, 100, new Date(), "001");
 			if(i % 100 == 0)
@@ -171,14 +171,14 @@ public class ServerOrderServiceTest {
 	
 	@Test
 	public void testFindOrdersByProperyLimit() throws PagePropertyNotInitException{
-		List<PropertyRange> listPro = new ArrayList<>();
+/*		List<PropertyRange> listPro = new ArrayList<>();
 		PropertyRange pro = new PropertyRange();
 		pro.setName(ServerOrderDAOImpl.ORDER_STATUS);
 		pro.setMinValue(os.findById(1));
 		pro.setMaxValue(os.findById(1));
 		listPro.add(pro);
 		PageBean<ServerOrder> pb = as.findOrdersByPropertyLimit(listPro, 1);
-		System.out.println(pb.getList().size());
+		System.out.println(pb.getList().size());*/
 	}
 	
 	

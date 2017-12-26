@@ -67,6 +67,14 @@ StringBuffer basePath = request.getRequestURL();
                             <td>工号：</td>
                             <td><input type="text" id="workId" name="userDataDto.workId" value="<s:property value="userDataDto.workId"/>"></td>
                         </tr>
+                           <tr>
+                            <td>姓名：</td>
+                            <td><input type="text" id="realName" name="userDataDto.realName" value="<s:property value="userDataDto.realName"/>"></td>
+                        </tr>
+                        <tr>
+                            <td>身份证号码：</td>
+                            <td><input type="text" id="IDCard" name="userDataDto.IDCardNo" value="<s:property value="userDataDto.IDCardNo"/>"></td>
+                        </tr>
                         <tr>
                             <td >电话号码：</td>
                             <td><input type="text" name="userDataDto.telephonePhone" value="<s:property value="userDataDto.telephonePhone"/>"></td>

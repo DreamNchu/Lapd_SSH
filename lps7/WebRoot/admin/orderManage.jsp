@@ -95,8 +95,8 @@
 		}
 		
 		//请求订单详细数据
-alert("formSubmitWithEventForData");
-		formSubmitWithEventData("queryOrder", "formId", initModifyBasicData);
+//alert("formSubmitWithEventForData");
+		formSubmitWithEventData("initModifyOrderData", "formId", initModifyBasicData);
 		
 	}
 	//初始化修改信息
@@ -360,7 +360,7 @@ alert("formSubmitWithEventForData");
 								</button>
 								<button class="btn btn-info" id="exportChecked"
 								onclick="exportChecked()">
-								<span class="glyphicon glyphicon-download-alt"></span>导出Excel
+								<span class="glyphicon glyphicon-download-alt"></span><a href="file/订单详细数据表.xlsx">导出Excel</a>
 								</button>
 							</div>
 							<div class="box-body table-responsive no-padding">

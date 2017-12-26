@@ -124,34 +124,6 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	public String queryBasicOrders() throws PagePropertyNotInitException {
 		// 找到今日该状态下的所有订单
 
-//		if (pageLinkTransformOrderDto != null) {
-//			if (pageLinkTransformOrderDto.getStatusId() != 0)
-//				session.put("statusId", pageLinkTransformOrderDto.getStatusId());
-//			if (pageLinkTransformOrderDto.getTimeType() != 0) {
-//				session.put("timeType", pageLinkTransformOrderDto.getTimeType());
-//			}
-//			if (pageLinkTransformOrderDto.getPage() != 0)
-//				session.put("orderPage", pageLinkTransformOrderDto.getPage());
-//		}
-//		
-//		pageLinkTransformOrderDto.setPage(Integer.parseInt( session.get("orderPage") + ""));
-//		pageLinkTransformOrderDto.setStatusId(Integer.parseInt( session.get("statusId") + ""));
-//		pageLinkTransformOrderDto.setTimeType(Integer.parseInt( session.get("timeType")+""));
-//
-//		orderTableDataDto.init(
-//				orderManage.basicQuery(pageLinkTransformOrderDto, pageLinkTransformOrderDto.getPage()), 
-//				pageLinkTransformOrderDto, 
-//				pageLinkTransformOrderDto.getDomainName(),
-//				Thread.currentThread().getStackTrace()[1].getMethodName());
-		
-		queryBasicOrderUtil();
-		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
-System.out.println(result);
-//		writeInResult2(orderTableDataDto);
-		return SUCCESS;
-	}
-	
-	private void queryBasicOrderUtil() throws PagePropertyNotInitException{
 		if (pageLinkTransformOrderDto != null) {
 			if (pageLinkTransformOrderDto.getStatusId() != 0)
 				session.put("statusId", pageLinkTransformOrderDto.getStatusId());
@@ -172,6 +144,11 @@ System.out.println(result);
 				pageLinkTransformOrderDto.getDomainName(),
 				Thread.currentThread().getStackTrace()[1].getMethodName());
 		
+//		queryBasicOrderUtil();
+		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
+System.out.println(result);
+//		writeInResult2(orderTableDataDto);
+		return SUCCESS;
 	}
 	
 //	private void writeInResult2(Object obj){
@@ -250,6 +227,15 @@ System.out.println(result);
 	//
 	private InitBasicUpdateDataDto initBasicUpdateDataDto ;
 	
+	
+	public String initModifyOrderData(){
+		
+		orderManage.basicQuery(initBasicUpdateDataDto, orderId.get(0));
+		writeInResult(initBasicUpdateDataDto);
+		
+		return SUCCESS;
+	}
+	
 	Map<String, Object> map = new HashMap<>();
 	boolean isError = false;
 	/**
@@ -298,6 +284,8 @@ System.out.println(result);
 		return SUCCESS;
 	}
 	
+//	public init
+	
 	private OrderChartInitDto orderChartInitDto ;
 	
 	public String initChartOrders(){
@@ -336,11 +324,36 @@ System.out.println(result);
 		return SUCCESS;
 	}
 	
-	
+	/**
+	 * 输出excle表格
+	 * @return
+	 * @throws PagePropertyNotInitException
+	 */
 	public String outputOrdersExcel() throws PagePropertyNotInitException{
-		queryBasicOrderUtil();  //
+//		queryBasicOrderUtil();  //
 		
-//		orderTableDataDto
+		if (pageLinkTransformOrderDto != null) {
+			if (pageLinkTransformOrderDto.getStatusId() != 0)
+				session.put("statusId", pageLinkTransformOrderDto.getStatusId());
+			if (pageLinkTransformOrderDto.getTimeType() != 0) {
+				session.put("timeType", pageLinkTransformOrderDto.getTimeType());
+			}
+			if (pageLinkTransformOrderDto.getPage() != 0)
+				session.put("orderPage", pageLinkTransformOrderDto.getPage());
+		}
+		
+		pageLinkTransformOrderDto.setPage(Integer.parseInt( session.get("orderPage") + ""));
+		pageLinkTransformOrderDto.setStatusId(Integer.parseInt( session.get("statusId") + ""));
+		pageLinkTransformOrderDto.setTimeType(Integer.parseInt( session.get("timeType")+""));
+
+
+//			orderTableDataDto.init(
+//					orderManage.basicQuery(pageLinkTransformOrderDto, pageLinkTransformOrderDto.getPage()), 
+//					pageLinkTransformOrderDto, 
+//					pageLinkTransformOrderDto.getDomainName(),
+//					Thread.currentThread().getStackTrace()[1].getMethodName());
+			
+		
 		return SUCCESS;
 	}
 	
