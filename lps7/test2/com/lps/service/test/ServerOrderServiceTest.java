@@ -177,8 +177,6 @@ public class ServerOrderServiceTest {
 		pro.setMinValue(os.findById(1));
 		pro.setMaxValue(os.findById(1));
 		listPro.add(pro);
-		PageBean<ServerOrder> pb = as.findOrdersByPropertyLimit(listPro, 1);
-		System.out.println(pb.getList().size());
 	}
 	
 	
