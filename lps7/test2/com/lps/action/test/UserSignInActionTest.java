@@ -36,9 +36,9 @@ public class UserSignInActionTest {
 	@Test
 	public void testSignIn() {
 //		fail("Not yet implemented");
-		/*UserSignInDto ud = new UserSignInDto("cyl001", "cyl001", "13672246707", new Date(),-1,"你是", "King",null );
+		UserSignInDto ud = new UserSignInDto("cyl001", "cyl001", "13672246707", new Date(),-1,"你是", "King",null );
 		as.setUserSignInDto(ud);
-		assertEquals("success",as.signIn());*/
+		assertEquals("success",as.signIn());
 		
 	}
 

@@ -1,26 +1,21 @@
-package com.lps.web.socket;
+package com.lps.action.operation.user;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpSession;
-import javax.websocket.EndpointConfig;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
-import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
-import com.lps.action.operation.order.CreateOrderAction;
 import com.lps.service.ServerOrderService;
 import com.lps.service.impl.ServerOrderServiceImpl;
 
-@ServerEndpoint(value="/server/websocket",configurator=GetHttpSessionConfigurator.class)  
-public class OrderReceiveWebSocket {  
+@ServerEndpoint("/ws/websocket")  
+public class WebSocketTest {  
 	
 	private ServerOrderService serverOrderServiceImpl = new ServerOrderServiceImpl();
-	
-	
+  
     public ServerOrderService getServerOrderServiceImpl() {
 		return serverOrderServiceImpl;
 	}
@@ -33,7 +28,6 @@ public class OrderReceiveWebSocket {
     public void onMessage(String message,Session session)  
             throws IOException, InterruptedException  
        {  
-		
         System.out.println("***************");  
         System.out.println(serverOrderServiceImpl);
         session.getBasicRemote().sendText("  this is  message");  
@@ -51,27 +45,12 @@ public class OrderReceiveWebSocket {
     }  
       
     @OnOpen  
-    public void onOpen(@PathParam("userId")String userId,Session session){  
-    	System.out.println(" connection open");  
-    	
-    	
-    	System.out.println(session.getClass().getName());
-    	System.out.println(userId);
-//    	HttpSession httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
-//        System.out.println( httpSession.getAttribute("name"));
-//        System.out.println("httpSession.getAttribute(userName) : " + httpSession.getAttribute("userName"));
-//    	CreateOrderAction.userSessionWebSocket.put(httpSession, this);
-//        sessionMap.put(session.getId(), session); 
-    	
+    public void onOpen(){  
+        System.out.println(" client connected ");  
     }  
       
     @OnClose  
-    public void onClose(@PathParam("userId")String userId,Session session){
-    	
+    public void onClose(){  
         System.out.println(" connection closed ");  
-//        HttpSession httpSession= (HttpSession) config.getUserProperties().get(HttpSession.class.getName());
-//        System.out.println( httpSession.getAttribute("name"));
-//        CreateOrderAction.userSessionWebSocket.remove(session);
-        
     }  
 }  

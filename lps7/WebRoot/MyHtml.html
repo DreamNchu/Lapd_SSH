@@ -12,7 +12,7 @@
   <script type="text/javascript">  
     var webSocket;  
     if ('WebSocket' in window) {  
-        webSocket = new WebSocket("ws://localhost:8080/lps7/server/websocket");  
+        webSocket = new WebSocket("ws://localhost:8080/lps7/ws/websocket");  
     } else if ('MozWebSocket' in window) {  
         webSocket = new MozWebSocket("ws://localhost:8080/websocket");  
     } else {  

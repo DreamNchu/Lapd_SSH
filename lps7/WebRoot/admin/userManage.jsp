@@ -98,7 +98,7 @@
             });
         }
         function reQueryBasic(){
-        	//alert(444);
+        	alert(444);
 			deleteLi();
         	deleteTr();
 			ajaxRequest("queryBasicUser",showdata);
@@ -107,7 +107,7 @@
         function editUser() {
             var userArray=document.getElementsByName("userCheckBox");
             var i,count=0,op;
-          //  alert(userArray.length);
+            alert(userArray.length);
             for(i=0;i<userArray.length;i++){
                 if(userArray[i].checked==true){
                     count++;

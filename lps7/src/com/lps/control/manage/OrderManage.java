@@ -302,7 +302,6 @@ public class OrderManage implements TimeType, Population {
 
 	/**
 	 * 往 initBasicUpdateDataDto 填信息
-	 * 初始化订单修改信息
 	 * 
 	 * @param initBasicUpdateDataDto
 	 */

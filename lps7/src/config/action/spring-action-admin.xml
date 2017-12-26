@@ -32,5 +32,11 @@
 		<property name="roomServiceImpl" ref="roomServiceImpl"></property>	
 		<property name="clockCategoryServiceImpl" ref="clockCategoryServiceImpl"></property>	
 	</bean>
+	
+	
+	 
+	<bean id="webSocketTest" class="com.lps.action.operation.user.WebSocketTest">
+		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
+	</bean>
 
 </beans>

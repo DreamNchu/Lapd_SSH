@@ -244,7 +244,7 @@ function superSearsh() {
     document.getElementById("timeTr").style.display="block";
 }
 function add() {
-    window.location.href="initOrder";
+    window.location.href="fbdd.html";
 }
 function deleteTr() {
     var orderTable=document.getElementById("orderTable");

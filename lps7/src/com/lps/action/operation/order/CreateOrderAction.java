@@ -13,8 +13,6 @@ import com.lps.web.order.dto.constant.CreateOrderWay;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CreateOrderAction extends ActionSupport {
-	
-	public static final Map<Object, Object> userSessionWebSocket = new HashMap<>();
 
 	private static final long serialVersionUID = -2770070015331923293L;
 
