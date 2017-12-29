@@ -27,7 +27,6 @@ public class InitCreateOrderDto {
 	
 	
 	public InitCreateOrderDto() {
-		
 	}
 	
 	public void init(List<User> lu, List<Room> lr, List<ServerItem> lrc){

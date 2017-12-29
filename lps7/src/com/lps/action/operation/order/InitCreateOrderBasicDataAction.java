@@ -29,7 +29,10 @@ public class InitCreateOrderBasicDataAction extends ActionSupport{
 	
 	private String result;
 	
-	
+	/**
+	 * 初始化发订单的基本数据
+	 * @return
+	 */
 	public String initOrderData(){
 		List<Room> listRooms = roomServiceImpl.findAll();
 		List<ServerItem> listServerItems = serverItemServiceImpl.findAll();
