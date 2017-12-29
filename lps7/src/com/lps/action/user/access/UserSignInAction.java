@@ -3,13 +3,11 @@ package com.lps.action.user.access;
 import java.util.Date;
 import java.util.Random;
 
-import javax.activation.DataSource;
-
 import com.lps.action.jsonresult.DataResult;
 import com.lps.model.User;
 import com.lps.service.UserService;
 import com.lps.util.WorkJson;
-import com.lps.web.dto.UserSignInDto;
+import com.lps.web.access.dto.UserSignInDto;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class UserSignInAction extends ActionSupport implements DataResult{

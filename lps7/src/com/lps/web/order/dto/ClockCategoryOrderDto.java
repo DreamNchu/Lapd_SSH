@@ -4,14 +4,14 @@ import com.lps.model.ClockCategory;
 
 public class ClockCategoryOrderDto implements DtoBasicInit<ClockCategoryOrderDto>{
 	
-	public Integer clockId;
+	public Integer clockCategoryId;
 	
-	public String clockName;
+	public String clockCategoryName;
 
-	public ClockCategoryOrderDto(Integer clockId, String clockName) {
+	public ClockCategoryOrderDto(Integer clockCategoryId, String clockCategoryName) {
 		super();
-		this.clockId = clockId;
-		this.clockName = clockName;
+		this.clockCategoryId = clockCategoryId;
+		this.clockCategoryName = clockCategoryName;
 	}
 	
 	public ClockCategoryOrderDto() {
@@ -24,8 +24,8 @@ public class ClockCategoryOrderDto implements DtoBasicInit<ClockCategoryOrderDto
 			return this;
 		}
 		ClockCategory cc = (ClockCategory)obj;
-		clockId = cc.getId();
-		clockName = cc.getClockCategory();
+		clockCategoryId = cc.getId();
+		clockCategoryName = cc.getClockCategory();
 		return this;
 	}
 	

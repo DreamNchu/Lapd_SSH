@@ -2,14 +2,14 @@ package com.lps.web.order.dto;
 
 public class OrderIdDto {
 
-	private String idOrder;
+	private String orderId;
 
-	public String getIdOrder() {
-		return idOrder;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setIdOrder(String idOrder) {
-		this.idOrder = idOrder;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 	
 }

@@ -6,22 +6,22 @@ function receivePayOrder(orderData) {
 	payTable.html($(""));
 	//deleteTr(payTable);
 	/*    var orderData={
-	        "order":[{"idOrder":"idOrder1","roomId":"roomId1","stuffId":"stuffId1","realName":"realName1","initTime":"initTime1","clockCategory":"clockCategory1","roomCategory":"roomCategory1"},
-	            {"idOrder":"idOrder2","roomId":"roomId2","stuffId":"stuffId2","realName":"realName2","initTime":"initTime2","clockCategory":"clockCategory2","roomCategory":"roomCategory2"}]
+	        "order":[{"orderId":"orderId1","roomId":"roomId1","stuffId":"stuffId1","realName":"realName1","initTime":"initTime1","clockCategory":"clockCategory1","roomCategory":"roomCategory1"},
+	            {"orderId":"orderId2","roomId":"roomId2","stuffId":"stuffId2","realName":"realName2","initTime":"initTime2","clockCategory":"clockCategory2","roomCategory":"roomCategory2"}]
 	    }*/
 	var i;
 	for (i in orderData.order) {
 		//		var orderTr = document.createElement("tr");
 		var orderTr = $("<tr></tr>")
 		payTable.append(orderTr);
-		orderTr.append($("<td id='idOrder" + i + "'>" + orderData.order[i].idOrder + "</td>"))
+		orderTr.append($("<td id='orderId" + i + "'>" + orderData.order[i].orderId + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].room + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].stuff + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].realName + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].initTime + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].clockCategory + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].roomCategory + "</td>"))
-		orderTr.append($("<td><button  id='payTo" + i + "' value='"+ orderData.order[i].idOrder +"' >支付</button></td>"));
+		orderTr.append($("<td><button  id='payTo" + i + "' value='"+ orderData.order[i].orderId +"' >支付</button></td>"));
 		//alert(i);
 		$("#payTo" + i).click(function() {
 //			alert(0);
@@ -35,13 +35,13 @@ function receiveServingOrder(orderData) {
 	serveTable = document.getElementById("serveTable");
 	deleteTr(serveTable);
 	/*    var orderData={
-	        "order":[{"idOrder":"idOrder1","roomId":"roomId1","stuffId":"stuffId1","realName":"realName1","receiveTime":"receiveTime1","workTime":"workTime1"},
-	            {"idOrder":"idOrder2","roomId":"roomId2","stuffId":"stuffId1","realName":"realName2","receiveTime":"receiveTime2","workTime":"workTime2"}]
+	        "order":[{"orderId":"orderId1","roomId":"roomId1","stuffId":"stuffId1","realName":"realName1","receiveTime":"receiveTime1","workTime":"workTime1"},
+	            {"orderId":"orderId2","roomId":"roomId2","stuffId":"stuffId1","realName":"realName2","receiveTime":"receiveTime2","workTime":"workTime2"}]
 	    }*/
 	var i;
 	for (i in orderData.order) {
 		var orderTr = document.createElement("tr");
-		orderTr.innerHTML = "<td>" + orderData.order[i].idOrder + "</td>" +
+		orderTr.innerHTML = "<td>" + orderData.order[i].orderId + "</td>" +
 			"<td>" + orderData.order[i].room + "</td>" +
 			"<td>" + orderData.order[i].stuff + "</td>" +
 			"<td>" + orderData.order[i].realName + "</td>" +
@@ -57,7 +57,7 @@ function payClick(orderdata) {
 	$("#myModal").modal("show");
 	/*var orderdata = {
 		"data" : {
-			"idOrder" : "idOrder1",
+			"orderId" : "orderId1",
 			"roomId" : "rommId1",
 			"stuffId" : "stuffId",
 			"realName" : "realName1",
@@ -69,8 +69,8 @@ function payClick(orderdata) {
 		},
 		"payPath" : [ "现金", "支付宝", "微信" ]
 	};*/
-	document.getElementById("idOrder").innerHTML = orderdata.idOrder;
-	document.getElementById("idOrderTure").value = orderdata.idOrder;
+	document.getElementById("orderId").innerHTML = orderdata.orderId;
+	document.getElementById("orderIdTure").value = orderdata.orderId;
 	document.getElementById("roomId").innerHTML = orderdata.room;
 	document.getElementById("stuffId").innerHTML = orderdata.stuff;
 	document.getElementById("realName").innerHTML = orderdata.realName;
@@ -79,7 +79,7 @@ function payClick(orderdata) {
 	document.getElementById("receiveTime").innerHTML = orderdata.receiveTime;
 	document.getElementById("finishTime").innerHTML = orderdata.finishTime;
 	document.getElementById("pay").innerHTML = orderdata.pay;
-	document.getElementById("id").value = orderdata.idOrder;
+	document.getElementById("id").value = orderdata.orderId;
 	var payTr = document.getElementById("payTr");
 	var i,
 	str = "";

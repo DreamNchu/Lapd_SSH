@@ -16,7 +16,6 @@ import javax.persistence.TemporalType;
 
 import com.lps.model.basic.BasicModel;
 
-
 /**
  * AbstractTServerorder entity provides the base persistence definition of the
  * TServerorder entity. @author MyEclipse Persistence Tools
@@ -27,9 +26,6 @@ import com.lps.model.basic.BasicModel;
 public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 6038267699363948636L;
 	private String id;
 	
@@ -47,8 +43,6 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 	private Integer pay;
 	private Integer realPay;
 	private String orderRemark;
-
-	// Constructors
 
 	/** default constructor */
 	/**
@@ -117,12 +111,9 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 	/**
 	 * 获取订单id
 	 */
-	// Property accessors
 	@Id
-//	@GeneratedValue
-
 	@Column(
-			name = "idOrder", 
+			name = "id", 
 			unique = true, 
 			nullable = false, 
 			length = 45)
@@ -133,10 +124,10 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 
 	/**
 	 * 设置id
-	 * @param idOrder 订单id
+	 * @param orderId 订单id
 	 */
-	public void setId(String idOrder) {
-		this.id = idOrder;
+	public void setId(String orderId) {
+		this.id = orderId;
 	}
 	
 	/**
@@ -421,11 +412,11 @@ public class ServerOrder implements java.io.Serializable ,BasicModel<String>{
 
 		/**
 		 * 设置订单id
-		 * @param idOrder 订单id String类型
+		 * @param orderId 订单id String类型
 		 * @return 订单id
 		 */
-		public Builder setId(String idOrder) {
-			this.id = idOrder;
+		public Builder setId(String orderId) {
+			this.id = orderId;
 			return this;
 		}
 		

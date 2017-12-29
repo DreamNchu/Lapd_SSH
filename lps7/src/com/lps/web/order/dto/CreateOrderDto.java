@@ -2,13 +2,13 @@ package com.lps.web.order.dto;
 
 public class CreateOrderDto {
 	
-	private int createWay;
+	private int createWays;
 	
  	private int stuffId;
  	
  	private int roomId;
  	
- 	private int roomCategoryId;
+ 	private int serverItemId;
  	
  	private String orderRemark;
  	
@@ -21,12 +21,12 @@ public class CreateOrderDto {
 		this.orderRemark = orderRemark;
 	}
 
-	public int getCreateWay() {
-		return createWay;
+	public int getCreateWays() {
+		return createWays;
 	}
 
-	public void setCreateWay(int createWay) {
-		this.createWay = createWay;
+	public void setCreateWays(int createWays) {
+		this.createWays = createWays;
 	}
 
 	public int getStuffId() {
@@ -45,12 +45,12 @@ public class CreateOrderDto {
 		this.roomId = roomId;
 	}
 
-	public int getRoomCategoryId() {
-		return roomCategoryId;
+	public int getServerItemId() {
+		return serverItemId;
 	}
 
-	public void setRoomCategoryId(int roomCategoryId) {
-		this.roomCategoryId = roomCategoryId;
+	public void setServerItemId(int serverItemId) {
+		this.serverItemId = serverItemId;
 	}
 
 

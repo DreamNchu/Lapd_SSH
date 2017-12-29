@@ -1,4 +1,4 @@
-package com.lps.web.dto;
+package com.lps.web.access.dto;
 
 import java.util.Date;
 
@@ -120,3 +120,4 @@ public class UserSignInDto {
 	
 	
 }
+

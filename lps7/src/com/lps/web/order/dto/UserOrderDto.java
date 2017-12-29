@@ -6,16 +6,15 @@ public class UserOrderDto implements DtoBasicInit<UserOrderDto>{
 	
 	public Integer stuffId;
 	
-	public Integer stuffWorkId;
+	public Integer workId;
 	
 	public UserOrderDto() {
-		// TODO Auto-generated constructor stub
 	}
 
-	public UserOrderDto(Integer stuffId, Integer stuffWorkId) {
+	public UserOrderDto(Integer stuffId, Integer workId) {
 		super();
 		this.stuffId = stuffId;
-		this.stuffWorkId = stuffWorkId;
+		this.workId = workId;
 	}
 
 	public Integer getStuffId() {
@@ -28,12 +27,12 @@ public class UserOrderDto implements DtoBasicInit<UserOrderDto>{
 
 
 
-	public Integer getStuffWorkId() {
-		return stuffWorkId;
+	public Integer getWorkId() {
+		return workId;
 	}
 
-	public void setStuffWorkId(Integer stuffWorkId) {
-		this.stuffWorkId = stuffWorkId;
+	public void setWorkId(Integer workId) {
+		this.workId = workId;
 	}
 
 	public UserOrderDto init(Object obj) {
@@ -42,7 +41,7 @@ public class UserOrderDto implements DtoBasicInit<UserOrderDto>{
 		}
 		User u = (User) obj;
 		stuffId = u.getId();
-		stuffWorkId = u.getWorkId();
+		workId = u.getWorkId();
 		return this;
 	}
 	

@@ -446,11 +446,11 @@ public class OrderManage implements TimeType, Population {
 	/**
 	 * 通过id 查找订单
 	 * 
-	 * @param idOrder
+	 * @param orderId
 	 * @return
 	 */
-	public ServerOrder queryOrder(String idOrder) {
-		return serverOrderServiceImpl.findById(idOrder);
+	public ServerOrder queryOrder(String orderId) {
+		return serverOrderServiceImpl.findById(orderId);
 	}
 
 	/**
@@ -505,12 +505,6 @@ public class OrderManage implements TimeType, Population {
 		serverOrderServiceImpl.update(so);
 	}
 	
-	/**
-	 * 
-	 * @param idOrder
-	 * @param orderStatus 将要改成的状态
-	 * @param userId
-	 */
 	public void updateOrderNormal(UpdateOrderNormalOperationDto uo){
 		ServerOrder so = serverOrderServiceImpl.findById(uo.getOrderId());
 		

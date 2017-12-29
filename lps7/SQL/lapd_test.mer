@@ -1,0 +1,536 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ERDiagram version="1.1">
+  <Connection session="mysql" database="lapd_test" />
+  <Drawing gridVisible="false" snapOn="false" fastRouting="false" labelsVisible="true" />
+  <Tables>
+    <Table name="t_admin">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="userName" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="password" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="registerTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+        <Column name="avatar" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_clockcategory">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="clockcategory" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_combo_serveritem">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="t_combo_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="t_serverItem_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_combo">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+        <Column name="remark" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="beginTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+        <Column name="endTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_medicine">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="medicineId" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="vender" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="30" />
+        </Column>
+        <Column name="shelfLife" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="price" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="inventory" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="sales" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_orderstatus">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="orderstatus" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_paypath">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="payPath" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_pledge">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="price" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_room">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="name" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="10" />
+        </Column>
+        <Column name="roomCategory" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="floor" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="size" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="remark" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="addTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+        <Column name="isFree" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="BIT" />
+        </Column>
+        <Column name="isClean" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="BIT" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_serveritem">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="roomcategory" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_serverorder_combo">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="t_combo_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="t_serverorder_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_serverorder_medicine">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="t_serverorder_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+        <Column name="t_medicine_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_serverorder_serveritem">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="t_serverItem_id" primary_key="true" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="t_serverorder_id" primary_key="true" foreign_key="true" required="true" unique="true">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_serverorder">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+        <Column name="stuffId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="roomId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="statusId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="clockCategoryId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="payPathId" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="pledgeNameId" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="initTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+        <Column name="receiveTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+        <Column name="finishTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DATETIME" size="19" />
+        </Column>
+        <Column name="pay" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="realPay" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="payTime" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+        <Column name="orderRemark" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_user">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="userName" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+        <Column name="password" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="45" />
+        </Column>
+        <Column name="workId" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="birthday" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="DATE" size="10" />
+        </Column>
+        <Column name="telephonePhone" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="15" />
+        </Column>
+        <Column name="email" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="address" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="200" />
+        </Column>
+        <Column name="avatar" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="question" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="answer" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="VARCHAR" size="100" />
+        </Column>
+        <Column name="workStatus" primary_key="false" foreign_key="true" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="registerTime" primary_key="false" foreign_key="false" required="true" unique="false">
+          <Data type="TIMESTAMP" size="19" />
+        </Column>
+        <Column name="realName" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+        <Column name="IDCardNo" primary_key="false" foreign_key="false" required="false" unique="true">
+          <Data type="VARCHAR" size="30" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_workrank">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="stuffId" primary_key="false" foreign_key="true" required="true" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="rankNum" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="spotNum" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="t_workstatus">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="id" primary_key="true" foreign_key="false" required="true" unique="true">
+          <Data type="INT" size="10" />
+        </Column>
+        <Column name="workStatus" primary_key="false" foreign_key="false" required="true" unique="true">
+          <Data type="VARCHAR" size="20" />
+        </Column>
+      </Columns>
+    </Table>
+    <Table name="tb_generator">
+      <Drawing expanded="true" />
+      <Columns>
+        <Column name="gen_name" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="VARCHAR" size="255" />
+        </Column>
+        <Column name="gen_value" primary_key="false" foreign_key="false" required="false" unique="false">
+          <Data type="INT" size="10" />
+        </Column>
+      </Columns>
+    </Table>
+  </Tables>
+  <Relationships>
+    <Relationship name="fk_t_combo_serveritem_t_combo1">
+      <Details primary_table="t_combo" foreign_table="t_combo_serveritem">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_combo_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="fk_t_combo_serveritem_t_serverItem1">
+      <Details primary_table="t_serveritem" foreign_table="t_combo_serveritem">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_serverItem_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="name">
+      <Details primary_table="t_serveritem" foreign_table="t_room">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="roomCategory" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="fk_t_serverorder_combo_t_combo1">
+      <Details primary_table="t_combo" foreign_table="t_serverorder_combo">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_combo_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="fk_t_serverorder_combo_t_serverorder1">
+      <Details primary_table="t_serverorder" foreign_table="t_serverorder_combo">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_serverorder_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="fk_t_serverorder_medicine_t_medicine1">
+      <Details primary_table="t_medicine" foreign_table="t_serverorder_medicine">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_medicine_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="fk_t_serverorder_medicine_t_serverorder1">
+      <Details primary_table="t_serverorder" foreign_table="t_serverorder_medicine">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_serverorder_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="fk_t_serverorder_serveritem_t_serverItem1">
+      <Details primary_table="t_serveritem" foreign_table="t_serverorder_serveritem">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_serverItem_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="fk_t_serverorder_serveritem_t_serverorder1">
+      <Details primary_table="t_serverorder" foreign_table="t_serverorder_serveritem">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="t_serverorder_id" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="order_orderstatusId">
+      <Details primary_table="t_orderstatus" foreign_table="t_serverorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="statusId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="order_clockcatagory">
+      <Details primary_table="t_clockcategory" foreign_table="t_serverorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="clockCategoryId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="order_idRoom">
+      <Details primary_table="t_room" foreign_table="t_serverorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="roomId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="order_userId">
+      <Details primary_table="t_user" foreign_table="t_serverorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="stuffId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="order_pledgeName">
+      <Details primary_table="t_pledge" foreign_table="t_serverorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="pledgeNameId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="order_payPath">
+      <Details primary_table="t_paypath" foreign_table="t_serverorder">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="payPathId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="UserworkStatus">
+      <Details primary_table="t_workstatus" foreign_table="t_user">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="workStatus" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+    <Relationship name="id_user">
+      <Details primary_table="t_user" foreign_table="t_workrank">
+        <PrimaryKeys>
+          <ColumnName name="id" />
+        </PrimaryKeys>
+        <ForeignKeys>
+          <ColumnName name="stuffId" />
+        </ForeignKeys>
+      </Details>
+      <Drawing routingType="0" />
+    </Relationship>
+  </Relationships>
+</ERDiagram>
+

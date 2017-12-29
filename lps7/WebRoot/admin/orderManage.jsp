@@ -117,7 +117,7 @@
 		for (i in orderData.user) {
 			op = document.createElement("option");
 			op.setAttribute("value", orderData.user[i].stuffId);
-			op.innerHTML = orderData.user[i].stuffWorkId;
+			op.innerHTML = orderData.user[i].workId;
 			stuffId.appendChild(op);
 		}
 		for (i in orderData.room) {
@@ -134,8 +134,8 @@
 		}
 		for (i in orderData.clockCategory) {
 			op = document.createElement("option");
-			op.setAttribute("value", orderData.clockCategory[i].clockId);
-			op.innerHTML = orderData.clockCategory[i].clockName;
+			op.setAttribute("value", orderData.clockCategory[i].clockCategoryId);
+			op.innerHTML = orderData.clockCategory[i].clockCategoryName;
 			clockCategoryId.appendChild(op);
 		}
 		for (i in orderData.payType) {

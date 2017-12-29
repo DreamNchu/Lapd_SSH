@@ -6,23 +6,30 @@ import com.lps.util.WorkDate;
 public class OrderSingleDataDto{
 	
 	// 订单编号
-	private String idOrder;
+	private String orderId;
 	// 房间名字
-	private String room;
+	private String roomName;
+
 	// 工号
-	private String stuff;
+	private String workId;
+
 	//真实姓名
 	private String realName;
-	// 员工姓名
-	private String userName;
+//	// 员工姓名
+//	private String userName;
+	
 	// 订单发布时间
 	private String initTime;
+	
 	// 钟点类型
-	private String clockCategory;
+	private String clockCategoryName;
+	
 	// 订单状态
-	private String orderStatus;
+	private String orderStatusName;
+	
 	// 房间类型对应服务类型
-	private String roomCategory;
+	private String serverItemName;
+	
 	// 所押物品名字
 	private String pledgeName;
 	// 所需支付
@@ -53,18 +60,18 @@ public class OrderSingleDataDto{
 
 	}
 
-	public OrderSingleDataDto(String idOrder, String room, String stuff, String userName, String initTime,
+	public OrderSingleDataDto(String orderId, String room, String workId, /*String userName,*/ String initTime,
 			String clockCategory, String orderStatus, String roomCategory, String pledgeName, String pay,
 			String realPay, String payPath, String receiveTime, String finishTime, String payTime, String orderRemark) {
 		super();
-		this.idOrder = idOrder;
-		this.room = room;
-		this.stuff = stuff;
-		this.userName = userName;
+		this.orderId = orderId;
+		this.roomName = room;
+		this.workId = workId;
+//		this.userName = userName;
 		this.initTime = initTime;
-		this.clockCategory = clockCategory;
-		this.orderStatus = orderStatus;
-		this.roomCategory = roomCategory;
+		this.clockCategoryName = clockCategory;
+		this.orderStatusName = orderStatus;
+		this.serverItemName = roomCategory;
 		this.pledgeName = pledgeName;
 		this.pay = pay;
 		this.realPay = realPay;
@@ -76,23 +83,23 @@ public class OrderSingleDataDto{
 	}
 
 	public void init(ServerOrder so) {
-		setIdOrder(so.getId());
+		setOrderId(so.getId());
 		if (so.getPayPath() != null)
 			setPayPath(so.getPayPath().getPayPath());
 		if (so.getRoom() != null){
-			setRoom(so.getRoom().getName());
+			setRoomName(so.getRoom().getName());
 			setRoomCategory(so.getRoom().getRoomCategory().getServerItem());
 		}
 		if(so.getUser() != null){
-			setStuff(so.getUser().getWorkId() == null ? "" : so.getUser().getWorkId()+"");
+			setWorkId(so.getUser().getWorkId() == null ? "" : so.getUser().getWorkId()+"");
 			setRealName(so.getUser().getRealName());			
 		}
 		if (so.getPledge() != null)
 			setPledgeName(so.getPledge().getName());
 		if (so.getClockCategory() != null)
-			setClockCategory(so.getClockCategory().getClockCategory());
+			setClockCategoryName(so.getClockCategory().getClockCategory());
 		if (so.getOrderStatus() != null)
-			setOrderStatus(so.getOrderStatus().getOrderstatus());
+			setOrderStatusName(so.getOrderStatus().getOrderstatus());
 		if (so.getInitTime() != null)
 			setInitTime(WorkDate.dateTimeToString(so.getInitTime()));
 		if (so.getReceiveTime() != null)
@@ -105,7 +112,13 @@ public class OrderSingleDataDto{
 			setPayTime(WorkDate.dateTimeToString(so.getPayTime()));
 		setOrderRemark(so.getOrderRemark());
 	}
-	
+	public String getRoomName() {
+		return roomName;
+	}
+
+	public void setRoomName(String roomName) {
+		this.roomName = roomName;
+	}
 
 	public String getReceiveTime() {
 		return receiveTime;
@@ -138,46 +151,39 @@ public class OrderSingleDataDto{
 	public void setOrderRemark(String orderRemark) {
 		this.orderRemark = orderRemark;
 	}
+	
 
-	public String getOrderStatus() {
-		return orderStatus;
+	public String getOrderStatusName() {
+		return orderStatusName;
 	}
 
-	public void setOrderStatus(String orderStatus) {
-		this.orderStatus = orderStatus;
+	public void setOrderStatusName(String orderStatusName) {
+		this.orderStatusName = orderStatusName;
 	}
 
-	public String getIdOrder() {
-		return idOrder;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setIdOrder(String idOrder) {
-		this.idOrder = idOrder;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+	
+	public String getWorkId() {
+		return workId;
 	}
 
-	public String getRoom() {
-		return room;
+	public void setWorkId(String workId) {
+		this.workId = workId;
 	}
-
-	public void setRoom(String room) {
-		this.room = room;
-	}
-
-	public String getStuff() {
-		return stuff;
-	}
-
-	public void setStuff(String stuff) {
-		this.stuff = stuff;
-	}
-
+/*
 	public String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
+	}*/
 
 	public String getInitTime() {
 		return initTime;
@@ -187,20 +193,20 @@ public class OrderSingleDataDto{
 		this.initTime = initTime;
 	}
 
-	public String getClockCategory() {
-		return clockCategory;
+	public String getClockCategoryName() {
+		return clockCategoryName;
 	}
 
-	public void setClockCategory(String clockCategory) {
-		this.clockCategory = clockCategory;
+	public void setClockCategoryName(String clockCategory) {
+		this.clockCategoryName = clockCategory;
 	}
 
 	public String getRoomCategory() {
-		return roomCategory;
+		return serverItemName;
 	}
 
 	public void setRoomCategory(String roomCategory) {
-		this.roomCategory = roomCategory;
+		this.serverItemName = roomCategory;
 	}
 
 	public String getPledgeName() {

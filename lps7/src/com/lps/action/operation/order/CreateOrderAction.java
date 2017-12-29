@@ -31,7 +31,7 @@ public class CreateOrderAction extends ActionSupport {
 //System.out.println("111"+createOrderDto.getOrderRemark());
 		try {
 			ServerOrder so = null;
-			switch (createOrderDto.getCreateWay()) {
+			switch (createOrderDto.getCreateWays()) {
 			case CreateOrderWay.rank_order_auto:
 				so = orderManage.createOrder(createOrderDto.getRoomId(), createOrderDto.getOrderRemark());
 				break;

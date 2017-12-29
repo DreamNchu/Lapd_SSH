@@ -69,7 +69,7 @@ StringBuffer basePath = request.getRequestURL();
                         <tbody align="center">
                         <tr>
                             <td>订单编号：</td>
-                            <td><label id="idOrder"><s:property value="orderSingleDataDto.idOrder"/></label></td>
+                            <td><label id="orderId"><s:property value="orderSingleDataDto.orderId"/></label></td>
                         </tr>
                         <tr>
                             <td>房间号：</td>

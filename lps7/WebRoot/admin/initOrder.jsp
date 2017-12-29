@@ -59,13 +59,13 @@
 			op,
 			createOrder;
 
-		document.getElementById("rad1").value = createOrder.createWay[0];
-		document.getElementById("rad2").value = createOrder.createWay[1];
-		document.getElementById("rad3").value = createOrder.createWay[2];
+		document.getElementById("rad1").value = createOrder.createWays[0];
+		document.getElementById("rad2").value = createOrder.createWays[1];
+		document.getElementById("rad3").value = createOrder.createWays[2];
 		for (i in createOrder.user) {
 			op = document.createElement("option");
 			op.setAttribute("value", createOrder.user[i].stuffId);
-			op.innerHTML = createOrder.user[i].stuffWorkId;
+			op.innerHTML = createOrder.user[i].workId;
 			stuffId.appendChild(op);
 		}
 		for (i in createOrder.room) {
@@ -123,15 +123,15 @@
 									<div class="box-header with-border">
 										<label for="rad1" class="radio"> <span
 											class="radio-bg"></span> <input type="radio"
-											name="createOrderDto.createWay" id="rad1" checked
+											name="createOrderDto.createWays" id="rad1" checked
 											onclick="showOf()"> 点钟手发 <span class="radio-on"></span>
 										</label> <label for="rad2" class="radio"> <span
 											class="radio-bg"></span> <input type="radio"
-											name="createOrderDto.createWay" id="rad2" onclick="showOf()">
+											name="createOrderDto.createWays" id="rad2" onclick="showOf()">
 											排钟手发 <span class="radio-on"></span>
 										</label> <label for="rad3" class="radio"> <span
 											class="radio-bg"></span> <input type="radio"
-											name="createOrderDto.createWay" id="rad3" onclick="hideOf()">
+											name="createOrderDto.createWays" id="rad3" onclick="hideOf()">
 											排钟自发 <span class="radio-on"></span>
 										</label>
 									</div>
@@ -149,7 +149,7 @@
 										</div>
 										<div class="form-group">
 											<label>选择项目</label> <select class="form-control"
-												name="createOrderDto.roomCategoryId" id="roomCategory">
+												name="createOrderDto.serverItemId" id="roomCategory">
 											</select>
 										</div>
 										<div class="form-group">

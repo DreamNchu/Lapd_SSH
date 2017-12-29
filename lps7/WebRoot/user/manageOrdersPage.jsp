@@ -161,7 +161,7 @@ StringBuffer basePath = request.getRequestURL();
                     <tbody>
                     <tr>
                         <td>订单编号：</td>
-                        <td id="waitingOrderId" class="idOrder"></td>
+                        <td id="waitingOrderId" class="orderId"></td>
                     </tr>
                     <tr>
                         <td>房间号：</td>
@@ -194,7 +194,7 @@ StringBuffer basePath = request.getRequestURL();
                          <td colspan="4" ><b>内容</b></td>
                     <tr>
                         <td>订单编号：</td>
-                        <td class="idOrder" colspan="4" id="servicingOrderId"></td>
+                        <td class="orderId" colspan="4" id="servicingOrderId"></td>
                     </tr>
                     <tr>
                         <td>房间号：</td>

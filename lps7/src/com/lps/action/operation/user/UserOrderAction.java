@@ -138,14 +138,14 @@ System.out.println(result);
 		this.orderSingleDataDto = orderSingleDataDto;
 	}
 
-	private String idOrder;
+	private String orderId;
 
-	public String getIdOrder() {
-		return idOrder;
+	public String getOrderId() {
+		return orderId;
 	}
 
-	public void setIdOrder(String idOrder) {
-		this.idOrder = idOrder;
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
 	/**
@@ -154,7 +154,7 @@ System.out.println(result);
 	 * @return
 	 */
 	public String detailOrderInfo() {
-		orderSingleDataDto.init(orderManage.queryOrder(idOrder));
+		orderSingleDataDto.init(orderManage.queryOrder(orderId));
 		return SUCCESS;
 	}
 
@@ -164,7 +164,7 @@ System.out.println(result);
 	 * @return
 	 */
 	public String refuseOrder() {
-		ServerOrder so = orderManage.queryOrder(idOrder);
+		ServerOrder so = orderManage.queryOrder(orderId);
 		// 拒绝订单
 		orderManage.refuseOrderFromUser(so);
 		return SUCCESS;
@@ -191,7 +191,7 @@ System.out.println(result);
 
 			int userId = Integer.parseInt(session.get("id") + "");
 
-			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(idOrder, new Permission(Permission.USER), 0, 0,
+			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(orderId, new Permission(Permission.USER), 0, 0,
 					OrderStatusDAOImpl.SERVICING, userId);
 			orderManage.updateOrderNormal(uo);
 
@@ -218,7 +218,7 @@ System.out.println(result);
 			}
 			int userId = Integer.parseInt(session.get("id") + "");
 
-			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(idOrder, new Permission(Permission.USER), pay, 0,
+			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(orderId, new Permission(Permission.USER), pay, 0,
 					OrderStatusDAOImpl.WAITING_PAY, userId);
 			
 			orderManage.updateOrderNormal(uo);

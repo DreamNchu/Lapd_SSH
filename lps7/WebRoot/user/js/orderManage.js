@@ -7,9 +7,9 @@ $(document).ready(function () {
 
 function acceptOrder(){
 	
-	var idOrder = $("#waitingOrderId").html();
-	//alert(idOrder);
-	ajaxRequest("receiveOrder?idOrder="+idOrder, function(reciveOrder){
+	var orderId = $("#waitingOrderId").html();
+	//alert(orderId);
+	ajaxRequest("receiveOrder?orderId="+orderId, function(reciveOrder){
 		alert(reciveOrder.msg);
 		document.getElementById("lis").getElementsByTagName("li")[1].onclick();
 	});
@@ -17,10 +17,10 @@ function acceptOrder(){
 }
 
 function completeWork(){
-	var idOrder = $("#servicingOrderId").html();
+	var orderId = $("#servicingOrderId").html();
 	var pay = $("#pay").val();
 	
-	ajaxRequest("finishOrder?idOrder="+idOrder+"&pay="+pay, function(reciveOrder){
+	ajaxRequest("finishOrder?orderId="+orderId+"&pay="+pay, function(reciveOrder){
 		alert(reciveOrder.msg);
 		document.getElementById("lis").getElementsByTagName("li")[2].onclick();
 	});
@@ -29,7 +29,7 @@ function completeWork(){
 
 function singleOrder(reciveOrder) {
 	
-	 $(".idOrder").html("");
+	 $(".orderId").html("");
 	  $(".room").html("");
 	  $(".initTime").html("");
 	  $(".clockCategory").html("");
@@ -39,7 +39,7 @@ function singleOrder(reciveOrder) {
 		
 		  for(i in reciveOrder.order){
 			  
-			  $(".idOrder").html( reciveOrder.order[i].idOrder);
+			  $(".orderId").html( reciveOrder.order[i].orderId);
 			  $(".room").html(reciveOrder.order[i].room);
 			  $(".initTime").html(reciveOrder.order[i].initTime);
 			  $(".clockCategory").html(reciveOrder.order[i].clockCategory);
@@ -57,7 +57,7 @@ function waitingPayUser(reciveOrder){
 	
 	tbody.html($(""));
 	for(i in reciveOrder.order){
-		 tr = $("<tr id='orderId"+ i +"' value='"+ reciveOrder.order[i].idOrder +"'></tr>");
+		 tr = $("<tr id='orderId"+ i +"' value='"+ reciveOrder.order[i].orderId +"'></tr>");
 		 tbody.append(tr);
 		 tr.append($("<td>"+reciveOrder.order[i].room +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].roomCategory +"</td>"));
@@ -65,7 +65,7 @@ function waitingPayUser(reciveOrder){
 		 tr.append($("<td>"+reciveOrder.order[i].clockCategory +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].pay +"</td>"));
 		 $("#orderId"+i).click(function(){
-			 $(location).attr('href', 'detailOrderInfo?idOrder='+$(this).attr('value'));
+			 $(location).attr('href', 'detailOrderInfo?orderId='+$(this).attr('value'));
 		 })
 		 
 	  }
@@ -76,7 +76,7 @@ function finish(reciveOrder){
 	var tbody = $("#finish");
 	//tbody.empty();
 	 for(i in reciveOrder.order){
-		 tr = $("<tr id='orderIdF"+ i +"' value='"+ reciveOrder.order[i].idOrder +"'></tr>");
+		 tr = $("<tr id='orderIdF"+ i +"' value='"+ reciveOrder.order[i].orderId +"'></tr>");
 		 tbody.html(tr);
 		 tr.append($("<td>"+reciveOrder.order[i].room +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].roomCategory +"</td>"));
@@ -84,7 +84,7 @@ function finish(reciveOrder){
 		 tr.append($("<td>"+reciveOrder.order[i].pay +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].realPay +"</td>"));
 		 $("#orderIdF"+i).click(function(){
-			 $(location).attr('href', 'detailOrderInfo?idOrder='+$(this).attr('value'));
+			 $(location).attr('href', 'detailOrderInfo?orderId='+$(this).attr('value'));
 		 })
 	  }
 }

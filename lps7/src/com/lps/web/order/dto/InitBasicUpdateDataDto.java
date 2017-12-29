@@ -11,14 +11,27 @@ import com.lps.model.User;
 
 public class InitBasicUpdateDataDto{
 	
+	/**
+	 * 所有用户基本信息
+	 */
 	private List<UserOrderDto> user;
-	
+	/**
+	 * 所有房间基本信息
+	 */
 	private List<RoomOrderDto> room;
-	
+	/**
+	 * 所有订单状态基本信息
+	 */
 	private List<StatusOrderDto> status;
 	
+	/**
+	 * 所有钟点类型基本信息
+	 */
 	private List<ClockCategoryOrderDto> clockCategory;
 	
+	/**
+	 * 所有支付方式基本信息
+	 */
 	private List<PayPathOrderDto> payType;
 	
 	private Integer pay;

@@ -48,8 +48,8 @@ function waitingReceive(reciveOrder) {
         " <th>所做项目</th>";
     for(i in reciveOrder.order){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].idOrder+"></td>"+
-            "<td>"+reciveOrder.order[i].idOrder+"</td>"+
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
+            "<td>"+reciveOrder.order[i].orderId+"</td>"+
             "<td>"+reciveOrder.order[i].room+"</td>"+
             "<td>"+reciveOrder.order[i].stuff+"</td>"+
             "<td>"+reciveOrder.order[i].realName+"</td>"+
@@ -74,8 +74,8 @@ function servicing(reciveOrder) {
         " <th>所做项目</th>";
     for(i in reciveOrder.order){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].idOrder+"></td>"+
-            "<td>"+reciveOrder.order[i].idOrder+"</td>"+
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
+            "<td>"+reciveOrder.order[i].orderId+"</td>"+
             "<td>"+reciveOrder.order[i].room+"</td>"+
             "<td>"+reciveOrder.order[i].stuff+"</td>"+
             "<td>"+reciveOrder.order[i].realName+"</td>"+
@@ -101,8 +101,8 @@ function suspend(reciveOrder) {
         " <th>所做项目</th>";
     for(i in reciveOrder.order){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].idOrder+"></td>"+
-            "<td>"+reciveOrder.order[i].idOrder+"</td>"+
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
+            "<td>"+reciveOrder.order[i].orderId+"</td>"+
             "<td>"+reciveOrder.order[i].room+"</td>"+
             "<td>"+reciveOrder.order[i].stuff+"</td>"+
             "<td>"+reciveOrder.order[i].realName+"</td>"+
@@ -127,8 +127,8 @@ function invalid(reciveOrder) {
         " <th>所做项目</th>";
     for(i in reciveOrder.order){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].idOrder+"></td>"+
-            "<td>"+reciveOrder.order[i].idOrder+"</td>"+
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
+            "<td>"+reciveOrder.order[i].orderId+"</td>"+
             "<td>"+reciveOrder.order[i].room+"</td>"+
             "<td>"+reciveOrder.order[i].stuff+"</td>"+
             "<td>"+reciveOrder.order[i].realName+"</td>"+
@@ -156,8 +156,8 @@ function waitingPay(reciveOrder) {
         " <th>所需支付</th>\n" ;
     for(i in reciveOrder.order){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].idOrder+"></td>"+
-            "<td>"+reciveOrder.order[i].idOrder+"</td>"+
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
+            "<td>"+reciveOrder.order[i].orderId+"</td>"+
             "<td>"+reciveOrder.order[i].room+"</td>"+
             "<td>"+reciveOrder.order[i].stuff+"</td>"+
             "<td>"+reciveOrder.order[i].realName+"</td>"+
@@ -188,8 +188,8 @@ function finish(reciveOrder) {
         "  <th>支付方式</th>";
     for(i in reciveOrder.order){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].idOrder+"></td>"+
-            "<td>"+reciveOrder.order[i].idOrder+"</td>"+
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
+            "<td>"+reciveOrder.order[i].orderId+"</td>"+
             "<td>"+reciveOrder.order[i].room+"</td>"+
             "<td>"+reciveOrder.order[i].stuff+"</td>"+
             "<td>"+reciveOrder.order[i].realName+"</td>"+
@@ -228,8 +228,8 @@ function linkRequest(linkHref) {
     var f = $('.statusId').attr("key");
 //    alert(f);
     var reciveOrder={
-        "order":[{"idOrder":"idOrder3","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","roomCategory":"roomCategory1,"}
-            ,{"idOrder":"idOrder2","room":"room2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","roomCategory":"roomCategory2,"}]
+        "order":[{"orderId":"orderId3","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","roomCategory":"roomCategory1,"}
+            ,{"orderId":"orderId2","room":"room2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","roomCategory":"roomCategory2,"}]
         , "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
         "transform":[{"back":"TestHref","front":"TestHref"}],
         "number":[{"value":"1","link":"TestHref"},{"value":"2","link":"TestHref"},{"value":"3","link":"TestHref"},{"value":"4","link":"TestHref"}]

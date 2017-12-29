@@ -127,13 +127,13 @@ StringBuffer basePath = request.getRequestURL();
                         <h4 class="modal-title" id="myModalLabel">修改订单</h4>
                     </div>
                     <form id="serverForm">
-                    <input name="updateOrderNormalOperationDto.orderId" id="idOrderTure" type="hidden"/>
+                    <input name="updateOrderNormalOperationDto.orderId" id="orderIdTure" type="hidden"/>
                         <div class="modal-body">
                             <table align="center" border="1" cellspacing="0" cellpadding="5px">
                                 <tbody align="center">
                                     <tr>
                                         <td >订单号：</td>
-                                        <td id="idOrder">1</td>
+                                        <td id="orderId">1</td>
                                         <td >房间号：</td>
                                         <td id="roomId">1</td>
                                     </tr>
@@ -171,7 +171,7 @@ StringBuffer basePath = request.getRequestURL();
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <input type="hidden" name="idOrder" id="id">
+                            <input type="hidden" name="orderId" id="id">
                             <button type="button" class="btn btn-default"
                                     data-dismiss="modal">关闭</button>
                             <input type="button" onclick="surePay()" value="确认支付"
