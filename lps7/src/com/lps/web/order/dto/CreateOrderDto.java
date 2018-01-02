@@ -11,8 +11,6 @@ public class CreateOrderDto {
  	
  	private int roomId;
  	
-// 	private int serverItemId;
- 	
  	private Set<Integer> serverItemIds;
 
 	public Set<Integer> getServerItemIds() {

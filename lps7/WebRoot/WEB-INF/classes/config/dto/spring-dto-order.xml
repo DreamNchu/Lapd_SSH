@@ -13,27 +13,20 @@
 
 	<bean id="initCreateOrderDto" scope="prototype"
 		class="com.lps.web.order.dto.InitCreateOrderDto">
-		<property name="createWays">
-			<list>
-				<value>1</value>
-				<value>2</value>
-				<value>3</value>
-			</list>
-		</property>
-		<property name="room">
+		<property name="rooms">
 			<list></list>
 		</property>
-		<property name="serverItem">
+		<property name="serverItems">
 			<list></list>
 		</property>
-		<property name="user">
+		<property name="users">
 			<list></list>
 		</property>
 	</bean>
 
 	<bean id="orderTableDataDto" class="com.lps.web.order.dto.OrderTableDataDto"
 		scope="prototype">
-		<property name="order">
+		<property name="orders">
 			<list></list>
 		</property>
 

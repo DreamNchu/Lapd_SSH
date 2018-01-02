@@ -51,7 +51,7 @@ public class OrderManage implements TimeType, Population {
 	private OrderStatusService orderStatusServiceImpl;
 
 	private ServerOrderService serverOrderServiceImpl;
-	
+
 	private ServerItemService serverItemServiceImpl;
 
 	public ServerItemService getServerItemServiceImpl() {
@@ -218,13 +218,14 @@ public class OrderManage implements TimeType, Population {
 	 * @param clockCategory
 	 * @return
 	 */
-	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory,Set<Integer> serverItemIds, String orderRemark) {
+	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory, Set<Integer> serverItemIds,
+			String orderRemark) {
 
 		User u = userServiceImpl.findById(stuffId);
 		Room r = roomServiceImpl.findById(roomId);
 		ClockCategory cc = clockCategoryServiceImpl.findById(clockCategory);
 		Set<ServerItem> items = getServerItems(serverItemIds);
-		
+
 		return createNormalOrder(u, r, cc, items, orderRemark);
 	}
 
@@ -236,7 +237,8 @@ public class OrderManage implements TimeType, Population {
 	 * @param clockCategory
 	 * @return
 	 */
-	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory,Set<ServerItem> serverItems,  String orderRemark) {
+	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory, Set<ServerItem> serverItems,
+			String orderRemark) {
 		ServerOrder so = new ServerOrder();
 		so.setId(orderIdCreater(user.getWorkId(), room.getName(), clockCategory.getId()));
 		so.setUser(user); // 初始化员工
@@ -248,33 +250,33 @@ public class OrderManage implements TimeType, Population {
 		so.setOrderRemark(orderRemark);
 		return so;
 	}
-	
-	
+
 	/**
 	 * 创建一个订单
+	 * 
 	 * @param createOrderDto
 	 */
-	public void createOrder(CreateOrderDto createOrderDto){
+	public void createOrder(CreateOrderDto createOrderDto) {
 		ServerOrder so = null;
 		switch (createOrderDto.getCreateWays()) {
 		case CreateOrderWay.rank_order_auto:
-			so = createOrder(createOrderDto.getRoomId(), createOrderDto.getOrderRemark(),createOrderDto.getServerItemIds());
+			so = createOrder(createOrderDto.getRoomId(), createOrderDto.getOrderRemark(),
+					createOrderDto.getServerItemIds());
 			break;
 		case CreateOrderWay.rank_order_handle:
-			so = createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
-					ClockCategoryDAO.RANK_CLOCK,createOrderDto.getServerItemIds(), createOrderDto.getOrderRemark());
+			so = createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(), ClockCategoryDAO.RANK_CLOCK,
+					createOrderDto.getServerItemIds(), createOrderDto.getOrderRemark());
 			break;
 		case CreateOrderWay.spot_order_handle:
-			so = createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
-					ClockCategoryDAO.SPOT_CLOCK,createOrderDto.getServerItemIds(), createOrderDto.getOrderRemark());
+			so = createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(), ClockCategoryDAO.SPOT_CLOCK,
+					createOrderDto.getServerItemIds(), createOrderDto.getOrderRemark());
 			break;
 		}
 		serverOrderServiceImpl.save(so); // 保存订单
 	}
 
 	/**
-	 * 自动创建订单
-	 * 创建排钟
+	 * 自动创建订单 创建排钟
 	 * 
 	 * @param roomId
 	 * @return
@@ -290,9 +292,9 @@ public class OrderManage implements TimeType, Population {
 			ClockCategory cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
 			Set<ServerItem> items = getServerItems(serverItemIds);
 
-			return createNormalOrder(u, r, cc,items , orderRemark);
+			return createNormalOrder(u, r, cc, items, orderRemark);
 		} else { // 所有员工都没有空
-			//订单挂起
+			// 订单挂起
 			// Room r = roomServiceImpl.findById(roomId);
 			// ClockCategory cc =
 			// clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
@@ -300,13 +302,14 @@ public class OrderManage implements TimeType, Population {
 		}
 		return so;
 	}
-	
+
 	/**
 	 * 获取服务项目集合
+	 * 
 	 * @param sets
 	 * @return
 	 */
-	private Set<ServerItem> getServerItems(Set<Integer> sets){
+	private Set<ServerItem> getServerItems(Set<Integer> sets) {
 		Set<ServerItem> sis = new HashSet<>();
 		for (Integer integer : sets) {
 			sis.add(serverItemServiceImpl.findById(integer));
@@ -321,7 +324,8 @@ public class OrderManage implements TimeType, Population {
 	 * @return
 	 * @throws PagePropertyNotInitException
 	 */
-	public PageBean<ServerOrder> basicQuery(PageLinkTransformOrderDto qod, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> basicQuery(PageLinkTransformOrderDto qod, int page)
+			throws PagePropertyNotInitException {
 		PageBean<ServerOrder> listSo = null;
 
 		// 订单类型范围
@@ -387,7 +391,7 @@ public class OrderManage implements TimeType, Population {
 			so.setOrderStatus(orderStatusServiceImpl.findById(orderUpdateDataDto.getStatusId()));
 		if (orderUpdateDataDto.getClockCategoryId() != 0)
 			so.setClockCategory(clockCategoryServiceImpl.findById(orderUpdateDataDto.getClockCategoryId()));
-		
+
 		so.setPay(orderUpdateDataDto.getPay());
 		so.setRealPay(orderUpdateDataDto.getRealPay());
 		so.setOrderRemark(orderUpdateDataDto.getOrderRemark());
@@ -396,29 +400,24 @@ public class OrderManage implements TimeType, Population {
 	}
 
 	/**
-	 * 完全更新
-	 * 1.订单在服务中，那么判定员工接受该订单
-	 * 需要在工作排名中加一
+	 * 完全更新 1.订单在服务中，那么判定员工接受该订单 需要在工作排名中加一
+	 * 
 	 * @param so
 	 */
 	public void updateToReciveFromUser(ServerOrder so) {
-		
-		switch(so.getClockCategory().getId()){
-		case ClockCategoryDAO.RANK_CLOCK:  
-			if(so.getOrderStatus().getId() == 
-						OrderStatusDAO.SERVICING)
+
+		switch (so.getClockCategory().getId()) {
+		case ClockCategoryDAO.RANK_CLOCK:
+			if (so.getOrderStatus().getId() == OrderStatusDAO.SERVICING)
 				workRankManage.addUserRankNum(so.getUser());
 			break;
 		case ClockCategoryDAO.SPOT_CLOCK:
-			if(so.getOrderStatus().getId() == 
-						OrderStatusDAO.SERVICING)
+			if (so.getOrderStatus().getId() == OrderStatusDAO.SERVICING)
 				workRankManage.addUserSpotNum(so.getUser());
 			break;
 		}
 	}
-	
-	
-	
+
 	/**
 	 * 图表数据分析
 	 * 
@@ -477,13 +476,13 @@ public class OrderManage implements TimeType, Population {
 		for (ServerOrder serverOrder : sos) {
 			if (serverOrder.getRealPay() != null) {
 				income += serverOrder.getRealPay();
-				
-				if(serverOrder.getClockCategory().getId() == ClockCategoryDAO.RANK_CLOCK){
-					rankNum ++;
-				}else if(serverOrder.getClockCategory().getId() == ClockCategoryDAO.SPOT_CLOCK){
-					spotNum ++;
+
+				if (serverOrder.getClockCategory().getId() == ClockCategoryDAO.RANK_CLOCK) {
+					rankNum++;
+				} else if (serverOrder.getClockCategory().getId() == ClockCategoryDAO.SPOT_CLOCK) {
+					spotNum++;
 				}
-				
+
 				count++;
 			}
 		}
@@ -491,9 +490,9 @@ public class OrderManage implements TimeType, Population {
 		orderChartDto.getIncome().add(income);
 		// 总订单个数
 		orderChartDto.getOrderCount().add(count);
-		
+
 		orderChartDto.getOrderRankCount().add(rankNum);
-		
+
 		orderChartDto.getOrderSpotCount().add(spotNum);
 	}
 
@@ -508,8 +507,7 @@ public class OrderManage implements TimeType, Population {
 	}
 
 	/**
-	 * 根据条件拿到订单
-	 * 1.主要是针对员工的订单数据数据
+	 * 根据条件拿到订单 1.主要是针对员工的订单数据数据
 	 * 
 	 * @param userId
 	 * @param orderStatus
@@ -536,62 +534,68 @@ public class OrderManage implements TimeType, Population {
 	public List<User> findAllUser() {
 		return userServiceImpl.findAll();
 	}
-	
+
 	public Map<String, Set<User>> orderRefuseUserMap = new HashMap<>();
 
 	/**
 	 * 来自员工的拒绝订单
+	 * 
 	 * @param so
 	 */
 	public void refuseOrderFromUser(ServerOrder so) {
-		if(orderRefuseUserMap.get(so.getId()) == null){
+		if (orderRefuseUserMap.get(so.getId()) == null) {
 			orderRefuseUserMap.put(so.getId(), new HashSet<User>());
 		}
 		orderRefuseUserMap.get(so.getId()).add(so.getUser());
-		User user = 
-				workRankManage.nextOneNotIn( //找到下一个符合条件的员工
-						orderRefuseUserMap.get(so.getId()));
-		if(user != null)
+		User user = workRankManage.nextOneNotIn( // 找到下一个符合条件的员工
+				orderRefuseUserMap.get(so.getId()));
+		if (user != null)
 			so.setUser(user);
-		else{
-			//订单将为挂起状态
+		else {
+			// 订单将为挂起状态
 		}
 		serverOrderServiceImpl.update(so);
 	}
-	
-	public void updateOrderNormal(UpdateOrderNormalOperationDto uo){
+
+	/**
+	 * 管理员和员工都可以更新订单
+	 * 在正常情况下更新订单
+	 * @param uo
+	 */
+	public void updateOrderNormal(UpdateOrderNormalOperationDto uo) {
 		ServerOrder so = serverOrderServiceImpl.findById(uo.getOrderId());
-		
-		//权限检查
-		if(uo.getPermission().getPerssion() != com.lps.permission.Permission.ADMIN){
-			if(uo.getUserId() != so.getUser().getId()) //检查不同步问题
-				return ;
+
+		// 权限检查
+		if (uo.getPermission().getPerssion() != com.lps.permission.Permission.ADMIN) {
+			//不是管理员的话，那么
+			if (uo.getUserId() != so.getUser().getId()) // 检查不同步问题
+				//订单上的员工的主键id和用户主键id不匹配
+				throw new UserUpdateOrderNotTheSameUserIdException();
+//				return;
 		}
-	
-		
-		//更改状态
-		so.setOrderStatus(
-				orderStatusServiceImpl.findById(uo.getOrderStatusId()));
-		
-		switch(uo.getOrderStatusId()){
+
+		// 更改状态
+		so.setOrderStatus(orderStatusServiceImpl.findById(uo.getOrderStatusId()));
+
+		switch (uo.getOrderStatusId()) {
 		case OrderStatusDAO.SERVICING:
-			
-			so.setReceiveTime(new Date());  //接受时间
-			updateToReciveFromUser(so);  //更新workrank表中的数据
+
+			so.setReceiveTime(new Date()); // 接受时间
+			updateToReciveFromUser(so); // 更新workrank表中的数据
 			break;
 		case OrderStatusDAO.WAITING_PAY:
-			
+
 			so.setPay(uo.getPay());
 			so.setFinishTime(new Date());
 			break;
 		case OrderStatusDAO.FINISH:
-			
+
 			so.setRealPay(uo.getRealPay());
 			so.setFinishTime(new Date());
 			so.setPayPath(payPathServiceImpl.findById(uo.getRealPay()));
 			break;
 		}
-		
+
 		serverOrderServiceImpl.update(so);
 	}
 

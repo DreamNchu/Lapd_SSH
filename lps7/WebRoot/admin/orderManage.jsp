@@ -73,6 +73,7 @@
 			}
 		});
 	}
+	
 	function revise() {
 		var orderArray = document.getElementsByName("orderId");
 		var i,
@@ -114,34 +115,34 @@
 		var realPay = document.getElementById("realPay");
 		var orderRemark = document.getElementById("orderRemark");
 		var orderId=document.getElementById("orderId");
-		for (i in orderData.user) {
+		for (i in orderData.users) {
 			op = document.createElement("option");
-			op.setAttribute("value", orderData.user[i].stuffId);
-			op.innerHTML = orderData.user[i].workId;
+			op.setAttribute("value", orderData.users[i].stuffId);
+			op.innerHTML = orderData.users[i].workId;
 			stuffId.appendChild(op);
 		}
-		for (i in orderData.room) {
+		for (i in orderData.rooms) {
 			op = document.createElement("option");
-			op.setAttribute("value", orderData.room[i].roomId);
-			op.innerHTML = orderData.room[i].roomName;
+			op.setAttribute("value", orderData.rooms[i].roomId);
+			op.innerHTML = orderData.rooms[i].roomName;
 			roomId.appendChild(op);
 		}
-		for (i in orderData.status) {
+		for (i in orderData.statuses) {
 			op = document.createElement("option");
-			op.setAttribute("value", orderData.status[i].statusId);
-			op.innerHTML = orderData.status[i].statusName;
+			op.setAttribute("value", orderData.statuses[i].statusId);
+			op.innerHTML = orderData.statuses[i].statusName;
 			statusId.appendChild(op);
 		}
-		for (i in orderData.clockCategory) {
+		for (i in orderData.clockCategorys) {
 			op = document.createElement("option");
-			op.setAttribute("value", orderData.clockCategory[i].clockCategoryId);
-			op.innerHTML = orderData.clockCategory[i].clockCategoryName;
+			op.setAttribute("value", orderData.clockCategorys[i].clockCategoryId);
+			op.innerHTML = orderData.clockCategorys[i].clockCategoryName;
 			clockCategoryId.appendChild(op);
 		}
-		for (i in orderData.payType) {
+		for (i in orderData.payPaths) {
 			op = document.createElement("option");
-			op.setAttribute("value", orderData.payType[i].payId);
-			op.innerHTML = orderData.payType[i].payPath;
+			op.setAttribute("value", orderData.payPaths[i].payId);
+			op.innerHTML = orderData.payPaths[i].payPath;
 			payPathId.appendChild(op);
 		}
 		pay.value = orderData.pay;

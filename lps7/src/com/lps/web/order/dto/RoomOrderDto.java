@@ -8,7 +8,7 @@ public class RoomOrderDto implements DtoBasicInit<RoomOrderDto>{
 	
 	public String roomName;
 
-	public RoomOrderDto() {
+	public RoomOrderDto(){
 		
 	}
 

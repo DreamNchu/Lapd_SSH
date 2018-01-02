@@ -6,12 +6,9 @@ import java.util.Map;
 import com.google.gson.Gson;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.OrderManage;
-import com.lps.dao.ClockCategoryDAO;
-import com.lps.model.ServerOrder;
 import com.lps.service.ServerOrderService;
 import com.lps.util.WorkJson;
 import com.lps.web.order.dto.CreateOrderDto;
-import com.lps.web.order.dto.constant.CreateOrderWay;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class CreateOrderAction extends ActionSupport implements DataResult{

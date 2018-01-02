@@ -14,25 +14,25 @@ public class InitBasicUpdateDataDto{
 	/**
 	 * 所有用户基本信息
 	 */
-	private List<UserOrderDto> user;
+	private List<UserOrderDto> users;
 	/**
 	 * 所有房间基本信息
 	 */
-	private List<RoomOrderDto> room;
+	private List<RoomOrderDto> rooms;
 	/**
 	 * 所有订单状态基本信息
 	 */
-	private List<StatusOrderDto> status;
+	private List<StatusOrderDto> statuses;
 	
 	/**
 	 * 所有钟点类型基本信息
 	 */
-	private List<ClockCategoryOrderDto> clockCategory;
+	private List<ClockCategoryOrderDto> clockCategorys;
 	
 	/**
 	 * 所有支付方式基本信息
 	 */
-	private List<PayPathOrderDto> payType;
+	private List<PayPathOrderDto> payPaths;
 	
 	private Integer pay;
 	
@@ -45,12 +45,10 @@ public class InitBasicUpdateDataDto{
 	public String getOrderId() {
 		return orderId;
 	}
-
-
+	
 	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
-
 
 	private void initSurplus(ServerOrder so){
 		pay = so.getPay();
@@ -64,62 +62,62 @@ public class InitBasicUpdateDataDto{
 			,List<ClockCategory> clockCategorys, List<PayPath> payPaths, ServerOrder so){
 		initSurplus(so);
 		for (User u : users) {
-			user.add(new UserOrderDto().init(u));
+			this.users.add(new UserOrderDto().init(u));
 		}
 		for (Room r : rooms) {
-			room.add(new RoomOrderDto().init(r));
+			this.rooms.add(new RoomOrderDto().init(r));
 		}
 		for (OrderStatus os : orderStatuses) {
-			status.add(new StatusOrderDto().init(os));
+			this.statuses.add(new StatusOrderDto().init(os));
 		}
 		for (ClockCategory cc : clockCategorys) {
-			clockCategory.add(new ClockCategoryOrderDto().init(cc));
+			this.clockCategorys.add(new ClockCategoryOrderDto().init(cc));
 		}
 		for (PayPath pp : payPaths) {
-			payType.add(new PayPathOrderDto().init(pp));
+			this.payPaths.add(new PayPathOrderDto().init(pp));
 		}
 		return this;
 	}
 	
 	
 	public List<UserOrderDto> getUser() {
-		return user;
+		return users;
 	}
 
 	public void setUser(List<UserOrderDto> user) {
-		this.user = user;
+		this.users = user;
 	}
 
 	public List<RoomOrderDto> getRoom() {
-		return room;
+		return rooms;
 	}
 
 	public void setRoom(List<RoomOrderDto> room) {
-		this.room = room;
+		this.rooms = room;
 	}
 
 	public List<StatusOrderDto> getStatus() {
-		return status;
+		return statuses;
 	}
 
 	public void setStatus(List<StatusOrderDto> status) {
-		this.status = status;
+		this.statuses = status;
 	}
 
 	public List<ClockCategoryOrderDto> getClockCategory() {
-		return clockCategory;
+		return clockCategorys;
 	}
 
 	public void setClockCategory(List<ClockCategoryOrderDto> clockCategory) {
-		this.clockCategory = clockCategory;
+		this.clockCategorys = clockCategory;
 	}
 
 	public List<PayPathOrderDto> getPayType() {
-		return payType;
+		return payPaths;
 	}
 
 	public void setPayType(List<PayPathOrderDto> payType) {
-		this.payType = payType;
+		this.payPaths = payType;
 	}
 
 	public int getPay() {

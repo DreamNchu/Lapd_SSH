@@ -17,13 +17,13 @@ public class InitCreateOrderDto {
 }
 	*/
 	
-	private List<Integer> createWays;
+//	private List<Integer> createWays;
 	
-	private List<UserOrderDto> user;
+	private List<UserOrderDto> users;
 	
-	private List<RoomOrderDto> room;
+	private List<RoomOrderDto> rooms;
 	
-	private List<ServerItemOrderDto> serverItem;
+	private List<ServerItemOrderDto> serverItems;
 	
 	
 	public InitCreateOrderDto() {
@@ -37,61 +37,60 @@ public class InitCreateOrderDto {
 	 */
 	public void init(List<User> lu, List<Room> lr, List<ServerItem> lrc){
 		for (ServerItem rc : lrc) {
-			this.serverItem.add(
+			this.serverItems.add(
 					new ServerItemOrderDto().init(rc));
 		}
 		
 		for (User u : lu) {
-			this.user.add(new UserOrderDto().init(u));
+			this.users.add(new UserOrderDto().init(u));
 		}
 		
 		for (Room room : lr) {
-			this.room.add(new RoomOrderDto().init(room));
+			this.rooms.add(new RoomOrderDto().init(room));
 		}
 	}
 	
-	public InitCreateOrderDto(List<Integer> createWays, List<UserOrderDto> user, List<RoomOrderDto> room,
+	public InitCreateOrderDto(/*List<Integer> createWays,*/ List<UserOrderDto> user, List<RoomOrderDto> room,
 			List<ServerItemOrderDto> roomCategory) {
 		super();
-		this.createWays = createWays;
-		this.user = user;
-		this.room = room;
-		this.serverItem = roomCategory;
+//		this.createWays = createWays;
+		this.users = user;
+		this.rooms = room;
+		this.serverItems = roomCategory;
 	}
 
 
-
-	public List<RoomOrderDto> getRoom() {
-		return room;
+	public List<RoomOrderDto> getRooms() {
+		return rooms;
 	}
 
-	public void setRoom(List<RoomOrderDto> room) {
-		this.room = room;
+	public void setRooms(List<RoomOrderDto> room) {
+		this.rooms = room;
 	}
 
-	public List<ServerItemOrderDto> getServerItem() {
-		return serverItem;
+	public List<ServerItemOrderDto> getServerItems() {
+		return serverItems;
 	}
 
-	public void setServerItem(List<ServerItemOrderDto> serverItem) {
-		this.serverItem = serverItem;
+	public void setServerItems(List<ServerItemOrderDto> serverItem) {
+		this.serverItems = serverItem;
 	}
 
-	public List<UserOrderDto> getUser() {
-		return user;
+	public List<UserOrderDto> getUsers() {
+		return users;
 	}
 
-	public void setUser(List<UserOrderDto> user) {
-		this.user = user;
+	public void setUsers(List<UserOrderDto> user) {
+		this.users = user;
 	}
 
-	public List<Integer> getCreateWays() {
+/*	public List<Integer> getCreateWays() {
 		return createWays;
 	}
 
 	public void setCreateWays(List<Integer> createWays) {
 		this.createWays = createWays;
-	}
+	}*/
 
 	
 }

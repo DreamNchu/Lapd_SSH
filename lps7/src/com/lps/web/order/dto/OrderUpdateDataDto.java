@@ -11,90 +11,88 @@ public class OrderUpdateDataDto {
 	
 	private int stuffId;
 	
-	public int getStuffId() {
-		return stuffId;
-	}
-
-	public void setStuffId(int stuffId) {
-		this.stuffId = stuffId;
-	}
-
 	private int clockCategoryId;
-	
-	private int payId;
-	
+
+	private int payPathId;
+
 	private Integer pay;
 	
 	private Integer realPay;
 	
 	private String orderRemark;
-
-	public String getOrderId() {
-		return orderId;
-	}
-
-	public void setOrderId(String orderId) {
-		this.orderId = orderId;
-	}
-
-	public int getRoomId() {
-		return roomId;
-	}
-
-	public void setRoomId(int roomId) {
-		this.roomId = roomId;
-	}
-
-	public int getStatusId() {
-		return statusId;
-	}
-
-	public void setStatusId(int statusId) {
-		this.statusId = statusId;
-	}
-
+	
+	
+	
 	public int getClockCategoryId() {
 		return clockCategoryId;
 	}
-
-	public void setClockCategoryId(int clockCategoryId) {
-		this.clockCategoryId = clockCategoryId;
-	}
-
-	public int getPayId() {
-		return payId;
-	}
-
-	public void setPayId(int payId) {
-		this.payId = payId;
-	}
-
-	public Integer getPay() {
-		return pay;
-	}
-
-	public void setPay(Integer pay) {
-		this.pay = pay;
-	}
-
-	public Integer getRealPay() {
-		return realPay;
-	}
-
-	public void setRealPay(Integer realPay) {
-		this.realPay = realPay;
+	
+	public String getOrderId() {
+		return orderId;
 	}
 
 	public String getOrderRemark() {
 		return orderRemark;
 	}
 
+	public Integer getPay() {
+		return pay;
+	}
+
+	public int getPayPathId() {
+		return payPathId;
+	}
+
+	public Integer getRealPay() {
+		return realPay;
+	}
+
+	public int getRoomId() {
+		return roomId;
+	}
+
+	public int getStatusId() {
+		return statusId;
+	}
+
+	public int getStuffId() {
+		return stuffId;
+	}
+
+	public void setClockCategoryId(int clockCategoryId) {
+		this.clockCategoryId = clockCategoryId;
+	}
+
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
+	}
+
 	public void setOrderRemark(String orderRemark) {
 		this.orderRemark = orderRemark;
 	}
-	
-	
-	
-	
+
+	public void setPay(Integer pay) {
+		this.pay = pay;
+	}
+
+	public void setPayPathId(int payId) {
+		this.payPathId = payId;
+	}
+
+	public void setRealPay(Integer realPay) {
+		this.realPay = realPay;
+	}
+
+	public void setRoomId(int roomId) {
+		this.roomId = roomId;
+	}
+
+	public void setStatusId(int statusId) {
+		this.statusId = statusId;
+	}
+
+	public void setStuffId(int stuffId) {
+		this.stuffId = stuffId;
+	}
 	
 }

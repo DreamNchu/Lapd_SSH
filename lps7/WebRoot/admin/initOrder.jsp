@@ -59,25 +59,25 @@
 			op,
 			createOrder;
 
-		document.getElementById("rad1").value = createOrder.createWays[0];
-		document.getElementById("rad2").value = createOrder.createWays[1];
-		document.getElementById("rad3").value = createOrder.createWays[2];
-		for (i in createOrder.user) {
+		//document.getElementById("rad1").value = createOrder.createWays[0];
+		//document.getElementById("rad2").value = createOrder.createWays[1];
+		//document.getElementById("rad3").value = createOrder.createWays[2];
+		for (i in createOrder.users) {
 			op = document.createElement("option");
-			op.setAttribute("value", createOrder.user[i].stuffId);
-			op.innerHTML = createOrder.user[i].workId;
+			op.setAttribute("value", createOrder.users[i].stuffId);
+			op.innerHTML = createOrder.users[i].workId;
 			stuffId.appendChild(op);
 		}
-		for (i in createOrder.room) {
+		for (i in createOrder.rooms) {
 			op = document.createElement("option");
-			op.setAttribute("value", createOrder.room[i].roomId);
-			op.innerHTML = createOrder.room[i].roomName;
+			op.setAttribute("value", createOrder.rooms[i].roomId);
+			op.innerHTML = createOrder.rooms[i].roomName;
 			roomId.appendChild(op);
 		}
-		for (i in createOrder.serverItem){
+		for (i in createOrder.serverItems){
 			op = document.createElement("option");
-			op.setAttribute("value", createOrder.serverItem[i].serverItemId);
-			op.innerHTML = createOrder.serverItem[i].serverItemName;
+			op.setAttribute("value", createOrder.serverItems[i].serverItemId);
+			op.innerHTML = createOrder.serverItems[i].serverItemName;
 			serverItem.appendChild(op);
 		}
 	}
@@ -124,13 +124,13 @@
 										<label for="rad1" class="radio"> <span
 											class="radio-bg"></span> <input type="radio"
 											name="createOrderDto.createWays" id="rad1" checked
-											onclick="showOf()"> 点钟手发 <span class="radio-on"></span>
+											onclick="showOf()" value="1"> 点钟手发 <span class="radio-on"></span>
 										</label> <label for="rad2" class="radio"> <span
-											class="radio-bg"></span> <input type="radio"
+											class="radio-bg"></span> <input type="radio" value="2"
 											name="createOrderDto.createWays" id="rad2" onclick="showOf()">
 											排钟手发 <span class="radio-on"></span>
 										</label> <label for="rad3" class="radio"> <span
-											class="radio-bg"></span> <input type="radio"
+											class="radio-bg"></span> <input type="radio" value="3"
 											name="createOrderDto.createWays" id="rad3" onclick="hideOf()">
 											排钟自发 <span class="radio-on"></span>
 										</label>
@@ -149,7 +149,7 @@
 										</div>
 										<div class="form-group">
 											<label>选择项目</label> <select class="form-control"
-												name="createOrderDto.serverItemId" id="serverItem">
+												name="createOrderDto.serverItemIds" id="serverItem">
 											</select>
 										</div>
 										<div class="form-group">

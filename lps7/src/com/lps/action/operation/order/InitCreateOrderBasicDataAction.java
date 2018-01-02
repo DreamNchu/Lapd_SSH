@@ -2,6 +2,9 @@ package com.lps.action.operation.order;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.lps.action.jsonresult.DataResult;
 import com.lps.model.Room;
 import com.lps.model.ServerItem;
@@ -13,7 +16,7 @@ import com.lps.util.WorkJson;
 import com.lps.web.order.dto.InitCreateOrderDto;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class InitCreateOrderBasicDataAction extends ActionSupport implements DataResult{
+public class InitCreateOrderBasicDataAction extends ActionSupport implements DataResult {
 
 	private static final long serialVersionUID = -5140646258173298787L;
 
@@ -21,62 +24,65 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 
 	private RoomService roomServiceImpl;
 
-	private ServerItemService serverItemServiceImpl; 
-	
+	private ServerItemService serverItemServiceImpl;
+
 	private UserService userServiceImpl;
-	
+
 	private String result;
-	
+
+	private final static Logger logger = LogManager.getLogger(new Object() {
+		// 静态方法中获取当前类名
+		public String getClassName() {
+			String className = this.getClass().getName();
+			return className.substring(0, className.lastIndexOf('$'));
+		}
+	}.getClassName());
+
 	/**
 	 * 初始化发订单的基本数据
+	 * 
 	 * @return
 	 */
-	public String initOrderData(){
+	public String initOrderData() {
 		List<Room> listRooms = roomServiceImpl.findAll();
 		List<ServerItem> listServerItems = serverItemServiceImpl.findAll();
 		List<User> lisUsers = userServiceImpl.findAll();
-				
+
 		initCreateOrderDto.init(lisUsers, listRooms, listServerItems);
-		
-		//保存结果
-		result =  WorkJson.toJsonDisableHtmlEscaping(initCreateOrderDto);
+
+		// 保存结果
+		result = WorkJson.toJsonDisableHtmlEscaping(initCreateOrderDto);
+
+//System.out.println(result);
+		logger.debug(result);
+
 		return SUCCESS;
 	}
-	
+
 	@Override
-	public String execute(){
+	public String execute() {
 		return SUCCESS;
 	}
-	
 
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;
 	}
 
-
-
 	public void setUserServiceImpl(UserService userServiceImpl) {
 		this.userServiceImpl = userServiceImpl;
 	}
-
-
 
 	public String getResult() {
 		return result;
 	}
 
-
-
 	public void setResult(String result) {
 		this.result = result;
 	}
 
-
-
 	public ServerItemService getServerItemServiceImpl() {
 		return serverItemServiceImpl;
 	}
-
 
 	public void setServerItemServiceImpl(ServerItemService serverItemServiceImpl) {
 		this.serverItemServiceImpl = serverItemServiceImpl;
@@ -86,9 +92,6 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 		return serialVersionUID;
 	}
 
-
-
-
 	public RoomService getRoomServiceImpl() {
 		return roomServiceImpl;
 	}
@@ -97,7 +100,6 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 		this.roomServiceImpl = roomServiceImpl;
 	}
 
-
 	public InitCreateOrderDto getInitCreateOrderDto() {
 		return initCreateOrderDto;
 	}
@@ -105,8 +107,8 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 	public void setInitCreateOrderDto(InitCreateOrderDto initCreateOrderDto) {
 		this.initCreateOrderDto = initCreateOrderDto;
 	}
-	
-	public void writeInResult(Object obj){
+
+	public void writeInResult(Object obj) {
 		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 

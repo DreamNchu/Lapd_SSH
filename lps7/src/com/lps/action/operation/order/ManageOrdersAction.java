@@ -261,7 +261,9 @@ System.out.println(result);
 		// 更新已经更改的字段
 		
 		try {
+			
 			orderManage.update(orderUpdateDataDto);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put(MSG, "更新订单失败");
@@ -318,6 +320,7 @@ System.out.println(result);
 	}
 
 	public String toPayOrders(){
+		
 		try {
 			updateOrderNormalOperationDto.setPermission(new Permission(Permission.ADMIN));
 			

@@ -12,7 +12,7 @@ import com.lps.web.page.dto.PageDto;
 
 public class OrderTableDataDto extends PageDto{
 
-	private List<OrderSingleDataDto> order;
+	private List<OrderSingleDataDto> orders;
 
 	public OrderTableDataDto() {
 
@@ -20,7 +20,7 @@ public class OrderTableDataDto extends PageDto{
 
 	public OrderTableDataDto(List<OrderSingleDataDto> order) {
 		super();
-		this.order = order;
+		this.orders = order;
 	}
 	/**
 	 * 初始化值
@@ -37,17 +37,17 @@ public class OrderTableDataDto extends PageDto{
 		for (ServerOrder serverOrder : (List<ServerOrder>)lOrders.getList()) {
 			OrderSingleDataDto osd = new OrderSingleDataDto();
 			osd.init(serverOrder);
-			this.order.add(osd);
+			this.orders.add(osd);
 		}
 		
 	}
 
-	public List<OrderSingleDataDto> getOrder() {
-		return order;
+	public List<OrderSingleDataDto> getOrders() {
+		return orders;
 	}
 
-	public void setOrder(List<OrderSingleDataDto> order) {
-		this.order = order;
+	public void setOrders(List<OrderSingleDataDto> order) {
+		this.orders = order;
 	}
 
 }

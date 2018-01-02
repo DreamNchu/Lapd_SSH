@@ -46,16 +46,16 @@ function waitingReceive(reciveOrder) {
         "<th>发布时间</th>\n" +
         "<th>订单类型</th>\n" +
         " <th>所做项目</th>";
-    for(i in reciveOrder.order){
+    for(i in reciveOrder.orders){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
-            "<td>"+reciveOrder.order[i].orderId+"</td>"+
-            "<td>"+reciveOrder.order[i].room+"</td>"+
-            "<td>"+reciveOrder.order[i].stuff+"</td>"+
-            "<td>"+reciveOrder.order[i].realName+"</td>"+
-            "<td>"+reciveOrder.order[i].initTime+"</td>"+
-            "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].serverItem+"</td>";
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
+            "<td>"+reciveOrder.orders[i].orderId+"</td>"+
+            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].stuff+"</td>"+
+            "<td>"+reciveOrder.orders[i].realName+"</td>"+
+            "<td>"+reciveOrder.orders[i].initTime+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -72,16 +72,16 @@ function servicing(reciveOrder) {
         "<th>发布时间</th>\n" +
         "<th>订单类型</th>\n" +
         " <th>所做项目</th>";
-    for(i in reciveOrder.order){
+    for(i in reciveOrder.orders){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
-            "<td>"+reciveOrder.order[i].orderId+"</td>"+
-            "<td>"+reciveOrder.order[i].room+"</td>"+
-            "<td>"+reciveOrder.order[i].stuff+"</td>"+
-            "<td>"+reciveOrder.order[i].realName+"</td>"+
-            "<td>"+reciveOrder.order[i].initTime+"</td>"+
-            "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].serverItem+"</td>";
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
+            "<td>"+reciveOrder.orders[i].orderId+"</td>"+
+            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].stuff+"</td>"+
+            "<td>"+reciveOrder.orders[i].realName+"</td>"+
+            "<td>"+reciveOrder.orders[i].initTime+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -99,16 +99,16 @@ function suspend(reciveOrder) {
         "<th>发布时间</th>\n" +
         "<th>订单类型</th>\n" +
         " <th>所做项目</th>";
-    for(i in reciveOrder.order){
+    for(i in reciveOrder.orders){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
-            "<td>"+reciveOrder.order[i].orderId+"</td>"+
-            "<td>"+reciveOrder.order[i].room+"</td>"+
-            "<td>"+reciveOrder.order[i].stuff+"</td>"+
-            "<td>"+reciveOrder.order[i].realName+"</td>"+
-            "<td>"+reciveOrder.order[i].initTime+"</td>"+
-            "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].serverItem+"</td>";
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
+            "<td>"+reciveOrder.orders[i].orderId+"</td>"+
+            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].stuff+"</td>"+
+            "<td>"+reciveOrder.orders[i].realName+"</td>"+
+            "<td>"+reciveOrder.orders[i].initTime+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -125,16 +125,16 @@ function invalid(reciveOrder) {
         "<th>发布时间</th>\n" +
         "<th>订单类型</th>\n" +
         " <th>所做项目</th>";
-    for(i in reciveOrder.order){
+    for(i in reciveOrder.orders){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
-            "<td>"+reciveOrder.order[i].orderId+"</td>"+
-            "<td>"+reciveOrder.order[i].room+"</td>"+
-            "<td>"+reciveOrder.order[i].stuff+"</td>"+
-            "<td>"+reciveOrder.order[i].realName+"</td>"+
-            "<td>"+reciveOrder.order[i].initTime+"</td>"+
-            "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].serverItem+"</td>";
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
+            "<td>"+reciveOrder.orders[i].orderId+"</td>"+
+            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].stuff+"</td>"+
+            "<td>"+reciveOrder.orders[i].realName+"</td>"+
+            "<td>"+reciveOrder.orders[i].initTime+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     
@@ -154,18 +154,18 @@ function waitingPay(reciveOrder) {
         "<th>所做项目</th>\n" +
         " <th>所要药品</th>\n" +
         " <th>所需支付</th>\n" ;
-    for(i in reciveOrder.order){
+    for(i in reciveOrder.orders){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
-            "<td>"+reciveOrder.order[i].orderId+"</td>"+
-            "<td>"+reciveOrder.order[i].room+"</td>"+
-            "<td>"+reciveOrder.order[i].stuff+"</td>"+
-            "<td>"+reciveOrder.order[i].realName+"</td>"+
-            "<td>"+reciveOrder.order[i].initTime+"</td>"+
-            "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].serverItem+"</td>"+
-            "<td>"+reciveOrder.order[i].pledgeName+"</td>"+
-            "<td>"+reciveOrder.order[i].pay+"</td>";
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
+            "<td>"+reciveOrder.orders[i].orderId+"</td>"+
+            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].stuff+"</td>"+
+            "<td>"+reciveOrder.orders[i].realName+"</td>"+
+            "<td>"+reciveOrder.orders[i].initTime+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].serverItem+"</td>"+
+            "<td>"+reciveOrder.orders[i].pledgeName+"</td>"+
+            "<td>"+reciveOrder.orders[i].pay+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -186,20 +186,20 @@ function finish(reciveOrder) {
         " <th>所需支付</th>\n" +
         " <th>实际支付</th>\n" +
         "  <th>支付方式</th>";
-    for(i in reciveOrder.order){
+    for(i in reciveOrder.orders){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.order[i].orderId+"></td>"+
-            "<td>"+reciveOrder.order[i].orderId+"</td>"+
-            "<td>"+reciveOrder.order[i].room+"</td>"+
-            "<td>"+reciveOrder.order[i].stuff+"</td>"+
-            "<td>"+reciveOrder.order[i].realName+"</td>"+
-            "<td>"+reciveOrder.order[i].initTime+"</td>"+
-            "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].serverItem+"</td>"+
-            "<td>"+reciveOrder.order[i].pledgeName+"</td>"+
-            "<td>"+reciveOrder.order[i].pay+"</td>"+
-            "<td>"+reciveOrder.order[i].realPay+"</td>"+
-            "<td>"+reciveOrder.order[i].payPath+"</td>";
+        sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
+            "<td>"+reciveOrder.orders[i].orderId+"</td>"+
+            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].stuff+"</td>"+
+            "<td>"+reciveOrder.orders[i].realName+"</td>"+
+            "<td>"+reciveOrder.orders[i].initTime+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].serverItem+"</td>"+
+            "<td>"+reciveOrder.orders[i].pledgeName+"</td>"+
+            "<td>"+reciveOrder.orders[i].pay+"</td>"+
+            "<td>"+reciveOrder.orders[i].realPay+"</td>"+
+            "<td>"+reciveOrder.orders[i].payPath+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -228,7 +228,7 @@ function linkRequest(linkHref) {
     var f = $('.statusId').attr("key");
 //    alert(f);
     var reciveOrder={
-        "order":[{"orderId":"orderId3","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","serverItem":"serverItem1,"}
+        "orders":[{"orderId":"orderId3","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","serverItem":"serverItem1,"}
             ,{"orderId":"orderId2","room":"room2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","serverItem":"serverItem2,"}]
         , "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
         "transform":[{"back":"TestHref","front":"TestHref"}],
