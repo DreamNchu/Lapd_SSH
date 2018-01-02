@@ -15,22 +15,26 @@ import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.Room;
+import com.lps.model.ServerItem;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.service.ClockCategoryService;
 import com.lps.service.OrderStatusService;
 import com.lps.service.PayPathService;
 import com.lps.service.RoomService;
+import com.lps.service.ServerItemService;
 import com.lps.service.ServerOrderService;
 import com.lps.service.UserService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
+import com.lps.web.order.dto.CreateOrderDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
+import com.lps.web.order.dto.constant.CreateOrderWay;
 import com.lps.web.order.dto.constant.TimeType;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
@@ -47,6 +51,16 @@ public class OrderManage implements TimeType, Population {
 	private OrderStatusService orderStatusServiceImpl;
 
 	private ServerOrderService serverOrderServiceImpl;
+	
+	private ServerItemService serverItemServiceImpl;
+
+	public ServerItemService getServerItemServiceImpl() {
+		return serverItemServiceImpl;
+	}
+
+	public void setServerItemServiceImpl(ServerItemService serverItemServiceImpl) {
+		this.serverItemServiceImpl = serverItemServiceImpl;
+	}
 
 	private WorkRankManage workRankManage;
 
@@ -204,13 +218,14 @@ public class OrderManage implements TimeType, Population {
 	 * @param clockCategory
 	 * @return
 	 */
-	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory, String orderRemark) {
+	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory,Set<Integer> serverItemIds, String orderRemark) {
 
 		User u = userServiceImpl.findById(stuffId);
 		Room r = roomServiceImpl.findById(roomId);
 		ClockCategory cc = clockCategoryServiceImpl.findById(clockCategory);
-
-		return createNormalOrder(u, r, cc, orderRemark);
+		Set<ServerItem> items = getServerItems(serverItemIds);
+		
+		return createNormalOrder(u, r, cc, items, orderRemark);
 	}
 
 	/**
@@ -221,7 +236,7 @@ public class OrderManage implements TimeType, Population {
 	 * @param clockCategory
 	 * @return
 	 */
-	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory, String orderRemark) {
+	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory,Set<ServerItem> serverItems,  String orderRemark) {
 		ServerOrder so = new ServerOrder();
 		so.setId(orderIdCreater(user.getWorkId(), room.getName(), clockCategory.getId()));
 		so.setUser(user); // 初始化员工
@@ -233,14 +248,38 @@ public class OrderManage implements TimeType, Population {
 		so.setOrderRemark(orderRemark);
 		return so;
 	}
+	
+	
+	/**
+	 * 创建一个订单
+	 * @param createOrderDto
+	 */
+	public void createOrder(CreateOrderDto createOrderDto){
+		ServerOrder so = null;
+		switch (createOrderDto.getCreateWays()) {
+		case CreateOrderWay.rank_order_auto:
+			so = createOrder(createOrderDto.getRoomId(), createOrderDto.getOrderRemark(),createOrderDto.getServerItemIds());
+			break;
+		case CreateOrderWay.rank_order_handle:
+			so = createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
+					ClockCategoryDAO.RANK_CLOCK,createOrderDto.getServerItemIds(), createOrderDto.getOrderRemark());
+			break;
+		case CreateOrderWay.spot_order_handle:
+			so = createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
+					ClockCategoryDAO.SPOT_CLOCK,createOrderDto.getServerItemIds(), createOrderDto.getOrderRemark());
+			break;
+		}
+		serverOrderServiceImpl.save(so); // 保存订单
+	}
 
 	/**
 	 * 自动创建订单
+	 * 创建排钟
 	 * 
 	 * @param roomId
 	 * @return
 	 */
-	public ServerOrder createOrder(int roomId, String orderRemark) {
+	public ServerOrder createOrder(int roomId, String orderRemark, Set<Integer> serverItemIds) {
 
 		ServerOrder so = null;
 		User u = workRankManage.nextOne();
@@ -249,15 +288,30 @@ public class OrderManage implements TimeType, Population {
 			// 判断是否有空闲员工，如果有那么执行下面语句
 			Room r = roomServiceImpl.findById(roomId);
 			ClockCategory cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
+			Set<ServerItem> items = getServerItems(serverItemIds);
 
-			return createNormalOrder(u, r, cc, orderRemark);
+			return createNormalOrder(u, r, cc,items , orderRemark);
 		} else { // 所有员工都没有空
+			//订单挂起
 			// Room r = roomServiceImpl.findById(roomId);
 			// ClockCategory cc =
 			// clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
 
 		}
 		return so;
+	}
+	
+	/**
+	 * 获取服务项目集合
+	 * @param sets
+	 * @return
+	 */
+	private Set<ServerItem> getServerItems(Set<Integer> sets){
+		Set<ServerItem> sis = new HashSet<>();
+		for (Integer integer : sets) {
+			sis.add(serverItemServiceImpl.findById(integer));
+		}
+		return sis;
 	}
 
 	/**

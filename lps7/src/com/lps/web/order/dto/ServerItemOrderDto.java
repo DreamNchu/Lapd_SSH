@@ -4,31 +4,24 @@ import com.lps.model.ServerItem;
 
 public class ServerItemOrderDto implements DtoBasicInit<ServerItemOrderDto>{
 	
-	public int catetgoryId;
+	public int serverItemId;
 	
-	public String catetgoryName;
+	public String serverItemName;
 	
 	public ServerItemOrderDto() {
-		// TODO Auto-generated constructor stub
 	}
 	
-	
-
-
 	public ServerItemOrderDto(int catetgoryId, String catetgoryName) {
 		super();
-		this.catetgoryId = catetgoryId;
-		this.catetgoryName = catetgoryName;
+		this.serverItemId = catetgoryId;
+		this.serverItemName = catetgoryName;
 	}
-
-
-
 
 	@Override
 	public ServerItemOrderDto init(Object obj) {
 		ServerItem si = (ServerItem)obj;
-		catetgoryId = si.getId();
-		catetgoryName = si.getServerItem();
+		serverItemId = si.getId();
+		serverItemName = si.getServerItem();
 		return this;
 	}
 	

@@ -20,9 +20,9 @@ public interface ServerItemDAO extends BasicDAO<ServerItem>{
 	/**
 	 * 根据房间状态查找,返回房间状态
 	 * <p>
-	 * @param roomCategory 房间状态对象
+	 * @param serverItem 房间状态对象
 	 * @return 返回房间状态对象的数组
 	 */
-	List<ServerItem> findByServerItem(Object roomCategory);
+	List<ServerItem> findByServerItem(Object serverItem);
 
 }

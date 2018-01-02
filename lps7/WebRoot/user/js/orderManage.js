@@ -33,7 +33,7 @@ function singleOrder(reciveOrder) {
 	  $(".room").html("");
 	  $(".initTime").html("");
 	  $(".clockCategory").html("");
-	  $(".roomCategory").html("");
+	  $(".serverItem").html("");
 	  $(".pledgeName").html("");
 	  $(".payPath").html("");
 		
@@ -43,7 +43,7 @@ function singleOrder(reciveOrder) {
 			  $(".room").html(reciveOrder.order[i].room);
 			  $(".initTime").html(reciveOrder.order[i].initTime);
 			  $(".clockCategory").html(reciveOrder.order[i].clockCategory);
-			  $(".roomCategory").html(reciveOrder.order[i].roomCategory);
+			  $(".serverItem").html(reciveOrder.order[i].serverItem);
 			  $(".pledgeName").html(reciveOrder.order[i].pledgeName);
 			  $(".payPath").html(reciveOrder.order[i].payPath);
 		  }
@@ -60,7 +60,7 @@ function waitingPayUser(reciveOrder){
 		 tr = $("<tr id='orderId"+ i +"' value='"+ reciveOrder.order[i].orderId +"'></tr>");
 		 tbody.append(tr);
 		 tr.append($("<td>"+reciveOrder.order[i].room +"</td>"));
-		 tr.append($("<td>"+reciveOrder.order[i].roomCategory +"</td>"));
+		 tr.append($("<td>"+reciveOrder.order[i].serverItem +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].finishTime +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].clockCategory +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].pay +"</td>"));
@@ -79,7 +79,7 @@ function finish(reciveOrder){
 		 tr = $("<tr id='orderIdF"+ i +"' value='"+ reciveOrder.order[i].orderId +"'></tr>");
 		 tbody.html(tr);
 		 tr.append($("<td>"+reciveOrder.order[i].room +"</td>"));
-		 tr.append($("<td>"+reciveOrder.order[i].roomCategory +"</td>"));
+		 tr.append($("<td>"+reciveOrder.order[i].serverItem +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].clockCategory +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].pay +"</td>"));
 		 tr.append($("<td>"+reciveOrder.order[i].realPay +"</td>"));

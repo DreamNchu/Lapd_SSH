@@ -4,15 +4,17 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.google.gson.Gson;
+import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.OrderManage;
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.model.ServerOrder;
 import com.lps.service.ServerOrderService;
+import com.lps.util.WorkJson;
 import com.lps.web.order.dto.CreateOrderDto;
 import com.lps.web.order.dto.constant.CreateOrderWay;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CreateOrderAction extends ActionSupport {
+public class CreateOrderAction extends ActionSupport implements DataResult{
 
 	private static final long serialVersionUID = -2770070015331923293L;
 
@@ -28,23 +30,10 @@ public class CreateOrderAction extends ActionSupport {
 	public String execute() throws Exception {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-//System.out.println("111"+createOrderDto.getOrderRemark());
 		try {
-			ServerOrder so = null;
-			switch (createOrderDto.getCreateWays()) {
-			case CreateOrderWay.rank_order_auto:
-				so = orderManage.createOrder(createOrderDto.getRoomId(), createOrderDto.getOrderRemark());
-				break;
-			case CreateOrderWay.rank_order_handle:
-				so = orderManage.createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
-						ClockCategoryDAO.RANK_CLOCK, createOrderDto.getOrderRemark());
-				break;
-			case CreateOrderWay.spot_order_handle:
-				so = orderManage.createOrder(createOrderDto.getStuffId(), createOrderDto.getRoomId(),
-						ClockCategoryDAO.SPOT_CLOCK, createOrderDto.getOrderRemark());
-				break;
-			}
-			serverOrderServiceImpl.save(so); // 保存订单
+			
+			orderManage.createOrder(createOrderDto);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			map.put("msg", "创建订单失败");
@@ -56,7 +45,6 @@ public class CreateOrderAction extends ActionSupport {
 		result = new Gson().toJson(map);
 		return super.execute();
 	}
-	
 
 	public OrderManage getOrderManage() {
 		return orderManage;
@@ -70,25 +58,17 @@ public class CreateOrderAction extends ActionSupport {
 		return serverOrderServiceImpl;
 	}
 
-
-
 	public void setServerOrderServiceImpl(ServerOrderService serverOrderServiceImpl) {
 		this.serverOrderServiceImpl = serverOrderServiceImpl;
 	}
-
-
 
 	public String getResult() {
 		return result;
 	}
 
-
-
 	public void setResult(String result) {
 		this.result = result;
 	}
-
-
 
 	public CreateOrderDto getCreateOrderDto() {
 		return createOrderDto;
@@ -100,6 +80,11 @@ public class CreateOrderAction extends ActionSupport {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	@Override
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 
 }

@@ -301,7 +301,7 @@ StringBuffer basePath = request.getRequestURL();
 										<s:property value="#work.user.workStatus.workStatus"/></span>
 									</td>
                                     <td><s:property value="#work.room.name"/></td>
-                                    <td><s:property value="#work.room.roomCategory.roomCategory"/></td>
+                                    <td><s:property value="#work.room.serverItem.serverItem"/></td>
                                     <td><s:property value="#work.startTime"/></td>
                                     <td><s:property value="#work.endTime"/></td>
                                 </tr>

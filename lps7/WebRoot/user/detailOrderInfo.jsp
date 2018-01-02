@@ -77,7 +77,7 @@ StringBuffer basePath = request.getRequestURL();
                         </tr>
                         <tr>
                             <td >项目：</td>
-                            <td><label id="roomCategory"><s:property value="orderSingleDataDto.roomCategory"/></label></td>
+                            <td><label id="serverItem"><s:property value="orderSingleDataDto.serverItem"/></label></td>
                         </tr>
                         <tr>
                             <td >发布时间：</td>

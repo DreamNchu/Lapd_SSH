@@ -55,7 +55,7 @@ function waitingReceive(reciveOrder) {
             "<td>"+reciveOrder.order[i].realName+"</td>"+
             "<td>"+reciveOrder.order[i].initTime+"</td>"+
             "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].roomCategory+"</td>";
+            "<td>"+reciveOrder.order[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -81,7 +81,7 @@ function servicing(reciveOrder) {
             "<td>"+reciveOrder.order[i].realName+"</td>"+
             "<td>"+reciveOrder.order[i].initTime+"</td>"+
             "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].roomCategory+"</td>";
+            "<td>"+reciveOrder.order[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -108,7 +108,7 @@ function suspend(reciveOrder) {
             "<td>"+reciveOrder.order[i].realName+"</td>"+
             "<td>"+reciveOrder.order[i].initTime+"</td>"+
             "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].roomCategory+"</td>";
+            "<td>"+reciveOrder.order[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -134,7 +134,7 @@ function invalid(reciveOrder) {
             "<td>"+reciveOrder.order[i].realName+"</td>"+
             "<td>"+reciveOrder.order[i].initTime+"</td>"+
             "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].roomCategory+"</td>";
+            "<td>"+reciveOrder.order[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
     
@@ -163,7 +163,7 @@ function waitingPay(reciveOrder) {
             "<td>"+reciveOrder.order[i].realName+"</td>"+
             "<td>"+reciveOrder.order[i].initTime+"</td>"+
             "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].roomCategory+"</td>"+
+            "<td>"+reciveOrder.order[i].serverItem+"</td>"+
             "<td>"+reciveOrder.order[i].pledgeName+"</td>"+
             "<td>"+reciveOrder.order[i].pay+"</td>";
         orderTable.appendChild(sTr);
@@ -195,7 +195,7 @@ function finish(reciveOrder) {
             "<td>"+reciveOrder.order[i].realName+"</td>"+
             "<td>"+reciveOrder.order[i].initTime+"</td>"+
             "<td>"+reciveOrder.order[i].clockCategory+"</td>"+
-            "<td>"+reciveOrder.order[i].roomCategory+"</td>"+
+            "<td>"+reciveOrder.order[i].serverItem+"</td>"+
             "<td>"+reciveOrder.order[i].pledgeName+"</td>"+
             "<td>"+reciveOrder.order[i].pay+"</td>"+
             "<td>"+reciveOrder.order[i].realPay+"</td>"+
@@ -228,8 +228,8 @@ function linkRequest(linkHref) {
     var f = $('.statusId').attr("key");
 //    alert(f);
     var reciveOrder={
-        "order":[{"orderId":"orderId3","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","roomCategory":"roomCategory1,"}
-            ,{"orderId":"orderId2","room":"room2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","roomCategory":"roomCategory2,"}]
+        "order":[{"orderId":"orderId3","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","serverItem":"serverItem1,"}
+            ,{"orderId":"orderId2","room":"room2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","serverItem":"serverItem2,"}]
         , "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
         "transform":[{"back":"TestHref","front":"TestHref"}],
         "number":[{"value":"1","link":"TestHref"},{"value":"2","link":"TestHref"},{"value":"3","link":"TestHref"},{"value":"4","link":"TestHref"}]

@@ -173,7 +173,7 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     <tr>
                         <td>所需项目：</td>
-                        <td class="roomCategory"></td>
+                        <td class="serverItem"></td>
                     </tr>
                     <tr>
                         <td>钟点类型：</td>
@@ -206,7 +206,7 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     <tr>
                         <td>所选项目：</td>
-                        <td class="roomCategory" colspan="4" ></td>
+                        <td class="serverItem" colspan="4" ></td>
                     </tr>
                     <tr>
                         <td>工作类型</td>

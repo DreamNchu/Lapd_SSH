@@ -146,7 +146,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		
 //		queryBasicOrderUtil();
 		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
-//System.out.println(result);
+System.out.println(result);
 //		writeInResult2(orderTableDataDto);
 		return SUCCESS;
 	}

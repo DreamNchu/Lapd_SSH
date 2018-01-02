@@ -30,7 +30,7 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	/**
 	 * 声明房间类型全局常量
 	 */
-	public static final String ROOM_CATEGORY = "roomCategory";
+	public static final String SERVER_ITEM = "serverItem";
 	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
@@ -98,7 +98,7 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	 */
 	@Override
 	public List<ServerItem> findByServerItem(Object object) {
-		return findByProperty(ROOM_CATEGORY, object);
+		return findByProperty(SERVER_ITEM, object);
 	}
 
 	/**

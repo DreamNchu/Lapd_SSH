@@ -53,7 +53,7 @@
 	function create(createOrder) {
 		var stuffId = document.getElementById("stuffId");
 		var roomId = document.getElementById("roomId");
-		var roomCategory = document.getElementById("roomCategory");
+		var serverItem = document.getElementById("serverItem");
 		var i,
 			userDatab,
 			op,
@@ -74,11 +74,11 @@
 			op.innerHTML = createOrder.room[i].roomName;
 			roomId.appendChild(op);
 		}
-		for (i in createOrder.roomCategory) {
+		for (i in createOrder.serverItem){
 			op = document.createElement("option");
-			op.setAttribute("value", createOrder.roomCategory[i].catetgoryId);
-			op.innerHTML = createOrder.roomCategory[i].catetgoryName;
-			roomCategory.appendChild(op);
+			op.setAttribute("value", createOrder.serverItem[i].serverItemId);
+			op.innerHTML = createOrder.serverItem[i].serverItemName;
+			serverItem.appendChild(op);
 		}
 	}
 
@@ -149,7 +149,7 @@
 										</div>
 										<div class="form-group">
 											<label>选择项目</label> <select class="form-control"
-												name="createOrderDto.serverItemId" id="roomCategory">
+												name="createOrderDto.serverItemId" id="serverItem">
 											</select>
 										</div>
 										<div class="form-group">

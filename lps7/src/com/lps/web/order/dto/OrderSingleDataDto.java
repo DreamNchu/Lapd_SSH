@@ -1,5 +1,6 @@
 package com.lps.web.order.dto;
 
+import com.lps.model.ServerItem;
 import com.lps.model.ServerOrder;
 import com.lps.util.WorkDate;
 
@@ -61,7 +62,7 @@ public class OrderSingleDataDto{
 	}
 
 	public OrderSingleDataDto(String orderId, String room, String workId, /*String userName,*/ String initTime,
-			String clockCategory, String orderStatus, String roomCategory, String pledgeName, String pay,
+			String clockCategory, String orderStatus, String serverItem, String pledgeName, String pay,
 			String realPay, String payPath, String receiveTime, String finishTime, String payTime, String orderRemark) {
 		super();
 		this.orderId = orderId;
@@ -71,7 +72,7 @@ public class OrderSingleDataDto{
 		this.initTime = initTime;
 		this.clockCategoryName = clockCategory;
 		this.orderStatusName = orderStatus;
-		this.serverItemName = roomCategory;
+		this.serverItemName = serverItem;
 		this.pledgeName = pledgeName;
 		this.pay = pay;
 		this.realPay = realPay;
@@ -88,8 +89,15 @@ public class OrderSingleDataDto{
 			setPayPath(so.getPayPath().getPayPath());
 		if (so.getRoom() != null){
 			setRoomName(so.getRoom().getName());
-			setRoomCategory(so.getRoom().getRoomCategory().getServerItem());
 		}
+		
+		String temp = null;
+		System.out.println(so.getServerorderServeritems());
+		for ( ServerItem si : so.getServerorderServeritems()) {
+			temp += si.getServerItem();
+		}
+		setServerItem(temp);
+		
 		if(so.getUser() != null){
 			setWorkId(so.getUser().getWorkId() == null ? "" : so.getUser().getWorkId()+"");
 			setRealName(so.getUser().getRealName());			
@@ -205,8 +213,8 @@ public class OrderSingleDataDto{
 		return serverItemName;
 	}
 
-	public void setRoomCategory(String roomCategory) {
-		this.serverItemName = roomCategory;
+	public void setServerItem(String serverItem) {
+		this.serverItemName = serverItem;
 	}
 
 	public String getPledgeName() {

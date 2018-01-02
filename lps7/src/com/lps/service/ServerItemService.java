@@ -9,10 +9,10 @@ public interface ServerItemService extends BasicService<ServerItem>{
 
 	/**
 	 * 根据房间状态查找
-	 * @param roomCategory 房间状态
+	 * @param serverItem 房间状态
 	 * @return 房间状态的集合
 	 */
-	List<ServerItem> findByServerItem(Object roomCategory);
+	List<ServerItem> findByServerItem(Object serverItem);
 
 	/**
 	 * 根据其对应的ID找到ServerItem字段
@@ -23,10 +23,10 @@ public interface ServerItemService extends BasicService<ServerItem>{
 	
 	/**
 	 * 存在返回id，不存在返回-1
-	 * @param roomCategoryProperty 房间类型
+	 * @param serverItemProperty 房间类型
 	 * @return 得到该类型的id
 	 */
-	int findIdByServerItem(String roomCategoryProperty);
+	int findIdByServerItem(String serverItemProperty);
 	
 	
 }

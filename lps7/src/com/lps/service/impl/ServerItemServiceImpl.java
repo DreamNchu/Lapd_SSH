@@ -67,8 +67,8 @@ public class ServerItemServiceImpl implements ServerItemService {
 	}
 
 	@Override
-	public List<ServerItem> findByServerItem(Object roomCategory) {
-		return dao.findByServerItem(roomCategory);
+	public List<ServerItem> findByServerItem(Object serverItem) {
+		return dao.findByServerItem(serverItem);
 	}
 
 	public ServerItemDAO getServerItemDao() {
@@ -80,8 +80,8 @@ public class ServerItemServiceImpl implements ServerItemService {
 		dao.save(serverItem);
 	}
 
-	public void setServerItemDao(ServerItemDAO roomCategoryDao) {
-		this.dao = roomCategoryDao;
+	public void setServerItemDao(ServerItemDAO serverItemDao) {
+		this.dao = serverItemDao;
 	}
 
 	@Override
@@ -108,7 +108,7 @@ public class ServerItemServiceImpl implements ServerItemService {
 	@Override
 	public String findServerItem(ServerItem serverItem) {
 		Map<String, Class<?>> map = new HashMap<>();
-		map.put(ServerItemDAOImpl.ROOM_CATEGORY, String.class);
+		map.put(ServerItemDAOImpl.SERVER_ITEM, String.class);
 		return dao.findFields(serverItem, map).getServerItem();
 	}
 

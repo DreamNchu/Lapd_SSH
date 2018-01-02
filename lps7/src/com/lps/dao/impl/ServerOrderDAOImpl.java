@@ -393,6 +393,7 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 		return (long)cri.uniqueResult();
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<ServerOrder> findOrdersByProperyLimit(List<PropertyRange<?>> listPro, int begin,
 			int limit) {

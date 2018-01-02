@@ -4,10 +4,12 @@
 
 	<package name="order" namespace="/admin" extends="json-default,adminLogin">
 
-		<action name="createOrder" class="createOrderAction">
+		<action name="createOrder" class="createOrderAction" method="execute">
+	
 			<result type="json">
 				<param name="root">result</param>
 			</result>
+			
 		</action>
 
 		<action name="initOrderData" class="initCreateOrderBasicDataAction"

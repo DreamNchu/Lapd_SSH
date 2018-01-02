@@ -23,7 +23,7 @@ public class InitCreateOrderDto {
 	
 	private List<RoomOrderDto> room;
 	
-	private List<ServerItemOrderDto> roomCategory;
+	private List<ServerItemOrderDto> serverItem;
 	
 	
 	public InitCreateOrderDto() {
@@ -37,7 +37,7 @@ public class InitCreateOrderDto {
 	 */
 	public void init(List<User> lu, List<Room> lr, List<ServerItem> lrc){
 		for (ServerItem rc : lrc) {
-			this.roomCategory.add(
+			this.serverItem.add(
 					new ServerItemOrderDto().init(rc));
 		}
 		
@@ -56,7 +56,7 @@ public class InitCreateOrderDto {
 		this.createWays = createWays;
 		this.user = user;
 		this.room = room;
-		this.roomCategory = roomCategory;
+		this.serverItem = roomCategory;
 	}
 
 
@@ -70,11 +70,11 @@ public class InitCreateOrderDto {
 	}
 
 	public List<ServerItemOrderDto> getServerItem() {
-		return roomCategory;
+		return serverItem;
 	}
 
-	public void setServerItem(List<ServerItemOrderDto> roomCategory) {
-		this.roomCategory = roomCategory;
+	public void setServerItem(List<ServerItemOrderDto> serverItem) {
+		this.serverItem = serverItem;
 	}
 
 	public List<UserOrderDto> getUser() {

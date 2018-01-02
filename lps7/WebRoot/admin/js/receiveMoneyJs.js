@@ -6,8 +6,8 @@ function receivePayOrder(orderData) {
 	payTable.html($(""));
 	//deleteTr(payTable);
 	/*    var orderData={
-	        "order":[{"orderId":"orderId1","roomId":"roomId1","stuffId":"stuffId1","realName":"realName1","initTime":"initTime1","clockCategory":"clockCategory1","roomCategory":"roomCategory1"},
-	            {"orderId":"orderId2","roomId":"roomId2","stuffId":"stuffId2","realName":"realName2","initTime":"initTime2","clockCategory":"clockCategory2","roomCategory":"roomCategory2"}]
+	        "order":[{"orderId":"orderId1","roomId":"roomId1","stuffId":"stuffId1","realName":"realName1","initTime":"initTime1","clockCategory":"clockCategory1","serverItem":"serverItem1"},
+	            {"orderId":"orderId2","roomId":"roomId2","stuffId":"stuffId2","realName":"realName2","initTime":"initTime2","clockCategory":"clockCategory2","serverItem":"serverItem2"}]
 	    }*/
 	var i;
 	for (i in orderData.order) {
@@ -20,7 +20,7 @@ function receivePayOrder(orderData) {
 		orderTr.append($("<td>" + orderData.order[i].realName + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].initTime + "</td>"))
 		orderTr.append($("<td>" + orderData.order[i].clockCategory + "</td>"))
-		orderTr.append($("<td>" + orderData.order[i].roomCategory + "</td>"))
+		orderTr.append($("<td>" + orderData.order[i].serverItem + "</td>"))
 		orderTr.append($("<td><button  id='payTo" + i + "' value='"+ orderData.order[i].orderId +"' >支付</button></td>"));
 		//alert(i);
 		$("#payTo" + i).click(function() {
@@ -62,7 +62,7 @@ function payClick(orderdata) {
 			"stuffId" : "stuffId",
 			"realName" : "realName1",
 			"initTime" : "initTime1",
-			"roomCategory" : "roomCategory1",
+			"serverItem" : "serverItem1",
 			"receiveTime" : "receiveTime1",
 			"finishTime" : "finishTime1",
 			"pay" : "pay1"
@@ -75,7 +75,7 @@ function payClick(orderdata) {
 	document.getElementById("stuffId").innerHTML = orderdata.stuff;
 	document.getElementById("realName").innerHTML = orderdata.realName;
 	document.getElementById("initTime").innerHTML = orderdata.initTime;
-	document.getElementById("roomCategory").innerHTML = orderdata.roomCategory;
+	document.getElementById("serverItem").innerHTML = orderdata.serverItem;
 	document.getElementById("receiveTime").innerHTML = orderdata.receiveTime;
 	document.getElementById("finishTime").innerHTML = orderdata.finishTime;
 	document.getElementById("pay").innerHTML = orderdata.pay;

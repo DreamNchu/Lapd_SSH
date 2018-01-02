@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/2002/xmlspec/dtd/2.10/xmlspec.dtd">
 
 <!-- status : 这个用于设置log4j2自身内部的信息输出,可以不设置,当设置成trace时,会看到log4j2内部各种详细输出 monitorInterval 
     : Log4j能够自动检测修改配置文件和重新配置本身, 设置间隔秒数。 注：本配置文件的目标是将不同级别的日志输出到不同文件，最大2MB一个文件， 

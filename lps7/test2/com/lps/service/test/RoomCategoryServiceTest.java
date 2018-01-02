@@ -55,7 +55,7 @@ public class RoomCategoryServiceTest {
 
 	@Test
 	public void testFindByProperty() {
-		assertEquals(as.findByProperty(ServerItemDAOImpl.ROOM_CATEGORY, "洗脚").size(), 1);
+		assertEquals(as.findByProperty(ServerItemDAOImpl.SERVER_ITEM, "洗脚").size(), 1);
 		
 	}
 

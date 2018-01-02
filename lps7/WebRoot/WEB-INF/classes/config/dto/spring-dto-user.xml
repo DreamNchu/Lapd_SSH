@@ -17,10 +17,6 @@
 		</property>
 	</bean>
 
-	<bean id="userBasicDataDto" class="com.lps.web.dto.UserBasicDataDto"
-		scope="prototype">
-	</bean>
-	
 	<bean id="userDataDto" class="com.lps.web.user.dto.UserDataDto"
 		scope="prototype">
 	</bean>

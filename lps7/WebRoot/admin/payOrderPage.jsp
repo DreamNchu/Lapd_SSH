@@ -147,7 +147,7 @@ StringBuffer basePath = request.getRequestURL();
                                         <td>发布时间：</td>
                                         <td  id="initTime">1</td>
                                         <td>所做项目：</td>
-                                        <td  id="roomCategory">1</td>
+                                        <td  id="serverItem">1</td>
                                     </tr>
                                     <tr>
                                         <td>服务开始时间：</td>

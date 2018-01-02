@@ -25,13 +25,13 @@ import com.lps.model.basic.ModelLinkServerOrder;
  *
  */
 @Entity
-@Table(name="t_roomcategory")
+@Table(name="t_serveritem")
 @TableGenerator(
 		name = "pk_generate", 
 		table = "tb_generator",
 		pkColumnName = "gen_name", 
 		valueColumnName = "gen_value", 
-		pkColumnValue = "roomcategory_PK",
+		pkColumnValue = "serverItem_PK",
 		allocationSize = 1)
 public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<Integer>,  Comparable<ServerItem> {
 
@@ -42,7 +42,7 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	 */
 	private static final long serialVersionUID = 3529111347160958534L;
 	private Integer id;
-	private String roomCategory;
+	private String serverItem;
 	private Set<Room> rooms = new HashSet<Room>(0);
 
 	// Constructors
@@ -60,18 +60,18 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	 * @param roomcategory 房间类型 String类型
 	 */
 	public ServerItem(String roomcategory) {
-		this.roomCategory = roomcategory;
+		this.serverItem = roomcategory;
 	}
 
 	/** full constructor */
 	/**
 	 * 这是ServerItem类的构造函数
 	 * <p>
-	 * @param roomcategory 房间类型 String类型
+	 * @param serverItem 房间类型 String类型
 	 * @param rooms
 	 */
-	public ServerItem(String roomcategory, Set<Room> rooms) {
-		this.roomCategory = roomcategory;
+	public ServerItem(String serverItem, Set<Room> rooms) {
+		this.serverItem = serverItem;
 		this.rooms = rooms;
 	}
 
@@ -103,19 +103,19 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	 * <p>
 	 * @return 返回房间类型,String类型
 	 */
-	@Column(name = "roomCategory", unique = true, length = 20,  nullable=false)
+	@Column(name = "serverItem", unique = true, length = 20,  nullable=false)
 
 	public String getServerItem() {
-		return this.roomCategory;
+		return this.serverItem;
 	}
 
 	/**
 	 * 设置房间类型
 	 * <p>
-	 * @param roomcategory 设置房间类型
+	 * @param serverItem 设置房间类型
 	 */
-	public void setServerItem(String roomcategory) {
-		this.roomCategory = roomcategory;
+	public void setServerItem(String serverItem) {
+		this.serverItem = serverItem;
 	}
 
 	/**
@@ -147,17 +147,17 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	 *
 	 */
 	  public static class Builder{
-	    	private String roomcategory;
+	    	private String serverItem;
 	        private Set<Room> rooms = new HashSet<Room>(0);
 	        
 	        /**
 	         * 这个方法用于设置房间类型
 	         * <p>
-	         * @param roomcategory 房间类型
+	         * @param servetItem 房间类型
 	         * @return 房间类型
 	         */
-	        public Builder setRoomcategory(String roomcategory) {
-			this.roomcategory = roomcategory;
+	        public Builder setServerItem(String servetItem) {
+			this.serverItem = servetItem;
 	        	return this;
 	        }
 	        /**
@@ -177,15 +177,13 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	         * @return RoomCatagory实例
 	         */
 	        public ServerItem build(){
-	        	return new ServerItem(roomcategory, rooms);
+	        	return new ServerItem(serverItem, rooms);
 	        }
 	       
 	    }
-
-	  
 	  
 	@Override
-	public int compareTo(ServerItem o) {
+	public int compareTo(ServerItem o){
 		return this.getServerItem().compareTo((o.getServerItem()));
 	}
 

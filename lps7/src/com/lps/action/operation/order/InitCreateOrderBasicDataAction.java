@@ -2,20 +2,18 @@ package com.lps.action.operation.order;
 
 import java.util.List;
 
-import com.lps.dao.ClockCategoryDAO;
+import com.lps.action.jsonresult.DataResult;
 import com.lps.model.Room;
 import com.lps.model.ServerItem;
 import com.lps.model.User;
-import com.lps.service.ClockCategoryService;
 import com.lps.service.RoomService;
 import com.lps.service.ServerItemService;
 import com.lps.service.UserService;
-import com.lps.service.WorkRankService;
 import com.lps.util.WorkJson;
 import com.lps.web.order.dto.InitCreateOrderDto;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class InitCreateOrderBasicDataAction extends ActionSupport{
+public class InitCreateOrderBasicDataAction extends ActionSupport implements DataResult{
 
 	private static final long serialVersionUID = -5140646258173298787L;
 
@@ -106,6 +104,10 @@ public class InitCreateOrderBasicDataAction extends ActionSupport{
 
 	public void setInitCreateOrderDto(InitCreateOrderDto initCreateOrderDto) {
 		this.initCreateOrderDto = initCreateOrderDto;
+	}
+	
+	public void writeInResult(Object obj){
+		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 
 }

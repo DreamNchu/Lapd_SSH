@@ -19,6 +19,8 @@
 		<property name="orderStatusServiceImpl" ref="orderStatusServiceImpl"></property>
 		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 		<property name="payPathServiceImpl" ref="payPathServiceImpl"></property>
+		<property name="serverItemServiceImpl" ref="serverItemServiceImpl"></property>
+		
 		<!-- 订单号设计 -->		
 		<property name="userWorkIdLength" value="4" ></property>
 		<property name="roomNameLength" value="4"></property>
