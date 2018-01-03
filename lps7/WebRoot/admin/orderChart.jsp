@@ -192,7 +192,7 @@ StringBuffer basePath = request.getRequestURL();
             
             ajaxRequest("chartDataOrders?orderChartRequestDto.timeType="
             +$('#date option:selected').val()+ "&orderChartRequestDto.population="+$("#type option:selected").val()
-            +"&orderChartRequestDto.userId="+$('#user option:selected').val(),
+            +"&orderChartRequestDto.stuffId="+$('#user option:selected').val(),
              chart);
            // chart()
                // contain1(serrie,array[parseInt($(this).val())-1]);
@@ -203,14 +203,14 @@ StringBuffer basePath = request.getRequestURL();
                 $(this).val()==2?$("#user").attr("disabled","disabled"):$("#user").attr("disabled",false);
                  ajaxRequest("chartDataOrders?orderChartRequestDto.timeType="
             +$('#date option:selected').val()+ "&orderChartRequestDto.population="+$("#type option:selected").val()
-            +"&orderChartRequestDto.userId="+$('#user option:selected').val(),
+            +"&orderChartRequestDto.stuffId="+$('#user option:selected').val(),
              chart);
             })
             //员工选择
             $('#user').change(function () {
                  ajaxRequest("chartDataOrders?orderChartRequestDto.timeType="
             +$('#date option:selected').val()+ "&orderChartRequestDto.population="+$("#type option:selected").val()
-            +"&orderChartRequestDto.userId="+$('#user option:selected').val(),
+            +"&orderChartRequestDto.stuffId="+$('#user option:selected').val(),
              chart);
             })
         })

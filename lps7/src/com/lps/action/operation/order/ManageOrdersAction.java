@@ -6,6 +6,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
@@ -31,6 +33,14 @@ import com.opensymphony.xwork2.ActionSupport;
 public class ManageOrdersAction extends ActionSupport implements DataResult, SessionAware,ServletResponseAware {
 
 	private static final long serialVersionUID = -8763735445922466287L;
+	
+	private final static Logger logger = LogManager.getLogger(new Object() {
+		// 静态方法中获取当前类名
+		public String getClassName() {
+			String className = this.getClass().getName();
+			return className.substring(0, className.lastIndexOf('$'));
+		}
+	}.getClassName());
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -144,11 +154,10 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 				pageLinkTransformOrderDto.getDomainName(),
 				Thread.currentThread().getStackTrace()[1].getMethodName());
 		
-//		queryBasicOrderUtil();
 		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
-System.out.println(result);
-//		writeInResult2(orderTableDataDto);
+		logger.debug(result);
 		return SUCCESS;
+		
 	}
 	
 	private void queryBasicOrderUtil() throws PagePropertyNotInitException{

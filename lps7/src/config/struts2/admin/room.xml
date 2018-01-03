@@ -2,21 +2,15 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 
-	<package name="userWork" namespace="/admin" extends="json-default,adminLogin">
-	
-	<action name="userManage" class="manageUsersAction" >
-		<result>
-			/admin/userManage.jsp
-		</result>	
-	</action>
-	
-	<action name="*User*" class="manageUsersAction" method="{1}User{2}">
+
+	<package name="room" namespace="/admin" extends="json-default,adminLogin">
+
+		<action name="*Room*" class="roomDataAction" method="{1}Room{2}">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
 		
 	</package>
-
 
 </struts>

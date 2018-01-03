@@ -4,8 +4,8 @@ import com.lps.model.User;
 import com.lps.util.WorkDate;
 
 public class UserDataDto {
-	// User u;
-	private Integer id;
+	
+	private Integer stuffId;
 	private String workStatus;
 	private String userName;
 	private String password;
@@ -25,11 +25,11 @@ public class UserDataDto {
 
 	}
 
-	public UserDataDto(Integer id, String workStatus, String userName, String password, Integer workId, String birthday,
+	public UserDataDto(Integer stuffId, String workStatus, String userName, String password, Integer workId, String birthday,
 			String telephonePhone, String email, String address, String avatar, String question, String answer,
 			String registerTime, String realName, String iDCardNo) {
 		super();
-		this.id = id;
+		this.stuffId = stuffId;
 		this.workStatus = workStatus;
 		this.userName = userName;
 		this.password = password;
@@ -47,7 +47,7 @@ public class UserDataDto {
 	}
 
 	public void init(User user) {
-		id = user.getId();
+		stuffId = user.getId();
 		if (user.getWorkStatus() != null)
 			workStatus = user.getWorkStatus().getWorkStatus();
 		userName = user.getUserName();
@@ -106,11 +106,11 @@ public class UserDataDto {
 	
 
 	public Integer getId() {
-		return id;
+		return stuffId;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(Integer stuffId) {
+		this.stuffId = stuffId;
 	}
 
 	public String getWorkStatus() {

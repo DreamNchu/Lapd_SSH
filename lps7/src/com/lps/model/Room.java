@@ -31,8 +31,6 @@ import com.lps.model.basic.ModelLinkServerOrder;
 @TableGenerator(name = "pk_generate", table = "tb_generator", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "room_PK", allocationSize = 1)
 public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>{
 
-	// Fields
-
 	/**
 	 * 
 	 */
@@ -42,6 +40,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	private String name;
 	private Integer floor;// 楼层
 	private Integer size;// 房间大小
+	private Integer customerNum; //改房间当前客人数
 	private boolean isFree;
 	private boolean isClean;
 
@@ -224,6 +223,23 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 
 	public Integer getSize() {
 		return this.size;
+	}
+
+	@Column(name = "customerNum", nullable = false)
+	public Integer getCustomerNum() {
+		return customerNum;
+	}
+
+	public void setCustomerNum(Integer customerNum) {
+		this.customerNum = customerNum;
+	}
+
+	public void setFree(boolean isFree) {
+		this.isFree = isFree;
+	}
+
+	public void setClean(boolean isClean) {
+		this.isClean = isClean;
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.engine.spi.CascadeStyle;
 
 import com.lps.model.basic.BasicModel;
 
@@ -45,11 +48,10 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 */
 	private Set<ServerItem> serverorderServeritems = new HashSet<>(0);
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER,targetEntity=ServerItem.class,cascade=CascadeType.ALL)
 	@JoinTable(name = "t_serverorder_serveritem",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_serverItem_id") })
-	
 	public Set<ServerItem> getServerorderServeritems() {
 		return serverorderServeritems;
 	}
@@ -60,7 +62,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	
 	private Set<Combo> serverorderCombos = new HashSet<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "t_serverorder_combo",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_combo_id") })
@@ -75,7 +77,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 
 	private Set<Medicine> serverorderMedicines = new HashSet<>();
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "t_serverorder_medicine",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_medicine_id") })

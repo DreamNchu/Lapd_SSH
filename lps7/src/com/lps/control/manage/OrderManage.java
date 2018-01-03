@@ -248,6 +248,7 @@ public class OrderManage implements TimeType, Population {
 		so.setOrderStatus(os); // 初始化订单状态
 		so.setInitTime(new Date());
 		so.setOrderRemark(orderRemark);
+		so.setServerorderServeritems(serverItems);
 		return so;
 	}
 
@@ -434,7 +435,7 @@ public class OrderManage implements TimeType, Population {
 		PropertyRange<User> userPro = null;
 		switch (orderChartRequestDto.getPopulation()) {
 		case ONE:
-			User u = userServiceImpl.findById(orderChartRequestDto.getUserId());
+			User u = userServiceImpl.findById(orderChartRequestDto.getStuffId());
 			userPro = new PropertyRange<User>(ServerOrderDAOImpl.USER, u, u);
 			break;
 		case ALL:
@@ -568,7 +569,7 @@ public class OrderManage implements TimeType, Population {
 		// 权限检查
 		if (uo.getPermission().getPerssion() != com.lps.permission.Permission.ADMIN) {
 			//不是管理员的话，那么
-			if (uo.getUserId() != so.getUser().getId()) // 检查不同步问题
+			if (uo.getStuffId() != so.getUser().getId()) // 检查不同步问题
 				//订单上的员工的主键id和用户主键id不匹配
 				throw new UserUpdateOrderNotTheSameUserIdException();
 //				return;

@@ -2,14 +2,18 @@ package com.lps.web.user.dto;
 
 public class UserIdDto {
 
-	private int id;
-
-	public int getId() {
-		return id;
+	private int stuffId;
+	
+	public UserIdDto() {
+		
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getStuffId() {
+		return stuffId;
+	}
+
+	public void setStuffId(int stuffId) {
+		this.stuffId = stuffId;
 	}
 	
 }

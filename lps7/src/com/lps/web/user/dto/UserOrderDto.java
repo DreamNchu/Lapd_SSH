@@ -1,6 +1,7 @@
-package com.lps.web.order.dto;
+package com.lps.web.user.dto;
 
 import com.lps.model.User;
+import com.lps.web.order.dto.DtoBasicInit;
 
 public class UserOrderDto implements DtoBasicInit<UserOrderDto>{
 	

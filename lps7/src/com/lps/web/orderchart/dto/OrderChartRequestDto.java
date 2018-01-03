@@ -6,14 +6,14 @@ public class OrderChartRequestDto {
 	
 	private int population;
 	
-	private int userId;
+	private int stuffId;
 	
-	public int getUserId() {
-		return userId;
+	public int getStuffId() {
+		return stuffId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setStuffId(int userId) {
+		this.stuffId = userId;
 	}
 
 	public OrderChartRequestDto() {

@@ -21,13 +21,13 @@ public class UpdateOrderNormalOperationDto {
 	
 	private int orderStatusId;
 	
-	private int userId;
+	private int stuffId;
 	
 	public UpdateOrderNormalOperationDto() {
 	}
 	
-	public int getUserId() {
-		return userId;
+	public int getStuffId() {
+		return stuffId;
 	}
 
 	public int getPayPath() {
@@ -39,20 +39,20 @@ public class UpdateOrderNormalOperationDto {
 	}
 
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setStuffId(int userId) {
+		this.stuffId = userId;
 	}
 
 
 	public UpdateOrderNormalOperationDto(String orderId, Permission permission, int pay, int realPay, int orderStatusId,
-			int userId) {
+			int stuffId) {
 		super();
 		this.orderId = orderId;
 		this.permission = permission;
 		this.pay = pay;
 		this.realPay = realPay;
 		this.orderStatusId = orderStatusId;
-		this.userId = userId;
+		this.stuffId = stuffId;
 	}
 
 

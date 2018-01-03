@@ -7,7 +7,7 @@ function showdata(userData) {
     var i;
     for(i in userData.user){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td><input type='checkbox' name='userId' value="+userData.user[i].id+"></td>"+
+        sTr.innerHTML="<td><input type='checkbox' name='stuffId' value="+userData.user[i].id+"></td>"+
             "<td>"+userData.user[i].workId+"</td>"+
             "<td>"+userData.user[i].realName+"</td>"+
             "<td>"+userData.user[i].userName+"</td>"+
@@ -59,21 +59,21 @@ function deleteLi() {
     }
 }
 function allChecked() {
-    var orderId=document.getElementsByName("userId");
+    var orderId=document.getElementsByName("stuffId");
     var i;
     for(i=0;i<orderId.length;i++){
         orderId[i].checked=true;
     }
 }
 function allUnChecked() {
-    var orderId=document.getElementsByName("userId");
+    var orderId=document.getElementsByName("stuffId");
     var i;
     for(i=0;i<orderId.length;i++){
         orderId[i].checked=false;
     }
 }
 function opposeChecked() {
-    var orderId=document.getElementsByName("userId");
+    var orderId=document.getElementsByName("stuffId");
     var i;
     for(i=0;i<orderId.length;i++){
         if(orderId[i].checked==true){

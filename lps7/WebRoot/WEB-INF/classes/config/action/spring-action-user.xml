@@ -63,6 +63,7 @@
 	 <bean scope="prototype" id="userDataAction" class="com.lps.action.operation.user.UserDataAction">
 	 	<property name="userDataDto" ref="userDataDto"></property>
 	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
+	 	<property name="userHelpForCreateOrderDto" ref="userHelpForCreateOrderDto"></property>
 	 </bean>
 	 
 	 <!-- 员工注册 -->

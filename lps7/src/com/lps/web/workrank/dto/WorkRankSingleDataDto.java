@@ -1,20 +1,24 @@
 package com.lps.web.workrank.dto;
 
-import com.lps.model.User;
 import com.lps.model.WorkRank;
 
 public class WorkRankSingleDataDto {
 	
 	private int index;
 	
+	private int stuffId;
+	
 	private int workId;
-	
+
 	private String realName;
-	
+
 	private int rankNum;
 	
 	private int spotNum;
 	
+	public WorkRankSingleDataDto() {
+		
+	}
 	
 	public WorkRankSingleDataDto(int index, int workId, String realName, int rankNum, int spotNum) {
 		super();
@@ -23,6 +27,44 @@ public class WorkRankSingleDataDto {
 		this.realName = realName;
 		this.rankNum = rankNum;
 		this.spotNum = spotNum;
+	}
+	
+	
+	public int getIndex() {
+		return index;
+	}
+
+	public int getRankNum() {
+		return rankNum;
+	}
+
+
+	public String getRealName() {
+		return realName;
+	}
+
+
+
+
+
+	public int getSpotNum() {
+		return spotNum;
+	}
+
+
+
+
+
+	public int getStuffId() {
+		return stuffId;
+	}
+
+
+
+
+
+	public int getWorkId() {
+		return workId;
 	}
 
 	/**
@@ -38,6 +80,7 @@ public class WorkRankSingleDataDto {
 		}
 		this.index = index;
 		this.workId = workRank.getUser().getWorkId();
+		this.stuffId = workRank.getUser().getId();
 		this.realName = workRank.getUser().getRealName();
 		
 		this.rankNum = workRank.getRankNum();
@@ -45,70 +88,30 @@ public class WorkRankSingleDataDto {
 		
 		return this;
 	}
-
-
-	public int getRankNum() {
-		return rankNum;
-	}
-
-
-
-
-
-	public void setRankNum(int rankNum) {
-		this.rankNum = rankNum;
-	}
-
-
-
-
-
-	public int getSpotNum() {
-		return spotNum;
-	}
-
-
-
-
-
-	public void setSpotNum(int spotNum) {
-		this.spotNum = spotNum;
-	}
-
-
-
-
-
-	public WorkRankSingleDataDto() {
-		// TODO Auto-generated constructor stub
-	}
 	
-
-
-
-
-	public int getIndex() {
-		return index;
-	}
 
 	public void setIndex(int index) {
 		this.index = index;
 	}
 
-	public int getWorkId() {
-		return workId;
-	}
-
-	public void setWorkId(int workId) {
-		this.workId = workId;
-	}
-
-	public String getRealName() {
-		return realName;
+	public void setRankNum(int rankNum) {
+		this.rankNum = rankNum;
 	}
 
 	public void setRealName(String realName) {
 		this.realName = realName;
+	}
+
+	public void setSpotNum(int spotNum) {
+		this.spotNum = spotNum;
+	}
+
+	public void setStuffId(int stuffId) {
+		this.stuffId = stuffId;
+	}
+
+	public void setWorkId(int workId) {
+		this.workId = workId;
 	}
 	
 }

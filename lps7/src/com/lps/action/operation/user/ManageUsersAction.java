@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
@@ -22,9 +24,17 @@ public class ManageUsersAction extends ActionSupport implements DataResult,Sessi
 
 	private static final long serialVersionUID = -8314546487497383936L;
 	
+	private final static Logger logger = LogManager.getLogger(new Object() {
+		// 静态方法中获取当前类名
+		public String getClassName() {
+			String className = this.getClass().getName();
+			return className.substring(0, className.lastIndexOf('$'));
+		}
+	}.getClassName());
+	
 	private Map<String,Object> session;
 	
-	private List<Integer> userId;
+	private List<Integer> stuffId;
 	
 	private String result;
 	
@@ -65,7 +75,7 @@ public class ManageUsersAction extends ActionSupport implements DataResult,Sessi
 
 	public String deleteUsers(){
 		try {
-			for (Integer id : userId) {
+			for (Integer id : stuffId) {
 				User u = userServiceImpl.findById(id);
 				userServiceImpl.delete(u);
 			}
@@ -110,14 +120,19 @@ System.out.println(result);
 
 	}
 	
+	/**
+	 * 查询user
+	 * @return
+	 */
 	public String queryUser(){
 		userDataDto = new UserDataDto();
-		int id = userId.get(0);
+		int id = stuffId.get(0);
 		User user = userServiceImpl.findById(id);
 		userDataDto.init(user);
 		userTableDataDto.getUser().add(userDataDto);
 		result = WorkJson.toJsonDisableHtmlEscaping(userTableDataDto);
-System.out.println(result);
+//System.out.println(result);
+logger.debug(result);
 		return SUCCESS;
 	}
 	
@@ -201,12 +216,12 @@ System.out.println(result);
 		this.session = arg0;
 	}
 
-	public List<Integer> getUserId() {
-		return userId;
+	public List<Integer> getStuffId() {
+		return stuffId;
 	}
 
-	public void setUserId(List<Integer> userId) {
-		this.userId = userId;
+	public void setStuffId(List<Integer> userId) {
+		this.stuffId = userId;
 	}
 	
 	public void writeInResult(Object obj){

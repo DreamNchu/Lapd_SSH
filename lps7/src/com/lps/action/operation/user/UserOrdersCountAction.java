@@ -71,7 +71,7 @@ public class UserOrdersCountAction extends ActionSupport
 		//权限限制
 		orderChartRequestDto.setPopulation(Population.ONE);
 		int id = Integer.parseInt(session.get("id")+"");
-		orderChartRequestDto.setUserId(id);
+		orderChartRequestDto.setStuffId(id);
 		
 		orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
 		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);

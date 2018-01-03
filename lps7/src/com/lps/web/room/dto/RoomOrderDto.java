@@ -1,6 +1,7 @@
-package com.lps.web.order.dto;
+package com.lps.web.room.dto;
 
 import com.lps.model.Room;
+import com.lps.web.order.dto.DtoBasicInit;
 
 public class RoomOrderDto implements DtoBasicInit<RoomOrderDto>{
 	

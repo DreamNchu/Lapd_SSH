@@ -12,6 +12,11 @@ import com.lps.service.UserService;
 import com.lps.util.WorkJson;
 import com.opensymphony.xwork2.ActionSupport;
 
+/**
+ * 员工是否签到检查，这将影响着上钟的排名
+ * @author 0001
+ *
+ */
 public class UserWorkCheckAction extends ActionSupport 
 	implements DataResult,SessionAware {
 	

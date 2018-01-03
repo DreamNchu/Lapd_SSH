@@ -5,6 +5,8 @@ import java.util.List;
 import com.lps.model.Room;
 import com.lps.model.ServerItem;
 import com.lps.model.User;
+import com.lps.web.room.dto.RoomOrderDto;
+import com.lps.web.user.dto.UserOrderDto;
 
 public class InitCreateOrderDto {
 	

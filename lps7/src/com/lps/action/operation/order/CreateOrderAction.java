@@ -3,6 +3,9 @@ package com.lps.action.operation.order;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.google.gson.Gson;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.OrderManage;
@@ -22,6 +25,14 @@ public class CreateOrderAction extends ActionSupport implements DataResult{
 	private ServerOrderService serverOrderServiceImpl;
 
 	private String result;
+	
+	private final static Logger logger = LogManager.getLogger(new Object() {
+		// 静态方法中获取当前类名
+		public String getClassName() {
+			String className = this.getClass().getName();
+			return className.substring(0, className.lastIndexOf('$'));
+		}
+	}.getClassName());
 
 	@Override
 	public String execute() throws Exception {
@@ -40,6 +51,7 @@ public class CreateOrderAction extends ActionSupport implements DataResult{
 
 		map.put("msg", "创建订单成功");
 		result = new Gson().toJson(map);
+		logger.debug(result);
 		return super.execute();
 	}
 

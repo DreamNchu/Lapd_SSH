@@ -10,20 +10,9 @@
 		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-	<bean id="userTableDataDto" class="com.lps.web.user.dto.UserTableDataDto"
-		scope="prototype">
-		<property name="user">
-			<list></list>
-		</property>
-	</bean>
 
-	<bean id="userDataDto" class="com.lps.web.user.dto.UserDataDto"
-		scope="prototype">
+	<bean id="roomManage" class="com.lps.control.manage.RoomManage">
+		<property name="roomServiceImpl" ref="roomServiceImpl"></property>
 	</bean>
 	
-	<bean id="userHelpForCreateOrderDto" class="com.lps.web.user.dto.UserHelpForCreateOrderDto" scope="prototype">
-	
-	</bean>
-	
-
 </beans>

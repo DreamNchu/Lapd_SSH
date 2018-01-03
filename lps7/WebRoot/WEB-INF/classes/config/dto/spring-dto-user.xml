@@ -21,6 +21,9 @@
 		scope="prototype">
 	</bean>
 	
+	<bean id="userHelpForCreateOrderDto" class="com.lps.web.user.dto.UserHelpForCreateOrderDto" scope="prototype">
+	
+	</bean>
 	
 
 </beans>

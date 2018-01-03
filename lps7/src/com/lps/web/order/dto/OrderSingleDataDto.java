@@ -91,8 +91,7 @@ public class OrderSingleDataDto{
 			setRoomName(so.getRoom().getName());
 		}
 		
-		String temp = null;
-		System.out.println(so.getServerorderServeritems());
+		String temp = "";
 		for ( ServerItem si : so.getServerorderServeritems()) {
 			temp += si.getServerItem();
 		}
