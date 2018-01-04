@@ -6,12 +6,16 @@ import java.util.List;
 import java.util.Map;
 
 import com.lps.dao.AdminDAO;
+import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.AdminDAOImpl;
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.Admin;
+import com.lps.model.OrderStatus;
 import com.lps.model.basic.BasicModel;
 import com.lps.service.AdminService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -82,9 +86,14 @@ public class AdminServiceImpl implements AdminService {
 
 	/**
 	 * 根据id查找管理员，返回管理员实例
+	 * @throws FindByIdGetNullException 
 	 */
 	@Override
-	public Admin findById(int id) {
+	public Admin findById(int id) throws FindByIdGetNullException {
+		Admin admin = dao.findById(id);
+		if(admin != null){
+			throw new FindByIdGetNullException();
+		}
 		return dao.findById(id);
 	}
 
@@ -99,17 +108,19 @@ public class AdminServiceImpl implements AdminService {
 
 	/**
 	 * 根据id找到指定admin实例，获取该管理员注册时间
+	 * @throws FindByIdGetNullException 
 	 */
 	@Override
-	public Date findRegisterTime(Admin admin) {
+	public Date findRegisterTime(Admin admin) throws FindByIdGetNullException {
 		return findById(admin.getId()).getRegisterTime();
 	}
 
 	/**
 	 * 根据id找到指定admin实例，获取该管理员头像
+	 * @throws FindByIdGetNullException 
 	 */
 	@Override
-	public String getAvatar(Admin admin) {
+	public String getAvatar(Admin admin) throws FindByIdGetNullException {
 		return findById(admin.getId()).getAvatar();
 	}
 
@@ -213,5 +224,17 @@ public class AdminServiceImpl implements AdminService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
+	
+	@Override
+	public PropertyRange<Admin> createPropertyRangeById(int id1) throws FindByIdGetNullException {
+		PropertyRange<Admin> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
+		
+		return pr;
+	}
+
 
 }

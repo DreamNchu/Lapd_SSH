@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.OrderStatusDAO;
+import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.ClockCategoryDAOImpl;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.dao.impl.ServerOrderDAOImpl;
@@ -270,10 +271,10 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public PropertyRange<OrderStatus> createPropertyRange(int id1, int id2) {
+	public PropertyRange<OrderStatus> createPropertyRangeById(int id1) {
 		PropertyRange<OrderStatus> pr = new PropertyRange<OrderStatus>();
 		
-		pr.setName(ServerOrderDAOImpl.ORDER_STATUS);
+		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
 		pr.setMaxValue(findById(id1));
 		

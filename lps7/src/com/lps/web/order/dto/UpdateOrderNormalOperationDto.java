@@ -13,9 +13,9 @@ public class UpdateOrderNormalOperationDto {
 	
 	private Permission permission;
 	
-	private int pay;
+	private Float pay;
 	
-	private int realPay;
+	private Float realPay;
 	
 	private int payPath;
 	
@@ -44,7 +44,7 @@ public class UpdateOrderNormalOperationDto {
 	}
 
 
-	public UpdateOrderNormalOperationDto(String orderId, Permission permission, int pay, int realPay, int orderStatusId,
+	public UpdateOrderNormalOperationDto(String orderId, Permission permission, Float pay, Float realPay, int orderStatusId,
 			int stuffId) {
 		super();
 		this.orderId = orderId;
@@ -73,19 +73,19 @@ public class UpdateOrderNormalOperationDto {
 		this.permission = permission;
 	}
 
-	public int getPay() {
+	public Float getPay() {
 		return pay;
 	}
 
-	public void setPay(int pay) {
+	public void setPay(Float pay) {
 		this.pay = pay;
 	}
 
-	public int getRealPay() {
+	public Float getRealPay() {
 		return realPay;
 	}
 
-	public void setRealPay(int realPay) {
+	public void setRealPay(Float realPay) {
 		this.realPay = realPay;
 	}
 

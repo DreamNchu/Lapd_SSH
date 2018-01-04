@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.Map;
 
 import com.lps.dao.WorkRankDAO;
+import com.lps.dao.basic.BasicDAO;
+import com.lps.model.OrderStatus;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
 import com.lps.model.basic.BasicModel;
 import com.lps.service.WorkRankService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 public class WorkRankServiceImpl implements WorkRankService {
 	
@@ -181,5 +184,15 @@ public class WorkRankServiceImpl implements WorkRankService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
-
+	
+	@Override
+	public PropertyRange<WorkRank> createPropertyRangeById(int id1) {
+		PropertyRange<WorkRank> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
+	}
 }

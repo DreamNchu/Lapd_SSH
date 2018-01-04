@@ -15,9 +15,9 @@ public class OrderUpdateDataDto {
 
 	private int payPathId;
 
-	private Integer pay;
+	private Float pay;
 	
-	private Integer realPay;
+	private Float realPay;
 	
 	private String orderRemark;
 	
@@ -35,7 +35,7 @@ public class OrderUpdateDataDto {
 		return orderRemark;
 	}
 
-	public Integer getPay() {
+	public Float getPay() {
 		return pay;
 	}
 
@@ -43,7 +43,7 @@ public class OrderUpdateDataDto {
 		return payPathId;
 	}
 
-	public Integer getRealPay() {
+	public Float getRealPay() {
 		return realPay;
 	}
 
@@ -71,7 +71,7 @@ public class OrderUpdateDataDto {
 		this.orderRemark = orderRemark;
 	}
 
-	public void setPay(Integer pay) {
+	public void setPay(Float pay) {
 		this.pay = pay;
 	}
 
@@ -79,7 +79,7 @@ public class OrderUpdateDataDto {
 		this.payPathId = payId;
 	}
 
-	public void setRealPay(Integer realPay) {
+	public void setRealPay(Float realPay) {
 		this.realPay = realPay;
 	}
 

@@ -191,7 +191,7 @@ System.out.println(result);
 
 			int userId = Integer.parseInt(session.get("id") + "");
 
-			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(orderId, new Permission(Permission.USER), 0, 0,
+			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(orderId, new Permission(Permission.USER), 0f, 0f,
 					OrderStatusDAOImpl.SERVICING, userId);
 			orderManage.updateOrderNormal(uo);
 
@@ -218,7 +218,7 @@ System.out.println(result);
 			}
 			int userId = Integer.parseInt(session.get("id") + "");
 
-			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(orderId, new Permission(Permission.USER), pay, 0,
+			UpdateOrderNormalOperationDto uo = new UpdateOrderNormalOperationDto(orderId, new Permission(Permission.USER), pay, 0f,
 					OrderStatusDAOImpl.WAITING_PAY, userId);
 			
 			orderManage.updateOrderNormal(uo);
@@ -233,9 +233,9 @@ System.out.println(result);
 		return SUCCESS;
 	}
 
-	private int pay;
+	private float pay;
 
-	public int getPay() {
+	public float getPay() {
 		return pay;
 	}
 

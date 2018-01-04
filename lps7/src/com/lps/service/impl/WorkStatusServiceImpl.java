@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.lps.dao.WorkStatusDAO;
+import com.lps.dao.basic.BasicDAO;
+import com.lps.model.OrderStatus;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
 import com.lps.model.WorkStatus;
@@ -11,6 +13,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.service.WorkStatusService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -156,5 +159,15 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
-
+	
+	@Override
+	public PropertyRange<WorkStatus> createPropertyRangeById(int id1) {
+		PropertyRange<WorkStatus> pr = new PropertyRange<WorkStatus>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
+	}
 }

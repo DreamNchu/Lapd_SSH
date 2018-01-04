@@ -5,7 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.RoomDAO;
+import com.lps.dao.basic.BasicDAO;
 import com.lps.model.Admin;
+import com.lps.model.OrderStatus;
 import com.lps.model.Room;
 import com.lps.model.Room;
 import com.lps.model.ServerOrder;
@@ -13,6 +15,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.service.RoomService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 
 public class RoomServiceImpl implements RoomService {
@@ -276,5 +279,14 @@ public class RoomServiceImpl implements RoomService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
-	
+	@Override
+	public PropertyRange<Room> createPropertyRangeById(int id1) {
+		PropertyRange<Room> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
+	}
 }

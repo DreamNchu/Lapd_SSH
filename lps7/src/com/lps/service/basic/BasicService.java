@@ -3,11 +3,14 @@ package com.lps.service.basic;
 import java.util.List;
 import java.util.Map;
 
+import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 public interface BasicService<T> {
 	/**
@@ -21,9 +24,7 @@ public interface BasicService<T> {
 
 	void delete(T persistentInstance);
 	
-//	void delete(@SuppressWarnings("unchecked") T... fields);
-
-	T findById(int id);
+	T findById(int id) throws FindByIdGetNullException;
 
 	List<T> findByProperty(String propertyName, Object value);
 
@@ -55,5 +56,5 @@ public interface BasicService<T> {
 	 */
 	<K> List<K> findIdByProperty(Map<String , Object> map);
 	
-	
+	PropertyRange<T> createPropertyRangeById(int id1) throws FindByIdGetNullException;
 }

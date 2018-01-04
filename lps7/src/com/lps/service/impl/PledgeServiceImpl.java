@@ -6,9 +6,11 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.PledgeDAO;
+import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.PayPathDAOImpl;
 import com.lps.dao.impl.PledgeDAOImpl;
 import com.lps.model.Pledge;
+import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.Pledge;
 import com.lps.model.ServerOrder;
@@ -16,6 +18,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.service.PledgeService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 
 //@Component("adminServiceImpl")
@@ -247,5 +250,15 @@ public class PledgeServiceImpl implements PledgeService {
 		return dao.findIdByProperty(map);
 	}
 
+	@Override
+	public PropertyRange<Pledge> createPropertyRangeById(int id1) {
+		PropertyRange<Pledge> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
+	}
 
 }

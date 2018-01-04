@@ -16,7 +16,6 @@ import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.WorkJson;
 import com.lps.web.user.dto.PageLinkTransformUserDto;
 import com.lps.web.user.dto.UserDataDto;
-import com.lps.web.user.dto.UserIdDto;
 import com.lps.web.user.dto.UserTableDataDto;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -115,9 +114,9 @@ public class ManageUsersAction extends ActionSupport implements DataResult,Sessi
 				pageLinkTransformUserDto.getDomainName(), 
 				Thread.currentThread().getStackTrace()[1].getMethodName());
 		result = WorkJson.toJsonDisableHtmlEscaping(userTableDataDto); 
-System.out.println(result);
+//System.out.println(result);
+		logger.debug(result);
 		return SUCCESS;
-
 	}
 	
 	/**
@@ -131,7 +130,7 @@ System.out.println(result);
 		userDataDto.init(user);
 		userTableDataDto.getUser().add(userDataDto);
 		result = WorkJson.toJsonDisableHtmlEscaping(userTableDataDto);
-//System.out.println(result);
+		
 logger.debug(result);
 		return SUCCESS;
 	}

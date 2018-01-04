@@ -6,7 +6,6 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -23,6 +22,7 @@ import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.OrderSingleDataDto;
 import com.lps.web.order.dto.OrderTableDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
+import com.lps.web.order.dto.PageLinkOrderAdvancedSearchDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.orderchart.dto.OrderChartDto;
@@ -160,6 +160,41 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		
 	}
 	
+	/**
+	 * 高级查询辅助类
+	 */
+	private PageLinkOrderAdvancedSearchDto advancedSearchDto;
+	
+	public PageLinkOrderAdvancedSearchDto getAdvancedSearchDto() {
+		return advancedSearchDto;
+	}
+
+	public void setAdvancedSearchDto(PageLinkOrderAdvancedSearchDto advancedSearchDto) {
+		this.advancedSearchDto = advancedSearchDto;
+	}
+
+	/**
+	 * 高级查询
+	 * @return
+	 * @throws PagePropertyNotInitException 
+	 */
+	public String queryAdvancedOrder() throws PagePropertyNotInitException{
+		
+		orderManage.advancedQuery(advancedSearchDto);
+		
+		orderTableDataDto.init(
+				orderManage.advancedQuery(advancedSearchDto), 
+				advancedSearchDto, 
+				advancedSearchDto.getDomainName(),
+				Thread.currentThread().getStackTrace()[1].getMethodName());
+		
+		writeInResult(orderTableDataDto);
+		
+		logger.debug(orderTableDataDto);
+		
+		return SUCCESS;
+	}
+	
 	private void queryBasicOrderUtil() throws PagePropertyNotInitException{
 		if (pageLinkTransformOrderDto != null) {
 			if (pageLinkTransformOrderDto.getStatusId() != 0)
@@ -182,11 +217,6 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 				Thread.currentThread().getStackTrace()[1].getMethodName());
 		
 	}
-	
-//	private void writeInResult2(Object obj){
-//		result = WorkJson.toJsonDisableHtmlEscaping(obj);
-//System.out.println(result);
-//	}
 	
 	private OrderChartDto orderChartDto ;
 	

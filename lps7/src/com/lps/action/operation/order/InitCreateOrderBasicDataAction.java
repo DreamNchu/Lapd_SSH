@@ -53,7 +53,6 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 		// 保存结果
 		result = WorkJson.toJsonDisableHtmlEscaping(initCreateOrderDto);
 
-//System.out.println(result);
 		logger.debug(result);
 
 		return SUCCESS;

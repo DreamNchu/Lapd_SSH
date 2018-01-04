@@ -237,7 +237,7 @@
                     <form id="userForm">
                         <div class="modal-body">
                             <div class="form-group" >
-                            	<input type="hidden" name="userDataDto.id"  id="userId" style="display: none">
+                            	<input type="hidden" name="userDataDto.stuffId"  id="userId" style="display: none">
                                 <label>工号</label>
                                 <input type="text" name="userDataDto.workId" id="workId" class="form-control" >
                                 <label>姓名</label>

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 
 import com.lps.dao.ServerOrderDAO;
+import com.lps.dao.basic.BasicDAO;
+import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
 import com.lps.service.ServerOrderService;
@@ -69,9 +71,10 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	}
 
 	/**
-	 * 根据id查找房间，返回ServerOrder实例
+	 * 根据id查找订单，返回ServerOrder实例
 	 */
 	@Override
+	@Deprecated
 	public ServerOrder findById(int id) {
 		return dao.findById(id);
 	}
@@ -126,7 +129,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	}
 
 	/**
-	 * 根据id查找房间，返回ServerOrder实例
+	 * 根据id查找订单，返回ServerOrder实例
 	 */
 	@Override
 	public ServerOrder findById(String id) {
@@ -294,5 +297,28 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 		return dao.findOrdersByProperyLimit(listPro, begin, limit);
 	}
 
-
+	@Override
+	@Deprecated
+	/**
+	 * 改参数类型的方法被抛弃，不能使用
+	 */
+	public PropertyRange<ServerOrder> createPropertyRangeById(int id1) {
+		PropertyRange<ServerOrder> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return null;
+	}
+	
+	public PropertyRange<ServerOrder> createPropertyRange(String id1, String id2) {
+		PropertyRange<ServerOrder> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
+	}
 }

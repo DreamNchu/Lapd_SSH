@@ -96,8 +96,8 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	private Date receiveTime;
 	private Date finishTime;
 	private Date payTime;
-	private Integer pay;
-	private Integer realPay;
+	private Float pay;
+	private Float realPay;
 	private String orderRemark;
 
 	/** default constructor */
@@ -168,7 +168,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 *            订单备注
 	 */
 	public ServerOrder(String id, PayPath payPath, Room room, User user, Pledge pledge, ClockCategory clockCategory,
-			OrderStatus orderStatus, Date initTime, Date receiveTime, Date finishTime, Integer pay, Integer realPay,
+			OrderStatus orderStatus, Date initTime, Date receiveTime, Date finishTime, Float pay, Float realPay,
 			Date payTime, String orderRemark) {
 		this.id = id;
 		this.payPath = payPath;
@@ -411,7 +411,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 */
 	@Column(name = "pay")
 
-	public Integer getPay() {
+	public Float getPay() {
 		return this.pay;
 	}
 
@@ -421,7 +421,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * @param pay
 	 *            订单费用
 	 */
-	public void setPay(Integer pay) {
+	public void setPay(Float pay) {
 		this.pay = pay;
 	}
 
@@ -432,7 +432,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 */
 	@Column(name = "realPay")
 
-	public Integer getRealPay() {
+	public Float getRealPay() {
 		return this.realPay;
 	}
 
@@ -442,7 +442,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * @param realPay
 	 *            实际付费
 	 */
-	public void setRealPay(Integer realPay) {
+	public void setRealPay(Float realPay) {
 		this.realPay = realPay;
 	}
 
@@ -519,8 +519,8 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 		private Date receiveTime;
 		private Date finishTime;
 		private Date payTime;
-		private Integer pay;
-		private Integer realPay;
+		private Float pay;
+		private Float realPay;
 		private String orderRemark;
 
 		/**
@@ -650,7 +650,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 		 *            订单费用
 		 * @return 订单费用
 		 */
-		public Builder setPay(Integer pay) {
+		public Builder setPay(Float pay) {
 			this.pay = pay;
 			return this;
 		}
@@ -662,7 +662,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 		 *            实际付费
 		 * @return 实际付费
 		 */
-		public Builder setRealPay(Integer realPay) {
+		public Builder setRealPay(Float realPay) {
 			this.realPay = realPay;
 			return this;
 		}

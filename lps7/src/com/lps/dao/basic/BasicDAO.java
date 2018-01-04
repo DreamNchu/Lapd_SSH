@@ -7,6 +7,8 @@ import com.lps.model.basic.BasicModel;
 
 public interface BasicDAO<T> {
 	
+	String ID = "id";
+	
 	/**
 	 * 根据对象的id保存
 	 * @param t 指定对象

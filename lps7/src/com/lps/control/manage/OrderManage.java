@@ -31,6 +31,7 @@ import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 import com.lps.web.order.dto.CreateOrderDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
+import com.lps.web.order.dto.PageLinkOrderAdvancedSearchDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
@@ -330,8 +331,7 @@ public class OrderManage implements TimeType, Population {
 		PageBean<ServerOrder> listSo = null;
 
 		// 订单类型范围
-		PropertyRange<OrderStatus> pr = orderStatusServiceImpl.createPropertyRange(qod.getStatusId(),
-				qod.getStatusId());
+		PropertyRange<OrderStatus> pr = orderStatusServiceImpl.createPropertyRangeById(qod.getStatusId());
 		List<PropertyRange<?>> listPro = new ArrayList<>();
 		listPro.add(pr);
 
@@ -559,8 +559,8 @@ public class OrderManage implements TimeType, Population {
 	}
 
 	/**
-	 * 管理员和员工都可以更新订单
-	 * 在正常情况下更新订单
+	 * 管理员和员工都可以更新订单 在正常情况下更新订单
+	 * 
 	 * @param uo
 	 */
 	public void updateOrderNormal(UpdateOrderNormalOperationDto uo) {
@@ -568,11 +568,11 @@ public class OrderManage implements TimeType, Population {
 
 		// 权限检查
 		if (uo.getPermission().getPerssion() != com.lps.permission.Permission.ADMIN) {
-			//不是管理员的话，那么
+			// 不是管理员的话，那么
 			if (uo.getStuffId() != so.getUser().getId()) // 检查不同步问题
-				//订单上的员工的主键id和用户主键id不匹配
+				// 订单上的员工的主键id和用户主键id不匹配
 				throw new UserUpdateOrderNotTheSameUserIdException();
-//				return;
+			// return;
 		}
 
 		// 更改状态
@@ -593,11 +593,49 @@ public class OrderManage implements TimeType, Population {
 
 			so.setRealPay(uo.getRealPay());
 			so.setFinishTime(new Date());
-			so.setPayPath(payPathServiceImpl.findById(uo.getRealPay()));
+			so.setPayPath(payPathServiceImpl.findById(uo.getPayPath()));
 			break;
 		}
 
 		serverOrderServiceImpl.update(so);
+	}
+
+	/**
+	 * 订单高级查询
+	 * 
+	 * @param advancedSearchDto
+	 * @return
+	 * @throws PagePropertyNotInitException
+	 */
+	public PageBean<ServerOrder> advancedQuery(PageLinkOrderAdvancedSearchDto advancedSearchDto)
+			throws PagePropertyNotInitException {
+		PageLinkOrderAdvancedSearchDto as = advancedSearchDto;
+		List<PropertyRange<?>> listPro = new ArrayList<>();
+		// 时间限定
+		PropertyRange<?> pd = null;
+		if((pd = advancedSearchDto.getInitTimeRange()) != null)
+			listPro.add(pd);
+		// 价格限定
+		PropertyRange<?> pp = null;
+		if((pp = advancedSearchDto.getInitTimeRange()) != null)
+			listPro.add(pp);
+		
+		listPro.add(advancedSearchDto.getRealPayRange());
+
+		if (as.getPayPathId() != 0)
+			listPro.add(payPathServiceImpl.createPropertyRangeById(as.getPayPathId()));
+		if (as.getWorkId() != 0)
+			listPro.add(userServiceImpl
+					.createPropertyRangeById(userServiceImpl.findByWorkId(as.getWorkId()).get(0).getId()));
+		if (as.getRoomId() != 0)
+			listPro.add(roomServiceImpl.createPropertyRangeById(as.getRoomId()));
+		if (as.getRealName() != null)
+			listPro.add(userServiceImpl
+					.createPropertyRangeById(userServiceImpl.findByRealName(as.getRealName()).get(0).getId()));
+		if (as.getPayPathId() != 0)
+			listPro.add(payPathServiceImpl.createPropertyRangeById(as.getPayPathId()));
+
+		return serverOrderServiceImpl.findOrdersByPropertyLimit(listPro, as.getPage());
 	}
 
 }

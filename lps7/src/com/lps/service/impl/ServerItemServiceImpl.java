@@ -6,14 +6,17 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.ServerItemDAO;
+import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.PledgeDAOImpl;
 import com.lps.dao.impl.ServerItemDAOImpl;
+import com.lps.model.OrderStatus;
 import com.lps.model.ServerItem;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
 import com.lps.service.ServerItemService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 
 //@Component("adminServiceImpl")
 //@Aspect
@@ -131,5 +134,14 @@ public class ServerItemServiceImpl implements ServerItemService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
-
+	@Override
+	public PropertyRange<ServerItem> createPropertyRangeById(int id1) {
+		PropertyRange<ServerItem> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
+	}
 }

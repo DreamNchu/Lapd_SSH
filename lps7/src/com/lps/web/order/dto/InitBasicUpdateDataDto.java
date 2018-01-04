@@ -36,9 +36,9 @@ public class InitBasicUpdateDataDto{
 	 */
 	private List<PayPathOrderDto> payPaths;
 	
-	private Integer pay;
+	private Float pay;
 	
-	private Integer realPay;
+	private Float realPay;
 	
 	private String orderRemark;
 	
@@ -122,19 +122,19 @@ public class InitBasicUpdateDataDto{
 		this.payPaths = payType;
 	}
 
-	public int getPay() {
+	public Float getPay() {
 		return pay;
 	}
 
-	public void setPay(int pay) {
+	public void setPay(Float pay) {
 		this.pay = pay;
 	}
 
-	public int getRealPay() {
+	public Float getRealPay() {
 		return realPay;
 	}
 
-	public void setRealPay(int realPay) {
+	public void setRealPay(Float realPay) {
 		this.realPay = realPay;
 	}
 

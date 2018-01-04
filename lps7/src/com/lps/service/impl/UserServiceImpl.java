@@ -6,6 +6,7 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.UserDAO;
+import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.UserDAOImpl;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
@@ -13,6 +14,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.service.UserService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 
 public class UserServiceImpl implements UserService {
@@ -95,9 +97,13 @@ public class UserServiceImpl implements UserService {
 
 	/**
 	 * 根据id查找员工，返回user实例
+	 * @throws FindByIdGetNullException 
 	 */
 	@Override
-	public User findById(int id) {
+	public User findById(int id) throws FindByIdGetNullException {
+		User u = userDao.findById(id);
+		if(u == null)
+			throw new FindByIdGetNullException();
 		return userDao.findById(id);
 	}
 	
@@ -312,6 +318,16 @@ public class UserServiceImpl implements UserService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return userDao.findIdByProperty(map);
 	}
-
+	public PropertyRange<User> createPropertyRangeById(int id1) throws FindByIdGetNullException {
+		
+		PropertyRange<User> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
+		
+		return pr;
+	}
 
 }

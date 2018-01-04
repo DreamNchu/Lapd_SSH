@@ -6,9 +6,11 @@ import java.util.Map;
 import java.util.Set;
 
 import com.lps.dao.PayPathDAO;
+import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.dao.impl.PayPathDAOImpl;
 import com.lps.model.PayPath;
+import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
@@ -17,6 +19,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.service.PayPathService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 
 //@Component("adminServiceImpl")
@@ -265,6 +268,17 @@ public class PayPathServiceImpl implements PayPathService {
 	@Override
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
+	}
+	
+	@Override
+	public PropertyRange<PayPath> createPropertyRangeById(int id1) {
+		PropertyRange<PayPath> pr = new PropertyRange<>();
+		
+		pr.setName(BasicDAO.ID);
+		pr.setMinValue(findById(id1));
+		pr.setMaxValue(findById(id1));
+		
+		return pr;
 	}
 
 }
