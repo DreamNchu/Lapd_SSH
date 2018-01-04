@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
@@ -16,6 +17,7 @@ import com.lps.dao.OrderStatusDAO;
 import com.lps.model.ServerOrder;
 import com.lps.permission.Permission;
 import com.lps.service.ServerOrderService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.WorkJson;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
@@ -148,11 +150,17 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		pageLinkTransformOrderDto.setStatusId(Integer.parseInt( session.get("statusId") + ""));
 		pageLinkTransformOrderDto.setTimeType(Integer.parseInt( session.get("timeType")+""));
 
-		orderTableDataDto.init(
-				orderManage.basicQuery(pageLinkTransformOrderDto, pageLinkTransformOrderDto.getPage()), 
-				pageLinkTransformOrderDto, 
-				pageLinkTransformOrderDto.getDomainName(),
-				Thread.currentThread().getStackTrace()[1].getMethodName());
+		try {
+			orderTableDataDto.init(
+					orderManage.basicQuery(pageLinkTransformOrderDto, pageLinkTransformOrderDto.getPage()), 
+					pageLinkTransformOrderDto, 
+					pageLinkTransformOrderDto.getDomainName(),
+					Thread.currentThread().getStackTrace()[1].getMethodName());
+			
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			orderTableDataDto.setErrorMsg(e.getMessage());
+		}
 		
 		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
 		logger.debug(result);
@@ -195,29 +203,6 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		return SUCCESS;
 	}
 	
-	private void queryBasicOrderUtil() throws PagePropertyNotInitException{
-		if (pageLinkTransformOrderDto != null) {
-			if (pageLinkTransformOrderDto.getStatusId() != 0)
-				session.put("statusId", pageLinkTransformOrderDto.getStatusId());
-			if (pageLinkTransformOrderDto.getTimeType() != 0) {
-				session.put("timeType", pageLinkTransformOrderDto.getTimeType());
-			}
-			if (pageLinkTransformOrderDto.getPage() != 0)
-				session.put("orderPage", pageLinkTransformOrderDto.getPage());
-		}
-		
-		pageLinkTransformOrderDto.setPage(Integer.parseInt( session.get("orderPage") + ""));
-		pageLinkTransformOrderDto.setStatusId(Integer.parseInt( session.get("statusId") + ""));
-		pageLinkTransformOrderDto.setTimeType(Integer.parseInt( session.get("timeType")+""));
-
-		orderTableDataDto.init(
-				orderManage.basicQuery(pageLinkTransformOrderDto, pageLinkTransformOrderDto.getPage()), 
-				pageLinkTransformOrderDto, 
-				pageLinkTransformOrderDto.getDomainName(),
-				Thread.currentThread().getStackTrace()[1].getMethodName());
-		
-	}
-	
 	private OrderChartDto orderChartDto ;
 	
 	private OrderChartRequestDto orderChartRequestDto;
@@ -227,7 +212,11 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	 * @return
 	 */
 	public String chartDataOrders(){
-		orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
+		try {
+			orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+		}
 		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
 //System.out.println(result);
 		return SUCCESS;
@@ -380,7 +369,7 @@ System.out.println(result);
 	
 	
 	public String outputOrdersExcel() throws PagePropertyNotInitException{
-		queryBasicOrderUtil();  //
+//		queryBasicOrderUtil();  //
 		
 //		orderTableDataDto
 		return SUCCESS;

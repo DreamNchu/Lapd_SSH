@@ -92,7 +92,7 @@ public class AdminServiceImpl implements AdminService {
 	public Admin findById(int id) throws FindByIdGetNullException {
 		Admin admin = dao.findById(id);
 		if(admin != null){
-			throw new FindByIdGetNullException();
+			throw new FindByIdGetNullException("根据主键id未找到管理员对象");
 		}
 		return dao.findById(id);
 	}

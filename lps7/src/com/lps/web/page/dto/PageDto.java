@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.lps.model.ServerOrder;
 import com.lps.util.LinkParamCreater;
 import com.lps.util.PageBean;
-import com.lps.web.order.dto.PageLinkTransformOrderDto;
+import com.lps.web.basicmsg.dto.BasicMsgDto;
 
-public abstract class PageDto {
+public abstract class PageDto extends BasicMsgDto{
 
 	protected List<Map<String, Object>> page = new ArrayList<>();;
 

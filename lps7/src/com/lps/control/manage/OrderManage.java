@@ -25,14 +25,16 @@ import com.lps.service.RoomService;
 import com.lps.service.ServerItemService;
 import com.lps.service.ServerOrderService;
 import com.lps.service.UserService;
+import com.lps.service.basic.BasicService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 import com.lps.web.order.dto.CreateOrderDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
-import com.lps.web.order.dto.PageLinkOrderAdvancedSearchDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
+import com.lps.web.order.dto.PageLinkOrderAdvancedSearchDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.CreateOrderWay;
@@ -218,13 +220,23 @@ public class OrderManage implements TimeType, Population {
 	 * @param roomId
 	 * @param clockCategory
 	 * @return
+	 * @throws CreateOrderFailedException
 	 */
 	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory, Set<Integer> serverItemIds,
-			String orderRemark) {
+			String orderRemark) throws CreateOrderFailedException {
 
-		User u = userServiceImpl.findById(stuffId);
-		Room r = roomServiceImpl.findById(roomId);
-		ClockCategory cc = clockCategoryServiceImpl.findById(clockCategory);
+		User u = null;
+		Room r = null;
+		ClockCategory cc = null;
+
+		try {
+			u = userServiceImpl.findById(stuffId);
+			r = roomServiceImpl.findById(roomId);
+			cc = clockCategoryServiceImpl.findById(clockCategory);
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			throw new CreateOrderFailedException("创建订单失败");
+		}
 		Set<ServerItem> items = getServerItems(serverItemIds);
 
 		return createNormalOrder(u, r, cc, items, orderRemark);
@@ -237,15 +249,22 @@ public class OrderManage implements TimeType, Population {
 	 * @param room
 	 * @param clockCategory
 	 * @return
+	 * @throws CreateOrderFailedException 
 	 */
 	public ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory, Set<ServerItem> serverItems,
-			String orderRemark) {
+			String orderRemark) throws CreateOrderFailedException {
 		ServerOrder so = new ServerOrder();
 		so.setId(orderIdCreater(user.getWorkId(), room.getName(), clockCategory.getId()));
 		so.setUser(user); // 初始化员工
 		so.setRoom(room); // 初始化房间
 		so.setClockCategory(clockCategory); // 初始化钟点类型
-		OrderStatus os = orderStatusServiceImpl.findById(OrderStatusDAO.WAITING_RECEIVE);
+		OrderStatus os = null;
+		try {
+			os = orderStatusServiceImpl.findById(OrderStatusDAO.WAITING_RECEIVE);
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			throw new CreateOrderFailedException("创建订单失败");
+		}
 		so.setOrderStatus(os); // 初始化订单状态
 		so.setInitTime(new Date());
 		so.setOrderRemark(orderRemark);
@@ -257,8 +276,9 @@ public class OrderManage implements TimeType, Population {
 	 * 创建一个订单
 	 * 
 	 * @param createOrderDto
+	 * @throws CreateOrderFailedException 
 	 */
-	public void createOrder(CreateOrderDto createOrderDto) {
+	public void createOrder(CreateOrderDto createOrderDto) throws CreateOrderFailedException {
 		ServerOrder so = null;
 		switch (createOrderDto.getCreateWays()) {
 		case CreateOrderWay.rank_order_auto:
@@ -282,16 +302,24 @@ public class OrderManage implements TimeType, Population {
 	 * 
 	 * @param roomId
 	 * @return
+	 * @throws CreateOrderFailedException 
 	 */
-	public ServerOrder createOrder(int roomId, String orderRemark, Set<Integer> serverItemIds) {
+	public ServerOrder createOrder(int roomId, String orderRemark, Set<Integer> serverItemIds) throws CreateOrderFailedException {
 
 		ServerOrder so = null;
 		User u = workRankManage.nextOne();
 
 		if (u != null) {
 			// 判断是否有空闲员工，如果有那么执行下面语句
-			Room r = roomServiceImpl.findById(roomId);
-			ClockCategory cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
+			Room r = null;
+			ClockCategory cc = null;
+			try {
+				r = roomServiceImpl.findById(roomId);
+				cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
+			} catch (FindByIdGetNullException e) {
+				e.printStackTrace();
+				throw new CreateOrderFailedException("订单创建失败");
+			}
 			Set<ServerItem> items = getServerItems(serverItemIds);
 
 			return createNormalOrder(u, r, cc, items, orderRemark);
@@ -313,8 +341,15 @@ public class OrderManage implements TimeType, Population {
 	 */
 	private Set<ServerItem> getServerItems(Set<Integer> sets) {
 		Set<ServerItem> sis = new HashSet<>();
+		ServerItem  si = null;
 		for (Integer integer : sets) {
-			sis.add(serverItemServiceImpl.findById(integer));
+			try {
+				si = serverItemServiceImpl.findById(integer);
+				sis.add(si);
+			} catch (FindByIdGetNullException e) {
+				e.printStackTrace();
+				sis.remove(si);
+			}
 		}
 		return sis;
 	}
@@ -325,9 +360,10 @@ public class OrderManage implements TimeType, Population {
 	 * @param qod
 	 * @return
 	 * @throws PagePropertyNotInitException
+	 * @throws FindByIdGetNullException 
 	 */
 	public PageBean<ServerOrder> basicQuery(PageLinkTransformOrderDto qod, int page)
-			throws PagePropertyNotInitException {
+			throws PagePropertyNotInitException, FindByIdGetNullException {
 		PageBean<ServerOrder> listSo = null;
 
 		// 订单类型范围
@@ -381,8 +417,9 @@ public class OrderManage implements TimeType, Population {
 	 * 完全更新,更新订单
 	 * 
 	 * @param orderUpdateDataDto
+	 * @throws FindByIdGetNullException 
 	 */
-	public void update(OrderUpdateDataDto orderUpdateDataDto) {
+	public void update(OrderUpdateDataDto orderUpdateDataDto) throws FindByIdGetNullException {
 		ServerOrder so = serverOrderServiceImpl.findById(orderUpdateDataDto.getOrderId());
 		if (orderUpdateDataDto.getStuffId() != 0)
 			so.setUser(userServiceImpl.findById(orderUpdateDataDto.getStuffId()));
@@ -396,8 +433,11 @@ public class OrderManage implements TimeType, Population {
 		so.setPay(orderUpdateDataDto.getPay());
 		so.setRealPay(orderUpdateDataDto.getRealPay());
 		so.setOrderRemark(orderUpdateDataDto.getOrderRemark());
-
 		serverOrderServiceImpl.update(so);
+	}
+	
+	private void update(BasicService<?> bs, int id){
+		
 	}
 
 	/**
@@ -424,8 +464,9 @@ public class OrderManage implements TimeType, Population {
 	 * 
 	 * @param orderChartDto
 	 * @param orderChartRequestDto
+	 * @throws FindByIdGetNullException 
 	 */
-	public void chartAnalyze(OrderChartDto orderChartDto, OrderChartRequestDto orderChartRequestDto) {
+	public void chartAnalyze(OrderChartDto orderChartDto, OrderChartRequestDto orderChartRequestDto) throws FindByIdGetNullException {
 		// 时间类型
 		orderChartDto.setTimeType(orderChartRequestDto.getTimeType());
 
@@ -514,8 +555,9 @@ public class OrderManage implements TimeType, Population {
 	 * @param orderStatus
 	 * @param timeType
 	 * @return
+	 * @throws FindByIdGetNullException 
 	 */
-	public List<ServerOrder> queryOrder(int userId, int orderStatus, int timeType) {
+	public List<ServerOrder> queryOrder(int userId, int orderStatus, int timeType) throws FindByIdGetNullException {
 		List<PropertyRange<?>> listPro = new ArrayList<>();
 
 		User user = userServiceImpl.findById(userId);
@@ -562,8 +604,9 @@ public class OrderManage implements TimeType, Population {
 	 * 管理员和员工都可以更新订单 在正常情况下更新订单
 	 * 
 	 * @param uo
+	 * @throws FindByIdGetNullException 
 	 */
-	public void updateOrderNormal(UpdateOrderNormalOperationDto uo) {
+	public void updateOrderNormal(UpdateOrderNormalOperationDto uo) throws FindByIdGetNullException {
 		ServerOrder so = serverOrderServiceImpl.findById(uo.getOrderId());
 
 		// 权限检查
@@ -609,33 +652,47 @@ public class OrderManage implements TimeType, Population {
 	 */
 	public PageBean<ServerOrder> advancedQuery(PageLinkOrderAdvancedSearchDto advancedSearchDto)
 			throws PagePropertyNotInitException {
+
 		PageLinkOrderAdvancedSearchDto as = advancedSearchDto;
 		List<PropertyRange<?>> listPro = new ArrayList<>();
 		// 时间限定
 		PropertyRange<?> pd = null;
-		if((pd = advancedSearchDto.getInitTimeRange()) != null)
+		if ((pd = advancedSearchDto.getInitTimeRange()) != null)
 			listPro.add(pd);
 		// 价格限定
 		PropertyRange<?> pp = null;
-		if((pp = advancedSearchDto.getInitTimeRange()) != null)
+		if ((pp = advancedSearchDto.getInitTimeRange()) != null)
 			listPro.add(pp);
-		
+
 		listPro.add(advancedSearchDto.getRealPayRange());
 
 		if (as.getPayPathId() != 0)
-			listPro.add(payPathServiceImpl.createPropertyRangeById(as.getPayPathId()));
+			propertyRangeUtil(listPro, payPathServiceImpl, as.getPayPathId());
+
 		if (as.getWorkId() != 0)
-			listPro.add(userServiceImpl
-					.createPropertyRangeById(userServiceImpl.findByWorkId(as.getWorkId()).get(0).getId()));
+			propertyRangeUtil(listPro, userServiceImpl, userServiceImpl.findByWorkId(as.getWorkId()).get(0).getId());
+
 		if (as.getRoomId() != 0)
-			listPro.add(roomServiceImpl.createPropertyRangeById(as.getRoomId()));
+			propertyRangeUtil(listPro, roomServiceImpl, as.getRoomId());
+
 		if (as.getRealName() != null)
-			listPro.add(userServiceImpl
-					.createPropertyRangeById(userServiceImpl.findByRealName(as.getRealName()).get(0).getId()));
-		if (as.getPayPathId() != 0)
-			listPro.add(payPathServiceImpl.createPropertyRangeById(as.getPayPathId()));
+			propertyRangeUtil(listPro, userServiceImpl,
+					userServiceImpl.findByRealName(as.getRealName()).get(0).getId());
+
+		if (as.getStatusId() != 0) {
+			propertyRangeUtil(listPro, orderStatusServiceImpl, as.getStatusId());
+		}
 
 		return serverOrderServiceImpl.findOrdersByPropertyLimit(listPro, as.getPage());
+	}
+
+	private void propertyRangeUtil(List<PropertyRange<?>> listPro, BasicService<?> basicService, int id) {
+		try {
+			listPro.add(basicService.createPropertyRangeById(id));
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			listPro.remove(listPro.size() - 1);
+		}
 	}
 
 }

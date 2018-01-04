@@ -26,6 +26,7 @@ public class PageLinkOrderAdvancedSearchDto implements PageAble {
 	private int roomId;
 	private String realName;
 	private int payPathId;
+	
 	private int page;
 
 	@Override
