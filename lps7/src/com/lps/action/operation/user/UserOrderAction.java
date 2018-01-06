@@ -14,7 +14,7 @@ import com.lps.permission.Permission;
 import com.lps.service.OrderStatusService;
 import com.lps.util.PageBean;
 import com.lps.util.WorkJson;
-import com.lps.web.order.dto.OrderSingleDataDto;
+import com.lps.web.order.dto.OrderDto;
 import com.lps.web.order.dto.OrderTableDataDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.TimeType;
@@ -129,13 +129,13 @@ System.out.println(result);
 		return SUCCESS;
 	}
 
-	private OrderSingleDataDto orderSingleDataDto;
+	private OrderDto orderSingleDataDto;
 
-	public OrderSingleDataDto getOrderSingleDataDto() {
+	public OrderDto getOrderSingleDataDto() {
 		return orderSingleDataDto;
 	}
 
-	public void setOrderSingleDataDto(OrderSingleDataDto orderSingleDataDto) {
+	public void setOrderSingleDataDto(OrderDto orderSingleDataDto) {
 		this.orderSingleDataDto = orderSingleDataDto;
 	}
 

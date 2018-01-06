@@ -39,11 +39,11 @@ public class UserHelpForCreateOrderDto extends UserDto{
 	public void setWorkStatus(String workStatus) {
 		this.workStatus = workStatus;
 	}*/
-	@Override
+	/*@Override
 	public UserHelpForCreateOrderDto init(Entity obj) throws DtoInitException {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	
 

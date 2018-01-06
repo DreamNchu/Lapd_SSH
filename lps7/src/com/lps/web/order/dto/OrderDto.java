@@ -5,9 +5,9 @@ import com.lps.model.ServerOrder;
 import com.lps.util.WorkDate;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 
-public class OrderSingleDataDto extends BasicRespondMsgDto implements OrderLibraryDto{
+public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto{
 	
-	public OrderSingleDataDto(){
+	public OrderDto(){
 	}
 
 	public void init(ServerOrder so) {
@@ -53,63 +53,63 @@ public class OrderSingleDataDto extends BasicRespondMsgDto implements OrderLibra
 	}
 
 	private void setFinishTime(String finishTime) {
-		map.put(OrderSingleDataDto.finishTime ,finishTime);
+		map.put(OrderDto.finishTime ,finishTime);
 	}
 
 	private void setInitTime(String initTime) {
-		map.put(OrderSingleDataDto.initTime ,initTime);
+		map.put(OrderDto.initTime ,initTime);
 	}
 
 	private void setOrderId(String orderId) {
-		map.put(OrderSingleDataDto.orderId ,orderId);
+		map.put(OrderDto.orderId ,orderId);
 	}
 
 	private void setOrderRemark(String orderRemark) {
-		map.put(OrderSingleDataDto.orderRemark ,orderRemark);
+		map.put(OrderDto.orderRemark ,orderRemark);
 	}
 
 	private void setOrderStatusName(String orderStatusName) {
-		map.put(OrderSingleDataDto.orderStatusName ,orderStatusName);
+		map.put(OrderDto.orderStatusName ,orderStatusName);
 	}
 
 	private void setPay(String pay) {
-		map.put(OrderSingleDataDto.pay ,pay);
+		map.put(OrderDto.pay ,pay);
 	}
 
 	private void setPayPath(String payPath) {
-		map.put(OrderSingleDataDto.payPath ,payPath);
+		map.put(OrderDto.payPath ,payPath);
 	}
 
 	private void setPayTime(String payTime) {
-		map.put(OrderSingleDataDto.payTime ,payTime);
+		map.put(OrderDto.payTime ,payTime);
 	}
 
 	private void setPledgeName(String pledgeName) {
-		map.put(OrderSingleDataDto.pledgeName ,pledgeName);
+		map.put(OrderDto.pledgeName ,pledgeName);
 	}
 
 	private void setRealName(String realName) {
-		map.put(OrderSingleDataDto.realName ,realName);
+		map.put(OrderDto.realName ,realName);
 	}
 
 	private void setRealPay(String realPay) {
-		map.put(OrderSingleDataDto.realPay ,realPay);
+		map.put(OrderDto.realPay ,realPay);
 	}
 
 	private void setReceiveTime(String receiveTime) {
-		map.put(OrderSingleDataDto.receiveTime ,receiveTime);
+		map.put(OrderDto.receiveTime ,receiveTime);
 	}
 
 	private void setRoomName(String roomName) {
-		map.put(OrderSingleDataDto.roomName ,roomName);
+		map.put(OrderDto.roomName ,roomName);
 	}
 
 	private void setServerItem(String serverItem) {
-		map.put(OrderSingleDataDto.serverItemName ,serverItem);
+		map.put(OrderDto.serverItemName ,serverItem);
 	}
 
 	private void setWorkId(String workId) {
-		map.put(OrderSingleDataDto.workId ,workId);
+		map.put(OrderDto.workId ,workId);
 	}
 /*
 	private String getUserName() {

@@ -10,11 +10,11 @@ import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.web.room.dto.RoomOrderDto;
 import com.lps.web.simple.dto.ClockCategoryDto;
-import com.lps.web.simple.dto.PayPathDto;
 import com.lps.web.simple.dto.OrderStatusDto;
+import com.lps.web.simple.dto.PayPathDto;
 import com.lps.web.user.dto.UserOrderDto;
 
-public class InitBasicUpdateDataDto{
+public class InitBasicUpdateDataDto extends OrderDto{
 	
 	/**
 	 * 所有用户基本信息
@@ -24,6 +24,8 @@ public class InitBasicUpdateDataDto{
 	 * 所有房间基本信息
 	 */
 	private List<RoomOrderDto> rooms;
+	
+	
 	/**
 	 * 所有订单状态基本信息
 	 */

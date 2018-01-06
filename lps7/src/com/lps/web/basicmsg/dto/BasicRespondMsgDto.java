@@ -3,6 +3,10 @@ package com.lps.web.basicmsg.dto;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.beans.BeansException;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+
 import com.lps.util.WorkJson;
 
 /**
@@ -10,7 +14,7 @@ import com.lps.util.WorkJson;
  * @author 0001
  *
  */
-public class BasicRespondMsgDto{
+public class BasicRespondMsgDto {
 	
 	protected Map<String , Object> map = new HashMap<>();
 	
@@ -87,6 +91,6 @@ public class BasicRespondMsgDto{
 	public Object getSuccessMsg(){
 		return map.get(SUCCESS_MSG);
 	}
-	
+
 
 }

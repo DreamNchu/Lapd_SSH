@@ -12,13 +12,13 @@ import com.lps.web.page.dto.PageDto;
 
 public class OrderTableDataDto extends PageDto{
 
-	private List<OrderSingleDataDto> orders;
+	private List<OrderDto> orders;
 
 	public OrderTableDataDto() {
 
 	}
 
-	public OrderTableDataDto(List<OrderSingleDataDto> order) {
+	public OrderTableDataDto(List<OrderDto> order) {
 		super();
 		this.orders = order;
 	}
@@ -35,18 +35,18 @@ public class OrderTableDataDto extends PageDto{
 		super.init(lOrders, pageLinkTransformOrderDto, domainName, actionName);
 		
 		for (ServerOrder serverOrder : (List<ServerOrder>)lOrders.getList()) {
-			OrderSingleDataDto osd = new OrderSingleDataDto();
+			OrderDto osd = new OrderDto();
 			osd.init(serverOrder);
 			this.orders.add(osd);
 		}
 		
 	}
 
-	public List<OrderSingleDataDto> getOrders() {
+	public List<OrderDto> getOrders() {
 		return orders;
 	}
 
-	public void setOrders(List<OrderSingleDataDto> order) {
+	public void setOrders(List<OrderDto> order) {
 		this.orders = order;
 	}
 

@@ -4,8 +4,10 @@ import java.util.List;
 
 import com.lps.model.basic.Entity;
 
-public interface TableInitDto {
+public interface TableInitDto<T extends Entity> {
 
-	public <T extends Entity> void init(List<T> lists) throws DtoInitException;
+	public void init(List<T> lists) throws DtoInitException;
+	
+	public String getName();
 	
 }
