@@ -3,6 +3,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -78,7 +79,7 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	   *@return 返回加载的付费方式实例
 	   */
 	@Override
-	public PayPath findById(int id) {
+	public PayPath findById(java.io.Serializable id) {
 		return hibernateTemplate.get(PayPath.class, id);
 	}
 
@@ -128,8 +129,8 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	 * @return 存在则返回true，否则返回false
 	 */
 	@Override
-	public boolean isExists(PayPath t) {
-		return findById(t.getId()) == null ? false : true;
+	public boolean isExists(PayPath entity) {
+		return findById(entity.getId()) == null ? false : true;
 	}
 
 	/**
@@ -150,8 +151,8 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	 * 更新付费方式
 	 */
 	@Override
-	public void update(PayPath t) {
-		hibernateTemplate.update(t);
+	public void update(PayPath entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	/**
@@ -163,11 +164,11 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	 * 根据付费方式查找所有订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(PayPath t) {
+	public Set<ServerOrder> findAllOrders(PayPath entity) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		PayPath ccTemp = (PayPath) session.createCriteria(PayPath.class).setFetchMode(SERVER_ORDER, FetchMode.JOIN)
-				.add(Restrictions.idEq(t.getId())).list().get(0);
+				.add(Restrictions.idEq(entity.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
@@ -177,10 +178,10 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	 * 根据付费方式查找订单，查找个数受限于begin，limit
 	 */
 	@Override
-	public List<ServerOrder> findOrdersWithLimit(PayPath t, long begin, long limit) {
+	public List<ServerOrder> findOrdersWithLimit(PayPath entity, long begin, long limit) {
 		String hql = "from PayPath cc where cc.id=?";
 		HibernateCallback<List<PayPath>> callback = new PageHibernateCallback<PayPath>(hql,
-				new Object[] { t.getId() }, begin, limit);
+				new Object[] { entity.getId() }, begin, limit);
 		List<PayPath> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
@@ -208,11 +209,11 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	}
 	
 	@Override
-	public <K> PayPath findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> PayPath findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(PayPath.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -270,6 +271,12 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 				.list();
 		
 		return ccTemp;
+	}
+
+	@Override
+	public void deleteAll(Collection<PayPath> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 	
 }

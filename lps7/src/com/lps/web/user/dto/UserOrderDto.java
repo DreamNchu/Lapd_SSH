@@ -1,11 +1,8 @@
 package com.lps.web.user.dto;
 
-import com.lps.model.User;
-import com.lps.web.order.dto.DtoBasicInit;
-
-public class UserOrderDto implements DtoBasicInit<UserOrderDto>{
+public class UserOrderDto extends UserDto{
 	
-	public Integer stuffId;
+	/*public Integer stuffId;
 	
 	public Integer workId;
 	
@@ -45,7 +42,9 @@ public class UserOrderDto implements DtoBasicInit<UserOrderDto>{
 		workId = u.getWorkId();
 		return this;
 	}
+
 	
 	
+	*/
 
 }

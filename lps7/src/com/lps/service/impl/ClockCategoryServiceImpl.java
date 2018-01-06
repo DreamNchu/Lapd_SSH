@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -8,11 +9,9 @@ import java.util.Set;
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.ClockCategoryDAOImpl;
-import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
-import com.lps.model.ClockCategory;
 import com.lps.service.ClockCategoryService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -94,7 +93,11 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	 * 根据id查找，返回所有ClockCategory实例
      */
 	@Override
-	public ClockCategory findById(int id) {
+	public ClockCategory findById(java.io.Serializable id) throws FindByIdGetNullException {
+		ClockCategory clockCategory = dao.findById(id);
+		if(clockCategory != null){
+			throw new FindByIdGetNullException("根据主键id未找到钟点类型对象");
+		}
 		return dao.findById(id);
 	}
 
@@ -165,8 +168,8 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	 * 更新ClockCategory实例
 	 */
 	@Override
-	public void update(ClockCategory t) {
-		dao.update(t);
+	public void update(ClockCategory entity) {
+		dao.update(entity);
 	}
 
 	/**
@@ -196,8 +199,8 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	 * 根据指定房钟点类型查找订单数量
 	 */
 	@Override
-	public long findOrdersCountByThisType(ClockCategory t) {
-		return dao.findOrdersCountByThisType(t);
+	public long findOrdersCountByThisType(ClockCategory entity) {
+		return dao.findOrdersCountByThisType(entity);
 	}
 
 	/**
@@ -227,37 +230,37 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	 * 查找今天的订单
 	 */
 	@Override
-	public List<ServerOrder> findTodayOrders(ClockCategory t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	public List<ServerOrder> findTodayOrders(ClockCategory entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
 
 	/**
 	 * 查找前面7天的订单
 	 */
 	@Override
-	public List<ServerOrder> findBefore7DayOrders(ClockCategory t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findBefore7DayOrders(ClockCategory entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找这个月的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisMonthOrders(ClockCategory t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisMonthOrders(ClockCategory entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找今年的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisYearOrders(ClockCategory t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisYearOrders(ClockCategory entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 	
 	@Override
-	public <K> ClockCategory findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> ClockCategory findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -266,7 +269,7 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	}
 	
 	@Override
-	public PropertyRange<ClockCategory> createPropertyRangeById(int id1) {
+	public PropertyRange<ClockCategory> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<ClockCategory> pr = new PropertyRange<>();
 		
 		pr.setName(BasicDAO.ID);
@@ -274,6 +277,11 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<ClockCategory> entities) {
+		dao.deleteAll(entities);
 	}
 
 }

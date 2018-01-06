@@ -1,9 +1,12 @@
 package com.lps.web.room.dto;
 
 import com.lps.model.Room;
-import com.lps.web.order.dto.DtoBasicInit;
+import com.lps.model.basic.Entity;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
+import com.lps.web.dto.BasicInitDto;
+import com.lps.web.dto.DtoInitException;
 
-public class RoomHelpForCreateOrderDto implements DtoBasicInit<RoomHelpForCreateOrderDto>{
+public class RoomHelpForCreateOrderDto extends BasicRespondMsgDto implements BasicInitDto<RoomHelpForCreateOrderDto> {
 	
 	private String roomName;
 	
@@ -20,7 +23,7 @@ public class RoomHelpForCreateOrderDto implements DtoBasicInit<RoomHelpForCreate
 	private boolean isClean;
 	
 	@Override
-	public RoomHelpForCreateOrderDto init(Object obj) throws NotRoomObjectException {
+	public RoomHelpForCreateOrderDto init(Entity obj) throws DtoInitException {
 		if (obj != null && obj instanceof Room) {
 			Room room = (Room) obj;
 			roomName = room.getName();
@@ -32,7 +35,7 @@ public class RoomHelpForCreateOrderDto implements DtoBasicInit<RoomHelpForCreate
 			isFree = room.getIsFree();
 			return this;
 		}
-		throw new NotRoomObjectException();
+		throw new DtoInitException();
 	}
 
 

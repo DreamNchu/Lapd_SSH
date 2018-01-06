@@ -2,6 +2,7 @@ package com.lps.dao.impl;
 // default package
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -119,21 +120,12 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	 * replace by @see {@link #findById(String)}
 	 */
 	
-	/**
-	 * 过期，不推荐
-	 */
-	@Override
-	@Deprecated
-	public ServerOrder findById(int id) {
-		return null;
-	}
-	
 	/**加载服务订单实例，根据id查找
 	   *@param id 服务订单ID
 	   *@return 返回加载的服务订单实例
 	   */
 	@Override
-	public ServerOrder findById(String id) {
+	public ServerOrder findById(java.io.Serializable id) {
 		return hibernateTemplate.get(ServerOrder.class, id);
 	}
 
@@ -174,8 +166,8 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	 * @return 存在则返回true，否则返回false
 	 */
 	@Override
-	public boolean isExists(ServerOrder t) {
-		return findById(t.getId()) == null ? false : true;
+	public boolean isExists(ServerOrder entity) {
+		return findById(entity.getId()) == null ? false : true;
 	}
 
 	/**
@@ -199,28 +191,28 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	 * 更新服务订单状态
 	 */
 	@Override
-	public void update(ServerOrder t) {
-		hibernateTemplate.update(t);
+	public void update(ServerOrder entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	/*public static final String SERVER_ORDER = "serverOrders";
 	@Override
-	public Set<ServerOrder> findAllOrders(ServerOrder t) {
+	public Set<ServerOrder> findAllOrders(ServerOrder entity) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		ServerOrder ccTemp = (ServerOrder) session.createCriteria(ServerOrder.class)
 				.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
-				.add(Restrictions.idEq(t.getId())).list().get(0);
+				.add(Restrictions.idEq(entity.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
 	}
 
 	@Override
-	public List<ServerOrder> findOrdersWithLimit(ServerOrder t, long begin, long limit) {
+	public List<ServerOrder> findOrdersWithLimit(ServerOrder entity, long begin, long limit) {
 		String hql = "from ServerOrder cc where cc.id=?";
 		HibernateCallback<List<ServerOrder>> callback = new PageHibernateCallback<ServerOrder>(hql,
-				new Object[] { t.getId() }, begin, limit);
+				new Object[] { entity.getId() }, begin, limit);
 		List<ServerOrder> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
@@ -325,11 +317,11 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	}
 	
 	@Override
-	public <K> ServerOrder findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> ServerOrder findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(ServerOrder.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -415,6 +407,12 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 
 		return ccTemp;
 
+	}
+
+	@Override
+	public void deleteAll(Collection<ServerOrder> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 	
 }

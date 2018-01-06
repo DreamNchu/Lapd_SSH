@@ -1,5 +1,6 @@
 package com.lps.control.manage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import com.lps.model.Room;
 import com.lps.model.ServerItem;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
+import com.lps.model.basic.Entity;
 import com.lps.service.ClockCategoryService;
 import com.lps.service.OrderStatusService;
 import com.lps.service.PayPathService;
@@ -31,10 +33,11 @@ import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
+import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
+import com.lps.web.order.dto.AdvancedSearchDto;
 import com.lps.web.order.dto.CreateOrderDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
-import com.lps.web.order.dto.PageLinkOrderAdvancedSearchDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.CreateOrderWay;
@@ -42,8 +45,9 @@ import com.lps.web.order.dto.constant.TimeType;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
 import com.lps.web.orderchart.dto.Population;
+import com.lps.web.page.dto.PageDto;
 
-public class OrderManage implements TimeType, Population {
+public class OrderManage implements TimeType, Population, BasicManage {
 
 	private UserService userServiceImpl;
 
@@ -272,13 +276,14 @@ public class OrderManage implements TimeType, Population {
 		return so;
 	}
 
-	/**
-	 * 创建一个订单
-	 * 
-	 * @param createOrderDto
-	 * @throws CreateOrderFailedException 
+	/* (non-Javadoc)
+	 * @see com.lps.control.manage.BasicManage2#createOrder(com.lps.web.order.dto.CreateOrderDto)
 	 */
-	public void createOrder(CreateOrderDto createOrderDto) throws CreateOrderFailedException {
+	@Override
+	public <DTO extends BasicRequestMsgDto> void create(DTO dto) throws CreateOrderFailedException {
+		
+		CreateOrderDto createOrderDto = dto.getNativeObject();
+		
 		ServerOrder so = null;
 		switch (createOrderDto.getCreateWays()) {
 		case CreateOrderWay.rank_order_auto:
@@ -342,9 +347,9 @@ public class OrderManage implements TimeType, Population {
 	private Set<ServerItem> getServerItems(Set<Integer> sets) {
 		Set<ServerItem> sis = new HashSet<>();
 		ServerItem  si = null;
-		for (Integer integer : sets) {
+		for (Integer id : sets) {
 			try {
-				si = serverItemServiceImpl.findById(integer);
+				si = serverItemServiceImpl.findById(id);
 				sis.add(si);
 			} catch (FindByIdGetNullException e) {
 				e.printStackTrace();
@@ -362,7 +367,7 @@ public class OrderManage implements TimeType, Population {
 	 * @throws PagePropertyNotInitException
 	 * @throws FindByIdGetNullException 
 	 */
-	public PageBean<ServerOrder> basicQuery(PageLinkTransformOrderDto qod, int page)
+	public PageBean<ServerOrder> basicQuery(PageLinkTransformOrderDto qod)
 			throws PagePropertyNotInitException, FindByIdGetNullException {
 		PageBean<ServerOrder> listSo = null;
 
@@ -376,7 +381,7 @@ public class OrderManage implements TimeType, Population {
 		listPro.add(
 				serverOrderServiceImpl.createPropertyRangeByName(ServerOrderDAOImpl.INIT_TIME, ld.get(0), ld.get(1)));
 
-		listSo = serverOrderServiceImpl.findOrdersByPropertyLimit(listPro, page);
+		listSo = serverOrderServiceImpl.findOrdersByPropertyLimit(listPro, qod.getPage());
 
 		return listSo;
 	}
@@ -399,8 +404,9 @@ public class OrderManage implements TimeType, Population {
 	 * 往 initBasicUpdateDataDto 填信息
 	 * 
 	 * @param initBasicUpdateDataDto
+	 * @throws FindByIdGetNullException 
 	 */
-	public void basicQuery(InitBasicUpdateDataDto initBasicUpdateDataDto, String orderId) {
+	public void basicQuery(InitBasicUpdateDataDto initBasicUpdateDataDto, String orderId) throws FindByIdGetNullException {
 		ServerOrder so = serverOrderServiceImpl.findById(orderId);
 
 		List<User> users = addUtil(so.getUser(), userServiceImpl.findAll());
@@ -413,33 +419,30 @@ public class OrderManage implements TimeType, Population {
 
 	}
 
-	/**
-	 * 完全更新,更新订单
-	 * 
-	 * @param orderUpdateDataDto
-	 * @throws FindByIdGetNullException 
+	/* (non-Javadoc)
+	 * @see com.lps.control.manage.BasicManage2#update(com.lps.web.order.dto.OrderUpdateDataDto)
 	 */
-	public void update(OrderUpdateDataDto orderUpdateDataDto) throws FindByIdGetNullException {
-		ServerOrder so = serverOrderServiceImpl.findById(orderUpdateDataDto.getOrderId());
-		if (orderUpdateDataDto.getStuffId() != 0)
-			so.setUser(userServiceImpl.findById(orderUpdateDataDto.getStuffId()));
-		if (orderUpdateDataDto.getRoomId() != 0)
-			so.setRoom(roomServiceImpl.findById(orderUpdateDataDto.getRoomId()));
-		if (orderUpdateDataDto.getStatusId() != 0)
-			so.setOrderStatus(orderStatusServiceImpl.findById(orderUpdateDataDto.getStatusId()));
-		if (orderUpdateDataDto.getClockCategoryId() != 0)
-			so.setClockCategory(clockCategoryServiceImpl.findById(orderUpdateDataDto.getClockCategoryId()));
+	@Override
+	public <DTO extends BasicRequestMsgDto> void update(DTO dto) throws FindByIdGetNullException {
+		
+		OrderUpdateDataDto ou = dto.getNativeObject();
+		
+		ServerOrder so = serverOrderServiceImpl.findById(ou.getOrderId());
+		if (ou.getStuffId() != 0)
+			so.setUser(userServiceImpl.findById(ou.getStuffId()));
+		if (ou.getRoomId() != 0)
+			so.setRoom(roomServiceImpl.findById(ou.getRoomId()));
+		if (ou.getStatusId() != 0)
+			so.setOrderStatus(orderStatusServiceImpl.findById(ou.getStatusId()));
+		if (ou.getClockCategoryId() != 0)
+			so.setClockCategory(clockCategoryServiceImpl.findById(ou.getClockCategoryId()));
 
-		so.setPay(orderUpdateDataDto.getPay());
-		so.setRealPay(orderUpdateDataDto.getRealPay());
-		so.setOrderRemark(orderUpdateDataDto.getOrderRemark());
+		so.setPay(ou.getPay());
+		so.setRealPay(ou.getRealPay());
+		so.setOrderRemark(ou.getOrderRemark());
 		serverOrderServiceImpl.update(so);
 	}
 	
-	private void update(BasicService<?> bs, int id){
-		
-	}
-
 	/**
 	 * 完全更新 1.订单在服务中，那么判定员工接受该订单 需要在工作排名中加一
 	 * 
@@ -543,8 +546,9 @@ public class OrderManage implements TimeType, Population {
 	 * 
 	 * @param orderId
 	 * @return
+	 * @throws FindByIdGetNullException 
 	 */
-	public ServerOrder queryOrder(String orderId) {
+	public ServerOrder queryOrder(String orderId) throws FindByIdGetNullException {
 		return serverOrderServiceImpl.findById(orderId);
 	}
 
@@ -650,10 +654,10 @@ public class OrderManage implements TimeType, Population {
 	 * @return
 	 * @throws PagePropertyNotInitException
 	 */
-	public PageBean<ServerOrder> advancedQuery(PageLinkOrderAdvancedSearchDto advancedSearchDto)
+	public PageBean<ServerOrder> advancedQuery(AdvancedSearchDto advancedSearchDto)
 			throws PagePropertyNotInitException {
 
-		PageLinkOrderAdvancedSearchDto as = advancedSearchDto;
+		AdvancedSearchDto as = advancedSearchDto;
 		List<PropertyRange<?>> listPro = new ArrayList<>();
 		// 时间限定
 		PropertyRange<?> pd = null;
@@ -695,4 +699,28 @@ public class OrderManage implements TimeType, Population {
 		}
 	}
 
+	/* (non-Javadoc)
+	 * @see com.lps.control.manage.BasicManage2#delete(java.lang.String)
+	 */
+	@Override
+	public void delete(Serializable... idOrders) throws FindByIdGetNullException{
+		List<ServerOrder> sos = new ArrayList<ServerOrder>();
+		
+		for (Serializable  idOrder : idOrders) {
+			sos.add(serverOrderServiceImpl.findById(idOrder));
+		}
+		serverOrderServiceImpl.deleteAll(sos);
+	}
+
+	@Override
+	public Entity query(Serializable id) throws FindByIdGetNullException {
+		return serverOrderServiceImpl.findById(id);
+	}
+
+	@Override
+	public <DTO extends PageDto> PageBean<Entity> query(DTO dto) throws FindByIdGetNullException{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

@@ -1,5 +1,6 @@
 package com.lps.service.basic;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -12,23 +13,25 @@ import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 
-public interface BasicService<T> {
+public interface BasicService<ENTITY> {
 	/**
 	 * 不存在常量
 	 */
 	int NOT_EXISTS = -1;
 	
-	boolean isExists(T user);
+	boolean isExists(ENTITY entity);
 	
-	void save(T transientInstance);
+	void save(ENTITY entity);
 
-	void delete(T persistentInstance);
+	void delete(ENTITY persistentInstance);
 	
-	T findById(int id) throws FindByIdGetNullException;
+	void deleteAll(Collection<ENTITY> entities);
+	
+	ENTITY findById(java.io.Serializable id) throws FindByIdGetNullException;
 
-	List<T> findByProperty(String propertyName, Object value);
+	List<ENTITY> findByProperty(String propertyName, Object value);
 
-	List<T> findAll();
+	List<ENTITY> findAll();
 	
 	/**
 	 * 找到所有的{@code <T>}在数据库中的个数
@@ -36,18 +39,18 @@ public interface BasicService<T> {
 	 */
 	public long findAllCount();
 	
-	public PageBean<T> findByPage(int page) throws PagePropertyNotInitException;
+	public PageBean<ENTITY> findByPage(int page) throws PagePropertyNotInitException;
 
-	void update(T t);
+	void update(ENTITY entity);
 	
 	/**
 	 * 返回所需要字段对应的对象
 	 * @param <K> 主键类型
-	 * @param t 必须包含id属性
+	 * @param entity 必须包含id属性
 	 * @param fields 字段名称集合
 	 * @return 返回所需要字段对应的对象
 	 */
-	<K> T findFields(BasicModel<K> t, Map<String, Class<?>> fields);
+	<K> ENTITY findFields(BasicModel<K> entity, Map<String, Class<?>> fields);
 	
 	/**
 	 * 根据属性名获取id
@@ -56,5 +59,5 @@ public interface BasicService<T> {
 	 */
 	<K> List<K> findIdByProperty(Map<String , Object> map);
 	
-	PropertyRange<T> createPropertyRangeById(int id1) throws FindByIdGetNullException;
+	PropertyRange<ENTITY> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException;
 }

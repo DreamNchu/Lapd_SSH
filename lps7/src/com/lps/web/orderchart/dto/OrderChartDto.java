@@ -3,14 +3,14 @@ package com.lps.web.orderchart.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.lps.web.basicmsg.dto.BasicMsgDto;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 
 /**
  * 订单图表dto
  * @author 0001
  *
  */
-public class OrderChartDto extends BasicMsgDto{
+public class OrderChartDto extends BasicRespondMsgDto{
 	
 	private List<Long> income ;
 	

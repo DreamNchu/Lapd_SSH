@@ -3,6 +3,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -89,7 +90,7 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 	 * @return 返回加载的订单状态实例
 	 */
 	@Override
-	public OrderStatus findById(int id) {
+	public OrderStatus findById(java.io.Serializable id) {
 		return hibernateTemplate.get(OrderStatus.class, id);
 	}
 
@@ -286,6 +287,12 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 				.add(Restrictions.eq(ServerOrderDAOImpl.ORDER_STATUS, os)).list();
 
 		return ccTemp;
+	}
+
+	@Override
+	public void deleteAll(Collection<OrderStatus> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);		
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -89,7 +90,7 @@ public class AdminServiceImpl implements AdminService {
 	 * @throws FindByIdGetNullException 
 	 */
 	@Override
-	public Admin findById(int id) throws FindByIdGetNullException {
+	public Admin findById(java.io.Serializable id) throws FindByIdGetNullException {
 		Admin admin = dao.findById(id);
 		if(admin != null){
 			throw new FindByIdGetNullException("根据主键id未找到管理员对象");
@@ -169,15 +170,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public void update(Admin t) {
-		dao.update(t);
+	public void update(Admin entity) {
+		dao.update(entity);
 	}
 
 	/**
 	 * 根据账户名查找admin，并返回admin的密码
 	 */
 	@Override
-	public String findPasswordByUserName(String userName) {
+	public String findPasswordByUserName(String userName) throws UserNotExistsException{
 		int id;
 		id = findIdByUserName(userName);
 		if(id == NOT_EXISTS){
@@ -216,8 +217,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public <K> Admin findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> Admin findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -226,7 +227,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public PropertyRange<Admin> createPropertyRangeById(int id1) throws FindByIdGetNullException {
+	public PropertyRange<Admin> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<Admin> pr = new PropertyRange<>();
 		
 		pr.setName(BasicDAO.ID);
@@ -234,6 +235,11 @@ public class AdminServiceImpl implements AdminService {
 		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<Admin> entities) {
+		dao.deleteAll(entities);
 	}
 
 

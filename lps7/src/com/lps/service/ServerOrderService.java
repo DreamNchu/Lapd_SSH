@@ -4,19 +4,13 @@ import java.util.List;
 
 import com.lps.model.ServerOrder;
 import com.lps.service.basic.BasicService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 
 public interface ServerOrderService extends BasicService<ServerOrder> {
 	
-	/**
-	 * 根据id返回订单列表
-	 * @param id 订单主键id
-	 * @return 订单列表
-	 */
-	ServerOrder findById(String id);
-
 	/**
 	 * 根据付费方式返回订单列表
 	 * @param property 付费方式

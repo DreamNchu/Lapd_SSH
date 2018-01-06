@@ -7,9 +7,9 @@ import java.util.Map;
 
 import com.lps.util.LinkParamCreater;
 import com.lps.util.PageBean;
-import com.lps.web.basicmsg.dto.BasicMsgDto;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 
-public abstract class PageDto extends BasicMsgDto{
+public abstract class PageDto extends BasicRespondMsgDto{
 
 	protected List<Map<String, Object>> page = new ArrayList<>();;
 

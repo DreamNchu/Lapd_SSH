@@ -1,15 +1,16 @@
 package com.lps.web.user.dto;
 
-import com.lps.model.User;
-import com.lps.web.order.dto.DtoBasicInit;
+import com.lps.model.basic.Entity;
+import com.lps.web.dto.BasicInitDto;
+import com.lps.web.dto.DtoInitException;
 
-public class UserHelpForCreateOrderDto implements DtoBasicInit<UserHelpForCreateOrderDto>{
+public class UserHelpForCreateOrderDto extends UserDto{
 	
 	private String workStatus;
 	private String realName;
 	private Integer workId;
 	
-	public String getRealName() {
+	/*public String getRealName() {
 		return realName;
 	}
 	public Integer getWorkId() {
@@ -37,6 +38,11 @@ public class UserHelpForCreateOrderDto implements DtoBasicInit<UserHelpForCreate
 	}
 	public void setWorkStatus(String workStatus) {
 		this.workStatus = workStatus;
+	}*/
+	@Override
+	public UserHelpForCreateOrderDto init(Entity obj) throws DtoInitException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

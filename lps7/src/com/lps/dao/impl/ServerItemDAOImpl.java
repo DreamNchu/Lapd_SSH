@@ -3,6 +3,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -76,7 +77,7 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	   *@return 返回加载的房间类型实例
 	   */
 	@Override
-	public ServerItem findById(int id) {
+	public ServerItem findById(java.io.Serializable id) {
 		return hibernateTemplate.get(ServerItem.class, id);
 	}
 
@@ -126,8 +127,8 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	 * @return 存在则返回true，否则返回false
 	 */
 	@Override
-	public boolean isExists(ServerItem t) {
-		return findById(t.getId()) == null ? false : true;
+	public boolean isExists(ServerItem entity) {
+		return findById(entity.getId()) == null ? false : true;
 	}
 
 	/**
@@ -148,16 +149,16 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	 * 更新房间类型
 	 */
 	@Override
-	public void update(ServerItem t) {
-		hibernateTemplate.update(t);
+	public void update(ServerItem entity) {
+		hibernateTemplate.update(entity);
 	}
 	
 	@Override
-	public <K> ServerItem findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> ServerItem findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(ServerItem.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -201,6 +202,12 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 		List<K> listIds = cri.list();
 		
 		return listIds;
+	}
+
+	@Override
+	public void deleteAll(Collection<ServerItem> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 
 }

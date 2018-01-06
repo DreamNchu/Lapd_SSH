@@ -2,6 +2,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -125,7 +126,7 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	   *@return 返回加载的员工实例
 	   */
 	@Override
-	public User findById(int id) {
+	public User findById(java.io.Serializable id) {
 		return hibernateTemplate.get(User.class, id);
 	}
 
@@ -272,21 +273,21 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	 * 更新员工
 	 */
 	@Override
-	public void update(User t) {
-		hibernateTemplate.update(t);
+	public void update(User entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	/**
 	 * 根据员工查找所有订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(User t) {
+	public Set<ServerOrder> findAllOrders(User entity) {
 		
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		User ccTemp = (User) session.createCriteria(User.class)
 			.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
-			.add(Restrictions.idEq(t.getId())).uniqueResult();
+			.add(Restrictions.idEq(entity.getId())).uniqueResult();
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
@@ -296,10 +297,10 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	 * 根据员工查找订单，查找个数受限于begin，limit
 	 */
 	@Override
-	public List<ServerOrder> findOrdersWithLimit(User t, long begin, long limit) {
+	public List<ServerOrder> findOrdersWithLimit(User entity, long begin, long limit) {
 		String hql = "from Room cc where cc.id=?";
 		HibernateCallback<List<User>> callback = 
-				new PageHibernateCallback<User>(hql,new Object[] { t.getId() }, begin, limit);
+				new PageHibernateCallback<User>(hql,new Object[] { entity.getId() }, begin, limit);
 		List<User> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
@@ -345,11 +346,11 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	}
 	
 	@Override
-	public <K> User findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> User findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(User.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -407,6 +408,12 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 				.list();
 		
 		return ccTemp;
+	}
+
+	@Override
+	public void deleteAll(Collection<User> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 
 }

@@ -3,16 +3,12 @@ import java.util.Date;
 import java.util.List;
 
 import com.lps.dao.basic.BasicDAO;
-import com.lps.dao.basic.BasicForServerOrderDAO;
-import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.uenum.CompareLevel;
 import com.lps.util.PropertyRange;
 
 public interface ServerOrderDAO extends BasicDAO<ServerOrder> {
 	
-	ServerOrder findById(String id);
-
 	List<ServerOrder> findByPayPath(Object property);
 	
 	List<ServerOrder> findByUser(Object property);

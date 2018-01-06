@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.dao.impl.PayPathDAOImpl;
 import com.lps.model.PayPath;
+import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
@@ -114,7 +116,11 @@ public class PayPathServiceImpl implements PayPathService {
 	 * 根据id查找付费方式，返回PayPath实例
 	 */
 	@Override
-	public PayPath findById(int id) {
+	public PayPath findById(java.io.Serializable id) throws FindByIdGetNullException {
+		PayPath payPath = dao.findById(id);
+		if(payPath != null){
+			throw new FindByIdGetNullException("根据主键id未找到付费方式对象");
+		}
 		return dao.findById(id);
 	}
 
@@ -169,27 +175,27 @@ public class PayPathServiceImpl implements PayPathService {
 	 * 更新PayPath实例
 	 */
 	@Override
-	public void update(PayPath t) {
-		dao.update(t);
+	public void update(PayPath entity) {
+		dao.update(entity);
 	}
 
 	/**
 	 * 返回指定房间的所有付费方式
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(PayPath t) {
-		return dao.findAllOrders(t);
+	public Set<ServerOrder> findAllOrders(PayPath entity) {
+		return dao.findAllOrders(entity);
 	}
 
 	/**
 	 * 查找指定页面内根据付费方式得到的所有订单
 	 */
 	@Override
-	public PageBean<ServerOrder> findAllOrdersByPage(PayPath t, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findAllOrdersByPage(PayPath entity, int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderByPayPathBean.init(
-				findOrdersCountByThisType(t), page);
+				findOrdersCountByThisType(entity), page);
 
-		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByPayPathBean.getLimit());
+		List<ServerOrder> list = dao.findOrdersWithLimit(entity, begin, pageServerOrderByPayPathBean.getLimit());
 
 		pageServerOrderByPayPathBean.setList(list);
 
@@ -200,8 +206,8 @@ public class PayPathServiceImpl implements PayPathService {
 	 * 根据指定付费方式查找订单数量
 	 */
 	@Override
-	public long findOrdersCountByThisType(PayPath t) {
-		return dao.findOrdersCountByThisType(t);
+	public long findOrdersCountByThisType(PayPath entity) {
+		return dao.findOrdersCountByThisType(entity);
 	}
 
 	/**
@@ -231,38 +237,38 @@ public class PayPathServiceImpl implements PayPathService {
 	 * 查找今日订单
 	 */
 	@Override
-	public List<ServerOrder> findTodayOrders(PayPath t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	public List<ServerOrder> findTodayOrders(PayPath entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
 
 	/**
 	 * 查找前七天订单
 	 */
 	@Override
-	public List<ServerOrder> findBefore7DayOrders(PayPath t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findBefore7DayOrders(PayPath entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找这个月订单
 	 */
 	@Override
-	public List<ServerOrder> findThisMonthOrders(PayPath t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisMonthOrders(PayPath entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找今年订单
 	 */
 	@Override
-	public List<ServerOrder> findThisYearOrders(PayPath t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisYearOrders(PayPath entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 
 	@Override
-	public <K> PayPath findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> PayPath findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -271,14 +277,20 @@ public class PayPathServiceImpl implements PayPathService {
 	}
 	
 	@Override
-	public PropertyRange<PayPath> createPropertyRangeById(int id1) {
+	public PropertyRange<PayPath> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<PayPath> pr = new PropertyRange<>();
 		
 		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<PayPath> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 
 }

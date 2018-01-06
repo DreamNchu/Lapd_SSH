@@ -4,9 +4,10 @@ import java.sql.Date;
 
 import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.util.PropertyRange;
+import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
 import com.lps.web.page.dto.PageAble;
 
-public class PageLinkOrderAdvancedSearchDto implements PageAble {
+public class AdvancedSearchDto extends BasicRequestMsgDto implements PageAble {
 	/**
 	 * 
 	 * A.时间段搜索， B.价格段搜索， C.订单类型搜索， D.项目类型搜索， E.工号进行搜索 F.房间号进行搜索。 I.员工姓名。

@@ -1,7 +1,9 @@
 package com.lps.dao.impl;
 
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -80,7 +82,7 @@ public class AdminDAOImpl implements AdminDAO {
    *@return 返回加载的admin实例
    */
 	@Override
-	public Admin findById(int id) {
+	public Admin findById(Serializable id) {
 		return hibernateTemplate.get(Admin.class, id);
 	}
 
@@ -162,21 +164,21 @@ public class AdminDAOImpl implements AdminDAO {
 
 	/**
 	 * 更新admin实例
-	 * @param t 需要更新的 admin实例
+	 * @param entity 需要更新的 admin实例
 	 */
 	@Override
-	public void update(Admin t) {
-		hibernateTemplate.update(t);
+	public void update(Admin entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	@Override
-	public <K> Admin findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> Admin findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		
 		
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Admin.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -222,6 +224,11 @@ public class AdminDAOImpl implements AdminDAO {
 		
 		return listIds;
 		
+	}
+
+	@Override
+	public void deleteAll(Collection<Admin> entities) {
+		hibernateTemplate.deleteAll(entities);
 	}
 
 	

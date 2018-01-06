@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
+import com.lps.control.manage.BasicManage;
 import com.lps.control.manage.OrderManage;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.model.ServerOrder;
@@ -49,7 +50,7 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 
 	private OrderManage orderManage;
 
-	public OrderManage getOrderManage() {
+	public BasicManage getOrderManage() {
 		return orderManage;
 	}
 

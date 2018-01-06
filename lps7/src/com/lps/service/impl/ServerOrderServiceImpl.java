@@ -1,11 +1,13 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.lps.dao.ServerOrderDAO;
 import com.lps.dao.basic.BasicDAO;
+import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
@@ -29,9 +31,10 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	 * 将ServerOrder实体类封装到pagebean中
 	 */
 	private PageBean<ServerOrder> pageServerOrderBean;
-	
+
 	/**
 	 * 获取pagebean中ServerOrder实体类集合
+	 * 
 	 * @return 返回实体类
 	 */
 	public PageBean<ServerOrder> getPageServerOrderBean() {
@@ -40,7 +43,9 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 设置ServerOrder实体类集合
-	 * @param pageServerOrderBean 封装的ServerOrder实体类集合
+	 * 
+	 * @param pageServerOrderBean
+	 *            封装的ServerOrder实体类集合
 	 */
 	public void setPageServerOrderBean(PageBean<ServerOrder> pageServerOrderBean) {
 		this.pageServerOrderBean = pageServerOrderBean;
@@ -71,15 +76,6 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	}
 
 	/**
-	 * 根据id查找订单，返回ServerOrder实例
-	 */
-	@Override
-	@Deprecated
-	public ServerOrder findById(int id) {
-		return dao.findById(id);
-	}
-
-	/**
 	 * 根据指定属性及其属性值查找ServerOrder实例，返回指定ServerOrder实例
 	 */
 	@Override
@@ -89,6 +85,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 获取ServerOrderDao实例
+	 * 
 	 * @return 返回adminDao实例
 	 */
 	public ServerOrderDAO getServerOrderDao() {
@@ -105,6 +102,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 设置ServerOrderDao实例
+	 * 
 	 * @param ServerOrderDao
 	 */
 	public void setServerOrderDao(ServerOrderDAO ServerOrderDao) {
@@ -113,6 +111,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 根据id查找ServerOrder实例是否存在
+	 * 
 	 * @return 存在则返回true，否则返回false
 	 */
 	@Override
@@ -124,15 +123,19 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	 * 更新ServerOrder实例
 	 */
 	@Override
-	public void update(ServerOrder t) {
-		dao.update(t);
+	public void update(ServerOrder entity) {
+		dao.update(entity);
 	}
 
 	/**
 	 * 根据id查找订单，返回ServerOrder实例
 	 */
 	@Override
-	public ServerOrder findById(String id) {
+	public ServerOrder findById(java.io.Serializable id) throws FindByIdGetNullException {
+		ServerOrder serverOrder = dao.findById(id);
+		if (serverOrder != null) {
+			throw new FindByIdGetNullException("根据主键id未找到订单对象");
+		}
 		return dao.findById(id);
 	}
 
@@ -167,27 +170,31 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	public List<ServerOrder> findByClockCategory(Object property) {
 		return dao.findByClockCategory(property);
 	}
-/**
- * 查找今日订单
- */
+
+	/**
+	 * 查找今日订单
+	 */
 	@Override
 	public List<ServerOrder> findTodayOrder() {
-		return dao.findOrdersByDateLimit(WorkDate.getTodayDate()
-				, WorkDate.getTomorrowDate());
+		return dao.findOrdersByDateLimit(WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
-/**
- * 查找指定日期的订单
- */
+
+	/**
+	 * 查找指定日期的订单
+	 */
 	@Override
 	public List<ServerOrder> findOrderByDate(Date date) {
 		return dao.findOrdersByDateLimit(date, WorkDate.getNextDate(date));
 	}
-	
-/**
- * 查找指定时间区域内的订单
- * @param begin 开始日期
- * @param end 结束日期
- */
+
+	/**
+	 * 查找指定时间区域内的订单
+	 * 
+	 * @param begin
+	 *            开始日期
+	 * @param end
+	 *            结束日期
+	 */
 	@Override
 	public List<ServerOrder> findOrderByDateLimit(Date begin, Date end) {
 		return dao.findOrdersByDateLimit(begin, WorkDate.getNextDate(end));
@@ -195,7 +202,9 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 查找低于指定价格的所有订单
-	 * @param price 比较价格
+	 * 
+	 * @param price
+	 *            比较价格
 	 */
 	@Override
 	public List<ServerOrder> findAllOrderLessThanPrice(int price) {
@@ -204,9 +213,13 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 查找指定日期内低于指定价格的订单
-	 * @param begin 开始日期
-     * @param end 结束日期
-	 * @param price 比较价格
+	 * 
+	 * @param begin
+	 *            开始日期
+	 * @param end
+	 *            结束日期
+	 * @param price
+	 *            比较价格
 	 */
 	@Override
 	public List<ServerOrder> findOrderLessThanPriceDate(int price, Date begin, Date end) {
@@ -215,7 +228,9 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 查找高于指定价格的所有订单
-	 * @param price 比较价格
+	 * 
+	 * @param price
+	 *            比较价格
 	 */
 	@Override
 	public List<ServerOrder> findOrderMoreThanPrice(int price) {
@@ -224,9 +239,13 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 
 	/**
 	 * 查找指定日期内高于指定价格的订单
-	 * @param begin 开始日期
-     * @param end 结束日期
-	 * @param price 比较价格
+	 * 
+	 * @param begin
+	 *            开始日期
+	 * @param end
+	 *            结束日期
+	 * @param price
+	 *            比较价格
 	 */
 	@Override
 	public List<ServerOrder> findOrderMoreThanPriceDate(int price, Date begin, Date end) {
@@ -240,7 +259,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	public PageBean<ServerOrder> findByPage(int page) throws PagePropertyNotInitException {
 		long begin = pageServerOrderBean.init(findAllCount(), page);
 
-		List<ServerOrder> list = dao.findListByLimit( begin, pageServerOrderBean.getLimit());
+		List<ServerOrder> list = dao.findListByLimit(begin, pageServerOrderBean.getLimit());
 
 		pageServerOrderBean.setList(list);
 
@@ -263,17 +282,18 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	}
 
 	@Override
-	public <K> ServerOrder findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> ServerOrder findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
-	
+
 	@Override
-	public PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange<?>> listPro, int page) throws PagePropertyNotInitException {
+	public PageBean<ServerOrder> findOrdersByPropertyLimit(List<PropertyRange<?>> listPro, int page)
+			throws PagePropertyNotInitException {
 		long begin = pageServerOrderBean.init(dao.findOrdersByProperyLimitCount(listPro), page);
 
 		List<ServerOrder> list = dao.findOrdersByProperyLimit(listPro, (int) begin,
@@ -284,7 +304,6 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 		return pageServerOrderBean;
 
 	}
-	
 
 	@Override
 	public PropertyRange<?> createPropertyRangeByName(String propertyName, Object o1, Object o2) {
@@ -298,27 +317,20 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	}
 
 	@Override
-	@Deprecated
-	/**
-	 * 改参数类型的方法被抛弃，不能使用
-	 */
-	public PropertyRange<ServerOrder> createPropertyRangeById(int id1) {
-		PropertyRange<ServerOrder> pr = new PropertyRange<>();
-		
-		pr.setName(BasicDAO.ID);
-		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
-		
-		return null;
+	public void deleteAll(Collection<ServerOrder> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
-	
-	public PropertyRange<ServerOrder> createPropertyRange(String id1, String id2) {
+
+	@Override
+	public PropertyRange<ServerOrder> createPropertyRangeById(java.io.Serializable id1)
+			throws FindByIdGetNullException {
 		PropertyRange<ServerOrder> pr = new PropertyRange<>();
-		
+
 		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
-		
+		pr.setMaxValue(pr.getMinValue());
+
 		return pr;
 	}
 }

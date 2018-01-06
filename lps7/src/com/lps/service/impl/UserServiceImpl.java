@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +23,7 @@ public class UserServiceImpl implements UserService {
 	/**
 	 * 以私有变量的方式保存userDAO
 	 */
-	private UserDAO userDao ;
+	private UserDAO dao ;
 	
 	/**
 	 * 将user实体类封装到pagebean中
@@ -68,7 +69,7 @@ public class UserServiceImpl implements UserService {
 	 * @return 返回userDao实例
 	 */
 	public UserDAO getUserDao() {
-		return userDao;
+		return dao;
 	}
 
 	/**
@@ -76,7 +77,7 @@ public class UserServiceImpl implements UserService {
 	 * @param userDao
 	 */
 	public void setUserDao(UserDAO userDao) {
-		this.userDao = userDao;
+		this.dao = userDao;
 	}
 
 	/**
@@ -84,7 +85,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void save(User user) {
-		userDao.save( user);
+		dao.save( user);
 	}
 
 	/**
@@ -92,7 +93,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public void delete(User user) {
-		userDao.delete(user);
+		dao.delete(user);
 	}
 
 	/**
@@ -100,11 +101,11 @@ public class UserServiceImpl implements UserService {
 	 * @throws FindByIdGetNullException 
 	 */
 	@Override
-	public User findById(int id) throws FindByIdGetNullException {
-		User u = userDao.findById(id);
+	public User findById(java.io.Serializable id) throws FindByIdGetNullException {
+		User u = dao.findById(id);
 		if(u == null)
 			throw new FindByIdGetNullException();
-		return userDao.findById(id);
+		return dao.findById(id);
 	}
 	
 	/**
@@ -113,7 +114,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public boolean isExists(User user) {
-		return userDao.isExists(user);
+		return dao.isExists(user);
 	}
 
 	/**
@@ -121,7 +122,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findAll() {
-		return userDao.findAll();
+		return dao.findAll();
 	}
 
 	/**
@@ -129,7 +130,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public long findAllCount() {
-		return userDao.findAllCount();
+		return dao.findAllCount();
 	}
 
 	/**
@@ -137,7 +138,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByProperty(String propertyName, Object value) {
-		return userDao.findByProperty(propertyName, value);
+		return dao.findByProperty(propertyName, value);
 	}
 
 	/**
@@ -145,7 +146,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByPassword(Object password) {
-		return userDao.findByPassword(password);
+		return dao.findByPassword(password);
 	}
 
 	/**
@@ -153,7 +154,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByWorkId(Object workId) {
-		return userDao.findByWorkId(workId);
+		return dao.findByWorkId(workId);
 	}
 
 	/**
@@ -161,7 +162,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByTelephonePhone(Object telephonePhone) {
-		return userDao.findByTelephonePhone(telephonePhone);
+		return dao.findByTelephonePhone(telephonePhone);
 	}
 
 	/**
@@ -169,7 +170,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByEmail(Object email) {
-		return userDao.findByEmail(email);
+		return dao.findByEmail(email);
 	}
 
 	/**
@@ -177,7 +178,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByAddress(Object address) {
-		return userDao.findByAddress(address);
+		return dao.findByAddress(address);
 	}
 
 	/**
@@ -185,7 +186,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByAvatar(Object avatar) {
-		return userDao.findByAvatar(avatar);
+		return dao.findByAvatar(avatar);
 	}
 
 	/**
@@ -193,7 +194,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByQuestion(Object question) {
-		return userDao.findByQuestion(question);
+		return dao.findByQuestion(question);
 	}
 
 	/**
@@ -201,7 +202,7 @@ public class UserServiceImpl implements UserService {
 	 */
 	@Override
 	public List<User> findByAnswer(Object answer) {
-		return userDao.findByAnswer(answer);
+		return dao.findByAnswer(answer);
 	}
 	
 	/**
@@ -212,7 +213,7 @@ public class UserServiceImpl implements UserService {
 		
 		long begin = pageUserBean.init(findAllCount(), page);
 
-		List<User> list = userDao.findListByLimit(begin, pageUserBean.getLimit());
+		List<User> list = dao.findListByLimit(begin, pageUserBean.getLimit());
 
 		pageUserBean.setList(list);
 
@@ -224,26 +225,26 @@ public class UserServiceImpl implements UserService {
 	 * 更新user实例
 	 */
 	@Override
-	public void update(User t) {
-		userDao.update(t);	
+	public void update(User entity) {
+		dao.update(entity);	
 	}
 
 	/**
 	 * 返回指定员工的所有服务订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(User t) {
-		return userDao.findAllOrders(t);
+	public Set<ServerOrder> findAllOrders(User entity) {
+		return dao.findAllOrders(entity);
 	}
 	
 	/**
 	 * 查找指定页面内根据员工得到的所有订单
 	 */
 	@Override
-	public PageBean<ServerOrder> findAllOrdersByPage(User t, int page) throws PagePropertyNotInitException {
-		long begin = pageServerOrderByUserBean.init(findOrdersCountByThisType(t), page);
+	public PageBean<ServerOrder> findAllOrdersByPage(User entity, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByUserBean.init(findOrdersCountByThisType(entity), page);
 
-		List<ServerOrder> list = userDao.findOrdersWithLimit(t, begin, pageServerOrderByUserBean.getLimit());
+		List<ServerOrder> list = dao.findOrdersWithLimit(entity, begin, pageServerOrderByUserBean.getLimit());
 
 		pageServerOrderByUserBean.setList(list);
 
@@ -252,17 +253,17 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<User> findByRealName(Object realName) {
-		return userDao.findByRealName(realName);
+		return dao.findByRealName(realName);
 	}
 
 	@Override
 	public List<User> findByIDCardNo(Object IDCardNo) {
-		return userDao.findByIDCardNo(IDCardNo);
+		return dao.findByIDCardNo(IDCardNo);
 	}
 
 	@Override
-	public long findOrdersCountByThisType(User t) {
-		return userDao.findOrdersCountByThisType(t);
+	public long findOrdersCountByThisType(User entity) {
+		return dao.findOrdersCountByThisType(entity);
 	}
 
 	@Override
@@ -276,49 +277,49 @@ public class UserServiceImpl implements UserService {
 	public <T> String findPassword(BasicModel<T> user) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
 		map.put(UserDAOImpl.PASSWORD, String.class);
-		return userDao.findFields(user, map).getPassword();
+		return dao.findFields(user, map).getPassword();
 	}
 
 	@Override
 	public int findIdByUserName(String name) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(UserDAOImpl.USER_NAME, name);
-		List<Integer> list = userDao.findIdByProperty(map);
+		List<Integer> list = dao.findIdByProperty(map);
 		if(list != null && list.size() > 0)
 			return list.get(0);
-		return NOT_EXISTS;
+		throw new UserNotExistsException("找不到改用户对象");
 	}
 
 	@Override
-	public List<ServerOrder> findTodayOrders(User t) {
-		return userDao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	public List<ServerOrder> findTodayOrders(User entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
 
 	@Override
-	public List<ServerOrder> findBefore7DayOrders(User t) {
-		return userDao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findBefore7DayOrders(User entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
 	}
 
 	@Override
-	public List<ServerOrder> findThisMonthOrders(User t) {
-		return userDao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisMonthOrders(User entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
 	}
 
 	@Override
-	public List<ServerOrder> findThisYearOrders(User t) {
-		return userDao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisYearOrders(User entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 	@Override
-	public <K> User findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return userDao.findFields(t, fields);
+	public <K> User findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return userDao.findIdByProperty(map);
+		return dao.findIdByProperty(map);
 	}
-	public PropertyRange<User> createPropertyRangeById(int id1) throws FindByIdGetNullException {
+	public PropertyRange<User> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		
 		PropertyRange<User> pr = new PropertyRange<>();
 		
@@ -328,6 +329,12 @@ public class UserServiceImpl implements UserService {
 		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<User> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 
 }

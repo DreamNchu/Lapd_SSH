@@ -5,10 +5,15 @@ import java.util.List;
 import com.lps.model.Room;
 import com.lps.model.ServerItem;
 import com.lps.model.User;
-import com.lps.web.room.dto.RoomOrderDto;
-import com.lps.web.user.dto.UserOrderDto;
+import com.lps.model.basic.Entity;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
+import com.lps.web.dto.DtoInitException;
+import com.lps.web.room.dto.TRoomDto;
+import com.lps.web.simple.dto.ServerItemDto;
+import com.lps.web.simple.dto.TServerItemDto;
+import com.lps.web.user.dto.TUserDto;
 
-public class InitCreateOrderDto {
+public class InitCreateOrderDto extends BasicRespondMsgDto{
 	
 	/*
 	 *var createOrder={
@@ -21,11 +26,11 @@ public class InitCreateOrderDto {
 	
 //	private List<Integer> createWays;
 	
-	private List<UserOrderDto> users;
+	private TUserDto users;
 	
-	private List<RoomOrderDto> rooms;
+	private TRoomDto rooms;
 	
-	private List<ServerItemOrderDto> serverItems;
+	private TServerItemDto serverItems;
 	
 	
 	public InitCreateOrderDto() {
@@ -36,53 +41,39 @@ public class InitCreateOrderDto {
 	 * @param lu
 	 * @param lr
 	 * @param lrc
+	 * @throws DtoInitException 
 	 */
-	public void init(List<User> lu, List<Room> lr, List<ServerItem> lrc){
-		for (ServerItem rc : lrc) {
-			this.serverItems.add(
-					new ServerItemOrderDto().init(rc));
-		}
+	public void init(List<User> lu, List<Room> lr, List<ServerItem> lrc) throws DtoInitException{
 		
-		for (User u : lu) {
-			this.users.add(new UserOrderDto().init(u));
-		}
+		serverItems.init(lrc);
 		
-		for (Room room : lr) {
-			this.rooms.add(new RoomOrderDto().init(room));
-		}
+		users.init(lu);
+		
+		rooms.init(lr);
 	}
 	
-	public InitCreateOrderDto(/*List<Integer> createWays,*/ List<UserOrderDto> user, List<RoomOrderDto> room,
-			List<ServerItemOrderDto> roomCategory) {
-		super();
-//		this.createWays = createWays;
-		this.users = user;
-		this.rooms = room;
-		this.serverItems = roomCategory;
-	}
 
-
-	public List<RoomOrderDto> getRooms() {
+	public TRoomDto getRooms() {
 		return rooms;
 	}
 
-	public void setRooms(List<RoomOrderDto> room) {
+	public void setRooms(TRoomDto room) {
 		this.rooms = room;
 	}
 
-	public List<ServerItemOrderDto> getServerItems() {
+	public List<ServerItemDto> getServerItems() {
 		return serverItems;
 	}
 
-	public void setServerItems(List<ServerItemOrderDto> serverItem) {
+	public void setServerItems(TServerItemDto serverItem) {
 		this.serverItems = serverItem;
 	}
 
-	public List<UserOrderDto> getUsers() {
+	public TUserDto getUsers() {
 		return users;
 	}
 
-	public void setUsers(List<UserOrderDto> user) {
+	public void setUsers(TUserDto user) {
 		this.users = user;
 	}
 

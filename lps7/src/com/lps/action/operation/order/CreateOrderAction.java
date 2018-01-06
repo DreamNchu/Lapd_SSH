@@ -1,31 +1,28 @@
 package com.lps.action.operation.order;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.google.gson.Gson;
 import com.lps.action.jsonresult.DataResult;
-import com.lps.control.manage.OrderManage;
+import com.lps.control.manage.BasicManage;
+import com.lps.control.manage.CreateFailedException;
+import com.lps.control.manage.CreateOrderFailedException;
 import com.lps.service.ServerOrderService;
-import com.lps.util.WorkJson;
 import com.lps.web.order.dto.CreateOrderDto;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class CreateOrderAction extends ActionSupport implements DataResult{
+public class CreateOrderAction extends ActionSupport implements DataResult {
 
 	private static final long serialVersionUID = -2770070015331923293L;
 
 	private CreateOrderDto createOrderDto;
 
-	private OrderManage orderManage;
+	private BasicManage orderManage;
 
 	private ServerOrderService serverOrderServiceImpl;
 
 	private String result;
-	
+
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
@@ -34,32 +31,27 @@ public class CreateOrderAction extends ActionSupport implements DataResult{
 		}
 	}.getClassName());
 
+	/**
+	 * 创建订单
+	 */
 	@Override
-	public String execute() throws Exception {
+	public String execute() {
 
-		Map<String, Object> map = new HashMap<String, Object>();
 		try {
-			
-			orderManage.createOrder(createOrderDto);
-			
-		} catch (Exception e) {
+			orderManage.create(createOrderDto);
+		} catch (CreateFailedException e) {
 			e.printStackTrace();
-			map.put("msg", "创建订单失败");
-			result = new Gson().toJson(map);
-			return SUCCESS;
+			basicMsg.setErrorMsg(e.getMessage());
 		}
-
-		map.put("msg", "创建订单成功");
-		result = new Gson().toJson(map);
-		logger.debug(result);
-		return super.execute();
+		return SUCCESS;
+		
 	}
 
-	public OrderManage getOrderManage() {
+	public BasicManage getOrderManage() {
 		return orderManage;
 	}
 
-	public void setOrderManage(OrderManage orderManage) {
+	public void setOrderManage(BasicManage orderManage) {
 		this.orderManage = orderManage;
 	}
 
@@ -89,11 +81,6 @@ public class CreateOrderAction extends ActionSupport implements DataResult{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
-	}
-
-	@Override
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 
 }

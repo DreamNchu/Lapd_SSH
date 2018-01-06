@@ -7,6 +7,7 @@ import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.RoomManage;
 import com.lps.model.Room;
 import com.lps.service.RoomService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.WorkJson;
 import com.lps.web.room.dto.NotRoomObjectException;
 import com.lps.web.room.dto.RoomHelpForCreateOrderDto;
@@ -25,14 +26,9 @@ public class RoomDataAction extends ActionSupport implements DataResult{
 		}
 	}.getClassName());
 	
-	private String result;
-	
-	
 	private RoomHelpForCreateOrderDto roomHelpForCreateOrderDto;
 	
-	
 	private RoomManage roomManage;
-
 
 	private RoomIdDto roomIdDto;
 	/**
@@ -41,10 +37,16 @@ public class RoomDataAction extends ActionSupport implements DataResult{
 	 * @throws NotRoomObjectException 
 	 */
 	public String viewWorkRoomData() throws NotRoomObjectException{
-		Room room = roomManage.queryRoom(roomIdDto.getRoomId());
+		basicMsg.setMsgDto(roomHelpForCreateOrderDto);
+		
+		Room room = null;
+		try {
+			room = roomManage.queryRoom(roomIdDto.getRoomId());
+		} catch (FindByIdGetNullException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		roomHelpForCreateOrderDto.init(room);
-		writeInResult(roomHelpForCreateOrderDto);
-logger.debug(result);
 		return SUCCESS;
 	}
 	public RoomIdDto getRoomIdDto() {
@@ -66,23 +68,12 @@ logger.debug(result);
 		this.roomManage = roomManage;
 	}
 
-	public String getResult() {
-		return result;
-	}
-
 	public RoomHelpForCreateOrderDto getRoomHelpForCreateOrderDto() {
 		return roomHelpForCreateOrderDto;
 	}
 
-	public void setResult(String result) {
-		this.result = result;
-	}
 	public void setRoomHelpForCreateOrderDto(RoomHelpForCreateOrderDto roomHelpForCreateOrderDto) {
 		this.roomHelpForCreateOrderDto = roomHelpForCreateOrderDto;
 	}
 
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
-	}
-	
 }

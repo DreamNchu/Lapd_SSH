@@ -6,7 +6,7 @@ package com.lps.model.basic;
  *
  * @param <T> 基本Model所对应的Id的属性类型 
  */
-public interface BasicModel<T> {
+public interface BasicModel<T> extends Entity{
 	
 	/**
 	 * 返回对象的id

@@ -8,14 +8,14 @@ import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 
-public interface BasicForServerOrderService<T> extends BasicService<T> {
+public interface BasicForServerOrderService<ENTITY> extends BasicService<ENTITY> {
 	
 	/**
 	 * 
 	 * @param t
 	 * @return
 	 */
-	Set<ServerOrder> findAllOrders(T t);
+	Set<ServerOrder> findAllOrders(ENTITY t);
 
 	/**
 	 * 
@@ -24,37 +24,37 @@ public interface BasicForServerOrderService<T> extends BasicService<T> {
 	 * @return
 	 * @throws PagePropertyNotInitException 
 	 */
-	PageBean<ServerOrder> findAllOrdersByPage(T t, int page) throws PagePropertyNotInitException;
+	PageBean<ServerOrder> findAllOrdersByPage(ENTITY t, int page) throws PagePropertyNotInitException;
 
 	/**
 	 * 
 	 * @param t
 	 * @return
 	 */
-	long findOrdersCountByThisType(T t);
+	long findOrdersCountByThisType(ENTITY t);
 	
 	
-	List<ServerOrder> findTodayOrders(T t);
+	List<ServerOrder> findTodayOrders(ENTITY t);
 	/**
 	 * 该用户最近七天的工作订单
 	 * @param t
 	 * @return
 	 */
-	List<ServerOrder> findBefore7DayOrders(T t);
+	List<ServerOrder> findBefore7DayOrders(ENTITY t);
 	
 	/**
 	 * 该用户本月的工作订单
 	 * @param t
 	 * @return
 	 */
-	List<ServerOrder> findThisMonthOrders(T t);
+	List<ServerOrder> findThisMonthOrders(ENTITY t);
 	
 	/**
 	 * 本年的工作订单
 	 * @param t
 	 * @return
 	 */
-	List<ServerOrder> findThisYearOrders(T t);
+	List<ServerOrder> findThisYearOrders(ENTITY t);
 	
 	
 }

@@ -1,7 +1,7 @@
 package com.lps.service.webuser;
 
-import com.lps.model.Admin;
 import com.lps.model.basic.BasicModel;
+import com.lps.service.impl.UserNotExistsException;
 
 /**
  * Web登录，注册的工具接口
@@ -15,14 +15,14 @@ public interface WebAccessUtil {
 	 * @param userName 用户名
 	 * @return 返回密码
 	 */
-	String findPasswordByUserName(String userName);
+	String findPasswordByUserName(String userName) throws UserNotExistsException;
 	
 	/**
 	 * 根据对象的id找到密码
 	 * @param <T> 基本的model类型
 	 * @return 返回密码
 	 */
-	public <T> String findPassword(BasicModel<T> t);
+	public <T> String findPassword(BasicModel<T> t) throws UserNotExistsException;
 	
 	/**
 	 * 如果只是单纯的查找id的话，那么这种方法的效率最高

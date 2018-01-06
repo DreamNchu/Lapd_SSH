@@ -1,10 +1,12 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import com.lps.dao.WorkStatusDAO;
 import com.lps.dao.basic.BasicDAO;
+import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
@@ -73,7 +75,11 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	 * 根据id查找房间，返回WorkStatus实例
 	 */
 	@Override
-	public WorkStatus findById(int id) {
+	public WorkStatus findById(java.io.Serializable id) throws FindByIdGetNullException {
+		WorkStatus workStatus = dao.findById(id);
+		if(workStatus != null){
+			throw new FindByIdGetNullException("根据主键id未找到工作状态对象");
+		}
 		return dao.findById(id);
 	}
 
@@ -145,14 +151,14 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	}
 
 	@Override
-	public void update(WorkStatus t) {
+	public void update(WorkStatus entity) {
 		// TODO Auto-generated method stub
-		dao.update(t);
+		dao.update(entity);
 	}
 
 	@Override
-	public <K> WorkStatus findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> WorkStatus findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -161,13 +167,19 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	}
 	
 	@Override
-	public PropertyRange<WorkStatus> createPropertyRangeById(int id1) {
+	public PropertyRange<WorkStatus> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<WorkStatus> pr = new PropertyRange<WorkStatus>();
 		
 		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<WorkStatus> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 }

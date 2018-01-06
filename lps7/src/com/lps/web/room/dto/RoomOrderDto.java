@@ -1,9 +1,10 @@
 package com.lps.web.room.dto;
 
 import com.lps.model.Room;
-import com.lps.web.order.dto.DtoBasicInit;
+import com.lps.model.basic.Entity;
+import com.lps.web.dto.BasicInitDto;
 
-public class RoomOrderDto implements DtoBasicInit<RoomOrderDto>{
+public class RoomOrderDto extends RoomDto{
 	
 	public Integer roomId;
 	
@@ -19,8 +20,8 @@ public class RoomOrderDto implements DtoBasicInit<RoomOrderDto>{
 		this.roomName = roomName;
 	}
 
-	@Override
-	public RoomOrderDto init(Object obj) {
+/*	@Override
+	public RoomOrderDto init(Entity obj) {
 		if (obj == null) {
 			return this;
 		}
@@ -28,7 +29,7 @@ public class RoomOrderDto implements DtoBasicInit<RoomOrderDto>{
 		roomId = r.getId();
 		roomName = r.getName();
 		return this;
-	}
+	}*/
 	
 
 }

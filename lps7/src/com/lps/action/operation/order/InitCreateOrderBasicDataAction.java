@@ -28,8 +28,6 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 
 	private UserService userServiceImpl;
 
-	private String result;
-
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
@@ -50,11 +48,8 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 
 		initCreateOrderDto.init(lisUsers, listRooms, listServerItems);
 
-		// 保存结果
-		result = WorkJson.toJsonDisableHtmlEscaping(initCreateOrderDto);
-
-		logger.debug(result);
-
+		basicMsg.setMsgDto(initCreateOrderDto);
+		
 		return SUCCESS;
 	}
 
@@ -69,14 +64,6 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 
 	public void setUserServiceImpl(UserService userServiceImpl) {
 		this.userServiceImpl = userServiceImpl;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
 	}
 
 	public ServerItemService getServerItemServiceImpl() {
@@ -105,10 +92,6 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 
 	public void setInitCreateOrderDto(InitCreateOrderDto initCreateOrderDto) {
 		this.initCreateOrderDto = initCreateOrderDto;
-	}
-
-	public void writeInResult(Object obj) {
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 
 }

@@ -1,6 +1,8 @@
 package com.lps.web.order.dto;
 
-public class OrderIdDto {
+import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
+
+public class OrderIdDto extends BasicRequestMsgDto{
 
 	private String orderId;
 

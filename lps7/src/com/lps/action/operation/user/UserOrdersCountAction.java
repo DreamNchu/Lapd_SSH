@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
+import com.lps.control.manage.BasicManage;
 import com.lps.control.manage.OrderManage;
 import com.lps.util.WorkJson;
 import com.lps.web.orderchart.dto.OrderChartDto;
@@ -80,7 +81,7 @@ System.out.println(result);
 		
 	}
 
-	public OrderManage getOrderManage() {
+	public BasicManage getOrderManage() {
 		return orderManage;
 	}
 

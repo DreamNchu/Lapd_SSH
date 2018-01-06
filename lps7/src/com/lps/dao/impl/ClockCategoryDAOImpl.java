@@ -1,8 +1,10 @@
 package com.lps.dao.impl;
 // default package
 
+import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -12,7 +14,6 @@ import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.criterion.Projection;
 import org.hibernate.criterion.ProjectionList;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -22,7 +23,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
-import com.lps.model.PayPath;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
@@ -76,7 +76,7 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	   *@return 返回加载的钟点类型实例
 	   */
 	@Override
-	public ClockCategory findById(int id) {
+	public ClockCategory findById(java.io.Serializable id) {
 		return hibernateTemplate.get(ClockCategory.class, id);
 	}
 
@@ -125,8 +125,8 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	 * @return 存在则返回true，否则返回false
 	 */
 	@Override
-	public boolean isExists(ClockCategory t) {
-		return findById(t.getId()) == null ? false : true;
+	public boolean isExists(ClockCategory entity) {
+		return findById(entity.getId()) == null ? false : true;
 	}
 
 	/**
@@ -146,8 +146,8 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
  * 更新钟点类型实例
  */
 	@Override
-	public void update(ClockCategory t) {
-		hibernateTemplate.update(t);
+	public void update(ClockCategory entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	/**
@@ -207,11 +207,11 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	
 
 	@Override
-	public <K> ClockCategory findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> ClockCategory findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(ClockCategory.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -269,6 +269,12 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 				.list();
 		
 		return ccTemp;
+	}
+
+	@Override
+	public void deleteAll(Collection<ClockCategory> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 	
 }

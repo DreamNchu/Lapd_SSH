@@ -3,6 +3,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -22,9 +23,7 @@ import com.lps.dao.PledgeDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
 import com.lps.model.Pledge;
-import com.lps.model.Pledge;
 import com.lps.model.ServerOrder;
-import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
@@ -69,7 +68,9 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	 */
 	@Override
 	public void delete(Pledge persistentInstance) {
+		
 		hibernateTemplate.delete(persistentInstance);
+		
 	}
 
 	/**加载抵押物实例，根据id查找
@@ -77,7 +78,7 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	   *@return 返回加载的抵押物实例
 	   */
 	@Override
-	public Pledge findById(int id) {
+	public Pledge findById(java.io.Serializable id) {
 		return hibernateTemplate.get(Pledge.class, id);
 	}
 
@@ -128,8 +129,8 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	 * @return 存在则返回true，否则返回false
 	 */
 	@Override
-	public boolean isExists(Pledge t) {
-		return findById(t.getId()) == null ? false : true;
+	public boolean isExists(Pledge entity) {
+		return findById(entity.getId()) == null ? false : true;
 	}
 
 	/**
@@ -150,8 +151,8 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	 * 更新抵押物
 	 */
 	@Override
-	public void update(Pledge t) {
-		hibernateTemplate.update(t);
+	public void update(Pledge entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	/**
@@ -163,12 +164,12 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	 * 根据抵押物查找所有订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(Pledge t) {
+	public Set<ServerOrder> findAllOrders(Pledge entity) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Pledge ccTemp = (Pledge) session.createCriteria(Pledge.class)
 				.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
-				.add(Restrictions.idEq(t.getId())).list().get(0);
+				.add(Restrictions.idEq(entity.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
@@ -178,10 +179,10 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	 * 根据抵押物查找订单，查找个数受限于begin，limit
 	 */
 	@Override
-	public List<ServerOrder> findOrdersWithLimit(Pledge t, long begin, long limit) {
+	public List<ServerOrder> findOrdersWithLimit(Pledge entity, long begin, long limit) {
 		String hql = "from Pledge cc where cc.id=?";
 		HibernateCallback<List<Pledge>> callback = new PageHibernateCallback<Pledge>(hql,
-				new Object[] { t.getId() }, begin, limit);
+				new Object[] { entity.getId() }, begin, limit);
 		List<Pledge> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
@@ -209,11 +210,11 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	}
 	
 	@Override
-	public <K> Pledge findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> Pledge findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Pledge.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -271,6 +272,12 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 				.list();
 		
 		return ccTemp;
+	}
+
+	@Override
+	public void deleteAll(Collection<Pledge> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 	
 }

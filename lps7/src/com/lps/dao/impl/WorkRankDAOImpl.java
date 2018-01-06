@@ -1,6 +1,7 @@
 package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -84,7 +85,7 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	   *@return 返回加载的上钟排序实例
 	   */
 	@Override
-	public WorkRank findById(int id) {
+	public WorkRank findById(java.io.Serializable id) {
 		return hibernateTemplate.get(WorkRank.class, id);
 	}
 
@@ -160,8 +161,8 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	 * 更新上钟序列状态
 	 */
 	@Override
-	public void update(WorkRank t) {
-		hibernateTemplate.update(t);
+	public void update(WorkRank entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	/**
@@ -201,11 +202,11 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	}
 	
 	@Override
-	public <K> WorkRank findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> WorkRank findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkRank.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -259,6 +260,12 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 		.setMaxResults(1).setFetchMode(USER, FetchMode.JOIN);
 		
 		return (WorkRank) cri.uniqueResult();
+	}
+
+	@Override
+	public void deleteAll(Collection<WorkRank> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 
 }

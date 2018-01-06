@@ -1,30 +1,25 @@
 package com.lps.action.operation.order;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletResponse;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.apache.struts2.interceptor.ServletResponseAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
+import com.lps.control.manage.BasicManage;
 import com.lps.control.manage.OrderManage;
 import com.lps.dao.OrderStatusDAO;
 import com.lps.model.ServerOrder;
 import com.lps.permission.Permission;
-import com.lps.service.ServerOrderService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
-import com.lps.util.WorkJson;
+import com.lps.web.order.dto.AdvancedSearchDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.OrderSingleDataDto;
 import com.lps.web.order.dto.OrderTableDataDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
-import com.lps.web.order.dto.PageLinkOrderAdvancedSearchDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.orderchart.dto.OrderChartDto;
@@ -32,10 +27,8 @@ import com.lps.web.orderchart.dto.OrderChartInitDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class ManageOrdersAction extends ActionSupport implements DataResult, SessionAware,ServletResponseAware {
+public class ManageOrdersAction extends ActionSupport implements DataResult, SessionAware {
 
-	private static final long serialVersionUID = -8763735445922466287L;
-	
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
@@ -44,87 +37,178 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		}
 	}.getClassName());
 
+	private static final long serialVersionUID = -8763735445922466287L;
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	private OrderTableDataDto orderTableDataDto;
-
 	/**
-	 * 查询所要的订单基本信息
+	 * 高级查询辅助类
 	 */
-	private PageLinkTransformOrderDto pageLinkTransformOrderDto;
+	private AdvancedSearchDto advancedSearchDto;
 
-	private OrderManage orderManage;
+	//
+	private InitBasicUpdateDataDto initBasicUpdateDataDto;
 
-	private Map<String, Object> session;
+	private OrderChartDto orderChartDto;
 
-	private String result;
+	private OrderChartInitDto orderChartInitDto;
 
-	private ServerOrderService serverOrderServiceImpl;
-
-	private OrderUpdateDataDto orderUpdateDataDto;
-
-	public OrderUpdateDataDto getOrderUpdateDataDto() {
-		return orderUpdateDataDto;
-	}
-
-	public void setOrderUpdateDataDto(OrderUpdateDataDto orderUpdateDataDto) {
-		this.orderUpdateDataDto = orderUpdateDataDto;
-	}
+	private OrderChartRequestDto orderChartRequestDto;
 
 	/**
 	 * 订单编号的id集合
 	 */
 	private List<String> orderId;
 
+	private OrderManage orderManage;
+
+	private OrderSingleDataDto orderSingleDataDto;
+
+	private OrderTableDataDto orderTableDataDto;
+
+	private OrderUpdateDataDto orderUpdateDataDto;
+
+	/**
+	 * 查询所要的订单基本信息
+	 */
+	private PageLinkTransformOrderDto pageLinkTransformOrderDto;
+
+	private Map<String, Object> session;
+
+	private UpdateOrderNormalOperationDto updateOrderNormalOperationDto;
+
+	/**
+	 * 图图表分析数据
+	 * 
+	 * @return
+	 */
+	public String chartDataOrders() {
+
+		basicMsg.setMsgDto(orderChartDto);
+
+		try {
+			orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			orderChartDto.setErrorMsg(e.getMessage());
+		}
+
+		return SUCCESS;
+	}
+
+	/**
+	 * 删除订单
+	 * @return
+	 */
+	public String deleteOrders() {
+		try {
+			orderManage.delete(orderId.toArray(new String[0]));
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			basicMsg.setErrorMsg("id = " + orderId + " --> " + e.getMessage() + "\n" + "删除订单失败");
+		}
+		basicMsg.setDefaultSuccessMsg();
+		return SUCCESS;
+
+	}
+
 	@Override
 	public String execute() throws Exception {
 		return super.execute();
 	}
 
-	public String deleteOrders() {
-		Map<String, Object> map = new HashMap<>();
-		boolean isError = false;
-		try {
-			for (String orderId : orderId) {
-				ServerOrder so = serverOrderServiceImpl.findById(orderId);
-				serverOrderServiceImpl.delete(so);
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			map.put(MSG, "删除订单失败");
-			isError = true;
-		}
-		if(!isError)
-			map.put(MSG, "删除订单成功");
-		result = WorkJson.toJsonDisableHtmlEscaping(map);
-		return SUCCESS;
+	public AdvancedSearchDto getAdvancedSearchDto() {
+		return advancedSearchDto;
+	}
+
+	public InitBasicUpdateDataDto getInitBasicUpdateDataDto() {
+		return initBasicUpdateDataDto;
+	}
+
+	public OrderChartDto getOrderChartDto() {
+		return orderChartDto;
+	}
+
+	public OrderChartInitDto getOrderChartInitDto() {
+		return orderChartInitDto;
+	}
+
+	public OrderChartRequestDto getOrderChartRequestDto() {
+		return orderChartRequestDto;
 	}
 
 	public OrderUpdateDataDto getOrderDataDto() {
 		return orderUpdateDataDto;
 	}
 
-	public OrderManage getOrderManage() {
+	public List<String> getOrderId() {
+		return orderId;
+	}
+
+	public BasicManage getOrderManage() {
 		return orderManage;
+	}
+
+	public OrderSingleDataDto getOrderSingleDataDto() {
+		return orderSingleDataDto;
 	}
 
 	public OrderTableDataDto getOrderTableDataDto() {
 		return orderTableDataDto;
 	}
 
+	public OrderUpdateDataDto getOrderUpdateDataDto() {
+		return orderUpdateDataDto;
+	}
+
 	public PageLinkTransformOrderDto getPageLinkTransformOrderDto() {
 		return pageLinkTransformOrderDto;
 	}
 
-	@Override
-	public String getResult() {
-		return this.result;
+	public Map<String, Object> getSession() {
+		return session;
 	}
 
-	public ServerOrderService getServerOrderServiceImpl() {
-		return serverOrderServiceImpl;
+	public UpdateOrderNormalOperationDto getUpdateOrderNormalOperationDto() {
+		return updateOrderNormalOperationDto;
+	}
+
+	public String initChartOrders() {
+
+		basicMsg.setMsgDto(orderChartDto);
+		orderChartInitDto.init(orderManage.findAllUser());
+
+		return SUCCESS;
+	}
+
+	public String outputOrdersExcel() throws PagePropertyNotInitException {
+		// queryBasicOrderUtil(); //
+
+		// orderTableDataDto
+		return SUCCESS;
+	}
+
+	public String payOrderPage() {
+		return SUCCESS;
+	}
+
+	/**
+	 * 高级查询
+	 * 
+	 * @return
+	 * @throws PagePropertyNotInitException
+	 */
+	public String queryAdvancedOrder() throws PagePropertyNotInitException {
+
+		basicMsg.setMsgDto(orderTableDataDto);
+		orderManage.advancedQuery(advancedSearchDto);
+
+		orderTableDataDto.init(orderManage.advancedQuery(advancedSearchDto), advancedSearchDto,
+				advancedSearchDto.getDomainName(), Thread.currentThread().getStackTrace()[1].getMethodName());
+
+		return SUCCESS;
 	}
 
 	/**
@@ -135,6 +219,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	 */
 	public String queryBasicOrders() throws PagePropertyNotInitException {
 		// 找到今日该状态下的所有订单
+		basicMsg.setMsgDto(orderTableDataDto);
 
 		if (pageLinkTransformOrderDto != null) {
 			if (pageLinkTransformOrderDto.getStatusId() != 0)
@@ -145,93 +230,59 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 			if (pageLinkTransformOrderDto.getPage() != 0)
 				session.put("orderPage", pageLinkTransformOrderDto.getPage());
 		}
-		
-		pageLinkTransformOrderDto.setPage(Integer.parseInt( session.get("orderPage") + ""));
-		pageLinkTransformOrderDto.setStatusId(Integer.parseInt( session.get("statusId") + ""));
-		pageLinkTransformOrderDto.setTimeType(Integer.parseInt( session.get("timeType")+""));
+
+		pageLinkTransformOrderDto.setPage(Integer.parseInt(session.get("orderPage") + ""));
+		pageLinkTransformOrderDto.setStatusId(Integer.parseInt(session.get("statusId") + ""));
+		pageLinkTransformOrderDto.setTimeType(Integer.parseInt(session.get("timeType") + ""));
 
 		try {
 			orderTableDataDto.init(
-					orderManage.basicQuery(pageLinkTransformOrderDto, pageLinkTransformOrderDto.getPage()), 
-					pageLinkTransformOrderDto, 
-					pageLinkTransformOrderDto.getDomainName(),
+					orderManage.basicQuery(pageLinkTransformOrderDto),
+					pageLinkTransformOrderDto, pageLinkTransformOrderDto.getDomainName(),
 					Thread.currentThread().getStackTrace()[1].getMethodName());
-			
+
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			orderTableDataDto.setErrorMsg(e.getMessage());
 		}
-		
-		result = WorkJson.toJsonDisableHtmlEscaping(orderTableDataDto);
-		logger.debug(result);
 		return SUCCESS;
-		
-	}
-	
-	/**
-	 * 高级查询辅助类
-	 */
-	private PageLinkOrderAdvancedSearchDto advancedSearchDto;
-	
-	public PageLinkOrderAdvancedSearchDto getAdvancedSearchDto() {
-		return advancedSearchDto;
-	}
-
-	public void setAdvancedSearchDto(PageLinkOrderAdvancedSearchDto advancedSearchDto) {
-		this.advancedSearchDto = advancedSearchDto;
 	}
 
 	/**
-	 * 高级查询
-	 * @return
-	 * @throws PagePropertyNotInitException 
-	 */
-	public String queryAdvancedOrder() throws PagePropertyNotInitException{
-		
-		orderManage.advancedQuery(advancedSearchDto);
-		
-		orderTableDataDto.init(
-				orderManage.advancedQuery(advancedSearchDto), 
-				advancedSearchDto, 
-				advancedSearchDto.getDomainName(),
-				Thread.currentThread().getStackTrace()[1].getMethodName());
-		
-		writeInResult(orderTableDataDto);
-		
-		logger.debug(orderTableDataDto);
-		
-		return SUCCESS;
-	}
-	
-	private OrderChartDto orderChartDto ;
-	
-	private OrderChartRequestDto orderChartRequestDto;
-	
-	/**
-	 * 图图表分析数据
+	 * 查询单个订单
+	 * 
 	 * @return
 	 */
-	public String chartDataOrders(){
+	public String queryOrder() {
+		String id = orderId.get(0);
+		basicMsg.setMsgDto(orderSingleDataDto);
+
+		ServerOrder so = null;
+
 		try {
-			orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
+			so = orderManage.queryOrder(id);
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 		}
-		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
-//System.out.println(result);
+
+		orderSingleDataDto.init(so);
 		return SUCCESS;
 	}
-	
-	public OrderChartDto getOrderChartDto() {
-		return orderChartDto;
+
+	public void setAdvancedSearchDto(AdvancedSearchDto advancedSearchDto) {
+		this.advancedSearchDto = advancedSearchDto;
+	}
+
+	public void setInitBasicUpdateDataDto(InitBasicUpdateDataDto initBasicUpdateDataDto) {
+		this.initBasicUpdateDataDto = initBasicUpdateDataDto;
 	}
 
 	public void setOrderChartDto(OrderChartDto orderChartDto) {
 		this.orderChartDto = orderChartDto;
 	}
 
-	public OrderChartRequestDto getOrderChartRequestDto() {
-		return orderChartRequestDto;
+	public void setOrderChartInitDto(OrderChartInitDto orderChartInitDto) {
+		this.orderChartInitDto = orderChartInitDto;
 	}
 
 	public void setOrderChartRequestDto(OrderChartRequestDto orderChartRequestDto) {
@@ -242,44 +293,57 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		this.orderUpdateDataDto = orderUpdateDataDto;
 	}
 
-
-	public List<String> getOrderId() {
-		return orderId;
-	}
-
 	public void setOrderId(List<String> orderId) {
 		this.orderId = orderId;
-	}
-
-	public Map<String, Object> getSession() {
-		return session;
 	}
 
 	public void setOrderManage(OrderManage orderManage) {
 		this.orderManage = orderManage;
 	}
 
+	public void setOrderSingleDataDto(OrderSingleDataDto orderSingleDataDto) {
+		this.orderSingleDataDto = orderSingleDataDto;
+	}
+
 	public void setOrderTableDataDto(OrderTableDataDto orderTableDataDto) {
 		this.orderTableDataDto = orderTableDataDto;
+	}
+
+	public void setOrderUpdateDataDto(OrderUpdateDataDto orderUpdateDataDto) {
+		this.orderUpdateDataDto = orderUpdateDataDto;
 	}
 
 	public void setPageLinkTransformOrderDto(PageLinkTransformOrderDto pageLinkTransformOrderDto) {
 		this.pageLinkTransformOrderDto = pageLinkTransformOrderDto;
 	}
 
-	public void setResult(String result) {
-		this.result = result;
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		session = arg0;
 	}
 
-	public void setServerOrderServiceImpl(ServerOrderService serverOrderServiceImpl) {
-		this.serverOrderServiceImpl = serverOrderServiceImpl;
+	public void setUpdateOrderNormalOperationDto(UpdateOrderNormalOperationDto updateOrderNormalOperationDto) {
+		this.updateOrderNormalOperationDto = updateOrderNormalOperationDto;
 	}
 
-	//
-	private InitBasicUpdateDataDto initBasicUpdateDataDto ;
-	
-	Map<String, Object> map = new HashMap<>();
-	boolean isError = false;
+	public String toPayOrders() {
+
+		try {
+			updateOrderNormalOperationDto.setPermission(new Permission(Permission.ADMIN));
+
+			updateOrderNormalOperationDto.setOrderStatusId(OrderStatusDAO.FINISH);
+
+			orderManage.updateOrderNormal(updateOrderNormalOperationDto);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			basicMsg.setErrorMsg(e.getMessage() + "\n" + "支付失败");
+		}
+		basicMsg.setSuccessMsg("支付成功");
+
+		return SUCCESS;
+	}
+
 	/**
 	 * 更新订单内容
 	 * 
@@ -287,138 +351,18 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	 */
 	public String updateOrder() {
 		// 更新已经更改的字段
-		
+
 		try {
-			
+
 			orderManage.update(orderUpdateDataDto);
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put(MSG, "更新订单失败");
-			isError = true;
+			basicMsg.setErrorMsg(e.getMessage() + "\n" + "更新失败");
 		}
-		if(! isError)
-			map.put(MSG, "更新订单成功");
-		result = WorkJson.toJsonDisableHtmlEscaping(map);
+		basicMsg.setSuccessMsg("更新成功");
 		return SUCCESS;
-		
-	}
-	
-	private OrderSingleDataDto orderSingleDataDto;
-	
-	public OrderSingleDataDto getOrderSingleDataDto() {
-		return orderSingleDataDto;
-	}
 
-	public void setOrderSingleDataDto(OrderSingleDataDto orderSingleDataDto) {
-		this.orderSingleDataDto = orderSingleDataDto;
 	}
-
-	/**
-	 * 查询单个订单
-	 * @return
-	 */
-	public String queryOrder(){
-		String id = orderId.get(0);
-		serverOrderServiceImpl.findById(id);
-		ServerOrder so = orderManage.queryOrder(id);
-		orderSingleDataDto.init(so);
-		result = WorkJson.toJsonDisableHtmlEscaping(orderSingleDataDto);
-System.out.println(result);
-		return SUCCESS;
-	}
-	
-	private OrderChartInitDto orderChartInitDto ;
-	
-	public String initChartOrders(){
-		orderChartInitDto.init(orderManage.findAllUser());
-		result = WorkJson.toJsonDisableHtmlEscaping(orderChartInitDto);
-System.out.println(result);
-		return SUCCESS;
-	}
-	
-	private UpdateOrderNormalOperationDto updateOrderNormalOperationDto;
-	
-	public UpdateOrderNormalOperationDto getUpdateOrderNormalOperationDto() {
-		return updateOrderNormalOperationDto;
-	}
-
-	public void setUpdateOrderNormalOperationDto(UpdateOrderNormalOperationDto updateOrderNormalOperationDto) {
-		this.updateOrderNormalOperationDto = updateOrderNormalOperationDto;
-	}
-
-	public String toPayOrders(){
-		
-		try {
-			updateOrderNormalOperationDto.setPermission(new Permission(Permission.ADMIN));
-			
-			updateOrderNormalOperationDto.setOrderStatusId(OrderStatusDAO.FINISH);
-			
-			orderManage.updateOrderNormal(updateOrderNormalOperationDto);
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			map.put(MSG, "支付失败");
-			writeInResult(map);
-			return SUCCESS;
-		}
-		map.put(MSG, "支付成功");
-		writeInResult(map);
-		return SUCCESS;
-	}
-	
-	
-	public String outputOrdersExcel() throws PagePropertyNotInitException{
-//		queryBasicOrderUtil();  //
-		
-//		orderTableDataDto
-		return SUCCESS;
-	}
-	
-
-	public OrderChartInitDto getOrderChartInitDto() {
-		return orderChartInitDto;
-	}
-
-	public void setOrderChartInitDto(OrderChartInitDto orderChartInitDto) {
-		this.orderChartInitDto = orderChartInitDto;
-	}
-
-	@Override
-	public void setSession(Map<String, Object> arg0) {
-		session = arg0;
-	}
-	
-	public InitBasicUpdateDataDto getInitBasicUpdateDataDto() {
-		return initBasicUpdateDataDto;
-	}
-
-	public void setInitBasicUpdateDataDto(InitBasicUpdateDataDto initBasicUpdateDataDto) {
-		this.initBasicUpdateDataDto = initBasicUpdateDataDto;
-	}
-	
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
-	}
-	
-	public String payOrderPage(){
-		return SUCCESS;
-	}
-
-	private HttpServletResponse response;
-	
-	@Override
-	public void setServletResponse(HttpServletResponse arg0) {
-		this.response = arg0;
-	}
-
-	public HttpServletResponse getResponse() {
-		return response;
-	}
-
-	public void setResponse(HttpServletResponse response) {
-		this.response = response;
-	}
-	
 
 }

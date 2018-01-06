@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Model xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_eUDNgPKyEeenBIso3jlzRA">
+  <name xsi:nil="true"/>
+  <elementImport xmi:id="_eWe2cvKyEeenBIso3jlzRA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+  </elementImport>
+  <elementImport xmi:id="_eWk9EPKyEeenBIso3jlzRA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+  </elementImport>
+  <elementImport xmi:id="_eWmyQPKyEeenBIso3jlzRA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+  </elementImport>
+  <elementImport xmi:id="_eWpOgPKyEeenBIso3jlzRA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+  </elementImport>
+  <elementImport xmi:id="_eW7iYPKyEeenBIso3jlzRA">
+    <importedElement xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+  </elementImport>
+  <packagedElement xmi:type="uml:Package" xmi:id="_eUFCsPKyEeenBIso3jlzRA" name="com">
+    <packagedElement xmi:type="uml:Package" xmi:id="_eUFCsfKyEeenBIso3jlzRA" name="lps">
+      <packagedElement xmi:type="uml:Package" xmi:id="_eUFCsvKyEeenBIso3jlzRA" name="web">
+        <packagedElement xmi:type="uml:Package" xmi:id="_eUFCs_KyEeenBIso3jlzRA" name="dto">
+          <packagedElement xmi:type="uml:Class" xmi:id="_eUFCtPKyEeenBIso3jlzRA" name="DtoInitException">
+            <generalization xmi:id="_eWe2cfKyEeenBIso3jlzRA" general="_eWe2cPKyEeenBIso3jlzRA"/>
+            <ownedAttribute xmi:id="_eWfdgPKyEeenBIso3jlzRA" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+              <ownedComment xmi:id="_eWgEkPKyEeenBIso3jlzRA">
+                <body>/** 
+ */
+</body>
+              </ownedComment>
+              <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+              <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_eWfdgfKyEeenBIso3jlzRA"/>
+            </ownedAttribute>
+          </packagedElement>
+          <packagedElement xmi:type="uml:Interface" xmi:id="_eUGQ0PKyEeenBIso3jlzRA" name="BasicInitDto">
+            <ownedComment xmi:id="_eUG34PKyEeenBIso3jlzRA">
+              <body>/** 
+ * @author 0001
+ * @param &lt; K > init之后返回数据类型
+ */
+</body>
+            </ownedComment>
+            <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_eUGQ0fKyEeenBIso3jlzRA" parameter="_eUGQ0vKyEeenBIso3jlzRA">
+              <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_eUGQ0vKyEeenBIso3jlzRA" parameteredElement="_eUGQ0_KyEeenBIso3jlzRA">
+                <ownedParameteredElement xmi:type="uml:Class" xmi:id="_eUGQ0_KyEeenBIso3jlzRA" name="K" templateParameter="_eUGQ0vKyEeenBIso3jlzRA"/>
+              </ownedParameter>
+            </ownedTemplateSignature>
+            <ownedOperation xmi:id="_eWgroPKyEeenBIso3jlzRA" name="init" visibility="public">
+              <ownedParameter xmi:id="_eWgrofKyEeenBIso3jlzRA" name="obj" type="_eVpI8vKyEeenBIso3jlzRA"/>
+              <ownedParameter xmi:id="_eWgrovKyEeenBIso3jlzRA" name="return" type="_eUGQ0_KyEeenBIso3jlzRA" direction="return"/>
+            </ownedOperation>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_eUHe8PKyEeenBIso3jlzRA" name="room">
+          <packagedElement xmi:type="uml:Package" xmi:id="_eUHe8fKyEeenBIso3jlzRA" name="dto">
+            <packagedElement xmi:type="uml:Class" xmi:id="_eUHe8vKyEeenBIso3jlzRA" name="RoomDto" clientDependency="_eWgro_KyEeenBIso3jlzRA">
+              <generalization xmi:id="_eWhSsPKyEeenBIso3jlzRA" general="_eVqXEvKyEeenBIso3jlzRA"/>
+              <interfaceRealization xmi:id="_eWgro_KyEeenBIso3jlzRA" name="RoomLibraryDto" supplier="_eUJ7MfKyEeenBIso3jlzRA" client="_eUHe8vKyEeenBIso3jlzRA" contract="_eUJ7MfKyEeenBIso3jlzRA"/>
+              <ownedOperation xmi:id="_eWh5wPKyEeenBIso3jlzRA" name="init" visibility="public">
+                <ownedParameter xmi:id="_eWh5wfKyEeenBIso3jlzRA" name="obj" type="_eVpI8vKyEeenBIso3jlzRA"/>
+                <ownedParameter xmi:id="_eWh5wvKyEeenBIso3jlzRA" name="return" type="_eVqXFfKyEeenBIso3jlzRA" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_eUIGAPKyEeenBIso3jlzRA" name="TRoomDto">
+              <generalization xmi:id="_eWig0fKyEeenBIso3jlzRA" general="_eWig0PKyEeenBIso3jlzRA"/>
+              <ownedAttribute xmi:id="_eWjH4PKyEeenBIso3jlzRA" name="serialVersionUID" visibility="private" isStatic="true" isReadOnly="true">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#long"/>
+                <defaultValue xmi:type="uml:LiteralInteger" xmi:id="_eWjH4fKyEeenBIso3jlzRA"/>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_eWkWAPKyEeenBIso3jlzRA" name="init" visibility="public">
+                <ownedParameter xmi:id="_eWkWAfKyEeenBIso3jlzRA" name="lists" type="_eVqXGfKyEeenBIso3jlzRA"/>
+                <ownedTemplateSignature xmi:id="_eWkWAvKyEeenBIso3jlzRA" parameter="_eWkWA_KyEeenBIso3jlzRA">
+                  <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_eWkWA_KyEeenBIso3jlzRA" parameteredElement="_eWkWBPKyEeenBIso3jlzRA">
+                    <ownedParameteredElement xmi:type="uml:Class" xmi:id="_eWkWBPKyEeenBIso3jlzRA" name="T" templateParameter="_eWkWA_KyEeenBIso3jlzRA"/>
+                  </ownedParameter>
+                </ownedTemplateSignature>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_eUItEPKyEeenBIso3jlzRA" name="RoomOrderDto">
+              <ownedAttribute xmi:id="_eWlkIPKyEeenBIso3jlzRA" name="roomId" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWnZUPKyEeenBIso3jlzRA" name="roomName" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_eWoAYPKyEeenBIso3jlzRA" name="init" visibility="public">
+                <ownedParameter xmi:id="_eWoAYfKyEeenBIso3jlzRA" name="obj" type="_eVpI8vKyEeenBIso3jlzRA"/>
+                <ownedParameter xmi:id="_eWoAYvKyEeenBIso3jlzRA" name="return" type="_eUItEPKyEeenBIso3jlzRA" direction="return"/>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_eUJ7MPKyEeenBIso3jlzRA" name="RoomIdDto">
+              <ownedAttribute xmi:id="_eWpOgfKyEeenBIso3jlzRA" name="roomId" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_eWp1kPKyEeenBIso3jlzRA" name="getRoomId" visibility="public">
+                <ownedParameter xmi:id="_eWqcoPKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eWrDsPKyEeenBIso3jlzRA" name="setRoomId" visibility="public">
+                <ownedParameter xmi:id="_eWrDsfKyEeenBIso3jlzRA" name="roomId">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Interface" xmi:id="_eUJ7MfKyEeenBIso3jlzRA" name="RoomLibraryDto">
+              <ownedAttribute xmi:id="_eWsR0PKyEeenBIso3jlzRA" name="roomId" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWsR0fKyEeenBIso3jlzRA" value="roomId"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWs44PKyEeenBIso3jlzRA" name="roomName" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWs44fKyEeenBIso3jlzRA" value="roomName"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWtf8PKyEeenBIso3jlzRA" name="roomCategory" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWtf8fKyEeenBIso3jlzRA" value="roomCategory"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWuHAPKyEeenBIso3jlzRA" name="roomFloor" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWuHAfKyEeenBIso3jlzRA" value="roomFloor"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWuuEPKyEeenBIso3jlzRA" name="roomSize" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWuuEfKyEeenBIso3jlzRA" value="roomSize"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWvVIPKyEeenBIso3jlzRA" name="customerNum" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWvVIfKyEeenBIso3jlzRA" value="customerNum"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWwjQPKyEeenBIso3jlzRA" name="roomRemark" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWwjQfKyEeenBIso3jlzRA" value="roomRemark"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWxKUPKyEeenBIso3jlzRA" name="roomAddTime" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWxKUfKyEeenBIso3jlzRA" value="roomAddTime"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWxxYPKyEeenBIso3jlzRA" name="isFree" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWxxYfKyEeenBIso3jlzRA" value="isFree"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eWyYcPKyEeenBIso3jlzRA" name="isClean" visibility="public">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                <defaultValue xmi:type="uml:LiteralString" xmi:id="_eWyYcfKyEeenBIso3jlzRA" value="isClean"/>
+              </ownedAttribute>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_eUKiQPKyEeenBIso3jlzRA" name="NotRoomObjectException">
+              <generalization xmi:id="_eWy_gPKyEeenBIso3jlzRA" general="_eWe2cPKyEeenBIso3jlzRA"/>
+            </packagedElement>
+            <packagedElement xmi:type="uml:Class" xmi:id="_eULJUPKyEeenBIso3jlzRA" name="RoomHelpForCreateOrderDto">
+              <generalization xmi:id="_eWy_gfKyEeenBIso3jlzRA" general="_eVqXEvKyEeenBIso3jlzRA"/>
+              <ownedAttribute xmi:id="_eWzmkPKyEeenBIso3jlzRA" name="roomName" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eW1bwPKyEeenBIso3jlzRA" name="roomCategory" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eW3Q8PKyEeenBIso3jlzRA" name="roomFloor" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eW4fEPKyEeenBIso3jlzRA" name="roomSize" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eW6UQPKyEeenBIso3jlzRA" name="customerNum" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eW8wgPKyEeenBIso3jlzRA" name="isFree" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedAttribute>
+              <ownedAttribute xmi:id="_eW-lsPKyEeenBIso3jlzRA" name="isClean" visibility="private">
+                <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+              </ownedAttribute>
+              <ownedOperation xmi:id="_eW_MwPKyEeenBIso3jlzRA" name="init" visibility="public">
+                <ownedParameter xmi:id="_eW_MwfKyEeenBIso3jlzRA" name="obj" type="_eVpI8vKyEeenBIso3jlzRA"/>
+                <ownedParameter xmi:id="_eW_MwvKyEeenBIso3jlzRA" name="return" type="_eULJUPKyEeenBIso3jlzRA" direction="return"/>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXXAMPKyEeenBIso3jlzRA" name="getRoomName" visibility="public">
+                <ownedParameter xmi:id="_eXXAMfKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXXnQPKyEeenBIso3jlzRA" name="setRoomName" visibility="public">
+                <ownedParameter xmi:id="_eXYOUPKyEeenBIso3jlzRA" name="roomName">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXY1YPKyEeenBIso3jlzRA" name="getRoomCategory" visibility="public">
+                <ownedParameter xmi:id="_eXY1YfKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXaqkPKyEeenBIso3jlzRA" name="setRoomCategory" visibility="public">
+                <ownedParameter xmi:id="_eXaqkfKyEeenBIso3jlzRA" name="roomCategory">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXb4sPKyEeenBIso3jlzRA" name="getRoomFloor" visibility="public">
+                <ownedParameter xmi:id="_eXb4sfKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXcfwPKyEeenBIso3jlzRA" name="setRoomFloor" visibility="public">
+                <ownedParameter xmi:id="_eXcfwfKyEeenBIso3jlzRA" name="roomFloor">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXdt4PKyEeenBIso3jlzRA" name="getRoomSize" visibility="public">
+                <ownedParameter xmi:id="_eXdt4fKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXfjEPKyEeenBIso3jlzRA" name="setRoomSize" visibility="public">
+                <ownedParameter xmi:id="_eXfjEfKyEeenBIso3jlzRA" name="roomSize">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXgKIPKyEeenBIso3jlzRA" name="getCustomerNum" visibility="public">
+                <ownedParameter xmi:id="_eXgKIfKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXhYQPKyEeenBIso3jlzRA" name="setCustomerNum" visibility="public">
+                <ownedParameter xmi:id="_eXhYQfKyEeenBIso3jlzRA" name="customerNum">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#int"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXimYPKyEeenBIso3jlzRA" name="isFree" visibility="public">
+                <ownedParameter xmi:id="_eXimYfKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXj0gPKyEeenBIso3jlzRA" name="setFree" visibility="public">
+                <ownedParameter xmi:id="_eXj0gfKyEeenBIso3jlzRA" name="isFree">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXlCoPKyEeenBIso3jlzRA" name="isClean" visibility="public">
+                <ownedParameter xmi:id="_eXlCofKyEeenBIso3jlzRA" name="return" direction="return">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+              <ownedOperation xmi:id="_eXmQwPKyEeenBIso3jlzRA" name="setClean" visibility="public">
+                <ownedParameter xmi:id="_eXmQwfKyEeenBIso3jlzRA" name="isClean">
+                  <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/JavaPrimitiveTypes.library.uml#boolean"/>
+                </ownedParameter>
+              </ownedOperation>
+            </packagedElement>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_eVqXEPKyEeenBIso3jlzRA" name="basicmsg">
+          <packagedElement xmi:type="uml:Package" xmi:id="_eVqXEfKyEeenBIso3jlzRA" name="dto">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_eVqXEvKyEeenBIso3jlzRA" name="BasicRespondMsgDto"/>
+          </packagedElement>
+        </packagedElement>
+        <packagedElement xmi:type="uml:Package" xmi:id="_eVqXE_KyEeenBIso3jlzRA" name="simple">
+          <packagedElement xmi:type="uml:Package" xmi:id="_eVqXFPKyEeenBIso3jlzRA" name="dto">
+            <packagedElement xmi:type="uml:DataType" xmi:id="_eVqXFfKyEeenBIso3jlzRA" name="OrderStatusDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_eVq-IPKyEeenBIso3jlzRA" name="ClockCategoryDto"/>
+            <packagedElement xmi:type="uml:DataType" xmi:id="_eVq-IfKyEeenBIso3jlzRA" name="TableInitDto"/>
+          </packagedElement>
+        </packagedElement>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Package" xmi:id="_eVpI8PKyEeenBIso3jlzRA" name="model">
+        <packagedElement xmi:type="uml:Package" xmi:id="_eVpI8fKyEeenBIso3jlzRA" name="basic">
+          <packagedElement xmi:type="uml:DataType" xmi:id="_eVpI8vKyEeenBIso3jlzRA" name="Entity"/>
+        </packagedElement>
+        <packagedElement xmi:type="uml:DataType" xmi:id="_eVq-IvKyEeenBIso3jlzRA" name="Room"/>
+      </packagedElement>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Package" xmi:id="_eVqXFvKyEeenBIso3jlzRA" name="java">
+    <packagedElement xmi:type="uml:Package" xmi:id="_eVqXF_KyEeenBIso3jlzRA" name="util">
+      <packagedElement xmi:type="uml:DataType" xmi:id="_eVqXGPKyEeenBIso3jlzRA" name="ArrayList"/>
+      <packagedElement xmi:type="uml:DataType" xmi:id="_eVqXGfKyEeenBIso3jlzRA" name="List"/>
+    </packagedElement>
+  </packagedElement>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_eWe2cPKyEeenBIso3jlzRA" name="Exception"/>
+  <packagedElement xmi:type="uml:DataType" xmi:id="_eWig0PKyEeenBIso3jlzRA" name="ArrayList&lt;RoomDto>"/>
+</uml:Model>

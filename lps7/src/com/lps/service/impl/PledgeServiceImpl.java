@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.PayPathDAOImpl;
 import com.lps.dao.impl.PledgeDAOImpl;
 import com.lps.model.Pledge;
+import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.Pledge;
@@ -96,7 +98,11 @@ public class PledgeServiceImpl implements PledgeService {
 	 * 根据id查找抵押物，返回Pledge实例
 	 */
 	@Override
-	public Pledge findById(int id) {
+	public Pledge findById(java.io.Serializable id) throws FindByIdGetNullException {
+		Pledge pledge = dao.findById(id);
+		if(pledge != null){
+			throw new FindByIdGetNullException("根据主键id未找到抵押物品对象");
+		}
 		return dao.findById(id);
 	}
 
@@ -151,26 +157,26 @@ public class PledgeServiceImpl implements PledgeService {
 	 * 更新Pledge实例
 	 */
 	@Override
-	public void update(Pledge t) {
-		dao.update(t);
+	public void update(Pledge entity) {
+		dao.update(entity);
 	}
 
 	/**
 	 * 返回指定抵押物的所有服务订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(Pledge t) {
-		return dao.findAllOrders(t);
+	public Set<ServerOrder> findAllOrders(Pledge entity) {
+		return dao.findAllOrders(entity);
 	}
 
 	/**
 	 * 查找指定页面内根据抵押物得到的所有订单
 	 */
 	@Override
-	public PageBean<ServerOrder> findAllOrdersByPage(Pledge t, int page) throws PagePropertyNotInitException {
-		long begin = pageServerOrderByPledgeBean.init(findOrdersCountByThisType(t), page);
+	public PageBean<ServerOrder> findAllOrdersByPage(Pledge entity, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByPledgeBean.init(findOrdersCountByThisType(entity), page);
 
-		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByPledgeBean.getLimit());
+		List<ServerOrder> list = dao.findOrdersWithLimit(entity, begin, pageServerOrderByPledgeBean.getLimit());
 
 		pageServerOrderByPledgeBean.setList(list);
 
@@ -181,8 +187,8 @@ public class PledgeServiceImpl implements PledgeService {
 	 * 根据指定抵押物类型查找订单数量
 	 */
 	@Override
-	public long findOrdersCountByThisType(Pledge t) {
-		return dao.findOrdersCountByThisType(t);
+	public long findOrdersCountByThisType(Pledge entity) {
+		return dao.findOrdersCountByThisType(entity);
 	}
 
 	/**
@@ -212,37 +218,37 @@ public class PledgeServiceImpl implements PledgeService {
 	 * 查找今天的订单
 	 */
 	@Override
-	public List<ServerOrder> findTodayOrders(Pledge t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	public List<ServerOrder> findTodayOrders(Pledge entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
 
 	/**
 	 * 查找前七天的订单
 	 */
 	@Override
-	public List<ServerOrder> findBefore7DayOrders(Pledge t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findBefore7DayOrders(Pledge entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找这个月的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisMonthOrders(Pledge t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisMonthOrders(Pledge entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找今年的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisYearOrders(Pledge t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisYearOrders(Pledge entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 	@Override
-	public <K> Pledge findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> Pledge findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -251,14 +257,20 @@ public class PledgeServiceImpl implements PledgeService {
 	}
 
 	@Override
-	public PropertyRange<Pledge> createPropertyRangeById(int id1) {
+	public PropertyRange<Pledge> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<Pledge> pr = new PropertyRange<>();
 		
 		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<Pledge> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 
 }

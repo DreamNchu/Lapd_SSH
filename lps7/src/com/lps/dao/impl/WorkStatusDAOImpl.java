@@ -2,6 +2,7 @@ package com.lps.dao.impl;
 // default package
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +17,6 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import com.lps.dao.WorkStatusDAO;
 import com.lps.model.Admin;
-import com.lps.model.WorkStatus;
-import com.lps.model.User;
 import com.lps.model.WorkStatus;
 import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
@@ -73,7 +72,7 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 	   *@return 返回加载的工作状态实例
 	   */
 	@Override
-	public WorkStatus findById(int id) {
+	public WorkStatus findById(java.io.Serializable id) {
 		return hibernateTemplate.get(WorkStatus.class, id);
 	}
 
@@ -123,8 +122,8 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 	 * @return 存在则返回true，否则返回false
 	 */
 	@Override
-	public boolean isExists(WorkStatus t) {
-		return findById(t.getId()) == null ? false : true;
+	public boolean isExists(WorkStatus entity) {
+		return findById(entity.getId()) == null ? false : true;
 	}
 
 	/**
@@ -145,16 +144,16 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 	 * 更新工作状态
 	 */
 	@Override
-	public void update(WorkStatus t) {
-		hibernateTemplate.update(t);
+	public void update(WorkStatus entity) {
+		hibernateTemplate.update(entity);
 	}
 	
 	@Override
-	public <K> WorkStatus findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> WorkStatus findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkStatus.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -198,6 +197,12 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 		List<K> listIds = cri.list();
 		
 		return listIds;
+	}
+
+	@Override
+	public void deleteAll(Collection<WorkStatus> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 
 }

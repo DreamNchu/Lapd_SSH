@@ -2,6 +2,7 @@ package com.lps.dao.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -21,10 +22,7 @@ import com.lps.dao.RoomDAO;
 import com.lps.dao.basic.BasicForServerOrderDAO;
 import com.lps.model.Admin;
 import com.lps.model.Room;
-import com.lps.model.OrderStatus;
-import com.lps.model.Room;
 import com.lps.model.ServerOrder;
-import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
 import com.lps.util.PageHibernateCallback;
 
@@ -95,7 +93,7 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 	   *@return 返回加载的房间实例
 	   */
 	@Override
-	public Room findById(int id) {
+	public Room findById(java.io.Serializable id) {
 		return hibernateTemplate.get(Room.class, id);
 	}
 
@@ -184,8 +182,8 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 	 * 更新房间
 	 */
 	@Override
-	public void update(Room t) {
-		hibernateTemplate.update(t);
+	public void update(Room entity) {
+		hibernateTemplate.update(entity);
 	}
 
 	@Override
@@ -202,23 +200,23 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 	 * 查找所有订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(Room t) {
+	public Set<ServerOrder> findAllOrders(Room entity) {
 		
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Room ccTemp = (Room) session.createCriteria(Room.class)
 			.setFetchMode(SERVER_ORDER, FetchMode.JOIN)
-			.add(Restrictions.idEq(t.getId())).list().get(0);
+			.add(Restrictions.idEq(entity.getId())).list().get(0);
 		Set<ServerOrder> sos = (Set<ServerOrder>) ccTemp.getServerOrders();
 
 		return sos;
 	}
 
 	@Override
-	public List<ServerOrder> findOrdersWithLimit(Room t, long begin, long limit) {
+	public List<ServerOrder> findOrdersWithLimit(Room entity, long begin, long limit) {
 		String hql = "from Room cc where cc.id=?";
 		HibernateCallback<List<Room>> callback = new PageHibernateCallback<Room>(hql,
-				new Object[] { t.getId() }, begin, limit);
+				new Object[] { entity.getId() }, begin, limit);
 		List<Room> temp = this.getHibernateTemplate().execute(callback);
 
 		Set<ServerOrder> set = null;
@@ -243,11 +241,11 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 	}
 	
 	@Override
-	public <K> Room findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> Room findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Room.class)
-			.add(Restrictions.idEq(t.getId()));
+			.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -305,6 +303,12 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 				.list();
 		
 		return ccTemp;
+	}
+
+	@Override
+	public void deleteAll(Collection<Room> entities) {
+		// TODO Auto-generated method stub
+		hibernateTemplate.deleteAll(entities);
 	}
 
 }

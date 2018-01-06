@@ -1,10 +1,12 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
 import com.lps.dao.WorkRankDAO;
 import com.lps.dao.basic.BasicDAO;
+import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
@@ -78,7 +80,11 @@ public class WorkRankServiceImpl implements WorkRankService {
 	 * 根据id查找房间，返回WorkRank实例
 	 */
 	@Override
-	public WorkRank findById(int id) {
+	public WorkRank findById(java.io.Serializable id) throws FindByIdGetNullException {
+		WorkRank workRank = dao.findById(id);
+		if(workRank != null){
+			throw new FindByIdGetNullException("根据主键id未找到上钟排序对象");
+		}
 		return dao.findById(id);
 	}
 	
@@ -135,8 +141,8 @@ public class WorkRankServiceImpl implements WorkRankService {
 	 * 更新WorkRank实例
 	 */
 	@Override
-	public void update(WorkRank t) {
-		dao.update(t);	
+	public void update(WorkRank entity) {
+		dao.update(entity);	
 	}
 
 	/**
@@ -176,8 +182,8 @@ public class WorkRankServiceImpl implements WorkRankService {
 	}
 
 	@Override
-	public <K> WorkRank findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> WorkRank findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -186,13 +192,19 @@ public class WorkRankServiceImpl implements WorkRankService {
 	}
 	
 	@Override
-	public PropertyRange<WorkRank> createPropertyRangeById(int id1) {
+	public PropertyRange<WorkRank> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<WorkRank> pr = new PropertyRange<>();
 		
 		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<WorkRank> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 }

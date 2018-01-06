@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,6 +11,7 @@ import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.ClockCategoryDAOImpl;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.dao.impl.ServerOrderDAOImpl;
+import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
 import com.lps.model.OrderStatus;
 import com.lps.model.OrderStatus;
@@ -68,15 +70,19 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	 * 返回指定订单状态的所有服务订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(OrderStatus t) {
-		return dao.findAllOrders(t);
+	public Set<ServerOrder> findAllOrders(OrderStatus entity) {
+		return dao.findAllOrders(entity);
 	}
 
 	/**
 	 * 根据id查找订单状态，返回OrderStatus实例
 	 */
 	@Override
-	public OrderStatus findById(int id) {
+	public OrderStatus findById(java.io.Serializable id) throws FindByIdGetNullException {
+		OrderStatus orderStatus = dao.findById(id);
+		if(orderStatus != null){
+			throw new FindByIdGetNullException("根据主键id未找到订单状态对象");
+		}
 		return dao.findById(id);
 	}
 
@@ -114,10 +120,10 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	 * 查找指定页面内根据订单状态得到的所有订单
 	 */
 	@Override
-	public PageBean<ServerOrder> findAllOrdersByPage(OrderStatus t, int page) throws PagePropertyNotInitException {
-		long begin= pageServerOrderByOrderStatusBean.init(findOrdersCountByThisType(t), page);
+	public PageBean<ServerOrder> findAllOrdersByPage(OrderStatus entity, int page) throws PagePropertyNotInitException {
+		long begin= pageServerOrderByOrderStatusBean.init(findOrdersCountByThisType(entity), page);
         
-        List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByOrderStatusBean.getLimit());
+        List<ServerOrder> list = dao.findOrdersWithLimit(entity, begin, pageServerOrderByOrderStatusBean.getLimit());
         
         pageServerOrderByOrderStatusBean.setList(list);
         
@@ -128,8 +134,8 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	 * 根据指定订单状态类型查找订单数量
 	 */
 	@Override
-	public long findOrdersCountByThisType(OrderStatus t) {
-		return dao.findOrdersCountByThisType(t);
+	public long findOrdersCountByThisType(OrderStatus entity) {
+		return dao.findOrdersCountByThisType(entity);
 	}
 
 	/**
@@ -201,8 +207,8 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	 * 更新OrderStatus实例
 	 */
 	@Override
-	public void update(OrderStatus t) {
-		dao.update(t);
+	public void update(OrderStatus entity) {
+		dao.update(entity);
 	}
 
 	/**
@@ -232,37 +238,37 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	 * 查找今天的订单
 	 */
 	@Override
-	public List<ServerOrder> findTodayOrders(OrderStatus t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	public List<ServerOrder> findTodayOrders(OrderStatus entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
 
 	/**
 	 * 查找前七天的订单
 	 */
 	@Override
-	public List<ServerOrder> findBefore7DayOrders(OrderStatus t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findBefore7DayOrders(OrderStatus entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找这个月的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisMonthOrders(OrderStatus t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisMonthOrders(OrderStatus entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找今年的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisYearOrders(OrderStatus t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisYearOrders(OrderStatus entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 	@Override
-	public <K> OrderStatus findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> OrderStatus findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -271,14 +277,21 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public PropertyRange<OrderStatus> createPropertyRangeById(int id1) {
+	public PropertyRange<OrderStatus> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<OrderStatus> pr = new PropertyRange<OrderStatus>();
 		
 		pr.setName(BasicDAO.ID);
-		pr.setMinValue(findById(id1));
+		
 		pr.setMaxValue(findById(id1));
+		pr.setMinValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<OrderStatus> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 
 }

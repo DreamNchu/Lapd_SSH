@@ -2,7 +2,7 @@ package com.lps.util;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.lps.web.basicmsg.dto.BasicMsgDto;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 
 public class WorkJson {
 
@@ -17,7 +17,7 @@ public class WorkJson {
 			.serializeNulls()
 			.disableHtmlEscaping().create();
 	
-	public static String toJsonDisableHtmlEscaping(BasicMsgDto obj){
+	public static String toJsonDisableHtmlEscaping(BasicRespondMsgDto obj){
 		return gsonH.toJson(obj).replaceAll("null", "\"\"");
 	}
 	

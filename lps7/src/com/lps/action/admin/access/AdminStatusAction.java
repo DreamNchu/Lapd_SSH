@@ -15,16 +15,6 @@ public class AdminStatusAction extends ActionSupport implements SessionAware, Da
 
 	private Map<String, Object> session;
 	
-	private String result;
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
-	}
-
 	/**
 	 * 登录成功返回success
 	 * <p>
@@ -46,9 +36,6 @@ public class AdminStatusAction extends ActionSupport implements SessionAware, Da
 	@Override
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
-	}
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 	
 

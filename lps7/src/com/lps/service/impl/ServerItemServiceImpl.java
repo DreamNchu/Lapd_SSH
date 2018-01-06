@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,6 +10,7 @@ import com.lps.dao.ServerItemDAO;
 import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.PledgeDAOImpl;
 import com.lps.dao.impl.ServerItemDAOImpl;
+import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
 import com.lps.model.ServerItem;
 import com.lps.model.ServerOrder;
@@ -60,7 +62,11 @@ public class ServerItemServiceImpl implements ServerItemService {
 	}
 
 	@Override
-	public ServerItem findById(int id) {
+	public ServerItem findById(java.io.Serializable id) throws FindByIdGetNullException {
+		ServerItem serverItem = dao.findById(id);
+		if(serverItem != null){
+			throw new FindByIdGetNullException("根据主键id未找到服务项目对象");
+		}
 		return dao.findById(id);
 	}
 
@@ -104,8 +110,8 @@ public class ServerItemServiceImpl implements ServerItemService {
 	}
 
 	@Override
-	public void update(ServerItem t) {
-		dao.update(t);
+	public void update(ServerItem entity) {
+		dao.update(entity);
 	}
 
 	@Override
@@ -126,8 +132,8 @@ public class ServerItemServiceImpl implements ServerItemService {
 	}
 
 	@Override
-	public <K> ServerItem findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> ServerItem findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -135,13 +141,19 @@ public class ServerItemServiceImpl implements ServerItemService {
 		return dao.findIdByProperty(map);
 	}
 	@Override
-	public PropertyRange<ServerItem> createPropertyRangeById(int id1) {
+	public PropertyRange<ServerItem> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<ServerItem> pr = new PropertyRange<>();
 		
 		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<ServerItem> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 }

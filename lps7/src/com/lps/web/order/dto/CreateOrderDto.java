@@ -1,9 +1,10 @@
 package com.lps.web.order.dto;
 
-import java.util.List;
 import java.util.Set;
 
-public class CreateOrderDto {
+import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
+
+public class CreateOrderDto extends BasicRequestMsgDto {
 	
 	private int createWays;
 	

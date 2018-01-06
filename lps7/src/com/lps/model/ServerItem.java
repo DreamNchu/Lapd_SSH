@@ -43,6 +43,7 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	private static final long serialVersionUID = 3529111347160958534L;
 	private Integer id;
 	private String serverItem;
+	private Float price;
 	private Set<Room> rooms = new HashSet<Room>(0);
 
 	// Constructors
@@ -96,6 +97,14 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 		 */
 	public void setId(Integer id) {
 		this.id = id;
+	}
+	@Column(name = "price")
+	public Float getPrice() {
+		return price;
+	}
+
+	public void setPrice(Float price) {
+		this.price = price;
 	}
 
 	/**

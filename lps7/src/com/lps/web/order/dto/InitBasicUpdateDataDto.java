@@ -9,6 +9,9 @@ import com.lps.model.Room;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.web.room.dto.RoomOrderDto;
+import com.lps.web.simple.dto.ClockCategoryDto;
+import com.lps.web.simple.dto.PayPathDto;
+import com.lps.web.simple.dto.OrderStatusDto;
 import com.lps.web.user.dto.UserOrderDto;
 
 public class InitBasicUpdateDataDto{
@@ -24,17 +27,17 @@ public class InitBasicUpdateDataDto{
 	/**
 	 * 所有订单状态基本信息
 	 */
-	private List<StatusOrderDto> statuses;
+	private List<OrderStatusDto> statuses;
 	
 	/**
 	 * 所有钟点类型基本信息
 	 */
-	private List<ClockCategoryOrderDto> clockCategorys;
+	private List<ClockCategoryDto> clockCategorys;
 	
 	/**
 	 * 所有支付方式基本信息
 	 */
-	private List<PayPathOrderDto> payPaths;
+	private List<PayPathDto> payPaths;
 	
 	private Float pay;
 	
@@ -70,13 +73,13 @@ public class InitBasicUpdateDataDto{
 			this.rooms.add(new RoomOrderDto().init(r));
 		}
 		for (OrderStatus os : orderStatuses) {
-			this.statuses.add(new StatusOrderDto().init(os));
+			this.statuses.add(new OrderStatusDto().init(os));
 		}
 		for (ClockCategory cc : clockCategorys) {
-			this.clockCategorys.add(new ClockCategoryOrderDto().init(cc));
+			this.clockCategorys.add(new ClockCategoryDto().init(cc));
 		}
 		for (PayPath pp : payPaths) {
-			this.payPaths.add(new PayPathOrderDto().init(pp));
+			this.payPaths.add(new PayPathDto().init(pp));
 		}
 		return this;
 	}
@@ -98,27 +101,27 @@ public class InitBasicUpdateDataDto{
 		this.rooms = room;
 	}
 
-	public List<StatusOrderDto> getStatus() {
+	public List<OrderStatusDto> getStatus() {
 		return statuses;
 	}
 
-	public void setStatus(List<StatusOrderDto> status) {
+	public void setStatus(List<OrderStatusDto> status) {
 		this.statuses = status;
 	}
 
-	public List<ClockCategoryOrderDto> getClockCategory() {
+	public List<ClockCategoryDto> getClockCategory() {
 		return clockCategorys;
 	}
 
-	public void setClockCategory(List<ClockCategoryOrderDto> clockCategory) {
+	public void setClockCategory(List<ClockCategoryDto> clockCategory) {
 		this.clockCategorys = clockCategory;
 	}
 
-	public List<PayPathOrderDto> getPayType() {
+	public List<PayPathDto> getPayType() {
 		return payPaths;
 	}
 
-	public void setPayType(List<PayPathOrderDto> payType) {
+	public void setPayType(List<PayPathDto> payType) {
 		this.payPaths = payType;
 	}
 

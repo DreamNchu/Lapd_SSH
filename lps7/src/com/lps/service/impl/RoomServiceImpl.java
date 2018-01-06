@@ -1,5 +1,6 @@
 package com.lps.service.impl;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -94,7 +95,11 @@ public class RoomServiceImpl implements RoomService {
 	 * 根据id查找房间，返回Room实例
 	 */
 	@Override
-	public Room findById(int id) {
+	public Room findById(java.io.Serializable id) throws FindByIdGetNullException {
+		Room room = dao.findById(id);
+		if(room != null){
+			throw new FindByIdGetNullException("根据主键id未找到房间对象");
+		}
 		return dao.findById(id);
 	}
 	
@@ -173,8 +178,8 @@ public class RoomServiceImpl implements RoomService {
 	 * 更新Room实例
 	 */
 	@Override
-	public void update(Room t) {
-		dao.update(t);	
+	public void update(Room entity) {
+		dao.update(entity);	
 	}
 
 	/**
@@ -212,18 +217,18 @@ public class RoomServiceImpl implements RoomService {
 	 * 返回指定房间的所有服务订单
 	 */
 	@Override
-	public Set<ServerOrder> findAllOrders(Room t) {
-		return dao.findAllOrders(t);
+	public Set<ServerOrder> findAllOrders(Room entity) {
+		return dao.findAllOrders(entity);
 	}
 
 	/**
 	 * 查找指定页面内根据房间得到的所有订单
 	 */
 	@Override
-	public PageBean<ServerOrder> findAllOrdersByPage(Room t, int page) throws PagePropertyNotInitException {
-		long begin = pageServerOrderByRoomBean.init(findOrdersCountByThisType(t), page);
+	public PageBean<ServerOrder> findAllOrdersByPage(Room entity, int page) throws PagePropertyNotInitException {
+		long begin = pageServerOrderByRoomBean.init(findOrdersCountByThisType(entity), page);
 
-		List<ServerOrder> list = dao.findOrdersWithLimit(t, begin, pageServerOrderByRoomBean.getLimit());
+		List<ServerOrder> list = dao.findOrdersWithLimit(entity, begin, pageServerOrderByRoomBean.getLimit());
 
 		pageServerOrderByRoomBean.setList(list);
 
@@ -234,45 +239,45 @@ public class RoomServiceImpl implements RoomService {
 	 * 根据指定房间类型查找订单数量
 	 */
 	@Override
-	public long findOrdersCountByThisType(Room t) {
-		return dao.findOrdersCountByThisType(t);
+	public long findOrdersCountByThisType(Room entity) {
+		return dao.findOrdersCountByThisType(entity);
 	}
 
 	/**
 	 * 查找今天的订单
 	 */
 	@Override
-	public List<ServerOrder> findTodayOrders(Room t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
+	public List<ServerOrder> findTodayOrders(Room entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getTodayDate(), WorkDate.getTomorrowDate());
 	}
 
 	/**
 	 * 查找前七天的订单
 	 */
 	@Override
-	public List<ServerOrder> findBefore7DayOrders(Room t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findBefore7DayOrders(Room entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBefore7DayDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找这个月的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisMonthOrders(Room t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisMonthOrders(Room entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisMonthDate(), WorkDate.getTodayDate());
 	}
 
 	/**
 	 * 查找今年的订单
 	 */
 	@Override
-	public List<ServerOrder> findThisYearOrders(Room t) {
-		return dao.findOrdersByDateLimit(t, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
+	public List<ServerOrder> findThisYearOrders(Room entity) {
+		return dao.findOrdersByDateLimit(entity, WorkDate.getBeginOfThisYearDate(), WorkDate.getTodayDate());
 	}
 
 	@Override
-	public <K> Room findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
-		return dao.findFields(t, fields);
+	public <K> Room findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFields(entity, fields);
 	}
 
 	@Override
@@ -280,13 +285,19 @@ public class RoomServiceImpl implements RoomService {
 		return dao.findIdByProperty(map);
 	}
 	@Override
-	public PropertyRange<Room> createPropertyRangeById(int id1) {
+	public PropertyRange<Room> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<Room> pr = new PropertyRange<>();
 		
 		pr.setName(BasicDAO.ID);
 		pr.setMinValue(findById(id1));
-		pr.setMaxValue(findById(id1));
+		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
+	}
+
+	@Override
+	public void deleteAll(Collection<Room> entities) {
+		// TODO Auto-generated method stub
+		dao.deleteAll(entities);
 	}
 }
