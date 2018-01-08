@@ -15,10 +15,12 @@ import com.lps.model.ServerOrder;
 import com.lps.permission.Permission;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.order.dto.AdvancedSearchDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
+import com.lps.web.order.dto.MapNotInitForClassPathException;
 import com.lps.web.order.dto.OrderDto;
-import com.lps.web.order.dto.OrderTableDataDto;
+import com.lps.web.order.dto.OrderTableDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
@@ -66,7 +68,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 
 	private OrderDto orderSingleDataDto;
 
-	private OrderTableDataDto orderTableDataDto;
+	private OrderTableDto orderTableDataDto;
 
 	private OrderUpdateDataDto orderUpdateDataDto;
 
@@ -155,7 +157,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		return orderSingleDataDto;
 	}
 
-	public OrderTableDataDto getOrderTableDataDto() {
+	public OrderTableDto getOrderTableDataDto() {
 		return orderTableDataDto;
 	}
 
@@ -178,8 +180,13 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	public String initChartOrders() {
 
 		basicMsg.setMsgDto(orderChartDto);
-		orderChartInitDto.init(orderManage.findAllUser());
-
+		try {
+			orderChartInitDto.init(orderManage.findAllUser());
+		} catch (DtoInitException | MapNotInitForClassPathException e) {
+			e.printStackTrace();
+			basicMsg.setErrorMsg(e.getMessage());
+		}
+		basicMsg.setDefaultSuccessMsg();
 		return SUCCESS;
 	}
 
@@ -205,8 +212,13 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		basicMsg.setMsgDto(orderTableDataDto);
 		orderManage.advancedQuery(advancedSearchDto);
 
-		orderTableDataDto.init(orderManage.advancedQuery(advancedSearchDto), advancedSearchDto,
-				advancedSearchDto.getDomainName(), Thread.currentThread().getStackTrace()[1].getMethodName());
+		try {
+			orderTableDataDto.init(orderManage.advancedQuery(advancedSearchDto), advancedSearchDto,
+					 Thread.currentThread().getStackTrace()[1].getMethodName());
+		} catch (DtoInitException e) {
+			e.printStackTrace();
+			orderTableDataDto.setErrorMsg(e.getMessage());
+		}
 
 		return SUCCESS;
 	}
@@ -215,9 +227,9 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	 * 根据时间查看各种订单类型
 	 * 
 	 * @return 根据请求返回不同的界面
-	 * @throws PagePropertyNotInitException
+	 * @throws Exception 
 	 */
-	public String queryBasicOrders() throws PagePropertyNotInitException {
+	public String queryBasicOrders() throws Exception {
 		// 找到今日该状态下的所有订单
 		basicMsg.setMsgDto(orderTableDataDto);
 
@@ -238,12 +250,16 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		try {
 			orderTableDataDto.init(
 					orderManage.basicQuery(pageLinkTransformOrderDto),
-					pageLinkTransformOrderDto, pageLinkTransformOrderDto.getDomainName(),
+					pageLinkTransformOrderDto,
 					Thread.currentThread().getStackTrace()[1].getMethodName());
 
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			orderTableDataDto.setErrorMsg(e.getMessage());
+		} catch (DtoInitException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			orderTableDataDto.appendErrorMsg(e.getMessage());
 		}
 		return SUCCESS;
 	}
@@ -305,7 +321,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		this.orderSingleDataDto = orderSingleDataDto;
 	}
 
-	public void setOrderTableDataDto(OrderTableDataDto orderTableDataDto) {
+	public void setOrderTableDataDto(OrderTableDto orderTableDataDto) {
 		this.orderTableDataDto = orderTableDataDto;
 	}
 
@@ -364,5 +380,8 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		return SUCCESS;
 
 	}
-
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
 }

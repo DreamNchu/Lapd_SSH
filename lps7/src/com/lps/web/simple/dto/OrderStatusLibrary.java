@@ -1,12 +1,13 @@
 package com.lps.web.simple.dto;
 
 import com.lps.model.OrderStatus;
-import com.lps.web.dto.BasicInitDto;
+import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.dto.BasicResponseDto;
 
-public interface OrderStatusLibrary extends BasicInitDto<OrderStatusDto,OrderStatus>{
+public interface OrderStatusLibrary extends BasicRequestDto<OrderStatus>, BasicResponseDto<OrderStatus>{
 	
-	public String statusId = "statusId";
+	public String orderStatusId = "orderStatusId";
 	
-	public String statusName = "statusName";
+	public String orderStatusName = "orderStatusName";
 
 }

@@ -92,7 +92,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Admin findById(java.io.Serializable id) throws FindByIdGetNullException {
 		Admin admin = dao.findById(id);
-		if(admin != null){
+		if(admin == null){
 			throw new FindByIdGetNullException("根据主键id未找到管理员对象");
 		}
 		return dao.findById(id);
@@ -226,7 +226,7 @@ public class AdminServiceImpl implements AdminService {
 		return dao.findIdByProperty(map);
 	}
 	
-	@Override
+	/*@Override
 	public PropertyRange<Admin> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<Admin> pr = new PropertyRange<>();
 		
@@ -235,7 +235,7 @@ public class AdminServiceImpl implements AdminService {
 		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
-	}
+	}*/
 
 	@Override
 	public void deleteAll(Collection<Admin> entities) {

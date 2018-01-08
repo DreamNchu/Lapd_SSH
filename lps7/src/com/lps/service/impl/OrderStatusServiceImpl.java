@@ -80,7 +80,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	@Override
 	public OrderStatus findById(java.io.Serializable id) throws FindByIdGetNullException {
 		OrderStatus orderStatus = dao.findById(id);
-		if(orderStatus != null){
+		if(orderStatus == null){
 			throw new FindByIdGetNullException("根据主键id未找到订单状态对象");
 		}
 		return dao.findById(id);
@@ -277,13 +277,13 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public PropertyRange<OrderStatus> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<OrderStatus> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<OrderStatus> pr = new PropertyRange<OrderStatus>();
 		
-		pr.setName(BasicDAO.ID);
+		pr.setName(ServerOrderDAOImpl.ORDER_STATUS);
 		
 		pr.setMaxValue(findById(id1));
-		pr.setMinValue(pr.getMinValue());
+		pr.setMinValue(pr.getMaxValue());
 		
 		return pr;
 	}

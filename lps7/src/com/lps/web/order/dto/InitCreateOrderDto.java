@@ -1,12 +1,10 @@
 package com.lps.web.order.dto;
 
-import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
 import com.lps.model.basic.Entity;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
-import com.lps.web.dto.DtoInitException;
-import com.lps.web.dto.TableInitDto;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.room.dto.TRoomDto;
 import com.lps.web.simple.dto.ServerItemDto;
 import com.lps.web.simple.dto.TServerItemDto;
@@ -27,6 +25,11 @@ public class InitCreateOrderDto extends BasicRespondMsgDto {
 
 	// private List<Integer> createWays;
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7306645750527617840L;
+
 	private TUserDto users;
 
 	private TRoomDto rooms;
@@ -34,52 +37,24 @@ public class InitCreateOrderDto extends BasicRespondMsgDto {
 	private TServerItemDto serverItems;
 
 	public InitCreateOrderDto() {
-		map.put(((ParameterizedType) (users.getClass().getGenericInterfaces()[0])).getActualTypeArguments()[0]
-				.getTypeName(), users);
-		map.put(((ParameterizedType) (rooms.getClass().getGenericInterfaces()[0])).getActualTypeArguments()[0]
-				.getTypeName(), rooms);
-		map.put(((ParameterizedType) (serverItems.getClass().getGenericInterfaces()[0])).getActualTypeArguments()[0]
-				.getTypeName(), serverItems);
+		
 	}
-
+	
 	/**
 	 * 
 	 * 
 	 * @param mapL
 	 * @throws DtoInitException
+	 * @throws MapNotInitForClassPathException 
 	 */
 	@SuppressWarnings("unchecked")
-	public void init(
-			List<List<Entity>> listEntities/*
-											 * , List<User> lu, List<Room> lr,
-											 * List<ServerItem> lrc
-											 */) throws DtoInitException {
-		for (List<Entity> entities : listEntities) {
-
-			Object obj = map.get(entities.get(0).getClass().getName());
-			TableInitDto<Entity> tid = (TableInitDto<Entity>) obj;
-			tid.init(entities);
-
-		}
-
-		/*
-		 * serverItems.init(lrc);
-		 * 
-		 * users.init(lu);
-		 * 
-		 * rooms.init(lr);
-		 */
+	public void init(List<? extends Entity>...listEntities
+											) throws DtoInitException, MapNotInitForClassPathException {
+		
+		super.initTable(listEntities);
+		
+		
 	}
-
-/*	public static void main(String[] args) {
-		TableInitDto users = new TUserDto();
-		;
-		System.out.println(users.getClass());
-		System.out
-				.println(((ParameterizedType) (users.getClass().getGenericInterfaces()[0])).getActualTypeArguments()[0]
-						.getTypeName());
-
-	}*/
 
 	public TRoomDto getRooms() {
 		return rooms;

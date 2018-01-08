@@ -6,10 +6,10 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.jsonresult.DataResult;
+import com.lps.control.manage.UserManage;
 import com.lps.control.manage.WorkRankManage;
 import com.lps.model.User;
 import com.lps.service.UserService;
-import com.lps.util.WorkJson;
 import com.opensymphony.xwork2.ActionSupport;
 
 /**
@@ -25,15 +25,19 @@ public class UserWorkCheckAction extends ActionSupport
 	private static final long serialVersionUID = -4013579295942022608L;
 
 	private UserService userServiceImpl;
+	
+	private UserManage userManage;
 
-	private String result;
-
-	public String getResult() {
-		return result;
+	public UserManage getUserManage() {
+		return userManage;
 	}
 
-	public void setResult(String result) {
-		this.result = result;
+	public void setUserManage(UserManage userManage) {
+		this.userManage = userManage;
+	}
+
+	public String getResult() {
+		return result.toString();
 	}
 
 	private WorkRankManage workRankManage;
@@ -47,8 +51,6 @@ public class UserWorkCheckAction extends ActionSupport
 	}
 
 	private Map<String, Object> map = new HashMap<>();
-	
-	
 
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;
@@ -83,17 +85,19 @@ public class UserWorkCheckAction extends ActionSupport
 
 		try {
 			int id = Integer.parseInt(session.get("id")+"");
-			User u = userServiceImpl.findById(id);
+//			User u = userServiceImpl.findById(id);
+			User u = userManage.query(id);
 			workRankManage.addUserData(u);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put(MSG, "您已签到");
-			result = WorkJson.toJsonDisableHtmlEscaping(map);
-			return SUCCESS;
+			basicMsg.setErrorMsg("您已签到");
+//			map.put(MSG, "您已签到");
+//			result = WorkJson.toJsonDisableHtmlEscaping(map);
+//			return SUCCESS;
 		}
-		
-		map.put(MSG, "签到成功");
-		result = WorkJson.toJsonDisableHtmlEscaping(map);
+		basicMsg.setSuccessMsg("签到成功");
+//		map.put(MSG, "签到成功");
+//		result = WorkJson.toJsonDisableHtmlEscaping(map);
 		return SUCCESS;
 	}
 
@@ -105,25 +109,23 @@ public class UserWorkCheckAction extends ActionSupport
 		
 		try {
 			int id = Integer.parseInt(session.get("id")+"");
-			User u = userServiceImpl.findById(id);
+//			User u = userServiceImpl.findById(id);
+			User u = userManage.query(id);
 			workRankManage.deleteUserData(u);
 		} catch (Exception e) {
 //			e.printStackTrace();
-			map.put(MSG, "您已签退");
-			result = WorkJson.toJsonDisableHtmlEscaping(map);
-			return SUCCESS;
+//			map.put(MSG, "您已签退");
+			basicMsg.setErrorMsg("您已签退");
+//			result = WorkJson.toJsonDisableHtmlEscaping(map);
+//			return SUCCESS;
 		}
-		
-		map.put(MSG, "签退成功");
-		result = WorkJson.toJsonDisableHtmlEscaping(map);
+		basicMsg.setSuccessMsg("签退成功");
+//		map.put(MSG, "签退成功");
+//		result = WorkJson.toJsonDisableHtmlEscaping(map);
 		return SUCCESS;
 		
 	}
 	
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
-	}
-
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;

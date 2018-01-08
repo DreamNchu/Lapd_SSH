@@ -82,7 +82,7 @@ public class WorkRankServiceImpl implements WorkRankService {
 	@Override
 	public WorkRank findById(java.io.Serializable id) throws FindByIdGetNullException {
 		WorkRank workRank = dao.findById(id);
-		if(workRank != null){
+		if(workRank == null){
 			throw new FindByIdGetNullException("根据主键id未找到上钟排序对象");
 		}
 		return dao.findById(id);
@@ -191,7 +191,7 @@ public class WorkRankServiceImpl implements WorkRankService {
 		return dao.findIdByProperty(map);
 	}
 	
-	@Override
+/*	@Override
 	public PropertyRange<WorkRank> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<WorkRank> pr = new PropertyRange<>();
 		
@@ -200,7 +200,7 @@ public class WorkRankServiceImpl implements WorkRankService {
 		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
-	}
+	}*/
 
 	@Override
 	public void deleteAll(Collection<WorkRank> entities) {

@@ -1,7 +1,7 @@
 package com.lps.web.dto;
 
 import com.lps.model.basic.Entity;
-import com.lps.web.room.dto.NotRoomObjectException;
+import com.lps.web.basicmsg.dto.DtoInitException;
 
 /**
  * 
@@ -9,13 +9,13 @@ import com.lps.web.room.dto.NotRoomObjectException;
  *
  * @param <K> init之后返回数据类型
  */
-public interface BasicInitDto<K, E extends Entity> {
+public interface BasicResponseDto<E extends Entity> {
 	/**
 	 * 
 	 * @param obj
 	 * @return
 	 * @throws DtoInitException 
 	 */
-	 K init(E obj) throws DtoInitException;
+	 <K> K init(E obj) throws DtoInitException;
 	
 }

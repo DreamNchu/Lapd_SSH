@@ -1,44 +1,40 @@
 package com.lps.web.workrank.dto;
 
-import java.util.List;
-
 import com.lps.model.WorkRank;
 import com.lps.util.PageBean;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.page.dto.BasicPageDto;
 import com.lps.web.page.dto.PageAble;
-import com.lps.web.page.dto.PageDto;
 
-public class WorkRankTableDto extends PageDto{
+public class WorkRankTableDto extends BasicPageDto<WorkRank>{
 	
-	private List<WorkRankSingleDataDto> workRankData ;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 6224422883304452337L;
+	
+	private TWorkRankDto workRanks ;
 
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public <T> void init(PageBean<T> lOrders, PageAble queryOrderDto, String domainName, String actionName) {
-		super.init(lOrders, queryOrderDto, domainName, actionName);
+	public void init(PageBean<WorkRank> lOrders, PageAble queryOrderDto,  String actionName) throws DtoInitException {
+		super.init(lOrders, queryOrderDto, actionName);
 		
-		int i = 0;
-		for (WorkRank wr: (List<WorkRank>)lOrders.getList()) {
-			i ++;
-			WorkRankSingleDataDto ws = new WorkRankSingleDataDto();
-			try {
-				ws.init(i, wr);
-			} catch (WorkRankSingleDataInitException e) {
-				e.printStackTrace();
-				continue;
-			}
-			this.workRankData.add(ws);
-		}
+		workRanks.init(lOrders.getList());
+		
 	}
 
-	
-	
-	public List<WorkRankSingleDataDto> getWorkRankData() {
-		return workRankData;
+
+	public TWorkRankDto getWorkRanks() {
+		return workRanks;
 	}
 
-	public void setWorkRankData(List<WorkRankSingleDataDto> workRankData) {
-		this.workRankData = workRankData;
+
+	public void setWorkRanks(TWorkRankDto workRanks) {
+		this.workRanks = workRanks;
 	}
-	
+
+
+
 }

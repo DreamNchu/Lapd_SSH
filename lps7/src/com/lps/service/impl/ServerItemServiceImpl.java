@@ -64,7 +64,7 @@ public class ServerItemServiceImpl implements ServerItemService {
 	@Override
 	public ServerItem findById(java.io.Serializable id) throws FindByIdGetNullException {
 		ServerItem serverItem = dao.findById(id);
-		if(serverItem != null){
+		if(serverItem == null){
 			throw new FindByIdGetNullException("根据主键id未找到服务项目对象");
 		}
 		return dao.findById(id);
@@ -140,7 +140,8 @@ public class ServerItemServiceImpl implements ServerItemService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
-	@Override
+	
+	/*@Override
 	public PropertyRange<ServerItem> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<ServerItem> pr = new PropertyRange<>();
 		
@@ -149,7 +150,7 @@ public class ServerItemServiceImpl implements ServerItemService {
 		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
-	}
+	}*/
 
 	@Override
 	public void deleteAll(Collection<ServerItem> entities) {

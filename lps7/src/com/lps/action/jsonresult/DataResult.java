@@ -16,7 +16,7 @@ public interface DataResult {
 	 * 返回json数据结果
 	 * @return
 	 */
-//	String getResult();
+	String getResult();
 	
 //	void setResult(String result);
 	

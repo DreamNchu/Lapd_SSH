@@ -10,6 +10,7 @@ import com.lps.dao.PayPathDAO;
 import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.OrderStatusDAOImpl;
 import com.lps.dao.impl.PayPathDAOImpl;
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.PayPath;
 import com.lps.model.Admin;
 import com.lps.model.ClockCategory;
@@ -118,7 +119,7 @@ public class PayPathServiceImpl implements PayPathService {
 	@Override
 	public PayPath findById(java.io.Serializable id) throws FindByIdGetNullException {
 		PayPath payPath = dao.findById(id);
-		if(payPath != null){
+		if(payPath == null){
 			throw new FindByIdGetNullException("根据主键id未找到付费方式对象");
 		}
 		return dao.findById(id);
@@ -277,10 +278,10 @@ public class PayPathServiceImpl implements PayPathService {
 	}
 	
 	@Override
-	public PropertyRange<PayPath> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<PayPath> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<PayPath> pr = new PropertyRange<>();
 		
-		pr.setName(BasicDAO.ID);
+		pr.setName(ServerOrderDAOImpl.PAY_PATH);
 		pr.setMinValue(findById(id1));
 		pr.setMaxValue(pr.getMinValue());
 		

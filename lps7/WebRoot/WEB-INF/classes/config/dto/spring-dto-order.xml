@@ -11,63 +11,16 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
-	<bean id="initCreateOrderDto" scope="prototype"
-		class="com.lps.web.order.dto.InitCreateOrderDto">
-		<property name="rooms">
-			<list></list>
-		</property>
-		<property name="serverItems">
-			<list></list>
-		</property>
-		<property name="users">
-			<list></list>
-		</property>
-	</bean>
-
-	<bean id="orderTableDataDto" class="com.lps.web.order.dto.OrderTableDataDto"
-		scope="prototype">
-		<property name="orders">
-			<list></list>
-		</property>
-
-	</bean>
 
 	<bean id="pageLinkTransformOrderDto" class="com.lps.web.order.dto.PageLinkTransformOrderDto"
 		scope="prototype">
 	</bean>
+	
+	<bean id="orderDto" class="com.lps.web.order.dto.OrderDto" scope="prototype">
+	
+	</bean>
 
-	<bean id="initBasicUpdateDataDto" class="com.lps.web.order.dto.InitBasicUpdateDataDto"
-		scope="prototype">
-		<property name="user">
-			<list></list>
-		</property>
-		<property name="room">
-			<list></list>
-		</property>
-		<property name="status">
-			<list></list>
-		</property>
-		<property name="clockCategory">
-			<list></list>
-		</property>
-		<property name="payType">
-			<list></list>
-		</property>
-	</bean>
-	
-	<bean id="orderChartInitDto" scope="prototype" class="com.lps.web.orderchart.dto.OrderChartInitDto">
-		<property name="user">
-		<list></list>
-		</property>
-	</bean>
-	
 	<bean id="orderSingleDataDto" scope="prototype" class="com.lps.web.order.dto.OrderSingleDataDto"></bean>
 
-	<bean id="orderChartDto" scope="prototype" class="com.lps.web.orderchart.dto.OrderChartDto">
-		<property name="income"><list></list></property>
-		<property name="orderCount"><list></list></property>
-		<property name="orderRankCount"><list></list></property>
-		<property name="orderSpotCount"><list></list></property>
-	</bean>
 </beans>
 

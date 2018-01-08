@@ -5,9 +5,11 @@ import java.util.List;
 
 import com.lps.model.Room;
 import com.lps.model.basic.Entity;
-import com.lps.web.dto.DtoInitException;
-import com.lps.web.dto.TableInitDto;
+import com.lps.web.annotation.dto.DtoName;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.basicmsg.dto.TableInitDto;
 
+@DtoName("rooms")
 public class TRoomDto extends ArrayList<RoomDto> implements TableInitDto<Room>{
 
 	private static final long serialVersionUID = 6746457713473621005L;
@@ -24,9 +26,9 @@ public class TRoomDto extends ArrayList<RoomDto> implements TableInitDto<Room>{
 	}
 
 
-	@Override
+	/*@Override
 	public String getName() {
 		return name;
-	}
+	}*/
 	
 }

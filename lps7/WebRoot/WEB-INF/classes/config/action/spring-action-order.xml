@@ -9,7 +9,9 @@
            http://www.springframework.org/schema/tx
 		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
            http://www.springframework.org/schema/aop
-           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+               default-lazy-init="true"
+           >
 
 	<bean id="initCreateOrderBasicDataAction" scope="prototype"
 		class="com.lps.action.operation.order.InitCreateOrderBasicDataAction">
@@ -21,18 +23,17 @@
 	
 	<bean id="createOrderAction" scope="prototype" class="com.lps.action.operation.order.CreateOrderAction">
 		<property name="orderManage" ref="orderManage"></property>
-		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
+		<!-- <property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property> -->
 	</bean>
 	
 	<bean id="manageOrdersAction" class="com.lps.action.operation.order.ManageOrdersAction" scope="prototype">
 		<property name="orderManage" ref="orderManage"></property>
 		<property name="orderTableDataDto" ref="orderTableDataDto"></property>
-		<property name="serverOrderServiceImpl" ref="serverOrderServiceImpl"></property>
 		<property name="pageLinkTransformOrderDto" ref="pageLinkTransformOrderDto"></property>
 		<property name="initBasicUpdateDataDto" ref="initBasicUpdateDataDto"></property>
 		<property name="orderChartInitDto" ref="orderChartInitDto"></property>
 		<property name="orderChartDto" ref="orderChartDto"></property>
-		<property name="orderSingleDataDto" ref="orderSingleDataDto"></property>
+		<property name="orderSingleDataDto" ref="orderDto"></property>
 	</bean>
 	
 	<bean id="payOrderPageAction" class="com.lps.action.operation.order.PayOrderPageAction" scope="prototype"></bean>

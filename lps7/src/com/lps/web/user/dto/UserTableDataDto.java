@@ -1,35 +1,37 @@
 package com.lps.web.user.dto;
 
-import java.util.List;
-
 import com.lps.model.User;
 import com.lps.util.PageBean;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.page.dto.BasicPageDto;
 import com.lps.web.page.dto.PageAble;
-import com.lps.web.page.dto.PageDto;
 
-public class UserTableDataDto extends PageDto{
+public class UserTableDataDto extends BasicPageDto<User>{
 	
-	private List<UserDataDto> user ;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -176652993513460323L;
 	
-	public List<UserDataDto> getUser() {
-		return user;
+	private TUserDto users ;
+
+	public TUserDto getUsers() {
+		return users;
 	}
 
-	public void setUser(List<UserDataDto> user) {
-		this.user = user;
+
+	public void setUsers(TUserDto users) {
+		this.users = users;
 	}
-	
+
+
 	@Override
-	public <T> void init(PageBean<T> lOrders, PageAble queryOrderDto, String domainName, String actionName) {
-		super.init(lOrders, queryOrderDto, domainName, actionName);
-		if(lOrders.getList() == null){
+	public void init(PageBean<User> usersP, PageAble page, String actionName) throws DtoInitException {
+		super.init(usersP, page,  actionName);
+		if(usersP.getList() == null){
 			return ;
 		}
-		for (User user : (List<User>)lOrders.getList()) {
-			UserDataDto osd = new UserDataDto();
-			osd.init(user);
-			this.user.add(osd);
-		}
+		users.init(usersP.getList());
 		
 	}
 	

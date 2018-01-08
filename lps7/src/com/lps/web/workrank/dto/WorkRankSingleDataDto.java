@@ -2,9 +2,14 @@ package com.lps.web.workrank.dto;
 
 import com.lps.model.WorkRank;
 
-public class WorkRankSingleDataDto {
+public class WorkRankSingleDataDto extends WorkRankDto{
 	
-	private int index;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -7134431869002674930L;
+
+	/*private int index;
 	
 	private int stuffId;
 	
@@ -67,13 +72,13 @@ public class WorkRankSingleDataDto {
 		return workId;
 	}
 
-	/**
+	*//**
 	 * 
 	 * @param index 序号
 	 * @param workRank
 	 * @return
 	 * @throws WorkRankSingleDataInitException
-	 */
+	 *//*
 	public WorkRankSingleDataDto init(int index, WorkRank workRank) throws WorkRankSingleDataInitException{
 		if(workRank == null || index == 0){
 			throw new WorkRankSingleDataInitException();
@@ -112,6 +117,6 @@ public class WorkRankSingleDataDto {
 
 	public void setWorkId(int workId) {
 		this.workId = workId;
-	}
+	}*/
 	
 }

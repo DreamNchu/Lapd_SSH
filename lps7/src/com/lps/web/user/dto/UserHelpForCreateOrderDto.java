@@ -1,8 +1,8 @@
 package com.lps.web.user.dto;
 
 import com.lps.model.basic.Entity;
-import com.lps.web.dto.BasicInitDto;
-import com.lps.web.dto.DtoInitException;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.dto.BasicRequestDto;
 
 public class UserHelpForCreateOrderDto extends UserDto{
 	

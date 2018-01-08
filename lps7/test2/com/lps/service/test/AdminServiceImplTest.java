@@ -11,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.lps.dao.impl.AdminDAOImpl;
 import com.lps.model.Admin;
 import com.lps.service.impl.AdminServiceImpl;
+import com.lps.service.impl.FindByIdGetNullException;
 
 public class AdminServiceImplTest {
 	
@@ -62,7 +63,7 @@ public class AdminServiceImplTest {
 	}*/
 	
 	@Test
-	public void testGetById(){
+	public void testGetById() throws FindByIdGetNullException{
 		Admin admin = as.findById(1);
 		System.out.println(admin.getRegisterTime());
 		System.out.println(new java.sql.Timestamp(System.currentTimeMillis()));
@@ -76,7 +77,7 @@ public class AdminServiceImplTest {
 	}
 	
 	@Test
-	public void testDel(){
+	public void testDel() throws FindByIdGetNullException{
 		Admin admin = new Admin();
 		 admin = as.findById(3);
 		as.delete(admin);

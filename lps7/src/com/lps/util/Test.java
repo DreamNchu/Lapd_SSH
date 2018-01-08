@@ -1,14 +1,14 @@
 package com.lps.util;
 
-public class Test extends LinkParamCreater {
+public class Test extends PageLinkParamCreater {
 
 	int bbbb = 2222;
 	
 	String kk = null;
 	
 	public static void main(String[] args) {
-		LinkParamCreater l = new Test();
-		System.out.println(LinkParamCreater.createLinkParam(l, "hhh"));
+		PageLinkParamCreater l = new Test();
+//		System.out.println(PageLinkParamCreater.createLinkParam(l, "hhh"));
 	}
 	
 }

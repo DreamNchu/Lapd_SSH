@@ -1,16 +1,19 @@
 package com.lps.web.room.dto;
 
 import com.lps.model.Room;
-import com.lps.web.dto.BasicInitDto;
+import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.simple.dto.OrderStatusDto;
 
-public interface RoomLibraryDto extends BasicInitDto<OrderStatusDto, Room>{
+public interface RoomLibraryDto extends BasicRequestDto<Room>, BasicResponseDto<Room>{
 
 	public String roomId = "roomId";
 
 	public String roomName = "roomName";
 
-	public String roomCategory = "roomCategory";
+	public String roomCategoryName = "roomCategoryName";
+	
+	public String roomCategoryId = "roomCategoryId";
 	
 	public String roomFloor = "roomFloor";
 	

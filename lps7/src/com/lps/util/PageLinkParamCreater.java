@@ -4,15 +4,18 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-public class LinkParamCreater {
+import com.lps.web.page.dto.PageAble;
 
-	private int kkkk = 1111;
+public class PageLinkParamCreater {
+
+//	private int kkkk = 1111;
 	/**
 	 * paramName=paramValue ...
 	 * @return
 	 */
-	public static String createLinkParam(Object obj, String domainName){
-		Field[] fields = obj.getClass().getDeclaredFields();
+	public static String createLinkParam(PageAble pageAble){
+		Field[] fields = pageAble.getClass().getDeclaredFields();
+		String domainName = pageAble.getDomainName();
 		StringBuilder str = new StringBuilder();
         for(int i=0;i<fields.length;i++){
         //设置私有属性允许访问
@@ -25,7 +28,7 @@ public class LinkParamCreater {
         }
         //得到属性值
          try {
-			Object field = fields[i].get(obj);
+			Object field = fields[i].get(pageAble);
 			str.append(copy + fields[i].getName() + "=" + field +"&");
 		} catch (IllegalArgumentException | IllegalAccessException e) {
 			e.printStackTrace();

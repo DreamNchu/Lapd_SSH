@@ -10,6 +10,7 @@ import com.lps.dao.PledgeDAO;
 import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.PayPathDAOImpl;
 import com.lps.dao.impl.PledgeDAOImpl;
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.Pledge;
 import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
@@ -100,7 +101,7 @@ public class PledgeServiceImpl implements PledgeService {
 	@Override
 	public Pledge findById(java.io.Serializable id) throws FindByIdGetNullException {
 		Pledge pledge = dao.findById(id);
-		if(pledge != null){
+		if(pledge == null){
 			throw new FindByIdGetNullException("根据主键id未找到抵押物品对象");
 		}
 		return dao.findById(id);
@@ -257,10 +258,10 @@ public class PledgeServiceImpl implements PledgeService {
 	}
 
 	@Override
-	public PropertyRange<Pledge> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<Pledge> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<Pledge> pr = new PropertyRange<>();
 		
-		pr.setName(BasicDAO.ID);
+		pr.setName(ServerOrderDAOImpl.PLEDGE);
 		pr.setMinValue(findById(id1));
 		pr.setMaxValue(pr.getMinValue());
 		

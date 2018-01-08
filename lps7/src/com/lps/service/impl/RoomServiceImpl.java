@@ -7,6 +7,7 @@ import java.util.Set;
 
 import com.lps.dao.RoomDAO;
 import com.lps.dao.basic.BasicDAO;
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.Admin;
 import com.lps.model.OrderStatus;
 import com.lps.model.Room;
@@ -97,7 +98,7 @@ public class RoomServiceImpl implements RoomService {
 	@Override
 	public Room findById(java.io.Serializable id) throws FindByIdGetNullException {
 		Room room = dao.findById(id);
-		if(room != null){
+		if(room == null){
 			throw new FindByIdGetNullException("根据主键id未找到房间对象");
 		}
 		return dao.findById(id);
@@ -285,10 +286,10 @@ public class RoomServiceImpl implements RoomService {
 		return dao.findIdByProperty(map);
 	}
 	@Override
-	public PropertyRange<Room> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<Room> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<Room> pr = new PropertyRange<>();
 		
-		pr.setName(BasicDAO.ID);
+		pr.setName(ServerOrderDAOImpl.ROOM);
 		pr.setMinValue(findById(id1));
 		pr.setMaxValue(pr.getMinValue());
 		

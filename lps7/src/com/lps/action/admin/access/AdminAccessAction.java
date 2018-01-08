@@ -70,4 +70,9 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 		this.session = session;
 	}
 
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
+
 }

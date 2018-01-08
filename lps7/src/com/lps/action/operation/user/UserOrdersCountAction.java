@@ -7,7 +7,8 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.BasicManage;
 import com.lps.control.manage.OrderManage;
-import com.lps.util.WorkJson;
+import com.lps.model.ServerOrder;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
 import com.lps.web.orderchart.dto.Population;
@@ -18,21 +19,12 @@ public class UserOrdersCountAction extends ActionSupport
 	
 	private static final long serialVersionUID = -7904719214614886119L;
 	
-	private String result;
-	
 	private Map<String,Object> session ;
 
 	public String getResult() {
-		return result;
+		return result.toString();
 	}
 
-	public void setResult(String result) {
-		this.result = result;
-	}
-	
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
-	}
 	private OrderManage orderManage;
 	
 	private OrderChartDto orderChartDto;
@@ -68,20 +60,26 @@ public class UserOrdersCountAction extends ActionSupport
 	 * @return
 	 */
 	public String chartDataOrders(){
-		
+		basicMsg.setMsgDto(orderChartDto);
 		//权限限制
 		orderChartRequestDto.setPopulation(Population.ONE);
 		int id = Integer.parseInt(session.get("id")+"");
 		orderChartRequestDto.setStuffId(id);
 		
-		orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
-		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
-System.out.println(result);
+		try {
+			orderManage.chartAnalyze(orderChartDto, orderChartRequestDto);
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			orderChartDto.setErrorMsg(e.getMessage() + "\n" + "数据获取失败");
+		}
+		orderChartDto.setDefaultSuccessMsg();
+//		result = WorkJson.toJsonDisableHtmlEscaping(orderChartDto);
+//System.out.println(result);
 		return SUCCESS;	
 		
 	}
 
-	public BasicManage getOrderManage() {
+	public BasicManage<ServerOrder> getOrderManage() {
 		return orderManage;
 	}
 

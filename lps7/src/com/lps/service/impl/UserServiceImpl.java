@@ -8,6 +8,7 @@ import java.util.Set;
 
 import com.lps.dao.UserDAO;
 import com.lps.dao.basic.BasicDAO;
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.dao.impl.UserDAOImpl;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
@@ -319,11 +320,11 @@ public class UserServiceImpl implements UserService {
 	public <K> List<K> findIdByProperty(Map<String, Object> map) {
 		return dao.findIdByProperty(map);
 	}
-	public PropertyRange<User> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<User> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 		
 		PropertyRange<User> pr = new PropertyRange<>();
 		
-		pr.setName(BasicDAO.ID);
+		pr.setName(ServerOrderDAOImpl.USER);
 		
 		pr.setMinValue(findById(id1));
 		pr.setMaxValue(pr.getMinValue());

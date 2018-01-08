@@ -2,7 +2,7 @@ package com.lps.web.room.dto;
 
 import com.lps.model.Room;
 import com.lps.model.basic.Entity;
-import com.lps.web.dto.BasicInitDto;
+import com.lps.web.dto.BasicRequestDto;
 
 public class RoomOrderDto extends RoomDto{
 	

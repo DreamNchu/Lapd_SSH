@@ -2,44 +2,48 @@ package com.lps.web.order.dto;
 
 import java.util.List;
 
-import com.lps.model.ClockCategory;
-import com.lps.model.OrderStatus;
-import com.lps.model.PayPath;
-import com.lps.model.Room;
 import com.lps.model.ServerOrder;
-import com.lps.model.User;
-import com.lps.web.room.dto.RoomOrderDto;
-import com.lps.web.simple.dto.ClockCategoryDto;
-import com.lps.web.simple.dto.OrderStatusDto;
-import com.lps.web.simple.dto.PayPathDto;
-import com.lps.web.user.dto.UserOrderDto;
+import com.lps.model.basic.Entity;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.room.dto.TRoomDto;
+import com.lps.web.simple.dto.TClockCategoryDto;
+import com.lps.web.simple.dto.TOrderStatusDto;
+import com.lps.web.simple.dto.TPayPathDto;
+import com.lps.web.user.dto.TUserDto;
 
-public class InitBasicUpdateDataDto extends OrderDto{
+public class InitBasicUpdateDataDto extends BasicRespondMsgDto{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6522735277854018127L;
 	/**
 	 * 所有用户基本信息
 	 */
-	private List<UserOrderDto> users;
+	private TUserDto users;
 	/**
 	 * 所有房间基本信息
 	 */
-	private List<RoomOrderDto> rooms;
+	private TRoomDto rooms;
 	
 	
 	/**
 	 * 所有订单状态基本信息
 	 */
-	private List<OrderStatusDto> statuses;
+	private TOrderStatusDto statuses;
 	
 	/**
 	 * 所有钟点类型基本信息
 	 */
-	private List<ClockCategoryDto> clockCategorys;
+	private TClockCategoryDto clockCategorys;
 	
 	/**
 	 * 所有支付方式基本信息
 	 */
-	private List<PayPathDto> payPaths;
+	private TPayPathDto payPaths;
+	
+	private transient OrderDto orderDto;
 	
 	private Float pay;
 	
@@ -49,8 +53,25 @@ public class InitBasicUpdateDataDto extends OrderDto{
 	
 	private String orderId;
 	
+//	private TPayPathDto payPaths2;
+	
+/*	public static void main(String[] args) {
+		for(Field f: InitBasicUpdateDataDto.class.getDeclaredFields()){
+if(Modifier.isTransient(f.getModifiers()))			
+			System.out.println(f.getName());
+		}
+	}*/
+	
 	public String getOrderId() {
 		return orderId;
+	}
+
+	public OrderDto getOrderDto() {
+		return orderDto;
+	}
+
+	public void setOrderDto(OrderDto orderDto) {
+		this.orderDto = orderDto;
 	}
 	
 	public void setOrderId(String orderId) {
@@ -64,67 +85,62 @@ public class InitBasicUpdateDataDto extends OrderDto{
 		orderId = so.getId();
 	}
 	
+	public InitBasicUpdateDataDto() {
+		
+	}
 	
-	public InitBasicUpdateDataDto init(List<User> users, List<Room> rooms, List<OrderStatus> orderStatuses
-			,List<ClockCategory> clockCategorys, List<PayPath> payPaths, ServerOrder so){
+	public InitBasicUpdateDataDto init(ServerOrder so, List<? extends Entity> ...listEntities /*, List<User> users, List<Room> rooms, List<OrderStatus> orderStatuses
+			,List<ClockCategory> clockCategorys, List<PayPath> payPaths,*/ /*ServerOrder so*/) throws DtoInitException, MapNotInitForClassPathException{
+		
 		initSurplus(so);
-		for (User u : users) {
-			this.users.add(new UserOrderDto().init(u));
-		}
-		for (Room r : rooms) {
-			this.rooms.add(new RoomOrderDto().init(r));
-		}
-		for (OrderStatus os : orderStatuses) {
-			this.statuses.add(new OrderStatusDto().init(os));
-		}
-		for (ClockCategory cc : clockCategorys) {
-			this.clockCategorys.add(new ClockCategoryDto().init(cc));
-		}
-		for (PayPath pp : payPaths) {
-			this.payPaths.add(new PayPathDto().init(pp));
-		}
+		
+		initTable(listEntities);
+		
+		orderDto.init(so);
+		
 		return this;
 	}
 	
 	
-	public List<UserOrderDto> getUser() {
+
+	public TUserDto getUsers() {
 		return users;
 	}
 
-	public void setUser(List<UserOrderDto> user) {
-		this.users = user;
+	public void setUsers(TUserDto users) {
+		this.users = users;
 	}
 
-	public List<RoomOrderDto> getRoom() {
+	public TRoomDto getRooms() {
 		return rooms;
 	}
 
-	public void setRoom(List<RoomOrderDto> room) {
-		this.rooms = room;
+	public void setRooms(TRoomDto rooms) {
+		this.rooms = rooms;
 	}
 
-	public List<OrderStatusDto> getStatus() {
+	public TOrderStatusDto getStatuses() {
 		return statuses;
 	}
 
-	public void setStatus(List<OrderStatusDto> status) {
-		this.statuses = status;
+	public void setStatuses(TOrderStatusDto statuses) {
+		this.statuses = statuses;
 	}
 
-	public List<ClockCategoryDto> getClockCategory() {
+	public TClockCategoryDto getClockCategorys() {
 		return clockCategorys;
 	}
 
-	public void setClockCategory(List<ClockCategoryDto> clockCategory) {
-		this.clockCategorys = clockCategory;
+	public void setClockCategorys(TClockCategoryDto clockCategorys) {
+		this.clockCategorys = clockCategorys;
 	}
 
-	public List<PayPathDto> getPayType() {
+	public TPayPathDto getPayPaths() {
 		return payPaths;
 	}
 
-	public void setPayType(List<PayPathDto> payType) {
-		this.payPaths = payType;
+	public void setPayPaths(TPayPathDto payPaths) {
+		this.payPaths = payPaths;
 	}
 
 	public Float getPay() {

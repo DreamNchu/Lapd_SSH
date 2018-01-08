@@ -3,7 +3,7 @@ package com.lps.web.user.dto;
 import com.lps.model.User;
 import com.lps.util.WorkDate;
 
-public class UserDataDto {
+public class UserDataDto extends UserDto{
 	
 	private Integer stuffId;
 	private String workStatus;
@@ -46,7 +46,7 @@ public class UserDataDto {
 		this.IDCardNo = iDCardNo;
 	}
 
-	public void init(User user) {
+	public void init2(User user) {
 		stuffId = user.getId();
 		if (user.getWorkStatus() != null)
 			workStatus = user.getWorkStatus().getWorkStatus();

@@ -1,13 +1,14 @@
 package com.lps.web.order.dto;
 
 import com.lps.permission.Permission;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 
 /**
  * 正常状态下订单的更新
  * @author 0001
  *
  */
-public class UpdateOrderNormalOperationDto {
+public class UpdateOrderNormalOperationDto extends BasicRespondMsgDto{
 	
 	private String orderId;
 	

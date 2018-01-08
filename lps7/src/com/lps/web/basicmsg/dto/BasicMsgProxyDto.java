@@ -12,6 +12,9 @@ public class BasicMsgProxyDto {
 		msgDto = new BasicRespondMsgDto();
 	}
 	
+	/**
+	 * 恢复原来的数据模型
+	 */
 	public void regress(){
 		msgDto = new BasicRespondMsgDto();
 	}
@@ -25,7 +28,8 @@ public class BasicMsgProxyDto {
 	}
 
 	public void writeInJsonData(StringBuilder jsonData) {
-		jsonData.replace(0, jsonData.length() - 1, WorkJson.toJsonDisableHtmlEscaping(msgDto));
+		jsonData.replace(0, jsonData.length(), WorkJson.toJsonDisableHtmlEscaping(msgDto));
+//		jsonData.
 	}
 
 	public void setDefaultErrorMsg(){

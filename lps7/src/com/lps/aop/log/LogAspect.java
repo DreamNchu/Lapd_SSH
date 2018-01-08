@@ -41,7 +41,8 @@ public class LogAspect {
 	 * @param jp
 	 *            连接点：程序执行过程中的某一行为
 	 */
-	@Pointcut("execution(public java.lang.String com.lps.action..*.*())")
+	@Pointcut("execution(public java.lang.String com.lps.action..*.*())"
+			+ "&&!execution(public java.lang.String com.lps.action..*.getResult())")
 	private void myMethod() {
 	}// 定义一个切入点
 
@@ -51,6 +52,14 @@ public class LogAspect {
 
 	@Before("myMethod()")
 	public void doBefore(JoinPoint jp) {
+		
+		logStr = "\n=======请求参数开始=======\n";
+		for(String key: request.getParameterMap().keySet()){
+			logStr += key + " = " + request.getParameter(key) + "\n";
+		}
+		logStr += "=======请求参数结束=======\n";
+		logger.info(logStr);
+		
 		logStr = "\nIP地址为：" + request.getRemoteHost() + "访问 -> " + "用户名为："
 				+ request.getSession().getAttribute("userName") + "\n" + jp.getTarget().getClass().getName() + "类的"
 				+ jp.getSignature().getName() + "方法开始执行******Start******";
@@ -74,7 +83,7 @@ public class LogAspect {
 		long Time2 = System.currentTimeMillis();
 		logStr = "\n耗时：" + (Time2 - Time1) + " ms";
 		logger.info(logStr);
-		return result;
+		return result.toString();
 	}
 
 	/**
@@ -92,6 +101,7 @@ public class LogAspect {
 	@AfterThrowing(throwing = "ex", value = "myMethod()")
 	public void doRecoveryActions(Throwable ex) {
 		logStr = "错误信息如下：[" + ex + "]";
+		ex.printStackTrace();
 		logger.error(logStr);
 	}
 

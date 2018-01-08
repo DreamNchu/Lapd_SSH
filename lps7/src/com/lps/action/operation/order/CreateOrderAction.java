@@ -6,7 +6,7 @@ import org.apache.logging.log4j.Logger;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.BasicManage;
 import com.lps.control.manage.CreateFailedException;
-import com.lps.control.manage.CreateOrderFailedException;
+import com.lps.control.manage.OrderManage;
 import com.lps.service.ServerOrderService;
 import com.lps.web.order.dto.CreateOrderDto;
 import com.opensymphony.xwork2.ActionSupport;
@@ -17,11 +17,7 @@ public class CreateOrderAction extends ActionSupport implements DataResult {
 
 	private CreateOrderDto createOrderDto;
 
-	private BasicManage orderManage;
-
-	private ServerOrderService serverOrderServiceImpl;
-
-	private String result;
+	private OrderManage orderManage;
 
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
@@ -47,28 +43,12 @@ public class CreateOrderAction extends ActionSupport implements DataResult {
 		
 	}
 
-	public BasicManage getOrderManage() {
+	public OrderManage getOrderManage() {
 		return orderManage;
 	}
 
-	public void setOrderManage(BasicManage orderManage) {
+	public void setOrderManage(OrderManage orderManage) {
 		this.orderManage = orderManage;
-	}
-
-	public ServerOrderService getServerOrderServiceImpl() {
-		return serverOrderServiceImpl;
-	}
-
-	public void setServerOrderServiceImpl(ServerOrderService serverOrderServiceImpl) {
-		this.serverOrderServiceImpl = serverOrderServiceImpl;
-	}
-
-	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
 	}
 
 	public CreateOrderDto getCreateOrderDto() {
@@ -82,5 +62,8 @@ public class CreateOrderAction extends ActionSupport implements DataResult {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
 }

@@ -14,8 +14,7 @@ import com.lps.action.jsonresult.DataResult;
 @Aspect
 @Component
 @Order(4)
-public class WriteDataAspect implements DataResult{
-
+public class WriteDataAspect {
 
 	/**
 	 * 前置通知：在某连接点之前执行的通知，但这个通知不能阻止连接点前的执行
@@ -23,7 +22,8 @@ public class WriteDataAspect implements DataResult{
 	 * @param jp
 	 *            连接点：程序执行过程中的某一行为
 	 */
-	@Pointcut("execution(public java.lang.String com.lps.action..*.*())")
+	@Pointcut("execution(public java.lang.String com.lps.action..*.*())"
+			+ "&&!execution(public java.lang.String com.lps.action..*.getResult())")
 	private void myMethod() {
 	}// 定义一个切入点
 
@@ -40,15 +40,15 @@ public class WriteDataAspect implements DataResult{
 	@After("myMethod()")
 	public void doAfter(JoinPoint jp) {
 		
-		basicMsg.writeInJsonData(result); //写入数据
-		basicMsg.regress(); //复原
+		DataResult.basicMsg.writeInJsonData(DataResult.result); //写入数据
+		DataResult.basicMsg.regress(); //复原
 		
 		String logStr = null;
 		logStr =  "\n\n类名:------>" + jp.getTarget().getClass().getName() 
 				+ "\n方法:------>" + jp.getSignature().getName()
-				+ "\n数据:------>" + result
+				+ "\n数据:------>" + DataResult.result
 				+ "\n";
+		
 		logger.info(logStr);
 	}
-
 }

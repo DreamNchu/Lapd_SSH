@@ -10,7 +10,8 @@ public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto{
 	public OrderDto(){
 	}
 
-	public void init(ServerOrder so) {
+	@SuppressWarnings("unchecked")
+	public OrderDto init(ServerOrder so) {
 		setOrderId(so.getId());
 		
 		if (so.getPayPath() != null)
@@ -46,70 +47,72 @@ public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto{
 		if (so.getPayTime() != null)
 			setPayTime(WorkDate.dateTimeToString(so.getPayTime()));
 		setOrderRemark(so.getOrderRemark());
+		
+		return this;
 	}
 	
 	private void setClockCategoryName(String clockCategory) {
-		map.put(clockCategoryName ,clockCategory);
+		put(clockCategoryName ,clockCategory);
 	}
 
 	private void setFinishTime(String finishTime) {
-		map.put(OrderDto.finishTime ,finishTime);
+		put(OrderDto.finishTime ,finishTime);
 	}
 
 	private void setInitTime(String initTime) {
-		map.put(OrderDto.initTime ,initTime);
+		put(OrderDto.initTime ,initTime);
 	}
 
 	private void setOrderId(String orderId) {
-		map.put(OrderDto.orderId ,orderId);
+		put(OrderDto.orderId ,orderId);
 	}
 
 	private void setOrderRemark(String orderRemark) {
-		map.put(OrderDto.orderRemark ,orderRemark);
+		put(OrderDto.orderRemark ,orderRemark);
 	}
 
 	private void setOrderStatusName(String orderStatusName) {
-		map.put(OrderDto.orderStatusName ,orderStatusName);
+		put(OrderDto.orderStatusName ,orderStatusName);
 	}
 
 	private void setPay(String pay) {
-		map.put(OrderDto.pay ,pay);
+		put(OrderDto.pay ,pay);
 	}
 
 	private void setPayPath(String payPath) {
-		map.put(OrderDto.payPath ,payPath);
+		put(OrderDto.payPath ,payPath);
 	}
 
 	private void setPayTime(String payTime) {
-		map.put(OrderDto.payTime ,payTime);
+		put(OrderDto.payTime ,payTime);
 	}
 
 	private void setPledgeName(String pledgeName) {
-		map.put(OrderDto.pledgeName ,pledgeName);
+		put(OrderDto.pledgeName ,pledgeName);
 	}
 
 	private void setRealName(String realName) {
-		map.put(OrderDto.realName ,realName);
+		put(OrderDto.realName ,realName);
 	}
 
 	private void setRealPay(String realPay) {
-		map.put(OrderDto.realPay ,realPay);
+		put(OrderDto.realPay ,realPay);
 	}
 
 	private void setReceiveTime(String receiveTime) {
-		map.put(OrderDto.receiveTime ,receiveTime);
+		put(OrderDto.receiveTime ,receiveTime);
 	}
 
 	private void setRoomName(String roomName) {
-		map.put(OrderDto.roomName ,roomName);
+		put(OrderDto.roomName ,roomName);
 	}
 
 	private void setServerItem(String serverItem) {
-		map.put(OrderDto.serverItemName ,serverItem);
+		put(OrderDto.serverItemName ,serverItem);
 	}
 
 	private void setWorkId(String workId) {
-		map.put(OrderDto.workId ,workId);
+		put(OrderDto.workId ,workId);
 	}
 /*
 	private String getUserName() {
@@ -119,5 +122,17 @@ public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto{
 	private void setUserName(String userName) {
 		this.userName = userName;
 	}*/
+
+	@Override
+	public ServerOrder generate() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public <K> K getNativeObject() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

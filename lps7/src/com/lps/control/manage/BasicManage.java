@@ -1,14 +1,18 @@
 package com.lps.control.manage;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.Map;
 
+import com.lps.model.User;
 import com.lps.model.basic.Entity;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
-import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
-import com.lps.web.page.dto.PageDto;
+import com.lps.util.PagePropertyNotInitException;
+import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.page.dto.BasicPageDto;
 
-public interface BasicManage {
+public interface BasicManage<T extends Entity>{
 
 	/**
 	 * 创建一个实体对象
@@ -17,7 +21,7 @@ public interface BasicManage {
 	 * @throws CreateFailedException 
 	 */
 	
-	<DTO extends BasicRequestMsgDto> void create(DTO dto) throws CreateFailedException;
+	<DTO extends BasicRequestDto<T>> void create(DTO dto) throws CreateFailedException;
 
 	/**
 	 * 根据dto 更新相应的model
@@ -25,11 +29,21 @@ public interface BasicManage {
 	 * @param orderUpdateDataDto
 	 * @throws FindByIdGetNullException 
 	 */
-	<DTO extends BasicRequestMsgDto> void update(DTO dto) throws FindByIdGetNullException;
+	<DTO extends BasicRequestDto<T>> void update(DTO dto) throws FindByIdGetNullException;
 
+	/**
+	 * 删除实体对象
+	 * @param id
+	 * @throws FindByIdGetNullException
+	 */
 	void delete(Serializable... id) throws FindByIdGetNullException;
 
-	Entity query(Serializable id) throws FindByIdGetNullException;
+	T query(Serializable id) throws FindByIdGetNullException;
 	
-	<DTO extends PageDto> PageBean<Entity> query(DTO dto) throws FindByIdGetNullException;
+	PageBean<T> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException;
+	
+	List<T> queryAll();
+	
+	List<T> queryIdByProperties(Map<String, Object> map);
+	
 }

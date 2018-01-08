@@ -6,6 +6,7 @@ import com.lps.model.WorkRank;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.WorkJson;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.workrank.dto.PageLinkTransformWorkRankDto;
 import com.lps.web.workrank.dto.WorkRankTableDto;
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,14 +27,8 @@ public class WorkRankAction extends ActionSupport implements DataResult{
 		this.workRankTableDto = workRankTableDto;
 	}
 
-	private String result;
-
 	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
+		return result.toString();
 	}
 
 	public WorkRankManage getWorkRankManage() {
@@ -45,6 +40,7 @@ public class WorkRankAction extends ActionSupport implements DataResult{
 	}
 	
 	private int page;
+	
 	
 	/**
 	 * 分页系统辅助类
@@ -75,28 +71,28 @@ public class WorkRankAction extends ActionSupport implements DataResult{
 	 */
 	public String viewWorkRankTable() throws PagePropertyNotInitException{
 		
+		basicMsg.setMsgDto(workRankTableDto);
 		if(page <= 0){
 			page = 1;
 		}
 		
 		PageBean<WorkRank> workRankPage = workRankManage.getWorkRankTable(page, null);
-		workRankTableDto.init(workRankPage, 
-				new PageLinkTransformWorkRankDto(),
-				pageLinkTransformWorkRankDto.getDomainName(),
-				Thread.currentThread().getStackTrace()[1].getMethodName());
-		
-		writeInResult(workRankTableDto);
-System.out.println(result);
+		try {
+			workRankTableDto.init(workRankPage, 
+					pageLinkTransformWorkRankDto,
+					Thread.currentThread().getStackTrace()[1].getMethodName());
+		} catch (DtoInitException e) {
+			e.printStackTrace();
+			basicMsg.setErrorMsg(e.getMessage());
+		}
+		basicMsg.setDefaultSuccessMsg();
+//		writeInResult(workRankTableDto);
+//System.out.println(result);
 		return SUCCESS;
 	}
 	
 	public String workRankPage(){
 		return SUCCESS;
-	}
-	
-	@Override
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
 	}
 	
 }

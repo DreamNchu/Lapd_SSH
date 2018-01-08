@@ -37,6 +37,9 @@ public class AdminStatusAction extends ActionSupport implements SessionAware, Da
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
 
 }

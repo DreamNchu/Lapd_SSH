@@ -1,10 +1,13 @@
 package com.lps.web.basicmsg.dto;
 
-public abstract class BasicRequestMsgDto{
+import com.lps.model.basic.Entity;
+import com.lps.web.dto.BasicRequestDto;
+
+public abstract class BasicRequestMsgDto<T extends Entity> implements BasicRequestDto<T>{
 
 	@SuppressWarnings("unchecked")
-	public <T> T getNativeObject(){
-		return (T)this;
+	public<K> K getNativeObject(){
+		return (K)this;
 	}
 	
 }

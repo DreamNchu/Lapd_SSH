@@ -5,16 +5,18 @@ import java.util.List;
 
 import com.lps.model.PayPath;
 import com.lps.model.basic.Entity;
-import com.lps.web.dto.TableInitDto;
-
+import com.lps.web.annotation.dto.DtoName;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.basicmsg.dto.TableInitDto;
+@DtoName("payPaths")
 public class TPayPathDto extends ArrayList<PayPathDto> implements TableInitDto<PayPath>{
 
 	private static final long serialVersionUID = 6746457713473621005L;
 
-	public static final String name = "payPaths";
+//	public static final String name = "payPaths";
 
 	@Override
-	public void init(List<PayPath> lists) {
+	public void init(List<PayPath> lists) throws DtoInitException {
 		// TODO Auto-generated method stub
 		for (Entity entity : lists) {
 			PayPathDto dto = new PayPathDto();
@@ -22,9 +24,10 @@ public class TPayPathDto extends ArrayList<PayPathDto> implements TableInitDto<P
 			add(dto);
 		}
 	}
-	@Override
+	
+/*	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return name;
-	}
+	}*/
 }

@@ -9,6 +9,7 @@ import java.util.Set;
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.basic.BasicDAO;
 import com.lps.dao.impl.ClockCategoryDAOImpl;
+import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.ClockCategory;
 import com.lps.model.ServerOrder;
 import com.lps.model.basic.BasicModel;
@@ -95,7 +96,7 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	@Override
 	public ClockCategory findById(java.io.Serializable id) throws FindByIdGetNullException {
 		ClockCategory clockCategory = dao.findById(id);
-		if(clockCategory != null){
+		if(clockCategory == null){
 			throw new FindByIdGetNullException("根据主键id未找到钟点类型对象");
 		}
 		return dao.findById(id);
@@ -269,10 +270,10 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	}
 	
 	@Override
-	public PropertyRange<ClockCategory> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<ClockCategory> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<ClockCategory> pr = new PropertyRange<>();
 		
-		pr.setName(BasicDAO.ID);
+		pr.setName(ServerOrderDAOImpl.CLOCK_CATEGORY);
 		pr.setMinValue(findById(id1));
 		pr.setMaxValue(pr.getMinValue());
 		

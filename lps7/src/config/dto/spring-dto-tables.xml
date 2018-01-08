@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-2.5.xsd
+           http://www.springframework.org/schema/tx
+		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+           http://www.springframework.org/schema/aop
+           http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
+
+	default-init-method="initMap" default-lazy-init="true">
+
+	<bean id="orderTableDataDto" class="com.lps.web.order.dto.OrderTableDto"
+		scope="prototype">
+		<property name="orders" ref="tOrderDto">
+		</property>
+	</bean>
+
+	<bean id="initCreateOrderDto" class="com.lps.web.order.dto.InitCreateOrderDto"
+		scope="prototype">
+		<property name="rooms" ref="tRoomDto"></property>
+		<property name="serverItems" ref="tServerItemDto"></property>
+		<property name="users" ref="tUserDto"></property>
+	</bean>
+
+	<bean id="initBasicUpdateDataDto" class="com.lps.web.order.dto.InitBasicUpdateDataDto"
+		scope="prototype">
+		<property name="users" ref="tUserDto"></property>
+		<property name="rooms" ref="tRoomDto"></property>
+		<property name="statuses" ref="tOrderStatusDto">
+		</property>
+		<property name="clockCategorys" ref="tClockCategoryDto">
+		</property>
+
+		<property name="payPaths" ref="tPayPathDto">
+		</property>
+		<property name="orderDto" ref="orderDto">
+		</property>
+
+	</bean>
+
+	<bean id="workRankTableDto" class="com.lps.web.workrank.dto.WorkRankTableDto"
+		scope="prototype">
+		<property name="workRanks" ref="tWorkRankDto">
+		</property>
+	</bean>
+
+	<bean id="userTableDataDto" class="com.lps.web.user.dto.UserTableDataDto"
+		scope="prototype">
+		<property name="users" ref="tUserDto">
+		</property>
+	</bean>
+	
+	<bean id="orderChartDto" scope="prototype" class="com.lps.web.orderchart.dto.OrderChartDto">
+		<property name="income"><list></list></property>
+		<property name="orderCount"><list></list></property>
+		<property name="orderRankCount"><list></list></property>
+		<property name="orderSpotCount"><list></list></property>
+	</bean>
+	
+	<bean id="orderChartInitDto" scope="prototype" class="com.lps.web.orderchart.dto.OrderChartInitDto">
+		<property name="users" ref="tUserDto">
+		</property>
+	</bean>
+
+</beans>

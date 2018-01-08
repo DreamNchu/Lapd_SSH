@@ -77,7 +77,7 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	@Override
 	public WorkStatus findById(java.io.Serializable id) throws FindByIdGetNullException {
 		WorkStatus workStatus = dao.findById(id);
-		if(workStatus != null){
+		if(workStatus == null){
 			throw new FindByIdGetNullException("根据主键id未找到工作状态对象");
 		}
 		return dao.findById(id);
@@ -166,7 +166,7 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 		return dao.findIdByProperty(map);
 	}
 	
-	@Override
+/*	@Override
 	public PropertyRange<WorkStatus> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException {
 		PropertyRange<WorkStatus> pr = new PropertyRange<WorkStatus>();
 		
@@ -175,7 +175,7 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 		pr.setMaxValue(pr.getMinValue());
 		
 		return pr;
-	}
+	}*/
 
 	@Override
 	public void deleteAll(Collection<WorkStatus> entities) {

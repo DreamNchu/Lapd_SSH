@@ -11,5 +11,8 @@ public class PayOrderPageAction extends ActionSupport implements DataResult{
 	public String payOrderPage(){
 		return SUCCESS;
 	}
-
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
 }

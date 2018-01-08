@@ -2,9 +2,10 @@ package com.lps.web.order.dto;
 
 import java.util.Set;
 
+import com.lps.model.ServerOrder;
 import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
 
-public class CreateOrderDto extends BasicRequestMsgDto {
+public class CreateOrderDto extends BasicRequestMsgDto<ServerOrder> {
 	
 	private int createWays;
 	
@@ -54,6 +55,12 @@ public class CreateOrderDto extends BasicRequestMsgDto {
 
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
+	}
+
+	@Override
+	public ServerOrder generate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 /*	public int getServerItemId() {

@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lps.model.ClockCategory;
 import com.lps.service.impl.ClockCategoryServiceImpl;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
 
 public class ClockCategoryServiceImplTest {
@@ -48,7 +49,7 @@ public class ClockCategoryServiceImplTest {
 	}
 
 	@Test
-	public void testFindById() {
+	public void testFindById() throws FindByIdGetNullException {
 		ClockCategory cc = as.findById(1);
 		System.out.println(cc.getClockCategory());
 //		assertEquals(null, cc.getServerOrders());
@@ -100,19 +101,19 @@ public class ClockCategoryServiceImplTest {
 	}
 
 	@Test
-	public void testFindOrderByClockCategory() throws PagePropertyNotInitException {
+	public void testFindOrderByClockCategory() throws PagePropertyNotInitException, FindByIdGetNullException {
 		ClockCategory cc = as.findById(1);
 		assertEquals(7, as.findAllOrdersByPage(cc, 1).getList().size());
 	}
 	
 	@Test
-	public void testFindAllOrders() throws PagePropertyNotInitException {
+	public void testFindAllOrders() throws PagePropertyNotInitException, FindByIdGetNullException {
 		ClockCategory cc = as.findById(1);
 		assertEquals(7, as.findAllOrders(cc).size());
 	}
 	
 	@Test
-	public void testFindOrdersCountByThisType(){
+	public void testFindOrdersCountByThisType() throws FindByIdGetNullException{
 		ClockCategory cc = as.findById(1);
 		assertEquals(7, as.findOrdersCountByThisType(cc));
 	}

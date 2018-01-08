@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.lps.model.ServerOrder;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
@@ -56,5 +57,5 @@ public interface BasicForServerOrderService<ENTITY> extends BasicService<ENTITY>
 	 */
 	List<ServerOrder> findThisYearOrders(ENTITY t);
 	
-	
+	PropertyRange<ENTITY> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException;
 }

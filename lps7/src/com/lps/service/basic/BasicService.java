@@ -59,5 +59,10 @@ public interface BasicService<ENTITY> {
 	 */
 	<K> List<K> findIdByProperty(Map<String , Object> map);
 	
-	PropertyRange<ENTITY> createPropertyRangeById(java.io.Serializable id1) throws FindByIdGetNullException;
+	/**
+	 * 根据id的创建实体范围
+	 * @param id1
+	 * @return
+	 * @throws FindByIdGetNullException
+	 */
 }

@@ -1,4 +1,4 @@
-package com.lps.web.dto;
+package com.lps.web.basicmsg.dto;
 
 import java.util.List;
 
@@ -8,6 +8,6 @@ public interface TableInitDto<T extends Entity> {
 
 	public void init(List<T> lists) throws DtoInitException;
 	
-	public String getName();
+//	public String getName();
 	
 }

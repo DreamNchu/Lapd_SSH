@@ -1,4 +1,5 @@
 function receiveRank(rankData) {
+//	alert(1);
     var rankTable=document.getElementById("rankTable");
     deleteTr();
   /*  var rankData={
@@ -8,14 +9,16 @@ function receiveRank(rankData) {
         "transform":[{"back":"javascript:void(0)","front":"javascript:void(0)"}],
         "number":[{"key":"javascript:void(0)","value":"1"},{"key":"javascript:void(0)","value":"2"}]
     }*/
+   
     recivePage(rankData);
-    for(i in rankData.workRankData){
+
+    for(i in rankData.workRanks){
         var rankTr=document.createElement("tr");
-        rankTr.innerHTML="<td>"+rankData.workRankData[i].index+"</td>"+
-            "<td>"+rankData.workRankData[i].workId+"</td>"+
-            "<td>"+rankData.workRankData[i].realName+"</td>"+
-            "<td>"+rankData.workRankData[i].rankNum+"</td>"+
-            "<td>"+rankData.workRankData[i].spotNum+"</td>";
+        rankTr.innerHTML="<td>"+ (parseInt(i)+1) +"</td>"+
+            "<td>"+rankData.workRanks[i].workId+"</td>"+
+            "<td>"+rankData.workRanks[i].realName+"</td>"+
+            "<td>"+rankData.workRanks[i].rankNum+"</td>"+
+            "<td>"+rankData.workRanks[i].spotNum+"</td>";
         rankTable.appendChild(rankTr);
     }
 }

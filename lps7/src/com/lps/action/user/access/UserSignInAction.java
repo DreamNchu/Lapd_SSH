@@ -1,12 +1,13 @@
 package com.lps.action.user.access;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import com.lps.action.jsonresult.DataResult;
+import com.lps.control.manage.UserManage;
+import com.lps.dao.impl.UserDAOImpl;
 import com.lps.model.User;
-import com.lps.service.UserService;
-import com.lps.util.WorkJson;
 import com.lps.web.access.dto.UserSignInDto;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -17,31 +18,28 @@ public class UserSignInAction extends ActionSupport implements DataResult{
 	 */
 	private static final long serialVersionUID = -1335015386952489920L;
 
-	private UserService userServiceImpl;
-	
 	private UserSignInDto userSignInDto;
 	
+	private UserManage userManage;
 	
-	private String result;
+	public UserManage getUserManage() {
+		return userManage;
+	}
+
+	public void setUserManage(UserManage userManage) {
+		this.userManage = userManage;
+	}
+
+
+//	private String result;
 
 	public String getResult() {
-		return result;
+		return result.toString();
 	}
 
-	public void setResult(String result) {
-		this.result = result;
-	}
-
-	public UserService getUserServiceImpl() {
-		return userServiceImpl;
-	}
 
 	public UserSignInDto getUserSignInDto() {
 		return userSignInDto;
-	}
-
-	public void setUserServiceImpl(UserService userServiceImpl) {
-		this.userServiceImpl = userServiceImpl;
 	}
 
 	public void setUserSignInDto(UserSignInDto userSignInDto) {
@@ -58,21 +56,25 @@ public class UserSignInAction extends ActionSupport implements DataResult{
 	 * <p>
 	 */
 	public String signIn() {
+//		basicMsg.setMsgDto(msgDto);
 		try {
 			Random random = new Random();
 			userSignInDto.setWorkId(random.nextInt(1000) + 10000);
 			userSignInDto.setRegisterTime(new Date());
-			User user = userSignInDto.buildModel();
-			userServiceImpl.save(user);
+//			User user = userSignInDto.buildModel();
+			userManage.create(userSignInDto);
+//			userServiceImpl.save(user);
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put(MSG, false);
-			writeInResult(map);
-			return SUCCESS;
+			basicMsg.setErrorMsg(e.getMessage());
+//			map.put(MSG, false);
+//			writeInResult(map);
+//			return SUCCESS;
 		}
-		map.put(MSG, true);
-		writeInResult(map);
-System.out.println(result);
+		basicMsg.setDefaultSuccessMsg();
+//		map.put(MSG, true);
+//		writeInResult(map);
+//System.out.println(result);
 		return SUCCESS;
 	}
 	
@@ -82,19 +84,17 @@ System.out.println(result);
 	 * @return 字符串
 	 */
 	public String isExists(){
-		int id = userServiceImpl.findIdByUserName(userSignInDto.getUserName());
+		basicMsg.getMap().put(UserDAOImpl.USER_NAME, userSignInDto.getUserName());
+		List<User> lus = userManage.queryIdByProperties(basicMsg.getMap());
+//		int id = userServiceImpl.findIdByUserName(userSignInDto.getUserName());
 		User u = new User();
-		u.setId(id);
-		if(userServiceImpl.isExists(u))
+		if(lus!= null && lus.size() == 1){
 			return SUCCESS;
+		}
+//		u.setId(id);
+//		if(userServiceImpl.isExists(u))
 		return ERROR;
 	}
 	
 	
-	@Override
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
-	}
-	
-
 }

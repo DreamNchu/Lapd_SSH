@@ -1,6 +1,5 @@
 package com.lps.action.operation.user;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,11 +10,11 @@ import org.apache.struts2.interceptor.SessionAware;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.UserManage;
 import com.lps.model.User;
-import com.lps.service.UserService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
-import com.lps.util.WorkJson;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.user.dto.PageLinkTransformUserDto;
-import com.lps.web.user.dto.UserDataDto;
+import com.lps.web.user.dto.UserDto;
 import com.lps.web.user.dto.UserTableDataDto;
 import com.opensymphony.xwork2.ActionSupport;
 
@@ -41,7 +40,7 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 
 	private PageLinkTransformUserDto pageLinkTransformUserDto;
 
-	private UserDataDto userDataDto;
+	private UserDto userDataDto;
 
 	@Override
 	public String execute() throws Exception {
@@ -51,7 +50,7 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 	public String addUser() {
 
 		try {
-			userManage.save(userDataDto);
+			userManage.create(userDataDto);
 		} catch (Exception e) {
 			e.printStackTrace();
 			basicMsg.setErrorMsg("添加用户失败");
@@ -75,13 +74,13 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 	}
 
 	/**
-	 * 根据时间查看各种订单类型
+	 * 按页面查询的User
 	 * 
 	 * @return 根据请求返回不同的界面
 	 * @throws PagePropertyNotInitException
 	 */
 	public String queryBasicUser() throws PagePropertyNotInitException {
-		// 找到今日该状态下的所有订单
+		
 		basicMsg.setMsgDto(userTableDataDto);
 
 		if (pageLinkTransformUserDto != null) {
@@ -93,8 +92,13 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 		}
 		pageLinkTransformUserDto.setPage(Integer.parseInt(session.get("userPage") + ""));
 
-		userTableDataDto.init(userManage.basicQuery(pageLinkTransformUserDto.getPage()), pageLinkTransformUserDto,
-				pageLinkTransformUserDto.getDomainName(), Thread.currentThread().getStackTrace()[1].getMethodName());
+		try {
+			userTableDataDto.init(userManage.basicQuery(pageLinkTransformUserDto.getPage()), pageLinkTransformUserDto,
+					Thread.currentThread().getStackTrace()[1].getMethodName());
+		} catch (DtoInitException e) {
+			userTableDataDto.setErrorMsg(e.getMessage());
+			e.printStackTrace();
+		}
 
 		return SUCCESS;
 	}
@@ -105,64 +109,51 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 	 * @return
 	 */
 	public String queryUser() {
-		userDataDto = new UserDataDto();
+		
+//		userDataDto = new UserDataDto();
+		basicMsg.setMsgDto(userDataDto);
 		int id = stuffId.get(0);
-		userManage.addUser();
-		User user = userServiceImpl.findById(id);
-//		userManage.
-		userDataDto.init(user);
-		userTableDataDto.getUser().add(userDataDto);
-		result = WorkJson.toJsonDisableHtmlEscaping(userTableDataDto);
+		
+		User user;
+		try {
+			user = userManage.query(id);
+			userDataDto.init(user);
+		} catch (DtoInitException | FindByIdGetNullException e) {
+			e.printStackTrace();
+			userDataDto.setErrorMsg(e.getMessage());
+		}
+		
+		userTableDataDto.getUsers().add(userDataDto);
 
-		logger.debug(result);
 		return SUCCESS;
 	}
 
 	public String updateUser() {
-		Map<String, Object> map = new HashMap<>();
-		boolean isError = false;
+		basicMsg.setMsgDto(userDataDto);
+		
 		try {
-			userServiceImpl.update(userDataDto.update(userServiceImpl.findById(userDataDto.getId())));
+//			userDataDto.generate();
+			userManage.update(userDataDto);
+			
+//			userServiceImpl.update(userDataDto.update(userServiceImpl.findById(userDataDto.getId())));
 		} catch (Exception e) {
 			e.printStackTrace();
-			map.put(MSG, "更新用户数据失败");
-			isError = true;
+//			map.put(MSG, "更新用户数据失败");
+			basicMsg.setErrorMsg("更新用户数据失败");
+//			isError = true;
 		}
-		if (!isError)
-			map.put(MSG, "更新用户数据成功");
-		result = WorkJson.toJsonDisableHtmlEscaping(map);
+//		if (!isError)
+//			map.put(MSG, "更新用户数据成功");
+		basicMsg.setSuccessMsg("更新用户数据成功");
+//		result = WorkJson.toJsonDisableHtmlEscaping(map);
 		return SUCCESS;
 	}
 
-	public UserDataDto getUserDataDto() {
-		return userDataDto;
-	}
-
-	public void setUserDataDto(UserDataDto userDataDto) {
-		this.userDataDto = userDataDto;
-	}
-
-	public UserService getUserServiceImpl() {
-		return userServiceImpl;
-	}
-
-	public void setUserServiceImpl(UserService userServiceImpl) {
-		this.userServiceImpl = userServiceImpl;
-	}
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
-	@Override
-	public String getResult() {
-		return result;
-	}
-
-	@Override
-	public void setResult(String result) {
-		this.result = result;
-	}
 
 	public UserTableDataDto getUserTableDataDto() {
 		return userTableDataDto;
@@ -200,9 +191,8 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 	public void setStuffId(List<Integer> userId) {
 		this.stuffId = userId;
 	}
-
-	public void writeInResult(Object obj) {
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
+	@Override
+	public String getResult() {
+		return result.toString();
 	}
-
 }

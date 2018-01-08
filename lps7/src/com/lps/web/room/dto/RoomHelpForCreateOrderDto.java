@@ -1,8 +1,6 @@
 package com.lps.web.room.dto;
 
-import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
-
-public class RoomHelpForCreateOrderDto extends BasicRespondMsgDto /*implements BasicInitDto<RoomHelpForCreateOrderDto>*/ {
+public class RoomHelpForCreateOrderDto extends RoomDto /*implements BasicInitDto<RoomHelpForCreateOrderDto>*/ {
 	
 	private String roomName;
 	

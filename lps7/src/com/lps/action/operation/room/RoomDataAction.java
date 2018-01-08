@@ -9,6 +9,7 @@ import com.lps.model.Room;
 import com.lps.service.RoomService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.WorkJson;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.room.dto.NotRoomObjectException;
 import com.lps.web.room.dto.RoomHelpForCreateOrderDto;
 import com.lps.web.room.dto.RoomIdDto;
@@ -34,19 +35,23 @@ public class RoomDataAction extends ActionSupport implements DataResult{
 	/**
 	 * 查看工作状态的基本信息
 	 * @return
-	 * @throws NotRoomObjectException 
+	 * @throws Exception 
 	 */
-	public String viewWorkRoomData() throws NotRoomObjectException{
+	public String viewWorkRoomData() throws Exception{
 		basicMsg.setMsgDto(roomHelpForCreateOrderDto);
 		
 		Room room = null;
 		try {
 			room = roomManage.queryRoom(roomIdDto.getRoomId());
+			roomHelpForCreateOrderDto.init(room);
 		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+			roomHelpForCreateOrderDto.appendErrorMsg(e.getMessage());
+		} catch (DtoInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			roomHelpForCreateOrderDto.appendErrorMsg(e.getMessage());
 		}
-		roomHelpForCreateOrderDto.init(room);
 		return SUCCESS;
 	}
 	public RoomIdDto getRoomIdDto() {
@@ -75,5 +80,8 @@ public class RoomDataAction extends ActionSupport implements DataResult{
 	public void setRoomHelpForCreateOrderDto(RoomHelpForCreateOrderDto roomHelpForCreateOrderDto) {
 		this.roomHelpForCreateOrderDto = roomHelpForCreateOrderDto;
 	}
-
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
 }

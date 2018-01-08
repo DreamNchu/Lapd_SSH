@@ -3,8 +3,9 @@ package com.lps.web.access.dto;
 import java.util.Date;
 
 import com.lps.model.User;
+import com.lps.web.user.dto.UserDto;
 
-public class UserSignInDto {
+public class UserSignInDto extends UserDto{
 
 //	1.用户名
 //	2.密码

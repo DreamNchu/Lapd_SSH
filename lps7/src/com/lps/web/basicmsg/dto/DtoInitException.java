@@ -1,4 +1,4 @@
-package com.lps.web.dto;
+package com.lps.web.basicmsg.dto;
 
 public class DtoInitException extends Exception{
 

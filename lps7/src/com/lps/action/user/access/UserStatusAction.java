@@ -21,18 +21,12 @@ public class UserStatusAction extends ActionSupport
 
 	private UserService userServiceImpl;
 	
-	private String result;
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
 
 	public String getResult() {
-		return result;
-	}
-
-	public void setResult(String result) {
-		this.result = result;
+		return result.toString();
 	}
 
 	public UserService getUserServiceImpl() {
@@ -88,7 +82,7 @@ public class UserStatusAction extends ActionSupport
 				session.put("userName", userName);
 			}
 		} catch (Exception e) {
-			result = "账号或密码错误";
+			basicMsg.setErrorMsg("账号或密码错误");
 			return ERROR;
 		}
 		return SUCCESS;
@@ -110,11 +104,5 @@ public class UserStatusAction extends ActionSupport
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
-	@Override
-	public void writeInResult(Object obj){
-		result = WorkJson.toJsonDisableHtmlEscaping(obj);
-	}
-	
 
 }

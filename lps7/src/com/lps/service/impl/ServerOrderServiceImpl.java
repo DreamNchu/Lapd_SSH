@@ -133,7 +133,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	@Override
 	public ServerOrder findById(java.io.Serializable id) throws FindByIdGetNullException {
 		ServerOrder serverOrder = dao.findById(id);
-		if (serverOrder != null) {
+		if (serverOrder == null) {
 			throw new FindByIdGetNullException("根据主键id未找到订单对象");
 		}
 		return dao.findById(id);
@@ -322,7 +322,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 		dao.deleteAll(entities);
 	}
 
-	@Override
+	/*@Override
 	public PropertyRange<ServerOrder> createPropertyRangeById(java.io.Serializable id1)
 			throws FindByIdGetNullException {
 		PropertyRange<ServerOrder> pr = new PropertyRange<>();
@@ -332,5 +332,5 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 		pr.setMaxValue(pr.getMinValue());
 
 		return pr;
-	}
+	}*/
 }

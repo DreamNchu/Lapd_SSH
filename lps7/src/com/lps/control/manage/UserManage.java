@@ -1,17 +1,23 @@
 package com.lps.control.manage;
 
+import java.io.Serializable;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
+import com.lps.model.basic.Entity;
 import com.lps.service.UserService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
-import com.lps.web.user.dto.UserDataDto;
+import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
+import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.page.dto.BasicPageDto;
+import com.lps.web.user.dto.UserDto;
 
-public class UserManage {
+public class UserManage implements BasicManage<User>{
 
 	private UserService userServiceImpl;
 	
@@ -42,10 +48,6 @@ public class UserManage {
 		return userServiceImpl.findFields(t, fields);
 	}
 	
-	public void save(UserDataDto userDataDto){
-		userServiceImpl.save(userDataDto.generateUser());
-	}
-	
 	public void delete(Integer...ids) throws FindByIdGetNullException{
 		User[] users = new User[ids.length];
 		for (int i : ids) {
@@ -60,5 +62,49 @@ public class UserManage {
 
 	public void setUserServiceImpl(UserService userServiceImpl) {
 		this.userServiceImpl = userServiceImpl;
+	}
+
+	@Override
+	public <DTO extends BasicRequestDto<User>> void create(DTO dto) throws CreateFailedException {
+		userServiceImpl.save(dto.generate());
+	}
+
+	@Override
+	public void delete(Serializable... id) throws FindByIdGetNullException {
+		User[] users = new User[id.length]; 
+		int i = 0;
+		for (Serializable serializable : id) {
+			users[i ++] = userServiceImpl.findById(serializable);
+		}
+		userServiceImpl.deleteAll(Arrays.asList(users));
+	}
+
+	@Override
+	public User query(Serializable id) throws FindByIdGetNullException {
+		return userServiceImpl.findById(id);
+	}
+
+	@Override
+	public PageBean<User> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
+		// TODO Auto-generated method stub
+		return userServiceImpl.findByPage(page);
+	}
+
+	@Override
+	public List<User> queryAll() {
+		// TODO Auto-generated method stub
+		return userServiceImpl.findAll();
+	}
+
+	@Override
+	public <DTO extends BasicRequestDto<User>> void update(DTO dto) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<User> queryIdByProperties(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

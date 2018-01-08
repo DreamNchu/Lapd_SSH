@@ -1,9 +1,10 @@
 package com.lps.web.user.dto;
 
 import com.lps.model.User;
-import com.lps.web.dto.BasicInitDto;
+import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.dto.BasicResponseDto;
 
-public interface UserLibraryDto extends BasicInitDto<UserDto, User>{
+public interface UserLibraryDto<K> extends BasicRequestDto<User>, BasicResponseDto<User>{
 	
 	String stuffId = "stuffId";
 	String userName = "userName";
@@ -16,7 +17,8 @@ public interface UserLibraryDto extends BasicInitDto<UserDto, User>{
 	String avatar = "avatar";
 	String question = "question";
 	String answer = "answer";
-	String workStatus = "workStatus";
+	String workStatusName = "workStatusName";
+	String workStatusId = "workStatusId";
 	String registerTime = "registerTime";
 	String realName = "realName";
 	String IDCardNo = "IDCardNo";

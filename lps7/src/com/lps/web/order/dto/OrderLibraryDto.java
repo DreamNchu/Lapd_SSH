@@ -1,6 +1,10 @@
 package com.lps.web.order.dto;
 
-public interface OrderLibraryDto {
+import com.lps.model.ServerOrder;
+import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.dto.BasicResponseDto;
+
+public interface OrderLibraryDto extends BasicResponseDto<ServerOrder>, BasicRequestDto<ServerOrder>{
 
 	// 钟点类型
 	String clockCategoryName = "clockCategoryName";

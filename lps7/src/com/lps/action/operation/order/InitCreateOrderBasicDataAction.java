@@ -6,14 +6,16 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.lps.action.jsonresult.DataResult;
+import com.lps.control.manage.OrderManage;
 import com.lps.model.Room;
 import com.lps.model.ServerItem;
 import com.lps.model.User;
 import com.lps.service.RoomService;
 import com.lps.service.ServerItemService;
 import com.lps.service.UserService;
-import com.lps.util.WorkJson;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.order.dto.InitCreateOrderDto;
+import com.lps.web.order.dto.MapNotInitForClassPathException;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class InitCreateOrderBasicDataAction extends ActionSupport implements DataResult {
@@ -27,6 +29,16 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 	private ServerItemService serverItemServiceImpl;
 
 	private UserService userServiceImpl;
+	
+	private OrderManage orderManage;
+
+	public OrderManage getOrderManage() {
+		return orderManage;
+	}
+
+	public void setOrderManage(OrderManage orderManage) {
+		this.orderManage = orderManage;
+	}
 
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
@@ -41,16 +53,29 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 	 * 
 	 * @return
 	 */
+	@SuppressWarnings("unchecked")
 	public String initOrderData() {
 		List<Room> listRooms = roomServiceImpl.findAll();
 		List<ServerItem> listServerItems = serverItemServiceImpl.findAll();
 		List<User> lisUsers = userServiceImpl.findAll();
+		
+		try{
+			initCreateOrderDto.init(lisUsers, listRooms, listServerItems);
+		} catch (DtoInitException | MapNotInitForClassPathException e) {
+			e.printStackTrace();
+			initCreateOrderDto.setErrorMsg(e.getMessage() + "\n" + "初始化订单信息失败");
+		}
 
-		initCreateOrderDto.init(lisUsers, listRooms, listServerItems);
-
+//		String str = WorkJson.toJsonDisableHtmlEscaping(initCreateOrderDto);
+//		System.out.println(str);
+		
 		basicMsg.setMsgDto(initCreateOrderDto);
 		
 		return SUCCESS;
+	}
+	
+	public String getResult(){
+		return result.toString();
 	}
 
 	@Override

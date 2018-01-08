@@ -1,8 +1,9 @@
 package com.lps.web.order.dto;
 
+import com.lps.model.ServerOrder;
 import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
 
-public class OrderUpdateDataDto extends BasicRequestMsgDto{
+public class OrderUpdateDataDto extends BasicRequestMsgDto<ServerOrder>{
 	
 	private String orderId;
 	
@@ -94,6 +95,12 @@ public class OrderUpdateDataDto extends BasicRequestMsgDto{
 
 	public void setStuffId(int stuffId) {
 		this.stuffId = stuffId;
+	}
+
+	@Override
+	public ServerOrder generate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }
