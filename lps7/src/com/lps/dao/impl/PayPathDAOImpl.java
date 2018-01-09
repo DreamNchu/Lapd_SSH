@@ -209,11 +209,11 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	}
 	
 	@Override
-	public <K> PayPath findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> PayPath findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(PayPath.class)
-			.add(Restrictions.idEq(entity.getId()));
+			;if(cri != null) cri.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -242,7 +242,7 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+	public <K> List<K> findByProperty(Map<String, Object> map) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(PayPath.class);

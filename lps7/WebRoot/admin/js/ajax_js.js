@@ -9,7 +9,11 @@ function formSubmit(ajaxUrl, id) {
         data: $('#' + id).serialize(),
         success: function (data) {
             var strresult = JSON.parse(data);
-            alert(strresult.msg);
+            if(strresult.successMsg != null){
+            	alert(strresult.successMsg);
+            }else{
+            	alert(strresult.errorMsg);
+            }
         },
         error: function (data) {
             var strresult = JSON.parse(data);

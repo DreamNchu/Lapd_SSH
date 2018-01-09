@@ -44,6 +44,11 @@ public interface BasicManage<T extends Entity>{
 	
 	List<T> queryAll();
 	
-	List<T> queryIdByProperties(Map<String, Object> map);
+	/**
+	 * 精确查找，根据相应字段的值查找对象集合
+	 * @param map
+	 * @return
+	 */
+	List<T> queryByProperties(Map<String, Object> map);
 	
 }

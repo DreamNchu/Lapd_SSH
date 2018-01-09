@@ -210,11 +210,11 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	}
 	
 	@Override
-	public <K> Pledge findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Pledge findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Pledge.class)
-			.add(Restrictions.idEq(entity.getId()));
+			;if(cri != null) cri.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -243,7 +243,7 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+	public <K> List<K> findByProperty(Map<String, Object> map) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Pledge.class);

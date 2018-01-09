@@ -731,8 +731,8 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	}
 
 	@Override
-	public List<ServerOrder> queryIdByProperties(Map<String, Object> map) {
-		return serverOrderServiceImpl.findIdByProperty(map);
+	public List<ServerOrder> queryByProperties(Map<String, Object> map) {
+		return serverOrderServiceImpl.findByProperty(map);
 	}
 
 	

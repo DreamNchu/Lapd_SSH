@@ -149,11 +149,11 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 	}
 	
 	@Override
-	public <K> WorkStatus findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> WorkStatus findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkStatus.class)
-			.add(Restrictions.idEq(entity.getId()));
+			;if(cri != null) cri.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -182,7 +182,7 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+	public <K> List<K> findByProperty(Map<String, Object> map) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkStatus.class);

@@ -179,7 +179,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 
 	public String initChartOrders() {
 
-		basicMsg.setMsgDto(orderChartDto);
+		basicMsg.setMsgDto(orderChartInitDto);
 		try {
 			orderChartInitDto.init(orderManage.findAllUser());
 		} catch (DtoInitException | MapNotInitForClassPathException e) {
@@ -281,7 +281,12 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 			e.printStackTrace();
 		}
 
-		orderSingleDataDto.init(so);
+		try {
+			orderSingleDataDto.init(so);
+		} catch (DtoInitException e) {
+			e.printStackTrace();
+			orderSingleDataDto.setErrorMsg(e.getMessage());
+		}
 		return SUCCESS;
 	}
 

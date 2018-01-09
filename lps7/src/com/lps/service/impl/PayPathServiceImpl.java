@@ -218,7 +218,7 @@ public class PayPathServiceImpl implements PayPathService {
 	public String findPayPath(PayPath payPath) {
 		Map<String, Class<?>> map = new HashMap<>();
 		map.put(PayPathDAOImpl.PAY_PATH, String.class);
-		return dao.findFields(payPath, map).getPayPath();
+		return dao.findFieldsByModel(payPath, map).getPayPath();
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class PayPathServiceImpl implements PayPathService {
 	public int findIdByPayPath(String payPathProperty) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(PayPathDAOImpl.PAY_PATH, payPathProperty);
-		List<Integer> list = dao.findIdByProperty(map);
+		List<Integer> list = dao.findByProperty(map);
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
@@ -268,13 +268,13 @@ public class PayPathServiceImpl implements PayPathService {
 
 
 	@Override
-	public <K> PayPath findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
-		return dao.findFields(entity, fields);
+	public <K> PayPath findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFieldsByModel(entity, fields);
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return dao.findIdByProperty(map);
+	public <K> List<K> findByProperty(Map<String, Object> map) {
+		return dao.findByProperty(map);
 	}
 	
 	@Override

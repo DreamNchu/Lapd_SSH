@@ -218,7 +218,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	public String findOrderStatus(OrderStatus orderStatus) {
 		Map<String, Class<?>> map = new HashMap<>();
 		map.put(OrderStatusDAOImpl.ORDER_STATUS, String.class);
-		return dao.findFields(orderStatus, map).getOrderstatus();
+		return dao.findFieldsByModel(orderStatus, map).getOrderstatus();
 	}
 
 	/**
@@ -228,7 +228,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	public int findIdByOrderStatus(String orderStatusProperty) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(OrderStatusDAOImpl.ORDER_STATUS, orderStatusProperty);
-		List<Integer> list = dao.findIdByProperty(map);
+		List<Integer> list = dao.findByProperty(map);
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
@@ -267,13 +267,13 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public <K> OrderStatus findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
-		return dao.findFields(entity, fields);
+	public <K> OrderStatus findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFieldsByModel(entity, fields);
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return dao.findIdByProperty(map);
+	public <K> List<K> findByProperty(Map<String, Object> map) {
+		return dao.findByProperty(map);
 	}
 
 	@Override

@@ -277,13 +277,13 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public <K> Room findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
-		return dao.findFields(entity, fields);
+	public <K> Room findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFieldsByModel(entity, fields);
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return dao.findIdByProperty(map);
+	public <K> List<K> findByProperty(Map<String, Object> map) {
+		return dao.findByProperty(map);
 	}
 	@Override
 	public PropertyRange<Room> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {

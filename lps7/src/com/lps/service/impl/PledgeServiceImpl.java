@@ -199,7 +199,7 @@ public class PledgeServiceImpl implements PledgeService {
 	public String findPledge(Pledge pledge) {
 		Map<String, Class<?>> map = new HashMap<>();
 		map.put(PledgeDAOImpl.PLEDGE, String.class);
-		return dao.findFields(pledge, map).getName();
+		return dao.findFieldsByModel(pledge, map).getName();
 	}
 
 	/**
@@ -209,7 +209,7 @@ public class PledgeServiceImpl implements PledgeService {
 	public int findIdByPledge(String pledgeProperty) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(PledgeDAOImpl.PLEDGE, pledgeProperty);
-		List<Integer> list = dao.findIdByProperty(map);
+		List<Integer> list = dao.findByProperty(map);
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
@@ -248,13 +248,13 @@ public class PledgeServiceImpl implements PledgeService {
 	}
 
 	@Override
-	public <K> Pledge findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
-		return dao.findFields(entity, fields);
+	public <K> Pledge findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFieldsByModel(entity, fields);
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return dao.findIdByProperty(map);
+	public <K> List<K> findByProperty(Map<String, Object> map) {
+		return dao.findByProperty(map);
 	}
 
 	@Override

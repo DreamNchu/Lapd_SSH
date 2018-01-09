@@ -5,20 +5,20 @@ function showdata(userData) {
     var allPage=document.getElementById("allPage");
     var currentPage=document.getElementById("currentPage");
     var i;
-    for(i in userData.user){
+    for(i in userData.users){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td><input type='checkbox' name='stuffId' value="+userData.user[i].id+"></td>"+
-            "<td>"+userData.user[i].workId+"</td>"+
-            "<td>"+userData.user[i].realName+"</td>"+
-            "<td>"+userData.user[i].userName+"</td>"+
-            "<td>"+userData.user[i].birthday+"</td>"+
-            "<td>"+userData.user[i].telephonePhone+"</td>"+
-            "<td>"+userData.user[i].email+"</td>"+
-            "<td>"+userData.user[i].address+"</td>"+
-            "<td>"+userData.user[i].question+"</td>"+
-            "<td>"+userData.user[i].answer+"</td>"+
-            "<td>"+userData.user[i].registerTime+"</td>"+
-            "<td>"+userData.user[i].IDCardNo+"</td>";
+        sTr.innerHTML="<td><input type='checkbox' name='stuffId' value="+userData.users[i].id+"></td>"+
+            "<td>"+userData.users[i].workId+"</td>"+
+            "<td>"+userData.users[i].realName+"</td>"+
+            "<td>"+userData.users[i].userName+"</td>"+
+            "<td>"+userData.users[i].birthday+"</td>"+
+            "<td>"+userData.users[i].telephonePhone+"</td>"+
+            "<td>"+userData.users[i].email+"</td>"+
+            "<td>"+userData.users[i].address+"</td>"+
+            "<td>"+userData.users[i].question+"</td>"+
+            "<td>"+userData.users[i].answer+"</td>"+
+            "<td>"+userData.users[i].registerTime+"</td>"+
+            "<td>"+userData.users[i].IDCardNo+"</td>";
         dataTable.appendChild(sTr);
     }
     allCount.innerHTML=userData.page[0].allCount;

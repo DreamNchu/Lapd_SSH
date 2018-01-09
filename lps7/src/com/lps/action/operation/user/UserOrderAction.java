@@ -65,6 +65,9 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			orderSingleDataDto.setErrorMsg(e.getMessage());
+		} catch (DtoInitException e) {
+			e.printStackTrace();
+			orderSingleDataDto.setErrorMsg(e.getMessage());
 		}
 		orderSingleDataDto.setDefaultSuccessMsg();
 		return SUCCESS;

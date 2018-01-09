@@ -78,7 +78,7 @@ public class UserDto extends BasicRespondMsgDto implements UserLibraryDto<UserDt
 			put(IDCardNo, user.getIDCardNo());
 		}
 		
-		if(user.getRealName() != null) {
+		if(user.getRealName() != null){
 			put(realName, user.getRealName());
 		}
 		return this;

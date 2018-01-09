@@ -202,11 +202,11 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	}
 	
 	@Override
-	public <K> WorkRank findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> WorkRank findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkRank.class)
-			.add(Restrictions.idEq(entity.getId()));
+			;if(cri != null) cri.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -235,7 +235,7 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+	public <K> List<K> findByProperty(Map<String, Object> map) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkRank.class);

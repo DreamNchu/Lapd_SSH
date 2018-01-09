@@ -85,7 +85,7 @@ public class UserSignInAction extends ActionSupport implements DataResult{
 	 */
 	public String isExists(){
 		basicMsg.getMap().put(UserDAOImpl.USER_NAME, userSignInDto.getUserName());
-		List<User> lus = userManage.queryIdByProperties(basicMsg.getMap());
+		List<User> lus = userManage.queryByProperties(basicMsg.getMap());
 //		int id = userServiceImpl.findIdByUserName(userSignInDto.getUserName());
 		User u = new User();
 		if(lus!= null && lus.size() == 1){

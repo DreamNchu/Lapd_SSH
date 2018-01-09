@@ -195,7 +195,7 @@ public class AdminServiceImpl implements AdminService {
 	public <T> String findPassword(BasicModel<T> admin) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
 		map.put(AdminDAOImpl.PASSWORD, String.class);
-		Admin ad = dao.findFields(admin, map);
+		Admin ad = dao.findFieldsByModel(admin, map);
 		if (ad != null) {
 			return ad.getPassword();
 		}
@@ -209,21 +209,21 @@ public class AdminServiceImpl implements AdminService {
 	public int findIdByUserName(String name) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(AdminDAOImpl.USER_NAME, name);
-		List<Object> list = dao.findIdByProperty(map);
+		List<Object> list = dao.findByProperty(map);
 		 if(list != null && list.size() > 0){
-			return (int) dao.findIdByProperty(map).get(0);
+			return (int) dao.findByProperty(map).get(0);
 		 }
 		 return NOT_EXISTS;
 	}
 	
 	@Override
-	public <K> Admin findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
-		return dao.findFields(entity, fields);
+	public <K> Admin findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFieldsByModel(entity, fields);
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return dao.findIdByProperty(map);
+	public <K> List<K> findByProperty(Map<String, Object> map) {
+		return dao.findByProperty(map);
 	}
 	
 	/*@Override

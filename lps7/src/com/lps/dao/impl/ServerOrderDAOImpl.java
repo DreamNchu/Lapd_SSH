@@ -317,11 +317,14 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 	}
 	
 	@Override
-	public <K> ServerOrder findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> ServerOrder findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
-		Criteria cri = session.createCriteria(ServerOrder.class)
-			.add(Restrictions.idEq(entity.getId()));
+		Criteria cri = session.createCriteria(ServerOrder.class);
+		
+		if(entity != null)		
+			cri.add(Restrictions.idEq(entity.getId()));
+		
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -354,7 +357,7 @@ public class ServerOrderDAOImpl  implements ServerOrderDAO{
 //	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+	public <K> List<K> findByProperty(Map<String, Object> map) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(ServerOrder.class);

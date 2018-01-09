@@ -33,9 +33,7 @@ public interface OrderLibraryDto extends BasicResponseDto<ServerOrder>, BasicReq
 	String payTime = "payTime";
 	// 所押物品名字
 	String pledgeName = "pledgeName";
-	// 真实姓名
-	String realName = "realName";
-	// // 员工姓名
+
 	// String userName;
 	// 实际支付
 	String realPay = "realPay";
@@ -43,9 +41,20 @@ public interface OrderLibraryDto extends BasicResponseDto<ServerOrder>, BasicReq
 	String receiveTime = "receiveTime";
 	// 房间名字
 	String roomName = "roomName";
-	// 房间类型对应服务类型
-	String serverItemName = "serverItemName";
+	// 服务类型
+	
+	String serverItem = "serverItem";
+	
+//	String serverItemName = "serverItemName";
+	
+//	String serverItemId = "serverItemId";
+	
+	String stuff = "stuff";
+	
 	// 工号
-	String workId = "workId";
+//	String workId = "workId";
+	
+	// 真实姓名
+//	String realName = "realName";
 	
 }

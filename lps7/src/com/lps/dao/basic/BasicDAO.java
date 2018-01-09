@@ -82,14 +82,14 @@ public interface BasicDAO<T> {
 	 * @param fields 字段名称集合
 	 * @return 返回所需要字段对应的对象
 	 */
-	<K> T findFields(BasicModel<K> entity, Map<String, Class<?>> fields);
+	<K> T findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields);
 	
 	/**
 	 * 根据属性名获取id
 	 * @param map 属性的名字和值
 	 * @return
 	 */
-	<K> List<K> findIdByProperty(Map<String , Object> map);
+	<K> List<K> findByProperty(Map<String , Object> map);
 		
 
 }

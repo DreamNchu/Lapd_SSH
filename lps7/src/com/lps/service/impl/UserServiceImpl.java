@@ -278,14 +278,14 @@ public class UserServiceImpl implements UserService {
 	public <T> String findPassword(BasicModel<T> user) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
 		map.put(UserDAOImpl.PASSWORD, String.class);
-		return dao.findFields(user, map).getPassword();
+		return dao.findFieldsByModel(user, map).getPassword();
 	}
 
 	@Override
 	public int findIdByUserName(String name) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(UserDAOImpl.USER_NAME, name);
-		List<Integer> list = dao.findIdByProperty(map);
+		List<Integer> list = dao.findByProperty(map);
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		throw new UserNotExistsException("找不到改用户对象");
@@ -312,13 +312,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public <K> User findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
-		return dao.findFields(entity, fields);
+	public <K> User findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFieldsByModel(entity, fields);
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return dao.findIdByProperty(map);
+	public <K> List<K> findByProperty(Map<String, Object> map) {
+		return dao.findByProperty(map);
 	}
 	public PropertyRange<User> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 		

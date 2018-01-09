@@ -50,7 +50,7 @@ function waitingReceive(reciveOrder) {
         var sTr=document.createElement("tr");
         sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
             "<td>"+reciveOrder.orders[i].orderId+"</td>"+
-            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].roomName+"</td>"+
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
@@ -76,7 +76,7 @@ function servicing(reciveOrder) {
         var sTr=document.createElement("tr");
         sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
             "<td>"+reciveOrder.orders[i].orderId+"</td>"+
-            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].roomName+"</td>"+
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
@@ -103,7 +103,7 @@ function suspend(reciveOrder) {
         var sTr=document.createElement("tr");
         sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
             "<td>"+reciveOrder.orders[i].orderId+"</td>"+
-            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].roomName+"</td>"+
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
@@ -129,7 +129,7 @@ function invalid(reciveOrder) {
         var sTr=document.createElement("tr");
         sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
             "<td>"+reciveOrder.orders[i].orderId+"</td>"+
-            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].roomName+"</td>"+
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
@@ -158,7 +158,7 @@ function waitingPay(reciveOrder) {
         var sTr=document.createElement("tr");
         sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
             "<td>"+reciveOrder.orders[i].orderId+"</td>"+
-            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].roomName+"</td>"+
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
@@ -190,7 +190,7 @@ function finish(reciveOrder) {
         var sTr=document.createElement("tr");
         sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
             "<td>"+reciveOrder.orders[i].orderId+"</td>"+
-            "<td>"+reciveOrder.orders[i].room+"</td>"+
+            "<td>"+reciveOrder.orders[i].roomName+"</td>"+
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
@@ -228,8 +228,8 @@ function linkRequest(linkHref) {
     var f = $('.statusId').attr("key");
 //    alert(f);
     var reciveOrder={
-        "orders":[{"orderId":"orderId3","room":"room1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","serverItem":"serverItem1,"}
-            ,{"orderId":"orderId2","room":"room2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","serverItem":"serverItem2,"}]
+        "orders":[{"orderId":"orderId3","roomName":"roomName1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","serverItem":"serverItem1,"}
+            ,{"orderId":"orderId2","roomName":"roomName2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","serverItem":"serverItem2,"}]
         , "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
         "transform":[{"back":"TestHref","front":"TestHref"}],
         "number":[{"value":"1","link":"TestHref"},{"value":"2","link":"TestHref"},{"value":"3","link":"TestHref"},{"value":"4","link":"TestHref"}]

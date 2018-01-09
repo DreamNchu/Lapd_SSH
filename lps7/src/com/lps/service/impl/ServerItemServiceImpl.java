@@ -118,27 +118,27 @@ public class ServerItemServiceImpl implements ServerItemService {
 	public String findServerItem(ServerItem serverItem) {
 		Map<String, Class<?>> map = new HashMap<>();
 		map.put(ServerItemDAOImpl.SERVER_ITEM, String.class);
-		return dao.findFields(serverItem, map).getServerItem();
+		return dao.findFieldsByModel(serverItem, map).getServerItem();
 	}
 
 	@Override
 	public int findIdByServerItem(String roomCategoryProperty) {
 		Map<String, Object> map = new HashMap<>();
 		map.put(PledgeDAOImpl.PLEDGE, roomCategoryProperty);
-		List<Integer> list = dao.findIdByProperty(map);
+		List<Integer> list = dao.findByProperty(map);
 		if(list != null && list.size() > 0)
 			return list.get(0);
 		return NOT_EXISTS;
 	}
 
 	@Override
-	public <K> ServerItem findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
-		return dao.findFields(entity, fields);
+	public <K> ServerItem findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+		return dao.findFieldsByModel(entity, fields);
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
-		return dao.findIdByProperty(map);
+	public <K> List<K> findByProperty(Map<String, Object> map) {
+		return dao.findByProperty(map);
 	}
 	
 	/*@Override

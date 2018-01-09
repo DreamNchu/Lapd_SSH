@@ -225,7 +225,7 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 	}
 
 	@Override
-	public <K> OrderStatus findFields(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> OrderStatus findFieldsByModel(BasicModel<K> t, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(OrderStatus.class).add(Restrictions.idEq(t.getId()));
@@ -257,7 +257,7 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+	public <K> List<K> findByProperty(Map<String, Object> map) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(OrderStatus.class);

@@ -241,11 +241,11 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 	}
 	
 	@Override
-	public <K> Room findFields(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Room findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Room.class)
-			.add(Restrictions.idEq(entity.getId()));
+			;if(cri != null) cri.add(Restrictions.idEq(entity.getId()));
 		ProjectionList proList = Projections.projectionList();
 		
 		for(String field: fields.keySet()){
@@ -274,7 +274,7 @@ public class RoomDAOImpl implements RoomDAO , BasicForServerOrderDAO<Room, Integ
 	}
 
 	@Override
-	public <K> List<K> findIdByProperty(Map<String, Object> map) {
+	public <K> List<K> findByProperty(Map<String, Object> map) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Room.class);

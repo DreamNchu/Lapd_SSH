@@ -45,7 +45,7 @@ public class UserManage implements BasicManage<User>{
 	 * @return
 	 */
 	public User querySamePropety(BasicModel<Integer> t, Map<String, Class<?>> fields){
-		return userServiceImpl.findFields(t, fields);
+		return userServiceImpl.findFieldsByModel(t, fields);
 	}
 	
 	public void delete(Integer...ids) throws FindByIdGetNullException{
@@ -103,7 +103,7 @@ public class UserManage implements BasicManage<User>{
 	}
 
 	@Override
-	public List<User> queryIdByProperties(Map<String, Object> map) {
+	public List<User> queryByProperties(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return null;
 	}
