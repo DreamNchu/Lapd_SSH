@@ -117,6 +117,7 @@ public class ServerOrderDAOImpl implements ServerOrderDAO {
 	 */
 	@Override
 	public void delete(ServerOrder persistentInstance) {
+//System.out.println(persistentInstance.getRoom().getId());
 		hibernateTemplate.delete(persistentInstance);
 	}
 

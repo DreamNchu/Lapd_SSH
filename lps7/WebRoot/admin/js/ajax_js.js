@@ -56,6 +56,11 @@ function formSubmitWithEvent(ajaxUrl, id, func) {
         success: function (data) {
             var strresult = JSON.parse(data);
             //alert(strresult.msg);
+            if(strresult.errorMsg != null){
+            	alert(strresult.errorMsg);
+            }else{
+            	alert(strresult.successMsg);
+            }
             func();
         },
         error: function (data) {

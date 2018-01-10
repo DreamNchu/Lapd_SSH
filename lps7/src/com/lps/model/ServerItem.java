@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -46,7 +49,18 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	private Float price;
 	private Set<Room> rooms = new HashSet<Room>(0);
 
+/*	private Set<ServerOrder> serverOrders = new HashSet<>();
 	// Constructors
+
+	@ManyToMany(mappedBy="serverorderServeritems")
+//	@JoinTable(map)
+	public Set<ServerOrder> getServerOrders() {
+		return serverOrders;
+	}
+
+	public void setServerOrders(Set<ServerOrder> serverOrders) {
+		this.serverOrders = serverOrders;
+	}*/
 
 	/** default constructor */
 	/**
@@ -132,7 +146,7 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	 * <p>
 	 * @return 返回房间列表
 	 */
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "roomCategory")
+	@OneToMany(/*cascade = CascadeType.ALL,*/ fetch = FetchType.EAGER, mappedBy = "roomCategory")
 	public Set<Room> getRooms() {
 		return this.rooms;
 	}

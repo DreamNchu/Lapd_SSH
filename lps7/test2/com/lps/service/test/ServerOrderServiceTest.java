@@ -26,6 +26,7 @@ import com.lps.model.Room;
 import com.lps.model.ServerOrder;
 import com.lps.model.User;
 import com.lps.service.OrderStatusService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.service.impl.OrderStatusServiceImpl;
 import com.lps.service.impl.ServerOrderServiceImpl;
 import com.lps.util.PagePropertyNotInitException;
@@ -191,6 +192,13 @@ public class ServerOrderServiceTest {
 		map.put(ServerOrderDAOImpl.CLOCK_CATEGORY, ClockCategory.class);
 		ServerOrder soo = as.findFieldsByModel(so, map);
 		System.out.println(soo.getUser().getRealName());
+	}
+	
+	@Test
+	public void testDelete() throws FindByIdGetNullException{
+		ServerOrder so = as.findById("000901011201801102023330001");
+		System.out.println("so.getRoom().getId() = {" + so.getRoom().getId());
+		as.delete(so);
 	}
 
 }

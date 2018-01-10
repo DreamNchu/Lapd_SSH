@@ -57,7 +57,7 @@ public  class PayPath  implements java.io.Serializable ,ModelLinkServerOrder<Int
 	
  	@OneToMany(
  			cascade = CascadeType.ALL,
- 			fetch = FetchType.LAZY,
+ 			fetch = FetchType.EAGER,
  			mappedBy = "payPath")
  	public Set<ServerOrder> getServerOrders() {
  		return this.serverOrders;

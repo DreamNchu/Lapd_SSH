@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -36,6 +38,22 @@ public class Combo implements BasicModel<Integer>,java.io.Serializable, ModelLin
 	private String remark;
 	private Date beginTime;
 	private Date endTime;
+	
+/*	
+	private Set<ServerOrder> serverOrders = new HashSet<>();
+	// Constructors
+
+	@ManyToMany(mappedBy="serverorderCombos")
+	@JoinTable(name = "t_serverorder_combo",
+			joinColumns = {	@JoinColumn(name = "t_combo_id") },
+			inverseJoinColumns = {@JoinColumn(name = "t_serverorder_id") })
+	public Set<ServerOrder> getServerOrders() {
+		return serverOrders;
+	}
+
+	public void setServerOrders(Set<ServerOrder> serverOrders) {
+		this.serverOrders = serverOrders;
+	}*/
 	
 	private Set<ServerItem> comboServeritems = new HashSet<>();
 	

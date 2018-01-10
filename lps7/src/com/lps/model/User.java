@@ -515,7 +515,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 
 	@OneToMany(
 			cascade = CascadeType.MERGE,
-			fetch = FetchType.LAZY, 
+			fetch = FetchType.EAGER, 
 			mappedBy = "user")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;
@@ -564,7 +564,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	 * @see WorkRank
 	 * @return 返回工作排序
 	 */
-	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 
 	public WorkRank getWorkRank() {
 		return workRank;
@@ -577,7 +577,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	 * @see WorkStatus
 	 * @return 返回工作状态
 	 */
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.REFRESH)
 	@JoinColumn(name = "workStatus")
 	public WorkStatus getWorkStatus() {
 		return this.workStatus;

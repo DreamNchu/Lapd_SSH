@@ -55,8 +55,8 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	 * 删除ServerOrder实例
 	 */
 	@Override
-	public void delete(ServerOrder workStatus) {
-		dao.delete(workStatus);
+	public void delete(ServerOrder serverOrder) {
+		dao.delete(serverOrder);
 	}
 
 	/**

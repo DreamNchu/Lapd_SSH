@@ -128,7 +128,7 @@ public class WorkStatus implements java.io.Serializable, BasicModel<Integer> {
 	 * <p>
 	 * @return 返回员工表
 	 */
-    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="workStatus")
+    @OneToMany(cascade=CascadeType.ALL, fetch=FetchType.EAGER, mappedBy="workStatus")
     public Set<User> getUsers() {
         return this.users;
     }

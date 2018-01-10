@@ -42,7 +42,7 @@ public class Pledge implements java.io.Serializable,ModelLinkServerOrder<Integer
 	
 	@OneToMany(
 			cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY,
+			fetch = FetchType.EAGER,
 			mappedBy = "pledge")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;

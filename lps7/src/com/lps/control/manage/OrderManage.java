@@ -9,10 +9,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.Session;
+
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.OrderStatusDAO;
 import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.ClockCategory;
+import com.lps.model.Combo;
+import com.lps.model.Medicine;
 import com.lps.model.OrderStatus;
 import com.lps.model.PayPath;
 import com.lps.model.Room;
@@ -28,6 +32,7 @@ import com.lps.service.ServerOrderService;
 import com.lps.service.UserService;
 import com.lps.service.basic.BasicForServerOrderService;
 import com.lps.service.impl.FindByIdGetNullException;
+import com.lps.service.impl.ServerOrderServiceImpl;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
@@ -698,9 +703,42 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 		List<ServerOrder> sos = new ArrayList<ServerOrder>();
 		
 		for (Serializable  idOrder : idOrders) {
-			sos.add(serverOrderServiceImpl.findById(idOrder));
+//			ServerOrder so = new ServerOrder();
+//			so.setId(idOrder.toString());
+//			sos.add(so);
+//			sos.add(serverOrderService
+			ServerOrder so = serverOrderServiceImpl.findById(idOrder);
+//			Session session  = ((ServerOrderDAOImpl)((ServerOrderServiceImpl)serverOrderServiceImpl).getServerOrderDao()).getHibernateTemplate().getSessionFactory().getCurrentSession();
+//			session.beginTransaction();
+//			so = (ServerOrder) session.get(ServerOrder.class, idOrder);
+		/*	for(ServerItem si : so.getServerorderServeritems()){
+				for(ServerOrder s : si.getServerOrders()){
+					System.out.println("s.getId(): " + s.getId());
+				}
+				si.getServerOrders().remove(so);
+				for(ServerOrder s : si.getServerOrders()){
+					System.out.println("s.getId(): " + s.getId());
+				}
+			}
+			for(Medicine m : so.getServerorderMedicines()){
+				m.getServerOrders().remove(so);
+			}
+			for(Combo c : so.getServerorderCombos()){
+				c.getServerOrders().remove(so);
+			}*/
+			
+//			session.delete(so);
+//			session.getTransaction().commit();
+//			session.close();
+//			session.close();
+//			so.setRoom(null);
+//			so.setServerorderServeritems(null);
+//			so.setServerorderMedicines(null);
+//			so.setServerorderCombos(null);
+//			System.out.println(so.getServerorderCombos().size());
+			serverOrderServiceImpl.delete(so);
 		}
-		serverOrderServiceImpl.deleteAll(sos);
+//		serverOrderServiceImpl.deleteAll(sos);
 	}
 
 	@Override

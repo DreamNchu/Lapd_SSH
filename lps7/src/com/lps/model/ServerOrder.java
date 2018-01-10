@@ -17,8 +17,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.engine.spi.CascadeStyle;
-
 import com.lps.model.basic.BasicModel;
 
 /**
@@ -45,10 +43,10 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 
 	/**
 	 * 订单的服务项目
-	 */
+	 *//*
 	private Set<ServerItem> serverorderServeritems = new HashSet<>(0);
 
-	@ManyToMany(fetch=FetchType.LAZY,targetEntity=ServerItem.class,cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
 	@JoinTable(name = "t_serverorder_serveritem",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_serverItem_id") })
@@ -62,7 +60,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	
 	private Set<Combo> serverorderCombos = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "t_serverorder_combo",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_combo_id") })
@@ -77,7 +75,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 
 	private Set<Medicine> serverorderMedicines = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "t_serverorder_medicine",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_medicine_id") })
@@ -88,7 +86,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	public void setServerorderMedicines(Set<Medicine> serverorderMedicines) {
 		this.serverorderMedicines = serverorderMedicines;
 	}
-
+*/
 	/**
 	 * 基本属性
 	 */
@@ -211,7 +209,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 付费方式
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "payPathId")
 
 	public PayPath getPayPath() {
@@ -234,8 +232,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * @return 房间
 	 */
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "roomId", nullable = false)
-
+	@JoinColumn(name = "roomId")
 	public Room getRoom() {
 		return this.room;
 	}
@@ -255,7 +252,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 员工
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "stuffId", nullable = false)
 
 	public User getUser() {

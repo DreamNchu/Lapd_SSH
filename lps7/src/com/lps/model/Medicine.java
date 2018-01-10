@@ -1,12 +1,19 @@
 package com.lps.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
@@ -35,7 +42,17 @@ public class Medicine implements BasicModel<Integer>, java.io.Serializable ,Mode
 	private Integer inventory;
 	private Integer sales;
 //	private Set<TServerorderMedicine> TServerorderMedicines = new HashSet<TServerorderMedicine>(0);
+	/*private Set<ServerOrder> serverOrders = new HashSet<>();
+	
+	@ManyToMany(mappedBy="serverorderMedicines")
+	public Set<ServerOrder> getServerOrders() {
+		return serverOrders;
+	}
 
+	public void setServerOrders(Set<ServerOrder> serverOrders) {
+		this.serverOrders = serverOrders;
+	}
+*/
 	public Medicine() {
 		
 	}
@@ -122,7 +139,7 @@ public class Medicine implements BasicModel<Integer>, java.io.Serializable ,Mode
 		this.sales = sales;
 	}
 
-//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "TMedicine")
+//	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "TMedicine")
 
 /*	public Set<TServerorderMedicine> getTServerorderMedicines() {
 		return this.TServerorderMedicines;

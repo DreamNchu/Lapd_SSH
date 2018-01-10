@@ -17,6 +17,8 @@ public class BasicMsgProxyDto {
 	 */
 	public void regress(){
 		msgDto = new BasicRespondMsgDto();
+//		setSuccessMsg(null);
+//		setErrorMsg(null);
 	}
 
 	public BasicRespondMsgDto getMsgDto() {
@@ -37,7 +39,8 @@ public class BasicMsgProxyDto {
 	}
 	
 	public void setDefaultSuccessMsg(){
-		msgDto.setDefaultSuccessMsg();
+		if(getErrorMsg() == null)
+			msgDto.setDefaultSuccessMsg();
 	}
 	
 	public Map<String, Object> getMap() {
@@ -68,7 +71,8 @@ public class BasicMsgProxyDto {
 	 * @param value
 	 */
 	public void setSuccessMsg(Object value){
-		msgDto.setSuccessMsg(value);
+		if(getErrorMsg() == null)
+			msgDto.setSuccessMsg(value);
 	}
 	
 	public Object getSuccessMsg(){

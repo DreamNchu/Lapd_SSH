@@ -130,7 +130,7 @@ public class OrderStatus implements java.io.Serializable,ModelLinkServerOrder<In
 
 	@OneToMany(
 			cascade = CascadeType.ALL,
-			fetch = FetchType.LAZY,
+			fetch = FetchType.EAGER,
 			mappedBy = "orderStatus")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;

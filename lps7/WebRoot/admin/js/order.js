@@ -38,6 +38,7 @@ function waitingReceive(reciveOrder) {
     var firsttr=document.getElementById("firsttr");
     var orderTable=document.getElementById("orderTable");
     var i;
+    var emptyStr = "&nbsp;";		//  增加空格
     firsttr.innerHTML="<th ></th>"+
         " <th>订单号</th>\n" +
         "<th>房间号</th>\n" +
@@ -48,14 +49,15 @@ function waitingReceive(reciveOrder) {
         " <th>所做项目</th>";
     for(i in reciveOrder.orders){
         var sTr=document.createElement("tr");
+        var abbrStr = reciveOrder.orders[i].orderId.substr(0, 10);
         sTr.innerHTML="<td align='center'><input type='checkbox' name='orderId' value="+reciveOrder.orders[i].orderId+"></td>"+
-            "<td>"+reciveOrder.orders[i].orderId+"</td>"+
-            "<td>"+reciveOrder.orders[i].roomName+"</td>"+
-            "<td>"+reciveOrder.orders[i].stuff+"</td>"+
-            "<td>"+reciveOrder.orders[i].realName+"</td>"+
-            "<td>"+reciveOrder.orders[i].initTime+"</td>"+
-            "<td>"+reciveOrder.orders[i].clockCategoryName+"</td>"+
-            "<td>"+reciveOrder.orders[i].serverItem+"</td>";
+            "<td>"+emptyStr+" <abbr title="+reciveOrder.orders[i].orderId+">"+abbrStr+"</abbr></td>"+
+            "<td>"+emptyStr+" "+reciveOrder.orders[i].roomName+"</td>"+
+            "<td>"+emptyStr+" "+reciveOrder.orders[i].stuff.workId+"</td>"+
+            "<td>"+emptyStr+" "+reciveOrder.orders[i].stuff.realName+"</td>"+
+            "<td>"+emptyStr+" "+reciveOrder.orders[i].initTime+"</td>"+
+            "<td>"+emptyStr+" "+reciveOrder.orders[i].clockCategoryName+"</td>"+
+            "<td>"+emptyStr+" "+reciveOrder.orders[i].serverItem[0].serverItemName+"</td>";
         orderTable.appendChild(sTr);
     }
     recivePage(reciveOrder);
@@ -244,7 +246,7 @@ function superSearsh() {
     document.getElementById("timeTr").style.display="block";
 }
 function add() {
-    window.location.href="initOrder";
+    window.location.href="fbdd.html";
 }
 function deleteTr() {
     var orderTable=document.getElementById("orderTable");
