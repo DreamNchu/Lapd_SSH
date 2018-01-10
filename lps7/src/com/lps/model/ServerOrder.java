@@ -62,7 +62,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	
 	private Set<Combo> serverorderCombos = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "t_serverorder_combo",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_combo_id") })
@@ -77,7 +77,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 
 	private Set<Medicine> serverorderMedicines = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "t_serverorder_medicine",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_medicine_id") })

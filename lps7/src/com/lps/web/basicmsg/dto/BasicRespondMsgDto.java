@@ -118,8 +118,8 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 
 					// 放入map中初始化对象
 					if (obj instanceof TableInitDto) {
-						System.out.println(((ParameterizedType) (obj.getClass().getGenericInterfaces()[0]))
-								.getActualTypeArguments()[0].getTypeName());
+//						System.out.println(((ParameterizedType) (obj.getClass().getGenericInterfaces()[0]))
+//								.getActualTypeArguments()[0].getTypeName());
 						mapUtil.put(((ParameterizedType) (obj.getClass().getGenericInterfaces()[0]))
 								.getActualTypeArguments()[0].getTypeName(), obj);
 					}

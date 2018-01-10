@@ -31,6 +31,7 @@
 <script src="js/ajax_js.js"></script>
 <script src="js/alert.js"></script>
 <script src="js/order.js"></script>
+<script src="js/superSearch.js"></script>
 <script src="js/initClass.js"></script>
 <link rel="stylesheet"
 	href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
@@ -197,97 +198,145 @@
 								<form id="searshForm">
 									<div>
 										<label for="searsh1" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" id="searsh1" name="searsh" onclick="commonSearsh()" checked>
-										普通搜索
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" id="searsh1" name="searsh" onclick="commonSearsh()" checked>
+											普通搜索
+											<span class="radio-on"></span>
 										</label>
 										<label for="searsh2" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" name="searsh" id="searsh2" onclick="superSearsh()">
-										高级搜索
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" name="searsh" id="searsh2" onclick="superSearsh()" data-toggle="modal" data-target="#searchModal">
+											高级搜索
+											<span class="radio-on"></span>
 										</label>
-										</br>
-										</div>
-										<div>
+									</div>
+									<div id="time">
 										<label for="date1" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="dateType" id="date1" value="1" name="date" checked>
-										今日
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="dateType" id="date1" value="1" name="date" checked>
+											今日
+											<span class="radio-on"></span>
 										</label>
 										<label for="date2" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="dateType" id="date2" value="2" name="date">
-										本周
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="dateType" id="date2" value="2" name="date">
+											本周
+											<span class="radio-on"></span>
 										</label>
 										<label for="date3" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="dateType" id="date3" value="3" name="date">
-										本月
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="dateType" id="date3" value="3" name="date">
+											本月
+											<span class="radio-on"></span>
 										</label>
 										<label for="date4" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="dateType" id="date4" value="4" name="date">
-										今年
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="dateType" id="date4" value="4" name="date">
+											今年
+											<span class="radio-on"></span>
 										</label>
-										</br>
-										</div>
-										<div>
+									</div>	
+									<div id="orderType">
 										<label for="status1" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="statusId" value="1" id="status1" key="waitingReceive" onclick="djsdd()" name="statusId" checked>
-										待接收订单
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="statusId" value="1" id="status1" key="waitingReceive" onclick="djsdd()" name="statusId" checked>
+											待接收订单
+											<span class="radio-on"></span>
 										</label>
 										<label for="status2" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="statusId" value="2" id="status2" key="servicing" onclick="gzzdd()" name="statusId">
-										工作中订单
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>												
+											<input type="radio" class="statusId" value="2" id="status2" key="servicing" onclick="gzzdd()" name="statusId">
+											工作中订单
+											<span class="radio-on"></span>
 										</label>
 										<label for="status3" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="statusId" value="5" id="status3" key="suspend" onclick="gqzdd()" name="statusId">
-										挂起中订单
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="statusId" value="5" id="status3" key="suspend" onclick="gqzdd()" name="statusId">
+											挂起中订单
+											<span class="radio-on"></span>
 										</label>
 										<label for="status4" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="statusId" value="3" id="status4" key="waitingPay" onclick="dzfdd()" name="statusId">
-										待支付订单
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="statusId" value="3" id="status4" key="waitingPay" onclick="dzfdd()" name="statusId">
+											待支付订单
+											<span class="radio-on"></span>
 										</label>
 										<label for="status5" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="statusId" value="4" id="status5" key="finish" onclick="yzfdd()" name="statusId">
-										已支付订单
-										<span class="radio-on"></span>
+											<span class="radio-bg"></span>
+											<input type="radio" class="statusId" value="4" id="status5" key="finish" onclick="yzfdd()" name="statusId">
+											已支付订单
+											<span class="radio-on"></span>
 										</label>
-										<label for="status6" class="radio">
-										<span class="radio-bg"></span>
-										<input type="radio" class="statusId" value="6" id="status6" key="invalid" onclick="ysxdd()" name="statusId">
-										失效订单
-										<span class="radio-on"></span>
+											<label for="status6" class="radio">
+											<span class="radio-bg"></span>
+											<input type="radio" class="statusId" value="6" id="status6" key="invalid" onclick="ysxdd()" name="statusId">
+											失效订单
+											<span class="radio-on"></span>
 										</label>
-										</br>
-										</div>
-										<div id="timeTr" style="display:none;">
-										<label>
-										起始日期：
-										<input type="date" name="startTime">
-										</label>
-										<label>
-										结束日期：
-										<input type="date" name="endTime">
-										</label>
-										</br>
+									</div>
+									<div id="showSuperSearch" style="display:none;">
+										
 									</div>
 								</form>
+								<div class="modal fade" id="searchModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						            <div class="modal-dialog">
+						                <div class="modal-content">
+						                    <div class="modal-header">
+						                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+						                            &times;
+						                        </button>
+						                        <h4 class="modal-title" id="myModalLabel">
+						                           	 请输入查询条件<small> 可任意搭配</small>
+						                        </h4>
+							                </div>
+							                <form id="superSearchFrom" class="form-group">
+							                	<div class="modal-body">
+							                    	<div class="form-group" >     
+							                            <label style="width:100%;">价格</label>
+							                            <input type="text" name="advancedSearchDto.minRealPay" id="sMinPrice" class="form-control inline" placeholder="最低价" style="width:50%;">
+							                            <input type="text" name="advancedSearchDto.maxRealPay" id="sMaxPrice" class="form-control inline" placeholder="最高价" style="width:49%;">
+							                           	<label>员工姓名</label>
+							                            <input type="text" name="advancedSearchDto.realName" id="sUserName" class="form-control" >
+							                            <label for="workStatusName">订单类型</label>
+							                            <select class="form-control" name="advancedSearchDto.statusId" id="sWorkStatusName">
+							                            	<option value=""></option>
+															<option value="1">待接收订单</option>
+															<option value="2">工作中订单</option>
+															<option value="3">待支付订单</option>
+															<option value="4">已支付订单</option>
+															<option value="5">挂起中订单</option>
+															<option value="6">失效订单</option>    	
+														</select>
+														<label for="payPathName">支付方式</label>
+														<select class="form-control" name="advancedSearchDto.payPathId" id="sPayPathName">                    
+															<option value=""></option>
+															<option value="1">现金</option>
+															<option value="2">支付宝</option>
+															<option value="3">微信</option>
+															<option value="4">网银</option>
+														</select>
+														<label>房间号</label>
+							                            <select class="form-control" name="advancedSearchDto.roomId" id="sRoomName">
+							                            
+							                            </select>
+							                            <label>员工工作号</label>
+							                            <select class="form-control" name="advancedSearchDto.workId" id="sWorkId">
+							                            	
+							                            </select>
+							                            <label for="serverItemName">项目类型</label>  
+														<select class="form-control" name="advancedSearchDto.serverItemName" id="sServerItemName">							                                	
+																					    
+														</select>	
+							                        </div>
+							                    </div>
+							                    <div class="modal-footer">
+													<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button> 
+													<input type="button" onclick="sureSuperSearch()" value="确定" class="btn btn-primary">
+							                   </div>
+							                </form>    
+							            </div>
+							        </div>
+							    </div>
 								<hr>
 								<button class="btn btn-success" onclick="add()">
 									<span class="glyphicon glyphicon-plus"></span>增加订单
