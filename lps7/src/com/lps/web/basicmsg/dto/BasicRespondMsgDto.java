@@ -118,6 +118,8 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 
 					// 放入map中初始化对象
 					if (obj instanceof TableInitDto) {
+						System.out.println(((ParameterizedType) (obj.getClass().getGenericInterfaces()[0]))
+								.getActualTypeArguments()[0].getTypeName());
 						mapUtil.put(((ParameterizedType) (obj.getClass().getGenericInterfaces()[0]))
 								.getActualTypeArguments()[0].getTypeName(), obj);
 					}
@@ -157,8 +159,12 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 			throws DtoInitException, MapNotInitForClassPathException {
 
 		for (List<? extends Entity> entities : listEntities) {
-
-			Object obj = mapUtil.get(entities.get(0).getClass().getName());
+System.out.println(entities.get(0).getClass().getName());
+			Class<?> c =  entities.get(0).getClass();
+			while( c.getName().contains("$")){
+				c = c.getSuperclass();
+			}
+			Object obj = mapUtil.get(c.getName());
 			if (obj == null) {
 				throw new MapNotInitForClassPathException();
 			}

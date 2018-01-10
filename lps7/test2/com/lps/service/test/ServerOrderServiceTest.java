@@ -5,7 +5,9 @@ import static org.junit.Assert.fail;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.joda.time.DateTime;
@@ -26,10 +28,8 @@ import com.lps.model.User;
 import com.lps.service.OrderStatusService;
 import com.lps.service.impl.OrderStatusServiceImpl;
 import com.lps.service.impl.ServerOrderServiceImpl;
-import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
-import com.lps.util.WorkDate;
 
 public class ServerOrderServiceTest {
 	
@@ -179,6 +179,18 @@ public class ServerOrderServiceTest {
 		listPro.add(pro);
 	}
 	
-	
+	@Test 
+	public void testFindFieldsByModel(){
+		ServerOrder so = new ServerOrder();
+		User u = new User();
+		u.setId(1);
+		so.setUser(u);
+		so.setId("0009010112018441022056370002");
+		Map<String, Class<?>> map = new HashMap<>();
+		map.put(ServerOrderDAOImpl.USER, User.class);
+		map.put(ServerOrderDAOImpl.CLOCK_CATEGORY, ClockCategory.class);
+		ServerOrder soo = as.findFieldsByModel(so, map);
+		System.out.println(soo.getUser().getRealName());
+	}
 
 }

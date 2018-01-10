@@ -15,6 +15,12 @@ public class AdminStatusAction extends ActionSupport implements SessionAware, Da
 
 	private Map<String, Object> session;
 	
+	private String result;
+	
+	public void setResult(String result) {
+		this.result = result;
+	}
+
 	/**
 	 * 登录成功返回success
 	 * <p>
@@ -39,7 +45,7 @@ public class AdminStatusAction extends ActionSupport implements SessionAware, Da
 	}
 	@Override
 	public String getResult() {
-		return result.toString();
+		return result;
 	}
 
 }

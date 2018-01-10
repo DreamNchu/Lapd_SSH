@@ -87,7 +87,44 @@
                 </div>
             </div>
         </section>
-
+        
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            &times;
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            员工信息
+                        </h4>
+                    </div>
+                     <div class="modal-body">
+                            <div class="form-group" >
+                            	<input type="hidden" name="userDataDto.id"  id="userId" style="display: none">
+                                <label>工号</label>
+                                <div class="box box-default"  name="userDataDto.workId" id="workId"></div>
+                                 <label>员工状态</label>
+                                  <div class="box box-danger"  name="userDataDto.workStatus" id="workStatus" ></div>
+                                <label>用户名</label>
+                                <div class="box box-solid box-warning"  name="userDataDto.userName" id="userName"></div>
+                                <label>姓名</label>
+                                <div class="box box-primary" name="userDataDto.realName" id="realName" ></div>
+                               <label>出生日期</label>
+                                <div class="box box-solid box-success" name="userDataDto.birthday" id="birthday" ></div>
+                                <label>电话号码</label>
+                                <div class="box box-info" name="userDataDto.telephonePhone" id="telephonePhone" ></div>
+                                <label>电子邮箱</label>
+                                <div class="box box-danger"  name="userDataDto.email" id="email" ></div>
+                               
+                                <label>员工地址</label>
+                                 <div class="box box-default"  name="userDataDto.address" id="address" ></div>
+                            </div>
+                        </div>
+                        
+                </div>
+            </div>
+        </div>
 
     <aside class="control-sidebar control-sidebar-dark">
 		<jsp:include page="include/right.jsp"></jsp:include>

@@ -14,7 +14,7 @@ import com.lps.model.basic.BasicModel;
 import com.lps.model.basic.ModelLinkServerOrder;
 import com.lps.util.PropertyRange;
 
-public interface BasicForServerOrderDAO<T extends ModelLinkServerOrder<K> , K>{
+public interface BasicForServerOrderDAO<T extends ModelLinkServerOrder<K> , K> extends BasicDAO<T>{
 	
 	/**
 	 * 根据该对象的ID来查找该类型所有的订单 {@link ServerOrder}

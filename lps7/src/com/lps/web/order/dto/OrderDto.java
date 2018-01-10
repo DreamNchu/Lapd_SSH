@@ -15,10 +15,17 @@ import com.lps.model.User;
 import com.lps.util.WorkDate;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.simple.dto.ServerItemDto;
 import com.lps.web.user.dto.UserDto;
 
-public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto {
+public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto ,BasicResponseDto<ServerOrder>, BasicRequestDto<ServerOrder> {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1438588682488989075L;
 
 	public OrderDto() {
 

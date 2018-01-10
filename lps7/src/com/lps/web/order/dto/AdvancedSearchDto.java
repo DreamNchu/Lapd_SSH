@@ -1,50 +1,53 @@
 package com.lps.web.order.dto;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.lps.dao.impl.ServerOrderDAOImpl;
+import com.lps.model.OrderStatus;
+import com.lps.model.PayPath;
+import com.lps.model.Room;
 import com.lps.model.ServerOrder;
+import com.lps.model.User;
 import com.lps.util.PropertyRange;
+import com.lps.util.PropertyRangeNullException;
+import com.lps.web.basicmsg.dto.BasicProRangeDto;
 import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
 import com.lps.web.page.dto.PageAble;
 
-public class AdvancedSearchDto extends BasicRequestMsgDto<ServerOrder> implements PageAble {
+public class AdvancedSearchDto extends BasicRequestMsgDto<ServerOrder> implements OrderLibraryDto, BasicProRangeDto,PageAble {
+	
+	private Date maxDate;
+	private float maxRealPay;
+	
 	/**
 	 * 
-	 * A.时间段搜索， B.价格段搜索， C.订单类型搜索， D.项目类型搜索， E.工号进行搜索 F.房间号进行搜索。 I.员工姓名。
+	 * A.时间段搜索， B.价格段搜索， C.订单类型搜索， D.项目类型搜索， E.工号进行搜索 F.房间号进行搜索。
 	 * K.支付方式进行搜索。
 	 */
-	// private PropertyRange<Date> initTimeRange;
-	// private PropertyRange<Integer> realPayRange;
 
 	private Date minDate;
-	private Date maxDate;
-
 	private float minRealPay;
-	private float maxRealPay;
 
-	private int statusId;
-	private int workId;
-	private int roomId;
-	private String realName;
-	private int payPathId;
-	
 	private int page;
-
+	private int payPathId;
+	private int roomId;
+	private int statusId;
+	
+	private int workId;
+	
 	@Override
-	public String getDomainName() {
-		String str = this.getClass().getSimpleName();
-		str = str.substring(0, 1).toLowerCase() + str.substring(1);
-		return str;
+	public ServerOrder generate() {
+		return null;
 	}
-
-	public PropertyRange<Date> getInitTimeRange() {
+	
+	public PropertyRange<Date> getInitTimeRange() throws PropertyRangeNullException {
 
 		if (minDate != null && maxDate != null) {
 			return new PropertyRange<Date>(ServerOrderDAOImpl.INIT_TIME, minDate, maxDate);
 		}
-
-		return null;
+		throw new PropertyRangeNullException();
 	}
 
 	public Date getMaxDate() {
@@ -71,22 +74,86 @@ public class AdvancedSearchDto extends BasicRequestMsgDto<ServerOrder> implement
 		return payPathId;
 	}
 
-	public String getRealName() {
-		return realName;
+	public PropertyRange<PayPath> getPayPathRange() throws PropertyRangeNullException {
+		if (roomId > 0) {
+			PropertyRange<PayPath> pro = new PropertyRange<PayPath>();
+			PayPath item = new PayPath();
+			item.setId(payPathId);
+			pro.setMinValue(item);
+			pro.setMaxValue(item);
+			return pro;
+		}
+		throw new PropertyRangeNullException();
 	}
 
-	public PropertyRange<Float> getRealPayRange() {
+	@Override
+	public List<PropertyRange<?>> getRangeList() {
+		List<PropertyRange<?>> list = new ArrayList<>();
+
+		try {
+			list.add(getRealPayRange());
+			list.add(getInitTimeRange());
+			list.add(getRealPayRange());
+			list.add(getPayPathRange());
+			
+			list.add(getRoomRange());
+			list.add(getStatusRange());
+			list.add(getUserRange());
+		} catch (PropertyRangeNullException e) {
+			e.printStackTrace();
+		}
+
+		return list;
+	}
+
+	public PropertyRange<Float> getRealPayRange() throws PropertyRangeNullException {
 		if (minRealPay != 0 && maxRealPay != 0)
 			return new PropertyRange<Float>(ServerOrderDAOImpl.REAL_PAY, minRealPay, maxRealPay);
-		return null;
+		throw new PropertyRangeNullException();
 	}
 
 	public int getRoomId() {
 		return roomId;
 	}
 
+	public PropertyRange<Room> getRoomRange() throws PropertyRangeNullException {
+		if (roomId > 0) {
+			PropertyRange<Room> pro = new PropertyRange<Room>();
+			Room item = new Room();
+			item.setId(roomId);
+			pro.setMinValue(item);
+			pro.setMaxValue(item);
+			return pro;
+		}
+		throw new PropertyRangeNullException();
+	}
+
 	public int getStatusId() {
 		return statusId;
+	}
+
+	public PropertyRange<OrderStatus> getStatusRange() throws PropertyRangeNullException {
+		if (statusId > 0) {
+			PropertyRange<OrderStatus> proOrder = new PropertyRange<OrderStatus>();
+			OrderStatus item = new OrderStatus();
+			item.setId(statusId);
+			proOrder.setMinValue(item);
+			proOrder.setMaxValue(item);
+			return proOrder;
+		}
+		throw new PropertyRangeNullException();
+	}
+
+	public PropertyRange<User> getUserRange() throws PropertyRangeNullException {
+		if (workId > 0) {
+			PropertyRange<User> pro = new PropertyRange<User>();
+			User item = new User();
+			item.setWorkId(workId);
+			pro.setMinValue(item);
+			pro.setMaxValue(item);
+			return pro;
+		}
+		throw new PropertyRangeNullException();
 	}
 
 	public int getWorkId() {
@@ -117,10 +184,6 @@ public class AdvancedSearchDto extends BasicRequestMsgDto<ServerOrder> implement
 		this.payPathId = payPathId;
 	}
 
-	public void setRealName(String realName) {
-		this.realName = realName;
-	}
-
 	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
@@ -134,9 +197,10 @@ public class AdvancedSearchDto extends BasicRequestMsgDto<ServerOrder> implement
 	}
 
 	@Override
-	public ServerOrder generate() {
-		// TODO Auto-generated method stub
-		return null;
+	public String getDomainName() {
+		String str = this.getClass().getSimpleName();
+		str = str.substring(0, 1).toLowerCase() + str.substring(1);
+		return str;
 	}
 
 }

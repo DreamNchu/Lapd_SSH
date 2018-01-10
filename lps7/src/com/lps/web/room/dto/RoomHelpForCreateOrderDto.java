@@ -1,8 +1,13 @@
 package com.lps.web.room.dto;
 
 public class RoomHelpForCreateOrderDto extends RoomDto /*implements BasicInitDto<RoomHelpForCreateOrderDto>*/ {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4749353363264116985L;
 	
-	private String roomName;
+	/*private String roomName;
 	
 	private String roomCategory;
 	
@@ -16,7 +21,7 @@ public class RoomHelpForCreateOrderDto extends RoomDto /*implements BasicInitDto
 	
 	private boolean isClean;
 	
-/*	@Override
+	@Override
 	public RoomHelpForCreateOrderDto init(Entity obj) throws DtoInitException {
 		if (obj != null && obj instanceof Room) {
 			Room room = (Room) obj;
@@ -30,7 +35,7 @@ public class RoomHelpForCreateOrderDto extends RoomDto /*implements BasicInitDto
 			return this;
 		}
 		throw new DtoInitException();
-	}*/
+	}
 
 
 
@@ -38,49 +43,33 @@ public class RoomHelpForCreateOrderDto extends RoomDto /*implements BasicInitDto
 		return roomName;
 	}
 
-
-
 	public void setRoomName(String roomName) {
 		this.roomName = roomName;
 	}
-
-
 
 	public String getRoomCategory() {
 		return roomCategory;
 	}
 
-
-
 	public void setRoomCategory(String roomCategory) {
 		this.roomCategory = roomCategory;
 	}
-
-
 
 	public int getRoomFloor() {
 		return roomFloor;
 	}
 
-
-
 	public void setRoomFloor(int roomFloor) {
 		this.roomFloor = roomFloor;
 	}
-
-
 
 	public int getRoomSize() {
 		return roomSize;
 	}
 
-
-
 	public void setRoomSize(int roomSize) {
 		this.roomSize = roomSize;
 	}
-
-
 
 	public int getCustomerNum() {
 		return customerNum;
@@ -115,7 +104,7 @@ public class RoomHelpForCreateOrderDto extends RoomDto /*implements BasicInitDto
 	public void setClean(boolean isClean) {
 		this.isClean = isClean;
 	}
-	
+	*/
 	
 	
 }

@@ -43,6 +43,7 @@ public class UserAccessAction extends ActionSupport implements SessionAware{
 	public void setUserServiceImpl(UserService userServiceImpl) {
 		this.userServiceImpl = userServiceImpl;
 	}
+	
 	public String main(){
 		//检查session 判断是否为刷新
 		return SUCCESS;
@@ -52,7 +53,6 @@ public class UserAccessAction extends ActionSupport implements SessionAware{
 	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
-	
 	
 
 }

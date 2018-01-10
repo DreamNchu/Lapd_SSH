@@ -11,6 +11,7 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
            
+           default-lazy-init="true"
            >
 	<bean id="tUserDto" class="com.lps.web.user.dto.TUserDto" scope="prototype">
 	</bean>

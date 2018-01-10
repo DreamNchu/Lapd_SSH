@@ -12,6 +12,7 @@ import com.lps.service.UserService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
 import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.page.dto.BasicPageDto;
@@ -48,13 +49,13 @@ public class UserManage implements BasicManage<User>{
 		return userServiceImpl.findFieldsByModel(t, fields);
 	}
 	
-	public void delete(Integer...ids) throws FindByIdGetNullException{
+/*	public void delete(Integer...ids) throws FindByIdGetNullException{
 		User[] users = new User[ids.length];
 		for (int i : ids) {
 			users[i] = userServiceImpl.findById(i);
 		}
 		userServiceImpl.deleteAll(Arrays.asList(users));
-	}
+	}*/
 
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;
@@ -98,12 +99,24 @@ public class UserManage implements BasicManage<User>{
 
 	@Override
 	public <DTO extends BasicRequestDto<User>> void update(DTO dto) throws FindByIdGetNullException {
-		// TODO Auto-generated method stub
-		
+		User user = dto.generate();
+		userServiceImpl.update(user);
 	}
 
 	@Override
 	public List<User> queryByProperties(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+//		userServiceImpl
+		return null;
+	}
+
+	@Override
+	public List<User> queryByPropertiesRange(List<PropertyRange<?>> listPro) {
 		// TODO Auto-generated method stub
 		return null;
 	}

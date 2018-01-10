@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import com.google.gson.Gson;
-import com.lps.aop.log.LogAspect;
+import com.lps.aop.LogAspect;
 
 public class TestGson {
 	

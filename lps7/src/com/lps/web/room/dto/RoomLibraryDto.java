@@ -10,6 +10,8 @@ public interface RoomLibraryDto extends BasicRequestDto<Room>, BasicResponseDto<
 	public String roomId = "roomId";
 
 	public String roomName = "roomName";
+	
+	public String roomCategory = "roomCategory";
 
 	public String roomCategoryName = "roomCategoryName";
 	

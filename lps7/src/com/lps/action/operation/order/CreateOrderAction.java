@@ -29,16 +29,20 @@ public class CreateOrderAction extends ActionSupport implements DataResult {
 
 	/**
 	 * 创建订单
+	 * @throws CreateFailedException 
 	 */
 	@Override
-	public String execute() {
+	public String execute() throws CreateFailedException {
 
 		try {
+			
 			orderManage.create(createOrderDto);
+			
 		} catch (CreateFailedException e) {
-			e.printStackTrace();
-			basicMsg.setErrorMsg(e.getMessage());
+			basicMsg.setErrorMsg("订单发布失败");
+			throw e;
 		}
+		basicMsg.setSuccessMsg("订单发布成功");
 		return SUCCESS;
 		
 	}

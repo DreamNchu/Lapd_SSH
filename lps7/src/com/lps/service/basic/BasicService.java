@@ -53,6 +53,12 @@ public interface BasicService<ENTITY> {
 	<K> ENTITY findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields);
 	
 	/**
+	 * 查找这些字段
+	 * @param fields
+	 * @return
+	 */
+//	<K> ENTITY findFieldsByModel(Map<String, Class<?>> fields);
+	/**
 	 * 根据属性名获取id
 	 * @param map 属性的名字和值
 	 * @return

@@ -14,6 +14,7 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.user.dto.PageLinkTransformUserDto;
+import com.lps.web.user.dto.UserDataDto;
 import com.lps.web.user.dto.UserDto;
 import com.lps.web.user.dto.UserTableDataDto;
 import com.opensymphony.xwork2.ActionSupport;
@@ -41,6 +42,14 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 	private PageLinkTransformUserDto pageLinkTransformUserDto;
 
 	private UserDto userDataDto;
+
+	public UserDto getUserDataDto() {
+		return userDataDto;
+	}
+
+	public void setUserDataDto(UserDto userDataDto) {
+		this.userDataDto = userDataDto;
+	}
 
 	@Override
 	public String execute() throws Exception {
@@ -123,7 +132,7 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 			userDataDto.setErrorMsg(e.getMessage());
 		}
 		
-		userTableDataDto.getUsers().add(userDataDto);
+//		userTableDataDto.getUsers().add(userDataDto);
 
 		return SUCCESS;
 	}

@@ -664,18 +664,10 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 
 		AdvancedSearchDto as = advancedSearchDto;
 		List<PropertyRange<?>> listPro = new ArrayList<>();
-		// 时间限定
-		PropertyRange<?> pd = null;
-		if ((pd = advancedSearchDto.getInitTimeRange()) != null)
-			listPro.add(pd);
-		// 价格限定
-		PropertyRange<?> pp = null;
-		if ((pp = advancedSearchDto.getInitTimeRange()) != null)
-			listPro.add(pp);
+		
+		listPro.addAll(as.getRangeList());
 
-		listPro.add(advancedSearchDto.getRealPayRange());
-
-		if (as.getPayPathId() != 0)
+/*		if (as.getPayPathId() != 0)
 			propertyRangeUtil(listPro, payPathServiceImpl, as.getPayPathId());
 
 		if (as.getWorkId() != 0)
@@ -684,13 +676,9 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 		if (as.getRoomId() != 0)
 			propertyRangeUtil(listPro, roomServiceImpl, as.getRoomId());
 
-		if (as.getRealName() != null)
-			propertyRangeUtil(listPro, userServiceImpl,
-					userServiceImpl.findByRealName(as.getRealName()).get(0).getId());
-
 		if (as.getStatusId() != 0) {
 			propertyRangeUtil(listPro, orderStatusServiceImpl, as.getStatusId());
-		}
+		}*/
 
 		return serverOrderServiceImpl.findOrdersByPropertyLimit(listPro, as.getPage());
 	}
@@ -734,6 +722,19 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	public List<ServerOrder> queryByProperties(Map<String, Object> map) {
 		return serverOrderServiceImpl.findByProperty(map);
 	}
+
+	@Override
+	public ServerOrder query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<ServerOrder> queryByPropertiesRange(List<PropertyRange<?>> listPro) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 
 	
 }

@@ -33,6 +33,8 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	 */
 	public static final String SERVER_ITEM = "serverItem";
 	
+	public static final String PRICE = "price";
+	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
 	 */
@@ -109,6 +111,11 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ServerItem> findAll() {
+		List<ServerItem> li = (List<ServerItem>)hibernateTemplate.find("from ServerItem");
+//		hibernateTemplate.
+		li = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("from ServerItem").list();
+		System.out.println(li.get(0).getClass().getName());
+		
 		return (List<ServerItem>)hibernateTemplate.find("from ServerItem");
 	}
 

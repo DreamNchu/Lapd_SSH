@@ -48,7 +48,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 */
 	private Set<ServerItem> serverorderServeritems = new HashSet<>(0);
 
-	@ManyToMany(fetch=FetchType.EAGER,targetEntity=ServerItem.class,cascade=CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.LAZY,targetEntity=ServerItem.class,cascade=CascadeType.ALL)
 	@JoinTable(name = "t_serverorder_serveritem",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_serverItem_id") })
@@ -62,7 +62,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	
 	private Set<Combo> serverorderCombos = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "t_serverorder_combo",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_combo_id") })
@@ -77,7 +77,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 
 	private Set<Medicine> serverorderMedicines = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(name = "t_serverorder_medicine",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_medicine_id") })
@@ -211,7 +211,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 付费方式
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "payPathId")
 
 	public PayPath getPayPath() {
@@ -233,7 +233,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 房间
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "roomId", nullable = false)
 
 	public Room getRoom() {
@@ -255,7 +255,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 员工
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "stuffId", nullable = false)
 
 	public User getUser() {
@@ -277,7 +277,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 抵押物品
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pledgeNameId")
 
 	public Pledge getPledge() {
@@ -299,7 +299,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 钟点类型
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "clockcategoryId", nullable = false)
 
 	public ClockCategory getClockCategory() {
@@ -321,7 +321,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 订单状态
 	 */
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "statusId", nullable = false)
 
 	public OrderStatus getOrderStatus() {

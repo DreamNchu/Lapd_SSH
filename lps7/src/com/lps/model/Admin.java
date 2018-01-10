@@ -1,6 +1,8 @@
 package com.lps.model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -66,7 +68,7 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 		this.password = password;
 		this.registerTime = registerTime;
 	}
-	
+
 	public Admin(Integer id, String userName, String password, Date registerTime, String avatar) {
 		super();
 		this.id = id;
@@ -230,17 +232,18 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 	 *
 	 */
 	public static class Builder {
-		
+
 		private int id;
 		private String userName;
 		private String password;
 		private Date registerTime;
 		private String avatar;
-		
 
 		/**
 		 * 设置id值
-		 * @param id 管理员id
+		 * 
+		 * @param id
+		 *            管理员id
 		 * @return
 		 */
 		public Builder setId(Integer id) {
@@ -281,7 +284,7 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 		 * 
 		 * @param registerTime
 		 *            设置管理员的注册时间
-		 * @return 
+		 * @return
 		 */
 		public Builder setRegisterTime(Date registerTime) {
 			this.registerTime = registerTime;
@@ -310,4 +313,7 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 			return new Admin(id, userName, password, registerTime, avatar);
 		}
 	}
+
+//	private static final List<String> listNames = new ArrayList<>();
+
 }

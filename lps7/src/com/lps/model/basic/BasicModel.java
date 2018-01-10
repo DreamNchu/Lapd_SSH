@@ -1,5 +1,7 @@
 package com.lps.model.basic;
 
+import java.util.List;
+
 /**
  * 基本的model类中的接口，可以获取model的主键ID
  * @author cyl
@@ -15,5 +17,7 @@ public interface BasicModel<T> extends Entity{
 	T getId();
 	
 	void setId(T t);
+	
+//	List<String> getNames(int level);
 	
 }

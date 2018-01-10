@@ -35,7 +35,7 @@
 <script src="js/icheck.min.js"></script>
 <script src="js/ajax_js.js"></script>
 <script src="js/initClass.js"></script>
-
+<script type="text/javascript" src="js/initOrder_js.js"></script>
 <script type="text/javascript">
 
 	window.onload = function() {
@@ -49,50 +49,6 @@
 		currentTime.innerHTML = myDate.toLocaleDateString() + "--" + myDate.toLocaleTimeString();
 		ajaxRequest("initOrderData", create);
 
-	}
-	function create(createOrder) {
-		var stuffId = document.getElementById("stuffId");
-		var roomId = document.getElementById("roomId");
-		var serverItem = document.getElementById("serverItem");
-		var i,
-			userDatab,
-			op,
-			createOrder;
-
-		//document.getElementById("rad1").value = createOrder.createWays[0];
-		//document.getElementById("rad2").value = createOrder.createWays[1];
-		//document.getElementById("rad3").value = createOrder.createWays[2];
-		for (i in createOrder.users) {
-			op = document.createElement("option");
-			op.setAttribute("value", createOrder.users[i].stuffId);
-			op.innerHTML = createOrder.users[i].workId;
-			stuffId.appendChild(op);
-		}
-		for (i in createOrder.rooms) {
-			op = document.createElement("option");
-			op.setAttribute("value", createOrder.rooms[i].roomId);
-			op.innerHTML = createOrder.rooms[i].roomName;
-			roomId.appendChild(op);
-		}
-		for (i in createOrder.serverItems){
-			op = document.createElement("option");
-			op.setAttribute("value", createOrder.serverItems[i].serverItemId);
-			op.innerHTML = createOrder.serverItems[i].serverItemName;
-			serverItem.appendChild(op);
-		}
-	}
-
-	function hideOf() {
-		document.getElementById("stuffId").disabled = "disabled";
-	}
-	function showOf() {
-		document.getElementById("stuffId").disabled = "";
-	}
-	function initTime() {
-		var currentTime = document.getElementById("currentTime");
-		var myDate = new Date();
-		currentTime.innerHTML = myDate.toLocaleDateString() + "--" + myDate.toLocaleTimeString();
-		setTimeout("initTime()", 1000);
 	}
 </script>
 </head>
@@ -131,38 +87,82 @@
 											排钟手发 <span class="radio-on"></span>
 										</label> <label for="rad3" class="radio"> <span
 											class="radio-bg"></span> <input type="radio" value="3"
-											name="createOrderDto.createWays" id="rad3" onclick="hideOf()">
+											name="createOrderDto.createWays" id="rad3" onclick="hideOf()" >
 											排钟自发 <span class="radio-on"></span>
 										</label>
 									</div>
 									<div class="box-body">
+										<div class="col-xs-7" id="pattern_stuff">
 										<div class="form-group">
+										
 											<label>选择员工</label> <select class="form-control"
 												name="createOrderDto.stuffId" id="stuffId">
 
 											</select>
 										</div>
-										<div class="form-group">
+										<div class="form-group" id="pattern_room">
+										
 											<label>选择房间</label> <select class="form-control"
 												name="createOrderDto.roomId" id="roomId">
+												
 											</select>
 										</div>
 										<div class="form-group">
+										
 											<label>选择项目</label> <select class="form-control"
 												name="createOrderDto.serverItemIds" id="serverItem">
 											</select>
 										</div>
 										<div class="form-group">
-											<label>备注</label>
-											<textarea class="form-control" rows="3"
-												placeholder="备注信息......" name="createOrderDto.orderRemark"></textarea>
+										
+												<label>备注</label>
+												<textarea class="form-control" rows="3"
+													placeholder="备注信息......" name="createOrderDto.orderRemark"></textarea>
 										</div>
 										<div class="form-group">
+										
 											<input type="button"
 												onclick="formSubmit('createOrder','orderForm')"
 												class="btn btn-info pull-left" value="发布">
 										</div>
+										</div>
+										<div class="col-xs-5" style="margin-top:20px" >
+												<!--整个box的背景色为白色-->
+												<div>
+													<label>员工信息:</label>
+													<div class="info-box">
+												    <div class="info-box-header"> 
+												    	
+												    	<div id="workId"></div>
+												    	<div id="workStatus"></div>  
+												    	<div id="realName"></div>  
+												    </div>
+												    
+												</div>
+												</div>
+												<div>
+												    <label>房间信息:</label>
+													<div class="info-box">
+													    <!--左侧的带背景色的图标部分
+													    <span class="info-box-icon bg-red"><i class="fa fa-envelope-o"></i></span>
+													    -->
+													    <!--右侧无背景色的内容部分-->
+													    <div class="info-box-header">
+													         
+													    	<div id="roomName"></div>
+													    	<div id="roomCategory"></div>  
+													    	<div id="roomFloor"></div>  
+													    	<div id="roomSize"></div>
+													    	<div id="customerNum"></div>  
+													    	<div id="isFree"></div> 
+													    	<div id="isClean"></div>
+														
+													    </div>
+													</div>
+												</div>
+										</div>
 									</div>
+										
 								</div>
 							</form>
 						</div>
@@ -181,3 +181,5 @@
 
 </body>
 </html>
+
+

@@ -2,7 +2,9 @@ package com.lps.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +40,33 @@ public class AdminDAOImpl implements AdminDAO {
 	 * 声明管理员注册时间全局常量
 	 */
 	public static final String REGISTER_TIME = "registerTime";
+	
+	public transient static final Map<String, Class<?>> mapDataType = new HashMap<>();
+	
+	static{
+//		mapDataType.put(ID, Integer.class);
+//		mapDataType.put(REGISTER_TIME, java.util.Date.class);
+	}
 
+//	public static void main(String[] args) throws IllegalArgumentException, IllegalAccessException, ClassNotFoundException {
+//		for(Field f: AdminDAOImpl.class.getDeclaredFields()){
+		
+//			Class[] types =  AdminDAOImpl.class.getInterfaces();
+//			System.out.println(types[0].getInterfaces()[0].getTypeParameters()[0].getGenericDeclaration());
+//			String s = ((ParameterizedType)types[0].getInterfaces()[0]).getActualTypeArguments()[0].getTypeName();
+//			System.out.println(Class.forName(s));
+		
+//			System.out.println(((ParameterizedType)types[0].getGenericInterfaces()[0]).getActualTypeArguments()[0].getTypeName());
+//			System.out.println(types[types.length - 1].getClass().getGenericInterfaces()[0].getTypeName());
+//			System.out.println(((ParameterizedType) types[types.length - 1]).getActualTypeArguments()[0].getTypeName());
+			
+			/*if(Modifier.isStatic(f.getModifiers())){
+				System.out.println("---" + f.getName());
+				System.out.println(f.get(AdminDAOImpl.class));
+			}*/
+//		}
+//	}
+	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
 	 */

@@ -26,7 +26,7 @@ function recivePage(reciveOrder) {
     hrefId.appendChild(l);
     $('.pageClass').click(function () {
 //  	   alert($(this).attr('key'));
-  	   deleteLi();
+  	    deleteLi();
         deleteTr();
          
          ajaxRequest($(this).attr('key'),funcs[parseInt($('.statusId:checked').val()) - 1]);
@@ -54,7 +54,7 @@ function waitingReceive(reciveOrder) {
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
-            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategoryName+"</td>"+
             "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
@@ -80,7 +80,7 @@ function servicing(reciveOrder) {
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
-            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategoryName+"</td>"+
             "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
@@ -107,7 +107,7 @@ function suspend(reciveOrder) {
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
-            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategoryName+"</td>"+
             "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
@@ -133,7 +133,7 @@ function invalid(reciveOrder) {
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
-            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategoryName+"</td>"+
             "<td>"+reciveOrder.orders[i].serverItem+"</td>";
         orderTable.appendChild(sTr);
     }
@@ -162,7 +162,7 @@ function waitingPay(reciveOrder) {
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
-            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategoryName+"</td>"+
             "<td>"+reciveOrder.orders[i].serverItem+"</td>"+
             "<td>"+reciveOrder.orders[i].pledgeName+"</td>"+
             "<td>"+reciveOrder.orders[i].pay+"</td>";
@@ -194,7 +194,7 @@ function finish(reciveOrder) {
             "<td>"+reciveOrder.orders[i].stuff+"</td>"+
             "<td>"+reciveOrder.orders[i].realName+"</td>"+
             "<td>"+reciveOrder.orders[i].initTime+"</td>"+
-            "<td>"+reciveOrder.orders[i].clockCategory+"</td>"+
+            "<td>"+reciveOrder.orders[i].clockCategoryName+"</td>"+
             "<td>"+reciveOrder.orders[i].serverItem+"</td>"+
             "<td>"+reciveOrder.orders[i].pledgeName+"</td>"+
             "<td>"+reciveOrder.orders[i].pay+"</td>"+
@@ -228,8 +228,8 @@ function linkRequest(linkHref) {
     var f = $('.statusId').attr("key");
 //    alert(f);
     var reciveOrder={
-        "orders":[{"orderId":"orderId3","roomName":"roomName1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategory":"clockCategory1","serverItem":"serverItem1,"}
-            ,{"orderId":"orderId2","roomName":"roomName2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategory":"clockCategory2","serverItem":"serverItem2,"}]
+        "orders":[{"orderId":"orderId3","roomName":"roomName1","stuff":"stuff1","userName":"userName1","initTime":"initTtime1","clockCategoryName":"clockCategory1","serverItem":"serverItem1,"}
+            ,{"orderId":"orderId2","roomName":"roomName2","stuff":"stuff2","userName":"userName2","initTime":"initTtime2","clockCategoryName":"clockCategory2","serverItem":"serverItem2,"}]
         , "page":[{"currentPage":"1","allCount":"10","allPage":"10"}],
         "transform":[{"back":"TestHref","front":"TestHref"}],
         "number":[{"value":"1","link":"TestHref"},{"value":"2","link":"TestHref"},{"value":"3","link":"TestHref"},{"value":"4","link":"TestHref"}]

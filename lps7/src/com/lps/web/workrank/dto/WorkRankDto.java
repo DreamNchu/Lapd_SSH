@@ -56,6 +56,7 @@ public class WorkRankDto extends BasicRespondMsgDto implements WorkRankLibrary{
 			User u = wr.getUser();
 			put(realName, u.getRealName());
 			put(workId, u.getWorkId());
+			put(stuffId, u.getId());
 		}
 		return this;
 	}

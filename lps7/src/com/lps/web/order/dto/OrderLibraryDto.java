@@ -4,7 +4,7 @@ import com.lps.model.ServerOrder;
 import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.dto.BasicResponseDto;
 
-public interface OrderLibraryDto extends BasicResponseDto<ServerOrder>, BasicRequestDto<ServerOrder>{
+public interface OrderLibraryDto {
 
 	// 钟点类型
 	String clockCategoryName = "clockCategoryName";
@@ -45,16 +45,6 @@ public interface OrderLibraryDto extends BasicResponseDto<ServerOrder>, BasicReq
 	
 	String serverItem = "serverItem";
 	
-//	String serverItemName = "serverItemName";
-	
-//	String serverItemId = "serverItemId";
-	
 	String stuff = "stuff";
-	
-	// 工号
-//	String workId = "workId";
-	
-	// 真实姓名
-//	String realName = "realName";
 	
 }

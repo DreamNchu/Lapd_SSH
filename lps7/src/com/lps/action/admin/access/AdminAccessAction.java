@@ -20,6 +20,12 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 	private String password;
 
 	private Map<String, Object> session;
+	
+	private String result;
+
+	public void setResult(String result) {
+		this.result = result;
+	}
 
 	public String getUserName() {
 		return userName;
@@ -52,6 +58,7 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 		}
 		try {
 			String password = adminServiceImpl.findPasswordByUserName(userName);
+			
 			int id = adminServiceImpl.findIdByUserName(userName);
 			if (password.equals(this.password)) {
 				session.put("id", id);
@@ -59,7 +66,7 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 			}
 		} catch (UserNotExistsException e) {
 			e.printStackTrace();
-			basicMsg.setErrorMsg("账号或密码错误");
+			result = "账号或密码错误";
 			return ERROR;
 		}
 		return SUCCESS;
@@ -72,7 +79,12 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 
 	@Override
 	public String getResult() {
-		return result.toString();
+//		System.out.println("basicMsg.getErrorMsg().toString()" + basicMsg.getErrorMsg().toString());
+		/*if(basicMsg.getErrorMsg() != null)
+			return basicMsg.getErrorMsg().toString();
+		else
+			return "";*/
+		return result;
 	}
 
 }

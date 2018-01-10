@@ -15,6 +15,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
+import com.lps.model.basic.BasicModel;
+
 @Entity
 @Table(name="t_combo")
 @TableGenerator(
@@ -24,7 +26,7 @@ import javax.persistence.TableGenerator;
 		valueColumnName = "gen_value",
 		pkColumnValue = "combo_PK",
 		allocationSize = 1)
-public class Combo implements java.io.Serializable {
+public class Combo implements BasicModel<Integer>,java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -84,7 +86,6 @@ public class Combo implements java.io.Serializable {
 	}
 
 	@Column(name = "beginTime", length = 19)
-
 	public Date getBeginTime() {
 		return this.beginTime;
 	}

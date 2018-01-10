@@ -4,13 +4,12 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-import com.lps.model.User;
 import com.lps.model.basic.Entity;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
+import com.lps.util.PropertyRange;
 import com.lps.web.dto.BasicRequestDto;
-import com.lps.web.page.dto.BasicPageDto;
 
 public interface BasicManage<T extends Entity>{
 
@@ -38,10 +37,36 @@ public interface BasicManage<T extends Entity>{
 	 */
 	void delete(Serializable... id) throws FindByIdGetNullException;
 
+	/**
+	 * 通过主键id查找实体
+	 * @param id
+	 * @return
+	 * @throws FindByIdGetNullException
+	 */
 	T query(Serializable id) throws FindByIdGetNullException;
 	
+	/**
+	 * 通过主键id查找 listName 中的主键
+	 * @param id
+	 * @param listName
+	 * @return
+	 * @throws FindByIdGetNullException
+	 */
+	T query(Serializable id, List<String> listName) throws FindByIdGetNullException;
+	
+	/**
+	 * 
+	 * @param page
+	 * @return
+	 * @throws FindByIdGetNullException
+	 * @throws PagePropertyNotInitException
+	 */
 	PageBean<T> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException;
 	
+	/**
+	 * 查询所有的实体
+	 * @return
+	 */
 	List<T> queryAll();
 	
 	/**
@@ -50,5 +75,8 @@ public interface BasicManage<T extends Entity>{
 	 * @return
 	 */
 	List<T> queryByProperties(Map<String, Object> map);
+	
+	
+	List<T> queryByPropertiesRange(List<PropertyRange<?>> listPro);
 	
 }

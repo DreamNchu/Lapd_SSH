@@ -29,6 +29,7 @@
  	 <bean id="manageUsersAction" scope="prototype" class="com.lps.action.operation.user.ManageUsersAction">
 	 	<property name="userTableDataDto" ref="userTableDataDto"></property>
 	 	<property name="userManage" ref="userManage"></property>
+	 	<property name="userDataDto" ref="userDataDto"></property>
 	 </bean>
 	 <!-- 用户订单管理 -->
 	 <bean id="userOrderAction" scope="prototype" class="com.lps.action.operation.user.UserOrderAction">
