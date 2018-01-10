@@ -58,9 +58,9 @@ public class InitCreateOrderBasicDataAction extends ActionSupport implements Dat
 		List<Room> listRooms = roomServiceImpl.findAll();
 		List<ServerItem> listServerItems = serverItemServiceImpl.findAll();
 		List<User> lisUsers = userServiceImpl.findAll();
-		System.out.println(listServerItems.get(0).getClass().getName());
+//		System.out.println(listServerItems.get(0).getClass().getName());
 //		System.out.println(listServerItems.getClass().getGenericInterfaces()[0]);
-		System.out.println(lisUsers.get(0).getClass().getName());
+//		System.out.println(lisUsers.get(0).getClass().getName());
 		try{
 			initCreateOrderDto.init(lisUsers, listRooms, listServerItems);
 		} catch (DtoInitException | MapNotInitForClassPathException e) {

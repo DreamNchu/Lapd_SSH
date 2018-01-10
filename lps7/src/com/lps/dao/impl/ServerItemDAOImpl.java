@@ -111,10 +111,10 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<ServerItem> findAll() {
-		List<ServerItem> li = (List<ServerItem>)hibernateTemplate.find("from ServerItem");
+//		List<ServerItem> li = (List<ServerItem>)hibernateTemplate.find("from ServerItem");
 //		hibernateTemplate.
-		li = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("from ServerItem").list();
-		System.out.println(li.get(0).getClass().getName());
+//		li = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("from ServerItem").list();
+//		System.out.println(li.get(0).getClass().getName());
 		
 		return (List<ServerItem>)hibernateTemplate.find("from ServerItem");
 	}

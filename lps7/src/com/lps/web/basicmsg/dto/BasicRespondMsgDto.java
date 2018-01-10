@@ -159,7 +159,7 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 			throws DtoInitException, MapNotInitForClassPathException {
 
 		for (List<? extends Entity> entities : listEntities) {
-System.out.println(entities.get(0).getClass().getName());
+//System.out.println(entities.get(0).getClass().getName());
 			Class<?> c =  entities.get(0).getClass();
 			while( c.getName().contains("$")){
 				c = c.getSuperclass();

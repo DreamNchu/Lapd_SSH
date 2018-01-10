@@ -425,6 +425,9 @@ public class ServerOrderDAOImpl implements ServerOrderDAO {
 	public void deleteAll(Collection<ServerOrder> entities) {
 		// TODO Auto-generated method stub
 		hibernateTemplate.deleteAll(entities);
+//		for (ServerOrder serverOrder : entities) {
+//			hibernateTemplate.delete(serverOrder);
+//		}
 	}
 
 }

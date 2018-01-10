@@ -233,7 +233,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 房间
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "roomId", nullable = false)
 
 	public Room getRoom() {
@@ -255,7 +255,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 员工
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "stuffId", nullable = false)
 
 	public User getUser() {
@@ -277,7 +277,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 抵押物品
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pledgeNameId")
 
 	public Pledge getPledge() {
@@ -299,7 +299,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 钟点类型
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "clockcategoryId", nullable = false)
 
 	public ClockCategory getClockCategory() {
@@ -321,7 +321,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * 
 	 * @return 订单状态
 	 */
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "statusId", nullable = false)
 
 	public OrderStatus getOrderStatus() {

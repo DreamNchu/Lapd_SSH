@@ -1,5 +1,7 @@
 package com.lps.model;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import com.lps.model.basic.BasicModel;
+import com.lps.model.basic.ModelLinkServerOrder;
 
 @Entity
 @Table(name="t_medicine")
@@ -19,7 +22,7 @@ import com.lps.model.basic.BasicModel;
 		valueColumnName = "gen_value",
 		pkColumnValue = "medicine_PK",
 		allocationSize = 1)
-public class Medicine implements BasicModel<Integer>, java.io.Serializable {
+public class Medicine implements BasicModel<Integer>, java.io.Serializable ,ModelLinkServerOrder<Integer>{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -27,7 +30,7 @@ public class Medicine implements BasicModel<Integer>, java.io.Serializable {
 	private String medicineId;
 	private String name;
 	private String vender;
-	private String shelfLife;
+	private Date shelfLife;
 	private Integer price;
 	private Integer inventory;
 	private Integer sales;
@@ -81,11 +84,11 @@ public class Medicine implements BasicModel<Integer>, java.io.Serializable {
 
 	@Column(name = "shelfLife", nullable = false, length = 15)
 
-	public String getShelfLife() {
+	public Date getShelfLife() {
 		return this.shelfLife;
 	}
 
-	public void setShelfLife(String shelfLife) {
+	public void setShelfLife(Date shelfLife) {
 		this.shelfLife = shelfLife;
 	}
 

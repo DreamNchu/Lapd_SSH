@@ -106,6 +106,8 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 	 */
 	public String deleteOrders() {
 		try {
+			//@SuppressWarnings("uncheck")
+logger.info("sdfsd");
 			orderManage.delete(orderId.toArray(new String[0]));
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();

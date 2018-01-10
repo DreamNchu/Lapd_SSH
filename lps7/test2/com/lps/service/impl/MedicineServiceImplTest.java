@@ -1,10 +1,34 @@
 package com.lps.service.impl;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.fail;
 
+import java.util.Date;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.lps.model.Medicine;
 
 public class MedicineServiceImplTest {
+	
+	static ClassPathXmlApplicationContext ctx ;
+	static MedicineServiceImpl as ;
+	
+	
+	@BeforeClass
+	public static void before(){
+		ctx = new ClassPathXmlApplicationContext(new String[]{
+				"classpath:config/applicationContext.xml",
+		});
+		as = ctx.getBean("medicineServiceImpl", MedicineServiceImpl.class);
+	}
+	
+	@AfterClass
+	public static void after(){
+		ctx.destroy();
+	}
 
 	@Test
 	public void testFindAllOrders() {
@@ -53,7 +77,15 @@ public class MedicineServiceImplTest {
 
 	@Test
 	public void testSave() {
-		fail("Not yet implemented");
+		Medicine m = new Medicine();
+		m.setMedicineId("sdfsdf");
+		m.setPrice(12);
+		m.setInventory(1);
+		m.setName("ddd");
+		m.setShelfLife(new Date());
+		m.setVender("sdsdffdssdffsdf");
+		m.setSales(12);
+		as.save(m);
 	}
 
 	@Test

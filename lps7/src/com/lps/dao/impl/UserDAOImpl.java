@@ -231,9 +231,9 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAll() {
-		List<User> li = (List<User>)hibernateTemplate.find("from User");
-		li = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("from User").list();
-		System.out.println(li.get(0).getClass().getName());
+//		List<User> li = (List<User>)hibernateTemplate.find("from User");
+//		li = hibernateTemplate.getSessionFactory().getCurrentSession().createQuery("from User").list();
+//		System.out.println(li.get(0).getClass().getName());
 		return (List<User>)hibernateTemplate.find("from User");
 	}
 	

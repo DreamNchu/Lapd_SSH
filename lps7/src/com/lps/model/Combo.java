@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
 import com.lps.model.basic.BasicModel;
+import com.lps.model.basic.ModelLinkServerOrder;
 
 @Entity
 @Table(name="t_combo")
@@ -26,7 +27,7 @@ import com.lps.model.basic.BasicModel;
 		valueColumnName = "gen_value",
 		pkColumnValue = "combo_PK",
 		allocationSize = 1)
-public class Combo implements BasicModel<Integer>,java.io.Serializable {
+public class Combo implements BasicModel<Integer>,java.io.Serializable, ModelLinkServerOrder<Integer> {
 
 	private static final long serialVersionUID = 1L;
 	
