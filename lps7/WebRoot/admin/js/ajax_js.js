@@ -85,3 +85,11 @@ function ajaxRequest(url,func){
         }
     })
 }
+
+function alertBasicMsg(data){
+	 if(data.errorMsg != null){
+     	alert(data.errorMsg);
+     }else{
+     	alert(data.successMsg);
+     }
+}

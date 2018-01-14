@@ -17,6 +17,8 @@
 	
 	<bean id="medicineServiceImpl" class="com.lps.service.impl.MedicineServiceImpl">
 		<property name="dao" ref="medicineDAOImpl"></property>
+		<property name="pageMedicineBean" ref="pageBean"></property>
+		<property name="pageServerOrderByMedicineBean" ref="pageBean"></property>
 	</bean> 
 	
 </beans>

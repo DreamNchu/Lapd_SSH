@@ -9,9 +9,9 @@ import com.lps.control.manage.UserManage;
 import com.lps.dao.impl.UserDAOImpl;
 import com.lps.model.User;
 import com.lps.web.access.dto.UserSignInDto;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class UserSignInAction extends ActionSupport implements DataResult{
+public class UserSignInAction extends ActionSupportLps implements DataResult{
 
 	/**
 	 * 
@@ -31,12 +31,9 @@ public class UserSignInAction extends ActionSupport implements DataResult{
 	}
 
 
-//	private String result;
-
 	public String getResult() {
 		return result.toString();
 	}
-
 
 	public UserSignInDto getUserSignInDto() {
 		return userSignInDto;
@@ -56,25 +53,17 @@ public class UserSignInAction extends ActionSupport implements DataResult{
 	 * <p>
 	 */
 	public String signIn() {
-//		basicMsg.setMsgDto(msgDto);
+		
 		try {
 			Random random = new Random();
 			userSignInDto.setWorkId(random.nextInt(1000) + 10000);
 			userSignInDto.setRegisterTime(new Date());
-//			User user = userSignInDto.buildModel();
 			userManage.create(userSignInDto);
-//			userServiceImpl.save(user);
 		} catch (Exception e) {
 			e.printStackTrace();
 			basicMsg.setErrorMsg(e.getMessage());
-//			map.put(MSG, false);
-//			writeInResult(map);
-//			return SUCCESS;
 		}
 		basicMsg.setDefaultSuccessMsg();
-//		map.put(MSG, true);
-//		writeInResult(map);
-//System.out.println(result);
 		return SUCCESS;
 	}
 	
@@ -86,13 +75,9 @@ public class UserSignInAction extends ActionSupport implements DataResult{
 	public String isExists(){
 		basicMsg.getMap().put(UserDAOImpl.USER_NAME, userSignInDto.getUserName());
 		List<User> lus = userManage.queryByProperties(basicMsg.getMap());
-//		int id = userServiceImpl.findIdByUserName(userSignInDto.getUserName());
-		User u = new User();
 		if(lus!= null && lus.size() == 1){
 			return SUCCESS;
 		}
-//		u.setId(id);
-//		if(userServiceImpl.isExists(u))
 		return ERROR;
 	}
 	

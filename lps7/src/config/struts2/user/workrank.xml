@@ -5,13 +5,13 @@
 
 	<package name="userWorkRank" namespace="/user" extends="json-default,userLogin">
 
-		<action name="workRankPage" class="workRankAction" method="workRankPage">
+		<action name="workRankPage" class="manageWorkRanksAction" method="workRankPage">
 			<result>
 				/user/workRankPage.jsp
 			</result>
 		</action>
 
-		<action name="*WorkRank*" class="workRankAction" method="{1}WorkRank{2}">
+		<action name="*WorkRank*" class="manageWorkRanksAction" method="{1}WorkRank{2}">
 			<result type="json">
 				<param name="root">result</param>
 			</result>

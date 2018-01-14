@@ -20,7 +20,7 @@ public class TServerItemDto extends ArrayList<ServerItemDto> implements TableIni
 	public void init(List<ServerItem> lists) throws DtoInitException {
 		for (Entity entity : lists) {
 			ServerItemDto dto = new ServerItemDto();
-			dto.init((ServerItem)entity);
+			dto.initDto((ServerItem)entity);
 			add(dto);
 		}
 	}

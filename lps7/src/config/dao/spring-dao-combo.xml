@@ -17,6 +17,8 @@
 	
 	<bean id="comboServiceImpl" class="com.lps.service.impl.ComboServiceImpl">
 		<property name="dao" ref="comboDAOImpl"></property>
+		<property name="pageComboBean" ref="pageBean"></property>
+		<property name="pageServerOrderByComboBean" ref="pageBean"></property>
 	</bean> 
 	
 </beans>

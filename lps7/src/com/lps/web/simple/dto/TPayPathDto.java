@@ -20,7 +20,7 @@ public class TPayPathDto extends ArrayList<PayPathDto> implements TableInitDto<P
 		// TODO Auto-generated method stub
 		for (Entity entity : lists) {
 			PayPathDto dto = new PayPathDto();
-			dto.init((PayPath)entity);
+			dto.initDto((PayPath)entity);
 			add(dto);
 		}
 	}

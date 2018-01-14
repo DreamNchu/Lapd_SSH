@@ -1,4 +1,4 @@
-package com.lps.action.operation.workrank;
+package com.lps.action.operation.manage;
 
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.WorkRankManage;
@@ -9,9 +9,9 @@ import com.lps.util.WorkJson;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.workrank.dto.PageLinkTransformWorkRankDto;
 import com.lps.web.workrank.dto.WorkRankTableDto;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class WorkRankAction extends ActionSupport implements DataResult{
+public class ManageWorkRanksAction extends ActionSupportLps implements DataResult{
 
 	private static final long serialVersionUID = 3231097688808974970L;
 	

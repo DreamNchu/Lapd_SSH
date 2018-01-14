@@ -41,8 +41,8 @@ public class Pledge implements java.io.Serializable,ModelLinkServerOrder<Integer
 	private Set<ServerOrder> serverOrders = new TreeSet<ServerOrder>();
 	
 	@OneToMany(
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER,
+/*			cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,*/
 			mappedBy = "pledge")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;

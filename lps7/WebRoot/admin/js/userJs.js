@@ -7,7 +7,7 @@ function showdata(userData) {
     var i;
     for(i in userData.users){
         var sTr=document.createElement("tr");
-        sTr.innerHTML="<td><input type='checkbox' name='stuffId' value="+userData.users[i].id+"></td>"+
+        sTr.innerHTML="<td><input type='checkbox' name='stuffId' value="+userData.users[i].stuffId+"></td>"+
             "<td>"+userData.users[i].workId+"</td>"+
             "<td>"+userData.users[i].realName+"</td>"+
             "<td>"+userData.users[i].userName+"</td>"+

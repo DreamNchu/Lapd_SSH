@@ -10,30 +10,16 @@
 		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
-           
-           default-lazy-init="true"
+               default-lazy-init="true"
            >
-	<bean id="tUserDto" class="com.lps.web.user.dto.TUserDto" scope="prototype">
-	</bean>
+           
 	
-	<bean id="tRoomDto" class="com.lps.web.room.dto.TRoomDto" scope="prototype">
+	<bean id="manageMedicinesAction" class="com.lps.action.operation.manage.ManageMedicinesAction" scope="prototype">
+		<property name="medicineManage" ref="medicineManage"></property>
+		<property name="medicineResponseDto" ref="medicineResponseDto"></property>
+		<property name="medicineTableDataDto" ref="medicineTableDataDto"></property>
+		<property name="medicineRequestDto" ref="medicineRequestDto"></property>
+		<property name="medicineUpdateDataDto" ref="medicineUpdateDataDto"></property>
 	</bean>
-	
-	<bean id="tClockCategoryDto" class="com.lps.web.simple.dto.TClockCategoryDto" scope="prototype">
-	</bean>
-	
-	<bean id="tOrderStatusDto" class="com.lps.web.simple.dto.TOrderStatusDto" scope="prototype">
-	</bean>
-	<bean id="tPayPathDto" class="com.lps.web.simple.dto.TPayPathDto" scope="prototype">
-	</bean>
-	<bean id="tServerItemDto" class="com.lps.web.simple.dto.TServerItemDto" scope="prototype">
-	</bean>
-	
-	<bean id="tOrderDto" class="com.lps.web.order.dto.TOrderDto" scope="prototype">
-	</bean>
-	
-	<bean id="tWorkRankDto" class="com.lps.web.workrank.dto.TWorkRankDto" scope="prototype">
-	</bean>
-	
-
+		
 </beans>

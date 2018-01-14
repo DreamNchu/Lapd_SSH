@@ -4,12 +4,14 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
+import com.lps.model.Admin;
 import com.lps.service.AdminService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.service.impl.UserNotExistsException;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class AdminAccessAction extends ActionSupport implements SessionAware, DataResult {
+public class AdminAccessAction extends ActionSupportLps implements SessionAware, DataResult {
 
 	private static final long serialVersionUID = 5979229100942095638L;
 
@@ -20,7 +22,7 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 	private String password;
 
 	private Map<String, Object> session;
-	
+
 	private String result;
 
 	public void setResult(String result) {
@@ -54,11 +56,20 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 	public String main() {
 		// 检查session 判断是否为刷新
 		if (session.get("id") != null) {
-			return SUCCESS;
+			int id = Integer.parseInt(session.get("id") + "");
+			Admin admin;
+			try {
+				admin = adminServiceImpl.findById(id);
+				if (admin.getUserName().equals(session.get("userName"))) {
+					return SUCCESS;
+				}
+			} catch (FindByIdGetNullException e) {
+				e.printStackTrace();
+			}
 		}
 		try {
 			String password = adminServiceImpl.findPasswordByUserName(userName);
-			
+
 			int id = adminServiceImpl.findIdByUserName(userName);
 			if (password.equals(this.password)) {
 				session.put("id", id);
@@ -79,11 +90,12 @@ public class AdminAccessAction extends ActionSupport implements SessionAware, Da
 
 	@Override
 	public String getResult() {
-//		System.out.println("basicMsg.getErrorMsg().toString()" + basicMsg.getErrorMsg().toString());
-		/*if(basicMsg.getErrorMsg() != null)
-			return basicMsg.getErrorMsg().toString();
-		else
-			return "";*/
+		// System.out.println("basicMsg.getErrorMsg().toString()" +
+		// basicMsg.getErrorMsg().toString());
+		/*
+		 * if(basicMsg.getErrorMsg() != null) return
+		 * basicMsg.getErrorMsg().toString(); else return "";
+		 */
 		return result;
 	}
 

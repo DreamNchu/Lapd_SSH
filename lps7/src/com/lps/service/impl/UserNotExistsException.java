@@ -9,7 +9,7 @@ public class UserNotExistsException extends RuntimeException {
 
 	private static final long serialVersionUID = -5348896663500245075L;
 	
-	public UserNotExistsException() {
+	public UserNotExistsException(){
 	}
 	
 	public UserNotExistsException(String msg) {

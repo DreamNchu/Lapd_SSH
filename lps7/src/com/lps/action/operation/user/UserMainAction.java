@@ -1,8 +1,8 @@
 package com.lps.action.operation.user;
 
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class UserMainAction extends ActionSupport{
+public class UserMainAction extends ActionSupportLps{
 
 	private static final long serialVersionUID = -4775687348126830431L;
 	

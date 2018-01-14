@@ -5,27 +5,25 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.UserManage;
 import com.lps.control.manage.WorkRankManage;
 import com.lps.model.User;
 import com.lps.service.UserService;
-import com.opensymphony.xwork2.ActionSupport;
 
 /**
  * 员工是否签到检查，这将影响着上钟的排名
  * @author 0001
  *
  */
-public class UserWorkCheckAction extends ActionSupport 
+public class UserWorkCheckAction extends ActionSupportLps 
 	implements DataResult,SessionAware {
 	
 	private Map<String, Object> session ;
 
 	private static final long serialVersionUID = -4013579295942022608L;
 
-	private UserService userServiceImpl;
-	
 	private UserManage userManage;
 
 	public UserManage getUserManage() {
@@ -48,24 +46,6 @@ public class UserWorkCheckAction extends ActionSupport
 
 	public void setWorkRankManage(WorkRankManage workRankManage) {
 		this.workRankManage = workRankManage;
-	}
-
-	private Map<String, Object> map = new HashMap<>();
-
-	public UserService getUserServiceImpl() {
-		return userServiceImpl;
-	}
-
-	public void setUserServiceImpl(UserService userServiceImpl) {
-		this.userServiceImpl = userServiceImpl;
-	}
-
-	public Map<String, Object> getMap() {
-		return map;
-	}
-
-	public void setMap(Map<String, Object> map) {
-		this.map = map;
 	}
 
 	public Map<String, Object> getSession() {
@@ -91,13 +71,9 @@ public class UserWorkCheckAction extends ActionSupport
 		} catch (Exception e) {
 			e.printStackTrace();
 			basicMsg.setErrorMsg("您已签到");
-//			map.put(MSG, "您已签到");
-//			result = WorkJson.toJsonDisableHtmlEscaping(map);
-//			return SUCCESS;
+			return SUCCESS;
 		}
 		basicMsg.setSuccessMsg("签到成功");
-//		map.put(MSG, "签到成功");
-//		result = WorkJson.toJsonDisableHtmlEscaping(map);
 		return SUCCESS;
 	}
 
@@ -113,7 +89,7 @@ public class UserWorkCheckAction extends ActionSupport
 			User u = userManage.query(id);
 			workRankManage.deleteUserData(u);
 		} catch (Exception e) {
-//			e.printStackTrace();
+			e.printStackTrace();
 //			map.put(MSG, "您已签退");
 			basicMsg.setErrorMsg("您已签退");
 //			result = WorkJson.toJsonDisableHtmlEscaping(map);

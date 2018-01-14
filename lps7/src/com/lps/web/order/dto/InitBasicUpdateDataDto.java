@@ -43,15 +43,15 @@ public class InitBasicUpdateDataDto extends BasicRespondMsgDto{
 	 */
 	private TPayPathDto payPaths;
 	
-	private transient OrderDto orderDto;
+	private OrderDto orderDto;
 	
-	private Float pay;
+/*	private Float pay;
 	
 	private Float realPay;
 	
 	private String orderRemark;
 	
-	private String orderId;
+	private String orderId;*/
 	
 //	private TPayPathDto payPaths2;
 	
@@ -62,10 +62,10 @@ if(Modifier.isTransient(f.getModifiers()))
 		}
 	}*/
 	
-	public String getOrderId() {
+	/*public String getOrderId() {
 		return orderId;
 	}
-
+*/
 	public OrderDto getOrderDto() {
 		return orderDto;
 	}
@@ -74,7 +74,7 @@ if(Modifier.isTransient(f.getModifiers()))
 		this.orderDto = orderDto;
 	}
 	
-	public void setOrderId(String orderId) {
+/*	public void setOrderId(String orderId) {
 		this.orderId = orderId;
 	}
 
@@ -83,7 +83,7 @@ if(Modifier.isTransient(f.getModifiers()))
 		realPay = so.getRealPay();
 		orderRemark = so.getOrderRemark();
 		orderId = so.getId();
-	}
+	}*/
 	
 	public InitBasicUpdateDataDto() {
 		
@@ -92,11 +92,11 @@ if(Modifier.isTransient(f.getModifiers()))
 	public InitBasicUpdateDataDto init(ServerOrder so, List<? extends Entity> ...listEntities /*, List<User> users, List<Room> rooms, List<OrderStatus> orderStatuses
 			,List<ClockCategory> clockCategorys, List<PayPath> payPaths,*/ /*ServerOrder so*/) throws DtoInitException, MapNotInitForClassPathException{
 		
-		initSurplus(so);
+//		initSurplus(so);
 		
 		initTable(listEntities);
 		
-		orderDto.init(so);
+		orderDto.initDto(so);
 		
 		return this;
 	}
@@ -143,7 +143,7 @@ if(Modifier.isTransient(f.getModifiers()))
 		this.payPaths = payPaths;
 	}
 
-	public Float getPay() {
+	/*public Float getPay() {
 		return pay;
 	}
 
@@ -166,5 +166,5 @@ if(Modifier.isTransient(f.getModifiers()))
 	public void setOrderRemark(String orderRemark) {
 		this.orderRemark = orderRemark;
 	}
-	
+	*/
 }

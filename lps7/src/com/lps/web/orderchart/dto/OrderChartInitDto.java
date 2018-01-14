@@ -36,11 +36,11 @@ public class OrderChartInitDto extends BasicRespondMsgDto{
 		this.users = users;
 	}
 	
-/*	public TUserDto getUser() {
+/*	public TUserResponseDto getUser() {
 		return user;
 	}
 
-	public void setUser(TUserDto user) {
+	public void setUser(TUserResponseDto user) {
 		this.user = user;
 	}*/
 

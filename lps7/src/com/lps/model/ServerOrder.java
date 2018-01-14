@@ -43,10 +43,10 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 
 	/**
 	 * 订单的服务项目
-	 *//*
+	 */
 	private Set<ServerItem> serverorderServeritems = new HashSet<>(0);
 
-	@ManyToMany(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "t_serverorder_serveritem",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_serverItem_id") })
@@ -60,7 +60,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	
 	private Set<Combo> serverorderCombos = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "t_serverorder_combo",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_combo_id") })
@@ -75,7 +75,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 
 	private Set<Medicine> serverorderMedicines = new HashSet<>();
 	
-	@ManyToMany(fetch=FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch=FetchType.EAGER)
 	@JoinTable(name = "t_serverorder_medicine",
 			joinColumns = {	@JoinColumn(name = "t_serverorder_id") },
 			inverseJoinColumns = { @JoinColumn(name = "t_medicine_id") })
@@ -86,7 +86,7 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	public void setServerorderMedicines(Set<Medicine> serverorderMedicines) {
 		this.serverorderMedicines = serverorderMedicines;
 	}
-*/
+
 	/**
 	 * 基本属性
 	 */

@@ -1,6 +1,6 @@
 package com.lps.web.user.dto;
 
-public class UserOrderDto extends UserDto{
+public class UserOrderDto extends UserResponseDto{
 	
 	/*public Integer stuffId;
 	

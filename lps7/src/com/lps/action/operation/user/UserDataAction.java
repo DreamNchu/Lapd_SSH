@@ -6,20 +6,20 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.UserManage;
 import com.lps.model.User;
 import com.lps.service.impl.FindByIdGetNullException;
-import com.lps.util.WorkJson;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.user.dto.UserDataDto;
+import com.lps.web.user.dto.UserResponseDto;
 import com.lps.web.user.dto.UserHelpForCreateOrderDto;
 import com.lps.web.user.dto.UserIdDto;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.web.user.dto.UserUpdateDataDto;
 
-public class UserDataAction extends ActionSupport implements SessionAware, DataResult {
+public class UserDataAction extends ActionSupportLps implements SessionAware, DataResult {
 
-	private static final long serialVersionUID = 8391361256010015414L;
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
@@ -27,59 +27,20 @@ public class UserDataAction extends ActionSupport implements SessionAware, DataR
 			return className.substring(0, className.lastIndexOf('$'));
 		}
 	}.getClassName());
+	private static final long serialVersionUID = 8391361256010015414L;
 
 	private Map<String, Object> session;
 
-	private UserDataDto userDataDto;
+	private UserResponseDto userDataDto;
 	
-	private UserManage userManage;
+	private UserHelpForCreateOrderDto userHelpForCreateOrderDto;
 
-//	private UserService userServiceImpl;
-
-	public UserManage getUserManage() {
-		return userManage;
-	}
-
-	public void setUserManage(UserManage userManage) {
-		this.userManage = userManage;
-	}
-
-
-	public String getResult() {
-		return result.toString();
-	}
-
-/*	public UserService getUserServiceImpl() {
-		return userServiceImpl;
-	}
-
-	public void setUserServiceImpl(UserService userServiceImpl) {
-		this.userServiceImpl = userServiceImpl;
-	}
-*/
-	public UserDataDto getUserDataDto() {
-		return userDataDto;
-	}
-
-	public void setUserDataDto(UserDataDto userDataDto) {
-		this.userDataDto = userDataDto;
-	}
-
-	@Override
-	public void setSession(Map<String, Object> arg0) {
-		this.session = arg0;
-	}
-	
-	
 	private UserIdDto userIdDto;
 
-	public UserIdDto getUserIdDto() {
-		return userIdDto;
-	}
+	private UserManage userManage;
 
-	public void setUserIdDto(UserIdDto userIdDto) {
-		this.userIdDto = userIdDto;
-	}
+	private UserUpdateDataDto userUpdateDataDto;
+
 
 	/**
 	 * 查看员工信息
@@ -89,22 +50,74 @@ public class UserDataAction extends ActionSupport implements SessionAware, DataR
 
 		int id = Integer.parseInt(session.get("id") + "");
 //		User user = userServiceImpl.findById(id);
-		User user = userManage.query(id);
-		userDataDto.init(user);
+		userManage.query(id,userDataDto);
+//		userDataDto.initDto(user);
 		basicMsg.setMsgDto(userDataDto);
 //		basicMsg
 
 		return super.execute();
 	}
 	
-	private UserHelpForCreateOrderDto userHelpForCreateOrderDto;
-	
 	public UserHelpForCreateOrderDto getUserHelpForCreateOrderDto() {
 		return userHelpForCreateOrderDto;
 	}
 
+	public UserIdDto getUserIdDto() {
+		return userIdDto;
+	}
+
+	public UserManage getUserManage() {
+		return userManage;
+	}
+	
+	public UserUpdateDataDto getUserUpdateDataDto() {
+		return userUpdateDataDto;
+	}
+	
+	/**
+	 * 修改数据
+	 * @return
+	 */
+	public String modifyData() {
+		
+		try {
+			userUpdateDataDto.setMap(data);
+			userManage.update(userUpdateDataDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			basicMsg.setDefaultErrorMsg();
+		}
+		basicMsg.setDefaultSuccessMsg();
+		return SUCCESS;
+	}
+
+	@Override
+	public void setSession(Map<String, Object> arg0) {
+		this.session = arg0;
+	}
+
+	public void setUserDataDto(UserDataDto userDataDto) {
+		this.userDataDto = userDataDto;
+	}
+	
 	public void setUserHelpForCreateOrderDto(UserHelpForCreateOrderDto userHelpForCreateOrderDto) {
 		this.userHelpForCreateOrderDto = userHelpForCreateOrderDto;
+	}
+
+	public void setUserIdDto(UserIdDto userIdDto) {
+		this.userIdDto = userIdDto;
+	}
+
+	public void setUserManage(UserManage userManage) {
+		this.userManage = userManage;
+	}
+	
+	public void setUserUpdateDataDto(UserUpdateDataDto userUpdateDataDto) {
+		this.userUpdateDataDto = userUpdateDataDto;
+	}
+
+	public String userData() throws Exception{
+		return execute();
 	}
 
 	/**
@@ -117,8 +130,8 @@ public class UserDataAction extends ActionSupport implements SessionAware, DataR
 		basicMsg.setMsgDto(userHelpForCreateOrderDto);
 		User user;
 		try {
-			user = userManage.query(id);
-			userHelpForCreateOrderDto.init(user);
+			user = userManage.query(id,userHelpForCreateOrderDto);
+//			userHelpForCreateOrderDto.initDto(user);
 		} catch (FindByIdGetNullException | DtoInitException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -130,34 +143,6 @@ public class UserDataAction extends ActionSupport implements SessionAware, DataR
 		
 //logger.debug(result);
 
-		return SUCCESS;
-	}
-	
-	public String userData() throws Exception{
-		return execute();
-	}
-
-	/**
-	 * 修改数据
-	 * @return
-	 */
-	public String modifyData() {
-		
-//		int id = Integer.parseInt(session.get("id") + "");
-		try {
-//			User user = userServiceImpl.findById(id);
-//			userDataDto.update(user);
-			userManage.update(userDataDto);
-//			userServiceImpl.update(user);
-		} catch (Exception e) {
-			e.printStackTrace();
-			basicMsg.setDefaultErrorMsg();
-//			map.put(MSG, "修改失败");
-//			return SUCCESS;
-		}
-//		map.put(MSG, "修改成功");
-		basicMsg.setDefaultSuccessMsg();
-//		writeInResult(map);
 		return SUCCESS;
 	}
 

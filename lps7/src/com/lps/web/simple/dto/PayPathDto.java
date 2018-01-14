@@ -11,7 +11,7 @@ public class PayPathDto extends BasicRespondMsgDto implements PayPathLibrary{
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public PayPathDto init(PayPath obj) throws DtoInitException {
+	public PayPathDto initDto(PayPath obj) throws DtoInitException {
 		if (obj == null) {
 			throw new DtoInitException("支付方式数据转换对象初始化异常");
 		}
@@ -41,11 +41,11 @@ public class PayPathDto extends BasicRespondMsgDto implements PayPathLibrary{
 		return pp;
 	}
 
-	@Override
+/*	@Override
 	public <K> K getNativeObject() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 	
 /*	public static void main(String[] args) throws DtoInitException {
 		PayPathDto ppd = new PayPathDto();

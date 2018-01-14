@@ -26,16 +26,6 @@
 			</result>
 		</action>
 
-
-		<!-- <action name="queryBasicOrders" class="manageOrdersAction" method="queryBasicOrders"> 
-			<result type="json"> <param name="root">result</param> </result> </action> 
-			<action name="deleteOrders" class="manageOrdersAction" method="deleteOrders"> 
-			<result type="json"> <param name="root">result</param> </result> </action> 
-			<action name="queryOrder" class="manageOrdersAction" method="queryOrder"> 
-			<result type="json"> <param name="root">result</param> </result> </action> 
-			<action name="updateOrder" class="manageOrdersAction" method="updateOrder"> 
-			<result type="json"> <param name="root">result</param> </result> </action> -->
-
 		<action name="orderManage" class="manageOrdersAction">
 			<result>
 				/admin/orderManage.jsp

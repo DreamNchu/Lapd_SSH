@@ -16,6 +16,7 @@ public interface BasicResponseDto<E extends Entity> {
 	 * @return
 	 * @throws DtoInitException 
 	 */
-	 <K> K init(E obj) throws DtoInitException;
+	 <K extends BasicResponseDto<E>> K initDto(E obj) throws DtoInitException;
 	
+	 
 }

@@ -3,15 +3,13 @@ package com.lps.action.operation.order;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
-import com.lps.control.manage.BasicManage;
 import com.lps.control.manage.CreateFailedException;
 import com.lps.control.manage.OrderManage;
-import com.lps.service.ServerOrderService;
 import com.lps.web.order.dto.CreateOrderDto;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class CreateOrderAction extends ActionSupport implements DataResult {
+public class CreateOrderAction extends ActionSupportLps implements DataResult {
 
 	private static final long serialVersionUID = -2770070015331923293L;
 

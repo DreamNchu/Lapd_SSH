@@ -8,6 +8,4 @@ public interface TableInitDto<T extends Entity> {
 
 	public void init(List<T> lists) throws DtoInitException;
 	
-//	public String getName();
-	
 }

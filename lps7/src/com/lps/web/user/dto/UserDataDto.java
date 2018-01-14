@@ -2,8 +2,9 @@ package com.lps.web.user.dto;
 
 import com.lps.model.User;
 import com.lps.util.WorkDate;
+import com.lps.web.dto.BasicUpdateDto;
 
-public class UserDataDto extends UserDto{
+public class UserDataDto extends UserResponseDto implements BasicUpdateDto<User>{
 	
 	private Integer stuffId;
 	private String workStatus;
@@ -224,5 +225,28 @@ public class UserDataDto extends UserDto{
 	public void setIDCardNo(String iDCardNo) {
 		IDCardNo = iDCardNo;
 	}
+
+	@Override
+	public User generate() {
+		
+//		User u = super.generate();
+		
+	/*	User u =new User.Builder()
+				.setUserName(userName).setPassword("123456")
+				.setAddress(address).setWorkId(workId)
+				.setBirthday(WorkDate.toDate(birthday)).setTelephonePhone(telephonePhone)
+				.setEmail(email)
+				.setAvatar(avatar).setQuestion(question)
+				.setAnswer(answer).setRegisterTime(WorkDate.toDate(registerTime))
+				.setRealName(realName).setIDCardNo(IDCardNo)
+				.build();*/
+		return null;
+	}
+
+/*	@Override
+	public <K> K getNativeObject() {
+		// TODO Auto-generated method stub
+		return (K)this;
+	}*/
 
 }

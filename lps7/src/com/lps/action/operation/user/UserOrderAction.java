@@ -23,9 +23,9 @@ import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.TimeType;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.user.dto.UserOrderRequestDto;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class UserOrderAction extends ActionSupport implements DataResult, SessionAware {
+public class UserOrderAction extends ActionSupportLps implements DataResult, SessionAware {
 
 	private static final long serialVersionUID = -7901998643050021799L;
 
@@ -61,7 +61,7 @@ public class UserOrderAction extends ActionSupport implements DataResult, Sessio
 	public String detailOrderInfo() {
 		basicMsg.setMsgDto(orderSingleDataDto);
 		try {
-			orderSingleDataDto.init(orderManage.query(orderId));
+			orderManage.query(orderId,orderSingleDataDto);
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			orderSingleDataDto.setErrorMsg(e.getMessage());

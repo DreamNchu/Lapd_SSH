@@ -97,9 +97,7 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 	 */
 	public void initMap() {
 
-		// Object obj;
 		Class<?> cla = this.getClass();
-//		System.out.println(cla.getName());
 		do {
 			Field[] fs = cla.getDeclaredFields();
 
@@ -159,8 +157,16 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 			throws DtoInitException, MapNotInitForClassPathException {
 
 		for (List<? extends Entity> entities : listEntities) {
-//System.out.println(entities.get(0).getClass().getName());
-			Class<?> c =  entities.get(0).getClass();
+			Class<?> c =  null;
+			
+			for(int i = 0; i < entities.size(); i ++){
+				if(entities.get(i) != null){
+					c =  entities.get(i).getClass();
+					break;
+				}
+				
+			}
+			if(c == null) continue;
 			while( c.getName().contains("$")){
 				c = c.getSuperclass();
 			}
@@ -170,7 +176,6 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 			}
 			TableInitDto<Entity> tid = (TableInitDto<Entity>) obj;
 			tid.init((List<Entity>) entities);
-
 		}
 	}
 

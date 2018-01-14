@@ -6,9 +6,9 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.service.UserService;
 import com.lps.util.OnLineStatus;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class UserAccessAction extends ActionSupport implements SessionAware{
+public class UserAccessAction extends ActionSupportLps implements SessionAware{
 
 	private static final long serialVersionUID = 5979229100942095638L;
 

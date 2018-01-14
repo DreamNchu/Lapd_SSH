@@ -5,7 +5,7 @@ import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.simple.dto.OrderStatusDto;
 
-public interface RoomLibraryDto extends BasicRequestDto<Room>, BasicResponseDto<Room>{
+public interface RoomLibraryDto {
 
 	public String roomId = "roomId";
 

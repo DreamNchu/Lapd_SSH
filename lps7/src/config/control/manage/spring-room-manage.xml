@@ -13,6 +13,7 @@
 
 	<bean id="roomManage" class="com.lps.control.manage.RoomManage">
 		<property name="roomServiceImpl" ref="roomServiceImpl"></property>
+		<property name="serverItemServiceImpl" ref="serverItemServiceImpl"></property>
 	</bean>
 	
 </beans>

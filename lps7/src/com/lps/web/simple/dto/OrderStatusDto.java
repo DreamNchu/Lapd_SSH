@@ -13,7 +13,7 @@ public class OrderStatusDto extends BasicRespondMsgDto implements OrderStatusLib
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public  OrderStatusDto init(OrderStatus obj) throws DtoInitException {
+	public  OrderStatusDto initDto(OrderStatus obj) throws DtoInitException {
 		if (obj == null) {
 			throw new DtoInitException("订单类型数据转换对象初始化异常");
 		}
@@ -42,11 +42,11 @@ public class OrderStatusDto extends BasicRespondMsgDto implements OrderStatusLib
 		return os;
 	}
 
-	@Override
+/*	@Override
 	public <K> K getNativeObject() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 	
 /*	public static void main(String[] args) throws DtoInitException {
 		OrderStatusDto osd = new OrderStatusDto();

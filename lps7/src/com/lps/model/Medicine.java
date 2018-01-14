@@ -42,7 +42,7 @@ public class Medicine implements BasicModel<Integer>, java.io.Serializable ,Mode
 	private Integer inventory;
 	private Integer sales;
 //	private Set<TServerorderMedicine> TServerorderMedicines = new HashSet<TServerorderMedicine>(0);
-	/*private Set<ServerOrder> serverOrders = new HashSet<>();
+	private Set<ServerOrder> serverOrders = new HashSet<>();
 	
 	@ManyToMany(mappedBy="serverorderMedicines")
 	public Set<ServerOrder> getServerOrders() {
@@ -52,7 +52,7 @@ public class Medicine implements BasicModel<Integer>, java.io.Serializable ,Mode
 	public void setServerOrders(Set<ServerOrder> serverOrders) {
 		this.serverOrders = serverOrders;
 	}
-*/
+
 	public Medicine() {
 		
 	}

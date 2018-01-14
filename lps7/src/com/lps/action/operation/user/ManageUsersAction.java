@@ -14,14 +14,13 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.user.dto.PageLinkTransformUserDto;
-import com.lps.web.user.dto.UserDataDto;
-import com.lps.web.user.dto.UserDto;
+import com.lps.web.user.dto.UserResponseDto;
+import com.lps.web.user.dto.UserRequestDto;
 import com.lps.web.user.dto.UserTableDataDto;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.web.user.dto.UserUpdateDataDto;
+import com.lps.action.basic.ActionSupportLps;
 
-public class ManageUsersAction extends ActionSupport implements DataResult, SessionAware {
-
-	private static final long serialVersionUID = -8314546487497383936L;
+public class ManageUsersAction extends ActionSupportLps implements DataResult, SessionAware {
 
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
@@ -31,36 +30,38 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 		}
 	}.getClassName());
 
+	private static final long serialVersionUID = -8314546487497383936L;
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	private Map<String, String[]> data;
+
+	private PageLinkTransformUserDto pageLinkTransformUserDto;
+
 	private Map<String, Object> session;
 
 	private List<Integer> stuffId;
 
-	private UserTableDataDto userTableDataDto;
-
+	private UserResponseDto userDataDto;
+	
 	private UserManage userManage;
 
-	private PageLinkTransformUserDto pageLinkTransformUserDto;
+	private UserTableDataDto userTableDataDto;
 
-	private UserDto userDataDto;
-
-	public UserDto getUserDataDto() {
-		return userDataDto;
-	}
-
-	public void setUserDataDto(UserDto userDataDto) {
-		this.userDataDto = userDataDto;
-	}
-
-	@Override
-	public String execute() throws Exception {
-		return super.execute();
-	}
-
+	private UserUpdateDataDto userUpdateDataDto;
+	
+	
+	
 	public String addUser() {
 
 		try {
-			userManage.create(userDataDto);
-		} catch (Exception e) {
+			UserRequestDto userRequestDataDto = new UserRequestDto(data);
+//			if(data.get("password") == null)
+			data.put("password", new String[]{"123456"});
+			userManage.create(userRequestDataDto);
+		} catch (Exception e){
 			e.printStackTrace();
 			basicMsg.setErrorMsg("添加用户失败");
 		}
@@ -81,6 +82,45 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 		basicMsg.setSuccessMsg("删除用户成功");
 		return SUCCESS;
 	}
+
+	@Override
+	public String execute() throws Exception {
+		return super.execute();
+	}
+
+	public Map<String, String[]> getData() {
+		return data;
+	}
+	
+	public PageLinkTransformUserDto getPageLinkTransformUserDto() {
+		return pageLinkTransformUserDto;
+	}
+	
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
+
+	public List<Integer> getStuffId() {
+		return stuffId;
+	}
+	
+	public UserResponseDto getUserDataDto() {
+		return userDataDto;
+	}
+
+	public UserManage getUserManage() {
+		return userManage;
+	}
+
+	public UserTableDataDto getUserTableDataDto() {
+		return userTableDataDto;
+	}
+
+	public UserUpdateDataDto getUserUpdateDataDto() {
+		return userUpdateDataDto;
+	}
+
 
 	/**
 	 * 按页面查询的User
@@ -108,9 +148,10 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 			userTableDataDto.setErrorMsg(e.getMessage());
 			e.printStackTrace();
 		}
-
+		
 		return SUCCESS;
 	}
+
 
 	/**
 	 * 查询user
@@ -125,63 +166,18 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 		
 		User user;
 		try {
-			user = userManage.query(id);
-			userDataDto.init(user);
+			user = userManage.query(id,userDataDto);
+			userDataDto.initDto(user);
 		} catch (DtoInitException | FindByIdGetNullException e) {
 			e.printStackTrace();
 			userDataDto.setErrorMsg(e.getMessage());
 		}
 		
-//		userTableDataDto.getUsers().add(userDataDto);
-
 		return SUCCESS;
 	}
 
-	public String updateUser() {
-		basicMsg.setMsgDto(userDataDto);
-		
-		try {
-//			userDataDto.generate();
-			userManage.update(userDataDto);
-			
-//			userServiceImpl.update(userDataDto.update(userServiceImpl.findById(userDataDto.getId())));
-		} catch (Exception e) {
-			e.printStackTrace();
-//			map.put(MSG, "更新用户数据失败");
-			basicMsg.setErrorMsg("更新用户数据失败");
-//			isError = true;
-		}
-//		if (!isError)
-//			map.put(MSG, "更新用户数据成功");
-		basicMsg.setSuccessMsg("更新用户数据成功");
-//		result = WorkJson.toJsonDisableHtmlEscaping(map);
-		return SUCCESS;
-	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
-
-	public UserTableDataDto getUserTableDataDto() {
-		return userTableDataDto;
-	}
-
-	public void setUserTableDataDto(UserTableDataDto userTableDataDto) {
-		this.userTableDataDto = userTableDataDto;
-	}
-
-	public UserManage getUserManage() {
-		return userManage;
-	}
-
-	public void setUserManage(UserManage userManage) {
-		this.userManage = userManage;
-	}
-
-	public PageLinkTransformUserDto getPageLinkTransformUserDto() {
-		return pageLinkTransformUserDto;
+	public void setData(Map<String, String[]> data) {
+		this.data = data;
 	}
 
 	public void setPageLinkTransformUserDto(PageLinkTransformUserDto pageLinkTransformUserDto) {
@@ -193,15 +189,36 @@ public class ManageUsersAction extends ActionSupport implements DataResult, Sess
 		this.session = arg0;
 	}
 
-	public List<Integer> getStuffId() {
-		return stuffId;
-	}
-
 	public void setStuffId(List<Integer> userId) {
 		this.stuffId = userId;
 	}
-	@Override
-	public String getResult() {
-		return result.toString();
+
+	public void setUserDataDto(UserResponseDto userDataDto) {
+		this.userDataDto = userDataDto;
+	}
+
+	public void setUserManage(UserManage userManage) {
+		this.userManage = userManage;
+	}
+
+	public void setUserTableDataDto(UserTableDataDto userTableDataDto) {
+		this.userTableDataDto = userTableDataDto;
+	}
+
+	public void setUserUpdateDataDto(UserUpdateDataDto userUpdateDataDto) {
+		this.userUpdateDataDto = userUpdateDataDto;
+	}
+	public String updateUser() {
+		
+//		UserUpdateDataDto userUpdateDataDto = new UserUpdateDataDto(data);
+		userUpdateDataDto.setMap(data);
+		try {
+			userManage.update(userUpdateDataDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			basicMsg.setErrorMsg("更新用户数据失败");
+		}
+		basicMsg.setSuccessMsg("更新用户数据成功");
+		return SUCCESS;
 	}
 }

@@ -20,7 +20,7 @@ public class TClockCategoryDto extends ArrayList<ClockCategoryDto> implements Ta
 	public void init(List<ClockCategory> lists) throws DtoInitException {
 		for (Object entity : lists) {
 			ClockCategoryDto ccd = new ClockCategoryDto();
-			ccd.init((ClockCategory)entity);
+			ccd.initDto((ClockCategory)entity);
 			add(ccd);
 		}
 	}

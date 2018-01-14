@@ -12,9 +12,9 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
 import com.lps.web.orderchart.dto.Population;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class UserOrdersCountAction extends ActionSupport 
+public class UserOrdersCountAction extends ActionSupportLps 
 		implements DataResult, SessionAware{
 	
 	private static final long serialVersionUID = -7904719214614886119L;

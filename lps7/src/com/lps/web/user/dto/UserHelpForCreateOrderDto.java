@@ -4,7 +4,7 @@ import com.lps.model.basic.Entity;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.dto.BasicRequestDto;
 
-public class UserHelpForCreateOrderDto extends UserDto{
+public class UserHelpForCreateOrderDto extends UserResponseDto{
 	
 	private String workStatus;
 	private String realName;

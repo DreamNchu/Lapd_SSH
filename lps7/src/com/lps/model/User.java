@@ -514,8 +514,8 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	}
 
 	@OneToMany(
-			cascade = CascadeType.MERGE,
-			fetch = FetchType.EAGER, 
+		/*	cascade = CascadeType.MERGE,
+			fetch = FetchType.EAGER, */
 			mappedBy = "user")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;
@@ -564,7 +564,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	 * @see WorkRank
 	 * @return 返回工作排序
 	 */
-	@OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "user", fetch = FetchType.EAGER)
 
 	public WorkRank getWorkRank() {
 		return workRank;

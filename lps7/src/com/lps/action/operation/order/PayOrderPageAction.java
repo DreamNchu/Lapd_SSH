@@ -2,9 +2,9 @@ package com.lps.action.operation.order;
 
 import com.lps.action.jsonresult.DataResult;
 import com.lps.util.WorkJson;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class PayOrderPageAction extends ActionSupport implements DataResult{
+public class PayOrderPageAction extends ActionSupportLps implements DataResult{
 	
 	private static final long serialVersionUID = 622967630161433205L;
 	

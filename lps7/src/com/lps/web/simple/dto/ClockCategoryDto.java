@@ -8,7 +8,7 @@ public class ClockCategoryDto extends BasicRespondMsgDto implements ClockCategor
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public ClockCategoryDto init(ClockCategory obj) throws DtoInitException {
+	public ClockCategoryDto initDto(ClockCategory obj) throws DtoInitException {
 		
 		if (obj == null){
 			throw new DtoInitException("钟点类型数据转换对象初始化异常");
@@ -38,11 +38,11 @@ public class ClockCategoryDto extends BasicRespondMsgDto implements ClockCategor
 		return cc;
 	}
 
-	@Override
+/*	@Override
 	public <K> K getNativeObject() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 	
 /*	public static void main(String[] args) throws DtoInitException {
 		ClockCategoryDto ccd = new ClockCategoryDto();

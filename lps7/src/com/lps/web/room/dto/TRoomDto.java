@@ -10,7 +10,7 @@ import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.basicmsg.dto.TableInitDto;
 
 @DtoName("rooms")
-public class TRoomDto extends ArrayList<RoomDto> implements TableInitDto<Room>{
+public class TRoomDto extends ArrayList<RoomResponseDto> implements TableInitDto<Room>{
 
 	private static final long serialVersionUID = 6746457713473621005L;
 
@@ -19,8 +19,8 @@ public class TRoomDto extends ArrayList<RoomDto> implements TableInitDto<Room>{
 	@Override
 	public void init(List<Room> lists) throws DtoInitException {
 		for (Entity entity : lists) {
-			RoomDto ccd = new RoomDto();
-			ccd.init((Room)entity);
+			RoomResponseDto ccd = new RoomResponseDto();
+			ccd.initDto((Room)entity);
 			add(ccd);
 		}
 	}

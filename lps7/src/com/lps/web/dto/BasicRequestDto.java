@@ -1,7 +1,6 @@
 package com.lps.web.dto;
 
 import com.lps.model.basic.Entity;
-import com.lps.web.room.dto.NotRoomObjectException;
 
 /**
  * 
@@ -16,11 +15,5 @@ public interface BasicRequestDto<T extends Entity> {
 	 * @return
 	 */
 	T generate();
-	
-	/**
-	 * 拿到当前类别的
-	 * @return
-	 */
-	public<K> K getNativeObject();
 	
 }

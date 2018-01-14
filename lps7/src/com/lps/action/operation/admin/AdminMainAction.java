@@ -1,8 +1,8 @@
 package com.lps.action.operation.admin;
 
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class AdminMainAction extends ActionSupport{
+public class AdminMainAction extends ActionSupportLps{
 
 	private static final long serialVersionUID = -9186252906906960574L;
 

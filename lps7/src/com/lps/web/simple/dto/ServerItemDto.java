@@ -8,7 +8,7 @@ public class ServerItemDto extends BasicRespondMsgDto implements ServerItemLibra
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public ServerItemDto init(ServerItem obj) throws DtoInitException {
+	public ServerItemDto initDto(ServerItem obj) throws DtoInitException {
 		if (obj == null) {
 			throw new DtoInitException("服务项目数据转换对象初始化异常");
 		}
@@ -43,10 +43,10 @@ public class ServerItemDto extends BasicRespondMsgDto implements ServerItemLibra
 		return si;
 	}
 
-	@Override
+/*	@Override
 	public <K> K getNativeObject() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 }

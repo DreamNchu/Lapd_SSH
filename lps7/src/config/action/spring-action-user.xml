@@ -43,13 +43,14 @@
 	 <!-- 员工分配工作时检查是否签到 -->
 	 <bean id="userWorkCheckAction" scope="prototype" class="com.lps.action.operation.user.UserWorkCheckAction">
 	 	<property name="workRankManage" ref="workRankManage"></property>
-	 	<property name="userServiceImpl" ref="userServiceImpl"></property>
+	 	<property name="userManage" ref="userManage"></property>
 	 </bean>
 	 
 	 <!-- 员工的工作信息 -->
 	 <bean scope="prototype" id="userDataAction" class="com.lps.action.operation.user.UserDataAction">
-	 	<property name="userDataDto" ref="userDataDto"></property>
+	 	<property name="userDataDto" ref="userResponseDto"></property>
 	 	<property name="userHelpForCreateOrderDto" ref="userHelpForCreateOrderDto"></property>
+	 	<property name="userManage" ref="userManage"></property>
 	 </bean>
 	 
 	 <!-- 员工注册 -->

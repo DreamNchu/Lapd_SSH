@@ -8,10 +8,10 @@ import org.jboss.jandex.Main;
 import com.lps.model.ServerOrder;
 import com.lps.util.PageBean;
 import com.lps.web.basicmsg.dto.DtoInitException;
-import com.lps.web.page.dto.BasicPageDto;
+import com.lps.web.page.dto.TablePage;
 import com.lps.web.page.dto.PageAble;
 
-public class OrderTableDto extends BasicPageDto<ServerOrder>{
+public class OrderTableDto extends TablePage<ServerOrder>{
 
 	private static final long serialVersionUID = 3806945311759118584L;
 	
@@ -56,7 +56,7 @@ public class OrderTableDto extends BasicPageDto<ServerOrder>{
 		
 	}
 	
-public static void main(String[] args) {
+/*public static void main(String[] args) {
 	Class cla = OrderTableDto.class;
 	System.out.println(cla = cla.getSuperclass());
 	System.out.println(cla = cla.getSuperclass());
@@ -68,6 +68,6 @@ public static void main(String[] args) {
 //	for(Field field : .getDeclaredFields()){
 //		System.out.println(field.getName());
 //	}
-}
+}*/
 
 }

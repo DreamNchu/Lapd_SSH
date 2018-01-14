@@ -9,16 +9,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hibernate.Session;
-
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.OrderStatusDAO;
 import com.lps.dao.impl.ServerOrderDAOImpl;
 import com.lps.model.ClockCategory;
-import com.lps.model.Combo;
-import com.lps.model.Medicine;
 import com.lps.model.OrderStatus;
-import com.lps.model.PayPath;
 import com.lps.model.Room;
 import com.lps.model.ServerItem;
 import com.lps.model.ServerOrder;
@@ -32,13 +27,15 @@ import com.lps.service.ServerOrderService;
 import com.lps.service.UserService;
 import com.lps.service.basic.BasicForServerOrderService;
 import com.lps.service.impl.FindByIdGetNullException;
-import com.lps.service.impl.ServerOrderServiceImpl;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
 import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.dto.BasicResponseDto;
+import com.lps.web.dto.BasicUpdateDto;
 import com.lps.web.order.dto.AdvancedSearchDto;
 import com.lps.web.order.dto.CreateOrderDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
@@ -287,7 +284,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	@Override
 	public <DTO extends BasicRequestDto<ServerOrder>> void create(DTO dto) throws CreateOrderFailedException {
 		
-		CreateOrderDto createOrderDto = dto.getNativeObject();
+		CreateOrderDto createOrderDto = (CreateOrderDto)dto;
 		
 		ServerOrder so = null;
 		switch (createOrderDto.getCreateWays()) {
@@ -421,9 +418,9 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 		List<Room> rooms = addUtil(so.getRoom(), roomServiceImpl.findAll());
 		List<OrderStatus> oss = addUtil(so.getOrderStatus(), orderStatusServiceImpl.findAll());
 		List<ClockCategory> cc = addUtil(so.getClockCategory(), clockCategoryServiceImpl.findAll());
-		List<PayPath> pp = addUtil(so.getPayPath(), payPathServiceImpl.findAll());
+//		List<PayPath> pp = addUtil(so.getPayPath(), payPathServiceImpl.findAll());
 
-		initBasicUpdateDataDto.init(so, users, rooms, oss, cc, pp);
+		initBasicUpdateDataDto.init(so, users, rooms, oss, cc/*, pp*/);
 
 	}
 
@@ -433,9 +430,9 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	
 //	public <DTO extends BasicRequestDto<ServerOrder>> void update(DTO dto) throws FindByIdGetNullException 
 	@Override
-	public <DTO extends BasicRequestDto<ServerOrder>> void update(DTO dto) throws FindByIdGetNullException {
+	public <DTO extends BasicUpdateDto<ServerOrder>> void update(DTO dto) throws FindByIdGetNullException {
 		
-		OrderUpdateDataDto ou = dto.getNativeObject();
+		OrderUpdateDataDto ou = (OrderUpdateDataDto)dto;
 		
 		ServerOrder so = serverOrderServiceImpl.findById(ou.getOrderId());
 		if (ou.getStuffId() != 0)
@@ -741,10 +738,19 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 //		serverOrderServiceImpl.deleteAll(sos);
 	}
 
-	@Override
+/*	@Override
 	public ServerOrder query(Serializable id) throws FindByIdGetNullException {
 		return serverOrderServiceImpl.findById(id);
+	}*/
+	
+	@Override
+	public <RDto extends BasicResponseDto<ServerOrder>> ServerOrder query(Serializable id, RDto rdto)
+			throws FindByIdGetNullException, DtoInitException {
+		ServerOrder so = serverOrderServiceImpl.findById(id);
+		rdto.initDto(so);
+		return so;
 	}
+	
 
 	@Override
 	public PageBean<ServerOrder> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
@@ -772,7 +778,20 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
+	@Override
+	public ServerOrder query(Serializable id) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		return serverOrderServiceImpl.findById(id);
+	}
+
+	@Override
+	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto)
+			throws DtoInitException, MapNotInitForClassPathException {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	
 }

@@ -65,5 +65,19 @@
 		<property name="users" ref="tUserDto">
 		</property>
 	</bean>
+	<bean id="roomTableDataDto" scope="prototype" class="com.lps.web.room.dto.RoomTableDataDto">
+		<property name="rooms" ref="tRoomDto">
+		</property>
+	</bean>
+	
+	
+	<bean id="initOperationRoomData" class="com.lps.web.room.dto.InitOperationRoomData" scope="prototype">
+		<property name="serverItems" ref="tServerItemDto"></property>
+	</bean>
+	
+	<bean id="medicineTableDataDto" class="com.lps.web.medicine.dto.MedicineTableDataDto" scope="prototype">
+		<property name="medicines" ref="tMedicineDto"></property>
+	</bean>
+	
 
 </beans>

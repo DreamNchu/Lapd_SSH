@@ -17,7 +17,7 @@
    
     </bean>
 	
-	<bean id="workRankAction" class="com.lps.action.operation.workrank.WorkRankAction" scope="prototype">
+	<bean id="manageWorkRanksAction" class="com.lps.action.operation.manage.ManageWorkRanksAction" scope="prototype">
 		<property name="workRankManage" ref="workRankManage"></property>
 		<property name="workRankTableDto" ref="workRankTableDto"></property>
 		<property name="pageLinkTransformWorkRankDto" ref="pageLinkTransformWorkRankDto"></property>

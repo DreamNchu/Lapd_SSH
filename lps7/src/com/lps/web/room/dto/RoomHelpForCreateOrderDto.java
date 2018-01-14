@@ -1,6 +1,6 @@
 package com.lps.web.room.dto;
 
-public class RoomHelpForCreateOrderDto extends RoomDto /*implements BasicInitDto<RoomHelpForCreateOrderDto>*/ {
+public class RoomHelpForCreateOrderDto extends RoomResponseDto /*implements BasicInitDto<RoomHelpForCreateOrderDto>*/ {
 
 	/**
 	 * 

@@ -9,7 +9,12 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.dto.BasicRequestDto;
+import com.lps.web.dto.BasicResponseDto;
+import com.lps.web.dto.BasicUpdateDto;
+import com.lps.web.order.dto.MapNotInitForClassPathException;
 
 public interface BasicManage<T extends Entity>{
 
@@ -28,7 +33,7 @@ public interface BasicManage<T extends Entity>{
 	 * @param orderUpdateDataDto
 	 * @throws FindByIdGetNullException 
 	 */
-	<DTO extends BasicRequestDto<T>> void update(DTO dto) throws FindByIdGetNullException;
+	<DTO extends BasicUpdateDto<T>> void update(DTO dto) throws FindByIdGetNullException;
 
 	/**
 	 * 删除实体对象
@@ -42,8 +47,11 @@ public interface BasicManage<T extends Entity>{
 	 * @param id
 	 * @return
 	 * @throws FindByIdGetNullException
+	 * @throws DtoInitException 
 	 */
-	T query(Serializable id) throws FindByIdGetNullException;
+	<RDto extends BasicResponseDto<T>> T query(Serializable id, RDto rdto) throws FindByIdGetNullException, DtoInitException;
+	
+	T query(Serializable id)throws FindByIdGetNullException;
 	
 	/**
 	 * 通过主键id查找 listName 中的主键
@@ -63,6 +71,7 @@ public interface BasicManage<T extends Entity>{
 	 */
 	PageBean<T> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException;
 	
+	
 	/**
 	 * 查询所有的实体
 	 * @return
@@ -78,5 +87,9 @@ public interface BasicManage<T extends Entity>{
 	
 	
 	List<T> queryByPropertiesRange(List<PropertyRange<?>> listPro);
+	
+	
+	<DTO extends BasicRespondMsgDto> void initOperationData(DTO dto) throws DtoInitException, MapNotInitForClassPathException;
+	
 	
 }

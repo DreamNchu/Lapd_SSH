@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.OrderManage;
 import com.lps.model.Room;
@@ -16,9 +17,8 @@ import com.lps.service.UserService;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.order.dto.InitCreateOrderDto;
 import com.lps.web.order.dto.MapNotInitForClassPathException;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class InitCreateOrderBasicDataAction extends ActionSupport implements DataResult {
+public class InitCreateOrderBasicDataAction extends ActionSupportLps implements DataResult {
 
 	private static final long serialVersionUID = -5140646258173298787L;
 

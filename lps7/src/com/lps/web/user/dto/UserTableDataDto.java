@@ -3,10 +3,10 @@ package com.lps.web.user.dto;
 import com.lps.model.User;
 import com.lps.util.PageBean;
 import com.lps.web.basicmsg.dto.DtoInitException;
-import com.lps.web.page.dto.BasicPageDto;
+import com.lps.web.page.dto.TablePage;
 import com.lps.web.page.dto.PageAble;
 
-public class UserTableDataDto extends BasicPageDto<User>{
+public class UserTableDataDto extends TablePage<User>{
 	
 	/**
 	 * 

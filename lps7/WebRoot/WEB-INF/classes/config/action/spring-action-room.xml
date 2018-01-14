@@ -10,13 +10,17 @@
 		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd"
-               default-lazy-init="true"
-           >
-           
-	
-	<bean id="roomDataAction" class="com.lps.action.operation.room.RoomDataAction" scope="prototype">
+	default-lazy-init="true">
+
+
+	<bean id="manageRoomsAction" class="com.lps.action.operation.manage.ManageRoomsAction"
+		scope="prototype">
 		<property name="roomManage" ref="roomManage"></property>
+		<property name="roomResponseDto" ref="roomResponseDto"></property>
+		<property name="roomRequestDto" ref="roomRequestDto"></property>
+		<property name="roomTableDataDto" ref="roomTableDataDto"></property>
 		<property name="roomHelpForCreateOrderDto" ref="roomHelpForCreateOrderDto"></property>
+		<property name="initOperationRoomData" ref="initOperationRoomData"></property>
 	</bean>
-		
+
 </beans>

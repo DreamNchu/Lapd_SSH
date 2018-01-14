@@ -80,8 +80,8 @@ public class ClockCategory implements java.io.Serializable ,ModelLinkServerOrder
 	}
 
 	@OneToMany(
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER,
+	/*		cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,*/
 			mappedBy = "clockCategory")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;

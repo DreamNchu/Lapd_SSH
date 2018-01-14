@@ -27,9 +27,9 @@ import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartInitDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class ManageOrdersAction extends ActionSupport implements DataResult, SessionAware {
+public class ManageOrdersAction extends ActionSupportLps implements DataResult, SessionAware {
 
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
@@ -267,6 +267,19 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		}
 		return SUCCESS;
 	}
+	
+	public String initUpdateOrderData(){
+		basicMsg.setMsgDto(initBasicUpdateDataDto);
+		try {
+			orderManage.basicQuery(initBasicUpdateDataDto, orderId.get(0));
+		} catch (FindByIdGetNullException | DtoInitException | MapNotInitForClassPathException e) {
+			e.printStackTrace();
+			initBasicUpdateDataDto.setDefaultErrorMsg();
+			return SUCCESS;
+		}
+		initBasicUpdateDataDto.setDefaultSuccessMsg();
+		return SUCCESS;
+	}
 
 	/**
 	 * 查询单个订单
@@ -286,7 +299,7 @@ public class ManageOrdersAction extends ActionSupport implements DataResult, Ses
 		}
 
 		try {
-			orderSingleDataDto.init(so);
+			orderSingleDataDto.initDto(so);
 		} catch (DtoInitException e) {
 			e.printStackTrace();
 			orderSingleDataDto.setErrorMsg(e.getMessage());

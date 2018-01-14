@@ -11,7 +11,7 @@ import com.lps.util.PageBean;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.basicmsg.dto.DtoInitException;
 
-public abstract class BasicPageDto<T extends Entity> extends BasicRespondMsgDto{
+public abstract class TablePage<T extends Entity> extends BasicRespondMsgDto{
 
 	/**
 	 * 

@@ -4,13 +4,19 @@
 
 
 	<package name="room" namespace="/admin" extends="json-default,adminLogin">
+	
+	<action name="roomManage" class="manageRoomsAction">
+	<result>
+		/admin/roomManage.jsp
+	</result>
+	</action>
 
-		<action name="*Room*" class="roomDataAction" method="{1}Room{2}">
+		<action name="*Room*" class="manageRoomsAction" method="{1}Room{2}">
 			<result type="json">
 				<param name="root">result</param>
 			</result>
 		</action>
-		
+
 	</package>
 
 </struts>

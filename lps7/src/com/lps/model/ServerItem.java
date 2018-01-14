@@ -48,8 +48,27 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	private String serverItem;
 	private Float price;
 	private Set<Room> rooms = new HashSet<Room>(0);
+	
 
-/*	private Set<ServerOrder> serverOrders = new HashSet<>();
+	/**
+	 * 获取房间列表
+	 * <p>
+	 * @return 返回房间列表
+	 */
+	@OneToMany(/*cascade = CascadeType.ALL, fetch = FetchType.EAGER, */ mappedBy = "roomCategory")
+	public Set<Room> getRooms() {
+		return this.rooms;
+	}
+	/**
+	 * 设置房间列表
+	 * <p>
+	 * @param rooms 设置房间列表
+	 */
+	public void setRooms(Set<Room> rooms) {
+		this.rooms = rooms;
+	}
+
+	private Set<ServerOrder> serverOrders = new HashSet<>();
 	// Constructors
 
 	@ManyToMany(mappedBy="serverorderServeritems")
@@ -60,7 +79,7 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 
 	public void setServerOrders(Set<ServerOrder> serverOrders) {
 		this.serverOrders = serverOrders;
-	}*/
+	}
 
 	/** default constructor */
 	/**
@@ -141,24 +160,6 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 		this.serverItem = serverItem;
 	}
 
-	/**
-	 * 获取房间列表
-	 * <p>
-	 * @return 返回房间列表
-	 */
-	@OneToMany(/*cascade = CascadeType.ALL,*/ fetch = FetchType.EAGER, mappedBy = "roomCategory")
-	public Set<Room> getRooms() {
-		return this.rooms;
-	}
-
-	/**
-	 * 设置房间列表
-	 * <p>
-	 * @param rooms 设置房间列表
-	 */
-	public void setRooms(Set<Room> rooms) {
-		this.rooms = rooms;
-	}
 	
 	/**
 	 * ClassName:Builder

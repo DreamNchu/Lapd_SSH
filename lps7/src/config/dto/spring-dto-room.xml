@@ -10,8 +10,6 @@
 		   http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
-	<bean id="roomHelpForCreateOrderDto" class="com.lps.web.room.dto.RoomHelpForCreateOrderDto" scope="prototype">
-	
-	</bean>
+
 
 </beans>

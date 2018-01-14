@@ -33,14 +33,14 @@ public class WorkRankDto extends BasicRespondMsgDto implements WorkRankLibrary{
 		return null;
 	}
 
-	@Override
+/*	@Override
 	public WorkRankDto getNativeObject() {
 		// TODO Auto-generated method stub
 		return null;
-	}
+	}*/
 
 	@Override
-	public WorkRankDto init(WorkRank obj) throws DtoInitException {
+	public WorkRankDto initDto(WorkRank obj) throws DtoInitException {
 		WorkRank wr = obj;
 		
 		if(wr.getId() != null){

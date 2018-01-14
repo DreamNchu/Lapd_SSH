@@ -18,7 +18,7 @@ import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.simple.dto.ServerItemDto;
-import com.lps.web.user.dto.UserDto;
+import com.lps.web.user.dto.UserResponseDto;
 
 public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto ,BasicResponseDto<ServerOrder>, BasicRequestDto<ServerOrder> {
 
@@ -33,7 +33,7 @@ public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto ,Bas
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public OrderDto init(ServerOrder obj) throws DtoInitException {
+	public OrderDto initDto(ServerOrder obj) throws DtoInitException {
 
 		if (obj == null) {
 			throw new DtoInitException("订单数据转换对象初始化异常");
@@ -46,7 +46,7 @@ public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto ,Bas
 			put(serverItem, sidtos);
 			for (ServerItem si : so.getServerorderServeritems()) {
 				ServerItemDto sidto = new ServerItemDto();
-				sidto.init(si);
+				sidto.initDto(si);
 				sidtos.add(sidto);
 			}
 		}
@@ -111,8 +111,8 @@ public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto ,Bas
 			put(roomName, so.getRoom().getName());
 		}
 		
-		UserDto ud = new UserDto();
-		ud.init(so.getUser());
+		UserResponseDto ud = new UserResponseDto();
+		ud.initDto(so.getUser());
 		put(stuff, ud);
 
 		return this;
@@ -224,12 +224,12 @@ public class OrderDto extends BasicRespondMsgDto implements OrderLibraryDto ,Bas
 		return so;
 	}
 
-	@Override
-	public <K> K getNativeObject() {
+/*	@Override
+	public BasicRequestDto getNativeObject() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+*/
 	/*
 	 * public static void main(String[] args) throws DtoInitException { // Test
 	 * init OrderDto od = new OrderDto(); ServerOrder so1 = new ServerOrder();

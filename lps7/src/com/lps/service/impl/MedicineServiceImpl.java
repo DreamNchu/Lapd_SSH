@@ -224,22 +224,16 @@ public class MedicineServiceImpl implements MedicineService{
 	@Override
 	public void update(Medicine entity) {
 		dao.update(entity);
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public <K> Medicine findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
 	public <K> List<K> findByProperty(Map<String, Object> map) {
 		return dao.findByProperty(map);
-		// TODO Auto-generated method stub
-	
 	}
 
 	@Override

@@ -326,5 +326,5 @@ public class RoomDAOImpl implements RoomDAO, BasicForServerOrderDAO<Room, Intege
 		// TODO Auto-generated method stub
 		hibernateTemplate.deleteAll(entities);
 	}
-
+	
 }

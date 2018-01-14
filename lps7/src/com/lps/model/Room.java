@@ -50,8 +50,8 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	private Set<ServerOrder> serverOrders = new TreeSet<ServerOrder>();
 	
 	@OneToMany(
-			cascade = CascadeType.ALL,
-			fetch = FetchType.EAGER,
+	/*		cascade = CascadeType.ALL,
+			fetch = FetchType.EAGER,*/
 			mappedBy = "room")
 	public Set<ServerOrder> getServerOrders() {
 		return this.serverOrders;
@@ -148,7 +148,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	 * @return 返回房间类型
 	 * @see ServerItem
 	 */
-	@ManyToOne(fetch = FetchType.EAGER, cascade = { CascadeType.REFRESH })
+	@ManyToOne(fetch = FetchType.EAGER/*, cascade = { CascadeType.REFRESH }*/)
 	@JoinColumn(name = "roomCategory", nullable = false)
 
 	public ServerItem getRoomCategory() {

@@ -4,14 +4,13 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
-import com.lps.model.Admin;
-import com.lps.service.AdminService;
+import com.lps.model.User;
 import com.lps.service.UserService;
-import com.lps.util.WorkJson;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.service.impl.FindByIdGetNullException;
 
-public class UserStatusAction extends ActionSupport
+public class UserStatusAction extends ActionSupportLps
 	implements SessionAware, DataResult {
 
 	/**
@@ -72,7 +71,16 @@ public class UserStatusAction extends ActionSupport
 
 		// 检查session 判断是否为刷新
 		if (session.get("id") != null) {
-			return SUCCESS;
+			int id = Integer.parseInt(session.get("id") + "");
+			User user;
+			try {
+				user = userServiceImpl.findById(id);
+				if (user.getUserName().equals(session.get("userName"))) {
+					return SUCCESS;
+				}
+			} catch (FindByIdGetNullException e) {
+				e.printStackTrace();
+			}
 		}
 		try {
 			String password = userServiceImpl.findPasswordByUserName(userName);

@@ -9,7 +9,7 @@ import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.basicmsg.dto.TableInitDto;
 
 @DtoName("users")
-public class TUserDto extends ArrayList<UserDto> implements TableInitDto<User>{
+public class TUserDto extends ArrayList<UserResponseDto> implements TableInitDto<User>{
 
 	/**
 	 * 
@@ -23,8 +23,8 @@ public class TUserDto extends ArrayList<UserDto> implements TableInitDto<User>{
 	@Override
 	public void init(List<User> lists) throws DtoInitException {
 		for (User user : lists) {
-			UserDto ud = new UserDto();
-			ud.init(user);
+			UserResponseDto ud = new UserResponseDto();
+			ud.initDto(user);
 			add(ud);
 		}
 	}

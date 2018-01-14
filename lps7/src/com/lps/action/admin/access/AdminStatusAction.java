@@ -4,12 +4,10 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
-import com.lps.service.AdminService;
-import com.lps.util.WorkJson;
-import com.opensymphony.xwork2.ActionSupport;
 
-public class AdminStatusAction extends ActionSupport implements SessionAware, DataResult{
+public class AdminStatusAction extends ActionSupportLps implements SessionAware, DataResult{
 
 	private static final long serialVersionUID = 5979229100942095638L;
 

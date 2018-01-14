@@ -20,7 +20,7 @@ public class TOrderStatusDto extends ArrayList<OrderStatusDto> implements TableI
 		// TODO Auto-generated method stub
 		for (Entity entity : lists) {
 			OrderStatusDto dto = new OrderStatusDto();
-			dto.init((OrderStatus)entity);
+			dto.initDto((OrderStatus)entity);
 			add(dto);
 		}
 	}

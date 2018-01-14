@@ -13,12 +13,10 @@ import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.room.dto.NotRoomObjectException;
 import com.lps.web.room.dto.RoomHelpForCreateOrderDto;
 import com.lps.web.room.dto.RoomIdDto;
-import com.opensymphony.xwork2.ActionSupport;
+import com.lps.action.basic.ActionSupportLps;
 
-public class RoomDataAction extends ActionSupport implements DataResult{
+public class RoomDataAction extends ActionSupportLps implements DataResult{
 
-	private static final long serialVersionUID = -3719803951152554912L;
-	
 	private final static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
@@ -27,11 +25,44 @@ public class RoomDataAction extends ActionSupport implements DataResult{
 		}
 	}.getClassName());
 	
+	private static final long serialVersionUID = -3719803951152554912L;
+	
 	private RoomHelpForCreateOrderDto roomHelpForCreateOrderDto;
 	
-	private RoomManage roomManage;
-
 	private RoomIdDto roomIdDto;
+
+	private RoomManage roomManage;
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
+	
+	
+	
+	public RoomHelpForCreateOrderDto getRoomHelpForCreateOrderDto() {
+		return roomHelpForCreateOrderDto;
+	}
+
+
+	public RoomIdDto getRoomIdDto() {
+		return roomIdDto;
+	}
+
+	public RoomManage getRoomManage() {
+		return roomManage;
+	}
+
+	public void setRoomHelpForCreateOrderDto(RoomHelpForCreateOrderDto roomHelpForCreateOrderDto) {
+		this.roomHelpForCreateOrderDto = roomHelpForCreateOrderDto;
+	}
+
+	public void setRoomIdDto(RoomIdDto roomIdDto) {
+		this.roomIdDto = roomIdDto;
+	}
+
+	public void setRoomManage(RoomManage roomManage) {
+		this.roomManage = roomManage;
+	}
 	/**
 	 * 查看工作状态的基本信息
 	 * @return
@@ -43,7 +74,7 @@ public class RoomDataAction extends ActionSupport implements DataResult{
 		Room room = null;
 		try {
 			room = roomManage.queryRoom(roomIdDto.getRoomId());
-			roomHelpForCreateOrderDto.init(room);
+			roomHelpForCreateOrderDto.initDto(room);
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			roomHelpForCreateOrderDto.appendErrorMsg(e.getMessage());
@@ -53,35 +84,5 @@ public class RoomDataAction extends ActionSupport implements DataResult{
 			roomHelpForCreateOrderDto.appendErrorMsg(e.getMessage());
 		}
 		return SUCCESS;
-	}
-	public RoomIdDto getRoomIdDto() {
-		return roomIdDto;
-	}
-
-
-	public void setRoomIdDto(RoomIdDto roomIdDto) {
-		this.roomIdDto = roomIdDto;
-	}
-
-
-
-	public RoomManage getRoomManage() {
-		return roomManage;
-	}
-
-	public void setRoomManage(RoomManage roomManage) {
-		this.roomManage = roomManage;
-	}
-
-	public RoomHelpForCreateOrderDto getRoomHelpForCreateOrderDto() {
-		return roomHelpForCreateOrderDto;
-	}
-
-	public void setRoomHelpForCreateOrderDto(RoomHelpForCreateOrderDto roomHelpForCreateOrderDto) {
-		this.roomHelpForCreateOrderDto = roomHelpForCreateOrderDto;
-	}
-	@Override
-	public String getResult() {
-		return result.toString();
 	}
 }

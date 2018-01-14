@@ -9,13 +9,13 @@ function resolveData(rankData){
     "number":[{"key":"javascript:void(0)","value":"1"},{"key":"javascript:void(0)","value":"2"}]
     }*/
     recivePage(rankData);
-    for(i in rankData.workRankData){
+    for(i in rankData.workRanks){
         var rankTr=document.createElement("tr");
-        rankTr.innerHTML="<td>"+rankData.workRankData[i].index+"</td>"+
-            "<td>"+rankData.workRankData[i].workId+"</td>"+
-            "<td>"+rankData.workRankData[i].realName+"</td>"+
-            "<td>"+rankData.workRankData[i].rankNum+"</td>"+
-            "<td>"+rankData.workRankData[i].spotNum+"</td>";
+        rankTr.innerHTML="<td>"+eval(parseInt(i) + 1) +"</td>"+
+            "<td>"+rankData.workRanks[i].workId+"</td>"+
+            "<td>"+rankData.workRanks[i].realName+"</td>"+
+            "<td>"+rankData.workRanks[i].rankNum+"</td>"+
+            "<td>"+rankData.workRanks[i].spotNum+"</td>";
         rankTable.appendChild(rankTr);
     }
 }

@@ -39,7 +39,7 @@ StringBuffer basePath = request.getRequestURL();
         }
         
         function resolveCheckMsg(msg){
-        	alert(msg.msg);
+        	alertBasicMsg(msg);
         }
         
         function  SignOut() {

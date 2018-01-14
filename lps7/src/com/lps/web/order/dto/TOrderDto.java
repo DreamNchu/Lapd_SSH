@@ -8,6 +8,11 @@ import com.lps.web.annotation.dto.DtoName;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.basicmsg.dto.TableInitDto;
 
+/**
+ * 对于dto的集合管理，继承于arrayList；
+ * @author 0001
+ *
+ */
 @DtoName("orders")
 public class TOrderDto extends ArrayList<OrderDto> implements TableInitDto<ServerOrder> {
 
@@ -20,7 +25,7 @@ public class TOrderDto extends ArrayList<OrderDto> implements TableInitDto<Serve
 	public void init(List<ServerOrder> lists) throws DtoInitException {
 		for (ServerOrder serverOrder : lists) {
 			OrderDto od = new OrderDto();
-			od.init(serverOrder);
+			od.initDto(serverOrder);
 			add(od);
 		}
 	}

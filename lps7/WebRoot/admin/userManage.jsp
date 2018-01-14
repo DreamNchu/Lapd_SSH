@@ -91,17 +91,17 @@
                 }
             });
         }
-        function reQueryBasic(){
-        	alert(444);
+        function reQueryBasic(data){
+            alertBasicMsg(data);
 			deleteLi();
         	deleteTr();
 			ajaxRequest("queryBasicUser",showdata);
 		}
         
         function editUser() {
-            var userArray=document.getElementsByName("userCheckBox");
+            var userArray=document.getElementsByName("stuffId");
             var i,count=0,op;
-            alert(userArray.length);
+           // alert(userArray.length);
             for(i=0;i<userArray.length;i++){
                 if(userArray[i].checked==true){
                     count++;
@@ -137,22 +137,22 @@
             var answer=document.getElementById("answer");
             var registerTime=document.getElementById("registerTime");
             var IDCardNo=document.getElementById("IDCardNo");
-            userId.value=userData.user[0].id;
-            workId.value=userData.user[0].workId;
-            realName.value=userData.user[0].realName;
-            userName.value=userData.user[0].userName;
-            birthday.value=userData.user[0].birthday;
-            telephonePhone.value=userData.user[0].telephonePhone;
-            email.value=userData.user[0].email;
-            address.value=userData.user[0].address;
-            question.value=userData.user[0].question;
-            answer.value=userData.user[0].answer;
-            registerTime.value=userData.user[0].registerTime;
-            IDCardNo.value=userData.user[0].IDCardNo;
+            userId.value=userData.stuffId;
+            workId.value=userData.workId;
+            realName.value=userData.realName;
+            userName.value=userData.userName;
+            birthday.value=userData.birthday;
+            telephonePhone.value=userData.telephonePhone;
+            email.value=userData.email;
+            address.value=userData.address;
+            question.value=userData.question;
+            answer.value=userData.answer;
+            registerTime.value=userData.registerTime;
+            IDCardNo.value=userData.IDCardNo;
             $("#myModal").modal("show");
         }
         
-        function  reviseLable(){
+        function reviseLable(){
             document.getElementById("myModalLabel").innerHTML="增加员工";
         }
         function initTime() {
@@ -185,7 +185,8 @@
                     <div class="box">
                         <div class="box-header">
                             <hr>
-                            <button class="btn btn-success" onclick="reviseLable()"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>增加员工</button>
+                            <button class="btn btn-success" onclick="reviseLable()"  data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-plus"></span>增加员工
+								</button>
                             <button class="btn btn-danger" id="divisonbutton" onclick="deleteUser()"><span class="glyphicon glyphicon-remove"></span>删除员工</button>
                             <button class="btn btn-warning" id="editbutton" onclick="editUser()"><span class="glyphicon glyphicon-wrench"></span>修改员工</button>
                             <button class="btn btn-primary" id="allChecked" onclick="allChecked()"><span class="glyphicon glyphicon-ok"></span>全选</button>
@@ -237,29 +238,29 @@
                     <form id="userForm">
                         <div class="modal-body">
                             <div class="form-group" >
-                            	<input type="hidden" name="userDataDto.stuffId"  id="userId" style="display: none">
+                            	<input type="hidden" name="data.stuffId"  id="userId" style="display: none">
                                 <label>工号</label>
-                                <input type="text" name="userDataDto.workId" id="workId" class="form-control" >
+                                <input type="text" name="data.workId" id="workId" class="form-control" >
                                 <label>姓名</label>
-                                <input type="text" name="userDataDto.realName" id="realName" class="form-control" >
+                                <input type="text" name="data.realName" id="realName" class="form-control" >
                                 <label>用户名</label>
-                                <input type="text" name="userDataDto.userName" id="userName" class="form-control" >
+                                <input type="text" name="data.userName" id="userName" class="form-control" >
                                 <label>身份证号</label>
-                                <input type="text" name="userDataDto.IDCardNo" id="IDCardNo" class="form-control" >
+                                <input type="text" name="data.IDCardNo" id="IDCardNo" class="form-control" >
                                 <label>出生日期</label>
-                                <input type="date" name="userDataDto.birthday" id="birthday" class="form-control" >
+                                <input type="date" name="data.birthday" id="birthday" class="form-control" >
                                 <label>电话号码</label>
-                                <input type="tel" name="userDataDto.telephonePhone" id="telephonePhone" class="form-control" >
+                                <input type="tel" name="data.telephonePhone" id="telephonePhone" class="form-control" >
                                 <label>电子邮箱</label>
-                                <input type="email" name="userDataDto.email" id="email" class="form-control" >
+                                <input type="email" name="data.email" id="email" class="form-control" >
                                 <label>家庭地址</label>
-                                <input type="text" name="userDataDto.address" id="address" class="form-control" >
+                                <input type="text" name="data.address" id="address" class="form-control" >
                                 <label>密保问题</label>
-                                <input type="text" name="userDataDto.question" id="question" class="form-control" >
+                                <input type="text" name="data.question" id="question" class="form-control" >
                                 <label>密保答案</label>
-                                <input type="text" name="userDataDto.answer" id="answer" class="form-control" >
+                                <input type="text" name="data.answer" id="answer" class="form-control" >
                                 <label>入职时间</label>
-                                <input type="date" name="userDataDto.registerTime" id="registerTime" class="form-control" >
+                                <input type="date" name="data.registerTime" id="registerTime" class="form-control" >
                             </div>
                         </div>
                         <div class="modal-footer">

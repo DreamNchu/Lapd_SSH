@@ -17,7 +17,7 @@ public class TWorkRankDto extends ArrayList<WorkRankDto> implements TableInitDto
 	public void init(List<WorkRank> lists) throws DtoInitException {
 		for (WorkRank workRank : lists) {
 			WorkRankDto wrd = new WorkRankDto();
-			wrd.init(workRank);
+			wrd.initDto(workRank);
 			add(wrd);
 		}
 	}

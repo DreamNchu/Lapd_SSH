@@ -4,7 +4,7 @@ import com.lps.model.Room;
 import com.lps.model.basic.Entity;
 import com.lps.web.dto.BasicRequestDto;
 
-public class RoomOrderDto extends RoomDto{
+public class RoomOrderDto extends RoomResponseDto{
 	
 	public Integer roomId;
 	

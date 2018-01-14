@@ -7,16 +7,17 @@ import java.util.Map;
 
 import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
-import com.lps.model.basic.Entity;
 import com.lps.service.UserService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
-import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
+import com.lps.web.basicmsg.dto.DtoInitException;
+import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.dto.BasicRequestDto;
-import com.lps.web.page.dto.BasicPageDto;
-import com.lps.web.user.dto.UserDto;
+import com.lps.web.dto.BasicResponseDto;
+import com.lps.web.dto.BasicUpdateDto;
+import com.lps.web.order.dto.MapNotInitForClassPathException;
 
 public class UserManage implements BasicManage<User>{
 
@@ -49,14 +50,6 @@ public class UserManage implements BasicManage<User>{
 		return userServiceImpl.findFieldsByModel(t, fields);
 	}
 	
-/*	public void delete(Integer...ids) throws FindByIdGetNullException{
-		User[] users = new User[ids.length];
-		for (int i : ids) {
-			users[i] = userServiceImpl.findById(i);
-		}
-		userServiceImpl.deleteAll(Arrays.asList(users));
-	}*/
-
 	public UserService getUserServiceImpl() {
 		return userServiceImpl;
 	}
@@ -80,9 +73,17 @@ public class UserManage implements BasicManage<User>{
 		userServiceImpl.deleteAll(Arrays.asList(users));
 	}
 
-	@Override
+/*	@Override
 	public User query(Serializable id) throws FindByIdGetNullException {
 		return userServiceImpl.findById(id);
+	}*/
+	
+	@Override
+	public <RDto extends BasicResponseDto<User>> User query(Serializable id, RDto rdto)
+			throws FindByIdGetNullException, DtoInitException {
+		User user = userServiceImpl.findById(id);
+		rdto.initDto(user);
+		return user;
 	}
 
 	@Override
@@ -98,9 +99,12 @@ public class UserManage implements BasicManage<User>{
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<User>> void update(DTO dto) throws FindByIdGetNullException {
+	public <DTO extends BasicUpdateDto<User>> void update(DTO dto) throws FindByIdGetNullException {
 		User user = dto.generate();
-		userServiceImpl.update(user);
+		
+		user = userServiceImpl.findById(user.getId());
+//		dto.update(user);
+		userServiceImpl.update(dto.update(user));
 	}
 
 	@Override
@@ -120,4 +124,19 @@ public class UserManage implements BasicManage<User>{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public User query(Serializable id) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		return userServiceImpl.findById(id);
+	}
+
+	@Override
+	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto)
+			throws DtoInitException, MapNotInitForClassPathException {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 }
