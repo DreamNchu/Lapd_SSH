@@ -109,9 +109,7 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 	 */
 	@Id
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "pk_generate")
-
 	@Column(name = "id", unique = true, nullable = false)
-
 	public Integer getId() {
 		return this.id;
 	}

@@ -11,9 +11,9 @@ import org.springframework.stereotype.Component;
 
 import com.lps.action.jsonresult.DataResult;
 
-@Aspect
+/*@Aspect
 @Component
-@Order(4)
+@Order(4)*/
 public class WriteDataAspect {
 
 	/**

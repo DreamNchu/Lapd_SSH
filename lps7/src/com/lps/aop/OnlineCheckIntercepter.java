@@ -12,9 +12,9 @@ import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.Action;
 
-@Aspect
+/*@Aspect
 @Component
-@Order(5)
+@Order(5)*/
 public class OnlineCheckIntercepter {
 	
 	private  HttpServletRequest request;  

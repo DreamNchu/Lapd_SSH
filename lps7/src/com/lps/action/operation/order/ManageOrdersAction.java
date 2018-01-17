@@ -173,6 +173,11 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 		return pageLinkTransformOrderDto;
 	}
 
+	@Override
+	public String getResult() {
+		return result.toString();
+	}
+
 	public Map<String, Object> getSession() {
 		return session;
 	}
@@ -194,6 +199,19 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 		return SUCCESS;
 	}
 
+	public String initUpdateOrderData(){
+		basicMsg.setMsgDto(initBasicUpdateDataDto);
+		try {
+			orderManage.basicQuery(initBasicUpdateDataDto, orderId.get(0));
+		} catch (FindByIdGetNullException | DtoInitException | MapNotInitForClassPathException e) {
+			e.printStackTrace();
+			initBasicUpdateDataDto.setDefaultErrorMsg();
+			return SUCCESS;
+		}
+		initBasicUpdateDataDto.setDefaultSuccessMsg();
+		return SUCCESS;
+	}
+
 	public String outputOrdersExcel() throws PagePropertyNotInitException {
 		// queryBasicOrderUtil(); //
 
@@ -204,7 +222,7 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 	public String payOrderPage() {
 		return SUCCESS;
 	}
-
+	
 	/**
 	 * 高级查询
 	 * 
@@ -265,19 +283,6 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 			e.printStackTrace();
 			orderTableDataDto.appendErrorMsg(e.getMessage());
 		}
-		return SUCCESS;
-	}
-	
-	public String initUpdateOrderData(){
-		basicMsg.setMsgDto(initBasicUpdateDataDto);
-		try {
-			orderManage.basicQuery(initBasicUpdateDataDto, orderId.get(0));
-		} catch (FindByIdGetNullException | DtoInitException | MapNotInitForClassPathException e) {
-			e.printStackTrace();
-			initBasicUpdateDataDto.setDefaultErrorMsg();
-			return SUCCESS;
-		}
-		initBasicUpdateDataDto.setDefaultSuccessMsg();
 		return SUCCESS;
 	}
 
@@ -381,7 +386,6 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 
 		return SUCCESS;
 	}
-
 	/**
 	 * 更新订单内容
 	 * 
@@ -401,9 +405,5 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 		basicMsg.setSuccessMsg("更新成功");
 		return SUCCESS;
 
-	}
-	@Override
-	public String getResult() {
-		return result.toString();
 	}
 }
