@@ -9,6 +9,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.lps.dao.impl.ServerItemDAOImpl;
 import com.lps.model.ServerItem;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.service.impl.ServerItemServiceImpl;
 
 public class RoomCategoryServiceTest {
@@ -33,7 +34,7 @@ public class RoomCategoryServiceTest {
 
 
 	@Test
-	public void testDelete() {
+	public void testDelete() throws FindByIdGetNullException {
 		ServerItem rc = as.findById(1);
 		as.delete(rc);
 	}

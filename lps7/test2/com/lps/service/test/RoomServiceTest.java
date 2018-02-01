@@ -13,6 +13,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.lps.model.ClockCategory;
 import com.lps.model.Room;
 import com.lps.model.ServerItem;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.service.impl.RoomServiceImpl;
 
 public class RoomServiceTest {
@@ -111,7 +112,7 @@ public class RoomServiceTest {
 	}
 	
 	@Test
-	public void testFindOrdersCountByThisType(){
+	public void testFindOrdersCountByThisType() throws FindByIdGetNullException{
 		Room cc = as.findById(1);
 		assertEquals(7, as.findOrdersCountByThisType(cc));
 		
