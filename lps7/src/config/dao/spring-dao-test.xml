@@ -11,8 +11,12 @@
            http://www.springframework.org/schema/aop
            http://www.springframework.org/schema/aop/spring-aop-2.5.xsd">
 
- 	<bean id="testImpl" class="com.lps.dao.impl.TestImpl">
+	<bean id="testImpl" class="com.lps.dao.impl.TestImpl">
 		<property name="hibernateTemplate" ref="hibernateTemplate"></property>
-	</bean>  
-	
+	</bean>
+
+	<bean id="testServiceImpl" class="com.lps.service.impl.TestServiceImpl">
+		<property name="dao" ref="testImpl"></property>
+	</bean>
+
 </beans>

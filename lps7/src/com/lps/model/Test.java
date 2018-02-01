@@ -33,7 +33,7 @@ public class Test implements BasicModel<Integer>, java.io.Serializable{
 	
 	private Float area;
 	
-	private int livePeople;
+	private Integer livePeople;
 	
 	private String phoneNum;
 	
@@ -105,11 +105,11 @@ public class Test implements BasicModel<Integer>, java.io.Serializable{
 		this.area = area;
 	}
 
-	public int getLivePeople() {
+	public Integer getLivePeople() {
 		return livePeople;
 	}
 
-	public void setLivePeople(int livePeople) {
+	public void setLivePeople(Integer livePeople) {
 		this.livePeople = livePeople;
 	}
 

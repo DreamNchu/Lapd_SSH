@@ -3,21 +3,26 @@ package com.lps.action.operation.manage;
 import java.util.List;
 
 import com.lps.action.basic.ActionSupportLps;
-import com.lps.dao.impl.TestImpl;
 import com.lps.model.Test;
+import com.lps.service.impl.TestServiceImpl;
 
 public class ManageTestAction extends ActionSupportLps {
 
 	private static final long serialVersionUID = 945787319894242975L;
 
-	private TestImpl testImpl;
-
-	public TestImpl getTestImpl() {
+	private TestServiceImpl testImpl;
+	
+	public TestServiceImpl getTestImpl() {
 		return testImpl;
 	}
 
-	public void setTestImpl(TestImpl testImpl) {
+	public void setTestImpl(TestServiceImpl testImpl) {
 		this.testImpl = testImpl;
+	}
+
+	@Override
+	public String execute() throws Exception {
+		return super.execute();
 	}
 
 	private Test test;
@@ -35,7 +40,7 @@ public class ManageTestAction extends ActionSupportLps {
 		return SUCCESS;
 	}
 
-	public String delete() {
+	public String delete(){
 		testImpl.delete(test);
 		return SUCCESS;
 	}

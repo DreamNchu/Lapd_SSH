@@ -25,10 +25,10 @@ public class JspFilter implements Filter {
         HttpServletRequest httpServletRequest = (HttpServletRequest) request;  
         HttpServletResponse httpServletResponse = (HttpServletResponse) response;  
         String url = httpServletRequest.getRequestURI();  
-        if(url != null && url.endsWith(".jsp")) {  
+    /*    if(url != null && url.endsWith(".jsp")) {  
             httpServletResponse.sendRedirect("actionError");  
             return;  
-        }  
+        }  */
         chain.doFilter(request, response);  
     }  
   
