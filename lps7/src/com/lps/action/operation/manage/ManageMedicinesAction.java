@@ -34,7 +34,6 @@ public class ManageMedicinesAction extends ActionSupportLps implements SessionAw
 	 * 5.更新：update*();
 	 * 
 	 */
-
 	private MedicineManage medicineManage;
 
 	private MedicineRequestDto medicineRequestDto;
@@ -47,7 +46,6 @@ public class ManageMedicinesAction extends ActionSupportLps implements SessionAw
 	
 	@Override
 	public String execute() throws Exception {
-		// TODO Auto-generated method stub
 		return super.execute();
 	}
 

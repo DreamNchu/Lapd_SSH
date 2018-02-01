@@ -55,7 +55,7 @@ public class AdminAccessAction extends ActionSupportLps implements SessionAware,
 
 	public String main() {
 		// 检查session 判断是否为刷新
-		if (session.get("id") != null) {
+		if (session.get("id") != null){
 			int id = Integer.parseInt(session.get("id") + "");
 			Admin admin;
 			try {
@@ -69,7 +69,6 @@ public class AdminAccessAction extends ActionSupportLps implements SessionAware,
 		}
 		try {
 			String password = adminServiceImpl.findPasswordByUserName(userName);
-
 			int id = adminServiceImpl.findIdByUserName(userName);
 			if (password.equals(this.password)) {
 				session.put("id", id);

@@ -94,12 +94,22 @@ public class UserStatusAction extends ActionSupportLps
 			return ERROR;
 		}
 		return SUCCESS;
-		
 	}
 
-	public String loginPage() {
+	public String loginPage(){
 		if(session.get("id") == null)
 			return SUCCESS;
+		
+		int id = Integer.parseInt(session.get("id") + "");
+		User user;
+		try {
+			user = userServiceImpl.findById(id);
+			if (user.getUserName().equals(session.get("userName"))) {
+				return SUCCESS;
+			}
+		} catch (FindByIdGetNullException e) {
+			e.printStackTrace();
+		}
 		return INPUT;
 	}
 

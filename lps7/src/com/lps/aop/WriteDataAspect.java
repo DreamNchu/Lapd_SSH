@@ -14,7 +14,7 @@ import com.lps.action.jsonresult.DataResult;
 @Aspect
 @Component
 @Order(4)
-public class WriteDataAspect {
+public class WriteDataAspect{
 
 	/**
 	 * 前置通知：在某连接点之前执行的通知，但这个通知不能阻止连接点前的执行
@@ -28,7 +28,6 @@ public class WriteDataAspect {
 	}// 定义一个切入点
 
 	public WriteDataAspect() {
-
 	}
 	
 	private final Logger logger = LogManager.getLogger(this.getClass().getName());

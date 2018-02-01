@@ -28,7 +28,6 @@ public class OnlineCheckIntercepter {
 		this.request = request;
 	}
 
-
 	@Pointcut("execution(public * com.lps.action.operation..*.*())")
 	public void myMethod(){}
 	

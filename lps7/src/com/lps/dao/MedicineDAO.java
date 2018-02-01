@@ -8,7 +8,6 @@ import com.lps.model.Medicine;
 
 public interface MedicineDAO extends BasicDAO<Medicine> , BasicForServerOrderDAO<Medicine, Integer>{
 	
-
 	List<Medicine> findByMedicine(Object medicine);
 	
 }
