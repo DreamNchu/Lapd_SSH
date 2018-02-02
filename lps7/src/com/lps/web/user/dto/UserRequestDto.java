@@ -10,7 +10,6 @@ import com.lps.web.dto.BasicRequestDto;
 public class UserRequestDto implements UserLibraryDto, BasicRequestDto<User>{
 	
 	public UserRequestDto() {
-		// TODO Auto-generated constructor stub
 	}
 	
 	public UserRequestDto( Map<String, String[]> map) {
@@ -42,7 +41,7 @@ public class UserRequestDto implements UserLibraryDto, BasicRequestDto<User>{
 		String[] sWorkId = map.get(workId);
 		String[] sPassWord  = map.get(password);
 		String[] sBirthday = map.get(birthday);
-		String[] stelephonePhone = map.get(telephonePhone);
+		String[] stelephonePhone = map.get(telephone);
 		String[] sEmail = map.get(email); 
 		String[] sAddress = map.get(address);
 		String[] sQuestion = map.get(question); 
@@ -54,9 +53,9 @@ public class UserRequestDto implements UserLibraryDto, BasicRequestDto<User>{
 		String[] idCard = map.get(IDCardNo);
 		String[] sRealName = map.get(realName);
 		
-		/*if(id != null) {
+		if(id != null) {
 			user.setId(Integer.parseInt(id[0]));
-		}*/
+		}
 		
 		if(sUserName != null) {
 			user.setUserName(sUserName[0]);
@@ -75,7 +74,7 @@ public class UserRequestDto implements UserLibraryDto, BasicRequestDto<User>{
 		}
 		
 		if(stelephonePhone != null) {
-			user.setTelephonePhone(stelephonePhone[0]);
+			user.setTelephone(stelephonePhone[0]);
 		}
 		
 		if(sEmail != null) {

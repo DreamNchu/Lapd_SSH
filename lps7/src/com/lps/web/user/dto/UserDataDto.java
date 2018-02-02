@@ -56,7 +56,7 @@ public class UserDataDto extends UserResponseDto implements BasicUpdateDto<User>
 		workId = user.getWorkId();
 		if (user.getBirthday() != null)
 			birthday = WorkDate.dateToString(user.getBirthday());
-		telephonePhone = user.getTelephonePhone();
+		telephonePhone = user.getTelephone();
 		email = user.getEmail();
 		address = user.getAddress();
 		avatar = user.getAvatar();
@@ -94,7 +94,7 @@ public class UserDataDto extends UserResponseDto implements BasicUpdateDto<User>
 		if(address != null) user.setAddress(address);
 		if(workId != null) user.setWorkId(workId);
 		if(birthday != null && !birthday.equals("")) user.setBirthday(WorkDate.toDate(birthday));
-		if(telephonePhone != null) user.setTelephonePhone(telephonePhone);
+		if(telephonePhone != null) user.setTelephone(telephonePhone);
 		if(email != null) user.setEmail(email);
 		if(avatar != null) user.setAvatar(avatar);
 		if(registerTime != null &&!registerTime.equals("")) user.setRegisterTime(WorkDate.toDate(registerTime));

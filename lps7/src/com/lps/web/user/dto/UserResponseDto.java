@@ -46,8 +46,8 @@ public class UserResponseDto extends BasicRespondMsgDto implements UserLibraryDt
 			put(birthday, WorkDate.dateToString(user.getBirthday()));
 		}
 		
-		if(user.getTelephonePhone() != null) {
-			put(telephonePhone, user.getTelephonePhone());
+		if(user.getTelephone() != null) {
+			put(telephone, user.getTelephone());
 		}
 		
 		if(user.getEmail() != null) {

@@ -6,7 +6,10 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.UserManage;
 import com.lps.model.User;
@@ -14,12 +17,12 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.user.dto.PageLinkTransformUserDto;
-import com.lps.web.user.dto.UserResponseDto;
 import com.lps.web.user.dto.UserRequestDto;
+import com.lps.web.user.dto.UserResponseDto;
 import com.lps.web.user.dto.UserTableDataDto;
 import com.lps.web.user.dto.UserUpdateDataDto;
-import com.lps.action.basic.ActionSupportLps;
 
+@Component
 public class ManageUsersAction extends ActionSupportLps implements DataResult, SessionAware {
 
 	private final static Logger logger = LogManager.getLogger(new Object() {
@@ -50,8 +53,8 @@ public class ManageUsersAction extends ActionSupportLps implements DataResult, S
 
 	private UserTableDataDto userTableDataDto;
 
+	@Autowired
 	private UserUpdateDataDto userUpdateDataDto;
-	
 	
 	
 	public String addUser() {
@@ -221,4 +224,39 @@ public class ManageUsersAction extends ActionSupportLps implements DataResult, S
 		basicMsg.setSuccessMsg("更新用户数据成功");
 		return SUCCESS;
 	}
+	
+	/**
+	 * 查看已经登录的用户数据
+	 * @return
+	 */
+	public String viewUserData(){
+		int id = Integer.parseInt(session.get("id") + "");
+		try {
+			userManage.query(id,userDataDto);
+		} catch (FindByIdGetNullException | DtoInitException e) {
+			e.printStackTrace();
+			userDataDto.setDefaultErrorMsg();
+			return SUCCESS;
+		}
+		basicMsg.setMsgDto(userDataDto);
+		return SUCCESS;
+	}
+	
+	/**
+	 * 修改数据
+	 * @return
+	 */
+	public String modifyUserData() {
+		
+		try {
+			userUpdateDataDto.setMap(data);
+			userManage.update(userUpdateDataDto);
+		} catch (Exception e) {
+			e.printStackTrace();
+			basicMsg.setDefaultErrorMsg();
+		}
+		basicMsg.setDefaultSuccessMsg();
+		return SUCCESS;
+	}
+
 }

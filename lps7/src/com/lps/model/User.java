@@ -273,7 +273,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	private String password;
 	private Integer workId;
 	private Date birthday;
-	private String telephonePhone;
+	private String telephone;
 	private String email;
 	private String address;
 	private String avatar;
@@ -360,7 +360,7 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 		this.password = password;
 		this.workId = workId;
 		this.birthday = birthday;
-		this.telephonePhone = telephonePhone;
+		this.telephone = telephonePhone;
 		this.email = email;
 		this.address = address;
 		this.avatar = avatar;
@@ -529,8 +529,8 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	 */
 	@Column(name = "telephonePhone", length = 15)
 
-	public String getTelephonePhone() {
-		return this.telephonePhone;
+	public String getTelephone() {
+		return this.telephone;
 	}
 
 	/**
@@ -713,8 +713,8 @@ public class User implements java.io.Serializable, ModelLinkServerOrder<Integer>
 	 * @param telephonePhone
 	 *            设置电话号
 	 */
-	public void setTelephonePhone(String telephonePhone) {
-		this.telephonePhone = telephonePhone;
+	public void setTelephone(String telephonePhone) {
+		this.telephone = telephonePhone;
 	}
 
 	/**

@@ -19,7 +19,7 @@
                     <li id="workRankModel">
                     	<a href="workRankPage">上钟排名 </a></li>
                     <li id="userDataModel">
-                    	<a href="userData">我的资料</a></li>
+                    	<a href="userDataPage">我的资料</a></li>
                     <li id="userModifyDataModel">
                     	<a href="modifyUserDataPage">修改资料</a></li>
                     <li ><a href="logout">退出</a></li>

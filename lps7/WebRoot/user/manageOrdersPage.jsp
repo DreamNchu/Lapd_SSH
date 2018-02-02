@@ -24,7 +24,7 @@ StringBuffer basePath = request.getRequestURL();
     <script src="js/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/orderManage.js"></script>
-    <script src="js/ajax_js.js"></script>
+    <script src="../js/ajax_js.js"></script>
     <script src="js/headCSS.js"></script>
     <script type="text/javascript">
     

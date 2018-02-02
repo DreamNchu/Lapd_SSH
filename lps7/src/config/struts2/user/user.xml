@@ -8,9 +8,9 @@
 			</result>
 		</action>
 
-		<action name="userData" class="userDataAction" method="userData">
+		<action name="userDataPage" class="userDataAction">
 			<result>
-				/user/userData.jsp
+				/user/userDataPage.jsp
 			</result>
 		</action>
 
@@ -21,6 +21,13 @@
 		</action>
 
 		<action name="*User*" class="userDataAction" method="{1}User{2}">
+			<result type="json">
+				<param name="root">result</param>
+			</result>
+		</action>
+		
+		
+		<action name="*User*" class="manageUsersAction" method="{1}User{2}">
 			<result type="json">
 				<param name="root">result</param>
 			</result>

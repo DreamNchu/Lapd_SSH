@@ -20,7 +20,7 @@ StringBuffer basePath = request.getRequestURL();
   <link rel="stylesheet" href="css/style.css"/>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="js/login.js"></script>
-  <script src="js/ajax_js.js"></script>
+  <script src="../js/ajax_js.js"></script>
   <script type="text/javascript">
   
   </script>

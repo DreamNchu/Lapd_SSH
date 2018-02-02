@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
     <link rel="shortcut icon" href="image/center.ico" type="image/x-icon"/>
     <script src="js/medicine_Js.js"></script>
-    <script src="js/ajax_js.js"></script>
+    <script src="../js/ajax_js.js"></script>
     <script src="js/initClass.js"></script>
     <script type="text/javascript">
      	window.onload=function () {

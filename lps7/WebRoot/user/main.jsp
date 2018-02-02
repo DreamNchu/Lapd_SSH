@@ -25,7 +25,7 @@ StringBuffer basePath = request.getRequestURL();
     <script src="js/jquery.placeholder.min.js"></script>
     <script src="js/jquery.waypoints.min.js"></script>
     <script src="js/main.js"></script>
-    <script src="js/ajax_js.js"></script>
+    <script src="../js/ajax_js.js"></script>
     <script src="js/headCSS.js"></script>
     <script type="text/javascript">
     	
@@ -85,7 +85,7 @@ StringBuffer basePath = request.getRequestURL();
                 <img src="img/gzbb.jpg"/>
             </div>
         </a>
-        <a href="userData" id="wdxx" >
+        <a href="userDataPage" id="wdxx" >
             <div class="cam-u-lg-3 am-u-md-3 am-u-sm-6">
                 <img src="img/wdxx.jpg"/>
             </div>
@@ -101,11 +101,6 @@ StringBuffer basePath = request.getRequestURL();
 </div>
 
 </body>
-<!--[if lt IE 9]>
-<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
 <script src="js/jquery.min.js"></script>
 <script src="js/amazeui.min.js"></script>
 <!--[if (gte IE 9)|!(IE)]><!-->

@@ -33,7 +33,7 @@
 <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <script src="dist/js/adminlte.min.js"></script>
 <script src="js/icheck.min.js"></script>
-<script src="js/ajax_js.js"></script>
+<script src="../js/ajax_js.js"></script>
 <script src="js/initClass.js"></script>
 <script type="text/javascript" src="js/initOrder_js.js"></script>
 <script type="text/javascript">

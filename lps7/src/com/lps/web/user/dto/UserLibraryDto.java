@@ -11,7 +11,7 @@ public interface UserLibraryDto {
 	String password = "password";
 	String workId = "workId";
 	String birthday = "birthday";
-	String telephonePhone = "telephonePhone";
+	String telephone = "telephone";
 	String email = "email";
 	String address = "address";
 	String avatar = "avatar";

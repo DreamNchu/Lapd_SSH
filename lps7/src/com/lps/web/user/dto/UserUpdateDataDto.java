@@ -2,14 +2,20 @@ package com.lps.web.user.dto;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.lps.model.User;
 import com.lps.model.WorkStatus;
 import com.lps.util.WorkDate;
 import com.lps.web.dto.BasicUpdateDto;
 
+@Component
 public class UserUpdateDataDto extends UserRequestDto implements BasicUpdateDto<User>{
-
 	
+	public UserUpdateDataDto() {
+		// TODO Auto-generated constructor stub
+	}
+
 	public UserUpdateDataDto(Map<String, String[]> map) {
 		super(map);
 	}
@@ -26,7 +32,7 @@ public class UserUpdateDataDto extends UserRequestDto implements BasicUpdateDto<
 		String[] sWorkId = map.get(workId);
 		String[] sPassWord  = map.get(password);
 		String[] sBirthday = map.get(birthday);
-		String[] stelephonePhone = map.get(telephonePhone);
+		String[] stelephonePhone = map.get(telephone);
 		String[] sEmail = map.get(email); 
 		String[] sAddress = map.get(address);
 		String[] sQuestion = map.get(question); 
@@ -59,7 +65,7 @@ public class UserUpdateDataDto extends UserRequestDto implements BasicUpdateDto<
 		}
 		
 		if(stelephonePhone != null) {
-			user.setTelephonePhone(stelephonePhone[0]);
+			user.setTelephone(stelephonePhone[0]);
 		}
 		
 		if(sEmail != null) {

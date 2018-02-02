@@ -47,14 +47,6 @@ public class UserDataAction extends ActionSupportLps implements SessionAware, Da
 	 */
 	@Override
 	public String execute() throws Exception {
-
-		int id = Integer.parseInt(session.get("id") + "");
-//		User user = userServiceImpl.findById(id);
-		userManage.query(id,userDataDto);
-//		userDataDto.initDto(user);
-		basicMsg.setMsgDto(userDataDto);
-//		basicMsg
-
 		return super.execute();
 	}
 	
@@ -77,7 +69,7 @@ public class UserDataAction extends ActionSupportLps implements SessionAware, Da
 	/**
 	 * 修改数据
 	 * @return
-	 */
+	 *//*
 	public String modifyData() {
 		
 		try {
@@ -90,7 +82,7 @@ public class UserDataAction extends ActionSupportLps implements SessionAware, Da
 		basicMsg.setDefaultSuccessMsg();
 		return SUCCESS;
 	}
-
+*/
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		this.session = arg0;
@@ -118,32 +110,6 @@ public class UserDataAction extends ActionSupportLps implements SessionAware, Da
 
 	public String userData() throws Exception{
 		return execute();
-	}
-
-	/**
-	 * 查看员工工作状态信息
-	 * @return
-	 */
-	public String viewAdminUserWorkData(){
-		
-		int id = userIdDto.getStuffId();
-		basicMsg.setMsgDto(userHelpForCreateOrderDto);
-		User user;
-		try {
-			user = userManage.query(id,userHelpForCreateOrderDto);
-//			userHelpForCreateOrderDto.initDto(user);
-		} catch (FindByIdGetNullException | DtoInitException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			userHelpForCreateOrderDto.setDefaultErrorMsg();
-		}
-//				userServiceImpl.findById(id);
-//		writeInResult(userHelpForCreateOrderDto);
-		userHelpForCreateOrderDto.setDefaultSuccessMsg();
-		
-//logger.debug(result);
-
-		return SUCCESS;
 	}
 
 }
