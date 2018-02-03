@@ -115,10 +115,6 @@ StringBuffer basePath = request.getRequestURL();
                 notpay.style.display="none";
                 paying.style.display="none";
                 income.style.display="block";
-             /*    ajaxRequest("todayOrderIncome", function(msg){
-                	//spotNum
-                	$("#spotNum").html(msg);
-                }); */
             } 
         }
         

@@ -18,9 +18,6 @@
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
 	</bean>
 	
-	<bean id="userMainAction" scope="prototype" class="com.lps.action.operation.user.UserMainAction">
-	</bean>
-	
 	<bean id="userAccessAction" scope="prototype" class="com.lps.action.user.access.UserAccessAction"> 
 		<property name="userServiceImpl" ref="userServiceImpl"></property>
 	 </bean>
@@ -43,13 +40,6 @@
 	 <!-- 员工分配工作时检查是否签到 -->
 	 <bean id="userWorkCheckAction" scope="prototype" class="com.lps.action.operation.user.UserWorkCheckAction">
 	 	<property name="workRankManage" ref="workRankManage"></property>
-	 	<property name="userManage" ref="userManage"></property>
-	 </bean>
-	 
-	 <!-- 员工的工作信息 -->
-	 <bean scope="prototype" id="userDataAction" class="com.lps.action.operation.user.UserDataAction">
-	 	<property name="userDataDto" ref="userResponseDto"></property>
-	 	<property name="userHelpForCreateOrderDto" ref="userHelpForCreateOrderDto"></property>
 	 	<property name="userManage" ref="userManage"></property>
 	 </bean>
 	 

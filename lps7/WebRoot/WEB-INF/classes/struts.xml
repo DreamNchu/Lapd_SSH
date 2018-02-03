@@ -19,7 +19,6 @@
 	
 	<include file="config/struts2/user/user.xml" />
 	<include file="config/struts2/user/access.xml" />
-	<include file="config/struts2/user/main.xml" />
 	<include file="config/struts2/user/order.xml" />
 	<include file="config/struts2/user/userLogin.xml" />
 	<include file="config/struts2/user/userWorkCheck.xml" />

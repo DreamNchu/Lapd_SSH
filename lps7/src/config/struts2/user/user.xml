@@ -2,31 +2,25 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="user" namespace="/user" extends="json-default,userLogin">
-		<action name="modifyUserDataPage" class="userDataAction">
-			<result>
-				/user/modifyUserDataPage.jsp
-			</result>
-		</action>
-
-		<action name="userDataPage" class="userDataAction">
-			<result>
+	
+	<action name="userDataPage" class="manageUsersAction">
+			<result name="success">
 				/user/userDataPage.jsp
 			</result>
 		</action>
 
-		<action name="modifyData" class="userDataAction" method="modifyData">
-			<result type="json">
-				<param name="root">result</param>
+		<action name="modifyUserDataPage" class="manageUsersAction">
+			<result name="success">
+				/user/modifyUserDataPage.jsp
 			</result>
 		</action>
 
-		<action name="*User*" class="userDataAction" method="{1}User{2}">
-			<result type="json">
-				<param name="root">result</param>
+		<action name="main" class="manageUsersAction">
+			<result name="success">
+				/user/main.jsp
 			</result>
 		</action>
-		
-		
+
 		<action name="*User*" class="manageUsersAction" method="{1}User{2}">
 			<result type="json">
 				<param name="root">result</param>
