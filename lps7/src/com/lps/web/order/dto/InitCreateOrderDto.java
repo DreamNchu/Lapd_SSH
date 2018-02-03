@@ -12,22 +12,6 @@ import com.lps.web.user.dto.TUserDto;
 
 public class InitCreateOrderDto extends BasicRespondMsgDto {
 
-	/*
-	 * var createOrder={ "createWays":["1","2","3"],
-	 * "user":[{"stuffId":"stuffId1","stuffworkId":"stuffworkId1"},{"stuffId":
-	 * "stuffId1","stuffworkId":"stuffworkId1"}],
-	 * "room":[{"roomId":"roomId1","roomName":"roomName1"},{"roomId":"roomId2",
-	 * "roomName":"roomName2"}],
-	 * "roomCategory":[{"catetgoryId":"categoryId1","catetgoryName":
-	 * "catetgoryName1"},{"catetgoryId":"categoryId1","catetgoryName":
-	 * "catetgoryName1"}] }
-	 */
-
-	// private List<Integer> createWays;
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 7306645750527617840L;
 
 	private TUserDto users;

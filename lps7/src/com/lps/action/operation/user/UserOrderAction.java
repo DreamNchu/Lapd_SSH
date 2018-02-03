@@ -17,7 +17,7 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.WorkJson;
 import com.lps.web.basicmsg.dto.DtoInitException;
-import com.lps.web.order.dto.OrderDto;
+import com.lps.web.order.dto.OrderRespondDto;
 import com.lps.web.order.dto.OrderTableDto;
 import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.TimeType;
@@ -39,7 +39,7 @@ public class UserOrderAction extends ActionSupportLps implements DataResult, Ses
 
 	private OrderManage orderManage;
 
-	private OrderDto orderSingleDataDto;
+	private OrderRespondDto orderSingleDataDto;
 
 	private OrderStatusService orderStatusServiceImpl;
 
@@ -115,7 +115,7 @@ public class UserOrderAction extends ActionSupportLps implements DataResult, Ses
 		return orderManage;
 	}
 
-	public OrderDto getOrderSingleDataDto() {
+	public OrderRespondDto getOrderSingleDataDto() {
 		return orderSingleDataDto;
 	}
 
@@ -249,7 +249,7 @@ public class UserOrderAction extends ActionSupportLps implements DataResult, Ses
 		this.orderManage = orderManage;
 	}
 
-	public void setOrderSingleDataDto(OrderDto orderSingleDataDto) {
+	public void setOrderSingleDataDto(OrderRespondDto orderSingleDataDto) {
 		this.orderSingleDataDto = orderSingleDataDto;
 	}
 

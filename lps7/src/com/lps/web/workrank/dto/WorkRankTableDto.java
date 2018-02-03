@@ -16,7 +16,6 @@ public class WorkRankTableDto extends TablePage<WorkRank>{
 	private TWorkRankDto workRanks ;
 
 	
-	@SuppressWarnings("unchecked")
 	@Override
 	public void init(PageBean<WorkRank> lOrders, PageAble queryOrderDto,  String actionName) throws DtoInitException {
 		super.init(lOrders, queryOrderDto, actionName);

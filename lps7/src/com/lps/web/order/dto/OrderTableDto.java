@@ -1,15 +1,10 @@
 package com.lps.web.order.dto;
 
-import java.lang.reflect.Field;
-import java.util.List;
-
-import org.jboss.jandex.Main;
-
 import com.lps.model.ServerOrder;
 import com.lps.util.PageBean;
 import com.lps.web.basicmsg.dto.DtoInitException;
-import com.lps.web.page.dto.TablePage;
 import com.lps.web.page.dto.PageAble;
+import com.lps.web.page.dto.TablePage;
 
 public class OrderTableDto extends TablePage<ServerOrder>{
 
@@ -41,33 +36,12 @@ public class OrderTableDto extends TablePage<ServerOrder>{
 	 * @param actionName
 	 * @throws DtoInitException 
 	 */
-	@SuppressWarnings("unchecked")
 	public void init(PageBean<ServerOrder> lOrders, PageAble pageLinkTransformOrderDto, String actionName) throws DtoInitException {
 		
 		super.init(lOrders, pageLinkTransformOrderDto, actionName);
 		
 		orders.init(lOrders.getList());
 		
-		/*for (ServerOrder serverOrder : (List<ServerOrder>)lOrders.getList()) {
-			OrderDto osd = new OrderDto();
-			osd.init(serverOrder);
-			this.orders.add(osd);
-		}*/
-		
 	}
 	
-/*public static void main(String[] args) {
-	Class cla = OrderTableDto.class;
-	System.out.println(cla = cla.getSuperclass());
-	System.out.println(cla = cla.getSuperclass());
-	System.out.println(cla = cla.getSuperclass());
-	System.out.println(cla = cla.getSuperclass());
-	System.out.println(cla = cla.getSuperclass());
-	System.out.println(cla = cla.getSuperclass());
-//	while(clacla.getSuperclass())
-//	for(Field field : .getDeclaredFields()){
-//		System.out.println(field.getName());
-//	}
-}*/
-
 }

@@ -16,11 +16,5 @@
 		scope="prototype">
 	</bean>
 	
-	<bean id="orderDto" class="com.lps.web.order.dto.OrderDto" scope="prototype">
-	
-	</bean>
-
-	<bean id="orderSingleDataDto" scope="prototype" class="com.lps.web.order.dto.OrderSingleDataDto"></bean>
-
 </beans>
 

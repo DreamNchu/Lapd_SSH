@@ -1,9 +1,5 @@
 package com.lps.web.order.dto;
 
-import com.lps.model.ServerOrder;
-import com.lps.web.dto.BasicRequestDto;
-import com.lps.web.dto.BasicResponseDto;
-
 public interface OrderLibraryDto {
 
 	// 钟点类型
@@ -31,10 +27,13 @@ public interface OrderLibraryDto {
 
 	// 支付时间
 	String payTime = "payTime";
+	
+	String pledge = "pledge";
 	// 所押物品名字
 	String pledgeName = "pledgeName";
 
-	// String userName;
+	String pledgeId = "pledgeId"; 
+	
 	// 实际支付
 	String realPay = "realPay";
 	// 员工接收时间

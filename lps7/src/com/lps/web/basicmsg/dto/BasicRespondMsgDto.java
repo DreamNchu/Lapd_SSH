@@ -25,8 +25,6 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 	 */
 	private static final long serialVersionUID = 6002570645302786244L;
 
-	// protected Map<String , Object> mapdddddd = new HashMap<>();
-
 	private transient Map<String, Object> mapUtil = new HashMap<String, Object>();
 
 	public static final String ERROR_MSG = "errorMsg";

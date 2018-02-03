@@ -19,7 +19,7 @@ import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.order.dto.AdvancedSearchDto;
 import com.lps.web.order.dto.InitBasicUpdateDataDto;
 import com.lps.web.order.dto.MapNotInitForClassPathException;
-import com.lps.web.order.dto.OrderDto;
+import com.lps.web.order.dto.OrderRespondDto;
 import com.lps.web.order.dto.OrderTableDto;
 import com.lps.web.order.dto.OrderUpdateDataDto;
 import com.lps.web.order.dto.PageLinkTransformOrderDto;
@@ -66,7 +66,7 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 
 	private OrderManage orderManage;
 
-	private OrderDto orderSingleDataDto;
+	private OrderRespondDto orderSingleDataDto;
 
 	private OrderTableDto orderTableDataDto;
 
@@ -157,7 +157,7 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 		return orderManage;
 	}
 
-	public OrderDto getOrderSingleDataDto() {
+	public OrderRespondDto getOrderSingleDataDto() {
 		return orderSingleDataDto;
 	}
 
@@ -343,7 +343,7 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 		this.orderManage = orderManage;
 	}
 
-	public void setOrderSingleDataDto(OrderDto orderSingleDataDto) {
+	public void setOrderSingleDataDto(OrderRespondDto orderSingleDataDto) {
 		this.orderSingleDataDto = orderSingleDataDto;
 	}
 

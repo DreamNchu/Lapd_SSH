@@ -14,7 +14,7 @@ import com.lps.web.basicmsg.dto.TableInitDto;
  *
  */
 @DtoName("orders")
-public class TOrderDto extends ArrayList<OrderDto> implements TableInitDto<ServerOrder> {
+public class TOrderDto extends ArrayList<OrderRespondDto> implements TableInitDto<ServerOrder> {
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class TOrderDto extends ArrayList<OrderDto> implements TableInitDto<Serve
 	@Override
 	public void init(List<ServerOrder> lists) throws DtoInitException {
 		for (ServerOrder serverOrder : lists) {
-			OrderDto od = new OrderDto();
+			OrderRespondDto od = new OrderRespondDto();
 			od.initDto(serverOrder);
 			add(od);
 		}

@@ -43,7 +43,7 @@ public class InitBasicUpdateDataDto extends BasicRespondMsgDto{
 	 */
 	private TPayPathDto payPaths;
 	
-	private OrderDto orderDto;
+	private OrderRespondDto orderDto;
 	
 /*	private Float pay;
 	
@@ -66,11 +66,11 @@ if(Modifier.isTransient(f.getModifiers()))
 		return orderId;
 	}
 */
-	public OrderDto getOrderDto() {
+	public OrderRespondDto getOrderDto() {
 		return orderDto;
 	}
 
-	public void setOrderDto(OrderDto orderDto) {
+	public void setOrderDto(OrderRespondDto orderDto) {
 		this.orderDto = orderDto;
 	}
 	
@@ -89,10 +89,7 @@ if(Modifier.isTransient(f.getModifiers()))
 		
 	}
 	
-	public InitBasicUpdateDataDto init(ServerOrder so, List<? extends Entity> ...listEntities /*, List<User> users, List<Room> rooms, List<OrderStatus> orderStatuses
-			,List<ClockCategory> clockCategorys, List<PayPath> payPaths,*/ /*ServerOrder so*/) throws DtoInitException, MapNotInitForClassPathException{
-		
-//		initSurplus(so);
+	public InitBasicUpdateDataDto init(ServerOrder so, List<? extends Entity> ...listEntities) throws DtoInitException, MapNotInitForClassPathException{
 		
 		initTable(listEntities);
 		

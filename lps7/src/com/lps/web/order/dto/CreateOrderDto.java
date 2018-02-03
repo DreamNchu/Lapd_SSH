@@ -63,13 +63,4 @@ public class CreateOrderDto extends BasicRequestMsgDto<ServerOrder> {
 		return null;
 	}
 
-/*	public int getServerItemId() {
-		return serverItemId;
-	}
-
-	public void setServerItemId(int serverItemId) {
-		this.serverItemId = serverItemId;
-	}*/
-
-
 }

@@ -1,14 +1,15 @@
 package com.lps.web.order.dto;
 
+import com.lps.model.ServerOrder;
 import com.lps.permission.Permission;
-import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
+import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
 
 /**
  * 正常状态下订单的更新
  * @author 0001
  *
  */
-public class UpdateOrderNormalOperationDto extends BasicRespondMsgDto{
+public class UpdateOrderNormalOperationDto extends BasicRequestMsgDto<ServerOrder>{
 	
 	/**
 	 * 
@@ -101,6 +102,12 @@ public class UpdateOrderNormalOperationDto extends BasicRespondMsgDto{
 
 	public void setOrderStatusId(int orderStatusId) {
 		this.orderStatusId = orderStatusId;
+	}
+
+	@Override
+	public ServerOrder generate() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 	
