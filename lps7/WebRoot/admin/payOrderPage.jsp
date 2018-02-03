@@ -34,7 +34,8 @@ StringBuffer basePath = request.getRequestURL();
             initBasicClass("payOrderPage");
             initTime();
             
-            initData();
+            //初始化数据
+            initData();  
         }
         
        
@@ -93,7 +94,7 @@ StringBuffer basePath = request.getRequestURL();
                             </table>
                         </div>
                     </div>
-                    <div class="box">
+                    <!-- <div class="box">
                         <div class="box-header">
                             <h3 class="box-title">服务中订单</h3>
                         </div>
@@ -105,11 +106,11 @@ StringBuffer basePath = request.getRequestURL();
                                     <th>员工号</th>
                                     <th>员工姓名</th>
                                     <th>服务开始时间</th>
-                                   <!--  <th>已经服务时间</th> -->
+                                    <th>已经服务时间</th>
                                 </tr>
                             </table>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>

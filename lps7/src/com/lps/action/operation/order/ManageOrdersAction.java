@@ -279,7 +279,6 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 			e.printStackTrace();
 			orderTableDataDto.setErrorMsg(e.getMessage());
 		} catch (DtoInitException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			orderTableDataDto.appendErrorMsg(e.getMessage());
 		}
@@ -376,6 +375,7 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 
 			updateOrderNormalOperationDto.setOrderStatusId(OrderStatusDAO.FINISH);
 
+//			System.out.println(updateOrderNormalOperationDto.getOrderId());
 			orderManage.updateOrderNormal(updateOrderNormalOperationDto);
 
 		} catch (Exception e) {

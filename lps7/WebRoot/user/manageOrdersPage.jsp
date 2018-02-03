@@ -161,7 +161,7 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     <tr>
                         <td>房间号：</td>
-                        <td class="room"></td>
+                        <td class="roomName"></td>
                     </tr>
                     <tr>
                         <td>下单时间：</td>
@@ -173,7 +173,7 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     <tr>
                         <td>钟点类型：</td>
-                        <td class="clockCategory"></td>
+                        <td class="clockCategoryName"></td>
                     </tr>
                     <tr>
                         <td><input class="btn btn-primary" type="button" value="接受" onclick="acceptOrder()"></td>
@@ -194,7 +194,7 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     <tr>
                         <td>房间号：</td>
-                        <td class="room" colspan="4" ></td>
+                        <td class="roomName" colspan="4" ></td>
                     </tr>
                     <tr>
                         <td>开始时间：</td>
@@ -206,7 +206,7 @@ StringBuffer basePath = request.getRequestURL();
                     </tr>
                     <tr>
                         <td>工作类型</td>
-                        <td class="clockCategory" colspan="4" ></td>
+                        <td class="clockCategoryName" colspan="4" ></td>
                     </tr>
                     <tr>
                     	<td>服务金额</td>

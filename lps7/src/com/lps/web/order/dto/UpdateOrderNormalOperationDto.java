@@ -10,6 +10,11 @@ import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
  */
 public class UpdateOrderNormalOperationDto extends BasicRespondMsgDto{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private String orderId;
 	
 	private Permission permission;
