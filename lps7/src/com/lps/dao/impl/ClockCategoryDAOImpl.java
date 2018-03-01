@@ -207,7 +207,7 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	
 
 	@Override
-	public <K> ClockCategory findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> ClockCategory findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(ClockCategory.class)

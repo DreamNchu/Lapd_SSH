@@ -323,7 +323,7 @@ public class ServerOrderDAOImpl implements ServerOrderDAO {
 	}
 
 	@Override
-	public <K> ServerOrder findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> ServerOrder findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 //		hibernateTemplate.`
 

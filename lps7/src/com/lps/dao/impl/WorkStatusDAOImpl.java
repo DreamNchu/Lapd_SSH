@@ -149,7 +149,7 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 	}
 	
 	@Override
-	public <K> WorkStatus findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> WorkStatus findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkStatus.class)

@@ -44,7 +44,6 @@ public class OrderRequestDto implements OrderLibraryDto , BasicRequestDto<Server
 //		String[] sRealName = (String[]) map.get(realName);
 		String[] sReceiveTime = (String[]) map.get(receiveTime);
 		String[] sRoomName = (String[]) map.get(roomName);
-		@SuppressWarnings("unchecked")
 		String[] sServerItemId =   map.get(serverItem);
 		String[] sStuff =  map.get(stuff);
 
@@ -56,69 +55,69 @@ public class OrderRequestDto implements OrderLibraryDto , BasicRequestDto<Server
 
 		if (sClockCategoryName != null) {
 			ClockCategory cc = new ClockCategory();
-			cc.setClockCategory(sClockCategoryName);
+			cc.setClockCategory(sClockCategoryName[0]);
 			so.setClockCategory(cc);
 		}
 
 		if (sFinishTime != null) {
-			so.setFinishTime(WorkDate.toDate(sFinishTime));
+			so.setFinishTime(WorkDate.toDate(sFinishTime[0]));
 		}
 
 		if (sInitTime != null) {
-			so.setInitTime(WorkDate.toDate(sInitTime));
+			so.setInitTime(WorkDate.toDate(sInitTime[0]));
 		}
 
 		if (sReceiveTime != null) {
-			so.setReceiveTime(WorkDate.toDate(sReceiveTime));
+			so.setReceiveTime(WorkDate.toDate(sReceiveTime[0]));
 		}
 
 		if (sOrderId != null) {
-			so.setId(sOrderId);
+			so.setId(sOrderId[0]);
 		}
 
 		if (sOrderRemark != null) {
-			so.setOrderRemark(sOrderRemark);
+			so.setOrderRemark(sOrderRemark[0]);
 		}
 
 		if (sOrderStatusName != null) {
 			OrderStatus os = new OrderStatus();
-			os.setOrderstatus(sOrderStatusName);
+			os.setOrderstatus(sOrderStatusName[0]);
 			so.setOrderStatus(os);
 		}
 
 		if (sPay != null) {
-			so.setPay(Float.parseFloat(sPay));
+			so.setPay(Float.parseFloat(sPay[0]));
 		}
 
 		if (sPayPath != null) {
 			PayPath pp = new PayPath();
-			pp.setPayPath(sPayPath);
+			pp.setPayPath(sPayPath[0]);
 			so.setPayPath(pp);
 		}
 
 		if (sRealPay != null) {
-			so.setRealPay(Float.parseFloat(sRealPay));
+			so.setRealPay(Float.parseFloat(sRealPay[0]));
 		}
 
 		if (sPledgeName != null) {
 			Pledge pl = new Pledge();
-			pl.setName(sPledgeName);
+			pl.setName(sPledgeName[0]);
 			so.setPledge(pl);
 		}
 
 		if (sRoomName != null) {
 			Room room = new Room();
-			room.setName(sRoomName);
+			room.setName(sRoomName[0]);
 			so.setRoom(room);
 		}
 
 		if (sPayTime != null) {
-			so.setPayTime(WorkDate.toDate(sPayTime));
+			so.setPayTime(WorkDate.toDate(sPayTime[0]));
 		}
 
 		User u = new User();
 		if (sStuff != null) {
-			u.setId(Integer.parseInt(sStuff));
+			u.setId(Integer.parseInt(sStuff[0]));
 			so.setUser(u);
 		}
 

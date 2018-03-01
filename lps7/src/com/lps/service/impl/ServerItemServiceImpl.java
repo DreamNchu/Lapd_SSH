@@ -132,7 +132,7 @@ public class ServerItemServiceImpl implements ServerItemService {
 	}
 
 	@Override
-	public <K> ServerItem findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> ServerItem findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

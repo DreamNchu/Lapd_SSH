@@ -111,7 +111,7 @@ public class ManageRoomsAction extends ActionSupportLps implements SessionAware{
 
 	public String deleteRooms() {
 		try {
-			roomManage.delete(roomIds.toArray(new Serializable[0]));
+			roomManage.delete(roomIds.toArray(new java.io.Serializable[0]));
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			basicMsg.setDefaultErrorMsg();

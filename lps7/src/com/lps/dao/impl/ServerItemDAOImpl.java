@@ -161,7 +161,7 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	}
 	
 	@Override
-	public <K> ServerItem findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> ServerItem findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(ServerItem.class)

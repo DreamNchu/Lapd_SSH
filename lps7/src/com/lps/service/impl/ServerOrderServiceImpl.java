@@ -282,7 +282,7 @@ public class ServerOrderServiceImpl implements ServerOrderService {
 	}
 
 	@Override
-	public <K> ServerOrder findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> ServerOrder findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

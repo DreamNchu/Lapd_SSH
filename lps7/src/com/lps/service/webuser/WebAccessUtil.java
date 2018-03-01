@@ -22,7 +22,7 @@ public interface WebAccessUtil {
 	 * @param <T> 基本的model类型
 	 * @return 返回密码
 	 */
-	public <T> String findPassword(BasicModel<T> t) throws UserNotExistsException;
+	public <T> String findPassword(BasicModel t) throws UserNotExistsException;
 	
 	/**
 	 * 如果只是单纯的查找id的话，那么这种方法的效率最高

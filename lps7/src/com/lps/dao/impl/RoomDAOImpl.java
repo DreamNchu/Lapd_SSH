@@ -257,7 +257,7 @@ public class RoomDAOImpl implements RoomDAO, BasicForServerOrderDAO<Room, Intege
 	}
 
 	@Override
-	public <K> Room findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Room findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Room.class);

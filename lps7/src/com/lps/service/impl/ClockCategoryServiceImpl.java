@@ -260,7 +260,7 @@ public class ClockCategoryServiceImpl implements ClockCategoryService {
 	}
 	
 	@Override
-	public <K> ClockCategory findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> ClockCategory findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

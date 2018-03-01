@@ -42,10 +42,10 @@ public class RoomManage implements BasicManage<Room>{
 	}
 
 	@Override
-	public void delete(Serializable... id) throws FindByIdGetNullException {
+	public void delete(java.io.Serializable... id) throws FindByIdGetNullException {
 		Room[] room = new Room[id.length]; 
 		int i = 0;
-		for (Serializable serializable : id) {
+		for (java.io.Serializable serializable : id) {
 			Room r = roomServiceImpl.findById(serializable);
 			for(ServerOrder so :r.getServerOrders()){
 				so.setRoom(null);
@@ -63,19 +63,19 @@ public class RoomManage implements BasicManage<Room>{
 
 
 	@Override
-	public Room query(Serializable id) throws FindByIdGetNullException {
+	public Room query(java.io.Serializable id) throws FindByIdGetNullException {
 		return roomServiceImpl.findById(id);
 	}
 
 
 	@Override
-	public Room query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+	public Room query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
 		return null;
 	}
 
 
 	@Override
-	public <RDto extends BasicResponseDto<Room>> Room query(Serializable id, RDto rdto)
+	public <RDto extends BasicResponseDto<Room>> Room query(java.io.Serializable id, RDto rdto)
 			throws FindByIdGetNullException, DtoInitException {
 		Room room = roomServiceImpl.findById(id);
 		rdto.initDto(room);

@@ -29,7 +29,7 @@ import com.lps.model.basic.ModelLinkServerOrder;
 		valueColumnName = "gen_value",
 		pkColumnValue = "combo_PK",
 		allocationSize = 1)
-public class Combo implements BasicModel<Integer>,java.io.Serializable, ModelLinkServerOrder<Integer> {
+public class Combo implements BasicModel,java.io.Serializable, ModelLinkServerOrder<Integer> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -80,8 +80,8 @@ public class Combo implements BasicModel<Integer>,java.io.Serializable, ModelLin
 		return this.id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(java.io.Serializable id) {
+		this.id = (int)id;
 	}
 
 	@Column(name = "name", length = 45)

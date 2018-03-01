@@ -1,5 +1,6 @@
 package com.lps.web.room.dto;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import com.lps.model.Room;
@@ -16,6 +17,12 @@ public class RoomUpdateDataDto extends RoomRequestDto implements BasicUpdateDto<
 
 	@Override
 	public Room update(Room t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Serializable getId() {
 		// TODO Auto-generated method stub
 		return null;
 	}

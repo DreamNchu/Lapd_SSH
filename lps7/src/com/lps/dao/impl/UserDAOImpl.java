@@ -350,7 +350,7 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	}
 	
 	@Override
-	public <K> User findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> User findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(User.class)

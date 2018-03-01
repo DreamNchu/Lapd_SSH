@@ -225,7 +225,7 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 	}
 
 	@Override
-	public <K> OrderStatus findFieldsByModel(BasicModel<K> t, Map<String, Class<?>> fields) {
+	public <K> OrderStatus findFieldsByModel(BasicModel t, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(OrderStatus.class).add(Restrictions.idEq(t.getId()));

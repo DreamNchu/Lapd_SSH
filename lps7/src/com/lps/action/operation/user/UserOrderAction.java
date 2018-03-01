@@ -92,12 +92,12 @@ public class UserOrderAction extends ActionSupportLps implements DataResult, Ses
 			orderManage.updateOrderNormal(uo);
 		} catch (Exception e) {
 			e.printStackTrace();
-			uo.setErrorMsg("提交订单失败！,检查输入金额或其他系统错误");
+//			uo.setErrorMsg("提交订单失败！,检查输入金额或其他系统错误");
 //			map.put(MSG, "提交订单失败！,检查输入金额或其他系统错误");
 //			writeInResult(map);
 //			return SUCCESS;
 		}
-		uo.setSuccessMsg("恭喜您，订单完成！");
+//		uo.setSuccessMsg("恭喜您，订单完成！");
 //		map.put(MSG, "恭喜您，订单完成！");
 //		writeInResult(map);
 		return SUCCESS;
@@ -200,18 +200,18 @@ public class UserOrderAction extends ActionSupportLps implements DataResult, Ses
 			int userId = Integer.parseInt(session.get("id") + "");
 			uo = new UpdateOrderNormalOperationDto(orderId, new Permission(Permission.USER), 0f, 0f,
 					OrderStatusDAOImpl.SERVICING, userId);
-			basicMsg.setMsgDto(uo);
+//			basicMsg.setMsgDto(uo);
 			orderManage.updateOrderNormal(uo);
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			uo.setErrorMsg("接收订单失败");
+//			uo.setErrorMsg("接收订单失败");
 			// map.put(MSG, "接收订单失败！");
 			// writeInResult(map);
 
 			return SUCCESS;
 		}
-		uo.setSuccessMsg("接收订单成功");
+//		uo.setSuccessMsg("接收订单成功");
 		// map.put(MSG, "接收订单成功！");
 		// writeInResult(map);
 		return SUCCESS;

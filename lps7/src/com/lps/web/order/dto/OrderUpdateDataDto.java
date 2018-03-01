@@ -1,5 +1,7 @@
 package com.lps.web.order.dto;
 
+import java.io.Serializable;
+
 import com.lps.model.ServerOrder;
 import com.lps.web.basicmsg.dto.BasicRequestMsgDto;
 import com.lps.web.dto.BasicUpdateDto;
@@ -106,6 +108,12 @@ public class OrderUpdateDataDto extends BasicRequestMsgDto<ServerOrder> implemen
 
 	@Override
 	public ServerOrder update(ServerOrder t) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Serializable getId() {
 		// TODO Auto-generated method stub
 		return null;
 	}

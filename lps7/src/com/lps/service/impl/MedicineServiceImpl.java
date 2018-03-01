@@ -136,7 +136,7 @@ public class MedicineServiceImpl implements MedicineService{
 	}
 
 	@Override
-	public PropertyRange<Medicine> createProRangeForOrder(Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<Medicine> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
        
 		PropertyRange<Medicine> pr = new PropertyRange<>();
 		
@@ -178,7 +178,7 @@ public class MedicineServiceImpl implements MedicineService{
 	}
 
 	@Override
-	public Medicine findById(Serializable id) throws FindByIdGetNullException {
+	public Medicine findById(java.io.Serializable id) throws FindByIdGetNullException {
 		Medicine medicine = dao.findById(id);
 		if(medicine == null){
 			throw new FindByIdGetNullException("根据主键id未找到药物对象");
@@ -227,7 +227,7 @@ public class MedicineServiceImpl implements MedicineService{
 	}
 
 	@Override
-	public <K> Medicine findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Medicine findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

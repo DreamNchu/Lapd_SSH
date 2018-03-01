@@ -57,7 +57,7 @@ public class ComboUpdateDataDto extends ComboRequestDto implements BasicUpdateDt
 	}
 
 	@Override
-	public Serializable getId() {
+	public java.io.Serializable getId() {
 		return map.get(comboId)[0];
 	}
 

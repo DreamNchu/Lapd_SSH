@@ -49,10 +49,10 @@ public class MedicineManage implements BasicManage<Medicine>{
 	}
 
 	@Override
-	public void delete(Serializable... id) throws FindByIdGetNullException {
+	public void delete(java.io.Serializable... id) throws FindByIdGetNullException {
 		Medicine[] medicine = new Medicine[id.length]; 
 		int i = 0;
-		for (Serializable serializable : id) {
+		for (java.io.Serializable serializable : id) {
 			medicine[i ++] = medicineServiceImpl.findById(serializable);
 		}
 		medicineServiceImpl.deleteAll(Arrays.asList(medicine));
@@ -61,13 +61,13 @@ public class MedicineManage implements BasicManage<Medicine>{
 	}
 
 /*	@Override
-	public Medicine query(Serializable id) throws FindByIdGetNullException {
+	public Medicine query(java.io.Serializable id) throws FindByIdGetNullException {
 		return medicineServiceImpl.findById(id);
 		
 	}*/
 	
 	@Override
-	public <RDto extends BasicResponseDto<Medicine>> Medicine query(Serializable id, RDto rdto)
+	public <RDto extends BasicResponseDto<Medicine>> Medicine query(java.io.Serializable id, RDto rdto)
 			throws FindByIdGetNullException, DtoInitException {
 		Medicine md = medicineServiceImpl.findById(id);
 		rdto.initDto(md);
@@ -75,13 +75,13 @@ public class MedicineManage implements BasicManage<Medicine>{
 	}
 	
 	@Override
-	public Medicine query(Serializable id) throws FindByIdGetNullException {
+	public Medicine query(java.io.Serializable id) throws FindByIdGetNullException {
 		return medicineServiceImpl.findById(id);
 	}
 
 
 	@Override
-	public Medicine query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+	public Medicine query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
 		// TODO Auto-generated method stub
 		return null;
 	}

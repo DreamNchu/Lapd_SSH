@@ -248,7 +248,7 @@ public class PledgeServiceImpl implements PledgeService {
 	}
 
 	@Override
-	public <K> Pledge findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Pledge findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

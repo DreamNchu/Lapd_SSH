@@ -139,7 +139,7 @@ public class ComboServiceImpl implements ComboService{
 	}
 
 	@Override
-	public PropertyRange<Combo> createProRangeForOrder(Serializable id1) throws FindByIdGetNullException {
+	public PropertyRange<Combo> createProRangeForOrder(java.io.Serializable id1) throws FindByIdGetNullException {
 
 		PropertyRange<Combo> pr = new PropertyRange<>();
 		
@@ -180,7 +180,7 @@ public class ComboServiceImpl implements ComboService{
 	}
 
 	@Override
-	public Combo findById(Serializable id) throws FindByIdGetNullException {
+	public Combo findById(java.io.Serializable id) throws FindByIdGetNullException {
 		Combo combo = dao.findById(id);
 		if(combo == null){
 			throw new FindByIdGetNullException("根据主键id未找到套餐对象");
@@ -231,7 +231,7 @@ public class ComboServiceImpl implements ComboService{
 	}
 
 	@Override
-	public <K> Combo findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Combo findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 		// TODO Auto-generated method stub
 		

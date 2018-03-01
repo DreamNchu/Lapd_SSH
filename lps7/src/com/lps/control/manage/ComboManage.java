@@ -50,18 +50,18 @@ public class ComboManage implements BasicManage<Combo> {
 	}
 
 	@Override
-	public void delete(Serializable... id) throws FindByIdGetNullException {
+	public void delete(java.io.Serializable... id) throws FindByIdGetNullException {
 		Combo[] medicine = new Combo[id.length];
 		int i = 0;
-		for (Serializable serializable : id) {
-			medicine[i++] = comboServiceImpl.findById(serializable);
+		for (java.io.Serializable seri : id) {
+			medicine[i++] = comboServiceImpl.findById(seri);
 		}
 		comboServiceImpl.deleteAll(Arrays.asList(medicine));
 
 	}
 
 	@Override
-	public <RDto extends BasicResponseDto<Combo>> Combo query(Serializable id, RDto rdto)
+	public <RDto extends BasicResponseDto<Combo>> Combo query(java.io.Serializable id, RDto rdto)
 			throws FindByIdGetNullException, DtoInitException {
 		Combo md = comboServiceImpl.findById(id);
 		rdto.initDto(md);
@@ -69,12 +69,12 @@ public class ComboManage implements BasicManage<Combo> {
 	}
 
 	@Override
-	public Combo query(Serializable id) throws FindByIdGetNullException {
+	public Combo query(java.io.Serializable id) throws FindByIdGetNullException {
 		return comboServiceImpl.findById(id);
 	}
 
 	@Override
-	public Combo query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+	public Combo query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
 
 		return null;
 	}

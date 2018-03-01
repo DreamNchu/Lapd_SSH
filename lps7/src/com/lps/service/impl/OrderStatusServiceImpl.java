@@ -267,7 +267,7 @@ public class OrderStatusServiceImpl implements OrderStatusService {
 	}
 
 	@Override
-	public <K> OrderStatus findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> OrderStatus findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

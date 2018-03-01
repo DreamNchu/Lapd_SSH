@@ -277,7 +277,7 @@ public class RoomServiceImpl implements RoomService {
 	}
 
 	@Override
-	public <K> Room findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Room findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

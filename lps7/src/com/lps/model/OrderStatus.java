@@ -143,8 +143,8 @@ public class OrderStatus implements java.io.Serializable,ModelLinkServerOrder<In
 	 * <p>
 	 * @param id 设置id
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(java.io.Serializable id) {
+		this.id = (int)id;
 	}
 	/**
 	 * 设置订单状态

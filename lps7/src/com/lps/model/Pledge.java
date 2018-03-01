@@ -72,8 +72,8 @@ public class Pledge implements java.io.Serializable,ModelLinkServerOrder<Integer
 		return this.id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(java.io.Serializable id) {
+		this.id = (int)id;
 	}
 
 	@Column(name = "name", unique = true, length = 20)

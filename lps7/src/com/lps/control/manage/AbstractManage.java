@@ -1,11 +1,9 @@
 package com.lps.control.manage;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
 import com.lps.model.basic.BasicModel;
-import com.lps.model.basic.Entity;
 import com.lps.service.basic.BasicService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
@@ -23,77 +21,77 @@ import com.lps.web.order.dto.MapNotInitForClassPathException;
  * @author 0001
  *
  */
-public class AbstractManage implements BasicManage<Entity> {
+public class AbstractManage implements BasicManage<BasicModel> {
 	
-	protected BasicService<Entity> service;
+	protected BasicService<BasicModel> service;
 
-	public BasicService<Entity> getService() {
+	public BasicService<BasicModel> getService() {
 		return service;
 	}
 
-	public void setService(BasicService<Entity> service) {
+	public void setService(BasicService<BasicModel> service) {
 		this.service = service;
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<Entity>> void create(DTO dto) {
+	public <DTO extends BasicRequestDto<BasicModel>> void create(DTO dto) {
 		service.save(dto.generate());
 	}
 
 	@Override
-	public <DTO extends BasicUpdateDto<BasicModel<Serializable>>> void update(DTO dto) throws FindByIdGetNullException {
-		BasicModel<Serializable> entity = dto.generate();
+	public <DTO extends BasicUpdateDto<BasicModel>> void update(DTO dto) throws FindByIdGetNullException {
+		BasicModel BasicModel = dto.generate();
 			
-		 entity = service.findById(entity.getId());
+		 BasicModel = service.findById(BasicModel.getId());
 		 
-		 service.update(dto.update(entity));
+		 service.update(dto.update(BasicModel));
 		
 	}
 
 	@Override
-	public void delete(Serializable... id) throws FindByIdGetNullException {
+	public void delete(java.io.Serializable... id) throws FindByIdGetNullException {
 		
 	}
 
 	@Override
-	public <RDto extends BasicResponseDto<Entity>> Entity query(Serializable id, RDto rdto)
+	public <RDto extends BasicResponseDto<BasicModel>> BasicModel query(java.io.Serializable id, RDto rdto)
 			throws FindByIdGetNullException, DtoInitException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entity query(Serializable id) throws FindByIdGetNullException {
+	public BasicModel query(java.io.Serializable id) throws FindByIdGetNullException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Entity query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+	public BasicModel query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public PageBean<Entity> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
+	public PageBean<BasicModel> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Entity> queryAll() {
+	public List<BasicModel> queryAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Entity> queryByProperties(Map<String, Object> map) {
+	public List<BasicModel> queryByProperties(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Entity> queryByPropertiesRange(List<PropertyRange<?>> listPro) {
+	public List<BasicModel> queryByPropertiesRange(List<PropertyRange<?>> listPro) {
 		// TODO Auto-generated method stub
 		return null;
 	}

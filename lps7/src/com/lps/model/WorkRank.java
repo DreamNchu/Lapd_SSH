@@ -30,7 +30,7 @@ import com.lps.model.basic.BasicModel;
 		valueColumnName = "gen_value", 
 		pkColumnValue = "workrank_PK",
 		allocationSize = 1)
-public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
+public class WorkRank implements java.io.Serializable,BasicModel {
 
 	// Fields
 
@@ -96,8 +96,8 @@ public class WorkRank implements java.io.Serializable,BasicModel<Integer> {
 	 * <p>
 	 * @param id 设置id
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(java.io.Serializable id) {
+		this.id = (int)id;
 	}
 
 	/**

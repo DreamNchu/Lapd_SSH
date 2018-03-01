@@ -6,6 +6,6 @@ package com.lps.model.basic;
  * @param <T>
  *
  */
-public interface ModelLinkServerOrder<T> extends BasicModel<T>{
+public interface ModelLinkServerOrder<T> extends BasicModel{
 	
 }

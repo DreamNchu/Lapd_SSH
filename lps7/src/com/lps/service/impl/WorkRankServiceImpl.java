@@ -182,7 +182,7 @@ public class WorkRankServiceImpl implements WorkRankService {
 	}
 
 	@Override
-	public <K> WorkRank findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> WorkRank findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

@@ -46,7 +46,7 @@ public class UserManage implements BasicManage<User>{
 	 * @param fields
 	 * @return
 	 */
-	public User querySamePropety(BasicModel<Integer> t, Map<String, Class<?>> fields){
+	public User querySamePropety(BasicModel t, Map<String, Class<?>> fields){
 		return userServiceImpl.findFieldsByModel(t, fields);
 	}
 	
@@ -64,22 +64,22 @@ public class UserManage implements BasicManage<User>{
 	}
 
 	@Override
-	public void delete(Serializable... id) throws FindByIdGetNullException {
+	public void delete(java.io.Serializable... id) throws FindByIdGetNullException {
 		User[] users = new User[id.length]; 
 		int i = 0;
-		for (Serializable serializable : id) {
+		for (java.io.Serializable serializable : id) {
 			users[i ++] = userServiceImpl.findById(serializable);
 		}
 		userServiceImpl.deleteAll(Arrays.asList(users));
 	}
 
 /*	@Override
-	public User query(Serializable id) throws FindByIdGetNullException {
+	public User query(java.io.Serializable id) throws FindByIdGetNullException {
 		return userServiceImpl.findById(id);
 	}*/
 	
 	@Override
-	public <RDto extends BasicResponseDto<User>> User query(Serializable id, RDto rdto)
+	public <RDto extends BasicResponseDto<User>> User query(java.io.Serializable id, RDto rdto)
 			throws FindByIdGetNullException, DtoInitException {
 		User user = userServiceImpl.findById(id);
 		rdto.initDto(user);
@@ -114,7 +114,7 @@ public class UserManage implements BasicManage<User>{
 	}
 
 	@Override
-	public User query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+	public User query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
 //		userServiceImpl
 		return null;
 	}
@@ -126,7 +126,7 @@ public class UserManage implements BasicManage<User>{
 	}
 
 	@Override
-	public User query(Serializable id) throws FindByIdGetNullException {
+	public User query(java.io.Serializable id) throws FindByIdGetNullException {
 		// TODO Auto-generated method stub
 		return userServiceImpl.findById(id);
 	}

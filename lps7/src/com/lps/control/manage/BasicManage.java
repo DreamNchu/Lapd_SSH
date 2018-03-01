@@ -1,6 +1,5 @@
 package com.lps.control.manage;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -9,8 +8,8 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
-import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.dto.BasicUpdateDto;
@@ -40,7 +39,7 @@ public interface BasicManage<T extends Entity>{
 	 * @param id
 	 * @throws FindByIdGetNullException
 	 */
-	void delete(Serializable... id) throws FindByIdGetNullException;
+	void delete(java.io.Serializable... id) throws FindByIdGetNullException;
 
 	/**
 	 * 通过主键id查找实体
@@ -49,9 +48,9 @@ public interface BasicManage<T extends Entity>{
 	 * @throws FindByIdGetNullException
 	 * @throws DtoInitException 
 	 */
-	<RDto extends BasicResponseDto<T>> T query(Serializable id, RDto rdto) throws FindByIdGetNullException, DtoInitException;
+	<RDto extends BasicResponseDto<T>> T query(java.io.Serializable id, RDto rdto) throws FindByIdGetNullException, DtoInitException;
 	
-	T query(Serializable id)throws FindByIdGetNullException;
+	T query(java.io.Serializable id)throws FindByIdGetNullException;
 	
 	/**
 	 * 通过主键id查找 listName 中的主键
@@ -60,7 +59,7 @@ public interface BasicManage<T extends Entity>{
 	 * @return
 	 * @throws FindByIdGetNullException
 	 */
-	T query(Serializable id, List<String> listName) throws FindByIdGetNullException;
+	T query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException;
 	
 	/**
 	 * 

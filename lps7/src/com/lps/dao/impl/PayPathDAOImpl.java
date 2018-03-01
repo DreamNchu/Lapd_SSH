@@ -209,7 +209,7 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	}
 	
 	@Override
-	public <K> PayPath findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> PayPath findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(PayPath.class)

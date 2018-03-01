@@ -1,8 +1,6 @@
 package com.lps.model;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,7 +26,7 @@ import com.lps.model.basic.BasicModel;
 @Table(name = "t_admin")
 @TableGenerator(name = "pk_generate", table = "tb_generator", pkColumnName = "gen_name", valueColumnName = "gen_value", pkColumnValue = "admin_PK", allocationSize = 1)
 
-public class Admin implements BasicModel<Integer>, java.io.Serializable {
+public class Admin implements BasicModel, java.io.Serializable {
 
 	// Fields
 
@@ -121,8 +119,8 @@ public class Admin implements BasicModel<Integer>, java.io.Serializable {
 	 * @param id
 	 *            管理员id
 	 */
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(java.io.Serializable id) {
+		this.id = (Integer)id;
 	}
 
 	/**

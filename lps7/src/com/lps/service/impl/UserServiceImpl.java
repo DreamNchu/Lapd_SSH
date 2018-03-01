@@ -275,7 +275,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public <T> String findPassword(BasicModel<T> user) {
+	public <T> String findPassword(BasicModel user) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
 		map.put(UserDAOImpl.PASSWORD, String.class);
 		return dao.findFieldsByModel(user, map).getPassword();
@@ -312,7 +312,7 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public <K> User findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> User findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

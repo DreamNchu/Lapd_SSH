@@ -77,7 +77,7 @@ public class MedicineDAOImpl implements MedicineDAO{
 	}
 
 	@Override
-	public Medicine findById(Serializable id) {
+	public Medicine findById(java.io.Serializable id) {
 		return hibernateTemplate.get(Medicine.class, id);
 		// TODO Auto-generated method stub
 	}
@@ -133,7 +133,7 @@ public class MedicineDAOImpl implements MedicineDAO{
 	}
 
 	@Override
-	public <K> Medicine findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Medicine findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Medicine.class)

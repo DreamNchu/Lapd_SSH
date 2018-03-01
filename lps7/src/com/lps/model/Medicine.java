@@ -29,7 +29,7 @@ import com.lps.model.basic.ModelLinkServerOrder;
 		valueColumnName = "gen_value",
 		pkColumnValue = "medicine_PK",
 		allocationSize = 1)
-public class Medicine implements BasicModel<Integer>, java.io.Serializable ,ModelLinkServerOrder<Integer>{
+public class Medicine implements BasicModel, java.io.Serializable ,ModelLinkServerOrder<Integer>{
 
 	private static final long serialVersionUID = 1L;
 	
@@ -65,8 +65,8 @@ public class Medicine implements BasicModel<Integer>, java.io.Serializable ,Mode
 		return this.id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(java.io.Serializable id) {
+		this.id = (int)id;
 	}
 
 	@Column(name = "medicineId", nullable = false, length = 45)

@@ -77,7 +77,7 @@ public class ComboDAOImpl implements ComboDAO{
 	}
 
 	@Override
-	public Combo findById(Serializable id) {
+	public Combo findById(java.io.Serializable id) {
 		return hibernateTemplate.get(Combo.class, id);
 		// TODO Auto-generated method stub
 	}
@@ -132,7 +132,7 @@ public class ComboDAOImpl implements ComboDAO{
 	}
 
 	@Override
-	public <K> Combo findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Combo findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Combo.class)

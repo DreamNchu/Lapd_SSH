@@ -202,7 +202,7 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	}
 	
 	@Override
-	public <K> WorkRank findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> WorkRank findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(WorkRank.class)

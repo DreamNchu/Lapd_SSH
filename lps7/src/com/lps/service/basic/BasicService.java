@@ -4,16 +4,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
-import com.lps.model.OrderStatus;
-import com.lps.model.PayPath;
-import com.lps.model.User;
 import com.lps.model.basic.BasicModel;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
-import com.lps.util.PropertyRange;
 
-public interface BasicService<ENTITY> {
+public interface BasicService<ENTITY extends BasicModel> {
 	/**
 	 * 不存在常量
 	 */
@@ -50,7 +46,7 @@ public interface BasicService<ENTITY> {
 	 * @param fields 字段名称集合
 	 * @return 返回所需要字段对应的对象
 	 */
-	<K> ENTITY findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields);
+	<K> ENTITY findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields);
 	
 	/**
 	 * 查找这些字段

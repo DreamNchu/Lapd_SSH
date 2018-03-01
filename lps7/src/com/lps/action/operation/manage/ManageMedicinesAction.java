@@ -69,7 +69,7 @@ public class ManageMedicinesAction extends ActionSupportLps implements SessionAw
 	public String deleteMedicines() {
 
 		try {
-			medicineManage.delete(medicineIds.toArray(new Serializable[0]));
+			medicineManage.delete(medicineIds.toArray(new java.io.Serializable[0]));
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			basicMsg.setDefaultErrorMsg();

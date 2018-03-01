@@ -3,10 +3,8 @@ package com.lps.model;
 import java.util.Set;
 import java.util.TreeSet;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,7 +12,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 
-import com.lps.model.basic.BasicModel;
 import com.lps.model.basic.ModelLinkServerOrder;
 
 @Entity
@@ -65,8 +62,8 @@ public class ClockCategory implements java.io.Serializable ,ModelLinkServerOrder
 		return this.id;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setId(java.io.Serializable id) {
+		this.id = (int)id;
 	}
 
 	@Column(name = "clockcategory", unique = true, nullable = false, length = 20)

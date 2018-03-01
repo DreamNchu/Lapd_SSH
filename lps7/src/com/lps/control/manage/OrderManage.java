@@ -696,10 +696,10 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	
 	
 	@Override
-	public void delete(Serializable... idOrders) throws FindByIdGetNullException{
+	public void delete(java.io.Serializable... idOrders) throws FindByIdGetNullException{
 		List<ServerOrder> sos = new ArrayList<ServerOrder>();
 		
-		for (Serializable  idOrder : idOrders) {
+		for (java.io.Serializable  idOrder : idOrders) {
 //			ServerOrder so = new ServerOrder();
 //			so.setId(idOrder.toString());
 //			sos.add(so);
@@ -739,12 +739,12 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	}
 
 /*	@Override
-	public ServerOrder query(Serializable id) throws FindByIdGetNullException {
+	public ServerOrder query(java.io.Serializable id) throws FindByIdGetNullException {
 		return serverOrderServiceImpl.findById(id);
 	}*/
 	
 	@Override
-	public <RDto extends BasicResponseDto<ServerOrder>> ServerOrder query(Serializable id, RDto rdto)
+	public <RDto extends BasicResponseDto<ServerOrder>> ServerOrder query(java.io.Serializable id, RDto rdto)
 			throws FindByIdGetNullException, DtoInitException {
 		ServerOrder so = serverOrderServiceImpl.findById(id);
 		rdto.initDto(so);
@@ -768,7 +768,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	}
 
 	@Override
-	public ServerOrder query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+	public ServerOrder query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -780,7 +780,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	}
 
 	@Override
-	public ServerOrder query(Serializable id) throws FindByIdGetNullException {
+	public ServerOrder query(java.io.Serializable id) throws FindByIdGetNullException {
 		// TODO Auto-generated method stub
 		return serverOrderServiceImpl.findById(id);
 	}

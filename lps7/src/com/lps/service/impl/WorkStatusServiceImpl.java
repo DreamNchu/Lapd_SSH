@@ -157,7 +157,7 @@ public class WorkStatusServiceImpl implements WorkStatusService {
 	}
 
 	@Override
-	public <K> WorkStatus findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> WorkStatus findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

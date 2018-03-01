@@ -33,7 +33,7 @@ public interface BasicDAO<T> {
 	 * @param id ID
 	 * @return 指定对象
 	 */
-	public T findById(Serializable id);
+	public T findById(java.io.Serializable id);
 
 	/**
 	 * 根据对象的id判断是否存在
@@ -82,7 +82,7 @@ public interface BasicDAO<T> {
 	 * @param fields 字段名称集合
 	 * @return 返回所需要字段对应的对象
 	 */
-	<K> T findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields);
+	<K> T findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields);
 	
 	/**
 	 * 根据属性名获取id

@@ -110,8 +110,8 @@ public  class PayPath  implements java.io.Serializable ,ModelLinkServerOrder<Int
 	 * <p>
 	 * @param id id值
 	 */
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId(java.io.Serializable id) {
+        this.id = (int)id;
     }
     
     /**

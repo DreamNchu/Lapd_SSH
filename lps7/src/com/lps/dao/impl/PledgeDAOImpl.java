@@ -210,7 +210,7 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	}
 	
 	@Override
-	public <K> Pledge findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Pledge findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 
 		Criteria cri = session.createCriteria(Pledge.class)

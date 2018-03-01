@@ -192,7 +192,7 @@ public class AdminServiceImpl implements AdminService {
 	 * 获取admin实例密码
 	 */
 	@Override
-	public <T> String findPassword(BasicModel<T> admin) {
+	public <T> String findPassword(BasicModel admin) {
 		Map<String, Class<?>> map = new HashMap<String, Class<?>>();
 		map.put(AdminDAOImpl.PASSWORD, String.class);
 		Admin ad = dao.findFieldsByModel(admin, map);
@@ -217,7 +217,7 @@ public class AdminServiceImpl implements AdminService {
 	}
 	
 	@Override
-	public <K> Admin findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Admin findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

@@ -121,7 +121,7 @@ public class AdminDAOImpl implements AdminDAO {
 	 * @return 返回加载的admin实例
 	 */
 	@Override
-	public Admin findById(Serializable id) {
+	public Admin findById(java.io.Serializable id) {
 		return hibernateTemplate.get(Admin.class, id);
 	}
 
@@ -215,7 +215,7 @@ public class AdminDAOImpl implements AdminDAO {
 	}
 
 	@Override
-	public <K> Admin findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> Admin findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 
 		Session session = hibernateTemplate.getSessionFactory().getCurrentSession();
 

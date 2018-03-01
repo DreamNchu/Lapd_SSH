@@ -268,7 +268,7 @@ public class PayPathServiceImpl implements PayPathService {
 
 
 	@Override
-	public <K> PayPath findFieldsByModel(BasicModel<K> entity, Map<String, Class<?>> fields) {
+	public <K> PayPath findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields) {
 		return dao.findFieldsByModel(entity, fields);
 	}
 

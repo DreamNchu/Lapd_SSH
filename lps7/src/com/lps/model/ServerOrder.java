@@ -1,10 +1,10 @@
 package com.lps.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -26,7 +26,7 @@ import com.lps.model.basic.BasicModel;
 @Entity
 @Table(name = "t_serverorder")
 
-public class ServerOrder implements java.io.Serializable, BasicModel<String> {
+public class ServerOrder implements java.io.Serializable, BasicModel {
 
 	private static final long serialVersionUID = 6038267699363948636L;
 	private String id;
@@ -200,8 +200,8 @@ public class ServerOrder implements java.io.Serializable, BasicModel<String> {
 	 * @param orderId
 	 *            订单id
 	 */
-	public void setId(String orderId) {
-		this.id = orderId;
+	public void setId(Serializable orderId) {
+		this.id = (String)orderId;
 	}
 
 	/**

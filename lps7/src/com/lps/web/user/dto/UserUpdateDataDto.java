@@ -1,5 +1,6 @@
 package com.lps.web.user.dto;
 
+import java.io.Serializable;
 import java.util.Map;
 
 import org.springframework.stereotype.Component;
@@ -107,6 +108,11 @@ public class UserUpdateDataDto extends UserRequestDto implements BasicUpdateDto<
 			user.setRealName(sRealName[0]);
 		}
 		return user;
+	}
+
+	@Override
+	public Serializable getId() {
+		return map.get(stuffId)[0];
 	}
 
 }

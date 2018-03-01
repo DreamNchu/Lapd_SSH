@@ -70,7 +70,7 @@ public class ManageComboAction extends ActionSupportLps implements SessionAware{
 	public String deleteCombos() {
 
 		try {
-			comboManage.delete(comboIds.toArray(new Serializable[0]));
+			comboManage.delete(comboIds.toArray(new java.io.Serializable[0]));
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
 			basicMsg.setDefaultErrorMsg();
