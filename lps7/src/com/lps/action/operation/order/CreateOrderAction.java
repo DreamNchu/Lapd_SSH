@@ -5,7 +5,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
-import com.lps.control.manage.CreateFailedException;
+import com.lps.control.manage.ECreateFailedException;
 import com.lps.control.manage.OrderManage;
 import com.lps.web.order.dto.CreateOrderDto;
 
@@ -27,16 +27,16 @@ public class CreateOrderAction extends ActionSupportLps implements DataResult {
 
 	/**
 	 * 创建订单
-	 * @throws CreateFailedException 
+	 * @throws ECreateFailedException 
 	 */
 	@Override
-	public String execute() throws CreateFailedException {
+	public String execute() throws ECreateFailedException {
 
 		try {
 			
 			orderManage.create(createOrderDto);
 			
-		} catch (CreateFailedException e) {
+		} catch (ECreateFailedException e) {
 			basicMsg.setErrorMsg("订单发布失败");
 			throw e;
 		}

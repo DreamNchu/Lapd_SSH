@@ -37,7 +37,7 @@ public class RoomManage implements BasicManage<Room>{
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<Room>> void create(DTO dto) throws CreateFailedException {
+	public <DTO extends BasicRequestDto<Room>> void create(DTO dto) throws ECreateFailedException {
 		roomServiceImpl.save(dto.generate());
 	}
 

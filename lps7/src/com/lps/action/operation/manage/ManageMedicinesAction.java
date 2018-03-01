@@ -7,7 +7,7 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.basic.ActionSupportLps;
-import com.lps.control.manage.CreateFailedException;
+import com.lps.control.manage.ECreateFailedException;
 import com.lps.control.manage.MedicineManage;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PagePropertyNotInitException;
@@ -57,7 +57,7 @@ public class ManageMedicinesAction extends ActionSupportLps implements SessionAw
 
 		try {
 			medicineManage.create(medicineRequestDto);
-		} catch (CreateFailedException e) {
+		} catch (ECreateFailedException e) {
 			e.printStackTrace();
 			basicMsg.setDefaultErrorMsg();
 			return SUCCESS;

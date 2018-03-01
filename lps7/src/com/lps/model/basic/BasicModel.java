@@ -18,6 +18,4 @@ public interface BasicModel<T> extends Entity{
 	
 	void setId(T t);
 	
-//	List<String> getNames(int level);
-	
 }

@@ -59,7 +59,7 @@ public class UserManage implements BasicManage<User>{
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<User>> void create(DTO dto) throws CreateFailedException {
+	public <DTO extends BasicRequestDto<User>> void create(DTO dto) throws ECreateFailedException {
 		userServiceImpl.save(dto.generate());
 	}
 

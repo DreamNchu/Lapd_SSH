@@ -9,7 +9,7 @@ import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.lps.action.basic.ActionSupportLps;
-import com.lps.control.manage.CreateFailedException;
+import com.lps.control.manage.ECreateFailedException;
 import com.lps.control.manage.RoomManage;
 import com.lps.model.Room;
 import com.lps.service.impl.FindByIdGetNullException;
@@ -100,7 +100,7 @@ public class ManageRoomsAction extends ActionSupportLps implements SessionAware{
 		try {
 			roomRequestDto.setMap(data);
 			roomManage.create(roomRequestDto);
-		} catch (CreateFailedException e) {
+		} catch (ECreateFailedException e) {
 			e.printStackTrace();
 			basicMsg.setDefaultErrorMsg();
 			return SUCCESS;

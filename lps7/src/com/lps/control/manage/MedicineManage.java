@@ -32,7 +32,7 @@ public class MedicineManage implements BasicManage<Medicine>{
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<Medicine>> void create(DTO dto) throws CreateFailedException {
+	public <DTO extends BasicRequestDto<Medicine>> void create(DTO dto) throws ECreateFailedException {
 		medicineServiceImpl.save(dto.generate());
 		// TODO Auto-generated method stub
 		

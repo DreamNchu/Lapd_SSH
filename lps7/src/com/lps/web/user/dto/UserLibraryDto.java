@@ -1,9 +1,5 @@
 package com.lps.web.user.dto;
 
-import com.lps.model.User;
-import com.lps.web.dto.BasicRequestDto;
-import com.lps.web.dto.BasicResponseDto;
-
 public interface UserLibraryDto {
 	
 	String stuffId = "stuffId";

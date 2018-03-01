@@ -22,10 +22,10 @@ public interface BasicManage<T extends Entity>{
 	 * 创建一个实体对象
 	 * 
 	 * @param dto
-	 * @throws CreateFailedException 
+	 * @throws ECreateFailedException 
 	 */
 	
-	<DTO extends BasicRequestDto<T>> void create(DTO dto) throws CreateFailedException;
+	<DTO extends BasicRequestDto<T>> void create(DTO dto) throws ECreateFailedException;
 
 	/**
 	 * 根据dto 更新相应的model

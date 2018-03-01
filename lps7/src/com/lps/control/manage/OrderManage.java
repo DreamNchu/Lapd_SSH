@@ -226,10 +226,10 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	 * @param roomId
 	 * @param clockCategory
 	 * @return
-	 * @throws CreateOrderFailedException
+	 * @throws ECreateOrderFailedException
 	 */
 	public ServerOrder createOrder(int stuffId, int roomId, int clockCategory, Set<Integer> serverItemIds,
-			String orderRemark) throws CreateOrderFailedException {
+			String orderRemark) throws ECreateOrderFailedException {
 
 		User u = null;
 		Room r = null;
@@ -241,7 +241,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 			cc = clockCategoryServiceImpl.findById(clockCategory);
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
-			throw new CreateOrderFailedException("创建订单失败");
+			throw new ECreateOrderFailedException("创建订单失败");
 		}
 		Set<ServerItem> items = getServerItems(serverItemIds);
 
@@ -255,10 +255,10 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	 * @param room
 	 * @param clockCategory
 	 * @return
-	 * @throws CreateOrderFailedException 
+	 * @throws ECreateOrderFailedException 
 	 */
 	private ServerOrder createNormalOrder(User user, Room room, ClockCategory clockCategory, Set<ServerItem> serverItems,
-			String orderRemark) throws CreateOrderFailedException {
+			String orderRemark) throws ECreateOrderFailedException {
 		ServerOrder so = new ServerOrder();
 		so.setId(orderIdCreater(user.getWorkId(), room.getName(), clockCategory.getId()));
 		so.setUser(user); // 初始化员工
@@ -269,7 +269,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 			os = orderStatusServiceImpl.findById(OrderStatusDAO.WAITING_RECEIVE);
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();
-			throw new CreateOrderFailedException("创建订单失败");
+			throw new ECreateOrderFailedException("创建订单失败");
 		}
 		so.setOrderStatus(os); // 初始化订单状态
 		so.setInitTime(new Date());
@@ -282,7 +282,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	 * @see com.lps.control.manage.BasicManage2#createOrder(com.lps.web.order.dto.CreateOrderDto)
 	 */
 	@Override
-	public <DTO extends BasicRequestDto<ServerOrder>> void create(DTO dto) throws CreateOrderFailedException {
+	public <DTO extends BasicRequestDto<ServerOrder>> void create(DTO dto) throws ECreateOrderFailedException {
 		
 		CreateOrderDto createOrderDto = (CreateOrderDto)dto;
 		
@@ -309,9 +309,9 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	 * 
 	 * @param roomId
 	 * @return
-	 * @throws CreateOrderFailedException 
+	 * @throws ECreateOrderFailedException 
 	 */
-	public ServerOrder createOrder(int roomId, String orderRemark, Set<Integer> serverItemIds) throws CreateOrderFailedException {
+	public ServerOrder createOrder(int roomId, String orderRemark, Set<Integer> serverItemIds) throws ECreateOrderFailedException {
 
 		ServerOrder so = null;
 		User u = workRankManage.nextOne();
@@ -325,7 +325,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 				cc = clockCategoryServiceImpl.findById(ClockCategoryDAO.RANK_CLOCK);
 			} catch (FindByIdGetNullException e) {
 				e.printStackTrace();
-				throw new CreateOrderFailedException("订单创建失败");
+				throw new ECreateOrderFailedException("订单创建失败");
 			}
 			Set<ServerItem> items = getServerItems(serverItemIds);
 
@@ -625,7 +625,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 			// 不是管理员的话，那么
 			if (uo.getStuffId() != so.getUser().getId()) // 检查不同步问题
 				// 订单上的员工的主键id和用户主键id不匹配
-				throw new UserUpdateOrderNotTheSameUserIdException();
+				throw new EUserUpdateOrderNotTheSameUserIdException();
 			// return;
 		}
 
