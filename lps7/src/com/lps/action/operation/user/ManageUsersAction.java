@@ -145,9 +145,9 @@ public class ManageUsersAction extends ActionSupportLps implements DataResult, S
 		pageLinkTransformUserDto.setPage(Integer.parseInt(session.get("userPage") + ""));
 
 		try {
-			userTableDataDto.init(userManage.basicQuery(pageLinkTransformUserDto.getPage()), pageLinkTransformUserDto,
+			userTableDataDto.init(userManage.queryByPage(pageLinkTransformUserDto.getPage()), pageLinkTransformUserDto,
 					Thread.currentThread().getStackTrace()[1].getMethodName());
-		} catch (DtoInitException e) {
+		} catch (DtoInitException | FindByIdGetNullException e) {
 			userTableDataDto.setErrorMsg(e.getMessage());
 			e.printStackTrace();
 		}

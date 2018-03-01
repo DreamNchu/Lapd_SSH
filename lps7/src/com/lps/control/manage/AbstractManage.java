@@ -39,7 +39,7 @@ public abstract class AbstractManage<T extends BasicModel> implements BasicManag
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<T>> void create(DTO dto) {
+	public <DTO extends BasicRequestDto<T>> void create(DTO dto) throws ECreateFailedException {
 		service.save(dto.generate());
 	}
 

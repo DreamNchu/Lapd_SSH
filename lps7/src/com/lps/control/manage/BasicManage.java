@@ -62,7 +62,7 @@ public interface BasicManage<T extends BasicModel>{
 	T query(java.io.Serializable id)throws FindByIdGetNullException;
 	
 	/**
-	 * 通过主键id查找 listName 中的主键
+	 * 通过主键id查找 model , model 的字段属性为 listName 中
 	 * @param id
 	 * @param listName
 	 * @return
@@ -82,6 +82,7 @@ public interface BasicManage<T extends BasicModel>{
 	
 	/**
 	 * 查询所有的实体
+	 * query all entities.
 	 * @return
 	 */
 	List<T> queryAll();
@@ -97,6 +98,13 @@ public interface BasicManage<T extends BasicModel>{
 	List<T> queryByPropertiesRange(List<PropertyRange<?>> listPro);
 	
 	
+	/**
+	 * This method is used to initialize model data.
+	 * 
+	 * @param dto put initialized data into it
+	 * @throws DtoInitException
+	 * @throws MapNotInitForClassPathException
+	 */
 	<DTO extends BasicRespondMsgDto> void initOperationData(DTO dto) throws DtoInitException, MapNotInitForClassPathException;
 	
 	

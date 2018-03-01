@@ -1,30 +1,38 @@
 package com.lps.control.manage;
 
-import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lps.model.Room;
 import com.lps.model.ServerOrder;
 import com.lps.service.RoomService;
 import com.lps.service.ServerItemService;
+import com.lps.service.basic.BasicService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
-import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.dto.BasicUpdateDto;
 import com.lps.web.order.dto.MapNotInitForClassPathException;
 import com.lps.web.room.dto.InitOperationRoomData;
 
-public class RoomManage implements BasicManage<Room>{
-	
-	private RoomService roomServiceImpl;
-	
+@Component
+public class RoomManage extends AbstractManage<Room> {
+
+	@Autowired
+	public RoomManage(BasicService<Room> service) {
+		super(service);
+	}
+
+	@Autowired
 	private ServerItemService serverItemServiceImpl;
 	
 
@@ -37,60 +45,18 @@ public class RoomManage implements BasicManage<Room>{
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<Room>> void create(DTO dto) throws ECreateFailedException {
-		roomServiceImpl.save(dto.generate());
-	}
-
-	@Override
 	public void delete(java.io.Serializable... id) throws FindByIdGetNullException {
 		Room[] room = new Room[id.length]; 
 		int i = 0;
 		for (java.io.Serializable serializable : id) {
-			Room r = roomServiceImpl.findById(serializable);
+			Room r = service.findById(serializable);
 			for(ServerOrder so :r.getServerOrders()){
 				so.setRoom(null);
 			}
 			room[i ++] = r;
 			
 		}
-		roomServiceImpl.deleteAll(Arrays.asList(room));
-	}
-
-
-	public RoomService getRoomServiceImpl() {
-		return roomServiceImpl;
-	}
-
-
-	@Override
-	public Room query(java.io.Serializable id) throws FindByIdGetNullException {
-		return roomServiceImpl.findById(id);
-	}
-
-
-	@Override
-	public Room query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
-		return null;
-	}
-
-
-	@Override
-	public <RDto extends BasicResponseDto<Room>> Room query(java.io.Serializable id, RDto rdto)
-			throws FindByIdGetNullException, DtoInitException {
-		Room room = roomServiceImpl.findById(id);
-		rdto.initDto(room);
-		return room;
-	}
-
-
-@Override
-	public List<Room> queryAll() {
-		return roomServiceImpl.findAll();
-	}
-
-	@Override
-	public PageBean<Room> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
-		return roomServiceImpl.findByPage(page);
+		service.deleteAll(Arrays.asList(room));
 	}
 
 
@@ -108,39 +74,10 @@ public class RoomManage implements BasicManage<Room>{
 	}
 
 
-	/**
-	 * 根据房间的主键id查询
-	 * @param roomId
-	 * @return
-	 * @throws FindByIdGetNullException 
-	 */
-	public Room queryRoom(int roomId) throws FindByIdGetNullException{
-		return roomServiceImpl.findById(roomId);
-	}
-
-
-	public void setRoomServiceImpl(RoomService roomServiceImpl) {
-		this.roomServiceImpl = roomServiceImpl;
-	}
-
-
-	@Override
-	public <DTO extends BasicUpdateDto<Room>> void update(DTO dto) throws FindByIdGetNullException {
-        Room room = dto.generate();
-		
-		room = roomServiceImpl.findById(room.getId());
-		roomServiceImpl.update(dto.update(room));
-		
-	}
-
 	@Override
 	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto) throws DtoInitException, MapNotInitForClassPathException {
 		InitOperationRoomData iord = (InitOperationRoomData)dto;
-		System.out.println(serverItemServiceImpl.findAll().size());
 		iord.init(serverItemServiceImpl.findAll());
 	}
 
-
-
-	
 }

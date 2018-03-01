@@ -260,7 +260,7 @@ public class ManageRoomsAction extends ActionSupportLps implements SessionAware{
 		
 		Room room = null;
 		try {
-			room = roomManage.queryRoom(roomIdDto.getRoomId());
+			room = roomManage.query(roomIdDto.getRoomId());
 			roomHelpForCreateOrderDto.initDto(room);
 		} catch (FindByIdGetNullException e) {
 			e.printStackTrace();

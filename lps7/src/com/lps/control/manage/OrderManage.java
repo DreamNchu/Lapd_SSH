@@ -1,6 +1,5 @@
 package com.lps.control.manage;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -8,6 +7,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lps.dao.ClockCategoryDAO;
 import com.lps.dao.OrderStatusDAO;
@@ -26,13 +28,14 @@ import com.lps.service.ServerItemService;
 import com.lps.service.ServerOrderService;
 import com.lps.service.UserService;
 import com.lps.service.basic.BasicForServerOrderService;
+import com.lps.service.basic.BasicService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 import com.lps.util.WorkDate;
-import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
+import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.dto.BasicUpdateDto;
@@ -49,7 +52,14 @@ import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.orderchart.dto.OrderChartRequestDto;
 import com.lps.web.orderchart.dto.Population;
 
-public class OrderManage implements TimeType, Population, BasicManage<ServerOrder> {
+@Component
+public class OrderManage extends AbstractManage<ServerOrder> implements TimeType, Population, BasicManage<ServerOrder> {
+
+	@Autowired
+	public OrderManage(BasicService<ServerOrder> service) {
+		super(service);
+		// TODO Auto-generated constructor stub
+	}
 
 	private UserService userServiceImpl;
 
@@ -282,7 +292,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	 * @see com.lps.control.manage.BasicManage2#createOrder(com.lps.web.order.dto.CreateOrderDto)
 	 */
 	@Override
-	public <DTO extends BasicRequestDto<ServerOrder>> void create(DTO dto) throws ECreateOrderFailedException {
+	public <DTO extends BasicRequestDto<ServerOrder>> void create(DTO dto) throws ECreateFailedException {
 		
 		CreateOrderDto createOrderDto = (CreateOrderDto)dto;
 		
@@ -311,7 +321,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 	 * @return
 	 * @throws ECreateOrderFailedException 
 	 */
-	public ServerOrder createOrder(int roomId, String orderRemark, Set<Integer> serverItemIds) throws ECreateOrderFailedException {
+	private ServerOrder createOrder(int roomId, String orderRemark, Set<Integer> serverItemIds) throws ECreateOrderFailedException {
 
 		ServerOrder so = null;
 		User u = workRankManage.nextOne();
@@ -669,102 +679,7 @@ public class OrderManage implements TimeType, Population, BasicManage<ServerOrde
 		
 		listPro.addAll(as.getRangeList());
 
-/*		if (as.getPayPathId() != 0)
-			propertyRangeUtil(listPro, payPathServiceImpl, as.getPayPathId());
-
-		if (as.getWorkId() != 0)
-			propertyRangeUtil(listPro, userServiceImpl, userServiceImpl.findByWorkId(as.getWorkId()).get(0).getId());
-
-		if (as.getRoomId() != 0)
-			propertyRangeUtil(listPro, roomServiceImpl, as.getRoomId());
-
-		if (as.getStatusId() != 0) {
-			propertyRangeUtil(listPro, orderStatusServiceImpl, as.getStatusId());
-		}*/
-
 		return serverOrderServiceImpl.findOrdersByPropertyLimit(listPro, as.getPage());
-	}
-
-	private void propertyRangeUtil(List<PropertyRange<?>> listPro, BasicForServerOrderService<?> basicService, int id) {
-		try {
-			listPro.add(basicService.createProRangeForOrder(id));
-		} catch (FindByIdGetNullException e) {
-			e.printStackTrace();
-			listPro.remove(listPro.size() - 1);
-		}
-	}
-	
-	
-	@Override
-	public void delete(java.io.Serializable... idOrders) throws FindByIdGetNullException{
-		List<ServerOrder> sos = new ArrayList<ServerOrder>();
-		
-		for (java.io.Serializable  idOrder : idOrders) {
-//			ServerOrder so = new ServerOrder();
-//			so.setId(idOrder.toString());
-//			sos.add(so);
-//			sos.add(serverOrderService
-			ServerOrder so = serverOrderServiceImpl.findById(idOrder);
-//			Session session  = ((ServerOrderDAOImpl)((ServerOrderServiceImpl)serverOrderServiceImpl).getServerOrderDao()).getHibernateTemplate().getSessionFactory().getCurrentSession();
-//			session.beginTransaction();
-//			so = (ServerOrder) session.get(ServerOrder.class, idOrder);
-		/*	for(ServerItem si : so.getServerorderServeritems()){
-				for(ServerOrder s : si.getServerOrders()){
-					System.out.println("s.getId(): " + s.getId());
-				}
-				si.getServerOrders().remove(so);
-				for(ServerOrder s : si.getServerOrders()){
-					System.out.println("s.getId(): " + s.getId());
-				}
-			}
-			for(Medicine m : so.getServerorderMedicines()){
-				m.getServerOrders().remove(so);
-			}
-			for(Combo c : so.getServerorderCombos()){
-				c.getServerOrders().remove(so);
-			}*/
-			
-//			session.delete(so);
-//			session.getTransaction().commit();
-//			session.close();
-//			session.close();
-//			so.setRoom(null);
-//			so.setServerorderServeritems(null);
-//			so.setServerorderMedicines(null);
-//			so.setServerorderCombos(null);
-//			System.out.println(so.getServerorderCombos().size());
-			serverOrderServiceImpl.delete(so);
-		}
-//		serverOrderServiceImpl.deleteAll(sos);
-	}
-
-/*	@Override
-	public ServerOrder query(java.io.Serializable id) throws FindByIdGetNullException {
-		return serverOrderServiceImpl.findById(id);
-	}*/
-	
-	@Override
-	public <RDto extends BasicResponseDto<ServerOrder>> ServerOrder query(java.io.Serializable id, RDto rdto)
-			throws FindByIdGetNullException, DtoInitException {
-		ServerOrder so = serverOrderServiceImpl.findById(id);
-		rdto.initDto(so);
-		return so;
-	}
-	
-
-	@Override
-	public PageBean<ServerOrder> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
-		return serverOrderServiceImpl.findByPage(page);
-	}
-
-	@Override
-	public List<ServerOrder> queryAll() {
-		return serverOrderServiceImpl.findAll();
-	}
-
-	@Override
-	public List<ServerOrder> queryByProperties(Map<String, Object> map) {
-		return serverOrderServiceImpl.findByProperty(map);
 	}
 
 	@Override
