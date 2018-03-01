@@ -49,22 +49,10 @@ public interface BasicService<ENTITY extends BasicModel> {
 	<K> ENTITY findFieldsByModel(BasicModel entity, Map<String, Class<?>> fields);
 	
 	/**
-	 * 查找这些字段
-	 * @param fields
-	 * @return
-	 */
-//	<K> ENTITY findFieldsByModel(Map<String, Class<?>> fields);
-	/**
 	 * 根据属性名获取id
 	 * @param map 属性的名字和值
 	 * @return
 	 */
 	<K> List<K> findByProperty(Map<String , Object> map);
 	
-	/**
-	 * 根据id的创建实体范围
-	 * @param id1
-	 * @return
-	 * @throws FindByIdGetNullException
-	 */
 }

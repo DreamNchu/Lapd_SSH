@@ -1,5 +1,7 @@
 package com.lps.control.manage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -9,98 +11,105 @@ import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
-import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.dto.BasicRequestDto;
 import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.dto.BasicUpdateDto;
-import com.lps.web.order.dto.MapNotInitForClassPathException;
 
 /**
  * 抽象的管理类，可以满足基本的业务需求。
  * @author 0001
  *
  */
-public class AbstractManage implements BasicManage<BasicModel> {
+public abstract class AbstractManage<T extends BasicModel> implements BasicManage<T> {
 	
-	protected BasicService<BasicModel> service;
+	protected BasicService<T> service;
+	
+	public AbstractManage(BasicService<T> service) {
+		super();
+		this.service = service;
+	}
 
-	public BasicService<BasicModel> getService() {
+	public BasicService<T> getService() {
 		return service;
 	}
 
-	public void setService(BasicService<BasicModel> service) {
+	public void setService(BasicService<T> service) {
 		this.service = service;
 	}
 
 	@Override
-	public <DTO extends BasicRequestDto<BasicModel>> void create(DTO dto) {
+	public <DTO extends BasicRequestDto<T>> void create(DTO dto) {
 		service.save(dto.generate());
 	}
 
+	/**
+	 * 更新实体数据
+	 * refresh data
+	 */
 	@Override
-	public <DTO extends BasicUpdateDto<BasicModel>> void update(DTO dto) throws FindByIdGetNullException {
-		BasicModel BasicModel = dto.generate();
+	public <DTO extends BasicUpdateDto<T>> void update(DTO dto) throws FindByIdGetNullException {
+		T T = dto.generate();
 			
-		 BasicModel = service.findById(BasicModel.getId());
+		 T = service.findById(T.getId());
 		 
-		 service.update(dto.update(BasicModel));
+		 service.update(dto.update(T));
 		
 	}
 
+	/**
+	 * 批量删除实体
+	 * delete a serial of models
+	 */
 	@Override
 	public void delete(java.io.Serializable... id) throws FindByIdGetNullException {
 		
+		List<T> models = new ArrayList<>();
+		for (java.io.Serializable seri : id) {
+			models.add(service.findById(seri));
+		}
+		service.deleteAll(models);
+
 	}
 
 	@Override
-	public <RDto extends BasicResponseDto<BasicModel>> BasicModel query(java.io.Serializable id, RDto rdto)
+	public <RDto extends BasicResponseDto<T>> T query(java.io.Serializable id, RDto rdto)
 			throws FindByIdGetNullException, DtoInitException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public BasicModel query(java.io.Serializable id) throws FindByIdGetNullException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public BasicModel query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public PageBean<BasicModel> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<BasicModel> queryAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<BasicModel> queryByProperties(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<BasicModel> queryByPropertiesRange(List<PropertyRange<?>> listPro) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto)
-			throws DtoInitException, MapNotInitForClassPathException {
-		// TODO Auto-generated method stub
 		
+		T so = service.findById(id);
+		rdto.initDto(so);
+		return so;
+	}
+
+	@Override
+	public T query(java.io.Serializable id) throws FindByIdGetNullException {
+		return service.findById(id);
+	}
+
+	@Override
+	public T query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PageBean<T> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {
+		return service.findByPage(page);
+	}
+
+	@Override
+	public List<T> queryAll() {
+		return service.findAll();
+	}
+
+	@Override
+	public List<T> queryByProperties(Map<String, Object> map) {
+		return service.findByProperty(map);
+	}
+
+	@Override
+	public List<T> queryByPropertiesRange(List<PropertyRange<?>> listPro) {
+		return null;
 	}
 
 }

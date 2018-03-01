@@ -3,7 +3,7 @@ package com.lps.control.manage;
 import java.util.List;
 import java.util.Map;
 
-import com.lps.model.basic.Entity;
+import com.lps.model.basic.BasicModel;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
@@ -15,7 +15,7 @@ import com.lps.web.dto.BasicResponseDto;
 import com.lps.web.dto.BasicUpdateDto;
 import com.lps.web.order.dto.MapNotInitForClassPathException;
 
-public interface BasicManage<T extends Entity>{
+public interface BasicManage<T extends BasicModel>{
 
 	/**
 	 * 创建一个实体对象
@@ -43,10 +43,19 @@ public interface BasicManage<T extends Entity>{
 
 	/**
 	 * 通过主键id查找实体
+	 * You can find the entity by the id.
 	 * @param id
 	 * @return
 	 * @throws FindByIdGetNullException
 	 * @throws DtoInitException 
+	 */
+	/**
+	 * You get a model, but cann't resolve it.So you need to give me a DTO which can resolve this data.  
+	 * @param id identity for model
+	 * @param rdto DTO for resolve data.
+	 * @return model, not DTO
+	 * @throws FindByIdGetNullException
+	 * @throws DtoInitException
 	 */
 	<RDto extends BasicResponseDto<T>> T query(java.io.Serializable id, RDto rdto) throws FindByIdGetNullException, DtoInitException;
 	
@@ -62,7 +71,7 @@ public interface BasicManage<T extends Entity>{
 	T query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException;
 	
 	/**
-	 * 
+	 * query models by page
 	 * @param page
 	 * @return
 	 * @throws FindByIdGetNullException

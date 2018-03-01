@@ -1,5 +1,7 @@
 package com.lps.web.medicine.dto;
 
+import java.io.Serializable;
+
 import com.lps.model.Medicine;
 import com.lps.util.WorkDate;
 import com.lps.web.dto.BasicUpdateDto;
@@ -47,6 +49,11 @@ public class MedicineUpdateDataDto extends MedicineRequestDto implements BasicUp
 		}
 			
 		return medicine;
+	}
+
+	@Override
+	public Serializable getId() {
+		return map.get(medicineId)[0];
 	}
 
 }
