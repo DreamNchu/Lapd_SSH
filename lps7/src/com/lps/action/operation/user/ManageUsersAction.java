@@ -40,7 +40,7 @@ public class ManageUsersAction extends ActionSupportLps implements DataResult, S
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
+	
 	private Map<String, String[]> data;
 
 	private PageLinkTransformUserDto pageLinkTransformUserDto;
@@ -61,12 +61,10 @@ public class ManageUsersAction extends ActionSupportLps implements DataResult, S
 	@Autowired
 	private UserUpdateDataDto userUpdateDataDto;
 	
-	
 	public String addUser() {
 
 		try {
 			UserRequestDto userRequestDataDto = new UserRequestDto(data);
-//			if(data.get("password") == null)
 			data.put("password", new String[]{"123456"});
 			userManage.create(userRequestDataDto);
 		} catch (Exception e){
@@ -168,7 +166,6 @@ public class ManageUsersAction extends ActionSupportLps implements DataResult, S
 	 */
 	public String queryUser() {
 		
-//		userDataDto = new UserDataDto();
 		basicMsg.setMsgDto(userDataDto);
 		int id = stuffId.get(0);
 		

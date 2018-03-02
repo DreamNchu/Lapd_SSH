@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+
 import com.lps.model.basic.BasicModel;
 import com.lps.service.basic.BasicService;
 import com.lps.service.impl.FindByIdGetNullException;

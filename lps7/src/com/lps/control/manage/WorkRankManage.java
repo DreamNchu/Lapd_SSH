@@ -6,6 +6,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.lps.dao.WorkStatusDAO;
 import com.lps.model.User;
 import com.lps.model.WorkRank;
@@ -13,8 +16,10 @@ import com.lps.service.WorkRankService;
 import com.lps.util.PageBean;
 import com.lps.util.PagePropertyNotInitException;
 
+@Component
 public class WorkRankManage implements Comparator<WorkRank>{
 
+	@Autowired
 	private WorkRankService workRankServiceImpl;
 
 	public WorkRankManage() {

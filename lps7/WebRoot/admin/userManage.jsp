@@ -23,7 +23,7 @@
     <script type="text/javascript">
      	window.onload=function () {
             //initActive();
-                initBasicClass("userManage");
+            initBasicClass("userManage");
             initTime();
       
            ajaxRequest("queryBasicUser?pageLinkTransformUserDto.page=1" ,showdata);

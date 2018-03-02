@@ -17,7 +17,7 @@ import com.lps.web.order.dto.MapNotInitForClassPathException;
 
 @Component
 public class UserManage extends AbstractManage<User> {
-
+	
 	@Autowired
 	public UserManage(BasicService<User> service) {
 		super(service);
@@ -40,14 +40,12 @@ public class UserManage extends AbstractManage<User> {
 
 	@Override
 	public List<User> queryByPropertiesRange(List<PropertyRange<?>> listPro) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto)
 			throws DtoInitException, MapNotInitForClassPathException {
-		// TODO Auto-generated method stub
 		
 	}
 

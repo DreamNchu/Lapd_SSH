@@ -56,10 +56,22 @@ import com.lps.web.orderchart.dto.Population;
 public class OrderManage extends AbstractManage<ServerOrder> implements TimeType, Population, BasicManage<ServerOrder> {
 
 	@Autowired
-	public OrderManage(BasicService<ServerOrder> service) {
+	public OrderManage(BasicService<ServerOrder> service, UserService userServiceImpl, RoomService roomServiceImpl,
+			ClockCategoryService clockCategoryServiceImpl, OrderStatusService orderStatusServiceImpl,
+			ServerOrderService serverOrderServiceImpl, ServerItemService serverItemServiceImpl,
+			WorkRankManage workRankManage, PayPathService payPathServiceImpl) {
 		super(service);
-		// TODO Auto-generated constructor stub
+		this.userServiceImpl = userServiceImpl;
+		this.roomServiceImpl = roomServiceImpl;
+		this.clockCategoryServiceImpl = clockCategoryServiceImpl;
+		this.orderStatusServiceImpl = orderStatusServiceImpl;
+		this.serverOrderServiceImpl = serverOrderServiceImpl;
+		this.serverItemServiceImpl = serverItemServiceImpl;
+		this.workRankManage = workRankManage;
+		this.payPathServiceImpl = payPathServiceImpl;
 	}
+
+
 
 	private UserService userServiceImpl;
 
