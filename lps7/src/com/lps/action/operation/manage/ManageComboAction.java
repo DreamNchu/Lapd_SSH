@@ -1,6 +1,5 @@
 package com.lps.action.operation.manage;
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 

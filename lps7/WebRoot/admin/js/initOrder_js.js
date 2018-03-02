@@ -8,11 +8,7 @@
 			op,
 			createOrder;
 
-		//document.getElementById("rad1").value = createOrder.createWays[0];
-		//document.getElementById("rad2").value = createOrder.createWays[1];
-		//document.getElementById("rad3").value = createOrder.createWays[2];
 		for (i in createOrder.users) {
-			//ajaxRequest("viewAdminUserWorkData?userIdDto.stuffId="+$("#stuffId option:selected").val(),viewAdminUserWorkData);
 			op = document.createElement("option");
 			op.setAttribute("value", createOrder.users[i].stuffId);
 			op.setAttribute("selected","unselected")
