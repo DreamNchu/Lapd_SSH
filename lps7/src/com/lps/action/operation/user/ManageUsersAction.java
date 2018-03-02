@@ -7,6 +7,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.lps.action.basic.ActionSupportLps;
@@ -23,6 +24,7 @@ import com.lps.web.user.dto.UserTableDataDto;
 import com.lps.web.user.dto.UserUpdateDataDto;
 
 @Component
+@Scope("prototype")
 public class ManageUsersAction extends ActionSupportLps implements DataResult, SessionAware {
 
 	private final static Logger logger = LogManager.getLogger(new Object() {
@@ -47,10 +49,13 @@ public class ManageUsersAction extends ActionSupportLps implements DataResult, S
 
 	private List<Integer> stuffId;
 
+	@Autowired
 	private UserResponseDto userDataDto;
 	
+	@Autowired
 	private UserManage userManage;
 
+	@Autowired
 	private UserTableDataDto userTableDataDto;
 
 	@Autowired

@@ -3,7 +3,6 @@
 <%
 	StringBuffer basePath = request.getRequestURL();
 %>
-<%-- <s:debug></s:debug> --%>
 <!DOCTYPE html>
 <html>
 <head>

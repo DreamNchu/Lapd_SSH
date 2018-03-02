@@ -1,5 +1,8 @@
 package com.lps.web.user.dto;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.lps.model.User;
 import com.lps.model.WorkStatus;
 import com.lps.util.WorkDate;
@@ -7,6 +10,8 @@ import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.dto.BasicResponseDto;
 
+@Component
+@Scope("prototype")
 public class UserResponseDto extends BasicRespondMsgDto implements UserLibraryDto, BasicResponseDto<User>{
 
 	/**

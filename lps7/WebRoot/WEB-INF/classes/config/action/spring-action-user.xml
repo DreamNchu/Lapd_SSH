@@ -23,12 +23,14 @@
 	 </bean>
 	 
 	 <!--用户管理-->
- 	 <bean id="manageUsersAction" scope="prototype" class="com.lps.action.operation.user.ManageUsersAction">
+ 	 <!-- <bean id="manageUsersAction" scope="prototype" class="com.lps.action.operation.user.ManageUsersAction">
 	 	<property name="userTableDataDto" ref="userTableDataDto"></property>
 	 	<property name="userManage" ref="userManage"></property>
 	 	<property name="userDataDto" ref="userDataDto"></property>
 	 </bean>
-	 <!-- 用户订单管理 -->
+	  -->
+	  
+	  <!-- 用户订单管理 -->
 	 <bean id="userOrderAction" scope="prototype" class="com.lps.action.operation.user.UserOrderAction">
 	 	<property name="orderManage" ref="orderManage"></property>
 	 	<property name="orderTableDataDto" ref="orderTableDataDto"></property>

@@ -3,6 +3,7 @@ package com.lps.web.user.dto;
 import java.io.Serializable;
 import java.util.Map;
 
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.lps.model.User;
@@ -11,6 +12,7 @@ import com.lps.util.WorkDate;
 import com.lps.web.dto.BasicUpdateDto;
 
 @Component
+@Scope("prototype")
 public class UserUpdateDataDto extends UserRequestDto implements BasicUpdateDto<User>{
 	
 	public UserUpdateDataDto() {

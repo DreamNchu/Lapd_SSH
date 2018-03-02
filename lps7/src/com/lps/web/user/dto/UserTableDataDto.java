@@ -1,11 +1,16 @@
 package com.lps.web.user.dto;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import com.lps.model.User;
 import com.lps.util.PageBean;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.page.dto.TablePage;
 import com.lps.web.page.dto.PageAble;
 
+@Component
+@Scope("prototype")
 public class UserTableDataDto extends TablePage<User>{
 	
 	/**
