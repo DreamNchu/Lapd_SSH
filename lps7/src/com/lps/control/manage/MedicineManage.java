@@ -1,5 +1,6 @@
 package com.lps.control.manage;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -44,6 +45,13 @@ public class MedicineManage extends AbstractManage<Medicine> {
 	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto)
 			throws DtoInitException, MapNotInitForClassPathException {
 		
+	}
+
+
+	@Override
+	public Medicine query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

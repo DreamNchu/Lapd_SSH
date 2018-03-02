@@ -1,7 +1,6 @@
 package com.lps.control.manage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -86,11 +85,6 @@ public abstract class AbstractManage<T extends BasicModel> implements BasicManag
 		return service.findById(id);
 	}
 
-	@Override
-	public T query(java.io.Serializable id, List<String> listName) throws FindByIdGetNullException {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public PageBean<T> queryByPage(int page) throws FindByIdGetNullException, PagePropertyNotInitException {

@@ -1,5 +1,6 @@
 package com.lps.control.manage;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.lps.model.Combo;
 import com.lps.service.basic.BasicService;
+import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PropertyRange;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.basicmsg.dto.DtoInitException;
@@ -31,6 +33,12 @@ public class ComboManage extends AbstractManage<Combo>  {
 	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto)
 			throws DtoInitException, MapNotInitForClassPathException {
 		
+	}
+
+	@Override
+	public Combo query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

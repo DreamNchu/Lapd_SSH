@@ -1,5 +1,6 @@
 package com.lps.control.manage;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -9,18 +10,12 @@ import org.springframework.stereotype.Component;
 
 import com.lps.model.Room;
 import com.lps.model.ServerOrder;
-import com.lps.service.RoomService;
 import com.lps.service.ServerItemService;
 import com.lps.service.basic.BasicService;
 import com.lps.service.impl.FindByIdGetNullException;
-import com.lps.util.PageBean;
-import com.lps.util.PagePropertyNotInitException;
 import com.lps.util.PropertyRange;
 import com.lps.web.basicmsg.dto.BasicRespondMsgDto;
 import com.lps.web.basicmsg.dto.DtoInitException;
-import com.lps.web.dto.BasicRequestDto;
-import com.lps.web.dto.BasicResponseDto;
-import com.lps.web.dto.BasicUpdateDto;
 import com.lps.web.order.dto.MapNotInitForClassPathException;
 import com.lps.web.room.dto.InitOperationRoomData;
 
@@ -34,7 +29,6 @@ public class RoomManage extends AbstractManage<Room> {
 
 	@Autowired
 	private ServerItemService serverItemServiceImpl;
-	
 
 	public ServerItemService getServerItemServiceImpl() {
 		return serverItemServiceImpl;
@@ -78,6 +72,12 @@ public class RoomManage extends AbstractManage<Room> {
 	public <DTO extends BasicRespondMsgDto> void initOperationData(DTO dto) throws DtoInitException, MapNotInitForClassPathException {
 		InitOperationRoomData iord = (InitOperationRoomData)dto;
 		iord.init(serverItemServiceImpl.findAll());
+	}
+
+	@Override
+	public Room query(Serializable id, List<String> listName) throws FindByIdGetNullException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
