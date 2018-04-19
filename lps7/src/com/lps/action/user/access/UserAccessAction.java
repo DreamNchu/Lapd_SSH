@@ -10,7 +10,7 @@ import com.lps.action.basic.ActionSupportLps;
 
 public class UserAccessAction extends ActionSupportLps implements SessionAware{
 
-	private static final long serialVersionUID = 5979229100942095638L;
+	private static  long serialVersionUID = 5979229100942095638L;
 
 	private UserService userServiceImpl;
 

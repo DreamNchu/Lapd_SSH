@@ -12,9 +12,9 @@ import com.lps.web.basicmsg.dto.TableInitDto;
 @DtoName("serverItems")
 public class TServerItemDto extends ArrayList<ServerItemDto> implements TableInitDto<ServerItem>{
 
-	private static final long serialVersionUID = 6746457713473621005L;
+	private static  long serialVersionUID = 6746457713473621005L;
 
-//	public static final String name = "serverItems";
+//	public static  String name = "serverItems";
 
 	@Override
 	public void init(List<ServerItem> lists) throws DtoInitException {

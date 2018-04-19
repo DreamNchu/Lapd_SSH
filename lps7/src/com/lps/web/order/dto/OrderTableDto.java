@@ -8,7 +8,7 @@ import com.lps.web.page.dto.TablePage;
 
 public class OrderTableDto extends TablePage<ServerOrder>{
 
-	private static final long serialVersionUID = 3806945311759118584L;
+	private static  long serialVersionUID = 3806945311759118584L;
 	
 	private TOrderDto orders;
 

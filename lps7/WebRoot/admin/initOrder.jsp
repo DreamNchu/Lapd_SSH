@@ -105,9 +105,9 @@
 										</div>
 										<div class="form-group">
 										
-											<label>选择项目</label> <select class="form-control"
-												name="createOrderDto.serverItemIds" id="serverItem">
-											</select>
+											<label>选择项目</label> <div class="form-control"
+												 id="serverItem">
+											</div>
 										</div>
 										<div class="form-group">
 										

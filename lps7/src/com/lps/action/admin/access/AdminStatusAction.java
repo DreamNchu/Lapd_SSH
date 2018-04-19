@@ -9,7 +9,7 @@ import com.lps.action.jsonresult.DataResult;
 
 public class AdminStatusAction extends ActionSupportLps implements SessionAware, DataResult{
 
-	private static final long serialVersionUID = 5979229100942095638L;
+	private static  long serialVersionUID = 5979229100942095638L;
 
 	private Map<String, Object> session;
 	

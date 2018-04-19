@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+import com.lps.action.basic.ActionSupportLps;
 import com.lps.action.jsonresult.DataResult;
 import com.lps.control.manage.BasicManage;
 import com.lps.control.manage.OrderManage;
@@ -15,7 +19,6 @@ import com.lps.permission.Permission;
 import com.lps.service.OrderStatusService;
 import com.lps.service.impl.FindByIdGetNullException;
 import com.lps.util.PageBean;
-import com.lps.util.WorkJson;
 import com.lps.web.basicmsg.dto.DtoInitException;
 import com.lps.web.order.dto.OrderRespondDto;
 import com.lps.web.order.dto.OrderTableDto;
@@ -23,11 +26,12 @@ import com.lps.web.order.dto.UpdateOrderNormalOperationDto;
 import com.lps.web.order.dto.constant.TimeType;
 import com.lps.web.orderchart.dto.OrderChartDto;
 import com.lps.web.user.dto.UserOrderRequestDto;
-import com.lps.action.basic.ActionSupportLps;
 
+@Component
+@Scope("prototype")
 public class UserOrderAction extends ActionSupportLps implements DataResult, SessionAware {
-
-	private static final long serialVersionUID = -7901998643050021799L;
+	
+	private static  long serialVersionUID = -7901998643050021799L;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
@@ -37,18 +41,23 @@ public class UserOrderAction extends ActionSupportLps implements DataResult, Ses
 
 	private String orderId;
 
+	@Autowired
 	private OrderManage orderManage;
 
+	@Autowired
 	private OrderRespondDto orderSingleDataDto;
 
+	@Autowired
 	private OrderStatusService orderStatusServiceImpl;
 
+	@Autowired
 	private OrderTableDto orderTableDataDto;
 
 	private float pay;
 
 	private Map<String, Object> session;
 
+	@Autowired
 	private UserManage userManage;
 
 	private UserOrderRequestDto userOrderRequestDto;

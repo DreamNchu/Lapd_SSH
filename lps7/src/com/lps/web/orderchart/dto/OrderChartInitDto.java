@@ -14,7 +14,7 @@ public class OrderChartInitDto extends BasicRespondMsgDto{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7461073611505904523L;
+	private static  long serialVersionUID = -7461073611505904523L;
 	private TUserDto users ;
 	
 	public void init(List<User> us) throws DtoInitException, MapNotInitForClassPathException{

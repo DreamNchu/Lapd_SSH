@@ -16,7 +16,7 @@ public class UserSignInAction extends ActionSupportLps implements DataResult{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1335015386952489920L;
+	private static  long serialVersionUID = -1335015386952489920L;
 
 	private UserSignInDto userSignInDto;
 	

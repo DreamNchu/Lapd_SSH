@@ -31,7 +31,7 @@ import com.lps.model.basic.ModelLinkServerOrder;
 		allocationSize = 1)
 public class Medicine implements BasicModel, java.io.Serializable ,ModelLinkServerOrder<Integer>{
 
-	private static final long serialVersionUID = 1L;
+	private static  long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String medicineId;

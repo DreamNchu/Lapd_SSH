@@ -30,7 +30,7 @@ public class ClockCategory implements java.io.Serializable ,ModelLinkServerOrder
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7563728190772989668L;
+	private static  long serialVersionUID = 7563728190772989668L;
 	private Integer id;
 	private String clockCategory;
 	

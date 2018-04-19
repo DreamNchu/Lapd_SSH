@@ -30,7 +30,7 @@ public class MedicineDAOImpl implements MedicineDAO{
 	/**
 	 * 声明钟点类型全局常量
 	 */
-	public static final String MEDICAL = "medicine";
+	public static  String MEDICAL = "medicine";
 	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate

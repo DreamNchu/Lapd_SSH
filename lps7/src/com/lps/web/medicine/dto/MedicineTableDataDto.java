@@ -13,7 +13,7 @@ public class MedicineTableDataDto extends TablePage<Medicine> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7698020908629318584L;
+	private static  long serialVersionUID = 7698020908629318584L;
 	
 	private TMedicineDto medicines;
 

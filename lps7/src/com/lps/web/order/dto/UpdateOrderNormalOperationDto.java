@@ -14,7 +14,7 @@ public class UpdateOrderNormalOperationDto extends BasicRequestMsgDto<ServerOrde
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	private static  long serialVersionUID = 1L;
 
 	private String orderId;
 	

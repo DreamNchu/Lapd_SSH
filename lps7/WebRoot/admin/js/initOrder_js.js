@@ -23,9 +23,23 @@
 			op.innerHTML = createOrder.rooms[i].roomName;
 			roomId.appendChild(op);
 		}
+		
+		name = "serverItem";
 		for (i in createOrder.serverItems){
-			op = document.createElement("option");
+			op = document.createElement("input");
+			
+			op.setAttribute("type", "checkbox");
+			op.setAttribute("name", "createOrderDto.serverItemIds");
 			op.setAttribute("value", createOrder.serverItems[i].serverItemId);
+			op.setAttribute("id", name + i);
+			
+			if(i == 0){
+				op.checked = true;
+			}
+			
+			serverItem.appendChild(op);
+			op = document.createElement("label");
+			op.setAttribute("for", name + i);
 			op.innerHTML = createOrder.serverItems[i].serverItemName;
 			serverItem.appendChild(op);
 		}
@@ -50,12 +64,7 @@
 	  ajaxRequest("queryUser?stuffId="+$("#stuffId option:selected").val(),queryUser);
 	   })
 	      
-	     
-	   
-	   //var userdata={"roomName":"101","roomCategory":"洗脚","roomFloor":1,"roomSize":2,"customerNum":0,"isFree":true,"isClean":true};
-	
 	   $("#roomId").change(function(){
-		  // alert("ff");
 		   ajaxRequest("viewWorkRoomData?roomIdDto.roomId="+$("#roomId option:selected").val() ,viewWorkRoomData);
 	   })
 	  
@@ -99,7 +108,6 @@
 	    else{
 	    	isClean.innerHTML="是否打扫: 否";
 	    }
-	   // isClean.innerHTML="是否打扫"+((userdata.isClean==true):"是"?"否");
 	   
 	   	  
 	}

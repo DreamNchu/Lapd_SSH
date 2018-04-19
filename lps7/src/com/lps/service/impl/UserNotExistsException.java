@@ -7,7 +7,7 @@ package com.lps.service.impl;
  */
 public class UserNotExistsException extends RuntimeException {
 
-	private static final long serialVersionUID = -5348896663500245075L;
+	private static  long serialVersionUID = -5348896663500245075L;
 	
 	public UserNotExistsException(){
 	}

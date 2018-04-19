@@ -11,9 +11,9 @@ import com.lps.web.basicmsg.dto.TableInitDto;
 @DtoName("payPaths")
 public class TPayPathDto extends ArrayList<PayPathDto> implements TableInitDto<PayPath>{
 
-	private static final long serialVersionUID = 6746457713473621005L;
+	private static  long serialVersionUID = 6746457713473621005L;
 
-//	public static final String name = "payPaths";
+//	public static  String name = "payPaths";
 
 	@Override
 	public void init(List<PayPath> lists) throws DtoInitException {

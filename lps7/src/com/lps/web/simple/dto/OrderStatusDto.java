@@ -9,7 +9,7 @@ public class OrderStatusDto extends BasicRespondMsgDto implements OrderStatusLib
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6424035019476502051L;
+	private static  long serialVersionUID = 6424035019476502051L;
 
 	@SuppressWarnings("unchecked")
 	@Override

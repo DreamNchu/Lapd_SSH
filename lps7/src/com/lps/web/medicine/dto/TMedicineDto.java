@@ -17,7 +17,7 @@ public class TMedicineDto extends ArrayList<MedicineResponseDto> implements Tabl
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -935412308080036067L;
+	private static  long serialVersionUID = -935412308080036067L;
 
 	@Override
 	public void init(List<Medicine> lists) throws DtoInitException {

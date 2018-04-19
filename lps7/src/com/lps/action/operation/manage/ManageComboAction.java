@@ -25,7 +25,7 @@ import com.lps.web.page.dto.PageUtil;
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ManageComboAction extends ActionSupportLps implements SessionAware{
 
-	private static final long serialVersionUID = 6496410441337869225L;
+	private static  long serialVersionUID = 6496410441337869225L;
 	
 	private PageUtil pageUtil;
 

@@ -28,7 +28,7 @@ import com.lps.model.basic.BasicModel;
 
 public class ServerOrder implements java.io.Serializable, BasicModel {
 
-	private static final long serialVersionUID = 6038267699363948636L;
+	private static  long serialVersionUID = 6038267699363948636L;
 	private String id;
 
 	/**

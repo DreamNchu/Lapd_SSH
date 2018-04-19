@@ -22,7 +22,7 @@ public class UserWorkCheckAction extends ActionSupportLps
 	
 	private Map<String, Object> session ;
 
-	private static final long serialVersionUID = -4013579295942022608L;
+	private static  long serialVersionUID = -4013579295942022608L;
 
 	private UserManage userManage;
 

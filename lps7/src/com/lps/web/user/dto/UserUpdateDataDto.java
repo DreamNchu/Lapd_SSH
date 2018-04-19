@@ -25,7 +25,7 @@ public class UserUpdateDataDto extends UserRequestDto implements BasicUpdateDto<
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7015971312744759210L;
+	private static  long serialVersionUID = -7015971312744759210L;
 
 	@Override
 	public User update(User user) {

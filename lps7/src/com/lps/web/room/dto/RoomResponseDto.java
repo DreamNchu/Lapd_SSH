@@ -11,7 +11,7 @@ public class RoomResponseDto extends BasicRespondMsgDto implements RoomLibraryDt
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3813292612717944690L;
+	private static  long serialVersionUID = -3813292612717944690L;
 
 
 	@Override

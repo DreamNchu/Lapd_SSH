@@ -1,4 +1,4 @@
-package com.lps.service.test;
+/*package com.lps.service.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
@@ -202,3 +202,4 @@ public class ServerOrderServiceTest {
 	}
 
 }
+*/

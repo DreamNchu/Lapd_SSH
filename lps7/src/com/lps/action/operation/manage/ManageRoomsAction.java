@@ -27,7 +27,7 @@ import com.lps.web.room.dto.RoomUpdateDataDto;
 
 public class ManageRoomsAction extends ActionSupportLps implements SessionAware{
 
-	private final static Logger logger = LogManager.getLogger(new Object() {
+	private  static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
 			String className = this.getClass().getName();
@@ -38,7 +38,7 @@ public class ManageRoomsAction extends ActionSupportLps implements SessionAware{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6496410441337869225L;
+	private static  long serialVersionUID = 6496410441337869225L;
 
 	private PageUtil pageUtil;
 

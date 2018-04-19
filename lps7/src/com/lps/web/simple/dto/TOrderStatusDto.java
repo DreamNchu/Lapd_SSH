@@ -11,9 +11,9 @@ import com.lps.web.basicmsg.dto.TableInitDto;
 @DtoName("orderStatuses")
 public class TOrderStatusDto extends ArrayList<OrderStatusDto> implements TableInitDto<OrderStatus>{
 
-	private static final long serialVersionUID = 6746457713473621005L;
+	private static  long serialVersionUID = 6746457713473621005L;
 
-//	public static final String name = "orderStatuses";
+//	public static  String name = "orderStatuses";
 
 	@Override
 	public  void init(List<OrderStatus> lists) throws DtoInitException {

@@ -49,7 +49,7 @@ public  class PayPath  implements java.io.Serializable ,ModelLinkServerOrder<Int
      /**
 	 * 
 	 */
-	private static final long serialVersionUID = -4804160261476295801L;
+	private static  long serialVersionUID = -4804160261476295801L;
 	private Integer id;
      private String payPath;
 

@@ -20,7 +20,7 @@ public class HibernateSessionFactory {
      * in the default package. Use #setConfigFile() to update 
      * the location of the configuration file for the current session.   
      */
-	private static final ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
+	private static  ThreadLocal<Session> threadLocal = new ThreadLocal<Session>();
     private static org.hibernate.SessionFactory sessionFactory;
 	
     private static Configuration configuration = new Configuration();

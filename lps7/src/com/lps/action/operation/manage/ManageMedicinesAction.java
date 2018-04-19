@@ -23,7 +23,7 @@ public class ManageMedicinesAction extends ActionSupportLps implements SessionAw
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6496410441337869225L;
+	private static  long serialVersionUID = 6496410441337869225L;
 	
 	private PageUtil pageUtil;
 

@@ -7,7 +7,7 @@ public class WorkRankSingleDataDto extends WorkRankDto{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -7134431869002674930L;
+	private static  long serialVersionUID = -7134431869002674930L;
 
 	/*private int index;
 	

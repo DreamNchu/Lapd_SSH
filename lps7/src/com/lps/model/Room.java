@@ -34,7 +34,7 @@ public class Room implements java.io.Serializable ,ModelLinkServerOrder<Integer>
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8192142277776627069L;
+	private static  long serialVersionUID = 8192142277776627069L;
 	private Integer id;
 	private ServerItem serverItem;// 房间类型
 	private String name;

@@ -23,12 +23,12 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6002570645302786244L;
+	private static  long serialVersionUID = 6002570645302786244L;
 
 	private transient Map<String, Object> mapUtil = new HashMap<String, Object>();
 
-	public static final String ERROR_MSG = "errorMsg";
-	public static final String SUCCESS_MSG = "successMsg";
+	public static  String ERROR_MSG = "errorMsg";
+	public static  String SUCCESS_MSG = "successMsg";
 
 	public BasicRespondMsgDto() {
 		// System.out.println("construct");
@@ -101,7 +101,7 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 
 			for (Field field : fs) {
 				
-				int modefier = Modifier.FINAL | Modifier.TRANSIENT | Modifier.STATIC;
+				int modefier = Modifier. | Modifier.TRANSIENT | Modifier.STATIC;
 
 				if ((modefier & field.getModifiers()) != 0) {
 					// 如果为transient修饰的变量那么不进行键初始化
@@ -136,7 +136,7 @@ public class BasicRespondMsgDto extends HashMap<String, Object> {
 
 				} catch (IllegalArgumentException | IllegalAccessException e) {
 					e.printStackTrace();
-				} finally {
+				} ly {
 					field.setAccessible(false);
 				}
 			}

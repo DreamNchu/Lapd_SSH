@@ -31,7 +31,7 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	/**
 	 * 声明抵押物品名全局常量
 	 */
-	public static final String PLEDGE = "name";
+	public static  String PLEDGE = "name";
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
 	 */
@@ -158,7 +158,7 @@ public class PledgeDAOImpl  implements PledgeDAO, BasicForServerOrderDAO<Pledge,
 	/**
 	 * 声明员工服务订单全局常量
 	 */
-	public static final String SERVER_ORDER = "serverOrders";
+	public static  String SERVER_ORDER = "serverOrders";
 	
 	/**
 	 * 根据抵押物查找所有订单

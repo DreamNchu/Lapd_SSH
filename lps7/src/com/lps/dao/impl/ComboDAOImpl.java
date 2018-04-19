@@ -31,7 +31,7 @@ public class ComboDAOImpl implements ComboDAO{
 	/**
 	 * 声明钟点类型全局常量
 	 */
-	public static final String COMBO = "combo";
+	public static  String COMBO = "combo";
 	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate

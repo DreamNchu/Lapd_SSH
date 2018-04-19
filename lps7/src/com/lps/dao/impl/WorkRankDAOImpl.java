@@ -27,19 +27,19 @@ public class WorkRankDAOImpl implements WorkRankDAO {
 	/**
 	 * 声明排序号全局常量
 	 */
-	public static final String RANK = "rank";
+	public static  String RANK = "rank";
 	/**
 	 * 声明员工名全局常量
 	 */
-	public static final String USER = "user";
+	public static  String USER = "user";
 	/**
 	 * 声明员工排钟号全局常量
 	 */
-	public static final String RANK_NUM = "rankNum";
+	public static  String RANK_NUM = "rankNum";
 	/**
 	 * 声明员工点钟号全局常量
 	 */
-	public static final String SPOT_NUM = "spotNum";
+	public static  String SPOT_NUM = "spotNum";
 
 	/**
 	 * 以私有变量的方式保存HibernateTemplate

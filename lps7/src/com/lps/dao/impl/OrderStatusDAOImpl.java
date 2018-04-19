@@ -34,7 +34,7 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 	/**
 	 * 声明订单状态全局常量
 	 */
-	public static final String ORDER_STATUS = "orderStatus";
+	public static  String ORDER_STATUS = "orderStatus";
 
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
@@ -173,7 +173,7 @@ public class OrderStatusDAOImpl implements OrderStatusDAO, BasicForServerOrderDA
 	/**
 	 * 声明员工服务订单全局常量
 	 */
-	public static final String SERVER_ORDER = "serverOrders";
+	public static  String SERVER_ORDER = "serverOrders";
 
 	/**
 	 * 根据订单状态查找所有订单

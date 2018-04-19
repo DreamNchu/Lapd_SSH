@@ -17,7 +17,7 @@ import com.lps.action.basic.ActionSupportLps;
 public class UserOrdersCountAction extends ActionSupportLps 
 		implements DataResult, SessionAware{
 	
-	private static final long serialVersionUID = -7904719214614886119L;
+	private static  long serialVersionUID = -7904719214614886119L;
 	
 	private Map<String,Object> session ;
 

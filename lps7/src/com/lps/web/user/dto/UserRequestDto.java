@@ -29,7 +29,7 @@ public class UserRequestDto implements UserLibraryDto, BasicRequestDto<User>{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1727879901472191276L;
+	private static  long serialVersionUID = -1727879901472191276L;
 
 	@Override
 	public User generate() {

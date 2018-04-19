@@ -31,7 +31,7 @@ import com.lps.action.basic.ActionSupportLps;
 
 public class ManageOrdersAction extends ActionSupportLps implements DataResult, SessionAware {
 
-	private final static Logger logger = LogManager.getLogger(new Object() {
+	private  static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
 			String className = this.getClass().getName();
@@ -39,7 +39,7 @@ public class ManageOrdersAction extends ActionSupportLps implements DataResult, 
 		}
 	}.getClassName());
 
-	private static final long serialVersionUID = -8763735445922466287L;
+	private static  long serialVersionUID = -8763735445922466287L;
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;

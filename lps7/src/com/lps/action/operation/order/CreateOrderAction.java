@@ -11,13 +11,13 @@ import com.lps.web.order.dto.CreateOrderDto;
 
 public class CreateOrderAction extends ActionSupportLps implements DataResult {
 
-	private static final long serialVersionUID = -2770070015331923293L;
+	private static  long serialVersionUID = -2770070015331923293L;
 
 	private CreateOrderDto createOrderDto;
 
 	private OrderManage orderManage;
 
-	private final static Logger logger = LogManager.getLogger(new Object() {
+	private  static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
 			String className = this.getClass().getName();

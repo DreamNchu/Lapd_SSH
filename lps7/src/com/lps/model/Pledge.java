@@ -33,7 +33,7 @@ public class Pledge implements java.io.Serializable,ModelLinkServerOrder<Integer
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4797803268008785860L;
+	private static  long serialVersionUID = 4797803268008785860L;
 	private Integer id;
 	private String name;
 	private Integer price;

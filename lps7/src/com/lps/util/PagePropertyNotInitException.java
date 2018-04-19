@@ -5,7 +5,7 @@ public class PagePropertyNotInitException extends Exception {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5356459029914427609L;
+	private static  long serialVersionUID = -5356459029914427609L;
 
 	public PagePropertyNotInitException() {
 		

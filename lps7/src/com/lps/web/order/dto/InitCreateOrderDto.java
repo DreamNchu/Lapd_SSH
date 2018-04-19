@@ -12,7 +12,7 @@ import com.lps.web.user.dto.TUserDto;
 
 public class InitCreateOrderDto extends BasicRespondMsgDto {
 
-	private static final long serialVersionUID = 7306645750527617840L;
+	private static  long serialVersionUID = 7306645750527617840L;
 
 	private TUserDto users;
 

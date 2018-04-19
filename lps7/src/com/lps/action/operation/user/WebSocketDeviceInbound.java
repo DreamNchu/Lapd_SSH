@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.json.annotations.JSON;
 
 public class WebSocketDeviceInbound extends MessageInbound {
-	private final HttpServletRequest request;
+	private  HttpServletRequest request;
 	private DeviceAccount connectedDevice;
 
 	public DeviceAccount getConnectedDevice() {

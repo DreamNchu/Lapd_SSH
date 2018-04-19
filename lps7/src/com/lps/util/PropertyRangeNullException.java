@@ -5,7 +5,7 @@ public class PropertyRangeNullException extends Exception {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 2701489945047721325L;
+	private static  long serialVersionUID = 2701489945047721325L;
 	
 	public PropertyRangeNullException() {
 		

@@ -5,7 +5,7 @@ public class RoomHelpForCreateOrderDto extends RoomResponseDto /*implements Basi
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -4749353363264116985L;
+	private static  long serialVersionUID = -4749353363264116985L;
 	
 	/*private String roomName;
 	

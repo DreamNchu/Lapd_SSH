@@ -27,21 +27,21 @@ public class AdminDAOImpl implements AdminDAO {
 	/**
 	 * 声明管理员账户名全局常量
 	 */
-	public static final String USER_NAME = "userName";
+	public static  String USER_NAME = "userName";
 	/**
 	 * 声明管理员密码全局常量
 	 */
-	public static final String PASSWORD = "password";
+	public static  String PASSWORD = "password";
 	/**
 	 * 声明管理员头像全局常量
 	 */
-	public static final String AVATAR = "avatar";
+	public static  String AVATAR = "avatar";
 	/**
 	 * 声明管理员注册时间全局常量
 	 */
-	public static final String REGISTER_TIME = "registerTime";
+	public static  String REGISTER_TIME = "registerTime";
 	
-	public transient static final Map<String, Class<?>> mapDataType = new HashMap<>();
+	public transient static  Map<String, Class<?>> mapDataType = new HashMap<>();
 	
 	static{
 //		mapDataType.put(ID, Integer.class);

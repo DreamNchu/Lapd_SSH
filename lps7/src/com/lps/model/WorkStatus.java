@@ -42,7 +42,7 @@ public class WorkStatus implements java.io.Serializable, BasicModel {
      /**
 	 * 
 	 */
-	private static final long serialVersionUID = 683152915918217364L;
+	private static  long serialVersionUID = 683152915918217364L;
 	private Integer id;
      private String workStatus;
      private Set<User> users = new HashSet<User>(0);

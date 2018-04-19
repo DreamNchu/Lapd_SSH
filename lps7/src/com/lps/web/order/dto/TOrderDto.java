@@ -19,7 +19,7 @@ public class TOrderDto extends ArrayList<OrderRespondDto> implements TableInitDt
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5072559185596107146L;
+	private static  long serialVersionUID = 5072559185596107146L;
 
 	@Override
 	public void init(List<ServerOrder> lists) throws DtoInitException {

@@ -11,7 +11,7 @@ import com.lps.web.basicmsg.dto.TableInitDto;
 @DtoName("workRanks")
 public class TWorkRankDto extends ArrayList<WorkRankDto> implements TableInitDto<WorkRank>{
 
-	private static final long serialVersionUID = -5652757594637313740L;
+	private static  long serialVersionUID = -5652757594637313740L;
 
 	@Override
 	public void init(List<WorkRank> lists) throws DtoInitException {

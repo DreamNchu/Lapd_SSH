@@ -14,11 +14,11 @@ public class TUserDto extends ArrayList<UserResponseDto> implements TableInitDto
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -9057825122505773284L;
+	private static  long serialVersionUID = -9057825122505773284L;
 	
-//	public static final String name = "users";
+//	public static  String name = "users";
 	
-//	public static final String partName = ""
+//	public static  String partName = ""
 
 	@Override
 	public void init(List<User> lists) throws DtoInitException {

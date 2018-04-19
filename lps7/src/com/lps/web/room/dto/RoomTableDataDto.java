@@ -8,7 +8,7 @@ import com.lps.web.page.dto.PageAble;
 
 public class RoomTableDataDto extends TablePage<Room>{
 
-	private static final long serialVersionUID = 8310657762814860723L;
+	private static  long serialVersionUID = 8310657762814860723L;
 	
 	TRoomDto rooms;
 	

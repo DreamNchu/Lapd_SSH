@@ -28,51 +28,51 @@ public class ServerOrderDAOImpl implements ServerOrderDAO {
 	/**
 	 * 声明付费方式全局常量
 	 */
-	public static final String PAY_PATH = "payPath";
+	public static  String PAY_PATH = "payPath";
 	/**
 	 * 声明房间全局常量
 	 */
-	public static final String ROOM = "room";
+	public static  String ROOM = "room";
 	/**
 	 * 声明用户名全局常量
 	 */
-	public static final String USER = "user";
+	public static  String USER = "user";
 	/**
 	 * 声明抵押物全局常量
 	 */
-	public static final String PLEDGE = "pledge";
+	public static  String PLEDGE = "pledge";
 	/**
 	 * 声明钟点类型全局常量
 	 */
-	public static final String CLOCK_CATEGORY = "clockCategory";
+	public static  String CLOCK_CATEGORY = "clockCategory";
 	/**
 	 * 声明订单状态全局常量
 	 */
-	public static final String ORDER_STATUS = "orderStatus";
+	public static  String ORDER_STATUS = "orderStatus";
 	/**
 	 * 声明实际支付全局常量
 	 */
-	public static final String REAL_PAY = "realPay";
+	public static  String REAL_PAY = "realPay";
 	/**
 	 * 声明消费全局常量
 	 */
-	public static final String PAY = "pay";
+	public static  String PAY = "pay";
 	/**
 	 * 声明订单发起时间全局常量
 	 */
-	public static final String INIT_TIME = "initTime";
+	public static  String INIT_TIME = "initTime";
 	/**
 	 * 声明订单接受时间全局常量
 	 */
-	public static final String RECEIVE_TIME = "receiveTime";
+	public static  String RECEIVE_TIME = "receiveTime";
 	/**
 	 * 声明订单完成时间全局常量
 	 */
-	public static final String FINISH_TIME = "finishTime";
+	public static  String FINISH_TIME = "finishTime";
 	/**
 	 * 声明订单付费时间全局常量
 	 */
-	public static final String PAY_TIME = "payTime";
+	public static  String PAY_TIME = "payTime";
 
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
@@ -204,7 +204,7 @@ public class ServerOrderDAOImpl implements ServerOrderDAO {
 	}
 
 	/*
-	 * public static final String SERVER_ORDER = "serverOrders";
+	 * public static  String SERVER_ORDER = "serverOrders";
 	 * 
 	 * @Override public Set<ServerOrder> findAllOrders(ServerOrder entity) {
 	 * Session session =

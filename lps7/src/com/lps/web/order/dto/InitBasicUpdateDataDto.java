@@ -17,7 +17,7 @@ public class InitBasicUpdateDataDto extends BasicRespondMsgDto{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -6522735277854018127L;
+	private static  long serialVersionUID = -6522735277854018127L;
 	/**
 	 * 所有用户基本信息
 	 */

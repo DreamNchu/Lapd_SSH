@@ -31,7 +31,7 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	/**
 	 * 声明钟点类型全局常量
 	 */
-	public static final String CLOCK_CATEGORY = "clockCategory";
+	public static  String CLOCK_CATEGORY = "clockCategory";
 	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
@@ -153,7 +153,7 @@ public class ClockCategoryDAOImpl implements ClockCategoryDAO {
 	/**
 	 * 声明员工服务订单全局常量
 	 */
-	public static final String SERVER_ORDER = "serverOrders";
+	public static  String SERVER_ORDER = "serverOrders";
 
 	/**
 	 * 根据钟点类型查找所有订单

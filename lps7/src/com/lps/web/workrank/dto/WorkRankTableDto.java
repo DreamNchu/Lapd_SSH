@@ -11,7 +11,7 @@ public class WorkRankTableDto extends TablePage<WorkRank>{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6224422883304452337L;
+	private static  long serialVersionUID = 6224422883304452337L;
 	
 	private TWorkRankDto workRanks ;
 

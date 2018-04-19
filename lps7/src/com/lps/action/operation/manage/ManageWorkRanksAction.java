@@ -13,7 +13,7 @@ import com.lps.action.basic.ActionSupportLps;
 
 public class ManageWorkRanksAction extends ActionSupportLps implements DataResult{
 
-	private static final long serialVersionUID = 3231097688808974970L;
+	private static  long serialVersionUID = 3231097688808974970L;
 	
 	private WorkRankManage workRankManage;
 	

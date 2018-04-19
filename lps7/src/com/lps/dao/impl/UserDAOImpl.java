@@ -33,55 +33,55 @@ public class UserDAOImpl implements UserDAO ,BasicForServerOrderDAO<User, Intege
 	/**
 	 * 声明员工账户名全局常量
 	 */
-	public static final String USER_NAME = "userName";
+	public static  String USER_NAME = "userName";
 	/**
 	 * 声明员工密码全局常量
 	 */
-	public static final String PASSWORD = "password";
+	public static  String PASSWORD = "password";
 	/**
 	 * 声明员工工号全局常量
 	 */
-	public static final String WORK_ID = "workId";
+	public static  String WORK_ID = "workId";
 	/**
 	 * 声明员工电话全局常量
 	 */
-	public static final String TELEPHONE_PHONE = "telephonePhone";
+	public static  String TELEPHONE_PHONE = "telephonePhone";
 	/**
 	 * 声明员工邮箱全局常量
 	 */
-	public static final String EMAIL = "email";
+	public static  String EMAIL = "email";
 	/**
 	 * 声明员工地址全局常量
 	 */
-	public static final String ADDRESS = "address";
+	public static  String ADDRESS = "address";
 	/**
 	 * 声明员工头像全局常量
 	 */
-	public static final String AVATAR = "avatar";
+	public static  String AVATAR = "avatar";
 	/**
 	 * 声明员工密码找回问题全局常量
 	 */
-	public static final String QUESTION = "question";
+	public static  String QUESTION = "question";
 	/**
 	 * 声明员工名密码找回问题答案全局常量
 	 */
-	public static final String ANSWER = "answer";
+	public static  String ANSWER = "answer";
 	/**
 	 * 声明员工注册时间全局常量
 	 */
-	public static final String REGISTER_TIME = "registerTime";
+	public static  String REGISTER_TIME = "registerTime";
 	/**
 	 * 声明员工真实姓名全局常量
 	 */
-	public static final String REAL_NAME = "realName";
+	public static  String REAL_NAME = "realName";
 	/**
 	 * 声明员工id卡号全局常量
 	 */
-	public static final String ID_CARD_NO = "IDCardNO";
+	public static  String ID_CARD_NO = "IDCardNO";
 	/**
 	 * 声明员工服务订单全局常量
 	 */
-	public static final String SERVER_ORDER = "serverOrders";
+	public static  String SERVER_ORDER = "serverOrders";
 
 	/**
 	 * 以私有变量的方式保存HibernateTemplate

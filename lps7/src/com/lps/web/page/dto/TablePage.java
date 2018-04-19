@@ -16,7 +16,7 @@ public abstract class TablePage<T extends Entity> extends BasicRespondMsgDto{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5075706924643222212L;
+	private static  long serialVersionUID = -5075706924643222212L;
 
 	protected  List<Map<String, Object>> page = new ArrayList<>();;
 

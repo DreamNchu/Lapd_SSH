@@ -2,9 +2,9 @@ package com.lps.permission;
 
 public class Permission {
 
-	public static final int USER = 1;
+	public static  int USER = 1;
 	
-	public static final int ADMIN = 2;
+	public static  int ADMIN = 2;
 	
 	private int perssion;
 	
@@ -15,7 +15,7 @@ public class Permission {
 	
 	@Override
 	public int hashCode() {
-		final int prime = 31;
+		 int prime = 31;
 		int result = 1;
 		result = prime * result + perssion;
 		return result;

@@ -9,9 +9,9 @@ import org.joda.time.LocalTime;
 
 public class WorkDate {
 	
-	public static final int TODAY_OFF_SET = 0;
-	public static final int TOMORROW_OFF_SET = 1;
-	public static final int BEFORE_7_DAYS__OFF_SET = -6;
+	public static  int TODAY_OFF_SET = 0;
+	public static  int TOMORROW_OFF_SET = 1;
+	public static  int BEFORE_7_DAYS__OFF_SET = -6;
 	
 	public static Date getTodayDate(){
 		return getDateFlexible(TODAY_OFF_SET);

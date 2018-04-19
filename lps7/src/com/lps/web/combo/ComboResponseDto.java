@@ -20,7 +20,7 @@ public class ComboResponseDto extends BasicRespondMsgDto implements ComboLibrary
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -3856325605627463704L;
+	private static  long serialVersionUID = -3856325605627463704L;
 
 	@SuppressWarnings("unchecked")
 	@Override

@@ -76,7 +76,7 @@ public class OrderStatus implements java.io.Serializable,ModelLinkServerOrder<In
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4509505398828451606L;
+	private static  long serialVersionUID = 4509505398828451606L;
 	private Integer id;
 	
 	private String orderstatus;

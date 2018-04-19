@@ -34,7 +34,7 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	/**
 	 * 声明付费方式全局常量
 	 */
-	public static final String PAY_PATH = "payPath";
+	public static  String PAY_PATH = "payPath";
 	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate
@@ -158,7 +158,7 @@ public class PayPathDAOImpl implements PayPathDAO, BasicForServerOrderDAO<PayPat
 	/**
 	 * 声明员工服务订单全局常量
 	 */
-	public static final String SERVER_ORDER = "serverOrders";
+	public static  String SERVER_ORDER = "serverOrders";
 
 	/**
 	 * 根据付费方式查找所有订单

@@ -7,7 +7,7 @@ import com.lps.web.dto.BasicResponseDto;
 
 public class MedicineResponseDto extends BasicRespondMsgDto implements MedicineLibraryDto ,BasicResponseDto<Medicine>{
 
-	private static final long serialVersionUID = 5223165740117546947L;
+	private static  long serialVersionUID = 5223165740117546947L;
 
 	@SuppressWarnings("unchecked")
 	@Override

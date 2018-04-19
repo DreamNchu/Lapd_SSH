@@ -20,7 +20,7 @@ import com.lps.web.order.dto.MapNotInitForClassPathException;
 
 public class InitCreateOrderBasicDataAction extends ActionSupportLps implements DataResult {
 
-	private static final long serialVersionUID = -5140646258173298787L;
+	private static  long serialVersionUID = -5140646258173298787L;
 
 	private InitCreateOrderDto initCreateOrderDto;
 
@@ -40,7 +40,7 @@ public class InitCreateOrderBasicDataAction extends ActionSupportLps implements 
 		this.orderManage = orderManage;
 	}
 
-	private final static Logger logger = LogManager.getLogger(new Object() {
+	private  static Logger logger = LogManager.getLogger(new Object() {
 		// 静态方法中获取当前类名
 		public String getClassName() {
 			String className = this.getClass().getName();

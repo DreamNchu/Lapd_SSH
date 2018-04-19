@@ -1,1 +1,6 @@
 /com/
+/config/
+/log4j2.xml
+/struts.xml
+/test/
+/test2/

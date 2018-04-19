@@ -18,7 +18,7 @@ public class ComboTableDataDto extends TablePage<Combo>{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -888635444453809942L;
+	private static  long serialVersionUID = -888635444453809942L;
 	
 	@Autowired
 	private TComboDto combos;

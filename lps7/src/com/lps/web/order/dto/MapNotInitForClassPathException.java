@@ -5,7 +5,7 @@ public class MapNotInitForClassPathException extends Exception{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5355618204730692229L;
+	private static  long serialVersionUID = 5355618204730692229L;
 	
 	public MapNotInitForClassPathException() {
 		// TODO Auto-generated constructor stub

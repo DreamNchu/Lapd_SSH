@@ -17,7 +17,7 @@ public class UserResponseDto extends BasicRespondMsgDto implements UserLibraryDt
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 6317635082695983319L;
+	private static  long serialVersionUID = 6317635082695983319L;
 
 	@SuppressWarnings("unchecked")
 	@Override

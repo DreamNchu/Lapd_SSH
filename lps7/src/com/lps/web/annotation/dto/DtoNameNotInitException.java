@@ -2,7 +2,7 @@ package com.lps.web.annotation.dto;
 
 public class DtoNameNotInitException extends Exception{
 
-	private static final long serialVersionUID = -1461540767634472041L;
+	private static  long serialVersionUID = -1461540767634472041L;
 	
 	
 	public DtoNameNotInitException() {

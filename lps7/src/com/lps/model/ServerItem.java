@@ -43,7 +43,7 @@ public class ServerItem implements java.io.Serializable ,ModelLinkServerOrder<In
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 3529111347160958534L;
+	private static  long serialVersionUID = 3529111347160958534L;
 	private Integer id;
 	private String serverItem;
 	private Float price;

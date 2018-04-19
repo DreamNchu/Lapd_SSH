@@ -14,7 +14,7 @@ import com.lps.web.basicmsg.dto.TableInitDto;
 @DtoName("combos")
 public class TComboDto extends ArrayList<ComboResponseDto> implements TableInitDto<Combo> {
 
-	private static final long serialVersionUID = 365798462793553144L;
+	private static  long serialVersionUID = 365798462793553144L;
 
 	@Override
 	public void init(List<Combo> lists) throws DtoInitException {

@@ -37,7 +37,7 @@ public class WorkRank implements java.io.Serializable,BasicModel {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2023033530916611426L;
+	private static  long serialVersionUID = -2023033530916611426L;
 	private Integer id;
 	private User user;
 	private Integer rankNum;

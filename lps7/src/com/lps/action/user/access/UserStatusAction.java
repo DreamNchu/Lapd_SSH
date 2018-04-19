@@ -16,7 +16,7 @@ public class UserStatusAction extends ActionSupportLps
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 4382649909834668686L;
+	private static  long serialVersionUID = 4382649909834668686L;
 
 	private UserService userServiceImpl;
 	

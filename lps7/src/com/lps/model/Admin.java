@@ -33,7 +33,7 @@ public class Admin implements BasicModel, java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -777592858788745544L;
+	private static  long serialVersionUID = -777592858788745544L;
 	private Integer id;
 	private String userName;
 	private String password;
@@ -310,6 +310,6 @@ public class Admin implements BasicModel, java.io.Serializable {
 		}
 	}
 
-//	private static final List<String> listNames = new ArrayList<>();
+//	private static  List<String> listNames = new ArrayList<>();
 
 }

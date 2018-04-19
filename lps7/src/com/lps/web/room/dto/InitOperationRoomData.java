@@ -13,7 +13,7 @@ public class InitOperationRoomData extends BasicRespondMsgDto{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8532169645817122319L;
+	private static  long serialVersionUID = 8532169645817122319L;
 	TServerItemDto serverItems;
 	
 	public TServerItemDto getServerItems() {

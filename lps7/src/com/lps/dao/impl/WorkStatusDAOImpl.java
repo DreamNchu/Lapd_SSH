@@ -26,7 +26,7 @@ public class WorkStatusDAOImpl implements WorkStatusDAO {
 	/**
 	 * 声明员工工作状态全局常量
 	 */
-	public static final String WORK_STATUS = "workStatus";
+	public static  String WORK_STATUS = "workStatus";
 
 	/**
 	 * 以私有变量的方式保存HibernateTemplate

@@ -6,7 +6,7 @@ import com.lps.action.basic.ActionSupportLps;
 
 public class PayOrderPageAction extends ActionSupportLps implements DataResult{
 	
-	private static final long serialVersionUID = 622967630161433205L;
+	private static  long serialVersionUID = 622967630161433205L;
 	
 	public String payOrderPage(){
 		return SUCCESS;

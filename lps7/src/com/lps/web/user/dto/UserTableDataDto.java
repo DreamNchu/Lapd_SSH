@@ -16,7 +16,7 @@ public class UserTableDataDto extends TablePage<User>{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -176652993513460323L;
+	private static  long serialVersionUID = -176652993513460323L;
 	
 	private TUserDto users ;
 

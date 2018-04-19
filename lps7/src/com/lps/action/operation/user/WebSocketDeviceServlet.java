@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class WebSocketDeviceServlet extends org.apache.catalina.websocket.WebSocketServlet {
 
-	private static final long serialVersionUID = 1L;
+	private static  long serialVersionUID = 1L;
 
 	@Override
 	protected StreamInbound createWebSocketInbound(String subProtocol, HttpServletRequest request) {

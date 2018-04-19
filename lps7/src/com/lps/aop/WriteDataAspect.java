@@ -30,7 +30,7 @@ public class WriteDataAspect{
 	public WriteDataAspect() {
 	}
 	
-	private final Logger logger = LogManager.getLogger(this.getClass().getName());
+	private  Logger logger = LogManager.getLogger(this.getClass().getName());
 
 	/**
 	 * 方法执行完写入数据

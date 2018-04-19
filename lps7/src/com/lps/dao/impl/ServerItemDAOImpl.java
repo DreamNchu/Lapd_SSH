@@ -31,9 +31,9 @@ public class ServerItemDAOImpl  implements ServerItemDAO {
 	/**
 	 * 声明房间类型全局常量
 	 */
-	public static final String SERVER_ITEM = "serverItem";
+	public static  String SERVER_ITEM = "serverItem";
 	
-	public static final String PRICE = "price";
+	public static  String PRICE = "price";
 	
 	/**
 	 * 以私有变量的方式保存HibernateTemplate

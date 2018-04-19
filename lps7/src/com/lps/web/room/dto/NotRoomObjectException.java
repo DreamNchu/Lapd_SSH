@@ -5,7 +5,7 @@ public class NotRoomObjectException extends Exception{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -5549474850659005645L;
+	private static  long serialVersionUID = -5549474850659005645L;
 
 	public NotRoomObjectException() {
 		

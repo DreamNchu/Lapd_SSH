@@ -31,7 +31,7 @@ public class OrderRespondDto extends BasicRespondMsgDto implements OrderLibraryD
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -1438588682488989075L;
+	private static  long serialVersionUID = -1438588682488989075L;
 
 	public OrderRespondDto() {
 

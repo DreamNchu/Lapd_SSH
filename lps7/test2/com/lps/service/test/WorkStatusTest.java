@@ -1,4 +1,4 @@
-package com.lps.service.test;
+/*package com.lps.service.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -57,25 +57,26 @@ public class WorkStatusTest {
 
 	@Test
 	public void testFindByProperty() {
-		assertNotEquals(null, as.findByProperty(WorkStatusDAOImpl.WORK_STATUS, "¹¤×÷ÖÐ"));
+		assertNotEquals(null, as.findByProperty(WorkStatusDAOImpl.WORK_STATUS, "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
 	}
 
 	@Test
 	public void testFindByWorkStatus() {
-		assertNotEquals(null, as.findByWorkStatus("ÐÝÏ¢"));
+		assertNotEquals(null, as.findByWorkStatus("ï¿½ï¿½Ï¢"));
 	}
 
 	@Test
 	public void testSave() {
-		as.save(new WorkStatus("ÐÝÏ¢"));
-//		as.save(new WorkStatus("·þÎñÖÐ"));
-//		as.save(new WorkStatus("´ý½ÓÊÕ"));
-//		as.save(new WorkStatus("ÆäËû"));
+		as.save(new WorkStatus("ï¿½ï¿½Ï¢"));
+//		as.save(new WorkStatus("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+//		as.save(new WorkStatus("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½"));
+//		as.save(new WorkStatus("ï¿½ï¿½ï¿½ï¿½"));
 //		WorkStatus ws = as.findById(2);
-//		ws.getUsers().add(new User("0003", "0002", "ÄãÊÇË­", "cyl", new Timestamp(System.currentTimeMillis()),ws));
-//		as.save(new WorkStatus("ÆäËû"));
+//		ws.getUsers().add(new User("0003", "0002", "ï¿½ï¿½ï¿½ï¿½Ë­", "cyl", new Timestamp(System.currentTimeMillis()),ws));
+//		as.save(new WorkStatus("ï¿½ï¿½ï¿½ï¿½"));
 //		as.update(ws);
 		
 	}
 
 }
+*/

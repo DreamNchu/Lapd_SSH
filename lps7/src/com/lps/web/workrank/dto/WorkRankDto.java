@@ -10,7 +10,7 @@ public class WorkRankDto extends BasicRespondMsgDto implements WorkRankLibrary{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 7285373361923506019L;
+	private static  long serialVersionUID = 7285373361923506019L;
 
 	/**
 	 * 	String index = "index";

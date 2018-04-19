@@ -32,7 +32,7 @@ public class LogAspect {
 		this.request = request;
 	}
 
-	private final Logger logger = LogManager.getLogger(this.getClass().getName());
+	private  Logger logger = LogManager.getLogger(this.getClass().getName());
 	private String logStr = null;
 
 	/**

@@ -1,4 +1,4 @@
-package com.lps.service.test;
+/*package com.lps.service.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -127,19 +127,19 @@ public class UserServiceImplTest {
 	@Test
 	public void testSave() {
 		as.save(new User("0003", "0002", "你是谁", "cyl", new Timestamp(System.currentTimeMillis()),new WorkStatus("休息")));
-		/*for(int i = 0; i < 23; i ++){
+		for(int i = 0; i < 23; i ++){
 			as.save(new User("0002" + i, "0002", "你是谁", "cyl", new Timestamp(System.currentTimeMillis())));
-		}*/
+		}
 //		User u = new User("0002", "0002", "你是谁", "cyl", new Timestamp(System.currentTimeMillis()));
 //		as.save(u);
 	}
 	
-/*	@Test
+	@Test
 	public void testFindPageByLimit() {
 		assertEquals(24, as.findByPage(1).getAllCount());
 		assertEquals(10, as.findByPage(1).getList().size());
 		assertEquals("0002", as.findByPage(1).getList().get(0).getUserName());
-	}*/
+	}
 	@Test
 	public void testFindServerOrders(){
 		User u = new User();
@@ -171,3 +171,4 @@ public class UserServiceImplTest {
 	
 
 }
+*/

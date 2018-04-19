@@ -10,7 +10,7 @@ public class ActionSupportLps extends ActionSupport implements DataResult{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = -2888891847337870502L;
+	private static  long serialVersionUID = -2888891847337870502L;
 	
 	protected Map<String , String[]> data ;
 	
